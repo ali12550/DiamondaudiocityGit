@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audiobook Progress Calculator | Diamond Audio City</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/bootstrap5.css" rel="stylesheet">
+    <link href="assets/style.css" rel="stylesheet">
+    <link href="assets/tools.css" rel="stylesheet">
+
+    <style>
+        .progress-bar-container {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .progress-percentage {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin: 10px 0;
+        }
+
+        .progress-track {
+            background: #e4e4e4;
+            border-radius: 20px;
+            height: 12px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--teal);
+            width: 0%;
+            transition: width 0.6s ease;
+            border-radius: 20px;
+        }
+
+        .status-boxes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            gap: 10px;
+        }
+
+        .status-item {
+            flex: 1;
+            text-align: center;
+            border-radius: 12px;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .completed-box {
+            background: #e8fff1;
+            color: #008751;
+        }
+
+        .remaining-box {
+            background: #fff3e8;
+            color: #c25200;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .toggle-btn {
+            border: 2px solid var(--mid-blue);
+            background: white;
+            color: var(--mid-blue);
+            padding: 8px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .toggle-btn.active {
+            background: var(--teal);
+            color: white;
+            border-color: var(--teal);
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 25px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Include -->
+    <div id="header"></div>
+    <div class="tool-container">
+        <div class="tool-title">
+            <h1>Audiobook Progress</h1>
+            <p>Track your listening progress</p>
+        </div>
+
+        <form id="audiobookForm">
+            <label>Total Audiobook Time</label>
+            <div class="d-flex gap-2 mb-3">
+                <input type="number" id="totalHours" class="form-control" placeholder="Hours" min="0">
+                <input type="number" id="totalMinutes" class="form-control" placeholder="Minutes" min="0" max="59">
+            </div>
+
+            <div class="toggle-buttons">
+                <button type="button" id="completedBtn" class="toggle-btn active">Completed</button>
+                <button type="button" id="remainingBtn" class="toggle-btn">Remaining</button>
+            </div>
+
+            <label id="timeLabel">Time Completed</label>
+            <div class="d-flex gap-2 mb-3">
+                <input type="number" id="doneHours" class="form-control" placeholder="Hours" min="0">
+                <input type="number" id="doneMinutes" class="form-control" placeholder="Minutes" min="0" max="59">
+            </div>
+
+            <button type="button" class="btn btn-primary w-100" onclick="calculateProgress()">Calculate</button>
+        </form>
+
+        <hr>
+
+        <div class="progress-bar-container" id="progressBox" style="display:none;">
+            <div class="progress-percentage" id="progressPercent">0%</div>
+            <p>Complete</p>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="status-boxes">
+                <div class="status-item completed-box" id="completedBox">0h 0m Completed</div>
+                <div class="status-item remaining-box" id="remainingBox">0h 0m Remaining</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="footer"></div>
+
+    <!-- tool js -->
+    <script>
+        const completedBtn = document.getElementById('completedBtn');
+        const remainingBtn = document.getElementById('remainingBtn');
+        const timeLabel = document.getElementById('timeLabel');
+
+        completedBtn.onclick = () => {
+            completedBtn.classList.add('active');
+            remainingBtn.classList.remove('active');
+            timeLabel.textContent = "Time Completed";
+        };
+
+        remainingBtn.onclick = () => {
+            remainingBtn.classList.add('active');
+            completedBtn.classList.remove('active');
+            timeLabel.textContent = "Time Remaining";
+        };
+
+        function calculateProgress() {
+            const totalHours = parseFloat(document.getElementById('totalHours').value) || 0;
+            const totalMinutes = parseFloat(document.getElementById('totalMinutes').value) || 0;
+            const doneHours = parseFloat(document.getElementById('doneHours').value) || 0;
+            const doneMinutes = parseFloat(document.getElementById('doneMinutes').value) || 0;
+
+            const totalTime = (totalHours * 60) + totalMinutes;
+            let doneTime = (doneHours * 60) + doneMinutes;
+
+            if (totalTime <= 0) {
+                alert("Please enter total audiobook time.");
+                return;
+            }
+
+            // If "Remaining" mode selected
+            if (remainingBtn.classList.contains('active')) {
+                doneTime = totalTime - doneTime;
+            }
+
+            if (doneTime < 0 || doneTime > totalTime) {
+                alert("Invalid input values.");
+                return;
+            }
+
+            const percent = (doneTime / totalTime) * 100;
+            const remaining = totalTime - doneTime;
+
+            const rH = Math.floor(remaining / 60);
+            const rM = Math.round(remaining % 60);
+            const dH = Math.floor(doneTime / 60);
+            const dM = Math.round(doneTime % 60);
+
+            document.getElementById('progressBox').style.display = "block";
+            document.getElementById('progressPercent').textContent = `${percent.toFixed(1)}%`;
+            document.getElementById('progressFill').style.width = `${percent}%`;
+
+            document.getElementById('completedBox').textContent = `${dH}h ${dM}m Completed`;
+            document.getElementById('remainingBox').textContent = `${rH}h ${rM}m Remaining`;
+        }
+    </script>
+    <script src="assets/bootstrap5.js"></script>
+    <script src="include.js"></script>
+
+</body>
+
+</html>
