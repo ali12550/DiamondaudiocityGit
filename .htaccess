@@ -1,0 +1,49 @@
+# ==============================
+# Diamond Audio City — Clean & SEO Safe
+# ==============================
+
+Options -Indexes
+RewriteEngine On
+
+# ------------------------------
+# 1. Force NON-WWW (first)
+# ------------------------------
+RewriteCond %{HTTP_HOST} ^www\.diamondaudiocity\.com$ [NC]
+RewriteRule ^(.*)$ https://diamondaudiocity.com/$1 [L,R=301]
+
+# ------------------------------
+# 2. Force HTTPS (second)
+# ------------------------------
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://diamondaudiocity.com%{REQUEST_URI} [L,R=301]
+# ------------------------------
+# 2. Static Sitemap Headers
+# ------------------------------
+<IfModule mod_headers.c>
+  <FilesMatch "(^|/)(sitemap|site_map)\.xml$">
+    Header set Content-Type "application/xml; charset=UTF-8"
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+  </FilesMatch>
+</IfModule>
+
+# ------------------------------
+# 3. Specific 301 Redirects
+# ------------------------------
+Redirect 301 /BPM-Pitch-Calculator.html /dj-music-production-tools/pitch-shifter/
+Redirect 301 /bpm-to-speed.html /dj-music-production-tools/bpm-to-speed/
+
+# ------------------------------
+# 4. Custom 404 Page (REAL 404)
+# ------------------------------
+ErrorDocument 404 /404.html
+
+# ------------------------------
+# 5. Security Headers
+# ------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

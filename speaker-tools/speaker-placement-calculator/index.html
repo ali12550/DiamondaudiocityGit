@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaker Placement Calculator | Optimal Positioning | DiamondAudioCity</title>
+    <meta name="description"
+        content="Free speaker placement calculator. Find optimal speaker positions for stereo, 5.1, and 7.1 surround sound setups.">
+    <meta name="keywords"
+        content="speaker placement, speaker positioning, stereo setup, surround sound, home theater layout">
+    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/speaker-placement-calculator/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row justify-content-around">
+
+
+            <div class="col-lg-7 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Speaker Placement Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-arrows-move me-2"></i>Speaker Placement Calculator</h1>
+                        <p>Calculate optimal speaker positions based on your room dimensions and listening position for
+                            stereo or surround sound.</p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Room Width (feet):</label>
+                            <input type="number" class="form-control" id="roomWidth" value="15" min="6" max="100"
+                                oninput="calculate()">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Room Length (feet):</label>
+                            <input type="number" class="form-control" id="roomLength" value="20" min="8" max="100"
+                                oninput="calculate()">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Setup Type:</label>
+                            <select class="form-select" id="setupType" onchange="calculate()">
+                                <option value="stereo" selected>Stereo (2.0)</option>
+                                <option value="2.1">2.1 (Stereo + Sub)</option>
+                                <option value="5.1">5.1 Surround</option>
+                                <option value="7.1">7.1 Surround</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Listening Position (from front wall, feet):</label>
+                            <input type="number" class="form-control" id="listenerPos" value="10" min="3" max="50"
+                                oninput="calculate()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Toe-in Angle:</label>
+                            <select class="form-select" id="toeIn" onchange="calculate()">
+                                <option value="0">None (parallel)</option>
+                                <option value="15" selected>15° (slight)</option>
+                                <option value="30">30° (moderate)</option>
+                                <option value="45">45° (direct to listener)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>Recommended Positions</h3>
+                        <div class="row text-start mt-3" id="speakerPositions">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3"><i class="bi bi-lightbulb me-2"></i>Placement Tips</h5>
+                        <ul id="placementTips">
+                            <!-- Dynamic tips -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-info-circle me-2"></i>Speaker Placement Guide</h2>
+                        <div class="row">
+                            <divclass="col-md-6">
+                                <h5 class="text-teal">Stereo Setup (2.0)</h5>
+                                <ul>
+                                    <li>Form equilateral triangle with listener</li>
+                                    <li>Speakers 6-10 feet apart typically</li>
+                                    <li>Tweeters at ear level</li>
+                                    <li>At least 2-3 feet from side walls</li>
+                                </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-teal">Surround Sound</h5>
+                            <ul>
+                                <li>Center channel at screen center</li>
+                                <li>Surrounds at 110-120° from center</li>
+                                <li>Rear speakers at 135-150° for 7.1</li>
+                                <li>Subwoofer: corner or front wall</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i>
+                                        Speaker Wattage</a></li>
+                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i class="bi bi-diagram-3"></i>
+                                        Impedance Calculator</a></li>
+                                <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
+                                        Amplifier Power</a></li>
+                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i class="bi bi-rulers"></i>
+                                        Sound Distance Drop</a></li>
+                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i class="bi bi-arrows-move"></i>
+                                        Speaker Placement</a></li>
+                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i> Room
+                                        Acoustics</a></li>
+                                <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
+                                        Ported Enclosure</a></li>
+                                <li><a href="/speaker-tools/sealed-box-calculator/"><i class="bi bi-box-seam"></i>
+                                        Sealed Box</a></li>
+                                <li><a href="/speaker-tools/crossover-frequency-calculator/"><i class="bi bi-filter"></i>
+                                        Crossover Frequency</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+
+    <script>
+        function calculate() {
+            const roomWidth = parseFloat(document.getElementById('roomWidth').value) || 15;
+            const roomLength = parseFloat(document.getElementById('roomLength').value) || 20;
+            const setupType = document.getElementById('setupType').value;
+            const listenerPos = parseFloat(document.getElementById('listenerPos').value) || 10;
+            const toeIn = parseInt(document.getElementById('toeIn').value) || 15;
+
+            const roomCenter = roomWidth / 2;
+            const speakerDistance = Math.min(roomWidth * 0.6, listenerPos * 0.8);
+            const halfSpread = speakerDistance / 2;
+
+            let positions = [];
+            let tips = [];
+
+            // Front Left and Right (all setups)
+            const frontFromWall = Math.max(2, roomLength * 0.15);
+            positions.push({
+                name: 'Front Left',
+                x: roomCenter - halfSpread,
+                y: frontFromWall,
+                angle: toeIn
+            });
+            positions.push({
+                name: 'Front Right',
+                x: roomCenter + halfSpread,
+                y: frontFromWall,
+                angle: -toeIn
+            });
+
+            if (setupType === '2.1' || setupType === '5.1' || setupType === '7.1') {
+                // Subwoofer
+                positions.push({
+                    name: 'Subwoofer',
+                    x: roomWidth * 0.2,
+                    y: frontFromWall + 1,
+                    angle: 0,
+                    note: 'Corner or front wall'
+                });
+            }
+
+            if (setupType === '5.1' || setupType === '7.1') {
+                // Center channel
+                positions.push({
+                    name: 'Center',
+                    x: roomCenter,
+                    y: frontFromWall,
+                    angle: 0
+                });
+
+                // Surround Left and Right (110-120°)
+                const surroundAngle = 110;
+                const surroundDistance = listenerPos * 0.7;
+                const surroundX = Math.sin(surroundAngle * Math.PI / 180) * surroundDistance;
+                const surroundY = listenerPos - Math.cos(surroundAngle * Math.PI / 180) * surroundDistance;
+
+                positions.push({
+                    name: 'Surround Left',
+                    x: roomCenter - surroundX,
+                    y: Math.max(listenerPos * 0.7, surroundY),
+                    angle: 30
+                });
+                positions.push({
+                    name: 'Surround Right',
+                    x: roomCenter + surroundX,
+                    y: Math.max(listenerPos * 0.7, surroundY),
+                    angle: -30
+                });
+            }
+
+            if (setupType === '7.1') {
+                // Rear Left and Right (135-150°)
+                const rearDistance = listenerPos * 0.6;
+                positions.push({
+                    name: 'Rear Left',
+                    x: roomCenter - rearDistance * 0.5,
+                    y: listenerPos + 2,
+                    angle: 45
+                });
+                positions.push({
+                    name: 'Rear Right',
+                    x: roomCenter + rearDistance * 0.5,
+                    y: listenerPos + 2,
+                    angle: -45
+                });
+            }
+
+            // Generate HTML
+            let posHTML = '';
+            positions.forEach(p => {
+                posHTML += `
+                    <div class="col-md-4 col-6 mb-3">
+                        <div class="p-3 bg-light rounded">
+                            <strong>${p.name}</strong><br>
+                            <span class="text-teal">${p.x.toFixed(1)}' from left wall</span><br>
+                            <span class="text-mid">${p.y.toFixed(1)}' from front wall</span>
+                            ${p.angle ? `<br><small>Toe-in: ${Math.abs(p.angle)}°</small>` : ''}
+                            ${p.note ? `<br><small class="text-muted">${p.note}</small>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('speakerPositions').innerHTML = posHTML;
+
+            // Tips
+            tips = [
+                `Speaker spread: ${speakerDistance.toFixed(1)} feet between front L/R`,
+                `Listener position forms ${speakerDistance <= listenerPos ? 'equilateral' : 'isoceles'} triangle`,
+                `Keep speakers ${Math.max(2, roomWidth * 0.15).toFixed(1)}+ feet from side walls`,
+                `Tweeters should be at seated ear height (36-42 inches)`
+            ];
+
+            if (setupType.includes('.1')) {
+                tips.push('Subwoofer placement: try corner loading or 1/4 room width from front wall');
+            }
+
+            document.getElementById('placementTips').innerHTML = tips.map(t => `<li>${t}</li>`).join('');
+        }
+
+        calculate();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

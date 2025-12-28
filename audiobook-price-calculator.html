@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <title>Audiobook Price Calculator – Calculate Cost Per Hour & Value | Diamond Audio City</title>
+    <meta name="description"
+        content="Calculate the true cost of audiobooks with this Audiobook Price Calculator. Find cost per hour, compare formats, and determine best value for your listening budget.">
+    <meta name="keywords"
+        content="audiobook price calculator, audiobook cost calculator, cost per hour audiobook, audiobook value calculator, audiobook comparison">
+    <meta property="og:title" content="Audiobook Price Calculator – Calculate Cost Per Hour & Value">
+    <meta property="og:description"
+        content="Determine audiobook value by calculating cost per hour, comparing formats, and finding the best deals for your listening budget.">
+
+    <link rel="canonical" href="https://diamondaudiocity.com/audiobook-price-calculator.html">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+    <meta name="author" content="Diamond Audio City">
+
+    <style>
+        .comparison-card {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            border-color: #0d6efd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .best-value {
+            background: #d1e7dd;
+            border-color: #0f5132;
+            position: relative;
+        }
+
+        .best-value::before {
+            content: "🏆 Best Value";
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #198754;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .price-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .price-metric-label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .price-metric-value {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+
+        .format-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #0d6efd;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .add-format-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .add-format-btn:hover {
+            background: #218838;
+        }
+
+        .remove-format-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            float: right;
+        }
+
+        .remove-format-btn:hover {
+            background: #c82333;
+        }
+
+        .savings-highlight {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .savings-amount {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #856404;
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row justify-content-start">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class=" me-2"></i>🎧 Audiobook Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="https://diamondaudiocity.com/audiobook-speed-calculator.html" class=""><i class=""></i>🎧 Audiobook
+                                        Speed Calculator</a></li>
+                                <li><a href="https://diamondaudiocity.com/Audiobook-Length-Calculator.html" class=""><i class=""></i>🎧 Audiobook
+                                        Length
+                                        Calculator</a></li>
+                                <li><a href="https://diamondaudiocity.com/Audiobook-Progress-Calculator.html" class=""><i class=""></i>🎧 Audiobook
+                                        Progress Calculator</a></li>
+                                <li><a href="https://diamondaudiocity.com/audiobook-percentage-calculator.html" class=""><i class=""></i>🎧 Audiobook
+                                        Percentage Calculator</a></li>
+                                <li><a href="https://diamondaudiocity.com/audiobook-price-calculator.html" class="active"><i class=""></i>💰
+                                        Audiobook
+                                        Price Calculator</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-soundwave me-2"></i>Pitch Detector Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/pitch-detector-tools/guitar-tuner/"><i
+                                            class="bi bi-music-note-beamed"></i>
+                                        Guitar Tuner</a></li>
+                                <li><a href="/pitch-detector-tools/frequency-to-note/"><i
+                                            class="bi bi-arrow-left-right"></i>
+                                        Frequency to Note</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i>
+                                        Online Metronome</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Tool -->
+            <div class="col-lg-7 col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="https://diamondaudiocity.com/audiobook-tools.html">Audiobook Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Audiobook Price Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1>💰 Audiobook Price Calculator</h1>
+                        <p>Calculate cost per hour and compare audiobook formats to find the best value.</p>
+                    </div>
+
+                    <div id="formatsContainer">
+                        <div class="format-entry" data-format-id="1">
+                            <h5>Format 1</h5>
+                            <div class="mb-3">
+                                <label class="form-label">Format Name (e.g., Audible, CD, Subscription)</label>
+                                <input type="text" class="format-name form-control" placeholder="e.g. Audible Credit">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Price ($)</label>
+                                <input type="number" class="format-price form-control" placeholder="e.g. 14.95" min="0"
+                                    step="0.01">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Duration (Hours)</label>
+                                <input type="number" class="format-hours form-control" placeholder="e.g. 8" min="0"
+                                    step="0.1">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Duration (Minutes)</label>
+                                <input type="number" class="format-minutes form-control" placeholder="e.g. 30" min="0"
+                                    max="59">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="add-format-btn" onclick="addFormat()">
+                        <i class="bi bi-plus-circle"></i> Add Another Format
+                    </button>
+
+                    <button type="button" class="btn btn-primary w-100 mt-3" onclick="calculatePrices()">Calculate &
+                        Compare</button>
+
+                    <div id="result" class="result-box mt-4 d-none">
+                        <h3>Price Comparison Results:</h3>
+                        <div id="comparisonResults"></div>
+                        <div id="savingsInfo" class="savings-highlight d-none">
+                            <p class="mb-2"><strong>Potential Savings:</strong></p>
+                            <p class="savings-amount" id="savingsAmount"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+
+    <div class="content_area container py-4">
+
+        <p>
+            The Audiobook Price Calculator helps listeners understand audiobook value. It calculates audiobook cost per
+            hour and per minute based on listening time, analyzing pricing across formats. Users compare Audible
+            credits, direct purchases, and subscriptions to see which audiobook purchase option delivers the best value
+            for their budget.
+        </p>
+
+        <ul>
+            <li>Calculate audiobook cost per hour and cost per minute accurately</li>
+            <li>Compare audiobook pricing across formats, platforms, and purchase methods</li>
+            <li>Identify the best value option based on listening time and total cost</li>
+        </ul>
+
+        <h2>About This Audiobook Price Calculator</h2>
+        <p>
+            The Audiobook Price Calculator evaluates audiobook pricing using listening duration, not just the sticker
+            price. Audiobook cost varies by format and platform. This tool converts price and playback length into cost
+            per hour. This allows comparison between Audible credits, direct purchases, and subscriptions.
+        </p>
+
+        <p>
+            Many audiobooks seem inexpensive initially but become costly when analyzed by listening time. This
+            calculator reveals the true audiobook listening cost, helping users determine value.
+        </p>
+
+        <h2>How the Audiobook Price Calculator Works</h2>
+        <p>
+            The calculator divides the total audiobook price by the total playback length to find the cost per hour. For
+            example, a $20 audiobook with a 10-hour runtime costs $2 per hour. This calculation also applies to
+            subscriptions, where the monthly fee is divided by listening hours.
+        </p>
+
+        <p>
+            Users can enter multiple formats for the same title. The calculator compares price per hour, cost per
+            minute, and value. Results are sorted to identify the most cost-effective option.
+        </p>
+
+        <h2>Understanding Audiobook Pricing and Value</h2>
+        <p>
+            Audiobook pricing differs across platforms. Credit-based systems let users exchange credits for audiobooks.
+            Direct purchases charge full price. Subscriptions offer unlimited listening for a monthly fee.
+        </p>
+
+        <p>
+            Audiobook value depends on length and listening time. Longer audiobooks offer better value with credits.
+            This calculator quantifies these differences by focusing on cost per hour.
+        </p>
+
+        <h2>Audiobook Duration and Listening Time Analysis</h2>
+        <p>
+            Listening time determines audiobook value. Audiobooks with the same price can offer different value
+            depending on runtime. This tool provides a clearer picture of cost efficiency.
+        </p>
+
+        <p>
+            Calculating cost per minute/hour ensures fair comparison across lengths and formats. This highlights the
+            most economical listening option.
+        </p>
+
+        <h2>Practical Uses of the Audiobook Price Calculator</h2>
+        <ul>
+            <li>Compare Audible credits versus direct audiobook purchases</li>
+            <li>Evaluate audiobook subscription pricing against actual listening hours</li>
+            <li>Analyze audiobook cost per hour across different formats</li>
+            <li>Determine whether audiobook bundles or sales provide real value</li>
+            <li>Compare physical audiobook formats with digital purchases</li>
+            <li>Track audiobook spending and savings over time</li>
+            <li>Decide which audiobook format is cheaper based on listening habits</li>
+        </ul>
+
+        <h2>Tips for Maximizing Audiobook Value</h2>
+        <p>
+            To maximize value, consider duration alongside price. Longer audiobooks provide more value with credits.
+            Compare subscription cost to listening time. Library apps offer free options.
+        </p>
+
+        <p>
+            Always evaluate price per hour before purchasing. This helps avoid overspending and ensures your budget
+            delivers the highest listening value.
+        </p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="accordion" id="audiobookFaqAccordion">
+
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        How is audiobook price calculated?
+                    </button>
+                </h3>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="faqOne"
+                    data-bs-parent="#audiobookFaqAccordion">
+                    <div class="accordion-body">
+                        Audiobook price is calculated by dividing the total cost by listening time, yielding the cost
+                        per
+                        hour for comparison.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        What is a good audiobook cost per hour?
+                    </button>
+                </h3>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="faqTwo"
+                    data-bs-parent="#audiobookFaqAccordion">
+                    <div class="accordion-body">
+                        A good audiobook cost per hour typically ranges from one to two dollars. Subscription services
+                        may
+                        offer lower costs for frequent listeners, while direct purchases often cost more per hour.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Are audiobook subscriptions worth the cost?
+                    </button>
+                </h3>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="faqThree"
+                    data-bs-parent="#audiobookFaqAccordion">
+                    <div class="accordion-body">
+                        Audiobook subscriptions are valuable for those who listen to several audiobooks monthly; compare
+                        fees to listening hours.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        How can I tell if an audiobook is worth the price?
+                    </button>
+                </h3>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="faqFour"
+                    data-bs-parent="#audiobookFaqAccordion">
+                    <div class="accordion-body">
+                        An audiobook is worth the price if its hourly cost aligns with your budget and listening habits.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="faqFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Can this calculator compare different audiobooks?
+                    </button>
+                </h3>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="faqFive"
+                    data-bs-parent="#audiobookFaqAccordion">
+                    <div class="accordion-body">
+                        Yes, compare multiple audiobooks or formats by pricing, listening time, and value to prioritize
+                        cost-efficient purchases.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div id="footer"></div>
+
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+<!-- tool js -->
+    <script>
+        let formatCount = 1;
+
+        function addFormat() {
+            formatCount++;
+            const container = document.getElementById('formatsContainer');
+            const newFormat = document.createElement('div');
+            newFormat.className = 'format-entry';
+            newFormat.setAttribute('data-format-id', formatCount);
+            newFormat.innerHTML = `
+        <hr class="my-4">
+        <h5>Format ${formatCount} <button class="remove-format-btn" onclick="removeFormat(${formatCount})">Remove</button></h5>
+        <div class="mb-3">
+          <label class="form-label">Format Name</label>
+          <input type="text" class="format-name form-control" placeholder="e.g. Direct Purchase">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Price ($)</label>
+          <input type="number" class="format-price form-control" placeholder="e.g. 24.95" min="0" step="0.01">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Duration (Hours)</label>
+          <input type="number" class="format-hours form-control" placeholder="e.g. 8" min="0" step="0.1">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Duration (Minutes)</label>
+          <input type="number" class="format-minutes form-control" placeholder="e.g. 30" min="0" max="59">
+        </div>
+      `;
+            container.appendChild(newFormat);
+        }
+
+        function removeFormat(formatId) {
+            const formatEntry = document.querySelector(`[data-format-id="${formatId}"]`);
+            if (formatEntry) {
+                formatEntry.remove();
+            }
+        }
+
+        function calculatePrices() {
+            const formats = document.querySelectorAll('.format-entry');
+            let results = [];
+            let hasError = false;
+
+            formats.forEach((format) => {
+                const name = format.querySelector('.format-name').value || 'Unnamed Format';
+                const price = parseFloat(format.querySelector('.format-price').value);
+                const hours = parseFloat(format.querySelector('.format-hours').value) || 0;
+                const minutes = parseFloat(format.querySelector('.format-minutes').value) || 0;
+
+                if (!price || price <= 0 || (hours === 0 && minutes === 0)) {
+                    hasError = true;
+                    return;
+                }
+
+                const totalHours = hours + (minutes / 60);
+                const costPerHour = price / totalHours;
+                const costPerMinute = costPerHour / 60;
+
+                results.push({
+                    name,
+                    price,
+                    totalHours,
+                    costPerHour,
+                    costPerMinute
+                });
+            });
+
+            if (hasError || results.length === 0) {
+                alert('Please fill in valid price and duration for all formats.');
+                return;
+            }
+
+            // Sort by cost per hour
+            results.sort((a, b) => a.costPerHour - b.costPerHour);
+
+            // Display results
+            const resultDiv = document.getElementById('result');
+            const comparisonDiv = document.getElementById('comparisonResults');
+            resultDiv.classList.remove('d-none');
+
+            let html = '';
+            results.forEach((result, index) => {
+                const isBest = index === 0;
+                html += `
+          <div class="comparison-card ${isBest ? 'best-value' : ''}">
+            <span class="format-badge">${result.name}</span>
+            <div class="price-metric">
+              <span class="price-metric-label">Total Price:</span>
+              <span class="price-metric-value">$${result.price.toFixed(2)}</span>
+            </div>
+            <div class="price-metric">
+              <span class="price-metric-label">Duration:</span>
+              <span class="price-metric-value">${result.totalHours.toFixed(2)} hours</span>
+            </div>
+            <div class="price-metric">
+              <span class="price-metric-label">Cost per Hour:</span>
+              <span class="price-metric-value">$${result.costPerHour.toFixed(2)}/hr</span>
+            </div>
+            <div class="price-metric">
+              <span class="price-metric-label">Cost per Minute:</span>
+              <span class="price-metric-value">$${result.costPerMinute.toFixed(3)}/min</span>
+            </div>
+          </div>
+        `;
+            });
+
+            comparisonDiv.innerHTML = html;
+
+            // Calculate savings
+            if (results.length > 1) {
+                const bestValue = results[0];
+                const worstValue = results[results.length - 1];
+                const savingsPerHour = worstValue.costPerHour - bestValue.costPerHour;
+                const totalSavings = savingsPerHour * bestValue.totalHours;
+
+                document.getElementById('savingsInfo').classList.remove('d-none');
+                document.getElementById('savingsAmount').textContent =
+                    `Save $${totalSavings.toFixed(2)} ($${savingsPerHour.toFixed(2)}/hr) by choosing ${bestValue.name}`;
+            }
+        }
+    </script>
+<!-- include js -->
+    <script>
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ]).then(([header, footer]) => {
+                document.getElementById("header").innerHTML = header;
+                document.getElementById("footer").innerHTML = footer;
+            }).catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+<!--1 Organization Schema -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://diamondaudiocity.com/#organization",
+  "name": "Diamond Audio City",
+  "url": "https://diamondaudiocity.com",
+  "logo": "https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png",
+  "sameAs": [
+    "https://www.facebook.com/p/Diamond-Audio-CiTy-100076963165150/"
+  ]
+}
+</script>
+
+
+<!-- 2. Website Schema -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://diamondaudiocity.com/#website",
+  "url": "https://diamondaudiocity.com",
+  "name": "Diamond Audio City",
+  "publisher": {
+    "@id": "https://diamondaudiocity.com/#organization"
+  }
+}
+</script>
+
+
+<!-- 3. WebPage Schema (Tool Page) -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://diamondaudiocity.com/audiobook-price-calculator.html#webpage",
+  "url": "https://diamondaudiocity.com/audiobook-price-calculator.html",
+  "name": "Audiobook Price Calculator",
+  "description": "Calculate audiobook cost per hour and per minute and compare audiobook pricing across formats and platforms.",
+  "isPartOf": {
+    "@id": "https://diamondaudiocity.com/#website"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Audiobook Pricing"
+  }
+}
+</script>
+
+
+<!-- 4. SoftwareApplication Schema (MOST IMPORTANT) -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://diamondaudiocity.com/#organization",
+      "name": "Diamond Audio City",
+      "url": "https://diamondaudiocity.com",
+      "logo": "https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png",
+      "sameAs": [
+        "https://www.facebook.com/p/Diamond-Audio-CiTy-100076963165150/"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://diamondaudiocity.com/audiobook-price-calculator.html",
+      "url": "https://diamondaudiocity.com/audiobook-price-calculator.html",
+      "name": "Audiobook Price Calculator",
+      "description": "The Audiobook Price Calculator helps listeners calculate cost per hour and per minute for audiobooks, comparing Audible credits, direct purchases, and subscription services.",
+      "publisher": {
+        "@id": "https://diamondaudiocity.com/#organization"
+      },
+      "mainEntity": {
+        "@id": "https://diamondaudiocity.com/audiobook-price-calculator.html#software"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://diamondaudiocity.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Tools",
+            "item": "https://diamondaudiocity.com/tools/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Audiobook Price Calculator",
+            "item": "https://diamondaudiocity.com/audiobook-price-calculator.html"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://diamondaudiocity.com/audiobook-price-calculator.html#software",
+      "name": "Audiobook Price Calculator",
+      "url": "https://diamondaudiocity.com/audiobook-price-calculator.html",
+      "operatingSystem": "Web",
+      "applicationCategory": "UtilityApplication",
+      "description": "An online audiobook price calculator that compares audiobook cost per hour and per minute across Audible credits, direct purchases, and subscription services.",
+      "publisher": {
+        "@id": "https://diamondaudiocity.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": 0,
+        "priceCurrency": "USD"
+      }
+    }
+  ]
+}
+</script>
+
+
+
+<!-- 5. FAQPage Schema -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is audiobook price calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Audiobook price is calculated by dividing the total cost by listening time, yielding the cost per hour for comparison."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good audiobook cost per hour?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A good audiobook cost per hour typically ranges from one to two dollars. Subscription services may offer lower costs for frequent listeners, while direct purchases often cost more per hour."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are audiobook subscriptions worth the cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Audiobook subscriptions are valuable for those who listen to several audiobooks monthly; compare fees to listening hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I tell if an audiobook is worth the price?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An audiobook is worth the price if its hourly cost aligns with your budget and listening habits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this calculator compare different audiobooks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, compare multiple audiobooks or formats by pricing, listening time, and value to prioritize cost-efficient purchases."
+      }
+    }
+  ]
+}
+</script>
+
+
+<!-- 6. Breadcrumb Schema -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://diamondaudiocity.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Audiobook Tools",
+      "item": "https://diamondaudiocity.com/audiobook-tools.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Audiobook Price Calculator",
+      "item": "https://diamondaudiocity.com/audiobook-price-calculator.html"
+    }
+  ]
+}
+</script>
+
+<!-- 7. ImageObject Schema (Logo reinforcement) -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "@id": "https://diamondaudiocity.com/#logo",
+  "url": "https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png",
+  "contentUrl": "https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png",
+  "name": "Diamond Audio City Logo"
+}
+</script>
+</body>
+
+</html>

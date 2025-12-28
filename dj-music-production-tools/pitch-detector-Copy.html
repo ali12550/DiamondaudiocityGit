@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Detector — Real-Time Note & Frequency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(to bottom right, #eef2ff, #faf5ff, #fef1f7);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #4b5563;
+            font-size: 1.125rem;
+            max-width: 48rem;
+            margin: 0 auto 0.5rem;
+            line-height: 1.6;
+        }
+
+        .header .meta {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .start-section {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(to right, #4f46e5, #9333ea);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.5);
+            transition: all 0.3s;
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(to right, #4338ca, #7e22ce);
+            transform: scale(1.05);
+        }
+
+        .start-instruction {
+            color: #6b7280;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .settings-btn {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .settings-btn button {
+            padding: 0.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .settings-btn button:hover {
+            background: #f3f4f6;
+        }
+
+        .settings-panel {
+            background: #f9fafb;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-panel label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .frequency-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .frequency-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+            transition: all 0.2s;
+        }
+
+        .frequency-btn.active {
+            background: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+
+        .frequency-btn:not(.active):hover {
+            background: #f9fafb;
+        }
+
+        .note-display {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .note-box {
+            display: inline-block;
+            background: linear-gradient(to bottom right, #4f46e5, #9333ea);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 20px 40px -10px rgba(79, 70, 229, 0.5);
+            min-width: 300px;
+        }
+
+        .note-value {
+            font-size: 6rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .frequency-value {
+            font-size: 1.875rem;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .note-placeholder {
+            font-size: 1.875rem;
+            color: white;
+            opacity: 0.75;
+        }
+
+        .cents-meter-section {
+            margin-bottom: 2rem;
+        }
+
+        .cents-label {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .cents-meter {
+            position: relative;
+            background: #e5e7eb;
+            height: 3rem;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .cents-center {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #9ca3af;
+            z-index: 10;
+        }
+
+        .cents-indicator {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #4f46e5;
+            transition: left 0.1s;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .cents-labels {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.5rem;
+            font-size: 0.75rem;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .cents-value {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cents-value.in-tune {
+            color: #10b981;
+        }
+
+        .cents-value.out-tune {
+            color: #f59e0b;
+        }
+
+        .volume-section {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .volume-label {
+            font-size: 0.875rem;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .volume-bar {
+            flex: 1;
+            background: #e5e7eb;
+            height: 0.75rem;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .volume-fill {
+            height: 100%;
+            background: linear-gradient(to right, #34d399, #10b981);
+            transition: width 0.1s;
+        }
+
+        .piano-container {
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .piano-keyboard {
+            display: inline-flex;
+            position: relative;
+            min-width: 100%;
+            justify-content: center;
+            height: 200px;
+        }
+
+        .white-key {
+            position: relative;
+            width: 60px;
+            height: 200px;
+            background: white;
+            border: 2px solid #d1d5db;
+            transition: all 0.2s;
+        }
+
+        .white-key:hover {
+            background: #f9fafb;
+        }
+
+        .white-key.active {
+            background: linear-gradient(to bottom, #818cf8, #4f46e5);
+        }
+
+        .key-label {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .black-key {
+            position: absolute;
+            width: 40px;
+            height: 120px;
+            background: #111827;
+            border: 2px solid #111827;
+            z-index: 10;
+            transition: all 0.2s;
+        }
+
+        .black-key:hover {
+            background: #374151;
+        }
+
+        .black-key.active {
+            background: linear-gradient(to bottom, #6366f1, #4f46e5);
+        }
+
+        .stop-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: #dc2626;
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.3);
+            transition: background 0.2s;
+        }
+
+        .stop-btn:hover {
+            background: #b91c1c;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card li {
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: start;
+        }
+
+        .info-card li span:first-child {
+            color: #4f46e5;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.875rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .note-value {
+                font-size: 4rem;
+            }
+
+            .start-btn {
+                font-size: 1.25rem;
+                padding: 1.25rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Pitch Detector — Real-Time Note & Frequency</h1>
+            <p>Our free Pitch Detector makes it easy to find musical notes and their corresponding frequencies in real time. Whether you're tuning an instrument or just curious, our pitch finder provides accurate readings.</p>
+            <p class="meta">Works on Chrome/Edge/Safari • Microphone required (HTTPS) • Privacy-first (no uploads)</p>
+        </div>
+
+        <!-- Main Detection Area -->
+        <div class="main-card">
+            <!-- Start Section -->
+            <div id="startSection" class="start-section">
+                <button class="start-btn" onclick="startListening()">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <span>START PITCH DETECTOR</span>
+                </button>
+                <p class="start-instruction">Allow microphone access. Best results in a quiet room; hold the mic 10–20 cm from the source.</p>
+            </div>
+
+            <!-- Detection Interface -->
+            <div id="detectionInterface" class="hidden">
+                <!-- Settings Button -->
+                <div class="settings-btn">
+                    <button onclick="toggleSettings()">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l4.2 4.2M23 12h-6m-6 0H1m18.2-5.2l-4.2 4.2m0 6l4.2 4.2"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Settings Panel -->
+                <div id="settingsPanel" class="settings-panel hidden">
+                    <label>A4 Reference Frequency</label>
+                    <div class="frequency-btns">
+                        <button class="frequency-btn active" onclick="setA4(440)">440 Hz</button>
+                        <button class="frequency-btn" onclick="setA4(442)">442 Hz</button>
+                    </div>
+                </div>
+
+                <!-- Note Display -->
+                <div class="note-display">
+                    <div class="note-box">
+                        <div id="noteValue" class="note-placeholder">Sing or play a note...</div>
+                    </div>
+                </div>
+
+                <!-- Cents Meter -->
+                <div class="cents-meter-section">
+                    <div class="cents-label">Tuning</div>
+                    <div class="cents-meter">
+                        <div class="cents-center"></div>
+                        <div id="centsIndicator" class="cents-indicator" style="left: 50%"></div>
+                        <div class="cents-labels">
+                            <span>-50¢</span>
+                            <span style="font-weight: 700; color: #374151">0</span>
+                            <span>+50¢</span>
+                        </div>
+                    </div>
+                    <div id="centsValue" class="cents-value in-tune">0¢</div>
+                </div>
+
+                <!-- Volume Indicator -->
+                <div class="volume-section">
+                    <span class="volume-label">Volume:</span>
+                    <div class="volume-bar">
+                        <div id="volumeFill" class="volume-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Piano Keyboard -->
+                <div class="piano-container">
+                    <div class="piano-keyboard" id="pianoKeyboard"></div>
+                </div>
+
+                <!-- Stop Button -->
+                <button class="stop-btn" onclick="stopListening()">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                        <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path>
+                        <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <span>STOP</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="info-card">
+            <h2>How it works</h2>
+            <p>Our free audio pitch analyzer gives you instant feedback by interpreting your microphone's input in real time.</p>
+            <ul>
+                <li><span>1.</span><span>Click Start and allow microphone access.</span></li>
+                <li><span>2.</span><span>Sing or play a steady note; detection happens in real time.</span></li>
+                <li><span>3.</span><span>Read the note, exact frequency (Hz), and the ±cents meter.</span></li>
+            </ul>
+            <p>Remember to use a quiet, echo-free room and hold a single, steady note for several seconds to get the most accurate and stable reading from the tool.</p>
+        </div>
+
+        <!-- Accuracy -->
+        <div class="info-card">
+            <h2>Accuracy & methodology</h2>
+            <p>Our tool prioritizes stable, accurate readings. We use an autocorrelation algorithm to find the fundamental frequency, a method robust against overtones. The system intelligently handles different device sample rates for consistent results everywhere. A built-in noise gate automatically ignores quiet background sounds, so only your intended note is analyzed.</p>
+            <p>Best of all, every calculation happens directly on your device. This local, on-device processing means your audio is never uploaded, guaranteeing your privacy while providing instant, low-latency feedback.</p>
+        </div>
+    </div>
+
+    <script>
+        let audioContext = null;
+        let analyser = null;
+        let animationId = null;
+        let mediaStream = null;
+        let isListening = false;
+        let a4Frequency = 440;
+
+        const noteStrings = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
+        const pianoKeys = [
+            { note: 'C', octave: 3, white: true },
+            { note: 'C#', octave: 3, white: false },
+            { note: 'D', octave: 3, white: true },
+            { note: 'D#', octave: 3, white: false },
+            { note: 'E', octave: 3, white: true },
+            { note: 'F', octave: 3, white: true },
+            { note: 'F#', octave: 3, white: false },
+            { note: 'G', octave: 3, white: true },
+            { note: 'G#', octave: 3, white: false },
+            { note: 'A', octave: 3, white: true },
+            { note: 'A#', octave: 3, white: false },
+            { note: 'B', octave: 3, white: true },
+            { note: 'C', octave: 4, white: true },
+            { note: 'C#', octave: 4, white: false },
+            { note: 'D', octave: 4, white: true },
+            { note: 'D#', octave: 4, white: false },
+            { note: 'E', octave: 4, white: true },
+            { note: 'F', octave: 4, white: true },
+            { note: 'F#', octave: 4, white: false },
+            { note: 'G', octave: 4, white: true },
+            { note: 'G#', octave: 4, white: false },
+            { note: 'A', octave: 4, white: true },
+            { note: 'A#', octave: 4, white: false },
+            { note: 'B', octave: 4, white: true },
+            { note: 'C', octave: 5, white: true },
+        ];
+
+        function initPianoKeyboard() {
+            const keyboard = document.getElementById('pianoKeyboard');
+            keyboard.innerHTML = '';
+
+            pianoKeys.forEach((key, index) => {
+                if (key.white) {
+                    const whiteKey = document.createElement('div');
+                    whiteKey.className = 'white-key';
+                    whiteKey.dataset.note = `${key.note}${key.octave}`;
+                    
+                    const label = document.createElement('div');
+                    label.className = 'key-label';
+                    label.textContent = `${key.note}${key.octave}`;
+                    whiteKey.appendChild(label);
+                    
+                    keyboard.appendChild(whiteKey);
+                }
+            });
+
+            pianoKeys.forEach((key, index) => {
+                if (!key.white) {
+                    const whiteKeysBefore = pianoKeys.slice(0, index).filter(k => k.white).length;
+                    const blackKey = document.createElement('div');
+                    blackKey.className = 'black-key';
+                    blackKey.dataset.note = `${key.note}${key.octave}`;
+                    blackKey.style.left = `${whiteKeysBefore * 60 - 20}px`;
+                    keyboard.appendChild(blackKey);
+                }
+            });
+        }
+
+        function frequencyToNote(freq) {
+            const noteNum = 12 * (Math.log(freq / a4Frequency) / Math.log(2));
+            const roundedNote = Math.round(noteNum) + 69;
+            const octave = Math.floor(roundedNote / 12) - 1;
+            const noteName = noteStrings[roundedNote % 12];
+            
+            const exactNote = noteNum + 69;
+            const centsOff = Math.round((exactNote - roundedNote) * 100);
+            
+            return { 
+                note: noteName, 
+                octave: octave, 
+                fullNote: `${noteName}${octave}`,
+                cents: centsOff 
+            };
+        }
+
+        function autoCorrelate(buffer, sampleRate) {
+            let size = buffer.length;
+            let maxSamples = Math.floor(size / 2);
+            let bestOffset = -1;
+            let bestCorrelation = 0;
+            let rms = 0;
+
+            for (let i = 0; i < size; i++) {
+                let val = buffer[i];
+                rms += val * val;
+            }
+            rms = Math.sqrt(rms / size);
+            
+            if (rms < 0.01) return -1;
+
+            let lastCorrelation = 1;
+            for (let offset = 1; offset < maxSamples; offset++) {
+                let correlation = 0;
+
+                for (let i = 0; i < maxSamples; i++) {
+                    correlation += Math.abs(buffer[i] - buffer[i + offset]);
+                }
+
+                correlation = 1 - correlation / maxSamples;
+                
+                if (correlation > 0.9 && correlation > lastCorrelation) {
+                    if (correlation > bestCorrelation) {
+                        bestCorrelation = correlation;
+                        bestOffset = offset;
+                    }
+                }
+                lastCorrelation = correlation;
+            }
+            
+            if (bestCorrelation > 0.01 && bestOffset > 0) {
+                return sampleRate / bestOffset;
+            }
+            return -1;
+        }
+
+        function detectPitch() {
+            if (!analyser) return;
+
+            const bufferLength = analyser.fftSize;
+            const buffer = new Float32Array(bufferLength);
+            analyser.getFloatTimeDomainData(buffer);
+
+            const dataArray = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(dataArray);
+            
+            let sum = 0;
+            for (let i = 0; i < dataArray.length; i++) {
+                sum += dataArray[i];
+            }
+            const average = sum / dataArray.length;
+            
+            document.getElementById('volumeFill').style.width = `${Math.min(average, 100)}%`;
+
+            const freq = autoCorrelate(buffer, audioContext.sampleRate);
+
+            if (freq > 60 && freq < 2000 && average > 10) {
+                const noteInfo = frequencyToNote(freq);
+                
+                document.getElementById('noteValue').innerHTML = `
+                    <div class="note-value">${noteInfo.fullNote}</div>
+                    <div class="frequency-value">${freq.toFixed(2)} Hz</div>
+                `;
+                
+                const centsPosition = 50 + Math.max(-50, Math.min(50, noteInfo.cents));
+                document.getElementById('centsIndicator').style.left = `${centsPosition}%`;
+                
+                const centsValueEl = document.getElementById('centsValue');
+                centsValueEl.textContent = `${noteInfo.cents > 0 ? '+' : ''}${noteInfo.cents}¢`;
+                centsValueEl.className = `cents-value ${Math.abs(noteInfo.cents) < 5 ? 'in-tune' : 'out-tune'}`;
+                
+                updatePianoKeys(noteInfo.fullNote);
+            } else {
+                document.getElementById('noteValue').innerHTML = '<div class="note-placeholder">Sing or play a note...</div>';
+                document.getElementById('centsIndicator').style.left = '50%';
+                document.getElementById('centsValue').textContent = '0¢';
+                document.getElementById('centsValue').className = 'cents-value in-tune';
+                updatePianoKeys(null);
+            }
+
+            animationId = requestAnimationFrame(detectPitch);
+        }
+
+        function updatePianoKeys(activeNote) {
+            const allKeys = document.querySelectorAll('.white-key, .black-key');
+            allKeys.forEach(key => {
+                if (activeNote && key.dataset.note === activeNote) {
+                    key.classList.add('active');
+                } else {
+                    key.classList.remove('active');
+                }
+            });
+        }
+
+        async function startListening() {
+            try {
+                mediaStream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: {
+                        echoCancellation: true,
+                        noiseSuppression: true,
+                        autoGainControl: false
+                    } 
+                });
+                
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 4096;
+                analyser.smoothingTimeConstant = 0.8;
+
+                const source = audioContext.createMediaStreamSource(mediaStream);
+                source.connect(analyser);
+
+                isListening = true;
+                
+                document.getElementById('startSection').classList.add('hidden');
+                document.getElementById('detectionInterface').classList.remove('hidden');
+                
+                initPianoKeyboard();
+                detectPitch();
+            } catch (err) {
+                console.error('Error accessing microphone:', err);
+                alert('Could not access microphone. Please allow microphone access and try again.');
+            }
+        }
+
+        function stopListening() {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+                mediaStream = null;
+            }
+            if (audioContext) {
+                audioContext.close();
+                audioContext = null;
+            }
+            
+            isListening = false;
+            
+            document.getElementById('startSection').classList.remove('hidden');
+            document.getElementById('detectionInterface').classList.add('hidden');
+        }
+
+        function toggleSettings() {
+            const panel = document.getElementById('settingsPanel');
+            panel.classList.toggle('hidden');
+        }
+
+        function setA4(frequency) {
+            a4Frequency = frequency;
+            
+            const btns = document.querySelectorAll('.frequency-btn');
+            btns.forEach(btn => {
+                if (btn.textContent.includes(frequency.toString())) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

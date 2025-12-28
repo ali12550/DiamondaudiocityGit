@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossover Frequency Calculator | Speaker Crossover Design | DiamondAudioCity</title>
+    <meta name="description"
+        content="Free crossover frequency calculator. Design passive crossover networks with component values for multi-driver speaker systems.">
+    <meta name="keywords"
+        content="crossover calculator, speaker crossover, passive crossover, high pass, low pass, capacitor, inductor">
+    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/crossover-frequency-calculator/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row justify-content-around">
+
+
+            <div class="col-lg-7 col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Crossover Frequency Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-filter me-2"></i>Crossover Frequency Calculator</h1>
+                        <p>Calculate component values for passive speaker crossovers. Design high-pass and low-pass
+                            filters for multi-way speakers.</p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Crossover Frequency (Hz):</label>
+                            <input type="number" class="form-control" id="crossoverFreq" value="3000" min="100"
+                                max="20000" oninput="calculate()">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Speaker Impedance (Ω):</label>
+                            <select class="form-select" id="impedance" onchange="calculate()">
+                                <option value="4">4 Ω</option>
+                                <option value="6">6 Ω</option>
+                                <option value="8" selected>8 Ω</option>
+                                <option value="16">16 Ω</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Crossover Order:</label>
+                            <select class="form-select" id="order" onchange="calculate()">
+                                <option value="1">1st Order (6 dB/oct)</option>
+                                <option value="2" selected>2nd Order (12 dB/oct)</option>
+                                <option value="3">3rd Order (18 dB/oct)</option>
+                                <option value="4">4th Order (24 dB/oct)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Crossover Type (2nd order):</label>
+                            <select class="form-select" id="crossoverType" onchange="calculate()">
+                                <option value="butterworth" selected>Butterworth (Q = 0.707)</option>
+                                <option value="linkwitz">Linkwitz-Riley (Q = 0.5)</option>
+                                <option value="bessel">Bessel (Q = 0.577)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="result-box h-100">
+                                <h3><i class="bi bi-arrow-down me-2"></i>Low-Pass (Woofer)</h3>
+                                <div class="text-start mt-3">
+                                    <div class="mb-3">
+                                        <strong>Inductor (L):</strong><br>
+                                        <span id="lpInductor" class="fs-3 text-teal">0.42 mH</span>
+                                    </div>
+                                    <div class="mb-3" id="lpCapRow">
+                                        <strong>Capacitor (C):</strong><br>
+                                        <span id="lpCapacitor" class="fs-3 text-teal">6.63 µF</span>
+                                    </div>
+                                    <div id="lpExtra"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="result-box h-100">
+                                <h3><i class="bi bi-arrow-up me-2"></i>High-Pass (Tweeter)</h3>
+                                <div class="text-start mt-3">
+                                    <div class="mb-3">
+                                        <strong>Capacitor (C):</strong><br>
+                                        <span id="hpCapacitor" class="fs-3 text-teal">6.63 µF</span>
+                                    </div>
+                                    <div class="mb-3" id="hpIndRow">
+                                        <strong>Inductor (L):</strong><br>
+                                        <span id="hpInductor" class="fs-3 text-teal">0.42 mH</span>
+                                    </div>
+                                    <div id="hpExtra"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>Crossover Characteristics</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Slope:</strong> <span id="slope">12 dB/octave</span><br>
+                                <strong>Phase Shift:</strong> <span id="phaseShift">180° (invert polarity)</span>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Summed Response:</strong> <span id="sumResponse">Flat at crossover</span><br>
+                                <strong>Recommended For:</strong> <span id="recommended">General use</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-lightning me-2"></i>Crossover Order Comparison</h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Order</th>
+                                        <th>Slope</th>
+                                        <th>Components</th>
+                                        <th>Phase</th>
+                                        <th>Character</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1st</td>
+                                        <td>6 dB/oct</td>
+                                        <td>1 each</td>
+                                        <td>90°</td>
+                                        <td>Gentle, wide overlap</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2nd</td>
+                                        <td>12 dB/oct</td>
+                                        <td>2 each</td>
+                                        <td>180°</td>
+                                        <td>Common, good isolation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3rd</td>
+                                        <td>18 dB/oct</td>
+                                        <td>3 each</td>
+                                        <td>270°</td>
+                                        <td>Better isolation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4th</td>
+                                        <td>24 dB/oct</td>
+                                        <td>4 each</td>
+                                        <td>360°</td>
+                                        <td>Steep, excellent isolation</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                           <ul class="sidebar-links">
+                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i>
+                                        Speaker Wattage</a></li>
+                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i class="bi bi-diagram-3"></i>
+                                        Impedance Calculator</a></li>
+                                <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
+                                        Amplifier Power</a></li>
+                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i class="bi bi-rulers"></i>
+                                        Sound Distance Drop</a></li>
+                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i class="bi bi-arrows-move"></i>
+                                        Speaker Placement</a></li>
+                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i> Room
+                                        Acoustics</a></li>
+                                <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
+                                        Ported Enclosure</a></li>
+                                <li><a href="/speaker-tools/sealed-box-calculator/"><i class="bi bi-box-seam"></i>
+                                        Sealed Box</a></li>
+                                <li><a href="/speaker-tools/crossover-frequency-calculator/"><i class="bi bi-filter"></i>
+                                        Crossover Frequency</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+    <!-- tool js -->
+    <script>
+        function calculate() {
+            const freq = parseFloat(document.getElementById('crossoverFreq').value) || 3000;
+            const impedance = parseFloat(document.getElementById('impedance').value) || 8;
+            const order = parseInt(document.getElementById('order').value) || 2;
+            const crossoverType = document.getElementById('crossoverType').value;
+
+            const omega = 2 * Math.PI * freq;
+
+            // Get Q factor based on type
+            let Q = 0.707; // Butterworth default
+            if (crossoverType === 'linkwitz') Q = 0.5;
+            else if (crossoverType === 'bessel') Q = 0.577;
+
+            let lpL, lpC, hpC, hpL;
+            let lpL2, lpC2, hpC2, hpL2;
+
+            // First order: L = R/ω, C = 1/(ωR)
+            const L1 = (impedance / omega) * 1000; // mH
+            const C1 = (1 / (omega * impedance)) * 1000000; // µF
+
+            if (order === 1) {
+                lpL = L1;
+                hpC = C1;
+                document.getElementById('lpCapRow').style.display = 'none';
+                document.getElementById('hpIndRow').style.display = 'none';
+                document.getElementById('lpExtra').innerHTML = '';
+                document.getElementById('hpExtra').innerHTML = '';
+            } else if (order === 2) {
+                // Second order
+                lpL = (impedance / omega) * 1000; // mH
+                lpC = (1 / (omega * impedance)) * 1000000; // µF
+
+                // Adjust for Q
+                lpL = lpL / Q;
+                lpC = lpC / Q;
+
+                hpC = lpC;
+                hpL = lpL;
+
+                document.getElementById('lpCapRow').style.display = 'block';
+                document.getElementById('hpIndRow').style.display = 'block';
+                document.getElementById('lpCapacitor').textContent = lpC.toFixed(2) + ' µF';
+                document.getElementById('hpInductor').textContent = hpL.toFixed(2) + ' mH';
+                document.getElementById('lpExtra').innerHTML = '';
+                document.getElementById('hpExtra').innerHTML = '';
+            } else if (order === 3) {
+                // Third order (simplified)
+                lpL = (1.5 * impedance / omega) * 1000;
+                lpC = (0.667 / (omega * impedance)) * 1000000;
+                lpL2 = (0.5 * impedance / omega) * 1000;
+
+                hpC = (0.667 / (omega * impedance)) * 1000000;
+                hpL = (1.5 * impedance / omega) * 1000;
+                hpC2 = (1.333 / (omega * impedance)) * 1000000;
+
+                document.getElementById('lpCapRow').style.display = 'block';
+                document.getElementById('hpIndRow').style.display = 'block';
+                document.getElementById('lpCapacitor').textContent = lpC.toFixed(2) + ' µF';
+                document.getElementById('hpInductor').textContent = hpL.toFixed(2) + ' mH';
+                document.getElementById('lpExtra').innerHTML = `<strong>L2:</strong> ${lpL2.toFixed(2)} mH`;
+                document.getElementById('hpExtra').innerHTML = `<strong>C2:</strong> ${hpC2.toFixed(2)} µF`;
+            } else {
+                // Fourth order
+                lpL = (1.414 * impedance / omega) * 1000;
+                lpC = (0.707 / (omega * impedance)) * 1000000;
+                lpL2 = (0.707 * impedance / omega) * 1000;
+                lpC2 = (1.414 / (omega * impedance)) * 1000000;
+
+                hpC = lpC;
+                hpL = lpL;
+                hpC2 = lpC2;
+                hpL2 = lpL2;
+
+                document.getElementById('lpCapRow').style.display = 'block';
+                document.getElementById('hpIndRow').style.display = 'block';
+                document.getElementById('lpCapacitor').textContent = lpC.toFixed(2) + ' µF';
+                document.getElementById('hpInductor').textContent = hpL.toFixed(2) + ' mH';
+                document.getElementById('lpExtra').innerHTML = `<strong>L2:</strong> ${lpL2.toFixed(2)} mH<br><strong>C2:</strong> ${lpC2.toFixed(2)} µF`;
+                document.getElementById('hpExtra').innerHTML = `<strong>C2:</strong> ${hpC2.toFixed(2)} µF<br><strong>L2:</strong> ${hpL2.toFixed(2)} mH`;
+            }
+
+            document.getElementById('lpInductor').textContent = lpL.toFixed(2) + ' mH';
+            document.getElementById('hpCapacitor').textContent = (hpC || C1).toFixed(2) + ' µF';
+
+            // Update characteristics
+            document.getElementById('slope').textContent = (order * 6) + ' dB/octave';
+            document.getElementById('phaseShift').textContent = (order * 90) + '° total';
+
+            let sumResponse = 'Flat at crossover';
+            if (crossoverType === 'linkwitz') sumResponse = '-6 dB at crossover (LR flat sum)';
+            else if (crossoverType === 'bessel') sumResponse = 'Best transient response';
+            document.getElementById('sumResponse').textContent = sumResponse;
+
+            let recommended = 'General use';
+            if (order === 1) recommended = 'Coaxial, simple systems';
+            else if (order === 2 && crossoverType === 'butterworth') recommended = 'Most 2-way speakers';
+            else if (order === 4 && crossoverType === 'linkwitz') recommended = 'Professional, home theater';
+            document.getElementById('recommended').textContent = recommended;
+        }
+
+        calculate();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

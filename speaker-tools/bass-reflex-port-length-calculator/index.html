@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bass Reflex Port Length Calculator | DiamondAudioCity</title>
+    <meta name="description"
+        content="Calculate optimal bass reflex port length for your speaker enclosure. Includes formulas, guidance, and FAQs for subwoofer and full-range speakers.">
+    <meta name="keywords"
+        content="bass reflex port length, ported box calculator, speaker port design, Thiele-Small parameters, subwoofer tuning, port velocity, Fb calculation, ported enclosure, speaker design, SPL optimization">
+    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/bass-reflex-port-length-calculator/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row justify-content-around">
+            <div class="col-lg-7 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Bass Reflex Port Length Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-box me-2"></i>Bass Reflex Port Length Calculator</h1>
+                        <p>Calculate the correct port length for your ported speaker enclosure based on driver and box parameters for optimal bass response.</p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Box Volume (liters):</label>
+                            <input type="number" class="form-control" id="vb" value="50" min="5" max="500" step="1" oninput="calculatePort()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Tuning Frequency Fb (Hz):</label>
+                            <input type="number" class="form-control" id="fb" value="35" min="20" max="100" step="1" oninput="calculatePort()">
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Port Diameter (cm):</label>
+                            <input type="number" class="form-control" id="diameter" value="7" min="2" max="15" step="0.1" oninput="calculatePort()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Number of Ports:</label>
+                            <select class="form-select" id="numPorts" onchange="calculatePort()">
+                                <option value="1" selected>1 Port</option>
+                                <option value="2">2 Ports</option>
+                                <option value="3">3 Ports</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>Port Length Result</h3>
+                        <span id="portLengthResult" class="fs-4">-- cm</span>
+                    </div>
+
+                    <div class="mt-4 p-4 rounded bg-success bg-opacity-10">
+                        <h5><i class="bi bi-info-circle me-2"></i>Formulas & Notes</h5>
+                        <ul>
+                            <li><strong>Port Length (L) in cm:</strong> <code>L = ((23562.5 × D² × N) / (Fb² × Vb)) - (0.732 × D)</code></li>
+                            <li>D = Port diameter (cm), N = number of ports, Vb = box volume in liters, Fb = tuning frequency in Hz</li>
+                            <li>Use correct units; conversion may be needed if Vb is in cubic feet.</li>
+                            <li>Port length too short may cause chuffing; too long may reduce efficiency.</li>
+                            <li>Slot ports: equivalent diameter = 2 × √(width × height / π).</li>
+                        </ul>
+                    </div>
+
+                    <div class="tool-container mt-4">
+                        <div class="tool-section">
+                            <h2 class="text-mid mb-4"><i class="bi bi-play-btn me-2"></i>How to Use</h2>
+                            <ul>
+                                <li>Enter your enclosure volume in liters.</li>
+                                <li>Enter the desired tuning frequency (Fb) of the ported box.</li>
+                                <li>Provide port diameter and number of ports.</li>
+                                <li>View the calculated port length and adjust parameters for optimal performance.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tool-container mt-4">
+                        <div class="tool-section">
+                            <h2 class="text-mid mb-4"><i class="bi bi-people me-2"></i>Who Can Use</h2>
+                            <ul>
+                                <li>Subwoofer and speaker designers</li>
+                                <li>DIY audio enthusiasts</li>
+                                <li>Home theater or car audio builders</li>
+                                <li>PA system designers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tool-container mt-4">
+                        <div class="tool-section">
+                            <h2 class="text-mid mb-4"><i class="bi bi-geo-alt me-2"></i>Where to Use</h2>
+                            <ul>
+                                <li>Home theater subwoofer boxes</li>
+                                <li>Car audio ported enclosures</li>
+                                <li>Professional PA or live sound systems</li>
+                                <li>Custom ported speaker designs</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tool-container mt-4">
+                        <div class="tool-section">
+                            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>FAQs</h2>
+                            <div class="accordion" id="faqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faq1">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                            What is port length?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Port length is the physical length of the bass reflex port, calculated to achieve the desired tuning frequency for the enclosure.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faq2">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                            Can I use this for multiple ports?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Yes, the calculator supports multiple ports; simply select the number of ports and enter the diameter.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faq3">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                            How do I reduce port noise?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Increase port diameter or add multiple ports to reduce port air velocity and minimize chuffing.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+                        </div>
+                    </div>
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i> Speaker Wattage</a></li>
+                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i class="bi bi-diagram-3"></i> Impedance Calculator</a></li>
+                                <li><a href="/speaker-tools/bass-reflex-port-length-calculator/"><i class="bi bi-box me-2"></i> Bass Reflex Port Length</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+    <script>
+        function calculatePort() {
+            const Vb = parseFloat(document.getElementById('vb').value) || 50;
+            const Fb = parseFloat(document.getElementById('fb').value) || 35;
+            const D = parseFloat(document.getElementById('diameter').value) || 7;
+            const N = parseInt(document.getElementById('numPorts').value) || 1;
+
+            // Bass Reflex Port Length formula: L = ((23562.5 × D² × N) / (Fb² × Vb)) - (0.732 × D)
+            let L = ((23562.5 * Math.pow(D,2) * N) / (Math.pow(Fb,2) * Vb)) - (0.732 * D);
+
+            document.getElementById('portLengthResult').textContent = L.toFixed(1) + ' cm';
+        }
+
+        document.getElementById('vb').addEventListener('input', calculatePort);
+        document.getElementById('fb').addEventListener('input', calculatePort);
+        document.getElementById('diameter').addEventListener('input', calculatePort);
+        document.getElementById('numPorts').addEventListener('change', calculatePort);
+
+        calculatePort();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+            .then(([header, footer]) => {
+                document.getElementById("header").innerHTML = header;
+                document.getElementById("footer").innerHTML = footer;
+            })
+            .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

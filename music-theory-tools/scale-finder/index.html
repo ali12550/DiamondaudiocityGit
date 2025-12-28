@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scale Finder | Music Scale Reference Tool | DiamondAudioCity</title>
+    <meta name="description"
+        content="Free online scale finder. Explore major, minor, pentatonic, blues, and modal scales in any key with visual note display and audio playback.">
+    <meta name="keywords"
+        content="scale finder, music scales, major scale, minor scale, pentatonic, modes, music theory">
+    <link rel="canonical" href="https://diamondaudiocity.com/music-theory-tools/scale-finder/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .scale-notes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .scale-note {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .scale-note.root {
+            background: var(--teal);
+            color: #fff;
+        }
+
+        .scale-note.note {
+            background: var(--mid-blue);
+            color: #fff;
+        }
+
+        .scale-note:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .scale-note.playing {
+            animation: pulse 0.3s ease;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .piano-key {
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .piano-key.white {
+            width: 40px;
+            height: 140px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 0 0 5px 5px;
+            margin: 0 1px;
+        }
+
+        .piano-key.black {
+            width: 28px;
+            height: 90px;
+            background: #222;
+            border-radius: 0 0 3px 3px;
+            margin: 0 -14px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .piano-key.in-scale {
+            background: var(--accent) !important;
+        }
+
+        .piano-key.black.in-scale {
+            background: var(--teal) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/music-theory-tools/scale-finder/"
+                                        class="active"><i class="bi bi-grid-3x3"></i> Scale Finder</a></li>
+                                <li><a href="/music-theory-tools/chord-identifier/"><i class="bi bi-vinyl"></i> Chord
+                                        Identifier</a></li>
+                                <li><a href="/music-theory-tools/chord-progression-generator/"><i class="bi bi-diagram-3"></i>
+                                        Chord Progression</a></li>
+                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i>
+                                        Online Metronome</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-soundwave me-2"></i>Pitch Detector Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/pitch-detector-tools/note-to-frequency/"><i class="bi bi-calculator"></i>
+                                        Note to Frequency</a></li>
+                                <li><a href="/pitch-detector-tools/frequency-to-note/"><i class="bi bi-arrow-left-right"></i>
+                                        Frequency to Note</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-7">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/music-theory-tools/">Music Theory Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Scale Finder</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-grid-3x3 me-2"></i>Scale Finder</h1>
+                        <p>Explore musical scales in any key. See the notes, intervals, and hear how each scale sounds.
+                        </p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Root Note:</label>
+                            <select class="form-select form-select-lg" id="rootNote" onchange="updateScale()">
+                                <option value="C">C</option>
+                                <option value="C#">C# / Db</option>
+                                <option value="D">D</option>
+                                <option value="D#">D# / Eb</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                                <option value="F#">F# / Gb</option>
+                                <option value="G">G</option>
+                                <option value="G#">G# / Ab</option>
+                                <option value="A" selected>A</option>
+                                <option value="A#">A# / Bb</option>
+                                <option value="B">B</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Scale Type:</label>
+                            <select class="form-select form-select-lg" id="scaleType" onchange="updateScale()">
+                                <optgroup label="Common Scales">
+                                    <option value="major" selected>Major (Ionian)</option>
+                                    <option value="natural_minor">Natural Minor (Aeolian)</option>
+                                    <option value="harmonic_minor">Harmonic Minor</option>
+                                    <option value="melodic_minor">Melodic Minor</option>
+                                </optgroup>
+                                <optgroup label="Pentatonic & Blues">
+                                    <option value="major_pentatonic">Major Pentatonic</option>
+                                    <option value="minor_pentatonic">Minor Pentatonic</option>
+                                    <option value="blues">Blues Scale</option>
+                                </optgroup>
+                                <optgroup label="Modes">
+                                    <option value="dorian">Dorian</option>
+                                    <option value="phrygian">Phrygian</option>
+                                    <option value="lydian">Lydian</option>
+                                    <option value="mixolydian">Mixolydian</option>
+                                    <option value="locrian">Locrian</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Octave:</label>
+                            <select class="form-select form-select-lg" id="octave" onchange="updateScale()">
+                                <option value="3">3 (Low)</option>
+                                <option value="4" selected>4 (Middle)</option>
+                                <option value="5">5 (High)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3 id="scaleName">A Major Scale</h3>
+                        <div class="scale-notes" id="scaleNotes"></div>
+                        <button class="btn btn-primary btn-lg mt-3" onclick="playScale()">
+                            <i class="bi bi-play-fill me-2"></i>Play Scale
+                        </button>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3">Scale Information</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Intervals:</strong>
+                                <p id="scaleIntervals" class="mb-2">W - W - H - W - W - W - H</p>
+                                <strong>Formula:</strong>
+                                <p id="scaleFormula" class="mb-0">1 - 2 - 3 - 4 - 5 - 6 - 7</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Mood/Character:</strong>
+                                <p id="scaleMood" class="mb-2">Bright, happy, uplifting</p>
+                                <strong>Common Uses:</strong>
+                                <p id="scaleUses" class="mb-0">Pop, rock, classical, country</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Scale Reference</h2>
+                        <div class="accordion" id="scaleAccordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ref1">
+                                        Major vs Minor Scales
+                                    </button>
+                                </h3>
+                                <div id="ref1" class="accordion-collapse collapse show"
+                                    data-bs-parent="#scaleAccordion">
+                                    <div class="accordion-body">
+                                        <p><strong>Major scales</strong> have a bright, happy sound due to their major
+                                            3rd interval. They're used in uplifting music.</p>
+                                        <p><strong>Minor scales</strong> have a darker, more melancholic sound. The
+                                            natural minor has a flat 3rd, 6th, and 7th.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ref2">
+                                        Pentatonic Scales
+                                    </button>
+                                </h3>
+                                <div id="ref2" class="accordion-collapse collapse" data-bs-parent="#scaleAccordion">
+                                    <div class="accordion-body">
+                                        Pentatonic scales have 5 notes instead of 7. They remove the "avoid" notes,
+                                        making them great for improvisation. The minor pentatonic is the foundation of
+                                        blues and rock guitar solos.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+
+    <script>
+        const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        
+        const scales = {
+            major: { intervals: [0, 2, 4, 5, 7, 9, 11], pattern: 'W-W-H-W-W-W-H', formula: '1-2-3-4-5-6-7', mood: 'Bright, happy, uplifting', uses: 'Pop, rock, classical, country' },
+            natural_minor: { intervals: [0, 2, 3, 5, 7, 8, 10], pattern: 'W-H-W-W-H-W-W', formula: '1-2-♭3-4-5-♭6-♭7', mood: 'Dark, sad, emotional', uses: 'Rock, metal, classical, pop ballads' },
+            harmonic_minor: { intervals: [0, 2, 3, 5, 7, 8, 11], pattern: 'W-H-W-W-H-3H-H', formula: '1-2-♭3-4-5-♭6-7', mood: 'Exotic, dramatic, tense', uses: 'Classical, metal, Middle Eastern' },
+            melodic_minor: { intervals: [0, 2, 3, 5, 7, 9, 11], pattern: 'W-H-W-W-W-W-H', formula: '1-2-♭3-4-5-6-7', mood: 'Jazzy, sophisticated', uses: 'Jazz, fusion, classical' },
+            major_pentatonic: { intervals: [0, 2, 4, 7, 9], pattern: 'W-W-3H-W-3H', formula: '1-2-3-5-6', mood: 'Bright, open, versatile', uses: 'Country, rock, pop, folk' },
+            minor_pentatonic: { intervals: [0, 3, 5, 7, 10], pattern: '3H-W-W-3H-W', formula: '1-♭3-4-5-♭7', mood: 'Bluesy, raw, powerful', uses: 'Blues, rock, metal solos' },
+            blues: { intervals: [0, 3, 5, 6, 7, 10], pattern: '3H-W-H-H-3H-W', formula: '1-♭3-4-♭5-5-♭7', mood: 'Soulful, expressive', uses: 'Blues, rock, jazz' },
+            dorian: { intervals: [0, 2, 3, 5, 7, 9, 10], pattern: 'W-H-W-W-W-H-W', formula: '1-2-♭3-4-5-6-♭7', mood: 'Minor but brighter', uses: 'Jazz, funk, rock' },
+            phrygian: { intervals: [0, 1, 3, 5, 7, 8, 10], pattern: 'H-W-W-W-H-W-W', formula: '1-♭2-♭3-4-5-♭6-♭7', mood: 'Spanish, exotic, dark', uses: 'Flamenco, metal, Middle Eastern' },
+            lydian: { intervals: [0, 2, 4, 6, 7, 9, 11], pattern: 'W-W-W-H-W-W-H', formula: '1-2-3-#4-5-6-7', mood: 'Dreamy, floating, bright', uses: 'Film scores, jazz, progressive' },
+            mixolydian: { intervals: [0, 2, 4, 5, 7, 9, 10], pattern: 'W-W-H-W-W-H-W', formula: '1-2-3-4-5-6-♭7', mood: 'Bluesy major, groovy', uses: 'Rock, blues, funk, country' },
+            locrian: { intervals: [0, 1, 3, 5, 6, 8, 10], pattern: 'H-W-W-H-W-W-W', formula: '1-♭2-♭3-4-♭5-♭6-♭7', mood: 'Unstable, dissonant', uses: 'Metal, jazz, experimental' }
+        };
+
+        let audioContext = null;
+
+        function getScaleNotes(root, scaleType) {
+            const rootIndex = notes.indexOf(root);
+            const scale = scales[scaleType];
+            return scale.intervals.map(interval => notes[(rootIndex + interval) % 12]);
+        }
+
+        function updateScale() {
+            const root = document.getElementById('rootNote').value;
+            const scaleType = document.getElementById('scaleType').value;
+            const scale = scales[scaleType];
+            const scaleNotes = getScaleNotes(root, scaleType);
+
+            const scaleName = scaleType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            document.getElementById('scaleName').textContent = `${root} ${scaleName}`;
+
+            let html = '';
+            scaleNotes.forEach((note, i) => {
+                const isRoot = i === 0;
+                html += `<div class="scale-note ${isRoot ? 'root' : 'note'}" onclick="playNote('${note}', ${document.getElementById('octave').value})">${note}</div>`;
+            });
+            document.getElementById('scaleNotes').innerHTML = html;
+
+            document.getElementById('scaleIntervals').textContent = scale.pattern;
+            document.getElementById('scaleFormula').textContent = scale.formula;
+            document.getElementById('scaleMood').textContent = scale.mood;
+            document.getElementById('scaleUses').textContent = scale.uses;
+        }
+
+        function getFrequency(note, octave) {
+            const noteIndex = notes.indexOf(note);
+            const a4 = 440;
+            const semitones = (octave - 4) * 12 + (noteIndex - 9);
+            return a4 * Math.pow(2, semitones / 12);
+        }
+
+        function playNote(note, octave) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            const freq = getFrequency(note, octave);
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            
+            osc.frequency.value = freq;
+            osc.type = 'sine';
+            
+            gain.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            osc.start();
+            osc.stop(audioContext.currentTime + 0.5);
+        }
+
+        function playScale() {
+            const root = document.getElementById('rootNote').value;
+            const scaleType = document.getElementById('scaleType').value;
+            const octave = parseInt(document.getElementById('octave').value);
+            const scaleNotes = getScaleNotes(root, scaleType);
+            
+            const noteElements = document.querySelectorAll('.scale-note');
+            
+            scaleNotes.forEach((note, i) => {
+                setTimeout(() => {
+                    playNote(note, i === scaleNotes.length - 1 ? octave + 1 : octave);
+                    noteElements[i].classList.add('playing');
+                    setTimeout(() => noteElements[i].classList.remove('playing'), 300);
+                }, i * 400);
+            });
+        }
+
+        updateScale();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+            .then(([header, footer]) => {
+                document.getElementById("header").innerHTML = header;
+                document.getElementById("footer").innerHTML = footer;
+            })
+            .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

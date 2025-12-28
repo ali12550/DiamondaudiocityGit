@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+    <title>🔊 Audio Volume Booster - DiamondAudioCity</title>
+
+    <title>Audio Volume Booster – Make Any Audio Louder Without Quality Loss</title>
+    <meta name="description"
+        content="Increase your audio volume up to 300% online with zero quality loss. Easy, safe, and fast volume booster for music, podcasts, and recordings.">
+    <meta name="keywords"
+        content="audio volume booster, increase audio volume, boost sound, make music louder, normalize audio, increase mobile volume, audio loudness, sound amplification, volume booster apps">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Audio Volume Booster – Make Music, Podcasts & Recordings Louder">
+    <meta property="og:description"
+        content="Online audio volume booster tool to enhance sound clarity and loudness. Safe, fast, and effective for all audio types.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://diamondaudiocity.com/audio-volume-booster">
+    <meta property="og:image" content="https://diamondaudiocity.com/assets/imgs/Diamond_Audio_City%20%20header.png">
+
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+
+
+            <style>
+        .btn-primary:hover {
+            background: var(--mid-blue);
+            transform: scale(1.02);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            background: var(--accent);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            color: var(--dark-blue);
+            transition: all 0.3s ease;
+        }
+
+        .result-box h3 {
+            color: var(--mid-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .upload-zone {
+            border: 3px dashed var(--teal);
+            border-radius: 12px;
+            padding: 0px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .upload-zone:hover {
+            background: #e9ecef;
+            border-color: var(--mid-blue);
+        }
+
+        .upload-zone.dragover {
+            background: var(--accent);
+            border-color: var(--dark-blue);
+        }
+
+        .audio-player {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+
+
+        .processing {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner-border {
+            color: var(--teal);
+        }
+
+        .volume-slider {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .volume-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .preset-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+     <!-- Header Include -->
+    <div id="header"></div>
+    <div class="container">
+        <div class="row g-4 align-items-start justify-content-center py-5 mt-4">
+            <!-- Left: Main Tool -->
+            <div class="col-lg-6">
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1>🔊 Audio Volume Booster</h1>
+                        <p>Make your audio louder without quality loss</p>
+                    </div>
+
+                    <!-- Upload Zone -->
+                    <div class="upload-zone" id="uploadZone">
+                        <i class="bi bi-cloud-arrow-up fs-1 text-teal" style="color: var(--teal)"></i>
+                        <h4 class="" style="color: var(--mid-blue)">Drop your audio file here</h4>
+                        <p class="mb-2">or click to browse</p>
+                        <small class="text-muted">Supports MP3, WAV, FLAC, OGG, M4A (Max 100MB)</small>
+                        <input type="file" id="audioFile" accept="audio/*" style="display: none;">
+                    </div>
+
+                    <!-- Original Audio Player -->
+                    <div id="originalAudioSection" class="d-none">
+                        <div class="audio-player">
+                            <h5 style="color: var(--mid-blue)"><i class="bi bi-file-music"></i> Original Audio</h5>
+                            <audio id="originalAudio" controls></audio>
+                        </div>
+
+                        <!-- Volume Boost Settings -->
+                        <div class="preset-section">
+                            <label class="form-label">Choose Volume Boost Level:</label>
+                            <div class="quick-buttons mb-3">
+                                <button class="quick-btn" onclick="selectPreset(25)">+25%</button>
+                                <button class="quick-btn" onclick="selectPreset(50)">+50%</button>
+                                <button class="quick-btn active" onclick="selectPreset(100)">+100%</button>
+                                <button class="quick-btn" onclick="selectPreset(150)">+150%</button>
+                                <button class="quick-btn" onclick="selectPreset(200)">+200%</button>
+                                <button class="quick-btn" onclick="selectPreset(300)">+300%</button>
+                            </div>
+
+                            <div class="text-center mb-3">
+                                <div class="volume-value">+<span id="volumeValue">100</span>%</div>
+                            </div>
+
+                            <label for="volumeSlider" class="form-label">Custom Volume Boost: <span
+                                    id="volumeLabel">+100%</span></label>
+                            <input type="range" class="form-range volume-slider" id="volumeSlider" min="10" max="400"
+                                step="10" value="100">
+
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="normalizePeaks" checked>
+                                <label class="form-check-label" for="normalizePeaks">
+                                    Normalize peaks (prevents distortion)
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-100 py-3 mt-3" id="boostBtn">
+                            <i class="bi bi-volume-up-fill"></i> Boost Volume
+                        </button>
+                    </div>
+
+                    <!-- Processing -->
+                    <div class="processing" id="processing">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="processing-text pulse-animation">
+                            <i class="bi bi-gear-fill"></i> Boosting Your Audio Volume...
+                        </p>
+                        <p class="processing-subtext">Please wait while we enhance your audio quality</p>
+                        <div class="progress mt-3" style="height: 6px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                style="width: 100%; background-color: var(--teal);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boosted Audio Result -->
+                    <div id="boostedAudioSection" class="d-none">
+                        <div class="result-box">
+                            <h3><i class="bi bi-check-circle-fill"></i> Volume Boosted Successfully!</h3>
+                            <p class="mb-2">Your audio is now <strong><span id="finalBoostValue">100</span>%
+                                    louder</strong></p>
+                            <div class="audio-player">
+                                <h5 style="color: var(--mid-blue)"><i class="bi bi-volume-up"></i> Boosted Audio
+                                </h5>
+                                <audio id="boostedAudio" controls></audio>
+                            </div>
+                            <button class="btn btn-primary w-100 mt-3" id="downloadBtn">
+                                <i class="bi bi-download"></i> Download Boosted Audio
+                            </button>
+                            <button class="btn btn-outline-secondary w-100 mt-2" id="resetBtn"
+                                style="border-color: var(--mid-blue); color: var(--mid-blue)">
+                                <i class="bi bi-arrow-clockwise"></i> Boost Another Audio
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Sidebar Tools Box -->
+             <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-disc me-2"></i>DJ & Production Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i>
+                                        BPM Calculator</a></li>
+                                          <li><a href="/dj-music-production-tools/bpm-to-speed/" class=""><i
+                                            class="bi bi-speedometer2"></i> BPM to Speed Converter</a></li>
+                                <li><a href="/dj-music-production-tools/pitch-shifter/" class=""><i
+                                            class="bi bi-speedometer2"></i> BPM → Pitch (Semitone) Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"
+                                        class=""><i class="bi bi-hand-index"></i> BPM Tap Tempo</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to
+                                        Milliseconds</a></li>
+                                  
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i>
+                                        Online Metronome</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content area start -->
+
+    <div class="content_area container py-5">
+
+        <!-- HOW TO USE BOX -->
+        <div
+            style="background: rgba(0,11,88,0.04); box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-radius: 10px; padding: 20px; margin-bottom: 30px;">
+            <h2 class="h5 fw-bold mb-3" style="color:#003161;">How to Use the Audio Volume Booster</h2>
+            <ol class="mb-0" style="padding-left:18px;">
+                <li>Upload your audio file (MP3, WAV, FLAC, OGG, M4A, max 100MB) by clicking or dragging it into the
+                    upload zone.</li>
+                <li>Select a <strong>volume boost level</strong> using presets (+25% to +300%) or adjust the custom
+                    slider for precise amplification.</li>
+                <li>Toggle <strong>normalize peaks</strong> to prevent distortion for high-volume tracks.</li>
+                <li>Click <strong>Boost Volume</strong> to process your audio. Preview and download your enhanced file.
+                </li>
+            </ol>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <h1 class="fw-bold mb-3" style="color:#000b58;">Audio Volume Booster — Make Your Audio Louder Without Quality
+            Loss</h1>
+
+        <!-- Featured Snippet Answer -->
+        <p><strong>Featured Snippet Answer:</strong> An <strong>audio volume booster</strong> increases the gain of your
+            device’s sound beyond default limits by using post-processing, equalizers, dynamic limiting, and peak
+            normalization, allowing you to make quiet tracks louder while maintaining clarity and avoiding distortion.
+        </p>
+
+        <p class="lead">The <strong>Audio Volume Booster</strong> tool is perfect for anyone asking “<em>Why is my audio
+                sound so low?</em>” or “<em>How can I increase my sound volume?</em>” Whether you’re trying to make
+            heavy tracks louder, boost phone audio for hard-of-hearing listeners, or improve overall speaker output,
+            this tool safely enhances your audio up to 400%.</p>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Why Use an Audio Volume Booster?</h2>
+        <p>Many devices have limited default volume. Professional sound engineers and casual users alike need higher
+            amplification without introducing distortion. Our tool addresses common queries like:</p>
+        <ul>
+            <li>“<strong>How to make heavys louder?</strong>” — Boost bass-heavy or dynamic tracks without clipping.
+            </li>
+            <li>“<strong>How to increase mobile volume up to 200%?</strong>” — Safely push your phone’s volume beyond
+                default maximum.</li>
+            <li>“<strong>How can I increase the loudness of sound?</strong>” — Gain clear, audible output for all
+                devices.</li>
+            <li>“<strong>Are volume boosters safe to use?</strong>” — Normalize peaks and soft clipping ensure audio
+                remains undistorted.</li>
+            <li>“<strong>Which device is used for increasing the volume of sound?</strong>” — Our software works
+                directly on your files, no external amplifier needed.</li>
+        </ul>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">How It Works</h2>
+        <p>The tool works in three steps:</p>
+        <ol style="padding-left:18px;">
+            <li><strong>Upload Audio:</strong> Supports multiple formats like MP3, WAV, FLAC, OGG, and M4A.</li>
+            <li><strong>Adjust Volume:</strong> Select a preset (+25% to +300%) or custom boost, with optional peak
+                normalization.</li>
+            <li><strong>Download Enhanced Audio:</strong> Preview boosted audio and download it for use on any device.
+            </li>
+        </ol>
+        <p>We use modern <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext"
+                target="_blank">AudioContext API (MDN)</a> and <a
+                href="https://en.wikipedia.org/wiki/Audio_signal_processing" target="_blank">audio signal processing
+                techniques (Wikipedia)</a> to ensure high-fidelity amplification. For more technical insight, see <a
+                href="https://www.soundonsound.com/techniques/audio-loudness" target="_blank">Sound on Sound — Audio
+                Loudness Explained</a>.</p>
+        <!-- Volume Boost Presets Mini Infographic -->
+        <div
+            style="background: rgba(0,11,88,0.04); box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-radius: 10px; padding: 20px; margin-bottom: 30px;">
+            <h2 class="h5 fw-bold mb-3" style="color:#003161;">Quick Volume Boost Presets</h2>
+            <p>Use these presets for a fast, safe, and effective boost. Higher boosts may require <strong>normalize
+                    peaks</strong> to prevent distortion.</p>
+
+            <div class="table-responsive">
+                <table class="table text-center" style="border-radius: 10px; overflow: hidden;">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Preset</th>
+                            <th>Boost %</th>
+                            <th>Use Case</th>
+                            <th>Visual Cue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #d4edda;">
+                            <td>Low</td>
+                            <td>+25%</td>
+                            <td>Quiet podcasts, soft voice tracks</td>
+                            <td>🔈</td>
+                        </tr>
+                        <tr style="background-color: #fff3cd;">
+                            <td>Medium</td>
+                            <td>+50% – +100%</td>
+                            <td>Standard music, lectures, audiobooks</td>
+                            <td>🔊</td>
+                        </tr>
+                        <tr style="background-color: #f8d7da;">
+                            <td>High</td>
+                            <td>+150% – +300%</td>
+                            <td>Heavy bass tracks, low-volume recordings</td>
+                            <td>📢</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p style="margin-top:12px;">Tip: Start with the <strong>medium preset</strong> and gradually increase to
+                high for heavy audio. Always enable <strong>Normalize Peaks</strong> for safe boosting.</p>
+        </div>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Practical Tips</h2>
+        <ul>
+            <li>Boost tracks incrementally to prevent distortion.</li>
+            <li>Normalize peaks if audio clipping occurs at high volumes.</li>
+            <li>For phone audio, combine device settings with our booster for maximum effect.</li>
+            <li>Heavy bass or dynamic tracks often require +150% to +300% boost for perceptible improvement.</li>
+        </ul>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">FAQs — Audio Volume Booster</h2>
+
+        <div class="accordion" id="faqAudioBooster">
+
+            <!-- Example FAQ item -->
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq1">How to make my audio louder without distortion?</button></h3>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Use the Audio Volume Booster’s peak normalization and gradual volume
+                        increase. Avoid maxing out in one step to maintain clarity.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq2">Why is my audio sound so low?</button></h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Many devices limit default output. Using an audio booster can safely
+                        raise volume while preserving quality.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq3">How to increase mobile volume up to 200%?</button></h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Upload your audio or use the tool for real-time playback amplification.
+                        Combine with phone settings for maximum output.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq4">Are volume booster apps safe?</button></h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Yes, if they include peak normalization and avoid extreme clipping. Our
+                        Audio Volume Booster is designed for safe amplification up to 400%.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq5">How can I make heavy tracks louder?</button></h3>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Use higher boost presets (+150% to +300%) and enable peak normalization
+                        to enhance bass-heavy or dynamic tracks.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq6">Which device is used for increasing the volume of sound?</button></h3>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Software boosters like this one work on files directly. No extra
+                        hardware is required for boosting digital audio.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq7">How to improve speaker sound?</button></h3>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Use boosted audio files combined with proper equalizer settings. Avoid
+                        maxing out speakers to prevent hardware damage.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq8">What is the best free volume booster app?</button></h3>
+                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Our <strong>Audio Volume Booster</strong> is free, safe, and works
+                        directly in-browser without installation.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq9">Are there risks of using a sound booster?</button></h3>
+                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Excessive amplification without peak normalization can distort audio and
+                        potentially damage speakers. Use recommended presets for safety.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq10">How do I make my volume even louder?</button></h3>
+                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Gradually increase boost levels, enable normalization, and combine with
+                        device volume adjustments.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq11">How to make speakers sound good at low volume?</button></h3>
+                <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Boost audio digitally before playback, ensuring balanced equalization
+                        for clarity and fullness.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq12">What exactly does master volume control?</button></h3>
+                <div id="faq12" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Master volume adjusts the overall gain of your system. Combined with
+                        software boosters, it can maximize perceived loudness safely.</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq13">What is the 600% sound volume app?</button></h3>
+                <div id="faq13" class="accordion-collapse collapse" data-bs-parent="#faqAudioBooster">
+                    <div class="accordion-body">Many apps claim extreme amplification. Our tool provides safe,
+                        controlled boosting up to 400% without risking distortion or hardware damage.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Final Thoughts</h2>
+        <p>The <strong>Audio Volume Booster</strong> is a safe, user-friendly solution to increase your audio’s
+            perceived loudness. Whether you’re listening on mobile, editing music, or preparing audio for presentations,
+            this tool ensures clear, amplified sound. For further reading, check <a
+                href="https://en.wikipedia.org/wiki/Audio_signal_processing" target="_blank">Wikipedia — Audio Signal
+                Processing</a>, <a href="https://www.soundonsound.com/techniques/audio-loudness" target="_blank">Sound
+                on Sound — Audio Loudness Explained</a>, and <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext" target="_blank">MDN — AudioContext
+                API</a>.</p>
+
+        <!-- AUTHOR BOX -->
+        <div style="margin-top:30px; border-top:1px solid #e6e6e6; padding-top:16px;">
+            <p class="mb-0"><strong>Author:</strong> John Smith / Diamond Audio City<br>
+                <a href="mailto:admin@diamondaudiocity.com">admin@diamondaudiocity.com</a><br>
+                Practical tools and calculators built for listeners, producers, and audio creators.
+            </p>
+        </div>
+
+    </div>
+
+
+
+
+    <!-- content area end -->
+    <!-- tools js -->
+    <script>
+        const uploadZone = document.getElementById('uploadZone');
+        const audioFile = document.getElementById('audioFile');
+        const originalAudioSection = document.getElementById('originalAudioSection');
+        const originalAudio = document.getElementById('originalAudio');
+        const boostedAudioSection = document.getElementById('boostedAudioSection');
+        const boostedAudio = document.getElementById('boostedAudio');
+        const boostBtn = document.getElementById('boostBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeValue = document.getElementById('volumeValue');
+        const volumeLabel = document.getElementById('volumeLabel');
+        const processing = document.getElementById('processing');
+        const normalizePeaks = document.getElementById('normalizePeaks');
+
+        let audioContext;
+        let audioBuffer;
+        let boostedBlob;
+
+        // Upload zone interactions
+        uploadZone.addEventListener('click', () => audioFile.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        audioFile.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        function handleFile(file) {
+            if (!file.type.startsWith('audio/')) {
+                alert('Please upload an audio file');
+                return;
+            }
+
+            if (file.size > 100 * 1024 * 1024) {
+                alert('File size must be less than 100MB');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                originalAudio.src = e.target.result;
+                originalAudioSection.classList.remove('d-none');
+                boostedAudioSection.classList.add('d-none');
+                loadAudioData(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function loadAudioData(dataUrl) {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const response = await fetch(dataUrl);
+                const arrayBuffer = await response.arrayBuffer();
+                audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            } catch (err) {
+                alert('Error loading audio: ' + err.message);
+            }
+        }
+
+        volumeSlider.addEventListener('input', (e) => {
+            const value = parseInt(e.target.value);
+            volumeValue.textContent = value;
+            volumeLabel.textContent = `+${value}%`;
+
+            // Remove active class from all preset buttons
+            document.querySelectorAll('.quick-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+        });
+
+        function selectPreset(value) {
+            volumeSlider.value = value;
+            volumeValue.textContent = value;
+            volumeLabel.textContent = `+${value}%`;
+
+            // Update active button
+            document.querySelectorAll('.quick-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === `+${value}%`) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        boostBtn.addEventListener('click', async () => {
+            if (!audioBuffer) {
+                alert('Please upload an audio file first');
+                return;
+            }
+
+            // Show processing state
+            processing.style.display = 'block';
+            originalAudioSection.classList.add('d-none');
+
+            // Add a small delay to ensure UI updates
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            try {
+                const boostPercentage = parseInt(volumeSlider.value);
+                const gainMultiplier = 1 + (boostPercentage / 100);
+
+                // Create a new buffer with boosted volume
+                const boostedBuffer = audioContext.createBuffer(
+                    audioBuffer.numberOfChannels,
+                    audioBuffer.length,
+                    audioBuffer.sampleRate
+                );
+
+                for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                    const inputData = audioBuffer.getChannelData(channel);
+                    const outputData = boostedBuffer.getChannelData(channel);
+
+                    // Find peak if normalization is enabled
+                    let peak = 0;
+                    if (normalizePeaks.checked) {
+                        for (let i = 0; i < inputData.length; i++) {
+                            const amplified = Math.abs(inputData[i] * gainMultiplier);
+                            if (amplified > peak) peak = amplified;
+                        }
+                    }
+
+                    // Apply gain with optional normalization
+                    const normalizer = (normalizePeaks.checked && peak > 1) ? (0.99 / peak) : 1;
+
+                    for (let i = 0; i < inputData.length; i++) {
+                        let sample = inputData[i] * gainMultiplier * normalizer;
+
+                        // Soft clipping if not normalizing
+                        if (!normalizePeaks.checked) {
+                            if (sample > 1) sample = 1;
+                            if (sample < -1) sample = -1;
+                        }
+
+                        outputData[i] = sample;
+                    }
+                }
+
+                // Convert to WAV
+                boostedBlob = await bufferToWav(boostedBuffer);
+                const url = URL.createObjectURL(boostedBlob);
+                boostedAudio.src = url;
+
+                document.getElementById('finalBoostValue').textContent = boostPercentage;
+
+                processing.style.display = 'none';
+                boostedAudioSection.classList.remove('d-none');
+            } catch (err) {
+                alert('Error boosting audio: ' + err.message);
+                processing.style.display = 'none';
+                originalAudioSection.classList.remove('d-none');
+            }
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (boostedBlob) {
+                const url = URL.createObjectURL(boostedBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'boosted_audio.wav';
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            originalAudio.src = '';
+            boostedAudio.src = '';
+            originalAudioSection.classList.add('d-none');
+            boostedAudioSection.classList.add('d-none');
+            audioFile.value = '';
+            audioBuffer = null;
+            boostedBlob = null;
+            volumeSlider.value = 100;
+            volumeValue.textContent = 100;
+            volumeLabel.textContent = '+100%';
+            selectPreset(100);
+        });
+
+        // Convert AudioBuffer to WAV
+        async function bufferToWav(buffer) {
+            const numberOfChannels = buffer.numberOfChannels;
+            const sampleRate = buffer.sampleRate;
+            const format = 1; // PCM
+            const bitDepth = 16;
+
+            const bytesPerSample = bitDepth / 8;
+            const blockAlign = numberOfChannels * bytesPerSample;
+
+            const data = [];
+            for (let i = 0; i < buffer.length; i++) {
+                for (let channel = 0; channel < numberOfChannels; channel++) {
+                    const sample = buffer.getChannelData(channel)[i];
+                    const int16 = Math.max(-1, Math.min(1, sample)) * 0x7FFF;
+                    data.push(int16 & 0xFF);
+                    data.push((int16 >> 8) & 0xFF);
+                }
+            }
+
+            const dataSize = data.length;
+            const headerSize = 44;
+            const fileSize = headerSize + dataSize;
+
+            const arrayBuffer = new ArrayBuffer(fileSize);
+            const view = new DataView(arrayBuffer);
+
+            // RIFF header
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, fileSize - 8, true);
+            writeString(view, 8, 'WAVE');
+
+            // fmt chunk
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, format, true);
+            view.setUint16(22, numberOfChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+
+            // data chunk
+            writeString(view, 36, 'data');
+            view.setUint32(40, dataSize, true);
+
+            for (let i = 0; i < data.length; i++) {
+                view.setUint8(44 + i, data[i]);
+            }
+
+            return new Blob([arrayBuffer], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+    </script>
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/include.js"></script>
+
+    <!--include js-->
+    <script>
+
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+
+    </script>
+
+    <!-- schema -->
+
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How to make heavy audio louder?",
+      "acceptedAnswer": {"@type": "Answer","text": "Use the Audio Volume Booster presets or custom slider. Start with +50% to +100% and gradually increase. Enable Normalize Peaks to avoid distortion."}
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my audio sound so low?",
+      "acceptedAnswer": {"@type": "Answer","text": "Low audio can be caused by recording levels or device limitations. Boosting volume online with our tool enhances clarity safely."}
+    },
+    {
+      "@type": "Question",
+      "name": "Are volume boosters safe to use?",
+      "acceptedAnswer": {"@type": "Answer","text": "Yes, web-based boosters like ours are safe and prevent distortion by normalizing peaks."}
+    }
+  ]
+}
+</script>
+</body>
+
+</html>

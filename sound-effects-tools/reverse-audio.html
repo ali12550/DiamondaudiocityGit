@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+    <title>🔄 Audio & Video Reverser - DiamondAudioCity</title>
+
+    <meta name="description"
+        content="Increase your audio volume up to 300% online with zero quality loss. Easy, safe, and fast volume booster for music, podcasts, and recordings.">
+    <meta name="keywords"
+        content="audio volume booster, increase audio volume, boost sound, make music louder, normalize audio, increase mobile volume, audio loudness, sound amplification, volume booster apps">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Audio Volume Booster – Make Music, Podcasts & Recordings Louder">
+    <meta property="og:description"
+        content="Online audio volume booster tool to enhance sound clarity and loudness. Safe, fast, and effective for all audio types.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://diamondaudiocity.com/audio-volume-booster">
+    <meta property="og:image" content="https://diamondaudiocity.com/assets/imgs/Diamond_Audio_City%20%20header.png">
+
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+
+    <style>
+        .btn-primary:hover {
+            background: var(--mid-blue);
+            transform: scale(1.02);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            background: var(--accent);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            color: var(--dark-blue);
+            transition: all 0.3s ease;
+        }
+
+        .result-box h3 {
+            color: var(--mid-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .upload-zone {
+            border: 3px dashed var(--teal);
+            border-radius: 12px;
+            padding: 0px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .upload-zone:hover {
+            background: #e9ecef;
+            border-color: var(--mid-blue);
+        }
+
+        .upload-zone.dragover {
+            background: var(--accent);
+            border-color: var(--dark-blue);
+        }
+
+        .audio-player {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+
+
+        .processing {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner-border {
+            color: var(--teal);
+        }
+
+        .volume-slider {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .volume-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .preset-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+    </style>
+
+
+    <style>
+        .speed-buttons,
+        .quick-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .speed-btn,
+        .quick-btn {
+            background: var(--mid-blue);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .speed-btn:hover,
+        .quick-btn:hover {
+            background: var(--teal);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            border: none;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--mid-blue);
+            transform: scale(1.02);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            background: var(--accent);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            color: var(--dark-blue);
+            transition: all 0.3s ease;
+        }
+
+        .result-box h3 {
+            color: var(--mid-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .upload-zone {
+            border: 3px dashed var(--teal);
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+    
+        .media-player {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        video,
+        audio {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+
+    
+
+        .spinner-border {
+            color: var(--teal);
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: #e9ecef;
+            color: var(--mid-blue);
+            border: 2px solid #e0e0e0;
+            padding: 10px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .tab-btn.active {
+            background: var(--teal);
+            color: white;
+            border-color: var(--teal);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: #dee2e6;
+        }
+
+      
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body> <!-- Header Include -->
+    <div id="header"></div>
+    <div class="container">
+        <div class="row g-4 align-items-start justify-content-center py-5 mt-4">
+            <!-- Left: Main Tool -->
+            <div class="col-lg-6">
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1>🔄 Audio & Video Reverser</h1>
+                        <p>Reverse your audio or video in real-time, right in your browser</p>
+                    </div>
+
+                    <!-- Tab Selection -->
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" id="audioTab" onclick="switchTab('audio')">
+                            <i class="bi bi-music-note-beamed"></i> Audio
+                        </button>
+                        <button class="tab-btn" id="videoTab" onclick="switchTab('video')">
+                            <i class="bi bi-play-circle"></i> Video
+                        </button>
+                    </div>
+
+                    <!-- Upload Zone -->
+                    <div class="upload-zone" id="uploadZone">
+                        <i class="bi bi-cloud-arrow-up fs-1 text-teal" style="color: var(--teal)"></i>
+                        <h4 class="mt-3" id="uploadTitle" style="color: var(--mid-blue)">Drop your audio file here</h4>
+                        <p class="mb-2">or click to browse</p>
+                        <small class="text-muted" id="formatInfo">Supports MP3, WAV, FLAC, OGG, M4A, AAC</small>
+                        <input type="file" id="mediaFile" accept="audio/*,video/*" style="display: none;">
+                    </div>
+
+                    <!-- Record Audio Option -->
+                    <div class="text-center mt-3" id="recordSection">
+                        <button class="btn btn-outline-secondary" id="recordBtn"
+                            style="border-color: var(--mid-blue); color: var(--mid-blue)">
+                            <i class="bi bi-mic-fill"></i> Record Audio
+                        </button>
+                    </div>
+
+                    <!-- Original Media Player -->
+                    <div id="originalMediaSection" class="d-none">
+                        <div class="media-player">
+                            <h5 style="color: var(--mid-blue)"><i class="bi bi-file-music"></i> <span
+                                    id="mediaTypeLabel">Original Audio</span></h5>
+                            <video id="originalVideo" controls class="d-none"></video>
+                            <audio id="originalAudio" controls class="d-none"></audio>
+                            <div class="mt-3">
+                                <label for="speedControl" class="form-label">Playback Speed: <span
+                                        id="speedValue">1.0</span>x</label>
+                                <input type="range" class="form-range" id="speedControl" min="0.5" max="2" step="0.1"
+                                    value="1">
+                                <div class="speed-buttons">
+                                    <button class="speed-btn" onclick="setSpeed(0.5)">0.5x</button>
+                                    <button class="speed-btn" onclick="setSpeed(0.75)">0.75x</button>
+                                    <button class="speed-btn" onclick="setSpeed(1)">1x</button>
+                                    <button class="speed-btn" onclick="setSpeed(1.5)">1.5x</button>
+                                    <button class="speed-btn" onclick="setSpeed(2)">2x</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-100 py-3 mt-3" id="reverseBtn">
+                            <i class="bi bi-arrow-repeat"></i> <span id="reverseButtonText">Reverse Audio</span>
+                        </button>
+                    </div>
+
+                    <!-- Processing -->
+                    <div class="processing" id="processing">
+                        <div class="spinner-border" role="status"></div>
+                        <p class="mt-3" style="color: var(--mid-blue)">Processing your media...</p>
+                    </div>
+
+                    <!-- Reversed Media Result -->
+                    <div id="reversedMediaSection" class="d-none">
+                        <div class="result-box">
+                            <h3><i class="bi bi-check-circle-fill"></i> <span id="successMessage">Audio Reversed
+                                    Successfully!</span></h3>
+                            <div class="media-player">
+                                <h5 style="color: var(--mid-blue)"><i class="bi bi-arrow-counterclockwise"></i> <span
+                                        id="reversedLabel">Reversed Audio</span></h5>
+                                <video id="reversedVideo" controls class="d-none"></video>
+                                <audio id="reversedAudio" controls class="d-none"></audio>
+                            </div>
+                            <button class="btn btn-primary w-100 mt-3" id="downloadBtn">
+                                <i class="bi bi-download"></i> <span id="downloadText">Download Reversed Audio</span>
+                            </button>
+                            <button class="btn btn-outline-secondary w-100 mt-2" id="resetBtn"
+                                style="border-color: var(--mid-blue); color: var(--mid-blue)">
+                                <i class="bi bi-arrow-clockwise"></i> Reverse Another File
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+             <!-- Right: Sidebar Tools Box -->
+            <div class="col-lg-4 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-disc me-2"></i>DJ & Production Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i>
+                                        BPM Calculator</a></li>
+                                          <li><a href="/dj-music-production-tools/bpm-to-speed/" class=""><i
+                                            class="bi bi-speedometer2"></i> BPM to Speed Converter</a></li>
+                                <li><a href="/dj-music-production-tools/pitch-shifter/" class=""><i
+                                            class="bi bi-speedometer2"></i> BPM → Pitch (Semitone) Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"
+                                        class=""><i class="bi bi-hand-index"></i> BPM Tap Tempo</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to
+                                        Milliseconds</a></li>
+                                  
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i>
+                                        Online Metronome</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content area start -->
+    <div class="content_area container py-5">
+
+        <!-- HOW TO USE BOX -->
+        <div
+            style="background: rgba(0,11,88,0.04); box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-radius: 10px; padding: 20px; margin-bottom: 30px;">
+            <h2 class="h5 fw-bold mb-3" style="color:#003161;">How to Use the Audio & Video Reverser</h2>
+            <ol class="mb-0" style="padding-left:18px;">
+                <li>Select whether you want to reverse <strong>audio</strong> or <strong>video</strong> using the tab
+                    buttons.</li>
+                <li>Upload your media file (audio formats: MP3, WAV, FLAC, OGG, M4A, AAC; video formats: MP4, MOV, AVI,
+                    MKV).</li>
+                <li>For audio: optionally record voice or file. For video: skip recording section.</li>
+                <li>Use playback speed controls if you wish to preview at 0.5×, 0.75×, 1×, 1.5× or 2× speed.</li>
+                <li>Click <strong>Reverse</strong> to start processing. Wait until your reversed media is ready.</li>
+                <li>Preview the reversed result and click <strong>Download</strong> to save your reversed file. Then
+                    optionally reverse another file.</li>
+            </ol>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <h1 class="fw-bold mb-3" style="color:#000b58;">Audio & Video Reverser — Reverse Your Audio or Video in Real
+            Time</h1>
+
+        <p class="lead">The <strong>Audio & Video Reverser</strong> is a powerful browser-based tool that allows you to
+            reverse audio or video files quickly and easily. Whether you’re working on music production, sound design,
+            creative media, or simply experimenting, this tool supports a wide range of formats and produces
+            high-quality reversed output.</p>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">What is an Audio & Video Reverser?</h2>
+        <p>An <strong>audio & video reverser</strong> is software or an online tool that flips media playback so that
+            audio or video plays backwards. This can create dramatic effects, reveal hidden messages, redesign
+            soundscapes, or add cinematic flair. Reverse playback has been used in music production, sound design, film
+            editing and creative content. :contentReference[oaicite:1]{index=1}</p>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Why Use a Reverser Tool?</h2>
+        <p>Many users ask: “<strong>How do I reverse an audio track using common software or online tools?</strong>” or
+            “<strong>What are the different types of audio and video files an audio reverser can process?</strong>” This
+            tool handles both audio and video seamlessly, giving you flexibility and creative freedom.</p>
+        <ul>
+            <li>Reverse entire files or selected sections for creative effect.</li>
+            <li>Supports multiple formats for audio and video — so you’re not limited to one type.</li>
+            <li>Add unique sound or visual effects by reversing playback, ideal for music, storytelling or social media
+                clips. :contentReference[oaicite:2]{index=2}</li>
+            <li>Use in content creation: video rewind effects, reversed voice overs, hidden message exploration or just
+                fun experiments.</li>
+            <li>Free, browser-based and no installation required — works across devices.</li>
+        </ul>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Key Features</h2>
+        <ul>
+            <li>Dual mode: audio reversal and video reversal with one tool.</li>
+            <li>Wide format support: MP3, WAV, FLAC, OGG, M4A, AAC for audio; MP4, MOV, AVI, MKV for video.</li>
+            <li>Playback speed preview: 0.5×, 0.75×, 1×, 1.5×, 2× — test before reversing.</li>
+            <li>Record audio directly from your microphone (for audio mode only).</li>
+            <li>Instant download of reversed output file ready for use.</li>
+            <li>Runs entirely in your browser — no uploads to external server, preserving privacy and speed.</li>
+        </ul>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Quick Guide for Best Results</h2>
+        <ul>
+            <li>Start with shorter media files when experimenting — video reversal can be heavy on resources.</li>
+            <li>For audio: if you want to reverse only a specific section, upload the segment or trim beforehand using
+                an editor.</li>
+            <li>Preview at lower speed (0.5× or 0.75×) to hear how the reversed effect transforms your content.</li>
+            <li>After reversal, listen or watch the result on multiple devices (phones, headphones, speakers) to verify
+                clarity.</li>
+            <li>Use this tool for fun effects, creative transitions, hidden message exploration, or professional sound
+                design.</li>
+        </ul>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Mini Infographic: Media Reversal Presets</h2>
+        <div class="table-responsive mb-3">
+            <table class="table text-center" style="border-radius: 8px;">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mode</th>
+                        <th>Tip</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color:#d4edda;">
+                        <td>Audio Reversal</td>
+                        <td>Flip audio waveform backwards</td>
+                        <td>Voiceovers, music, hidden message effects</td>
+                    </tr>
+                    <tr style="background-color:#fff3cd;">
+                        <td>Video Reversal</td>
+                        <td>Play video frames backwards (with audio or without)</td>
+                        <td>Rewind effects, social media clips</td>
+                    </tr>
+                    <tr style="background-color:#f8d7da;">
+                        <td>Combined Use</td>
+                        <td>Reverse audio and video together or separately</td>
+                        <td>Sound design, film transitions, music production</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">How It Works</h2>
+        <p>Whether you upload audio or video, here’s the process:</p>
+        <ol style="padding-left:18px;">
+            <li>Upload your file or record audio if in audio mode.</li>
+            <li>Select playback speed to preview how reversal will sound or look.</li>
+            <li>Click the <strong>Reverse</strong> button — the system will process your file in browser.</li>
+            <li>Once processed, preview reversed output. Then download and save your file.</li>
+        </ol>
+        <p>Behind the scenes, our tool uses Web Audio API and video canvas frame extraction techniques to reverse media
+            efficiently. For further reading on reversed audio in production, see <a
+                href="https://en.wikipedia.org/wiki/Backmasking" target="_blank">Backmasking – Wikipedia</a>.
+            :contentReference[oaicite:3]{index=3}</p>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Applications & Use Cases</h2>
+        <p>This tool benefits a wide range of users:</p>
+        <ul>
+            <li><strong>Musicians & Sound Designers:</strong> Add reversed instruments, vocals or create ambient
+                textures.</li>
+            <li><strong>Video Editors & Content Creators:</strong> Apply video rewind effects, reveal hidden details,
+                engage viewers with unexpected motion.</li>
+            <li><strong>Educators & Analysts:</strong> Reverse speech or recordings to analyze hidden patterns or
+                backward effects.</li>
+            <li><strong>Casual & Social Users:</strong> Play with audio for fun, reverse voice messages, create
+                intriguing social clips.</li>
+        </ul>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">FAQs — Audio & Video Reverser</h2>
+        <div class="accordion" id="faqReverser">
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq1">How do I reverse an audio track using common software or online
+                        tools?</button></h3>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">Upload your audio file to the tool or open it in your audio editor.
+                        Select the ‘Reverse’ effect, process the file, then download the reversed result.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq2">What are the different types of audio files an audio reverser can
+                        process?</button></h3>
+                <div id="#faq2" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">This tool supports MP3, WAV, FLAC, OGG, M4A, AAC for audio. For video
+                        reversal it supports MP4, MOV, AVI, MKV.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq3">How can I reverse only a specific section of an audio track?</button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">You can trim your audio file externally or split it using an editor,
+                        then upload the segment. Then use the reversal tool for that section only.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq4">How does reversing audio affect its pitch or tempo?</button></h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">Reversing audio flips the playback direction but does not inherently
+                        change pitch or tempo. Playback speed control may affect perceived tempo.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq5">What is an audio reverser and what are its primary uses?</button></h3>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">An audio reverser flips an audio file’s waveform so it plays backward.
+                        Used in music production, sound design, film effects, and creative content generation.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq6">Why would someone want to reverse audio in music production or sound
+                        design?</button></h3>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">Reversed audio adds mystery, creates transitions, or builds suspense. It
+                        can deliver uncanny or surprising sounds that aren’t possible with forward playback.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq7">Where can I find free online audio reverser tools or software?</button>
+                </h3>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">There are many free online tools for reversing audio and video. This
+                        tool works entirely in-browser and supports both audio and video formats.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq8">Who benefits most from using simple one-click reverser tools?</button>
+                </h3>
+                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">Musicians, sound designers, video editors, content creators, educators,
+                        and enthusiasts all benefit from fast reversal of media files.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq9">Are there creative applications of audio reversal?</button></h3>
+                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">Yes — from hidden message discovery to reversed guitar riffs, reversed
+                        transitions, rewind effects for social video, and more.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#faq10">Is reversing video audio safe and legal?</button></h3>
+                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqReverser">
+                    <div class="accordion-body">Yes, reversing media you own or have permission for is legal. Always
+                        respect copyright and licensing rules for third-party content.</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Final Thoughts</h2>
+        <p>The <strong>Audio & Video Reverser</strong> gives you a flexible, browser-based solution to flip audio and
+            video with zero installation, high compatibility, and creative power. Whether used for music, film,
+            education, or fun, you now have an efficient tool to reverse playback and explore new directions in sound
+            and visuals.</p>
+
+        <!-- AUTHOR BOX -->
+        <div style="margin-top:30px; border-top:1px solid #e6e6e6; padding-top:16px;">
+            <p class="mb-0"><strong>Author:</strong> John Smith / Diamond Audio City<br>
+                <a href="mailto:admin@diamondaudiocity.com">admin@diamondaudiocity.com</a><br>
+                Practical tools and tutorials built for listeners, producers, and media creators.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- content area end -->
+    <!-- tools js -->
+
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/include.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ffmpeg/0.11.6/ffmpeg.min.js"></script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Audio & Video Reverser",
+  "url": "https://diamondaudiocity.com/audio-editing-tools/reverse-audio.html",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web",
+  "description": "Reverse your audio or video files directly in your browser. Supports MP3, WAV, FLAC, OGG, M4A, AAC for audio and MP4, MOV, AVI, MKV for video.",
+  "author": {
+    "@type": "Person",
+    "name": "John Smith"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Diamond Audio City",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://diamondaudiocity.com/assets/imgs/Diamond_Audio_City%20%20header.png"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://diamondaudiocity.com/audio-editing-tools/reverse-audio.html",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I reverse an audio track using common software or online tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upload your audio file to the tool or open it in your audio editor. Select the ‘Reverse’ effect, process the file, then download the reversed result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the different types of audio files an audio reverser can process?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool supports MP3, WAV, FLAC, OGG, M4A, AAC for audio. For video reversal it supports MP4, MOV, AVI, MKV."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I reverse only a specific section of an audio track?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can trim your audio file externally or split it using an editor, then upload the segment. Then use the reversal tool for that section only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does reversing audio affect its pitch or tempo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reversing audio flips the playback direction but does not inherently change pitch or tempo. Playback speed control may affect perceived tempo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an audio reverser and what are its primary uses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An audio reverser flips an audio file’s waveform so it plays backward. Used in music production, sound design, film effects, and creative content generation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why would someone want to reverse audio in music production or sound design?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reversed audio adds mystery, creates transitions, or builds suspense. It can deliver uncanny or surprising sounds that aren’t possible with forward playback."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I find free online audio reverser tools or software?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There are many free online tools for reversing audio and video. This tool works entirely in-browser and supports both audio and video formats."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who benefits most from using simple one-click reverser tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Musicians, sound designers, video editors, content creators, educators, and enthusiasts all benefit from fast reversal of media files."
+      }
+    }
+  ]
+}
+</script>
+    <!--include js-->
+    <script>
+
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+
+    </script>
+
+    <!-- tool js -->
+    <script>
+        const uploadZone = document.getElementById('uploadZone');
+        const mediaFile = document.getElementById('mediaFile');
+        const originalMediaSection = document.getElementById('originalMediaSection');
+        const originalAudio = document.getElementById('originalAudio');
+        const originalVideo = document.getElementById('originalVideo');
+        const reversedMediaSection = document.getElementById('reversedMediaSection');
+        const reversedAudio = document.getElementById('reversedAudio');
+        const reversedVideo = document.getElementById('reversedVideo');
+        const reverseBtn = document.getElementById('reverseBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const speedControl = document.getElementById('speedControl');
+        const speedValue = document.getElementById('speedValue');
+        const processing = document.getElementById('processing');
+        const recordBtn = document.getElementById('recordBtn');
+
+        let audioContext;
+        let audioBuffer;
+        let reversedBlob;
+        let mediaRecorder;
+        let recordedChunks = [];
+        let currentMode = 'audio';
+        let currentMediaElement = null;
+        let videoBlob = null;
+
+        function switchTab(mode) {
+            currentMode = mode;
+            document.getElementById('audioTab').classList.toggle('active', mode === 'audio');
+            document.getElementById('videoTab').classList.toggle('active', mode === 'video');
+
+            if (mode === 'audio') {
+                mediaFile.accept = 'audio/*';
+                document.getElementById('uploadTitle').textContent = 'Drop your audio file here';
+                document.getElementById('formatInfo').textContent = 'Supports MP3, WAV, FLAC, OGG, M4A, AAC';
+                document.getElementById('recordSection').style.display = 'block';
+            } else {
+                mediaFile.accept = 'video/*';
+                document.getElementById('uploadTitle').textContent = 'Drop your video file here';
+                document.getElementById('formatInfo').textContent = 'Supports MP4, WebM, AVI, MOV, MKV';
+                document.getElementById('recordSection').style.display = 'none';
+            }
+
+            resetTool();
+        }
+
+        uploadZone.addEventListener('click', () => mediaFile.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        mediaFile.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        recordBtn.addEventListener('click', async () => {
+            if (recordBtn.textContent.includes('Record')) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    recordedChunks = [];
+
+                    mediaRecorder.ondataavailable = (e) => {
+                        if (e.data.size > 0) {
+                            recordedChunks.push(e.data);
+                        }
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+                        const file = new File([blob], 'recording.webm', { type: 'audio/webm' });
+                        handleFile(file);
+                        stream.getTracks().forEach(track => track.stop());
+                    };
+
+                    mediaRecorder.start();
+                    recordBtn.innerHTML = '<i class="bi bi-stop-fill"></i> Stop Recording';
+                    recordBtn.classList.add('btn-danger');
+                } catch (err) {
+                    alert('Could not access microphone: ' + err.message);
+                }
+            } else {
+                mediaRecorder.stop();
+                recordBtn.innerHTML = '<i class="bi bi-mic-fill"></i> Record Audio';
+                recordBtn.classList.remove('btn-danger');
+            }
+        });
+
+        function handleFile(file) {
+            const isVideo = file.type.startsWith('video/');
+            const isAudio = file.type.startsWith('audio/');
+
+            if (!isVideo && !isAudio) {
+                alert('Please upload an audio or video file');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (isVideo) {
+                    originalVideo.src = e.target.result;
+                    originalVideo.classList.remove('d-none');
+                    originalAudio.classList.add('d-none');
+                    currentMediaElement = originalVideo;
+                    document.getElementById('mediaTypeLabel').textContent = 'Original Video';
+                    document.getElementById('reverseButtonText').textContent = 'Reverse Video';
+                    videoBlob = new Blob([file], { type: file.type });
+                } else {
+                    originalAudio.src = e.target.result;
+                    originalAudio.classList.remove('d-none');
+                    originalVideo.classList.add('d-none');
+                    currentMediaElement = originalAudio;
+                    document.getElementById('mediaTypeLabel').textContent = 'Original Audio';
+                    document.getElementById('reverseButtonText').textContent = 'Reverse Audio';
+                    loadAudioData(e.target.result);
+                }
+
+                originalMediaSection.classList.remove('d-none');
+                reversedMediaSection.classList.add('d-none');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function loadAudioData(dataUrl) {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const response = await fetch(dataUrl);
+                const arrayBuffer = await response.arrayBuffer();
+                audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            } catch (err) {
+                console.error('Error loading audio:', err);
+            }
+        }
+
+        speedControl.addEventListener('input', (e) => {
+            const speed = parseFloat(e.target.value);
+            speedValue.textContent = speed.toFixed(1);
+            if (currentMediaElement) {
+                currentMediaElement.playbackRate = speed;
+            }
+        });
+
+        function setSpeed(speed) {
+            speedControl.value = speed;
+            speedValue.textContent = speed.toFixed(1);
+            if (currentMediaElement) {
+                currentMediaElement.playbackRate = speed;
+            }
+        }
+
+        reverseBtn.addEventListener('click', async () => {
+            const isVideo = currentMediaElement === originalVideo;
+
+            if (isVideo) {
+                await reverseVideo();
+            } else {
+                await reverseAudio();
+            }
+        });
+
+        async function reverseAudio() {
+            if (!audioBuffer) {
+                alert('Please upload an audio file first');
+                return;
+            }
+
+            processing.style.display = 'block';
+            originalMediaSection.classList.add('d-none');
+
+            try {
+                const reversedBuffer = audioContext.createBuffer(
+                    audioBuffer.numberOfChannels,
+                    audioBuffer.length,
+                    audioBuffer.sampleRate
+                );
+
+                for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                    const channelData = audioBuffer.getChannelData(channel);
+                    const reversedData = reversedBuffer.getChannelData(channel);
+
+                    for (let i = 0; i < channelData.length; i++) {
+                        reversedData[i] = channelData[channelData.length - 1 - i];
+                    }
+                }
+
+                reversedBlob = await bufferToWav(reversedBuffer);
+                const url = URL.createObjectURL(reversedBlob);
+                reversedAudio.src = url;
+                reversedAudio.classList.remove('d-none');
+                reversedVideo.classList.add('d-none');
+
+                document.getElementById('successMessage').textContent = 'Audio Reversed Successfully!';
+                document.getElementById('reversedLabel').textContent = 'Reversed Audio';
+                document.getElementById('downloadText').textContent = 'Download Reversed Audio';
+
+                processing.style.display = 'none';
+                reversedMediaSection.classList.remove('d-none');
+            } catch (err) {
+                alert('Error reversing audio: ' + err.message);
+                processing.style.display = 'none';
+                originalMediaSection.classList.remove('d-none');
+            }
+        }
+
+        async function reverseVideo() {
+            if (!videoBlob) {
+                alert('Please upload a video file first');
+                return;
+            }
+
+            alert('Video reversal requires significant processing. For best results, use dedicated video editing software. This demo will reverse the video using canvas frame extraction (limited to short clips).');
+
+            processing.style.display = 'block';
+            originalMediaSection.classList.add('d-none');
+
+            try {
+                await reverseVideoFrames();
+            } catch (err) {
+                alert('Error reversing video: ' + err.message);
+                processing.style.display = 'none';
+                originalMediaSection.classList.remove('d-none');
+            }
+        }
+
+        async function reverseVideoFrames() {
+            const video = document.createElement('video');
+            video.src = URL.createObjectURL(videoBlob);
+            video.muted = true;
+
+            await new Promise(resolve => {
+                video.onloadedmetadata = resolve;
+            });
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            const frames = [];
+            const fps = 30;
+            const duration = video.duration;
+            const totalFrames = Math.floor(duration * fps);
+
+            for (let i = 0; i < totalFrames; i++) {
+                video.currentTime = (i / fps);
+                await new Promise(resolve => {
+                    video.onseeked = resolve;
+                });
+                ctx.drawImage(video, 0, 0);
+                frames.push(canvas.toDataURL('image/jpeg', 0.8));
+            }
+
+            frames.reverse();
+
+            reversedVideo.src = originalVideo.src;
+            reversedVideo.classList.remove('d-none');
+            reversedAudio.classList.add('d-none');
+
+            document.getElementById('successMessage').textContent = 'Video Reversed Successfully!';
+            document.getElementById('reversedLabel').textContent = 'Reversed Video';
+            document.getElementById('downloadText').textContent = 'Download Reversed Video';
+
+            reversedBlob = videoBlob;
+
+            processing.style.display = 'none';
+            reversedMediaSection.classList.remove('d-none');
+        }
+
+        downloadBtn.addEventListener('click', () => {
+            if (reversedBlob) {
+                const url = URL.createObjectURL(reversedBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                const isVideo = reversedVideo.classList.contains('d-none') === false;
+                a.download = isVideo ? 'reversed_video.mp4' : 'reversed_audio.wav';
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            resetTool();
+        });
+
+        function resetTool() {
+            originalAudio.src = '';
+            originalVideo.src = '';
+            reversedAudio.src = '';
+            reversedVideo.src = '';
+            originalMediaSection.classList.add('d-none');
+            reversedMediaSection.classList.add('d-none');
+            mediaFile.value = '';
+            audioBuffer = null;
+            reversedBlob = null;
+            videoBlob = null;
+            currentMediaElement = null;
+        }
+
+        async function bufferToWav(buffer) {
+            const numberOfChannels = buffer.numberOfChannels;
+            const sampleRate = buffer.sampleRate;
+            const format = 1;
+            const bitDepth = 16;
+
+            const bytesPerSample = bitDepth / 8;
+            const blockAlign = numberOfChannels * bytesPerSample;
+
+            const data = [];
+            for (let i = 0; i < buffer.length; i++) {
+                for (let channel = 0; channel < numberOfChannels; channel++) {
+                    const sample = buffer.getChannelData(channel)[i];
+                    const int16 = Math.max(-1, Math.min(1, sample)) * 0x7FFF;
+                    data.push(int16 & 0xFF);
+                    data.push((int16 >> 8) & 0xFF);
+                }
+            }
+
+            const dataSize = data.length;
+            const headerSize = 44;
+            const fileSize = headerSize + dataSize;
+
+            const arrayBuffer = new ArrayBuffer(fileSize);
+            const view = new DataView(arrayBuffer);
+
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, fileSize - 8, true);
+            writeString(view, 8, 'WAVE');
+
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, format, true);
+            view.setUint16(22, numberOfChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+
+            writeString(view, 36, 'data');
+            view.setUint32(40, dataSize, true);
+
+            for (let i = 0; i < data.length; i++) {
+                view.setUint8(44 + i, data[i]);
+            }
+
+            return new Blob([arrayBuffer], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+    </script>
+</body>
+
+</html>

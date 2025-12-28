@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <title>Audiobook Progress Calculator to Track Listening Progress and Estimate Finish Time</title>
+    <meta name="description"
+        content="Track how much of your audiobook you’ve finished and see remaining time instantly. Use this Audiobook Progress Calculator to view completed hours, time left, and percentage done accurately.">
+    <meta name="keywords"
+        content="audiobook progress calculator, audiobook time remaining, audiobook completion percentage, audiobook duration tracker, audiobook time left">
+    <meta property="og:title" content="Audiobook Progress Calculator – Track Completed Hours & Remaining Time">
+    <meta property="og:description"
+        content="Easily calculate your audiobook progress, see time completed, remaining hours, and completion percentage. Ideal for listeners tracking multiple audiobooks.">
+
+    <link rel="canonical" href="https://diamondaudiocity.com/Audiobook-Progress-Calculator.html">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+    <meta name="author" content="Diamond Audio City">
+
+    <style>
+        .progress-bar-container {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .progress-percentage {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin: 10px 0;
+        }
+
+        .progress-track {
+            background: #e4e4e4;
+            border-radius: 20px;
+            height: 12px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--teal);
+            width: 0%;
+            transition: width 0.6s ease;
+            border-radius: 20px;
+        }
+
+        .status-boxes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            gap: 10px;
+        }
+
+        .status-item {
+            flex: 1;
+            text-align: center;
+            border-radius: 12px;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .completed-box {
+            background: #e8fff1;
+            color: #008751;
+        }
+
+        .remaining-box {
+            background: #fff3e8;
+            color: #c25200;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .toggle-btn {
+            border: 2px solid var(--mid-blue);
+            background: white;
+            color: var(--mid-blue);
+            padding: 8px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .toggle-btn.active {
+            background: var(--teal);
+            color: white;
+            border-color: var(--teal);
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 25px 0;
+        }
+    </style>
+
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div id="header"></div>
+
+
+
+    <div class="container-fluid py-4">
+
+
+        <div class="row justify-content-start">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class=" me-2"></i>🎧 Audiobook Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="audiobook-speed-calculator.html" class=""><i class=""></i>🎧 Audiobook
+                                        Speed Calculator</a></li>
+                                <li><a href="Audiobook-Length-Calculator.html" class="active"><i class=""></i>🎧
+                                        Audiobook Length
+                                        Calculator</a></li>
+                                <li><a href="Audiobook-Progress-Calculator.html" class=""><i class=""></i>🎧 Audiobook
+                                        Progress Calculator</a></li>
+                                <li><a href="audiobook-percentage-calculator.html" class=""><i class=""></i>🎧 Audiobook
+                                        Percentage Calculator</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-soundwave me-2"></i>Pitch Detector Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/pitch-detector-tools/guitar-tuner/"><i
+                                            class="bi bi-music-note-beamed"></i>
+                                        Guitar Tuner</a></li>
+                                <li><a href="/pitch-detector-tools/frequency-to-note/"><i
+                                            class="bi bi-arrow-left-right"></i>
+                                        Frequency to Note</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i>
+                                        Online Metronome</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- right: Main Tool -->
+            <div class="col-lg-7 col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="audiobook-tools.html">Audiobook Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Audiobook Progress Calculator</li>
+                    </ol>
+                </nav>
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1>Audiobook Progress Calculator</h1>
+                        <p>Track your listening progress</p>
+                    </div>
+
+                    <form id="audiobookForm">
+                        <label>Total Audiobook Time</label>
+                        <div class="d-flex gap-2 mb-3">
+                            <input type="number" id="totalHours" class="form-control" placeholder="Hours" min="0">
+                            <input type="number" id="totalMinutes" class="form-control" placeholder="Minutes" min="0"
+                                max="59">
+                        </div>
+
+                        <div class="toggle-buttons">
+                            <button type="button" id="completedBtn" class="toggle-btn active">Completed</button>
+                            <button type="button" id="remainingBtn" class="toggle-btn">Remaining</button>
+                        </div>
+
+                        <label id="timeLabel">Time Completed</label>
+                        <div class="d-flex gap-2 mb-3">
+                            <input type="number" id="doneHours" class="form-control" placeholder="Hours" min="0">
+                            <input type="number" id="doneMinutes" class="form-control" placeholder="Minutes" min="0"
+                                max="59">
+                        </div>
+
+                        <button type="button" class="btn btn-primary w-100"
+                            onclick="calculateProgress()">Calculate</button>
+                    </form>
+
+                    <hr>
+
+                    <div class="progress-bar-container" id="progressBox" style="display:none;">
+                        <div class="progress-percentage" id="progressPercent">0%</div>
+                        <p>Complete</p>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+
+                        <div class="status-boxes">
+                            <div class="status-item completed-box" id="completedBox">0h 0m Completed</div>
+                            <div class="status-item remaining-box" id="remainingBox">0h 0m Remaining</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- content area start -->
+
+    <div class="content_area container py-5">
+
+        <!-- HOW TO USE BOX -->
+        <div style="background: white;  border-radius: 10px; padding: 20px; margin-bottom: 30px;">
+            <h2 class="h5 fw-bold mb-3" style="color:#003161;">How to Use the Audiobook Progress Calculator</h2>
+            <ol class="mb-0" style="padding-left:18px;">
+                <li>Enter your <strong>total audiobook duration</strong> (hours & minutes) or paste the <strong>word
+                        count</strong> and select your average <strong>words-per-minute rate</strong>.</li>
+                <li>Add how much you’ve <strong>already listened</strong> and choose your <strong>playback
+                        speed</strong> (1x, 1.25x, 1.5x, or custom).</li>
+                <li>Click <strong>Calculate</strong> to view your <strong>percent complete</strong>, <strong>time
+                        remaining</strong>, and <strong>estimated finish date</strong>.</li>
+                <li>Adjust playback speed or progress anytime, the calculator instantly updates results, perfect for
+                    <strong>goal tracking</strong> or <strong>narration planning</strong>.
+                </li>
+            </ol>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <h1 class="fw-bold mb-3" style="color:#000b58;">Audiobook Progress Calculator Estimate Finish Time & Track
+            Listening Progress</h1>
+
+        <p class="lead">The <strong>Audiobook Progress Calculator</strong> is your simple, data-driven way to stay on
+            track. Whether you’re a casual listener, audiobook narrator, or producer managing multiple titles, this
+            tool helps you <strong>measure progress</strong>, <strong>predict finish times</strong>, and <strong>plan
+                your listening goals</strong> with precision.</p>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">What Is an Audiobook Progress Calculator?</h2>
+        <p>This tool focuses specifically on <strong>progress tracking</strong> rather than speed control or total
+            length estimation. By combining completed listening time with playback speed, it gives a realistic view of
+            <strong>how much time is left</strong> and <strong>when you are likely to finish</strong>, without changing
+            the audio itself.
+        </p>
+
+        <p>This calculator transforms your total listening time, current progress, and playback speed into clear metrics
+            <strong>percent complete</strong>, <strong>time remaining</strong>, and <strong>estimated finish
+                date</strong>. It even works from <strong>word count</strong>, using typical narration speeds to
+            estimate total duration before recording or listening begins.
+        </p>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Why Use an Audiobook Progress Calculator?</h2>
+        <p>This calculator is ideal for listeners tracking long audiobooks, narrators planning recording sessions, and
+            producers managing multiple titles without relying on app-specific trackers.</p>
+
+        <p>Most audiobook apps show a progress bar, but this calculator does more. It lets you:</p>
+        <ul>
+            <li>Test different <strong>playback speeds</strong> (1x–2x) and instantly see new finish times.</li>
+            <li>Estimate <strong>narration hours</strong> or <strong>payment schedules</strong> for producers.</li>
+            <li>Combine multiple titles to <strong>plan listening challenges</strong> or <strong>production
+                    deadlines</strong>.</li>
+            <li>Monitor <strong>remaining listening hours</strong> and update progress anytime as your pace changes.
+            </li>
+
+        </ul>
+        <p>In short, it’s a flexible, professional-grade progress tracker for both personal and studio use.</p>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Formula Used</h2>
+        <p><strong>Accuracy note:</strong> Results are highly accurate when listened time and playback speed are entered
+            correctly. Pauses, skips, or rewinds are not included unless you manually account for them.</p>
+
+        <p>Here’s the math behind the Audiobook Progress Calculator:</p>
+        <pre style="background:#f8fafc; padding:12px; border-radius:8px; color:#000b58;">
+New Listening Time = Original Duration ÷ Playback Speed
+
+Percent Complete (%) = (Listened Time ÷ Original Duration) × 100
+
+Time Remaining = Original Duration − (Listened Time × (1/Playback Speed))
+
+If using word count:
+Estimated Duration (mins) = Word Count ÷ Words per Minute
+  </pre>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Practical Examples</h2>
+        <div class="table-responsive mb-3">
+            <table class="table table-bordered text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Total Duration</th>
+                        <th>Listened</th>
+                        <th>Speed</th>
+                        <th>Percent Complete</th>
+                        <th>Time Remaining</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10h 00m</td>
+                        <td>2h 30m</td>
+                        <td>1.25x</td>
+                        <td>25%</td>
+                        <td>6h 00m</td>
+                    </tr>
+                    <tr>
+                        <td>8h 30m</td>
+                        <td>4h 15m</td>
+                        <td>1x</td>
+                        <td>50%</td>
+                        <td>4h 15m</td>
+                    </tr>
+                    <tr>
+                        <td>5h 00m</td>
+                        <td>1h 00m</td>
+                        <td>1.5x</td>
+                        <td>20%</td>
+                        <td>2h 40m</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Quick Reference</h2>
+        <ul>
+            <li><strong>Common playback speeds:</strong> 1x (normal), 1.25x (25% faster), 1.5x (50% faster), 2x (double
+                speed).</li>
+            <li><strong>Typical narration speeds:</strong> 140–165 words per minute (wpm) for professional voice-over
+                artists.</li>
+            <li><strong>Tip:</strong> Use <a href="Audiobook-Length-Calculator.html">Audiobook Length
+                    Calculator</a> if
+                you only have the book’s word count.</li>
+        </ul>
+
+        <p class="mt-3">Explore more tools for your audio workflow: <a
+                href="Audiobook-Length-Calculator.html">Audiobook Length Calculator</a>, <a
+                href="audiobook-speed-calculator.html">Playback Speed Calculator</a>, <a
+                href="audiobook-percentage-calculator.html">Audiobook Percentage Calculator</a>.</p>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">FAQs — Audiobook Progress Calculator</h2>
+
+        <div class="accordion" id="faqAudiobook">
+
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        What is an audiobook progress calculator?
+                    </button>
+                </h3>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAudiobook">
+                    <div class="accordion-body">
+                        An audiobook progress calculator shows how much of an audiobook you have completed and how much
+                        listening time remains based on your progress and playback speed.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        How does it calculate time remaining?
+                    </button>
+                </h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAudiobook">
+                    <div class="accordion-body">
+                        It uses the total audiobook duration, your completed listening time, and selected playback speed
+                        to estimate the remaining time accurately.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        How accurate are the results?
+                    </button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAudiobook">
+                    <div class="accordion-body">
+                        The results are highly reliable when the entered duration and progress are correct. Skipped
+                        sections or long pauses may slightly affect accuracy.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        Who should use this tool?
+                    </button>
+                </h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAudiobook">
+                    <div class="accordion-body">
+                        This tool is useful for listeners tracking audiobook completion, narrators planning sessions,
+                        and anyone who wants clear progress insights.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Final Thoughts</h2>
+        <p>The <strong>Audiobook Progress Calculator</strong> helps you take control of your listening or production
+            journey. Set clear goals, forecast finish times, and manage narration or editing schedules efficiently. Pair
+            it with our <a href="Audiobook-Length-Calculator.html">Audiobook Length Calculator</a> and <a
+                href="audiobook-speed-calculator.html">Playback Speed Calculator</a> to build a complete
+            toolkit for professional audio planning.</p>
+
+        <!-- AUTHOR BOX -->
+        <div style="margin-top:30px; border-top:1px solid #e6e6e6; padding-top:16px;">
+            <p class="mb-0"><strong>Author:</strong> John Smith / Diamond Audio City<br>
+                <a href="mailto:admin@diamondaudiocity.com">admin@diamondaudiocity.com</a><br>
+                Practical tools and calculators built for listeners, narrators, and audio creators.
+            </p>
+        </div>
+
+    </div>
+
+
+
+    <!-- JSON-LD FAQ SCHEMA -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an audiobook progress calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An audiobook progress calculator shows how much of an audiobook you have completed, tracks your listening progress over time, and estimates remaining hours based on your playback speed and total duration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does it calculate time remaining?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The calculator uses total audiobook duration, completed listening time, and playback speed to estimate remaining time accurately and provide an estimated finish date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate are the results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Results are highly reliable when entered duration, completed time, and playback speed are accurate. Pauses, skips, or rewinds may slightly affect precision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who should use this tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool is ideal for listeners tracking audiobook completion, narrators planning sessions, and anyone who wants accurate insights into completed and remaining audiobook time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I estimate when I will finish my audiobook at my current pace?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By entering your total duration, completed time, and playback speed, you can view an estimated finish time and track your progress as you listen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What metrics are tracked in this calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The main metrics include total audiobook duration, listened time, playback speed, percent complete, remaining time, and estimated finish date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I track how much audiobook time is left?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, the calculator shows remaining audiobook hours and allows updating progress by time remaining, giving a precise view of how much listening is left."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the calculator keep a progress history log?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can maintain a progress history log to track your listening across multiple audiobooks and review past sessions for consistent progress monitoring."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate audiobook completion percentage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter the total audiobook duration and how much you have listened. The calculator instantly shows the completion percentage and updates automatically as you track more progress."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free online audiobook progress tracker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Diamond Audio City provides a free, responsive, and accurate Audiobook Progress Calculator that shows completion percentage, remaining hours, and estimated finish time."
+      }
+    }
+  ]
+}
+</script>
+
+
+    <!-- content area end -->
+
+
+    <div id="footer"></div>
+
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+    <!-- tool js -->
+    <script>
+        const completedBtn = document.getElementById('completedBtn');
+        const remainingBtn = document.getElementById('remainingBtn');
+        const timeLabel = document.getElementById('timeLabel');
+
+        completedBtn.onclick = () => {
+            completedBtn.classList.add('active');
+            remainingBtn.classList.remove('active');
+            timeLabel.textContent = "Time Completed";
+        };
+
+        remainingBtn.onclick = () => {
+            remainingBtn.classList.add('active');
+            completedBtn.classList.remove('active');
+            timeLabel.textContent = "Time Remaining";
+        };
+
+        function calculateProgress() {
+            const totalHours = parseFloat(document.getElementById('totalHours').value) || 0;
+            const totalMinutes = parseFloat(document.getElementById('totalMinutes').value) || 0;
+            const doneHours = parseFloat(document.getElementById('doneHours').value) || 0;
+            const doneMinutes = parseFloat(document.getElementById('doneMinutes').value) || 0;
+
+            const totalTime = (totalHours * 60) + totalMinutes;
+            let doneTime = (doneHours * 60) + doneMinutes;
+
+            if (totalTime <= 0) {
+                alert("Please enter total audiobook time.");
+                return;
+            }
+
+            // If "Remaining" mode selected
+            if (remainingBtn.classList.contains('active')) {
+                doneTime = totalTime - doneTime;
+            }
+
+            if (doneTime < 0 || doneTime > totalTime) {
+                alert("Invalid input values.");
+                return;
+            }
+
+            const percent = (doneTime / totalTime) * 100;
+            const remaining = totalTime - doneTime;
+
+            const rH = Math.floor(remaining / 60);
+            const rM = Math.round(remaining % 60);
+            const dH = Math.floor(doneTime / 60);
+            const dM = Math.round(doneTime % 60);
+
+            document.getElementById('progressBox').style.display = "block";
+            document.getElementById('progressPercent').textContent = `${percent.toFixed(1)}%`;
+            document.getElementById('progressFill').style.width = `${percent}%`;
+
+            document.getElementById('completedBox').textContent = `${dH}h ${dM}m Completed`;
+            document.getElementById('remainingBox').textContent = `${rH}h ${rM}m Remaining`;
+        }
+    </script>
+
+    <!--include js-->
+    <script>
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ]).then(([header, footer]) => {
+                document.getElementById("header").innerHTML = header;
+                document.getElementById("footer").innerHTML = footer;
+            }).catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+
+
+</body>
+
+</html>

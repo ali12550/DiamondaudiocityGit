@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Metronome - Keep Perfect Time | PitchDetector</title>
+
+     <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link href="/assets/tools.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ec4899;
+            --primary-hover: #fdeb9e;
+            --primary-light: #fce7f3;
+            --success: #10b981;
+            --danger: #ef4444;
+            --background: #fdf2f8;
+            --surface: #ffffff;
+            --foreground: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 0.75rem;
+
+            --primary: #006a67;
+            --primary-light: #fdeb9e;
+        }
+
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--muted);
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metronome-display {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .pendulum-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .pendulum-base {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            border-radius: 10px;
+        }
+
+        .pendulum-arm {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            width: 4px;
+            height: 160px;
+            background: linear-gradient(to top, var(--primary), var(--primary-hover));
+            transform-origin: bottom center;
+            transform: translateX(-50%) rotate(0deg);
+            transition: transform 0.1s linear;
+            border-radius: 2px;
+        }
+
+        .pendulum-weight {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(236, 72, 153, 0.3);
+        }
+
+        .bpm-display {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .bpm-label {
+            font-size: 1.25rem;
+            color: var(--muted);
+            margin-top: 0.25rem;
+        }
+
+        .tempo-name {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.375rem 1rem;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .beat-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .beat-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            transition: all 0.1s;
+        }
+
+        .beat-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+        }
+
+        .beat-dot.accent {
+            border: 3px solid var(--primary);
+            background: transparent;
+        }
+
+        .beat-dot.accent.active {
+            background: var(--primary);
+        }
+
+        .tempo-slider-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .tempo-slider-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        .tempo-slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e2e8f0;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .tempo-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(236, 72, 153, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .tempo-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .tempo-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .tempo-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tempo-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--surface);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: var(--foreground);
+        }
+
+        .tempo-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .tempo-input {
+            width: 100px;
+            padding: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .tempo-input:focus {
+            border-color: var(--primary);
+        }
+
+        .settings-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .setting-group {
+            text-align: center;
+        }
+
+        .setting-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .setting-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 500;
+            background: var(--surface);
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .setting-select:focus {
+            border-color: var(--primary);
+        }
+
+        .play-button {
+            width: 100%;
+            padding: 1.25rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 10px 30px -5px rgba(236, 72, 153, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -5px rgba(236, 72, 153, 0.5);
+        }
+
+        .play-button.playing {
+            background: var(--danger);
+            box-shadow: 0 10px 30px -5px rgba(239, 68, 68, 0.4);
+        }
+
+        .presets {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .presets-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .presets-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .preset-btn {
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.75rem;
+        }
+
+        .preset-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .preset-btn span {
+            display: block;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.875rem;
+            margin-top: 2rem;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+    <div id="header"></div>
+
+    <div class="container">
+
+
+        <div class="card">
+
+            <h1 class="title  text-center">Metronome</h1>
+            <p class="subtitle text-center">Keep perfect time with any tempo</p>
+            <div class="metronome-display">
+                <div class="pendulum-container">
+                    <div id="pendulum-arm" class="pendulum-arm">
+                        <div class="pendulum-weight"></div>
+                    </div>
+                    <div class="pendulum-base"></div>
+                </div>
+
+                <div id="bpm-display" class="bpm-display">120</div>
+                <div class="bpm-label">BPM</div>
+                <div id="tempo-name" class="tempo-name">Moderato</div>
+            </div>
+
+            <div id="beat-indicators" class="beat-indicators">
+                <div class="beat-dot accent"></div>
+                <div class="beat-dot"></div>
+                <div class="beat-dot"></div>
+                <div class="beat-dot"></div>
+            </div>
+
+            <div class="tempo-slider-container">
+                <div class="tempo-slider-header">
+                    <span>20 BPM</span>
+                    <span>300 BPM</span>
+                </div>
+                <input type="range" id="tempo-slider" class="tempo-slider" min="20" max="300" value="120">
+            </div>
+
+            <div class="tempo-controls">
+                <button id="decrease-5" class="tempo-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </button>
+                <button id="decrease-1" class="tempo-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                </button>
+                <input type="number" id="tempo-input" class="tempo-input" value="120" min="20" max="300">
+                <button id="increase-1" class="tempo-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                </button>
+                <button id="increase-5" class="tempo-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="settings-row">
+                <div class="setting-group">
+                    <label class="setting-label">Time Signature</label>
+                    <select id="time-signature" class="setting-select">
+                        <option value="2">2/4</option>
+                        <option value="3">3/4</option>
+                        <option value="4" selected>4/4</option>
+                        <option value="5">5/4</option>
+                        <option value="6">6/8</option>
+                        <option value="7">7/8</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label class="setting-label">Sound</label>
+                    <select id="sound-type" class="setting-select">
+                        <option value="click" selected>Click</option>
+                        <option value="beep">Beep</option>
+                        <option value="wood">Wood Block</option>
+                        <option value="drum">Drum</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="play-button" class="play-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                    stroke="none">
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                Start
+            </button>
+
+            <div class="presets">
+                <div class="presets-title">Quick Presets</div>
+                <div class="presets-grid">
+                    <button class="preset-btn" data-bpm="60"><span>60</span>Largo</button>
+                    <button class="preset-btn" data-bpm="80"><span>80</span>Adagio</button>
+                    <button class="preset-btn" data-bpm="100"><span>100</span>Andante</button>
+                    <button class="preset-btn" data-bpm="120"><span>120</span>Moderato</button>
+                    <button class="preset-btn" data-bpm="140"><span>140</span>Allegro</button>
+                    <button class="preset-btn" data-bpm="160"><span>160</span>Vivace</button>
+                    <button class="preset-btn" data-bpm="180"><span>180</span>Presto</button>
+                    <button class="preset-btn" data-bpm="200"><span>200</span>Prestissimo</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Press Space to start/stop</p>
+        </footer>
+    </div>
+    <!-- tool js -->
+    <script>
+        const TEMPO_NAMES = [
+            { max: 40, name: 'Grave' },
+            { max: 60, name: 'Largo' },
+            { max: 66, name: 'Larghetto' },
+            { max: 76, name: 'Adagio' },
+            { max: 108, name: 'Andante' },
+            { max: 120, name: 'Moderato' },
+            { max: 156, name: 'Allegro' },
+            { max: 176, name: 'Vivace' },
+            { max: 200, name: 'Presto' },
+            { max: Infinity, name: 'Prestissimo' }
+        ];
+
+        let state = {
+            bpm: 120,
+            isPlaying: false,
+            beatsPerMeasure: 4,
+            currentBeat: 0,
+            soundType: 'click'
+        };
+
+        let audioContext = null;
+        let intervalId = null;
+        let pendulumDirection = 1;
+
+        function getTempoName(bpm) {
+            return TEMPO_NAMES.find(t => bpm <= t.max)?.name || 'Unknown';
+        }
+
+        function createAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioContext;
+        }
+
+        function playClick(isAccent = false) {
+            const ctx = createAudioContext();
+            const now = ctx.currentTime;
+
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+
+            switch (state.soundType) {
+                case 'beep':
+                    osc.type = 'sine';
+                    osc.frequency.value = isAccent ? 1000 : 800;
+                    break;
+                case 'wood':
+                    osc.type = 'triangle';
+                    osc.frequency.value = isAccent ? 2500 : 2000;
+                    break;
+                case 'drum':
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(isAccent ? 200 : 150, now);
+                    osc.frequency.exponentialRampToValueAtTime(50, now + 0.05);
+                    break;
+                default: // click
+                    osc.type = 'square';
+                    osc.frequency.value = isAccent ? 1500 : 1000;
+            }
+
+            gain.gain.setValueAtTime(isAccent ? 0.5 : 0.3, now);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.start(now);
+            osc.stop(now + 0.05);
+        }
+
+        function updateBeatIndicators() {
+            const container = document.getElementById('beat-indicators');
+            container.innerHTML = '';
+
+            for (let i = 0; i < state.beatsPerMeasure; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'beat-dot' + (i === 0 ? ' accent' : '');
+                container.appendChild(dot);
+            }
+        }
+
+        function tick() {
+            const isAccent = state.currentBeat === 0;
+            playClick(isAccent);
+
+            // Update beat indicators
+            const dots = document.querySelectorAll('.beat-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === state.currentBeat);
+            });
+
+            // Animate pendulum
+            const pendulum = document.getElementById('pendulum-arm');
+            const angle = pendulumDirection * 30;
+            pendulum.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+            pendulumDirection *= -1;
+
+            state.currentBeat = (state.currentBeat + 1) % state.beatsPerMeasure;
+        }
+
+        function start() {
+            if (state.isPlaying) return;
+
+            state.isPlaying = true;
+            state.currentBeat = 0;
+
+            const interval = 60000 / state.bpm;
+            tick();
+            intervalId = setInterval(tick, interval);
+
+            updatePlayButton();
+        }
+
+        function stop() {
+            if (!state.isPlaying) return;
+
+            state.isPlaying = false;
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+
+            // Reset visual state
+            const dots = document.querySelectorAll('.beat-dot');
+            dots.forEach(dot => dot.classList.remove('active'));
+            document.getElementById('pendulum-arm').style.transform = 'translateX(-50%) rotate(0deg)';
+
+            updatePlayButton();
+        }
+
+        function toggle() {
+            if (state.isPlaying) {
+                stop();
+            } else {
+                start();
+            }
+        }
+
+        function updatePlayButton() {
+            const btn = document.getElementById('play-button');
+            btn.className = 'play-button' + (state.isPlaying ? ' playing' : '');
+            btn.innerHTML = state.isPlaying
+                ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Stop'
+                : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg> Start';
+        }
+
+        function setBPM(bpm) {
+            bpm = Math.max(20, Math.min(300, parseInt(bpm) || 120));
+            state.bpm = bpm;
+
+            document.getElementById('bpm-display').textContent = bpm;
+            document.getElementById('tempo-slider').value = bpm;
+            document.getElementById('tempo-input').value = bpm;
+            document.getElementById('tempo-name').textContent = getTempoName(bpm);
+
+            // Restart if playing
+            if (state.isPlaying) {
+                stop();
+                start();
+            }
+        }
+
+        // Event listeners
+        document.getElementById('play-button').addEventListener('click', toggle);
+
+        document.getElementById('tempo-slider').addEventListener('input', (e) => {
+            setBPM(e.target.value);
+        });
+
+        document.getElementById('tempo-input').addEventListener('change', (e) => {
+            setBPM(e.target.value);
+        });
+
+        document.getElementById('decrease-5').addEventListener('click', () => setBPM(state.bpm - 5));
+        document.getElementById('decrease-1').addEventListener('click', () => setBPM(state.bpm - 1));
+        document.getElementById('increase-1').addEventListener('click', () => setBPM(state.bpm + 1));
+        document.getElementById('increase-5').addEventListener('click', () => setBPM(state.bpm + 5));
+
+        document.getElementById('time-signature').addEventListener('change', (e) => {
+            state.beatsPerMeasure = parseInt(e.target.value);
+            updateBeatIndicators();
+            if (state.isPlaying) {
+                stop();
+                start();
+            }
+        });
+
+        document.getElementById('sound-type').addEventListener('change', (e) => {
+            state.soundType = e.target.value;
+        });
+
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setBPM(btn.dataset.bpm);
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+                e.preventDefault();
+                toggle();
+            }
+        });
+
+        // Initialize
+        updateBeatIndicators();
+    </script>
+
+
+    <div id="footer"></div>
+    <script src="assets/bootstrap5.js"></script>
+    <script src="include.js"></script>
+
+    <!--include js-->
+    <script>
+
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+
+    </script>
+</body>
+
+</html>

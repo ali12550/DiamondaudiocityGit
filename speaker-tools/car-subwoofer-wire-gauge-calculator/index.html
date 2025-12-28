@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Subwoofer Wire Gauge Calculator | DiamondAudioCity</title>
+    <meta name="description"
+        content="Calculate the appropriate wire gauge for your car subwoofer. Avoid voltage drops and optimize performance with this free calculator.">
+    <meta name="keywords"
+        content="car subwoofer wire gauge, speaker wire calculator, voltage drop, AWG wire size, subwoofer wiring, car audio wiring, amplifier wire, speaker cable selection, Ohm's law, subwoofer installation, car audio setup">
+    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/car-subwoofer-wire-gauge-calculator/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row justify-content-around">
+            <div class="col-lg-7 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Car Subwoofer Wire Gauge Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-plug me-2"></i>Car Subwoofer Wire Gauge Calculator</h1>
+                        <p>Determine the correct wire gauge for your car subwoofer installation to minimize voltage drop and maximize performance.</p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Amplifier Power (Watts RMS):</label>
+                            <input type="number" class="form-control" id="power" value="500" min="10" max="5000" step="10" oninput="calculateWire()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Wire Length (feet, one-way):</label>
+                            <input type="number" class="form-control" id="length" value="10" min="1" max="100" step="1" oninput="calculateWire()">
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">System Voltage (V):</label>
+                            <input type="number" class="form-control" id="voltage" value="12" min="6" max="24" step="1" oninput="calculateWire()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Maximum Acceptable Voltage Drop (%):</label>
+                            <input type="number" class="form-control" id="vDrop" value="3" min="1" max="10" step="0.1" oninput="calculateWire()">
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>Recommended Wire Gauge</h3>
+                        <span id="wireGaugeResult" class="fs-4">-- AWG</span>
+                    </div>
+
+                    <div class="mt-4 p-4 rounded bg-success bg-opacity-10">
+                        <h5><i class="bi bi-info-circle me-2"></i>Formulas & Notes</h5>
+                        <ul>
+                            <li><strong>Current (I) in Amps:</strong> <code>I = Power / Voltage</code></li>
+                            <li><strong>Voltage Drop (V):</strong> <code>Vdrop = 2 × Length × I × R_per_foot</code></li>
+                            <li>Choose wire gauge (AWG) so that <code>Vdrop ≤ Maximum Acceptable Voltage Drop</code>.</li>
+                            <li>Use copper wire values for R_per_foot.</li>
+                            <li>Shorter wire or higher gauge reduces voltage drop and improves subwoofer output.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tool-container mt-4">
+                        <div class="tool-section">
+                            <h2 class="text-mid mb-4"><i class="bi bi-play-btn me-2"></i>How to Use</h2>
+                            <ul>
+                                <li>Enter your amplifier’s RMS power in watts.</li>
+                                <li>Enter the one-way wire length from amplifier to subwoofer.</li>
+                                <li>Enter system voltage (12V or 24V depending on car setup).</li>
+                                <li>Set the maximum acceptable voltage drop (recommended 3-5%).</li>
+                                <li>The calculator will show the proper AWG wire gauge to use.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tool-container mt-4">
+                        <div class="tool-section">
+                            <h2 class="text-mid mb-4"><i class="bi bi-people me-2"></i>Who Can Use</h2>
+                            <ul>
+                                <li>Car audio installers</li>
+                                <li>DIY car audio enthusiasts</li>
+                                <li>Professional subwoofer system designers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tool-container mt-4">
+                        <div class="tool-section">
+                            <h2 class="text-mid mb-4"><i class="bi bi-geo-alt me-2"></i>Where to Use</h2>
+                            <ul>
+                                <li>Single subwoofer installations</li>
+                                <li>Multiple subwoofers in parallel or series</li>
+                                <li>Car or marine audio systems</li>
+                                <li>Custom amplifier-subwoofer setups</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tool-container mt-4">
+                        <div class="tool-section">
+                            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>FAQs</h2>
+                            <div class="accordion" id="faqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faq1">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                            What is wire gauge?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Wire gauge (AWG) represents the thickness of the wire. Thicker wire (smaller AWG number) carries more current with less voltage drop.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faq2">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                            Can I use a longer wire?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Yes, but longer wires require thicker gauge to prevent excessive voltage drop.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faq3">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                            What if my voltage drop exceeds recommended value?
+                                        </button>
+                                    </h2>
+                                    <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            You should use a thicker wire (lower AWG number) or reduce wire length to keep voltage drop within acceptable limits.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+                        </div>
+                    </div>
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i> Speaker Wattage</a></li>
+                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i class="bi bi-diagram-3"></i> Impedance Calculator</a></li>
+                                <li><a href="/speaker-tools/car-subwoofer-wire-gauge-calculator/"><i class="bi bi-plug me-2"></i> Subwoofer Wire Gauge</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+    <script>
+        function calculateWire() {
+            const P = parseFloat(document.getElementById('power').value) || 500; // Watts
+            const V = parseFloat(document.getElementById('voltage').value) || 12; // Volts
+            const L = parseFloat(document.getElementById('length').value) || 10; // feet
+            const VdropMax = parseFloat(document.getElementById('vDrop').value) || 3; // percent
+
+            // Current (Amps)
+            const I = P / V;
+
+            // Table of approximate copper wire resistance (Ohms per foot)
+            const wireTable = {
+                0: 0.000156,
+                1: 0.000197,
+                2: 0.000248,
+                4: 0.000395,
+                6: 0.000625,
+                8: 0.000994,
+                10: 0.00157,
+                12: 0.00249,
+                14: 0.00395,
+                16: 0.00627,
+                18: 0.00997,
+                20: 0.0157
+            };
+
+            // Calculate minimum resistance allowed
+            const VdropAllow = V * (VdropMax / 100);
+            const Rmax = VdropAllow / (2 * I); // round trip
+
+            // Find suitable wire gauge
+            let suitableAWG = "--";
+            for (const [awg, res] of Object.entries(wireTable)) {
+                if (res <= Rmax) {
+                    suitableAWG = awg;
+                    break;
+                }
+            }
+
+            document.getElementById('wireGaugeResult').textContent = suitableAWG + " AWG";
+        }
+
+        document.getElementById('power').addEventListener('input', calculateWire);
+        document.getElementById('voltage').addEventListener('input', calculateWire);
+        document.getElementById('length').addEventListener('input', calculateWire);
+        document.getElementById('vDrop').addEventListener('input', calculateWire);
+
+        calculateWire();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+            .then(([header, footer]) => {
+                document.getElementById("header").innerHTML = header;
+                document.getElementById("footer").innerHTML = footer;
+            })
+            .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

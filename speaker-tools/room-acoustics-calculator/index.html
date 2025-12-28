@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Acoustics Calculator | RT60 & Room Modes | DiamondAudioCity</title>
+    <meta name="description"
+        content="Free room acoustics calculator. Calculate room modes, RT60 reverb time, and acoustic treatment recommendations for your listening space.">
+    <meta name="keywords" content="room acoustics, RT60, room modes, reverb time, acoustic treatment, standing waves">
+    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/room-acoustics-calculator/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row justify-content-around">
+            <div class="col-lg-7 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Room Acoustics Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-house me-2"></i>Room Acoustics Calculator</h1>
+                        <p>Analyze your room's acoustic properties including modes (standing waves), reverb time, and
+                            treatment recommendations.</p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Room Length (feet):</label>
+                            <input type="number" class="form-control" id="roomLength" value="20" min="6" max="100"
+                                oninput="calculate()">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Room Width (feet):</label>
+                            <input type="number" class="form-control" id="roomWidth" value="15" min="6" max="100"
+                                oninput="calculate()">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Room Height (feet):</label>
+                            <input type="number" class="form-control" id="roomHeight" value="9" min="6" max="30"
+                                oninput="calculate()">
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Room Type:</label>
+                            <select class="form-select" id="roomType" onchange="calculate()">
+                                <option value="bare">Bare (hard walls, floors)</option>
+                                <option value="furnished" selected>Furnished (carpet, furniture)</option>
+                                <option value="treated">Acoustically Treated</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Use Case:</label>
+                            <select class="form-select" id="useCase" onchange="calculate()">
+                                <option value="listening" selected>Music Listening</option>
+                                <option value="mixing">Mixing/Mastering</option>
+                                <option value="recording">Recording Studio</option>
+                                <option value="hometheater">Home Theater</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>Room Analysis</h3>
+                        <div class="row text-start mt-3">
+                            <div class="col-md-3 col-6 mb-3">
+                                <strong>Volume:</strong><br>
+                                <span id="roomVolume" class="fs-4">2700 ft³</span>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <strong>RT60 Estimate:</strong><br>
+                                <span id="rt60" class="fs-4 text-teal">0.45s</span>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <strong>Ideal RT60:</strong><br>
+                                <span id="idealRT60" class="fs-4">0.3-0.5s</span>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <strong>Room Rating:</strong><br>
+                                <span id="roomRating" class="fs-4">Good</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3"><i class="bi bi-activity me-2"></i>Room Modes (Standing Waves)</h5>
+                        <p>These frequencies will have peaks and nulls at specific room positions:</p>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Dimension</th>
+                                        <th>1st Mode</th>
+                                        <th>2nd Mode</th>
+                                        <th>3rd Mode</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modesTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 rounded" id="recommendationsBox">
+                        <h5><i class="bi bi-lightbulb me-2"></i>Treatment Recommendations</h5>
+                        <ul id="recommendations" class="mb-0"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i>
+                                        Speaker Wattage</a></li>
+                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i class="bi bi-diagram-3"></i>
+                                        Impedance Calculator</a></li>
+                                <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
+                                        Amplifier Power</a></li>
+                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i class="bi bi-rulers"></i>
+                                        Sound Distance Drop</a></li>
+                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i class="bi bi-arrows-move"></i>
+                                        Speaker Placement</a></li>
+                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i> Room
+                                        Acoustics</a></li>
+                                <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
+                                        Ported Enclosure</a></li>
+                                <li><a href="/speaker-tools/sealed-box-calculator/"><i class="bi bi-box-seam"></i>
+                                        Sealed Box</a></li>
+                                <li><a href="/speaker-tools/crossover-frequency-calculator/"><i class="bi bi-filter"></i>
+                                        Crossover Frequency</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+    <!-- tool js -->
+    <script>
+        function calculate() {
+            const length = parseFloat(document.getElementById('roomLength').value) || 20;
+            const width = parseFloat(document.getElementById('roomWidth').value) || 15;
+            const height = parseFloat(document.getElementById('roomHeight').value) || 9;
+            const roomType = document.getElementById('roomType').value;
+            const useCase = document.getElementById('useCase').value;
+
+            // Convert to meters
+            const lengthM = length * 0.3048;
+            const widthM = width * 0.3048;
+            const heightM = height * 0.3048;
+
+            const volume = length * width * height;
+            const volumeM = lengthM * widthM * heightM;
+            const surfaceArea = 2 * (length * width + length * height + width * height);
+            const surfaceAreaM = surfaceArea * 0.0929;
+
+            document.getElementById('roomVolume').textContent = Math.round(volume) + ' ft³';
+
+            // Calculate room modes (f = c / 2L where c = 1125 ft/s)
+            const speedOfSound = 1125; // ft/s
+            const modes = {
+                length: [speedOfSound / (2 * length), speedOfSound / length, 3 * speedOfSound / (2 * length)],
+                width: [speedOfSound / (2 * width), speedOfSound / width, 3 * speedOfSound / (2 * width)],
+                height: [speedOfSound / (2 * height), speedOfSound / height, 3 * speedOfSound / (2 * height)]
+            };
+
+            let modesHTML = '';
+            modesHTML += `<tr><td>Length (${length}')</td>
+                <td>${modes.length[0].toFixed(1)} Hz</td>
+                <td>${modes.length[1].toFixed(1)} Hz</td>
+                <td>${modes.length[2].toFixed(1)} Hz</td></tr>`;
+            modesHTML += `<tr><td>Width (${width}')</td>
+                <td>${modes.width[0].toFixed(1)} Hz</td>
+                <td>${modes.width[1].toFixed(1)} Hz</td>
+                <td>${modes.width[2].toFixed(1)} Hz</td></tr>`;
+            modesHTML += `<tr><td>Height (${height}')</td>
+                <td>${modes.height[0].toFixed(1)} Hz</td>
+                <td>${modes.height[1].toFixed(1)} Hz</td>
+                <td>${modes.height[2].toFixed(1)} Hz</td></tr>`;
+            document.getElementById('modesTable').innerHTML = modesHTML;
+
+            // Estimate RT60 using Sabine formula
+            let avgAbsorption = 0.1; // default
+            switch (roomType) {
+                case 'bare': avgAbsorption = 0.05; break;
+                case 'furnished': avgAbsorption = 0.15; break;
+                case 'treated': avgAbsorption = 0.35; break;
+            }
+
+            const totalAbsorption = surfaceAreaM * avgAbsorption;
+            const rt60 = 0.161 * volumeM / totalAbsorption;
+
+            document.getElementById('rt60').textContent = rt60.toFixed(2) + 's';
+
+            // Ideal RT60 based on use case
+            let idealRT60 = '0.3-0.5s';
+            let minIdeal = 0.3, maxIdeal = 0.5;
+            switch (useCase) {
+                case 'listening': idealRT60 = '0.3-0.5s'; minIdeal = 0.3; maxIdeal = 0.5; break;
+                case 'mixing': idealRT60 = '0.2-0.4s'; minIdeal = 0.2; maxIdeal = 0.4; break;
+                case 'recording': idealRT60 = '0.3-0.6s'; minIdeal = 0.3; maxIdeal = 0.6; break;
+                case 'hometheater': idealRT60 = '0.4-0.6s'; minIdeal = 0.4; maxIdeal = 0.6; break;
+            }
+            document.getElementById('idealRT60').textContent = idealRT60;
+
+            // Room rating
+            let rating = 'Good';
+            let ratingClass = 'text-success';
+            if (rt60 < minIdeal * 0.7) {
+                rating = 'Too Dead';
+                ratingClass = 'text-warning';
+            } else if (rt60 > maxIdeal * 1.5) {
+                rating = 'Too Live';
+                ratingClass = 'text-danger';
+            } else if (rt60 >= minIdeal && rt60 <= maxIdeal) {
+                rating = 'Excellent';
+                ratingClass = 'text-success';
+            }
+            document.getElementById('roomRating').textContent = rating;
+            document.getElementById('roomRating').className = 'fs-4 ' + ratingClass;
+
+            // Recommendations
+            const recs = [];
+            if (rt60 > maxIdeal) {
+                recs.push('Add absorption panels on walls and ceiling');
+                recs.push('Add carpet or rugs to reduce floor reflections');
+                recs.push('Heavy curtains can help reduce high frequency reverb');
+            }
+            if (rt60 < minIdeal) {
+                recs.push('Room may be over-damped; reduce absorption');
+                recs.push('Consider diffusion instead of pure absorption');
+            }
+
+            const lowestMode = Math.min(modes.length[0], modes.width[0], modes.height[0]);
+            if (lowestMode < 40) {
+                recs.push(`Low frequency mode at ${lowestMode.toFixed(0)}Hz - consider bass traps in corners`);
+            }
+
+            const ratio1 = length / width;
+            const ratio2 = length / height;
+            if (Math.abs(ratio1 - 1) < 0.2 || Math.abs(ratio2 - 1) < 0.2) {
+                recs.push('Room dimensions are close to cubic - expect pronounced modes');
+            }
+
+            if (recs.length === 0) {
+                recs.push('Room dimensions and treatment appear well-balanced');
+                recs.push('Fine-tune speaker and listener positioning');
+            }
+
+            document.getElementById('recommendations').innerHTML = recs.map(r => `<li>${r}</li>`).join('');
+            document.getElementById('recommendationsBox').className =
+                rt60 > maxIdeal * 1.3 || rt60 < minIdeal * 0.7
+                    ? 'mt-4 p-4 rounded bg-warning bg-opacity-10'
+                    : 'mt-4 p-4 rounded bg-success bg-opacity-10';
+        }
+
+        calculate();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

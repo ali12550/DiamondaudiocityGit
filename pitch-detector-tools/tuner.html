@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Instrument Tuner | PitchDetector</title>
+<style>
+:root {
+  --primary: #006a67;
+  --primary-hover: #fdeb9e;
+  --primary-light: #f0f9ff;
+  --success: #10b981;
+  --danger: #ef4444;
+  --background: #f0f9ff;
+  --surface: #ffffff;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --radius: 0.75rem;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{color:var(--foreground);line-height:1.6;background:var(--background);font-family:sans-serif;}
+.container{max-width:700px;margin:0 auto;padding:2rem 1rem;}
+.header{text-align:center;margin-bottom:2rem;}
+.logo{display:inline-flex;align-items:center;justify-content:center;width:4rem;height:4rem;background:var(--primary);border-radius:1rem;margin-bottom:1rem;color:white;}
+.title{font-size:2rem;font-weight:700;margin-bottom:0.5rem;}
+.subtitle{color:var(--muted);}
+.card{background:var(--surface);border-radius:1rem;box-shadow:0 10px 40px -10px rgba(0,0,0,0.1);padding:2rem;margin-bottom:1.5rem;}
+.tuner-display{text-align:center;margin-bottom:2rem;}
+.note-display{font-size:6rem;font-weight:800;color:var(--primary);line-height:1;}
+.frequency-display{font-size:1.5rem;color:var(--muted);margin-bottom:1rem;}
+.cents-display{font-size:1.25rem;font-weight:600;}
+.cents-display.in-tune{color:var(--success);}
+.cents-display.flat{color:var(--danger);}
+.cents-display.sharp{color:#f59e0b;}
+.meter{position:relative;height:60px;background:linear-gradient(90deg,var(--danger)0%,var(--danger)40%,var(--success)45%,var(--success)55%,#f59e0b 60%,#f59e0b 100%);border-radius:var(--radius);margin:2rem 0;overflow:hidden;}
+.meter-needle{position:absolute;top:0;width:4px;height:100%;background:var(--foreground);transition:left 0.1s ease-out;box-shadow:0 0 10px rgba(0,0,0,0.3);}
+.meter-center{position:absolute;top:0;left:50%;width:2px;height:100%;background:white;transform:translateX(-50%);}
+.meter-labels{display:flex;justify-content:space-between;margin-top:0.5rem;font-size:0.875rem;color:var(--muted);}
+.instrument-selector{margin-bottom:1.5rem;}
+.instrument-selector label{display:block;font-weight:500;margin-bottom:0.5rem;}
+.instrument-buttons{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.instrument-btn{padding:0.5rem 1rem;border:2px solid var(--border);border-radius:var(--radius);background:var(--surface);cursor:pointer;font-weight:500;transition:all 0.2s;}
+.instrument-btn:hover{border-color:var(--primary);}
+.instrument-btn.active{background:var(--primary);color:white;border-color:var(--primary);}
+.tuning-notes{display:grid;grid-template-columns:repeat(6,1fr);gap:0.5rem;margin-bottom:1.5rem;}
+.tuning-note{padding:0.75rem;text-align:center;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all 0.2s;}
+.tuning-note:hover{border-color:var(--primary);background:var(--primary-light);}
+.tuning-note.detected{border-color:var(--success);background:rgba(16,185,129,0.1);}
+.tuning-note span{display:block;font-weight:700;font-size:1.25rem;}
+.tuning-note small{font-size:0.75rem;color:var(--muted);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:1rem 2rem;border-radius:var(--radius);border:none;font-weight:600;cursor:pointer;font-size:1rem;transition:all 0.2s;width:100%;}
+.btn-primary{background:var(--primary);color:white;}
+.btn-primary:hover{background:var(--primary-hover);}
+.btn-danger{background:var(--danger);color:white;}
+.reference-pitch{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+.reference-pitch label{font-weight:500;}
+.reference-pitch input{width:80px;padding:0.5rem;border:1px solid var(--border);border-radius:var(--radius);text-align:center;font-size:1rem;}
+.footer{text-align:center;color:var(--muted);font-size:0.875rem;margin-top:2rem;}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="header">
+<div class="logo">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="12" cy="12" r="10"/>
+<path d="M12 6v6l4 2"/>
+</svg>
+</div>
+<h1 class="title">Instrument Tuner</h1>
+<p class="subtitle">Tune any instrument with precision</p>
+</header>
+
+<div class="card">
+<div class="tuner-display">
+<div id="note-display" class="note-display">—</div>
+<div id="frequency-display" class="frequency-display">0 Hz</div>
+<div id="cents-display" class="cents-display">Play a note</div>
+</div>
+
+<div class="meter">
+<div class="meter-center"></div>
+<div id="meter-needle" class="meter-needle" style="left:50%"></div>
+</div>
+<div class="meter-labels">
+<span>♭ Flat</span>
+<span>In Tune</span>
+<span>Sharp ♯</span>
+</div>
+
+<div class="instrument-selector">
+<label>Select Instrument</label>
+<div class="instrument-buttons">
+<button class="instrument-btn active" data-instrument="guitar">Guitar</button>
+<button class="instrument-btn" data-instrument="guitarDropD">Guitar Drop D</button>
+<button class="instrument-btn" data-instrument="guitarOpenG">Guitar Open G</button>
+<button class="instrument-btn" data-instrument="bass">Bass</button>
+<button class="instrument-btn" data-instrument="ukulele">Ukulele</button>
+<button class="instrument-btn" data-instrument="ukuleleBaritone">Ukulele Baritone</button>
+<button class="instrument-btn" data-instrument="violin">Violin</button>
+<button class="instrument-btn" data-instrument="cello">Cello</button>
+<button class="instrument-btn" data-instrument="trumpet">Trumpet</button>
+<button class="instrument-btn" data-instrument="altoSax">Alto Sax</button>
+<button class="instrument-btn" data-instrument="flute">Flute</button>
+<button class="instrument-btn" data-instrument="clarinet">Clarinet</button>
+<button class="instrument-btn" data-instrument="piano">Piano</button>
+<button class="instrument-btn" data-instrument="harp">Harp</button>
+<button class="instrument-btn" data-instrument="chromatic">Chromatic</button>
+</div>
+</div>
+
+<div id="tuning-notes" class="tuning-notes"></div>
+
+<button id="start-btn" class="btn btn-primary">Start Tuner</button>
+
+<div class="reference-pitch">
+<label>A4 Reference:</label>
+<input type="number" id="reference-pitch" value="440" min="420" max="460">
+<span>Hz</span>
+</div>
+</div>
+
+<footer class="footer">
+<p>Tip: Play one string at a time for best results</p>
+</footer>
+</div>
+
+<script>
+const CHROMATIC_NOTES=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+
+const INSTRUMENTS={
+  guitar:[{note:'E2',freq:82.41},{note:'A2',freq:110},{note:'D3',freq:146.83},{note:'G3',freq:196},{note:'B3',freq:246.94},{note:'E4',freq:329.63}],
+  guitarDropD:[{note:'D2',freq:73.42},{note:'A2',freq:110},{note:'D3',freq:146.83},{note:'G3',freq:196},{note:'B3',freq:246.94},{note:'E4',freq:329.63}],
+  guitarOpenG:[{note:'D2',freq:73.42},{note:'G2',freq:98},{note:'D3',freq:146.83},{note:'G3',freq:196},{note:'B3',freq:246.94},{note:'D4',freq:293.66}],
+  bass:[{note:'E1',freq:41.20},{note:'A1',freq:55},{note:'D2',freq:73.42},{note:'G2',freq:98}],
+  ukulele:[{note:'G4',freq:392},{note:'C4',freq:261.63},{note:'E4',freq:329.63},{note:'A4',freq:440}],
+  ukuleleBaritone:[{note:'D3',freq:146.83},{note:'G3',freq:196},{note:'B3',freq:246.94},{note:'E4',freq:329.63}],
+  violin:[{note:'G3',freq:196},{note:'D4',freq:293.66},{note:'A4',freq:440},{note:'E5',freq:659.25}],
+  cello:[{note:'C2',freq:65.41},{note:'G2',freq:98},{note:'D3',freq:146.83},{note:'A3',freq:220}],
+  trumpet:[{note:'F#3',freq:185},{note:'D4',freq:293.66},{note:'G4',freq:392},{note:'C5',freq:523.25}],
+  altoSax:[{note:'D#3',freq:155.56},{note:'G#3',freq:207.65},{note:'C4',freq:261.63},{note:'F4',freq:349.23}],
+  flute:[{note:'C4',freq:261.63},{note:'D4',freq:293.66},{note:'E4',freq:329.63},{note:'F4',freq:349.23}],
+  clarinet:[{note:'D3',freq:146.83},{note:'G3',freq:196},{note:'C4',freq:261.63},{note:'F4',freq:349.23}],
+  piano:Array.from({length:88},(_,i)=>{const octave=Math.floor(i/12)+1;return {note:CHROMATIC_NOTES[i%12]+octave,freq:27.5*Math.pow(2,i/12)}}),
+  harp:[{note:'C3',freq:130.81},{note:'E3',freq:164.81},{note:'G3',freq:196},{note:'C4',freq:261.63}],
+  chromatic:[]
+};
+
+let state={instrument:'guitar',isListening:false,referencePitch:440};
+let audioContext,analyser,mediaStream,animationId;
+
+function getNoteFromFrequency(freq,refPitch=440){
+  if(freq<20) return null;
+  const semitones=12*Math.log2(freq/refPitch);
+  const noteIndex=Math.round(semitones)+9;
+  const octave=Math.floor((noteIndex+12*4)/12);
+  const note=CHROMATIC_NOTES[((noteIndex%12)+12)%12];
+  const cents=Math.round((semitones-Math.round(semitones))*100);
+  return {note:note+octave,cents};
+}
+
+function renderTuningNotes(){
+  const container=document.getElementById('tuning-notes');
+  const notes=INSTRUMENTS[state.instrument];
+  if(state.instrument==='chromatic'){container.innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--muted)">Chromatic mode - detects any note</div>';return;}
+  container.innerHTML=notes.map((n,i)=>`<div class="tuning-note" data-index="${i}"><span>${n.note.replace(/\d/,'')}</span><small>${n.note.match(/\d/)[0]}</small></div>`).join('');
+}
+
+function autoCorrelate(buf,sr){
+  let SIZE=buf.length,rms=0;
+  for(let i=0;i<SIZE;i++) rms+=buf[i]*buf[i];
+  rms=Math.sqrt(rms/SIZE);
+  if(rms<0.01)return-1;
+  let r1=0,r2=SIZE-1;
+  for(let i=0;i<SIZE/2;i++) if(Math.abs(buf[i])<0.2){r1=i;break;}
+  for(let i=1;i<SIZE/2;i++) if(Math.abs(buf[SIZE-i])<0.2){r2=SIZE-i;break;}
+  const b=buf.slice(r1,r2),newSize=b.length;if(newSize<2)return-1;
+  const c=new Array(newSize).fill(0);
+  for(let i=0;i<newSize;i++) for(let j=0;j<newSize-i;j++) c[i]+=b[j]*b[j+i];
+  let d=0;while(d<newSize-1&&c[d]>c[d+1])d++;
+  let maxval=-1,maxpos=-1;
+  for(let i=d;i<newSize;i++) if(c[i]>maxval){maxval=c[i];maxpos=i;}
+  if(maxpos<1||maxpos>=newSize-1)return-1;
+  const x1=c[maxpos-1],x2=c[maxpos],x3=c[maxpos+1],a=(x1+x3-2*x2)/2,b1=(x3-x1)/2;
+  return sr/(a?maxpos-b1/(2*a):maxpos);
+}
+
+function detectPitch(){
+  if(!analyser)return;
+  const buffer=new Float32Array(analyser.fftSize);
+  analyser.getFloatTimeDomainData(buffer);
+  const freq=autoCorrelate(buffer,audioContext.sampleRate);
+  if(freq>20&&freq<2000){
+    const result=getNoteFromFrequency(freq,state.referencePitch);
+    if(result){
+      document.getElementById('note-display').textContent=result.note;
+      document.getElementById('frequency-display').textContent=`${Math.round(freq)} Hz`;
+      const centsEl=document.getElementById('cents-display');
+      if(Math.abs(result.cents)<=5){centsEl.textContent='✓ In Tune!';centsEl.className='cents-display in-tune';}
+      else if(result.cents<0){centsEl.textContent=`${result.cents} cents (flat)`;centsEl.className='cents-display flat';}
+      else{centsEl.textContent=`+${result.cents} cents (sharp)`;centsEl.className='cents-display sharp';}
+      const needlePos=50+(result.cents/50)*45;
+      document.getElementById('meter-needle').style.left=`${Math.max(5,Math.min(95,needlePos))}%`;
+      document.querySelectorAll('.tuning-note').forEach((el,i)=>{const notes=INSTRUMENTS[state.instrument];el.classList.toggle('detected',notes[i]?.note===result.note);});
+    }
+  }
+  animationId=requestAnimationFrame(detectPitch);
+}
+
+async function startTuner(){
+  try{
+    mediaStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false}});
+    audioContext=new (window.AudioContext||window.webkitAudioContext)();
+    analyser=audioContext.createAnalyser();
+    analyser.fftSize=2048;
+    audioContext.createMediaStreamSource(mediaStream).connect(analyser);
+    state.isListening=true;updateButton();detectPitch();
+  }catch(e){alert('Microphone access required');}
+}
+
+function stopTuner(){
+  if(animationId) cancelAnimationFrame(animationId);
+  if(mediaStream) mediaStream.getTracks().forEach(t=>t.stop());
+  if(audioContext) audioContext.close();
+  state.isListening=false;updateButton();
+}
+
+function updateButton(){
+  const btn=document.getElementById('start-btn');
+  btn.className=state.isListening?'btn btn-danger':'btn btn-primary';
+  btn.textContent=state.isListening?'Stop Tuner':'Start Tuner';
+}
+
+function playReferenceNote(freq){
+  const ctx=new (window.AudioContext||window.webkitAudioContext)();
+  const osc=ctx.createOscillator();
+  const gain=ctx.createGain();
+  osc.frequency.value=freq;
+  gain.gain.setValueAtTime(0.3,ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+1);
+  osc.connect(gain);gain.connect(ctx.destination);
+  osc.start();osc.stop(ctx.currentTime+1);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  renderTuningNotes();
+  document.querySelectorAll('.instrument-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.instrument-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      state.instrument=btn.dataset.instrument;
+      renderTuningNotes();
+    });
+  });
+
+  document.getElementById('tuning-notes').addEventListener('click',e=>{
+    const note=e.target.closest('.tuning-note');
+    if(note){
+      const idx=parseInt(note.dataset.index);
+      const freq=INSTRUMENTS[state.instrument][idx]?.freq;
+      if(freq) playReferenceNote(freq);
+    }
+  });
+
+  document.getElementById('start-btn').addEventListener('click',()=>state.isListening?stopTuner():startTuner());
+  document.getElementById('reference-pitch').addEventListener('change',e=>state.referencePitch=parseFloat(e.target.value));
+});
+</script>
+</body>
+</html>

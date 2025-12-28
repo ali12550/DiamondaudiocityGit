@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Distance Drop Calculator | Inverse Square Law | DiamondAudioCity</title>
+    <meta name="description"
+        content="Free sound distance drop calculator. Calculate how sound level decreases with distance using the inverse square law.">
+    <meta name="keywords"
+        content="sound distance, inverse square law, SPL calculator, sound pressure level, audio distance">
+    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/sound-distance-drop-calculator/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row justify-content-around">
+
+
+            <div class="col-lg-7 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Sound Distance Drop Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-rulers me-2"></i>Sound Distance Drop Calculator</h1>
+                        <p>Calculate how sound pressure level (SPL) decreases with distance. Based on the inverse square
+                            law for point sources.</p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Initial SPL at Reference Distance (dB):</label>
+                            <input type="number" class="form-control" id="initialSPL" value="100" min="40" max="150"
+                                oninput="calculate()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Reference Distance (meters):</label>
+                            <input type="number" class="form-control" id="refDistance" value="1" min="0.1" max="100"
+                                step="0.1" oninput="calculate()">
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Target Distance (meters):</label>
+                            <input type="number" class="form-control" id="targetDistance" value="10" min="0.1"
+                                max="1000" step="0.1" oninput="calculate()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Environment:</label>
+                            <select class="form-select" id="environment" onchange="calculate()">
+                                <option value="free">Free Field (outdoor, no reflections)</option>
+                                <option value="hemi" selected>Hemispherical (on ground, outdoor)</option>
+                                <option value="indoor">Indoor (some reflections)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>SPL at Target Distance</h3>
+                        <p class="result-value" id="targetSPL">80.00 dB</p>
+                        <div class="row text-start mt-4">
+                            <div class="col-md-4 col-6 mb-3">
+                                <strong>SPL Drop:</strong><br>
+                                <span id="splDrop" class="fs-4">-20.00 dB</span>
+                            </div>
+                            <div class="col-md-4 col-6 mb-3">
+                                <strong>Distance Ratio:</strong><br>
+                                <span id="distanceRatio" class="fs-4">10:1</span>
+                            </div>
+                            <div class="col-md-4 col-6 mb-3">
+                                <strong>Perceived Volume:</strong><br>
+                                <span id="perceivedVol" class="fs-4">¼ as loud</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3"><i class="bi bi-table me-2"></i>Distance vs SPL Table</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Distance</th>
+                                        <th>SPL (dB)</th>
+                                        <th>Drop from Reference</th>
+                                        <th>Perceived Loudness</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="distanceTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-calculator me-2"></i>The Inverse Square Law</h2>
+                        <div class="bg-accent p-3 rounded mb-3">
+                            <code>SPL₂ = SPL₁ - 20 × log₁₀(d₂ / d₁)</code>
+                        </div>
+                        <p>In a free field, sound intensity decreases with the square of the distance:</p>
+                        <ul>
+                            <li><strong>Double the distance:</strong> -6 dB (sounds ~60% as loud)</li>
+                            <li><strong>10× the distance:</strong> -20 dB (sounds ~¼ as loud)</li>
+                            <li><strong>Half the distance:</strong> +6 dB (sounds ~40% louder)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                           <ul class="sidebar-links">
+                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i>
+                                        Speaker Wattage</a></li>
+                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i class="bi bi-diagram-3"></i>
+                                        Impedance Calculator</a></li>
+                                <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
+                                        Amplifier Power</a></li>
+                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i class="bi bi-rulers"></i>
+                                        Sound Distance Drop</a></li>
+                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i class="bi bi-arrows-move"></i>
+                                        Speaker Placement</a></li>
+                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i> Room
+                                        Acoustics</a></li>
+                                <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
+                                        Ported Enclosure</a></li>
+                                <li><a href="/speaker-tools/sealed-box-calculator/"><i class="bi bi-box-seam"></i>
+                                        Sealed Box</a></li>
+                                <li><a href="/speaker-tools/crossover-frequency-calculator/"><i class="bi bi-filter"></i>
+                                        Crossover Frequency</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+
+    <script>
+        function calculate() {
+            const initialSPL = parseFloat(document.getElementById('initialSPL').value) || 100;
+            const refDistance = parseFloat(document.getElementById('refDistance').value) || 1;
+            const targetDistance = parseFloat(document.getElementById('targetDistance').value) || 10;
+            const environment = document.getElementById('environment').value;
+
+            // Calculate SPL drop using inverse square law
+            const distanceRatio = targetDistance / refDistance;
+            let splDrop = 20 * Math.log10(distanceRatio);
+
+            // Adjust for environment
+            let envFactor = 1;
+            switch (environment) {
+                case 'free': envFactor = 1; break;
+                case 'hemi': envFactor = 0.85; break;
+                case 'indoor': envFactor = 0.6; break;
+            }
+            splDrop *= envFactor;
+
+            const targetSPL = initialSPL - splDrop;
+
+            document.getElementById('targetSPL').textContent = targetSPL.toFixed(2) + ' dB';
+            document.getElementById('splDrop').textContent = (splDrop >= 0 ? '-' : '+') + Math.abs(splDrop).toFixed(2) + ' dB';
+            document.getElementById('distanceRatio').textContent = distanceRatio.toFixed(1) + ':1';
+
+            // Perceived loudness (rough approximation: -10 dB = half as loud)
+            const loudnessRatio = Math.pow(10, -splDrop / 10);
+            let perceived = '';
+            if (loudnessRatio >= 0.9) perceived = 'Same';
+            else if (loudnessRatio >= 0.5) perceived = 'Slightly quieter';
+            else if (loudnessRatio >= 0.25) perceived = '½ as loud';
+            else if (loudnessRatio >= 0.1) perceived = '¼ as loud';
+            else if (loudnessRatio >= 0.01) perceived = '⅛ as loud';
+            else perceived = 'Much quieter';
+            document.getElementById('perceivedVol').textContent = perceived;
+
+            // Generate distance table
+            const distances = [1, 2, 5, 10, 20, 50, 100];
+            let tableHTML = '';
+            distances.forEach(d => {
+                const ratio = d / refDistance;
+                const drop = 20 * Math.log10(ratio) * envFactor;
+                const spl = initialSPL - drop;
+                const loudness = Math.pow(10, -drop / 10);
+                let loudText = loudness >= 1 ? 'Reference' :
+                    loudness >= 0.5 ? Math.round(loudness * 100) + '%' :
+                        '1/' + Math.round(1 / loudness) + ' loudness';
+                tableHTML += `<tr>
+                    <td>${d}m</td>
+                    <td>${spl.toFixed(1)} dB</td>
+                    <td>${drop > 0 ? '-' : '+'}${Math.abs(drop).toFixed(1)} dB</td>
+                    <td>${loudText}</td>
+                </tr>`;
+            });
+            document.getElementById('distanceTable').innerHTML = tableHTML;
+        }
+
+        calculate();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

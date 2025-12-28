@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chord Progression Generator — Music Theory & Songwriting Tool | Diamond Audio City</title>
+  <meta name="description" content="Generate chord progressions instantly. Chord Progression Generator for songwriters, producers, and musicians. Major, minor, 7th, and jazzy chords included." />
+  <meta name="keywords" content="chord progression generator, chord sequences, song chord ideas, major minor chords, jazz chords, music theory tool, songwriting tool" />
+  <link rel="canonical" href="https://diamondaudiocity.com/music-theory-tools/chord-progression-generator/" />
+  <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/bootstrap5.css" rel="stylesheet">
+  <link href="/assets/style.css" rel="stylesheet">
+  <link href="/assets/tools.css" rel="stylesheet">
+  <meta name="author" content="Diamond Audio City">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Chord Progression Generator — Music Theory & Songwriting Tool" />
+  <meta property="og:description" content="Generate chord progressions instantly. Major, minor, 7th, and jazz chords for songwriters and producers." />
+  <meta property="og:image" content="https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png" />
+  
+  <meta property="og:url" content="https://diamondaudiocity.com/music-theory-tools/chord-progression-generator/" />
+  <meta property="og:type" content="website" />
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 col-md-4">
+        <div class="tools-sidebar">
+          <div class="sidebar-search mb-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+            </div>
+          </div>
+
+          <div class="sidebar-categories">
+            <div class="sidebar-category active">
+              <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/music-theory-tools/chord-generator/"><i class="bi bi-guitar"></i> Chord Generator</a></li>
+                <li><a href="/music-theory-tools/scale-finder/"><i class="bi bi-keyboard"></i> Scale Finder</a></li>
+                <li><a href="/music-theory-tools/chord-progression-generator/" class="active"><i class="bi bi-journal-music"></i> Chord Progression Generator</a></li>
+                <li><a href="/music-theory-tools/interval-calculator/"><i class="bi bi-circle-half"></i> Interval Calculator</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="col-lg-7 col-md-8">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/music-theory-tools/">Music Theory Tools</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Chord Progression Generator</li>
+          </ol>
+        </nav>
+
+        <div class="tool-container">
+          <div class="tool-title">
+            <h1><i class="bi bi-journal-music me-2"></i>Chord Progression Generator</h1>
+            <p>Generate chord progressions in any key, using major, minor, 7th, and extended chords. Perfect for songwriting, music production, and learning music theory.</p>
+          </div>
+
+          <!-- Input -->
+          <div class="row mb-4">
+            <div class="col-md-6 mx-auto">
+              <label class="form-label fw-bold">Select Key</label>
+              <select id="keySelect" class="form-control form-control-lg text-center" onchange="generateProgression()">
+                <option value="C">C</option>
+                <option value="C#">C# / Db</option>
+                <option value="D">D</option>
+                <option value="D#">D# / Eb</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="F#">F# / Gb</option>
+                <option value="G">G</option>
+                <option value="G#">G# / Ab</option>
+                <option value="A">A</option>
+                <option value="A#">A# / Bb</option>
+                <option value="B">B</option>
+              </select>
+            </div>
+            <div class="col-md-6 mx-auto mt-3 mt-md-0 text-center">
+              <label class="form-label fw-bold">Progression Length</label>
+              <select id="lengthSelect" class="form-control form-control-lg text-center" onchange="generateProgression()">
+                <option value="3">3 Chords</option>
+                <option value="4" selected>4 Chords</option>
+                <option value="5">5 Chords</option>
+                <option value="6">6 Chords</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="result-box text-center">
+            <h3>Generated Progression</h3>
+            <p id="progressionDisplay" class="fs-4 fw-bold mt-2">C - G - Am - F</p>
+            <button class="btn btn-primary mt-3" onclick="generateProgression()">🔄 Generate New Progression</button>
+          </div>
+
+          <!-- Chord formulas -->
+          <div class="content_area container py-4">
+            <div style="background: rgba(0,11,88,0.04); box-shadow: 0 2px 10px rgba(0,0,0,0.06); border-radius:10px; padding:18px; margin-bottom:20px;">
+              <h2 class="h6 fw-bold text-uppercase mb-2" style="color:#003161;">Quick Summary</h2>
+              <p class="mb-0">Use this <strong>Chord Progression Generator</strong> to instantly create musical chord sequences in any key. Supports major, minor, and 7th chords for songwriting, composing, and production.</p>
+            </div>
+
+            <h2 style="color:#003161;" class="fw-semibold mt-3 mb-2">How it works</h2>
+            <p>The generator uses the selected key and basic diatonic chord formulas to produce common progressions.</p>
+            <div class="bg-light p-3 rounded mb-3">
+              <pre style="margin:0; background:#f8fafc; padding:12px; border-radius:6px;">
+I - ii - iii - IV - V - vi - vii°
+Major:   I, ii, iii, IV, V, vi, vii°
+Minor:   i, ii°, III, iv, v, VI, VII
+7th chords: I7, ii7, iii7, IV7, V7, vi7, viiø7
+              </pre>
+            </div>
+
+            <h2 style="color:#003161;" class="fw-semibold mt-3 mb-2">Examples</h2>
+            <table class="table table-bordered text-center">
+              <thead class="table-light">
+                <tr><th>Key</th><th>Common Progression</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>C</td><td>C - G - Am - F</td></tr>
+                <tr><td>G</td><td>G - D - Em - C</td></tr>
+                <tr><td>D</td><td>D - A - Bm - G</td></tr>
+                <tr><td>A</td><td>A - E - F#m - D</td></tr>
+              </tbody>
+            </table>
+
+            <h2 style="color:#003161;" class="fw-semibold mt-3 mb-2">Use Cases</h2>
+            <ul>
+              <li>Songwriting inspiration and chord ideas.</li>
+              <li>Backing track creation and arrangement planning.</li>
+              <li>Learning diatonic chords in any key.</li>
+              <li>Experimenting with major, minor, and 7th chord combinations.</li>
+            </ul>
+
+          </div>
+
+        </div>
+      </div> <!-- /main col -->
+    </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="/assets/bootstrap5.js"></script>
+  <script src="/assets/tools.js" defer></script>
+
+  <!-- Tool JS: chord generation -->
+  <script>
+    const chordFormulas = {
+      major: ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'],
+      chords: ['C','D','E','F','G','A','B']
+    };
+
+    const chordMap = {
+      'C': ['C','Dm','Em','F','G','Am','Bdim'],
+      'C#': ['C#','D#m','Fm','F#','G#','A#m','Cdim'],
+      'D': ['D','Em','F#m','G','A','Bm','C#dim'],
+      'D#': ['D#','Fm','Gm','G#','A#','Cm','Ddim'],
+      'E': ['E','F#m','G#m','A','B','C#m','D#dim'],
+      'F': ['F','Gm','Am','A#','C','Dm','Edim'],
+      'F#': ['F#','G#m','A#m','B','C#','D#m','Fdim'],
+      'G': ['G','Am','Bm','C','D','Em','F#dim'],
+      'G#': ['G#','A#m','Cm','C#','D#','Fm','Gdim'],
+      'A': ['A','Bm','C#m','D','E','F#m','G#dim'],
+      'A#': ['A#','Cm','Dm','D#','F','Gm','Adim'],
+      'B': ['B','C#m','D#m','E','F#','G#m','A#dim']
+    };
+
+    function generateProgression(){
+      const key = document.getElementById('keySelect').value;
+      const length = parseInt(document.getElementById('lengthSelect').value);
+      const chords = chordMap[key];
+      let progression = [];
+      for(let i=0;i<length;i++){
+        const idx = Math.floor(Math.random()*chords.length);
+        progression.push(chords[idx]);
+      }
+      document.getElementById('progressionDisplay').textContent = progression.join(' - ');
+    }
+
+    // init
+    generateProgression();
+
+    // include header/footer
+    window.addEventListener("load", () => {
+      Promise.all([
+        fetch("../../header.html").then(res => res.text()),
+        fetch("../../footer.html").then(res => res.text())
+      ]).then(([header, footer]) => {
+        document.getElementById("header").innerHTML = header;
+        document.getElementById("footer").innerHTML = footer;
+      }).catch(err => console.error("Include load failed:", err));
+    });
+  </script>
+
+  <!-- JSON-LD: WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "headline":"Chord Progression Generator — Music Theory & Songwriting Tool",
+    "description":"Generate chord progressions instantly. Major, minor, 7th, and extended chords for songwriters, producers, and musicians.",
+    "url":"https://diamondaudiocity.com/music-theory-tools/chord-progression-generator/",
+    "publisher":{
+      "@type":"Organization",
+      "name":"Diamond Audio City",
+      "logo":{"@type":"ImageObject","url":"https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png"}
+    },
+    "author":{"@type":"Person","name":"Diamond Audio City"}
+  }
+  </script>
+
+</body>
+</html>

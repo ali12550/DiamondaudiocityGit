@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Trimmer | Cut Audio Online Free | DiamondAudioCity</title>
+    <meta name="description"
+        content="Free online audio trimmer. Cut and trim MP3, WAV, and other audio files. Set start and end points to extract the exact clip you need.">
+    <meta name="keywords" content="audio trimmer, cut audio, trim mp3, audio cutter, cut song online, trim audio free">
+    <link rel="canonical" href="https://diamondaudiocity.com/audio-editing-tools/audio-trimmer/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-scissors me-2"></i>Audio Editing Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/audio-editing-tools/audio-trimmer/"
+                                        class="active"><i class="bi bi-scissors"></i> Audio Trimmer</a></li>
+                                <li><a href="/audio-editing-tools/audio-merger/"><i class="bi bi-union"></i> Audio
+                                        Merger</a></li>
+                                <li><a href="/audio-editing-tools/audio-volume-booster/"><i class="bi bi-volume-up"></i>
+                                        Volume Booster</a></li>
+                                <li><a href="/audio-editing-tools/audio-speed-changer/"><i class="bi bi-fast-forward"></i>
+                                        Speed Changer</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/audio-editing-tools/">Audio Editing</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Audio Trimmer</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-scissors me-2"></i>Audio Trimmer</h1>
+                        <p>Cut and trim audio files online. Upload your audio, set start and end points, and download
+                            the trimmed clip.</p>
+                    </div>
+
+                    <div class="upload-area mb-4 p-5 border-2 border-dashed rounded text-center" id="uploadArea">
+                        <i class="bi bi-cloud-upload fs-1 text-teal mb-3 d-block"></i>
+                        <h4>Drop your audio file here</h4>
+                        <p class="text-muted">or click to browse</p>
+                        <input type="file" id="audioInput" accept="audio/*" class="d-none">
+                        <button class="btn btn-primary mt-2" onclick="document.getElementById('audioInput').click()">
+                            <i class="bi bi-folder2-open me-2"></i>Choose File
+                        </button>
+                        <p class="small text-muted mt-3">Supports MP3, WAV, OGG, M4A, FLAC</p>
+                    </div>
+
+                    <div id="editorSection" style="display: none;">
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-bold" id="fileName">audio.mp3</span>
+                                <span class="text-muted" id="fileDuration">Duration: 0:00</span>
+                            </div>
+                            <div class="waveform-container bg-light rounded p-3" id="waveform" style="height: 128px;">
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-5 mb-3">
+                                <label class="form-label fw-bold">Start Time:</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="startMin" value="0" min="0" placeholder="Min">
+                                    <span class="input-group-text">:</span>
+                                    <input type="number" class="form-control" id="startSec" value="0" min="0" max="59" step="0.1" placeholder="Sec">
+                                </div>
+                            </div>
+                            <div class="col-md-5 mb-3">
+                                <label class="form-label fw-bold">End Time:</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="endMin" value="0" min="0" placeholder="Min">
+                                    <span class="input-group-text">:</span>
+                                    <input type="number" class="form-control" id="endSec" value="30" min="0" max="59" step="0.1" placeholder="Sec">
+                                </div>
+                            </div>
+                            <div class="col-md-2 mb-3 d-flex align-items-end">
+                                <button class="btn btn-outline-primary w-100" onclick="setFullDuration()">Full</button>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 mb-4">
+                            <button class="btn btn-outline-primary" id="playBtn" onclick="togglePlay()">
+                                <i class="bi bi-play-fill me-2"></i>Preview
+                            </button>
+                            <button class="btn btn-primary" onclick="trimAudio()">
+                                <i class="bi bi-scissors me-2"></i>Trim Audio
+                            </button>
+                        </div>
+
+                        <audio id="audioPlayer" class="d-none"></audio>
+                    </div>
+
+                    <div id="resultSection" style="display: none;" class="result-box">
+                        <h3><i class="bi bi-check-circle me-2"></i>Trimmed Successfully!</h3>
+                        <p>Your audio has been trimmed. Click below to download.</p>
+                        <div class="d-flex gap-3 justify-content-center mt-4">
+                            <button class="btn btn-primary btn-lg" id="downloadBtn">
+                                <i class="bi bi-download me-2"></i>Download
+                            </button>
+                            <button class="btn btn-outline-primary btn-lg" onclick="resetTool()">
+                                <i class="bi bi-arrow-repeat me-2"></i>Trim Another
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>How to Trim Audio</h2>
+                        <ol>
+                            <li>Upload your audio file by clicking or dragging</li>
+                            <li>Set the start and end times for your clip</li>
+                            <li>Click Preview to hear the selection</li>
+                            <li>Click Trim Audio to process</li>
+                            <li>Download your trimmed audio file</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+
+    <script>
+        let audioContext, audioBuffer, sourceNode;
+        let isPlaying = false;
+
+        document.getElementById('uploadArea').addEventListener('click', () => {
+            document.getElementById('audioInput').click();
+        });
+
+        document.getElementById('uploadArea').addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.currentTarget.classList.add('border-primary');
+        });
+
+        document.getElementById('uploadArea').addEventListener('dragleave', (e) => {
+            e.currentTarget.classList.remove('border-primary');
+        });
+
+        document.getElementById('uploadArea').addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.currentTarget.classList.remove('border-primary');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('audio/')) {
+                handleFile(file);
+            }
+        });
+
+        document.getElementById('audioInput').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        });
+
+        async function handleFile(file) {
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('uploadArea').style.display = 'none';
+            document.getElementById('editorSection').style.display = 'block';
+
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const arrayBuffer = await file.arrayBuffer();
+            audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+            const duration = audioBuffer.duration;
+            const mins = Math.floor(duration / 60);
+            const secs = Math.floor(duration % 60);
+            document.getElementById('fileDuration').textContent = `Duration: ${mins}:${secs.toString().padStart(2, '0')}`;
+            document.getElementById('endMin').value = mins;
+            document.getElementById('endSec').value = secs;
+
+            // Simple waveform visualization
+            drawWaveform();
+        }
+
+        function drawWaveform() {
+            const container = document.getElementById('waveform');
+            const data = audioBuffer.getChannelData(0);
+            const step = Math.ceil(data.length / container.offsetWidth);
+            
+            let html = '<svg width="100%" height="100%" viewBox="0 0 ' + container.offsetWidth + ' 128">';
+            for (let i = 0; i < container.offsetWidth; i++) {
+                let min = 1.0, max = -1.0;
+                for (let j = 0; j < step; j++) {
+                    const datum = data[(i * step) + j];
+                    if (datum < min) min = datum;
+                    if (datum > max) max = datum;
+                }
+                const y = (1 + min) * 64;
+                const height = Math.max(1, (max - min) * 64);
+                html += `<rect x="${i}" y="${y}" width="1" height="${height}" fill="#006a67"/>`;
+            }
+            html += '</svg>';
+            container.innerHTML = html;
+        }
+
+        function getTimeInSeconds(minId, secId) {
+            const min = parseFloat(document.getElementById(minId).value) || 0;
+            const sec = parseFloat(document.getElementById(secId).value) || 0;
+            return min * 60 + sec;
+        }
+
+        function setFullDuration() {
+            const duration = audioBuffer.duration;
+            document.getElementById('startMin').value = 0;
+            document.getElementById('startSec').value = 0;
+            document.getElementById('endMin').value = Math.floor(duration / 60);
+            document.getElementById('endSec').value = Math.floor(duration % 60);
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                if (sourceNode) sourceNode.stop();
+                isPlaying = false;
+                document.getElementById('playBtn').innerHTML = '<i class="bi bi-play-fill me-2"></i>Preview';
+            } else {
+                const start = getTimeInSeconds('startMin', 'startSec');
+                const end = getTimeInSeconds('endMin', 'endSec');
+                
+                sourceNode = audioContext.createBufferSource();
+                sourceNode.buffer = audioBuffer;
+                sourceNode.connect(audioContext.destination);
+                sourceNode.start(0, start, end - start);
+                sourceNode.onended = () => {
+                    isPlaying = false;
+                    document.getElementById('playBtn').innerHTML = '<i class="bi bi-play-fill me-2"></i>Preview';
+                };
+                
+                isPlaying = true;
+                document.getElementById('playBtn').innerHTML = '<i class="bi bi-stop-fill me-2"></i>Stop';
+            }
+        }
+
+        function trimAudio() {
+            const start = getTimeInSeconds('startMin', 'startSec');
+            const end = getTimeInSeconds('endMin', 'endSec');
+            
+            const startSample = Math.floor(start * audioBuffer.sampleRate);
+            const endSample = Math.floor(end * audioBuffer.sampleRate);
+            const length = endSample - startSample;
+            
+            const trimmedBuffer = audioContext.createBuffer(
+                audioBuffer.numberOfChannels,
+                length,
+                audioBuffer.sampleRate
+            );
+            
+            for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                const sourceData = audioBuffer.getChannelData(channel);
+                const destData = trimmedBuffer.getChannelData(channel);
+                for (let i = 0; i < length; i++) {
+                    destData[i] = sourceData[startSample + i];
+                }
+            }
+            
+            // Convert to WAV and download
+            const wav = audioBufferToWav(trimmedBuffer);
+            const blob = new Blob([wav], { type: 'audio/wav' });
+            const url = URL.createObjectURL(blob);
+            
+            document.getElementById('editorSection').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('downloadBtn').onclick = () => {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'trimmed_audio.wav';
+                a.click();
+            };
+        }
+
+        function audioBufferToWav(buffer) {
+            const numChannels = buffer.numberOfChannels;
+            const sampleRate = buffer.sampleRate;
+            const format = 1;
+            const bitDepth = 16;
+            
+            const bytesPerSample = bitDepth / 8;
+            const blockAlign = numChannels * bytesPerSample;
+            
+            const dataLength = buffer.length * blockAlign;
+            const bufferLength = 44 + dataLength;
+            
+            const arrayBuffer = new ArrayBuffer(bufferLength);
+            const view = new DataView(arrayBuffer);
+            
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + dataLength, true);
+            writeString(view, 8, 'WAVE');
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, format, true);
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+            writeString(view, 36, 'data');
+            view.setUint32(40, dataLength, true);
+            
+            const offset = 44;
+            const channels = [];
+            for (let i = 0; i < numChannels; i++) {
+                channels.push(buffer.getChannelData(i));
+            }
+            
+            let pos = offset;
+            for (let i = 0; i < buffer.length; i++) {
+                for (let ch = 0; ch < numChannels; ch++) {
+                    const sample = Math.max(-1, Math.min(1, channels[ch][i]));
+                    view.setInt16(pos, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+                    pos += 2;
+                }
+            }
+            
+            return arrayBuffer;
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+
+        function resetTool() {
+            document.getElementById('uploadArea').style.display = 'block';
+            document.getElementById('editorSection').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'none';
+            document.getElementById('audioInput').value = '';
+            audioBuffer = null;
+        }
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+            .then(([header, footer]) => {
+                document.getElementById("header").innerHTML = header;
+                document.getElementById("footer").innerHTML = footer;
+            })
+            .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

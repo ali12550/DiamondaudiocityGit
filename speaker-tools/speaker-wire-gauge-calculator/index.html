@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speaker Wire Gauge Calculator | DiamondAudioCity</title>
+
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+
+
+    <style>
+        .tool-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tool-title h1 {
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+
+        .tool-title p {
+            color: var(--mid-blue);
+            margin-bottom: 0;
+        }
+
+        label {
+            color: var(--mid-blue);
+            font-weight: 500;
+        }
+
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 10px 14px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 0.25rem rgba(0, 106, 103, 0.25);
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            border: none;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 10px;
+            width: 48%;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--mid-blue);
+            transform: scale(1.02);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            background: var(--accent);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            color: var(--dark-blue);
+        }
+
+        .result-box h3 {
+            color: var(--mid-blue);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .result-table {
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        .result-table td {
+            padding: 8px 5px;
+            color: var(--dark-blue);
+        }
+
+        .result-table tr.border-row td {
+            border-bottom: 2px solid var(--mid-blue);
+            padding-bottom: 10px;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .toggle-buttons button {
+            flex: 1;
+            background: var(--mid-blue);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .toggle-buttons button.active {
+            background: var(--teal);
+        }
+
+        @media (max-width:768px) {
+            .tool-container {
+                margin: 60px 15px;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Include -->
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+
+
+        <div class="row justify-content-around ">
+            <!-- Left: Main Tool -->
+            <div class="col-lg-7 col-md-8">
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1>Speaker Wire Gauge Calculator</h1>
+                        <p>Find the ideal wire gauge, resistance, and cost for Copper & CCA</p>
+                    </div>
+
+                    <label>Wire Length</label>
+                    <input type="number" id="lengthValue" class="form-control" value="20" />
+                    <div class="toggle-buttons">
+                        <button id="feetBtn" class="active">Feet</button>
+                        <button id="metersBtn">Meters</button>
+                    </div>
+
+                    <label style="margin-top:15px;">RMS Power (Watts)</label>
+                    <input type="number" id="power" class="form-control" placeholder="e.g. 200" />
+
+                    <label style="margin-top:15px;">Speaker Impedance (Ω)</label>
+                    <input type="number" id="impedance" class="form-control" placeholder="e.g. 8" />
+
+                    <label style="margin-top:15px;">Max % Power Loss</label>
+                    <input type="number" id="maxLoss" class="form-control" value="5" />
+
+                    <label style="margin-top:15px;">Wire Price per ft (USD)</label>
+                    <input type="number" id="wirePrice" class="form-control" placeholder="e.g. 0.10" step="0.01" />
+
+                    <div style="margin-top:20px; display:flex; justify-content:space-between;">
+                        <button class="btn-primary" onclick="calculateWireGauge()">Calculate</button>
+                        <button class="btn-primary" style="background:var(--mid-blue);"
+                            onclick="resetForm()">Reset</button>
+                    </div>
+
+                    <div id="result" class="result-box" style="display:none;"></div>
+                </div>
+
+            </div>
+
+            <!-- Right: Sidebar Tools Box -->
+
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i>
+                                        Speaker Wattage</a></li>
+                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i
+                                            class="bi bi-diagram-3"></i>
+                                        Impedance Calculator</a></li>
+                                <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
+                                        Amplifier Power</a></li>
+                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i
+                                            class="bi bi-rulers"></i>
+                                        Sound Distance Drop</a></li>
+                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i
+                                            class="bi bi-arrows-move"></i>
+                                        Speaker Placement</a></li>
+                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i> Room
+                                        Acoustics</a></li>
+                                <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
+                                        Ported Enclosure</a></li>
+                                <li><a href="/speaker-tools/sealed-box-calculator/"><i class="bi bi-box-seam"></i>
+                                        Sealed Box</a></li>
+                                <li><a href="/speaker-tools/crossover-frequency-calculator/"><i
+                                            class="bi bi-filter"></i>
+                                        Crossover Frequency</a></li>
+                                <li><a href="/speaker-tools/Speaker-Wire-Gauge-Calculator/"><i
+                                            class="bi bi-speaker"></i>
+                                        Speaker Wire Gauge</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- contant area start -->
+    <div class="calculator-content container">
+
+        <p>Finding the right wire gauge and amplifier power for your speakers is critical to achieve <strong>clean,
+                distortion-free audio</strong>, protect your amplifier, and ensure your system delivers <strong>maximum
+                performance</strong>. This tool helps you determine:</p>
+
+        <ul>
+            <li>Recommended <strong>amplifier wattage</strong> for your speakers.</li>
+            <li>Correct <strong>speaker wire gauge</strong> based on length, impedance, and power.</li>
+            <li>Power loss and efficiency for long cable runs.</li>
+        </ul>
+
+        <p>Our Diamond-style calculator is designed for <strong>home audio, car audio, and professional setups</strong>,
+            providing precise, practical recommendations.</p>
+
+        <h2>Formulas</h2>
+
+        <h3>1. Amplifier Power Matching</h3>
+        <p>To calculate the recommended amplifier power for a speaker:</p>
+        <pre><code>P_amp = P_speaker × Recommended_Ratio</code></pre>
+        <p>Where:</p>
+        <ul>
+            <li><strong>P_speaker</strong> = Speaker RMS power handling (Watts)</li>
+            <li>Recommended Ratio = 1.25 – 1.5 (to avoid clipping and allow headroom)</li>
+        </ul>
+        <p><strong>Example:</strong> 100 W speaker → 100 × 1.25 = 125 W amplifier power</p>
+
+        <h3>2. Amplifier Power from Voltage and Impedance</h3>
+        <pre><code>P = V_RMS^2 / R</code></pre>
+        <p>Where:</p>
+        <ul>
+            <li>P = Output power in Watts</li>
+            <li>V_RMS = Amplifier RMS voltage output</li>
+            <li>R = Speaker impedance (Ohms)</li>
+        </ul>
+        <p>If voltage is Peak (Vp) or Peak-to-Peak (Vpp):</p>
+        <pre><code>V_RMS = Vp / √2
+V_RMS = Vpp / (2√2)</code></pre>
+
+        <h3>3. Power Loss in Speaker Wire</h3>
+        <pre><code>P_loss = I^2 × R_wire</code></pre>
+        <p>Where:</p>
+        <ul>
+            <li>I = V_RMS / R_speaker (current through speaker)</li>
+            <li>R_wire = AWG resistance per foot × cable length (round trip)</li>
+        </ul>
+        <p><strong>Percentage Loss:</strong></p>
+        <pre><code>%Loss = (P_loss / P_amp) × 100</code></pre>
+        <p>Aim for ≤ 3–5% loss for optimal audio fidelity.</p>
+
+        <h3>4. Selecting AWG Wire</h3>
+        <ol>
+            <li>Calculate round-trip resistance: R_round-trip = 2 × length × R_per_foot</li>
+            <li>Calculate power loss at given amplifier power</li>
+            <li>Return first AWG that keeps % loss under threshold</li>
+        </ol>
+        <p>For long runs (>50 ft) or low-impedance speakers (4Ω), select one size thicker for safety.</p>
+
+        <h3>5. Copper vs CCA</h3>
+        <ul>
+            <li><strong>Copper:</strong> High conductivity, smaller gauge, better sound fidelity</li>
+            <li><strong>CCA (Copper-Clad Aluminum):</strong> Lower cost, requires 2 sizes thicker for same performance
+            </li>
+        </ul>
+
+        <h2>Diamond-Style Content for Inputs</h2>
+
+        <ul>
+            <li><strong>Speaker Power Handling (Watts RMS):</strong> Enter your speaker’s rated RMS power. Ensures
+                amplifier is matched.</li>
+            <li><strong>Speaker Impedance (Ohms):</strong> Select speaker impedance. Lower impedance draws more current,
+                requiring thicker wire.</li>
+            <li><strong>Speaker Sensitivity (dB @ 1W/1m):</strong> Determines volume output per watt.</li>
+            <li><strong>Use Case:</strong> Studio, home theater, car audio, or PA system.</li>
+            <li><strong>Output:</strong> Recommended Amplifier Power, Ideal Wire Gauge (AWG), Expected Power Loss (%),
+                Copper vs CCA recommendation.</li>
+        </ul>
+
+        <h2>Example Calculation</h2>
+        <p><strong>Input:</strong> RMS = 100 W, Impedance = 4 Ω, Length = 50 ft, Voltage = 28 V RMS</p>
+
+        <ol>
+            <li>Calculate amplifier power: P_amp = 100 × 1.25 = 125 W</li>
+            <li>Calculate current: I = V / R = 28 / 4 = 7 A</li>
+            <li>Calculate power loss in 12 AWG wire (0.0016 Ω/ft):<br>
+                R_wire = 50 × 2 × 0.0016 = 0.16 Ω<br>
+                P_loss = I² × R = 7² × 0.16 = 7.84 W<br>
+                %Loss = (7.84 / 125) × 100 ≈ 6.3%</li>
+            <li>Choose 10 AWG to bring power loss <5%. Copper recommended.</li>
+        </ol>
+
+        <h2>Pro Tips</h2>
+        <ul>
+            <li>Always consider future upgrades; slightly thicker wire prevents costly replacements.</li>
+            <li>Low-impedance speakers or long runs always need 1–2 AWG thicker wire.</li>
+            <li>Use AWG tables for quick reference: 12, 10, 8… smaller number = thicker wire.</li>
+            <li>Factor in CCA vs Copper cost and performance tradeoff.</li>
+        </ul>
+
+    </div>
+
+
+
+    <div class="container my-5">
+        <h2 class="mb-4">Speaker Wire Gauge Calculator FAQs</h2>
+        <div class="accordion" id="faqAccordion">
+
+            <!-- FAQ 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                        How does a speaker wire gauge calculator prevent power loss?
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        By calculating round-trip resistance and current, the tool predicts power loss (I²R) and rejects
+                        gauges that exceed your selected percent loss, recommending thicker wire until the threshold is
+                        met.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        How do I use a speaker wire gauge calculator to determine the correct wire size?
+                    </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Enter length, RMS power, and impedance, choose max % loss (3–5%), then calculate — the tool
+                        tests AWG sizes and returns the first one that meets the power-loss and loss-per-foot limits.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        How does speaker impedance affect the recommended wire gauge from a calculator?
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Lower impedance draws higher current for the same power, increasing I²R losses; therefore at 4 Ω
+                        you often need thicker wire than at 8 Ω for identical power and run length.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                        How does resistance in speaker wire relate to its length?
+                    </button>
+                </h2>
+                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Resistance is proportional to length; the calculator doubles the one-way run to account for
+                        round-trip resistance (to speaker and back), so long runs increase total R and thus power loss.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                        What is a speaker wire gauge calculator and why is it important?
+                    </button>
+                </h2>
+                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        It’s a calculator that recommends AWG by estimating wire resistance and power loss. It’s
+                        important because the correct gauge maintains volume, sound quality, and amplifier health.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq6">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                        What factors does a speaker wire gauge calculator consider?
+                    </button>
+                </h2>
+                <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        It uses run length, RMS power, speaker impedance, target percent power loss, AWG resistance
+                        values, loss-per-foot practical limits, and optional cost per unit.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq7">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                        What information do I need to input into a speaker wire gauge calculator?
+                    </button>
+                </h2>
+                <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="faq7"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        One-way length (ft or m), amplifier RMS power (W), speaker impedance (Ω), and optional price per
+                        foot/meter for cost estimates.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq8">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                        What are the consequences of using too thin a wire for a long run?
+                    </button>
+                </h2>
+                <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="faq8"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Consequences include greater power loss (lower volume), amplifier stress, potential distortion,
+                        and heating of the cable — all of which degrade performance and reliability.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 9 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq9">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                        What features should I look for in a good online speaker wire gauge calculator?
+                    </button>
+                </h2>
+                <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="faq9"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Look for AWG resistance tables, round-trip handling, adjustable percent-loss slider, CCA
+                        compensation, loss-per-foot safety checks and optional cost estimation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 10 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq10">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                        What are the dangers of not using a speaker wire gauge calculator for high-power systems?
+                    </button>
+                </h2>
+                <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="faq10"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Dangers include overheated wires, amplifier overload, audible distortion at high levels, and
+                        premature component failure in worst cases.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 11 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq11">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                        Why is using the correct wire gauge important for audio quality?
+                    </button>
+                </h2>
+                <div id="collapse11" class="accordion-collapse collapse" aria-labelledby="faq11"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Correct gauge reduces resistive loss, preserves dynamic headroom and frequency response, and
+                        prevents amp strain — all critical to faithful reproduction.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 12 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq12">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                        Why is the length of speaker wire a critical input for a gauge calculator?
+                    </button>
+                </h2>
+                <div id="collapse12" class="accordion-collapse collapse" aria-labelledby="faq12"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Because resistance scales with length (round trip), longer runs produce more I²R loss and
+                        therefore require thicker wire to keep power loss within limits.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 13 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq13">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                        Why does longer wire require a thicker gauge according to the calculator?
+                    </button>
+                </h2>
+                <div id="collapse13" class="accordion-collapse collapse" aria-labelledby="faq13"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Thicker wire has lower resistance per unit length; on long runs the reduced R keeps I²R losses
+                        small enough to meet your percent-loss goal.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 14 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq14">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
+                        Where can I find a reliable and free speaker wire gauge calculator online?
+                    </button>
+                </h2>
+                <div id="collapse14" class="accordion-collapse collapse" aria-labelledby="faq14"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Use trusted audio sites with AWG tables and transparent math — this calculator on Diamond Audio
+                        City provides industry-standard resistance lookups, CCA handling and cost options.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 15 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq15">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse15" aria-expanded="false" aria-controls="collapse15">
+                        When should I consider a thicker gauge even if the calculator suggests otherwise?
+                    </button>
+                </h2>
+                <div id="collapse15" class="accordion-collapse collapse" aria-labelledby="faq15"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Consider thicker wire for future upgrades, very high SPLs, long term reliability, or runs routed
+                        through hot/condensed environments where cable cooling is limited.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 16 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq16">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
+                        Who provides the most accurate and up-to-date speaker wire gauge calculators?
+                    </button>
+                </h2>
+                <div id="collapse16" class="accordion-collapse collapse" aria-labelledby="faq16"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Reputable audio engineering resources and manufacturers that publish AWG resistance tables and
+                        explain their math; trusted calculators cite their resistance sources.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 17 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq17">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse17" aria-expanded="false" aria-controls="collapse17">
+                        When is it absolutely essential to use a speaker wire gauge calculator?
+                    </button>
+                </h2>
+                <div id="collapse17" class="accordion-collapse collapse" aria-labelledby="faq17"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Always use the calculator for long runs (50+ ft), high power systems, low impedance speakers (4
+                        Ω), or in installations where cable runs are fixed/in-wall.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 18 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq18">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse18" aria-expanded="false" aria-controls="collapse18">
+                        Who should use a speaker wire gauge calculator for their audio setup?
+                    </button>
+                </h2>
+                <div id="collapse18" class="accordion-collapse collapse" aria-labelledby="faq18"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        DIY installers, AV technicians, hobbyists, car audio installers, and anyone planning fixed
+                        installations where cable changes are costly.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 19 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq19">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse19" aria-expanded="false" aria-controls="collapse19">
+                        Who benefits most from using a speaker wire gauge calculator?
+                    </button>
+                </h2>
+                <div id="collapse19" class="accordion-collapse collapse" aria-labelledby="faq19"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Those installing long-run home theaters, outdoor systems, PA setups, or multi-room audio where
+                        signal integrity matters.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 20 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq20">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse20" aria-expanded="false" aria-controls="collapse20">
+                        Are there any mobile apps that function as speaker wire gauge calculators?
+                    </button>
+                </h2>
+                <div id="collapse20" class="accordion-collapse collapse" aria-labelledby="faq20"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes — several mobile apps and general utility calculators include AWG lookups and resistance
+                        calculators; verify they use standard resistance tables and show their math.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 21 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq21">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse21" aria-expanded="false" aria-controls="collapse21">
+                        How do I compare Copper vs CCA using the calculator?
+                    </button>
+                </h2>
+                <div id="collapse21" class="accordion-collapse collapse" aria-labelledby="faq21"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        The tool shows the Copper recommendation and automatically suggests a CCA gauge ~2 sizes
+                        thicker; you can enter price per unit to compare total cost vs expected performance.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 22 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq22">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse22" aria-expanded="false" aria-controls="collapse22">
+                        What is the AWG speaker wire chart and how does this tool use it?
+                    </button>
+                </h2>
+                <div id="collapse22" class="accordion-collapse collapse" aria-labelledby="faq22"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        An AWG chart lists resistance per unit length for each gauge — the calculator uses those values
+                        to compute round-trip R and determine power loss.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 23 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq23">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse23" aria-expanded="false" aria-controls="collapse23">
+                        Can I use the calculator for in-wall or conduit runs?
+                    </button>
+                </h2>
+                <div id="collapse23" class="accordion-collapse collapse" aria-labelledby="faq23"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes — for fixed in-wall or conduit runs use the calculator and pick a conservative loss
+                        threshold (3%) and a thicker gauge for safety and future upgrades.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 24 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq24">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse24" aria-expanded="false" aria-controls="collapse24">
+                        How do loss-per-foot limits affect the recommended gauge?
+                    </button>
+                </h2>
+                <div id="collapse24" class="accordion-collapse collapse" aria-labelledby="faq24"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        The practical limit (e.g., ≤0.7 W/ft) prevents the calculator from choosing very thin wire on
+                        long runs; if a gauge violates this, the tool upsizes to the next safe option.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 25 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq25">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse25" aria-expanded="false" aria-controls="collapse25">
+                        How is expected power loss shown and interpreted?
+                    </button>
+                </h2>
+                <div id="collapse25" class="accordion-collapse collapse" aria-labelledby="faq25"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        The calculator displays power loss in watts and percent of amplifier output; lower percent means
+                        more power reaches the speaker — aim for your selected threshold (3–5%).
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 26 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq26">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse26" aria-expanded="false" aria-controls="collapse26">
+                        Does the calculator support metric (meters) and imperial (feet) units?
+                    </button>
+                </h2>
+                <div id="collapse26" class="accordion-collapse collapse" aria-labelledby="faq26"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes — enter length in feet or meters; the tool converts internally and applies the same AWG
+                        resistance tables and formulas.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 27 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq27">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse27" aria-expanded="false" aria-controls="collapse27">
+                        What is the recommended gauge for 50 ft runs for typical home theatre speakers?
+                    </button>
+                </h2>
+                <div id="collapse27" class="accordion-collapse collapse" aria-labelledby="faq27"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        For 50 ft: typical recommendations range from 12–14 AWG depending on power and impedance; use
+                        the calculator to pick the correct gauge for your exact inputs.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 28 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq28">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse28" aria-expanded="false" aria-controls="collapse28">
+                        How do I estimate cable cost using this calculator?
+                    </button>
+                </h2>
+                <div id="collapse28" class="accordion-collapse collapse" aria-labelledby="faq28"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Enter price per foot (or per meter); the tool multiplies by round-trip length and shows separate
+                        estimates for Copper and CCA gauges so you can compare total cost.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 29 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq29">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse29" aria-expanded="false" aria-controls="collapse29">
+                        What does "closest safe match" mean if no gauge meets the target threshold?
+                    </button>
+                </h2>
+                <div id="collapse29" class="accordion-collapse collapse" aria-labelledby="faq29"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        It means the calculator will return the next thicker AWG that minimizes power loss and show the
+                        actual power loss so you can decide if the result is acceptable.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 30 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq30">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse30" aria-expanded="false" aria-controls="collapse30">
+                        Should I always choose Copper over CCA?
+                    </button>
+                </h2>
+                <div id="collapse30" class="accordion-collapse collapse" aria-labelledby="faq30"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Copper offers better conductivity and long-term reliability; CCA can save cost but requires
+                        thicker gauge and may not suit critical listening or high-power installs.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 31 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq31">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse31" aria-expanded="false" aria-controls="collapse31">
+                        How do I reset or clear the calculator form?
+                    </button>
+                </h2>
+                <div id="collapse31" class="accordion-collapse collapse" aria-labelledby="faq31"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Press the Reset button or hit Escape to clear inputs; the calculator will return to default
+                        values.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 32 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq32">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse32" aria-expanded="false" aria-controls="collapse32">
+                        Can the calculator help with car audio and subwoofer wiring?
+                    </button>
+                </h2>
+                <div id="collapse32" class="accordion-collapse collapse" aria-labelledby="faq32"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes — enter your car speaker run length and system power; the tool accounts for low impedance
+                        loads common in car audio and suggests appropriate AWG.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 33 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faq33">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse33" aria-expanded="false" aria-controls="collapse33">
+                        Does the calculator account for connector resistance or voice-coil heating?
+                    </button>
+                </h2>
+                <div id="collapse33" class="accordion-collapse collapse" aria-labelledby="faq33"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        The calculator focuses on conductor resistance (AWG) and run length; connector/contact
+                        resistance and voice-coil heating are secondary — use high-quality connectors and correct
+                        fuse/amp settings for safety.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- contant area end -->
+
+    <!--tool js-->
+    <script>
+        let unit = "feet";
+        const awgData = {
+            4: 0.2485, 6: 0.3951, 8: 0.6282, 10: 0.9989,
+            12: 1.588, 14: 2.525, 16: 4.016, 18: 6.385, 20: 10.15
+        };
+
+        document.getElementById("feetBtn").onclick = () => switchUnit("feet");
+        document.getElementById("metersBtn").onclick = () => switchUnit("meters");
+
+        function switchUnit(selected) {
+            const lengthInput = document.getElementById("lengthValue");
+            const currentVal = parseFloat(lengthInput.value);
+            if (isNaN(currentVal)) return;
+            if (selected === "meters" && unit === "feet") {
+                lengthInput.value = (currentVal / 3.28084).toFixed(2);
+            } else if (selected === "feet" && unit === "meters") {
+                lengthInput.value = (currentVal * 3.28084).toFixed(2);
+            }
+            unit = selected;
+            document.getElementById("feetBtn").classList.toggle("active", unit === "feet");
+            document.getElementById("metersBtn").classList.toggle("active", unit === "meters");
+        }
+
+        function calculateWireGauge() {
+            const lengthValue = parseFloat(document.getElementById("lengthValue").value);
+            const power = parseFloat(document.getElementById("power").value);
+            const impedance = parseFloat(document.getElementById("impedance").value);
+            const maxLoss = parseFloat(document.getElementById("maxLoss").value);
+            const wirePrice = parseFloat(document.getElementById("wirePrice").value);
+
+            if (!power || !impedance) {
+                alert("Please enter RMS Power and Speaker Impedance");
+                return;
+            }
+
+            const len = unit === "feet" ? lengthValue : lengthValue * 3.28084;
+            const totalLength = len * 2;
+            const maxWireResistance = (maxLoss * impedance) / (100 - maxLoss);
+
+            // Copper
+            let copperAWG = "4", copperRes = 0, copperLoss = 0, copperLossW = 0;
+            for (const [gauge, resPerKft] of Object.entries(awgData).sort((a, b) => parseInt(b[0]) - parseInt(a[0]))) {
+                const wireRes = (resPerKft / 1000) * totalLength;
+                const lossPercent = (wireRes / (wireRes + impedance)) * 100;
+                const lossW = (wireRes / (wireRes + impedance)) * power;
+                if (wireRes <= maxWireResistance && lossPercent <= maxLoss) {
+                    copperAWG = gauge; copperRes = wireRes; copperLoss = lossPercent; copperLossW = lossW;
+                }
+            }
+            if (!copperRes) copperRes = (awgData[4] / 1000) * totalLength;
+
+            // CCA
+            const ccaMult = 1.5;
+            let ccaAWG = "4", ccaRes = 0;
+            for (const [gauge, resPerKft] of Object.entries(awgData).sort((a, b) => parseInt(b[0]) - parseInt(a[0]))) {
+                const wireRes = (resPerKft / 1000) * totalLength * ccaMult;
+                const lossPercent = (wireRes / (wireRes + impedance)) * 100;
+                if (wireRes <= maxWireResistance && lossPercent <= maxLoss) {
+                    ccaAWG = gauge; ccaRes = wireRes;
+                }
+            }
+
+            const current = Math.sqrt(power / impedance);
+            const voltage = Math.sqrt(power * impedance);
+            const voltageDrop = (current * copperRes / voltage) * 100;
+            const powerDelivered = power - copperLossW;
+            const copperCost = wirePrice ? (wirePrice * totalLength).toFixed(2) : "-";
+            const ccaCost = wirePrice ? (wirePrice * totalLength).toFixed(2) : "-";
+
+            const html = `
+    <h3>Results</h3>
+    <table class="result-table">
+      <tr class="border-row"><td><b>Copper AWG:</b></td><td>${copperAWG}</td></tr>
+      <tr class="border-row"><td><b>CCA AWG:</b></td><td>${ccaAWG}</td></tr>
+      <tr><td><b>Wire Resistance (Ω):</b></td><td>${copperRes.toFixed(4)}</td></tr>
+      <tr><td><b>Voltage Drop (%):</b></td><td>${voltageDrop.toFixed(2)}%</td></tr>
+      <tr><td><b>Power Loss (%):</b></td><td>${copperLoss.toFixed(2)}%</td></tr>
+      <tr class="border-row"><td><b>Max Power Loss (W):</b></td><td>${copperLossW.toFixed(2)} W</td></tr>
+      <tr><td><b>Power Delivered (W):</b></td><td>${powerDelivered.toFixed(1)}</td></tr>
+      <tr class="border-row"><td><b>Cost (Cu):</b></td><td>$${copperCost}</td></tr>
+      <tr class="border-row"><td><b>Cost (CCA):</b></td><td>$${ccaCost}</td></tr>
+    </table>
+  `;
+            document.getElementById("result").style.display = "block";
+            document.getElementById("result").innerHTML = html;
+        }
+
+        function resetForm() {
+            document.getElementById("lengthValue").value = 20;
+            document.getElementById("power").value = "";
+            document.getElementById("impedance").value = "";
+            document.getElementById("maxLoss").value = 5;
+            document.getElementById("wirePrice").value = "";
+            document.getElementById("result").style.display = "none";
+        }
+    </script>
+
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+
+    <!-- include js -->
+    <script>
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+
+    </script>
+</body>
+
+</html>

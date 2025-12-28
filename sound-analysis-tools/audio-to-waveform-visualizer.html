@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Audio Visualizer</title>
+<style>
+  body {
+    margin: 0;
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 20px;
+  }
+  .container {
+    max-width: 900px;
+    margin: auto;
+  }
+  .panel {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  }
+  h1 {
+    margin-top: 0;
+    color: #38bdf8;
+  }
+  h3 {
+    margin-top: 0;
+    color: #94a3b8;
+    font-size: 16px;
+  }
+  button, input[type="color"] {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  button {
+    background: #475569;
+    color: white;
+    font-weight: 500;
+  }
+  button:hover:not(:disabled) {
+    background: #64748b;
+    transform: translateY(-1px);
+  }
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  button.primary {
+    background: #38bdf8;
+    color: #0f172a;
+  }
+  button.primary:hover:not(:disabled) {
+    background: #7dd3fc;
+  }
+  button.danger {
+    background: #ef4444;
+  }
+  button.danger:hover:not(:disabled) {
+    background: #f87171;
+  }
+  button.success {
+    background: #10b981;
+  }
+  button.success:hover:not(:disabled) {
+    background: #34d399;
+  }
+  input[type="file"] {
+    padding: 8px;
+    background: #334155;
+    border-radius: 8px;
+    color: #e2e8f0;
+    cursor: pointer;
+  }
+  input[type="file"]::file-selector-button {
+    padding: 8px 12px;
+    background: #475569;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  input[type="file"]::file-selector-button:hover {
+    background: #64748b;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+  input[type="range"] {
+    width: 100px;
+  }
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  select {
+    padding: 8px 12px;
+    background: #334155;
+    color: #e2e8f0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  select:hover {
+    background: #475569;
+  }
+  .controls {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .status {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .status.recording {
+    background: #ef4444;
+    color: white;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  .status.ready {
+    background: #10b981;
+    color: white;
+  }
+  canvas {
+    width: 100%;
+    background: #000;
+    border-radius: 8px;
+    display: block;
+  }
+  audio, video {
+    width: 100%;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🎵 Audio Visualizer</h1>
+  
+  <div class="panel">
+    <h3>Visualization Canvas</h3>
+    <canvas id="canvas" width="1920" height="400"></canvas>
+
+    <div class="controls">
+      <button id="playBtn" class="primary">▶ Play</button>
+      <input type="file" id="fileInput" accept="audio/*" />
+    </div>
+
+    <div class="controls">
+      <label>
+        Visualization Style
+        <select id="visualStyle">
+          <option value="bars">Bars</option>
+          <option value="wave">Wave</option>
+          <option value="circle">Circle</option>
+        </select>
+      </label>
+      <label>
+        Bars
+        <input type="range" id="barCount" min="16" max="256" value="64">
+        <span id="barCountVal">64</span>
+      </label>
+      <label>
+        Smoothing
+        <input type="range" id="smoothing" min="0" max="0.95" step="0.01" value="0.7">
+        <span id="smoothingVal">0.7</span>
+      </label>
+      <label>
+        Color
+        <input type="color" id="barColor" value="#38bdf8">
+      </label>
+    </div>
+
+    <div class="controls">
+      <label>
+        <input type="checkbox" id="includeAudio" checked>
+        Include audio in video
+      </label>
+      <button id="generateBtn" class="success" disabled>🎬 Generate Video</button>
+      <span id="status"></span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Audio Player</h3>
+    <audio id="audio" controls></audio>
+  </div>
+
+  <div class="panel" id="previewPanel" style="display:none;">
+    <h3>Recorded Video Preview</h3>
+    <video id="preview" controls></video>
+    <div class="controls" style="margin-top:12px;">
+      <button id="downloadBtn" class="primary">⬇ Download Video</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const audio = document.getElementById("audio");
+
+let audioCtx = null;
+let analyser = null;
+let source = null;
+let sourceNode = null;
+let animationId = null;
+let isPlaying = false;
+let mediaRecorder = null;
+let recordedChunks = [];
+let isRecording = false;
+
+// UI Elements
+const playBtn = document.getElementById("playBtn");
+const fileInput = document.getElementById("fileInput");
+const barColorInput = document.getElementById("barColor");
+const includeAudio = document.getElementById("includeAudio");
+const preview = document.getElementById("preview");
+const status = document.getElementById("status");
+const generateBtn = document.getElementById("generateBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const visualStyle = document.getElementById("visualStyle");
+
+// Fixed values for bars and smoothing
+const barCount = 64;
+const smoothing = 0.7;
+
+function ensureAudioGraph() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  
+  if (!analyser) {
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 2048;
+    analyser.smoothingTimeConstant = 0.7;
+  }
+  
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+
+  // Only create source once
+  if (!sourceNode && audio.src) {
+    try {
+      sourceNode = audioCtx.createMediaElementSource(audio);
+      sourceNode.connect(analyser);
+      analyser.connect(audioCtx.destination);
+    } catch (e) {
+      console.log("Source already connected or error:", e);
+    }
+  }
+}
+
+function draw() {
+  const width = canvas.width;
+  const height = canvas.height;
+  const color = barColorInput.value;
+  const style = visualStyle.value;
+
+  if (analyser) {
+    analyser.smoothingTimeConstant = smoothing;
+    const bufferLength = analyser.frequencyBinCount;
+    const data = new Uint8Array(bufferLength);
+    analyser.getByteFrequencyData(data);
+
+    // Clear canvas with background
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, width, height);
+
+    if (style === "bars") {
+      drawBars(data, bufferLength, width, height, barCount, color);
+    } else if (style === "wave") {
+      drawWave(data, bufferLength, width, height, color);
+    } else if (style === "circle") {
+      drawCircle(data, bufferLength, width, height, barCount, color);
+    }
+  } else {
+    // Draw empty state
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, width, height);
+    ctx.fillStyle = "#475569";
+    ctx.font = "24px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Upload audio to visualize", width / 2, height / 2);
+  }
+
+  animationId = requestAnimationFrame(draw);
+}
+
+function drawBars(data, bufferLength, width, height, barCount, color) {
+  const barWidth = width / barCount;
+  const gap = barWidth * 0.1;
+
+  for (let i = 0; i < barCount; i++) {
+    const index = Math.floor((i / barCount) * bufferLength);
+    const v = data[index] / 255;
+    const barHeight = v * height * 0.9;
+    
+    const gradient = ctx.createLinearGradient(0, height - barHeight, 0, height);
+    gradient.addColorStop(0, color);
+    gradient.addColorStop(1, color + '80');
+    
+    ctx.fillStyle = gradient;
+    ctx.fillRect(
+      i * barWidth + gap / 2, 
+      height - barHeight, 
+      barWidth - gap, 
+      barHeight
+    );
+  }
+}
+
+function drawWave(data, bufferLength, width, height, color) {
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = color;
+  ctx.beginPath();
+  
+  const sliceWidth = width / bufferLength;
+  let x = 0;
+  
+  for (let i = 0; i < bufferLength; i++) {
+    const v = data[i] / 255;
+    const y = height - (v * height * 0.8);
+    
+    if (i === 0) {
+      ctx.moveTo(x, y);
+    } else {
+      ctx.lineTo(x, y);
+    }
+    
+    x += sliceWidth;
+  }
+  
+  ctx.stroke();
+  
+  // Add glow effect
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = color;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+}
+
+function drawCircle(data, bufferLength, width, height, barCount, color) {
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const radius = Math.min(width, height) * 0.25;
+  
+  for (let i = 0; i < barCount; i++) {
+    const index = Math.floor((i / barCount) * bufferLength);
+    const v = data[index] / 255;
+    const barHeight = v * radius;
+    
+    const angle = (i / barCount) * Math.PI * 2;
+    const x1 = centerX + Math.cos(angle) * radius;
+    const y1 = centerY + Math.sin(angle) * radius;
+    const x2 = centerX + Math.cos(angle) * (radius + barHeight);
+    const y2 = centerY + Math.sin(angle) * (radius + barHeight);
+    
+    ctx.strokeStyle = color;
+    ctx.lineWidth = (width / barCount) * 0.8;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+  }
+}
+
+// Start drawing on load
+draw();
+
+playBtn.onclick = async () => {
+  if (!audio.src) {
+    alert("Please upload an audio file first");
+    return;
+  }
+
+  if (!isPlaying) {
+    ensureAudioGraph();
+    try {
+      await audioCtx.resume();
+      await audio.play();
+      isPlaying = true;
+      playBtn.innerHTML = "⏸ Pause";
+      playBtn.classList.add("danger");
+      playBtn.classList.remove("primary");
+    } catch (e) {
+      console.error("Playback error:", e);
+      alert("Playback error. Please try again.");
+    }
+  } else {
+    audio.pause();
+    isPlaying = false;
+    playBtn.innerHTML = "▶ Play";
+    playBtn.classList.add("primary");
+    playBtn.classList.remove("danger");
+  }
+};
+
+audio.onended = () => {
+  isPlaying = false;
+  playBtn.innerHTML = "▶ Play";
+  playBtn.classList.add("primary");
+  playBtn.classList.remove("danger");
+};
+
+fileInput.onchange = () => {
+  const file = fileInput.files[0];
+  if (!file) return;
+  
+  const url = URL.createObjectURL(file);
+  audio.src = url;
+  
+  // Reset source node when new file is loaded
+  sourceNode = null;
+  
+  // Hide video preview and show canvas
+  preview.style.display = "none";
+  canvas.style.display = "block";
+  downloadBtn.style.display = "none";
+  
+  status.textContent = "";
+  status.className = "status";
+  
+  // Enable generate button
+  generateBtn.disabled = false;
+  
+  // Reset audio context
+  if (audioCtx) {
+    ensureAudioGraph();
+  }
+};
+
+// Generate video
+generateBtn.onclick = async () => {
+  if (!audio.src) {
+    alert("Please upload an audio file first");
+    return;
+  }
+
+  ensureAudioGraph();
+  await audioCtx.resume();
+  
+  recordedChunks = [];
+  isRecording = true;
+
+  // Get canvas stream at 60fps
+  const canvasStream = canvas.captureStream(60);
+  let finalStream = null;
+
+  if (includeAudio.checked) {
+    // Create destination for audio
+    const dest = audioCtx.createMediaStreamDestination();
+    analyser.connect(dest);
+    
+    finalStream = new MediaStream([
+      ...canvasStream.getVideoTracks(),
+      ...dest.stream.getAudioTracks()
+    ]);
+  } else {
+    finalStream = canvasStream;
+  }
+
+  // Setup MediaRecorder
+  const options = { mimeType: 'video/webm; codecs=vp8,opus' };
+  
+  try {
+    mediaRecorder = new MediaRecorder(finalStream, options);
+  } catch (e) {
+    // Fallback without codecs specification
+    mediaRecorder = new MediaRecorder(finalStream);
+  }
+
+  mediaRecorder.ondataavailable = (e) => {
+    if (e.data.size > 0) {
+      recordedChunks.push(e.data);
+    }
+  };
+
+  mediaRecorder.onstop = () => {
+    const blob = new Blob(recordedChunks, { type: "video/webm" });
+    preview.src = URL.createObjectURL(blob);
+    previewPanel.style.display = "block";
+    
+    status.textContent = "✓ Video Generated Successfully!";
+    status.className = "status ready";
+    
+    isRecording = false;
+    generateBtn.disabled = false;
+    generateBtn.innerHTML = "🎬 Generate Video";
+    
+    // Reset audio
+    audio.pause();
+    audio.currentTime = 0;
+    isPlaying = false;
+    playBtn.innerHTML = "▶ Play";
+    playBtn.classList.add("primary");
+    playBtn.classList.remove("danger");
+  };
+
+  mediaRecorder.onerror = (e) => {
+    console.error("MediaRecorder error:", e);
+    alert("Recording error occurred");
+    isRecording = false;
+    generateBtn.disabled = false;
+    generateBtn.innerHTML = "🎬 Generate Video";
+  };
+
+  // Start recording
+  mediaRecorder.start(100);
+  
+  // Reset and play audio from beginning
+  audio.currentTime = 0;
+  await audio.play();
+  isPlaying = true;
+  
+  status.textContent = "● Generating Video...";
+  status.className = "status recording";
+  
+  generateBtn.disabled = true;
+  generateBtn.innerHTML = "⏳ Generating...";
+  
+  // Auto-stop when audio ends
+  audio.onended = () => {
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+      mediaRecorder.stop();
+      
+      // Stop all tracks
+      if (mediaRecorder.stream) {
+        mediaRecorder.stream.getTracks().forEach(track => track.stop());
+      }
+    }
+  };
+};
+
+downloadBtn.onclick = () => {
+  if (!recordedChunks.length) {
+    alert("No recording available to download");
+    return;
+  }
+  
+  const blob = new Blob(recordedChunks, { type: "video/webm" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `visualizer-${Date.now()}.webm`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  
+  setTimeout(() => URL.revokeObjectURL(url), 100);
+};
+</script>
+</body>
+</html>

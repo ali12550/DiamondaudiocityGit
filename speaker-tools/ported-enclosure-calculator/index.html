@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ported Enclosure Calculator | Bass Reflex Design | DiamondAudioCity</title>
+    <meta name="description"
+        content="Free ported enclosure calculator. Design bass reflex speaker boxes with optimal port dimensions and tuning frequency.">
+    <meta name="keywords"
+        content="ported enclosure, bass reflex, speaker box, port calculator, subwoofer enclosure, Thiele-Small">
+    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/ported-enclosure-calculator/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row justify-content-around">
+
+
+            <div class="col-lg-7 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Ported Enclosure Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-box me-2"></i>Ported Enclosure Calculator</h1>
+                        <p>Design bass reflex (ported) speaker enclosures. Calculate optimal box volume and port
+                            dimensions for your driver.</p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Box Volume (cubic feet):</label>
+                            <input type="number" class="form-control" id="boxVolume" value="2" min="0.5" max="50"
+                                step="0.1" oninput="calculate()">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Tuning Frequency (Hz):</label>
+                            <input type="number" class="form-control" id="tuningFreq" value="35" min="20" max="100"
+                                oninput="calculate()">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Port Shape:</label>
+                            <select class="form-select" id="portShape" onchange="calculate()">
+                                <option value="round" selected>Round Port</option>
+                                <option value="slot">Slot Port</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4" id="roundPortInputs">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Port Diameter (inches):</label>
+                            <input type="number" class="form-control" id="portDiameter" value="4" min="1" max="12"
+                                step="0.25" oninput="calculate()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Number of Ports:</label>
+                            <select class="form-select" id="numPorts" onchange="calculate()">
+                                <option value="1" selected>1 Port</option>
+                                <option value="2">2 Ports</option>
+                                <option value="3">3 Ports</option>
+                                <option value="4">4 Ports</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4" id="slotPortInputs" style="display: none;">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Slot Width (inches):</label>
+                            <input type="number" class="form-control" id="slotWidth" value="2" min="0.5" max="12"
+                                step="0.25" oninput="calculate()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Slot Height (inches):</label>
+                            <input type="number" class="form-control" id="slotHeight" value="8" min="1" max="24"
+                                step="0.25" oninput="calculate()">
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>Port Specifications</h3>
+                        <p class="result-value" id="portLength">12.5 inches</p>
+                        <div class="row text-start mt-4">
+                            <div class="col-md-3 col-6 mb-3">
+                                <strong>Port Length:</strong><br>
+                                <span id="portLengthVal" class="fs-4">12.5"</span>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <strong>Port Area:</strong><br>
+                                <span id="portArea" class="fs-4">12.6 sq in</span>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <strong>Port Velocity:</strong><br>
+                                <span id="portVelocity" class="fs-4">-- m/s</span>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <strong>Max SPL:</strong><br>
+                                <span id="maxSPL" class="fs-4">~105 dB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 rounded" id="warningBox" style="display: none;">
+                        <h5><i class="bi bi-exclamation-triangle me-2"></i>Design Notes</h5>
+                        <ul id="designNotes" class="mb-0"></ul>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-info-circle me-2"></i>Ported Box Design Guide</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="text-teal">Advantages</h5>
+                                <ul>
+                                    <li>Extended low frequency response</li>
+                                    <li>Higher efficiency than sealed</li>
+                                    <li>More output near tuning frequency</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="text-teal">Considerations</h5>
+                                <ul>
+                                    <li>Steeper rolloff below tuning frequency</li>
+                                    <li>Port noise at high volumes</li>
+                                    <li>Less transient accuracy than sealed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i>
+                                        Speaker Wattage</a></li>
+                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i class="bi bi-diagram-3"></i>
+                                        Impedance Calculator</a></li>
+                                <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
+                                        Amplifier Power</a></li>
+                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i class="bi bi-rulers"></i>
+                                        Sound Distance Drop</a></li>
+                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i class="bi bi-arrows-move"></i>
+                                        Speaker Placement</a></li>
+                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i> Room
+                                        Acoustics</a></li>
+                                <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
+                                        Ported Enclosure</a></li>
+                                <li><a href="/speaker-tools/sealed-box-calculator/"><i class="bi bi-box-seam"></i>
+                                        Sealed Box</a></li>
+                                <li><a href="/speaker-tools/crossover-frequency-calculator/"><i class="bi bi-filter"></i>
+                                        Crossover Frequency</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+    <!-- tool js -->
+    <script>
+        document.getElementById('portShape').addEventListener('change', function () {
+            document.getElementById('roundPortInputs').style.display =
+                this.value === 'round' ? 'flex' : 'none';
+            document.getElementById('slotPortInputs').style.display =
+                this.value === 'slot' ? 'flex' : 'none';
+        });
+
+        function calculate() {
+            const boxVolume = parseFloat(document.getElementById('boxVolume').value) || 2;
+            const tuningFreq = parseFloat(document.getElementById('tuningFreq').value) || 35;
+            const portShape = document.getElementById('portShape').value;
+
+            const boxVolumeCI = boxVolume * 1728; // cubic inches
+            let portArea, portLength;
+            const notes = [];
+
+            if (portShape === 'round') {
+                const diameter = parseFloat(document.getElementById('portDiameter').value) || 4;
+                const numPorts = parseInt(document.getElementById('numPorts').value) || 1;
+
+                const singlePortArea = Math.PI * Math.pow(diameter / 2, 2);
+                portArea = singlePortArea * numPorts;
+
+                // Port length formula: Lv = (23562.5 × D² × N) / (Fb² × Vb) - (k × D)
+                // Where k ≈ 0.732 for flanged port
+                const k = 0.732;
+                portLength = (23562.5 * Math.pow(diameter, 2) * numPorts) / (Math.pow(tuningFreq, 2) * boxVolume) - (k * diameter);
+
+                document.getElementById('portLengthVal').textContent = portLength.toFixed(1) + '"';
+                document.getElementById('portLength').textContent = portLength.toFixed(1) + ' inches' + (numPorts > 1 ? ' each' : '');
+
+                if (portLength < 2) {
+                    notes.push('Port length too short - increase diameter or lower tuning frequency');
+                }
+                if (portLength > 20) {
+                    notes.push('Port length very long - consider slot port or larger diameter');
+                }
+            } else {
+                const slotWidth = parseFloat(document.getElementById('slotWidth').value) || 2;
+                const slotHeight = parseFloat(document.getElementById('slotHeight').value) || 8;
+
+                portArea = slotWidth * slotHeight;
+
+                // Equivalent diameter for slot port
+                const eqDiam = 2 * Math.sqrt(portArea / Math.PI);
+                const k = 0.732;
+                portLength = (23562.5 * Math.pow(eqDiam, 2)) / (Math.pow(tuningFreq, 2) * boxVolume) - (k * eqDiam);
+
+                document.getElementById('portLengthVal').textContent = portLength.toFixed(1) + '"';
+                document.getElementById('portLength').textContent = portLength.toFixed(1) + ' inches';
+            }
+
+            document.getElementById('portArea').textContent = portArea.toFixed(1) + ' sq in';
+
+            // Estimate port velocity (rough approximation)
+            // Assuming ~1W input at tuning frequency
+            const velocity = 5 + (100 / portArea) * 2;
+            document.getElementById('portVelocity').textContent = velocity.toFixed(1) + ' m/s';
+
+            if (velocity > 25) {
+                notes.push('Port velocity may be high - increase port area to reduce noise');
+            }
+
+            // Rough SPL estimate
+            const maxSPL = 90 + 10 * Math.log10(boxVolume * 2);
+            document.getElementById('maxSPL').textContent = '~' + Math.round(maxSPL) + ' dB';
+
+            // Display notes
+            if (notes.length > 0) {
+                document.getElementById('warningBox').style.display = 'block';
+                document.getElementById('warningBox').className = 'mt-4 p-4 rounded bg-warning bg-opacity-10';
+                document.getElementById('designNotes').innerHTML = notes.map(n => `<li>${n}</li>`).join('');
+            } else {
+                document.getElementById('warningBox').style.display = 'block';
+                document.getElementById('warningBox').className = 'mt-4 p-4 rounded bg-success bg-opacity-10';
+                document.getElementById('designNotes').innerHTML = '<li>Design parameters appear reasonable</li>';
+            }
+        }
+
+        calculate();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

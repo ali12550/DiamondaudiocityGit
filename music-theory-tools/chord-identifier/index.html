@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chord Identifier | Find Chord Names from Notes | DiamondAudioCity</title>
+    <meta name="description"
+        content="Free chord identifier tool. Select notes to identify chord names including major, minor, diminished, augmented, 7th, and extended chords.">
+    <meta name="keywords"
+        content="chord identifier, chord finder, chord name, music theory, chord recognition, note to chord">
+    <link rel="canonical" href="https://diamondaudiocity.com/music-theory-tools/chord-identifier/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .note-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .note-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 3px solid var(--mid-blue);
+            background: #fff;
+            color: var(--mid-blue);
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .note-btn:hover {
+            background: var(--light-bg);
+            transform: scale(1.05);
+        }
+
+        .note-btn.selected {
+            background: var(--teal);
+            border-color: var(--teal);
+            color: #fff;
+        }
+
+        .chord-result {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+
+        .chord-type {
+            font-size: 18px;
+            color: var(--mid-blue);
+        }
+
+        .chord-matches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .chord-match {
+            background: var(--light-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chord-match:hover {
+            border-color: var(--teal);
+            background: var(--accent);
+        }
+
+        .chord-match.primary {
+            border-color: var(--teal);
+            background: rgba(0, 106, 103, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/music-theory-tools/chord-identifier/"
+                                        class="active"><i class="bi bi-vinyl"></i> Chord Identifier</a></li>
+                                <li><a href="/music-theory-tools/scale-finder/"><i class="bi bi-grid-3x3"></i> Scale
+                                        Finder</a></li>
+                                <li><a href="/music-theory-tools/chord-progression-generator/"><i class="bi bi-diagram-3"></i>
+                                        Chord Progression</a></li>
+                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i>
+                                        Online Metronome</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/music-theory-tools/">Music Theory Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Chord Identifier</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-vinyl me-2"></i>Chord Identifier</h1>
+                        <p>Select notes to identify the chord. Supports triads, 7th chords, extended chords, and
+                            inversions.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Select Notes (click to toggle):</label>
+                        <div class="note-selector" id="noteSelector"></div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-outline-secondary" onclick="clearNotes()">
+                                <i class="bi bi-x-circle me-1"></i>Clear All
+                            </button>
+                            <button class="btn btn-primary ms-2" onclick="playChord()">
+                                <i class="bi bi-play-fill me-1"></i>Play Chord
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>Identified Chord</h3>
+                        <p class="chord-result" id="chordResult">-</p>
+                        <p class="chord-type" id="chordType">Select at least 3 notes</p>
+
+                        <div id="alternativeChords" style="display: none;">
+                            <h5 class="mt-4 mb-3">Possible Interpretations:</h5>
+                            <div class="chord-matches" id="chordMatches"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3">Selected Notes</h5>
+                        <p id="selectedNotesDisplay">None selected</p>
+                        <hr>
+                        <h5 class="text-mid mb-3">Chord Formula</h5>
+                        <p id="chordFormula">-</p>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-book me-2"></i>Common Chord Types</h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Chord Type</th>
+                                        <th>Symbol</th>
+                                        <th>Formula</th>
+                                        <th>Example (C)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Major</td>
+                                        <td>C</td>
+                                        <td>1 - 3 - 5</td>
+                                        <td>C - E - G</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Minor</td>
+                                        <td>Cm</td>
+                                        <td>1 - ♭3 - 5</td>
+                                        <td>C - E♭ - G</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diminished</td>
+                                        <td>Cdim</td>
+                                        <td>1 - ♭3 - ♭5</td>
+                                        <td>C - E♭ - G♭</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Augmented</td>
+                                        <td>Caug</td>
+                                        <td>1 - 3 - #5</td>
+                                        <td>C - E - G#</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Major 7th</td>
+                                        <td>Cmaj7</td>
+                                        <td>1 - 3 - 5 - 7</td>
+                                        <td>C - E - G - B</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Minor 7th</td>
+                                        <td>Cm7</td>
+                                        <td>1 - ♭3 - 5 - ♭7</td>
+                                        <td>C - E♭ - G - B♭</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dominant 7th</td>
+                                        <td>C7</td>
+                                        <td>1 - 3 - 5 - ♭7</td>
+                                        <td>C - E - G - B♭</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sus4</td>
+                                        <td>Csus4</td>
+                                        <td>1 - 4 - 5</td>
+                                        <td>C - F - G</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sus2</td>
+                                        <td>Csus2</td>
+                                        <td>1 - 2 - 5</td>
+                                        <td>C - D - G</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+
+    <script>
+        const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        let selectedNotes = [];
+        let audioContext = null;
+
+        const chordTypes = {
+            'major': { intervals: [0, 4, 7], symbol: '', name: 'Major' },
+            'minor': { intervals: [0, 3, 7], symbol: 'm', name: 'Minor' },
+            'diminished': { intervals: [0, 3, 6], symbol: 'dim', name: 'Diminished' },
+            'augmented': { intervals: [0, 4, 8], symbol: 'aug', name: 'Augmented' },
+            'sus2': { intervals: [0, 2, 7], symbol: 'sus2', name: 'Suspended 2nd' },
+            'sus4': { intervals: [0, 5, 7], symbol: 'sus4', name: 'Suspended 4th' },
+            'major7': { intervals: [0, 4, 7, 11], symbol: 'maj7', name: 'Major 7th' },
+            'minor7': { intervals: [0, 3, 7, 10], symbol: 'm7', name: 'Minor 7th' },
+            'dominant7': { intervals: [0, 4, 7, 10], symbol: '7', name: 'Dominant 7th' },
+            'dim7': { intervals: [0, 3, 6, 9], symbol: 'dim7', name: 'Diminished 7th' },
+            'halfDim7': { intervals: [0, 3, 6, 10], symbol: 'm7♭5', name: 'Half-Diminished 7th' },
+            'minMaj7': { intervals: [0, 3, 7, 11], symbol: 'm(maj7)', name: 'Minor Major 7th' },
+            'aug7': { intervals: [0, 4, 8, 10], symbol: 'aug7', name: 'Augmented 7th' },
+            'add9': { intervals: [0, 4, 7, 14], symbol: 'add9', name: 'Add 9' },
+            '6': { intervals: [0, 4, 7, 9], symbol: '6', name: 'Major 6th' },
+            'm6': { intervals: [0, 3, 7, 9], symbol: 'm6', name: 'Minor 6th' }
+        };
+
+        function initNoteSelector() {
+            const selector = document.getElementById('noteSelector');
+            notes.forEach(note => {
+                const btn = document.createElement('button');
+                btn.className = 'note-btn';
+                btn.textContent = note;
+                btn.onclick = () => toggleNote(note);
+                selector.appendChild(btn);
+            });
+        }
+
+        function toggleNote(note) {
+            const index = selectedNotes.indexOf(note);
+            if (index > -1) {
+                selectedNotes.splice(index, 1);
+            } else {
+                selectedNotes.push(note);
+            }
+            updateUI();
+            identifyChord();
+        }
+
+        function clearNotes() {
+            selectedNotes = [];
+            updateUI();
+            identifyChord();
+        }
+
+        function updateUI() {
+            document.querySelectorAll('.note-btn').forEach(btn => {
+                btn.classList.toggle('selected', selectedNotes.includes(btn.textContent));
+            });
+            document.getElementById('selectedNotesDisplay').textContent = 
+                selectedNotes.length ? selectedNotes.join(' - ') : 'None selected';
+        }
+
+        function identifyChord() {
+            if (selectedNotes.length < 3) {
+                document.getElementById('chordResult').textContent = '-';
+                document.getElementById('chordType').textContent = 'Select at least 3 notes';
+                document.getElementById('chordFormula').textContent = '-';
+                document.getElementById('alternativeChords').style.display = 'none';
+                return;
+            }
+
+            const matches = [];
+            
+            selectedNotes.forEach(root => {
+                const rootIndex = notes.indexOf(root);
+                const intervals = selectedNotes.map(n => (notes.indexOf(n) - rootIndex + 12) % 12).sort((a, b) => a - b);
+                
+                for (const [type, data] of Object.entries(chordTypes)) {
+                    if (arraysEqual(intervals, data.intervals)) {
+                        matches.push({
+                            root: root,
+                            type: type,
+                            symbol: root + data.symbol,
+                            name: root + ' ' + data.name,
+                            formula: data.intervals.join(' - ')
+                        });
+                    }
+                }
+            });
+
+            if (matches.length > 0) {
+                const primary = matches[0];
+                document.getElementById('chordResult').textContent = primary.symbol;
+                document.getElementById('chordType').textContent = primary.name;
+                document.getElementById('chordFormula').textContent = 'Intervals: ' + primary.formula;
+                
+                if (matches.length > 1) {
+                    document.getElementById('alternativeChords').style.display = 'block';
+                    let html = '';
+                    matches.forEach((m, i) => {
+                        html += `<div class="chord-match ${i === 0 ? 'primary' : ''}" onclick="selectChord('${m.symbol}', '${m.name}')">
+                            <strong>${m.symbol}</strong><br><small>${m.name}</small>
+                        </div>`;
+                    });
+                    document.getElementById('chordMatches').innerHTML = html;
+                } else {
+                    document.getElementById('alternativeChords').style.display = 'none';
+                }
+            } else {
+                document.getElementById('chordResult').textContent = 'Unknown';
+                document.getElementById('chordType').textContent = 'Try different note combinations';
+                document.getElementById('chordFormula').textContent = '-';
+                document.getElementById('alternativeChords').style.display = 'none';
+            }
+        }
+
+        function selectChord(symbol, name) {
+            document.getElementById('chordResult').textContent = symbol;
+            document.getElementById('chordType').textContent = name;
+        }
+
+        function arraysEqual(a, b) {
+            return a.length === b.length && a.every((v, i) => v === b[i]);
+        }
+
+        function playChord() {
+            if (selectedNotes.length === 0) return;
+            
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            selectedNotes.forEach(note => {
+                const noteIndex = notes.indexOf(note);
+                const freq = 261.63 * Math.pow(2, noteIndex / 12);
+                
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+                
+                osc.frequency.value = freq;
+                osc.type = 'sine';
+                
+                gain.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+                
+                osc.start();
+                osc.stop(audioContext.currentTime + 1);
+            });
+        }
+
+        initNoteSelector();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+            .then(([header, footer]) => {
+                document.getElementById("header").innerHTML = header;
+                document.getElementById("footer").innerHTML = footer;
+            })
+            .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>
