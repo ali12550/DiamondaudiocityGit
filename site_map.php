@@ -48,13 +48,19 @@ function scanSite($dir, $baseUrl, $excludeDirs, $excludeFiles) {
             }
 
             $relativePath = str_replace($dir, '', $path);
-            $relativePath = str_replace(DIRECTORY_SEPARATOR, '/', $relativePath);
+$relativePath = str_replace(DIRECTORY_SEPARATOR, '/', $relativePath);
 
-            $urls[] = [
-                'loc'      => $baseUrl . $relativePath,
-                'lastmod'  => gmdate('c', $file->getMTime()),
-                'priority' => calculatePriority($relativePath)
-            ];
+// Normalize index.html to directory URL
+if (basename($relativePath) === 'index.html') {
+    $relativePath = rtrim(dirname($relativePath), '/') . '/';
+}
+
+$urls[] = [
+    'loc'      => $baseUrl . $relativePath,
+    'lastmod'  => gmdate('c', $file->getMTime()),
+    'priority' => calculatePriority($relativePath)
+];
+
         }
     }
 
