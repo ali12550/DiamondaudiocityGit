@@ -21,7 +21,10 @@ $excludeFiles = [
     'index.php',
     'site_map.php',
     'site_map.xml',
-    'sitemap.php'
+    'sitemap.php',
+    'header.html',
+    'footer.html',
+    '404.html'
 ];
 
 function scanSite($dir, $baseUrl, $excludeDirs, $excludeFiles) {
@@ -80,7 +83,7 @@ function calculatePriority($path) {
 $urls = scanSite($rootDir, $baseUrl, $excludeDirs, $excludeFiles);
 
 echo '<?xml version="1.0" encoding="UTF-8"?>';
-echo '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">';
+echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
 foreach ($urls as $url) {
     echo '<url>';
