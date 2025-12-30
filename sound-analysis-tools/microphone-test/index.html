@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaker Wattage Calculator – Match Amp Power Safely (RMS & Ω)</title>
+    <meta name="description"
+        content="Calculate the correct speaker wattage and amplifier power using impedance, RMS, and SPL. Avoid clipping, damage, and poor sound quality.">
+    <meta name="keywords"
+        content="amplifier power calculator, amp wattage, speaker amp matching, audio amplifier sizing">
+    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/amplifier-power-calculator/">
+
+    <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/bootstrap5.css" rel="stylesheet">
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/tools.css" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NCHP45VYJ2');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+        crossorigin="anonymous"></script>
+    <style>
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #2196F3;
+            color: white;
+        }
+
+        button:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+
+        #volumeMeter {
+            width: 100%;
+            height: 30px;
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        #volumeLevel {
+            height: 100%;
+            width: 0;
+            background: #4CAF50;
+            transition: width 0.05s linear;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row justify-content-around">
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Sound Analysis Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sound-analysis-tools/decibel-meter/"><i class="bi bi-volume-up"></i>
+                                        Decibel Meter</a></li>
+
+
+                                <li><a href="/sound-analysis-tools/microphone-test/"><i class="bi bi-mic"></i>
+                                        Microphone Test</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Amplifier Power Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-mic me-2"></i>Microphone Test Tool (Online & Free)</h1>
+                        <p>Click "Start" to allow access to your microphone and test the input.</p>
+                    </div>
+
+                    <button id="startBtn">Start</button>
+                    <button id="stopBtn" disabled>Stop</button>
+
+                    <div id="volumeMeter">
+                        <div id="volumeLevel"></div>
+                    </div>
+
+                    <p id="status"></p>
+                    <section class="tool-content container my-5">
+
+                        <h2>What Is a Microphone Test?</h2>
+                        <p>
+                            A <strong>microphone test</strong> is the process of checking whether your microphone is
+                            properly detected,
+                            capturing sound, and producing usable audio levels. This online microphone test tool allows
+                            you to verify
+                            microphone functionality directly in your browser without installing any software.
+                        </p>
+                        <p>
+                            It works using modern browser audio technologies and is compatible with desktop, mobile, and
+                            tablet devices.
+                        </p>
+
+                        <h2>Can I Test My Microphone Online?</h2>
+                        <p>Yes. With this microphone tester, you can:</p>
+                        <ul>
+                            <li>Test if your microphone is working</li>
+                            <li>Hear your voice or see real-time audio activity</li>
+                            <li>Check microphone volume levels</li>
+                            <li>Identify background noise or echo</li>
+                            <li>Test headphones, earphones, USB, and Bluetooth microphones</li>
+                        </ul>
+                        <p>No downloads, no registration, and no data upload is required.</p>
+
+                        <h2>How This Microphone Test Works</h2>
+                        <p>
+                            This tool uses the <strong>Web Audio API</strong> and
+                            <strong>MediaDevices.getUserMedia()</strong>, which are standardized browser technologies.
+                        </p>
+
+                        <h3>Technical Process</h3>
+                        <ol>
+                            <li>The browser asks for microphone permission</li>
+                            <li>Your microphone audio stream is captured locally</li>
+                            <li>Sound levels are analyzed in real time</li>
+                            <li>Audio activity is displayed instantly</li>
+                        </ol>
+                        <p><strong>Your audio never leaves your device.</strong></p>
+
+                        <h2>How to Do a Mic Test (Step-by-Step)</h2>
+
+                        <h3>On Desktop (Windows, macOS, Linux)</h3>
+                        <ol>
+                            <li>Click the <strong>Start Microphone Test</strong> button</li>
+                            <li>Allow microphone access when prompted</li>
+                            <li>Speak normally into your microphone</li>
+                            <li>Observe the live volume meter</li>
+                            <li>Stop the test when finished</li>
+                        </ol>
+
+                        <h3>On Mobile (Android & iPhone)</h3>
+                        <ol>
+                            <li>Tap <strong>Start</strong></li>
+                            <li>Allow microphone permission</li>
+                            <li>Speak close to the microphone</li>
+                            <li>Watch the real-time sound level</li>
+                        </ol>
+
+                        <h2>Understanding Your Microphone Test Results</h2>
+
+                        <table class="table table-bordered table-striped mt-4">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Indicator</th>
+                                    <th>Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>No movement</td>
+                                    <td>Microphone not detected or muted</td>
+                                </tr>
+                                <tr>
+                                    <td>Low movement</td>
+                                    <td>Low input volume or microphone too far away</td>
+                                </tr>
+                                <tr>
+                                    <td>Steady movement</td>
+                                    <td>Microphone working normally</td>
+                                </tr>
+                                <tr>
+                                    <td>High peaks</td>
+                                    <td>Loud input or speaking very close to the microphone</td>
+                                </tr>
+                                <tr>
+                                    <td>Flat zero</td>
+                                    <td>Permission blocked or incorrect input device selected</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h2>Common Microphone Problems & Solutions</h2>
+
+                        <h3>Microphone Not Working</h3>
+                        <ul>
+                            <li>Check browser microphone permissions</li>
+                            <li>Select the correct microphone input</li>
+                            <li>Ensure the microphone is not muted</li>
+                            <li>Restart the browser</li>
+                        </ul>
+
+                        <h3>Microphone Volume Is Very Low or Zero</h3>
+                        <ul>
+                            <li>Increase system microphone level</li>
+                            <li>Disable noise suppression temporarily</li>
+                            <li>Move closer to the microphone</li>
+                        </ul>
+
+                        <h3>Echo or Delay Issues</h3>
+                        <ul>
+                            <li>Use headphones instead of speakers</li>
+                            <li>Disable microphone playback</li>
+                            <li>Avoid audio loopback devices</li>
+                        </ul>
+
+                        <h2>Supported Devices & Compatibility</h2>
+                        <p>This microphone test tool supports:</p>
+                        <ul>
+                            <li>Built-in laptop microphones</li>
+                            <li>USB microphones</li>
+                            <li>Bluetooth headsets and TWS earbuds</li>
+                            <li>Gaming headsets</li>
+                            <li>Webcam microphones</li>
+                        </ul>
+
+                        <p>
+                            Compatible with popular brands such as
+                            Jabra, Apple AirPods, Sony, Logitech, Dell, HP, Lenovo, Samsung, and more.
+                        </p>
+
+                        <h2>Microphone Testing for Meetings & Gaming</h2>
+                        <p>
+                            Use this tool before joining Google Meet, Zoom, Microsoft Teams, Discord,
+                            or online games to ensure your microphone works correctly.
+                        </p>
+
+                        <h2>Microphone Test vs System Sound Settings</h2>
+
+                        <table class="table table-bordered table-striped mt-4">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Online Microphone Test</th>
+                                    <th>Operating System Settings</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Real-time feedback</td>
+                                    <td>Yes</td>
+                                    <td>Limited</td>
+                                </tr>
+                                <tr>
+                                    <td>No installation</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                </tr>
+                                <tr>
+                                    <td>Cross-platform</td>
+                                    <td>Yes</td>
+                                    <td>OS-specific</td>
+                                </tr>
+                                <tr>
+                                    <td>Mobile support</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h2>Privacy & Security</h2>
+                        <p>
+                            This microphone tester runs entirely in your browser. No audio is recorded,
+                            stored, or transmitted. All processing happens locally on your device,
+                            following modern browser privacy and security standards.
+                        </p>
+
+                        <h2>Frequently Asked Questions</h2>
+
+                        <h3>Can I test my microphone without recording?</h3>
+                        <p>
+                            Yes. This tool analyzes microphone input levels without recording or saving
+                            any audio.
+                        </p>
+
+                        <h3>How do I test my microphone on my phone?</h3>
+                        <p>
+                            Open this page in your mobile browser, tap Start, allow microphone access,
+                            and speak normally.
+                        </p>
+
+                        <h3>Why does my microphone show volume 0?</h3>
+                        <p>
+                            This usually happens due to blocked permissions, muted input, incorrect
+                            microphone selection, or hardware issues.
+                        </p>
+
+                        <h3>Does this work with Bluetooth microphones and AirPods?</h3>
+                        <p>
+                            Yes. Ensure your Bluetooth device is connected and selected as the active
+                            microphone input.
+                        </p>
+
+                        <h3>What is a microphone?</h3>
+                        <p>
+                            A microphone is a transducer that converts sound waves into electrical
+                            signals, enabling audio recording, communication, and sound processing.
+                            Reference: Wikipedia – Microphone.
+                        </p>
+
+                    </section>
+
+                    <script>
+                        let audioContext;
+                        let analyser;
+                        let microphone;
+                        let javascriptNode;
+                        let running = false;
+
+                        const startBtn = document.getElementById('startBtn');
+                        const stopBtn = document.getElementById('stopBtn');
+                        const volumeLevel = document.getElementById('volumeLevel');
+                        const statusText = document.getElementById('status');
+
+                        startBtn.addEventListener('click', async () => {
+                            if (running) return;
+
+                            try {
+                                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                                analyser = audioContext.createAnalyser();
+                                analyser.fftSize = 256;
+
+                                microphone = audioContext.createMediaStreamSource(stream);
+                                javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+
+                                microphone.connect(analyser);
+                                analyser.connect(javascriptNode);
+                                javascriptNode.connect(audioContext.destination);
+
+                                javascriptNode.onaudioprocess = () => {
+                                    const array = new Uint8Array(analyser.frequencyBinCount);
+                                    analyser.getByteFrequencyData(array);
+                                    let values = 0;
+                                    for (let i = 0; i < array.length; i++) {
+                                        values += array[i];
+                                    }
+                                    let average = values / array.length;
+                                    volumeLevel.style.width = Math.min(100, average) + '%';
+                                };
+
+                                running = true;
+                                startBtn.disabled = true;
+                                stopBtn.disabled = false;
+                                statusText.textContent = 'Microphone is active...';
+                            } catch (err) {
+                                console.error(err);
+                                statusText.textContent = 'Error accessing microphone: ' + err.message;
+                            }
+                        });
+
+                        stopBtn.addEventListener('click', () => {
+                            if (!running) return;
+                            javascriptNode.disconnect();
+                            analyser.disconnect();
+                            microphone.disconnect();
+                            audioContext.close();
+
+                            running = false;
+                            startBtn.disabled = false;
+                            stopBtn.disabled = true;
+                            volumeLevel.style.width = '0';
+                            statusText.textContent = 'Microphone stopped.';
+                        });
+                    </script>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div id="footer"></div>
+        <script src="/assets/bootstrap5.js"></script>
+        <script src="/assets/tools.js" defer></script>
+        <!-- include js -->
+        <script>
+
+
+            window.addEventListener("load", () => {
+                Promise.all([
+                    fetch("../../header.html").then(res => res.text()),
+                    fetch("../../footer.html").then(res => res.text())
+                ])
+                    .then(([header, footer]) => {
+                        document.getElementById("header").innerHTML = header;
+                        document.getElementById("footer").innerHTML = footer;
+                    })
+                    .catch(err => console.error("Include load failed:", err));
+            });
+        </script>
+
+
+
+</body>
+
+</html>
