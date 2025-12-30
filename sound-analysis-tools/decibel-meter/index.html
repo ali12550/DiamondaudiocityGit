@@ -4,205 +4,315 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Online Decibel Meter - Real-Time Sound Level Measurement | Diamond Audio City</title>
+    <title>Online Decibel Meter - Real-Time Sound Level Measurement</title>
     <meta name="description"
         content="Free online decibel meter to measure sound levels in real-time. Monitor noise levels, dB readings, frequency analysis, and environmental sound with your device microphone." />
     <meta name="keywords"
         content="decibel meter, sound level meter, noise meter, dB meter, sound measurement, noise monitoring, SPL meter, audio level meter, classroom noise meter" />
     <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
-    <link rel="canonical" href="https://diamondaudiocity.com/voice-recording-tools/decibel-meter/" />
+    <link rel="canonical" href="https://diamondaudiocity.com/sound-analysis-tools/decibel-meter/" />
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Online Decibel Meter - Measure Sound Levels in Real-Time" />
     <meta property="og:description"
         content="Free online decibel meter for measuring environmental noise and sound levels using your device microphone." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://diamondaudiocity.com/voice-recording-tools/decibel-meter/" />
+    <meta property="og:url" content="https://diamondaudiocity.com/sound-analysis-tools/decibel-meter/" />
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/bootstrap5.css" rel="stylesheet">
     <link href="/assets/style.css" rel="stylesheet">
     <link href="/assets/tools.css" rel="stylesheet">
     <meta name="author" content="Diamond Audio City">
 
     <style>
-        .meter-display {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            padding: 30px;
-            color: white;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        :root {
+            --primary-color: #2196F3;
+            --secondary-color: #4CAF50;
+            --background-color: #f5f5f5;
+            --header-bg: #ffffff;
+            --text-color: #212121;
+            --text-color-secondary: #555555;
+            --panel-bg: #fff;
+            --panel-shadow: rgba(0, 0, 0, 0.15);
+            --button-bg: #2196F3;
+            --button-text: #fff;
+            --button-hover-bg: #1976D2;
+            --control-btn-bg: #ffffff;
+            --control-btn-border: #ccc;
+            --control-btn-hover-bg: #f0f0f0;
+            --progress-bg: #ddd;
+            --progress-fill: #2196F3;
+            --reading-box-bg: #ffffff;
+            --reading-box-border: #ddd;
         }
 
-        .db-reading {
-            font-size: 72px;
-            font-weight: bold;
-            margin: 20px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .db-label {
-            font-size: 24px;
-            opacity: 0.9;
+
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .stat-card {
-            background: white;
-            border-radius: 10px;
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
             padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .current-reading-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background: var(--reading-box-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px var(--panel-shadow);
         }
 
-        .stat-value {
-            font-size: 28px;
-            font-weight: bold;
-            color: #003161;
+        #clippingIndicator {
+            color: red;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: none;
         }
 
-        .stat-label {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
+        .current-db-display {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+
+        .current-db-unit {
+            font-size: 1.2rem;
+            color: var(--text-color-secondary);
+        }
+
+        /* Stats & Progress */
+        .stats-and-progress {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 15px;
+            background: var(--progress-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--progress-fill);
+            transition: width 0.1s linear;
+        }
+
+        #levelDescription {
+            font-size: 1rem;
+            text-align: center;
+            color: var(--text-color-secondary);
             margin-top: 5px;
         }
 
-        .level-bar {
-            height: 30px;
-            background: #e0e0e0;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            margin: 20px 0;
-        }
-
-        .level-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4CAF50, #FFC107, #FF5722);
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-
-        .control-buttons {
+        /* Readings boxes */
+        .stats-readings {
             display: flex;
             gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
+            justify-content: space-around;
             flex-wrap: wrap;
         }
 
-        .btn-meter {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
+        .reading-box {
+            flex: 1 1 20%;
+            background: var(--reading-box-bg);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--reading-box-border);
+            min-width: 100px;
+        }
+
+        .reading-box .label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-color-secondary);
+        }
+
+        .reading-box .value {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Chart */
+        .chart-container {
+            background: var(--reading-box-bg);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px var(--panel-shadow);
+        }
+
+        /* Reference Chart */
+        .reference-chart-container {
+            background: var(--reading-box-bg);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px var(--panel-shadow);
+        }
+
+        .reference-chart-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .reference-chart-list li {
+            padding: 3px 0;
+            font-size: 0.9rem;
+        }
+
+
+        .control-button {
+            display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
+            padding: 8px 15px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--control-btn-border);
+            background: var(--control-btn-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .btn-start {
-            background: #4CAF50;
-            color: white;
+        .control-button.start {
+            background: var(--primary-color);
+            color: var(--button-text);
+            border: none;
         }
 
-        .btn-start:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        .control-button.secondary {
+            background: var(--control-btn-bg);
         }
 
-        .btn-pause {
-            background: #FFC107;
-            color: #333;
+        .control-button:hover {
+            background: var(--control-btn-hover-bg);
         }
 
-        .btn-pause:hover {
-            background: #ffb300;
+        /* Panels (settings/info) */
+        .side-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            max-width: 90%;
+            height: 100%;
+            background: var(--panel-bg);
+            box-shadow: -4px 0 8px var(--panel-shadow);
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
         }
 
-        .btn-reset {
-            background: #f44336;
-            color: white;
+        .side-panel.open {
+            right: 0;
         }
 
-        .btn-reset:hover {
-            background: #da190b;
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--reading-box-border);
         }
 
-        .settings-panel {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .reference-table {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .noise-level {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
+        .panel-title {
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-top: 10px;
         }
 
-        .level-quiet {
-            background: #4CAF50;
-            color: white;
+        .panel-content {
+            padding: 10px 15px;
+            flex: 1;
         }
 
-        .level-moderate {
-            background: #FFC107;
-            color: #333;
+        .settings-group {
+            margin-bottom: 15px;
         }
 
-        .level-loud {
-            background: #FF9800;
-            color: white;
+        .settings-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
         }
 
-        .level-very-loud {
-            background: #f44336;
-            color: white;
-        }
-
-        .level-harmful {
-            background: #9C27B0;
-            color: white;
-        }
-
-        canvas {
+        .settings-select,
+        .settings-input,
+        .settings-slider {
             width: 100%;
-            height: 200px;
-            border-radius: 10px;
-            background: #1a1a2e;
-            margin: 20px 0;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid var(--reading-box-border);
         }
 
-        .calibration-slider {
-            width: 100%;
-            margin: 15px 0;
+        .explanation {
+            font-size: 0.8rem;
+            color: var(--text-color-secondary);
+            margin-top: 5px;
+        }
+
+        .panel-footer {
+            padding: 10px 15px;
+            border-top: 1px solid var(--reading-box-border);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+
+        /* Responsive */
+        @media(max-width: 768px) {
+            .stats-readings {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .reading-box {
+                width: 100%;
+            }
+
+
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 
 <body>
@@ -221,7 +331,7 @@
                         </div>
                     </div>
 
-                    <div class="sidebar-categories">
+                    <!-- <div class="sidebar-categories">
                         <div class="sidebar-category">
                             <h5><i class="bi bi-mic me-2"></i>Voice Recording Tools</h5>
                             <ul class="sidebar-links">
@@ -261,12 +371,12 @@
                                             class="bi bi-arrow-left-right"></i> Frequency to Note</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
             <!-- Main content -->
-            <div class="col-lg-7 col-md-8">
+            <div class="col-lg-9 col-md-9">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -288,45 +398,91 @@
 
 
 
-                    <!-- Decibel Meter Tool -->
-                    <div class="tool-container mt-4 mx-4">
-                        <div class="tool-section">
-                            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>Decibel Meter</h2>
+                    <div class="app-container">
 
-                            <h4 class="text-teal">What is a Decibel Meter?</h4>
-                            <p>This tool measures sound intensity in decibels (dBFS) through your device microphone. It
-                                shows real-time values along with minimum and maximum levels recorded.</p>
 
-                            <!-- Meter Display -->
-                            <div class="meter mt-3"
-                                style="width:100%; height:30px; background:#eee; border-radius:6px; overflow:hidden;">
-                                <div id="meterFill" style="width:0%; height:100%; background:#00b894;"></div>
-                            </div>
-                            <div class="mt-2">
-                                <span>Current: <span id="dbValue">-</span></span> |
-                                <span>Peak: <span id="peakValue">-</span></span>
+                        <div class="main-content">
+                            <div class="current-reading-wrapper">
+                                <div id="clippingIndicator">Clip</div>
+                                <div id="currentDb" class="current-db-display">-∞</div>
+                                <div id="currentDbUnit" class="current-db-unit">dBA</div>
                             </div>
 
-                            <!-- Min/Max Display -->
-                            <div class="mt-2">
-                                <span>Min: <span id="minValue">-</span> dBFS</span> |
-                                <span>Max: <span id="maxValue">-</span> dBFS</span>
+                            <div class="stats-and-progress">
+                                <div id="progressBarContainer" class="progress-bar-container">
+                                    <div id="progressBar" class="progress-bar"></div>
+                                </div>
+                                <div id="levelDescription"> </div>
+                                <div class="stats-readings">
+                                    <div class="reading-box min">
+                                        <span class="label">Min</span>
+                                        <span id="minDb" class="value">-∞ dB</span>
+                                    </div>
+                                    <div class="reading-box avg">
+                                        <span class="label">Avg</span>
+                                        <span id="avgDb" class="value">-∞ dB</span>
+                                    </div>
+                                    <div class="reading-box max">
+                                        <span class="label">Max</span>
+                                        <span id="maxDb" class="value">-∞ dB</span>
+                                    </div>
+                                    <div class="reading-box peak">
+                                        <span class="label">Peak</span>
+                                        <span id="peakDb" class="value">-∞ dB</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- Controls -->
-                            <div class="mt-3">
-                                <button id="startBtn" class="btn btn-teal me-2">Start</button>
-                                <button id="stopBtn" class="btn btn-secondary">Stop</button>
+                            <div id="chartContainer" class="chart-container">
+                                <canvas id="dbChart"></canvas>
+                            </div>
+
+                          
+                        </div>
+                        <div class="container">
+                            <div class="d-flex justify-content-center g-3 w-100" role="group">
+                                <button id="startStopButton" class="control-button start" aria-label="Start Meter"
+                                    disabled>
+                                    <span class="material-symbols-outlined">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                            fill="currentColor">
+                                            <path
+                                                d="M480-400q-50 0-85-35t-35-85v-240q0-50 35-85t85-35q50 0 85 35t35 85v240q0 50-35 85t-85 35Zm0-240Zm-40 520v-123q-104-14-172-93t-68-184h80q0 83 58.5 141.5T480-320q83 0 141.5-58.5T680-520h80q0 105-68 184t-172 93v123h-80Zm40-360q17 0 28.5-11.5T520-520v-240q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760v240q0 17 11.5 28.5T480-480Z" />
+                                        </svg></span>
+                                    <span>Start</span>
+                                </button>
+                                <button id="pauseResumeButton" class="control-button secondary mx-4 bg-danger" disabled
+                                    aria-label="Pause Meter">
+                                    <span class="material-symbols-outlined">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                            fill="currentColor">
+                                            <path
+                                                d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z" />
+                                        </svg></span>
+                                    <span>Pause</span>
+                                </button>
+                                <button id="resetButton" class="control-button secondary" disabled
+                                    aria-label="Reset Statistics">
+                                    <span class="material-symbols-outlined">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                            fill="currentColor">
+                                            <path
+                                                d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
+                                        </svg></span>
+                                    <span>Reset</span>
+                                </button>
                             </div>
                         </div>
+
                     </div>
 
-               
+
+
 
 
                     <!-- Reference Sound Levels -->
                     <div class="reference-table">
-                        <h3 class="mb-3"><i class="bi bi-info-circle me-2"></i>Reference Sound Levels</h3>
+                        <h3 class="mb-3"><i class="bi bi-info-circle me-2 mt-3"></i>Reference Sound Levels</h3>
                         <table class="table table-bordered">
                             <thead class="table-light">
                                 <tr>
@@ -570,8 +726,8 @@
                                 ambient noise</li>
                             <li><strong>Update Regularly:</strong> Check settings between measurements to ensure
                                 consistency</li>
-                            <li><strong>Verify Microphone:</strong> Test your microphone quality with our <a
-                                    href="/voice-recording-tools/microphone-test/">Microphone Test</a> tool first</li>
+                            <!-- <li><strong>Verify Microphone:</strong> Test your microphone quality with our <a
+                                    href="/voice-recording-tools/microphone-test/">Microphone Test</a> tool first</li> -->
                         </ol>
 
                         <!-- Applications by Industry -->
@@ -864,17 +1020,17 @@
                                 protect your hearing, and ensure safe sound levels in any environment. Perfect for
                                 classrooms, workplaces, homes, and audio production.</p>
                             <hr>
-                            <p class="mb-0">Before recording, test your microphone quality with our <a
+                            <!-- <p class="mb-0">Before recording, test your microphone quality with our <a
                                     href="/voice-recording-tools/microphone-test/" class="alert-link">Microphone Test
-                                    Tool</a> to ensure optimal audio capture.</p>
+                                    Tool</a> to ensure optimal audio capture.</p> -->
                         </div>
 
                         <!-- Related Tools -->
                         <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">Related Audio Tools</h2>
                         <p>Enhance your audio workflow with these complementary tools:</p>
                         <ul>
-                            <li><a href="/voice-recording-tools/microphone-test/"><strong>Microphone Test</strong></a> -
-                                Test microphone quality, sensitivity, and frequency response before recording</li>
+                            <!-- <li><a href="/voice-recording-tools/microphone-test/"><strong>Microphone Test</strong></a> -
+                                Test microphone quality, sensitivity, and frequency response before recording</li> -->
                             <li><a href="/dj-music-production-tools/song-key-finder/"><strong>Song Key
                                         Finder</strong></a> - Detect musical key and BPM for audio production and DJ
                                 mixing</li>
@@ -910,7 +1066,7 @@
 
                     </div>
                 </div>
-            </div> <!-- /main col -->
+            </div> 
 
         </div>
     </div>
@@ -920,89 +1076,10 @@
     <script src="/assets/bootstrap5.js"></script>
     <script src="/assets/tools.js" defer></script>
 
-    <!-- Simple Decibel Meter Tool -->
-     <script>
-                        let audioContext;
-                        let analyser;
-                        let microphone;
-                        let dataArray;
-                        let animationId;
-                        let isRunning = false;
-                        let peakDbFS = -Infinity;
-                        let minDbFS = Infinity;
 
-                        const meterFill = document.getElementById("meterFill");
-                        const dbValue = document.getElementById("dbValue");
-                        const peakValue = document.getElementById("peakValue");
-                        const minValue = document.getElementById("minValue");
-                        const maxValue = document.getElementById("maxValue");
-
-                        async function startMeter() {
-                            if (isRunning) return;
-
-                            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                            analyser = audioContext.createAnalyser();
-                            analyser.fftSize = 2048;
-                            dataArray = new Uint8Array(analyser.fftSize);
-
-                            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                            microphone = audioContext.createMediaStreamSource(stream);
-                            microphone.connect(analyser);
-
-                            isRunning = true;
-                            peakDbFS = -Infinity;
-                            minDbFS = Infinity;
-
-                            function update() {
-                                analyser.getByteTimeDomainData(dataArray);
-
-                                let sumSquares = 0;
-                                let peakSample = 0;
-
-                                for (let i = 0; i < dataArray.length; i++) {
-                                    const norm = (dataArray[i] - 128) / 128;
-                                    sumSquares += norm * norm;
-                                    peakSample = Math.max(peakSample, Math.abs(norm));
-                                }
-
-                                const rms = Math.sqrt(sumSquares / dataArray.length);
-                                let dbFS = rms > 0 ? 20 * Math.log10(rms) : -Infinity;
-                                let peakDb = peakSample > 0 ? 20 * Math.log10(peakSample) : -Infinity;
-
-                                if (dbFS < minDbFS) minDbFS = dbFS;
-                                if (dbFS > peakDbFS) peakDbFS = dbFS;
-
-                                // Clamp for display
-                                const displayDb = Math.max(-60, dbFS);
-
-                                meterFill.style.width = `${((displayDb + 60) / 60) * 100}%`;
-                                dbValue.textContent = `${displayDb.toFixed(1)} dBFS`;
-                                peakValue.textContent = `${peakDbFS.toFixed(1)} dBFS`;
-                                minValue.textContent = `${minDbFS.toFixed(1)}`;
-                                maxValue.textContent = `${peakDbFS.toFixed(1)}`;
-
-                                animationId = requestAnimationFrame(update);
-                            }
-
-                            update();
-                        }
-
-                        function stopMeter() {
-                            if (!isRunning) return;
-
-                            cancelAnimationFrame(animationId);
-
-                            if (audioContext) {
-                                audioContext.close();
-                                audioContext = null;
-                            }
-
-                            isRunning = false;
-                        }
-
-                        document.getElementById("startBtn").addEventListener("click", startMeter);
-                        document.getElementById("stopBtn").addEventListener("click", stopMeter);
-                    </script>
+    <script defer>
+        const SVG_MIC = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M480-400q-50 0-85-35t-35-85v-240q0-50 35-85t85-35q50 0 85 35t35 85v240q0 50-35 85t-85 35Zm0-240Zm-40 520v-123q-104-14-172-93t-68-184h80q0 83 58.5 141.5T480-320q83 0 141.5-58.5T680-520h80q0 105-68 184t-172 93v123h-80Zm40-360q17 0 28.5-11.5T520-520v-240q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760v240q0 17 11.5 28.5T480-480Z"/></svg>', SVG_STOP = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M320-640v320-320Zm-80 400v-480h480v480H240Zm80-80h320v-320H320v320Z"/></svg>', SVG_MIC_OFF = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="m710-362-58-58q14-23 21-48t7-52h80q0 44-13 83.5T710-362ZM480-594Zm112 112-72-72v-206q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760v126l-80-80v-46q0-50 35-85t85-35q50 0 85 35t35 85v240q0 11-2.5 20t-5.5 18ZM440-120v-123q-104-14-172-93t-68-184h80q0 83 57.5 141.5T480-320q34 0 64.5-10.5T600-360l57 57q-29 23-63.5 39T520-243v123h-80Zm352 64L56-792l56-56 736 736-56 56Z"/></svg>', SVG_PAUSE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z"/></svg>', SVG_PLAY = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/></svg>', getEl = e => document.getElementById(e), qs = e => document.querySelector(e), qsa = e => document.querySelectorAll(e), currentDbEl = getEl("currentDb"), currentDbUnitEl = getEl("currentDbUnit"), clipIndicator = getEl("clippingIndicator"), progBar = getEl("progressBar"), levelDescEl = getEl("levelDescription"), dbChartCanvas = getEl("dbChart"), chartCont = getEl("chartContainer"), refChartList = getEl("referenceChartList"), minDbEl = getEl("minDb"), avgDbEl = getEl("avgDb"), maxDbEl = getEl("maxDb"), peakDbEl = getEl("peakDb"), themeToggleBtn = getEl("theme-toggle"), themeIconSun = getEl("theme-icon-sun"), themeIconMoon = getEl("theme-icon-moon"), settingsBtn = getEl("settings-button"), infoBtn = getEl("info-button"), startStopBtn = getEl("startStopButton"), startStopIcon = startStopBtn?.querySelector(".material-symbols-outlined"), startStopLbl = startStopBtn?.querySelector("span:not(.material-symbols-outlined)"), pauseResumeBtn = getEl("pauseResumeButton"), pauseResumeIcon = pauseResumeBtn?.querySelector(".material-symbols-outlined"), pauseResumeLbl = pauseResumeBtn?.querySelector("span:not(.material-symbols-outlined)"), resetBtn = getEl("resetButton"), settingsPanel = getEl("settings-panel"), closeSettingsBtn = settingsPanel?.querySelector(".close-panel"), infoPanel = getEl("info-panel"), closeInfoBtn = infoPanel?.querySelector(".close-panel"), overlay = getEl("overlay"), scaleSel = getEl("scaleSelect"), weightSel = getEl("weightingSelect"), intervalSel = getEl("displayIntervalSelect"), peakSel = getEl("peakHoldSelect"), calNum = getEl("calibrationInput"), calSlide = getEl("calibrationSlider"), graphSel = getEl("graphTypeSelect"), resetDefaultsBtn = getEl("resetDefaultsButton"); let audioContext = null, analyser = null, microphoneSource = null, mediaStream = null, animationFrameId = null, uiUpdateIntervalId = null, chart = null, isRunning = !1, isPaused = !1, isClipping = !1, minDbRaw = 1 / 0, maxDbRaw = -1 / 0, avgDbSum = 0, avgDbCount = 0, peakDbRaw = -1 / 0, peakHoldTimeoutId = null, currentInstantaneousDb = null, currentDisplayDbValue = null, dbHistory = [], clippingTimeoutId = null, freqDataArray = null, timeDataArray = null, weightingDbOffsets = null, frequencyLabels = [], startTime = 0, minDbDelayPassed = !1; const defaultSettings = { scale: "positive", weighting: "A", updateInterval: 200, peakHoldTime: 3e3, calibrationOffset: 0, graphType: "line" }; let currentScale = defaultSettings.scale, currentWeighting = defaultSettings.weighting, currentUpdateInterval = defaultSettings.updateInterval, currentPeakHoldTime = defaultSettings.peakHoldTime, currentCalibrationOffset = defaultSettings.calibrationOffset, currentGraphType = defaultSettings.graphType; const POSITIVE_SCALE_OFFSET = 100, DBFS_FLOOR = -100, DBFS_CEILING = 0, CLIPPING_THRESHOLD_DBFS = -.5, CLIPPING_INDICATOR_DURATION = 1500, CHART_FONT_SANS = "'Roboto Flex', sans-serif", CHART_FONT_MONO = "'Roboto Mono', monospace", TARGET_HISTORY_DURATION_MS = 3e4, MIN_HISTORY_POINTS = 30, MAX_HISTORY_POINTS = 500, DEFAULT_REALTIME_UI_INTERVAL = 50, MIN_DB_DELAY_MS = 1e3, FFT_SIZE = 2048, SMOOTHING_TIME_CONSTANT = .1, DISPLAY_SMOOTHING_FACTOR = .5; let maxHistoryLength = 150; const referenceLevels = [{ level: 140, description: () => translations.ref_desc_fireworks, color: "#b71c1c" }, { level: 130, description: () => translations.ref_desc_jackhammer, color: "#c62828" }, { level: 120, description: () => translations.ref_desc_ambulance, color: "#d32f2f" }, { level: 110, description: () => translations.ref_desc_concerts, color: "#e53935" }, { level: 100, description: () => translations.ref_desc_subway, color: "#f44336" }, { level: 90, description: () => translations.ref_desc_lawnmower, color: "#ef5350" }, { level: 80, description: () => translations.ref_desc_traffic, color: "#e65100" }, { level: 70, description: () => translations.ref_desc_restaurant, color: "#ef6c00" }, { level: 60, description: () => translations.ref_desc_conversation, color: "#f57c00" }, { level: 50, description: () => translations.ref_desc_office, color: "#fb8c00" }, { level: 40, description: () => translations.ref_desc_quiet_room, color: "#2e7d32" }, { level: 30, description: () => translations.ref_desc_library, color: "#388e3c" }, { level: 20, description: () => translations.ref_desc_clock, color: "#43a047" }, { level: 10, description: () => translations.ref_desc_breathing, color: "#1565c0" }, { level: 0, description: () => translations.ref_desc_threshold, color: "#0d47a1" }], A_WEIGHTING_CURVE = { 10: -70.4, 12.5: -63.4, 16: -56.7, 20: -50.5, 25: -44.7, 31.5: -39.4, 40: -34.6, 50: -30.2, 63: -26.2, 80: -22.5, 100: -19.1, 125: -16.1, 160: -13.4, 200: -10.9, 250: -8.6, 315: -6.6, 400: -4.8, 500: -3.2, 630: -1.9, 800: -.8, 1e3: 0, 1250: .6, 1600: 1, 2e3: 1.2, 2500: 1.3, 3150: 1.2, 4e3: 1, 5e3: .5, 6300: -.1, 8e3: -1.1, 1e4: -2.5, 12500: -4.3, 16e3: -6.6, 2e4: -9.3 }, A_WEIGHTING_FREQS = Object.keys(A_WEIGHTING_CURVE).map(Number).sort((e, t) => e - t), C_WEIGHTING_CURVE = { 10: -14.3, 12.5: -11.2, 16: -8.5, 20: -6.2, 25: -4.4, 31.5: -3, 40: -2, 50: -1.3, 63: -.8, 80: -.5, 100: -.3, 125: -.2, 160: -.1, 200: 0, 250: 0, 315: 0, 400: 0, 500: 0, 630: 0, 800: 0, 1e3: 0, 1250: -.1, 1600: -.1, 2e3: -.2, 2500: -.3, 3150: -.5, 4e3: -.8, 5e3: -1.3, 6300: -2, 8e3: -3, 1e4: -4.4, 12500: -6.2, 16e3: -8.5, 2e4: -11.2 }, C_WEIGHTING_FREQS = Object.keys(C_WEIGHTING_CURVE).map(Number).sort((e, t) => e - t); function getInterpolatedWeighting(e, t, a) { if (e <= t[0]) return a[t[0]]; if (e >= t[t.length - 1]) return a[t[t.length - 1]]; let r = t[0], n = t[t.length - 1]; for (let i = 0; i < t.length - 1; i++)if (e >= t[i] && e <= t[i + 1]) { r = t[i], n = t[i + 1]; break } let l = a[r], s = a[n], o = Math.log10(r), c = Math.log10(n); return c === o ? l : l + (Math.log10(e) - o) / (c - o) * (s - l) } function precomputeWeightingDbOffsets(e, t, a, r) { if ("Z" === e || !t || !a || !r) { weightingDbOffsets = null; return } let n = "A" === e ? A_WEIGHTING_CURVE : C_WEIGHTING_CURVE, i = "A" === e ? A_WEIGHTING_FREQS : C_WEIGHTING_FREQS; weightingDbOffsets = new Float32Array(t); for (let l = 0; l < t; l++) { let s = l * (a / r); weightingDbOffsets[l] = getInterpolatedWeighting(s, i, n) } } function applyRealWeighting(e, t) { if ("Z" === currentWeighting || !weightingDbOffsets || !t || !analyser) return e; let a = analyser.frequencyBinCount, r = 0, n = 0, i = Math.pow(10, analyser.minDecibels / 10), l = 1.01 * i; for (let s = 0; s < a; s++) { let o = t[s], c = o === -1 / 0 ? l : Math.pow(10, o / 10); r += c = Math.max(l, c); let u = o + weightingDbOffsets[s], $ = u <= analyser.minDecibels ? l : Math.pow(10, u / 10); n += $ = Math.max(l, $) } let d = 0; n > l && r > l && (d = 10 * Math.log10(n / r)); let p = e + d; return Math.max(-120, Math.min(10, p)) } function setThemeIcon(e) { themeIconSun && themeIconMoon && (themeIconSun.style.display = "dark" === e ? "none" : "block", themeIconMoon.style.display = "dark" === e ? "block" : "none") } function applyTheme(e) { document.documentElement.setAttribute("data-theme", e), setThemeIcon(e), chart && (updateChartColors(e), chart.update("none")), updateSelectDropdownArrows(e) } function updateSelectDropdownArrows(e) { let t = qsa(".settings-select"); if (t.length) try { let a = getComputedStyle(document.documentElement).getPropertyValue("dark" === e ? "--md-sys-color-on-surface-variant-dark" : "--md-sys-color-on-surface-variant-light").trim() || "#42474e", r = encodeURIComponent(a), n = `<svg fill="${r}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>`, i = `url('data:image/svg+xml;utf8,${n}')`; t.forEach(e => e.style.backgroundImage = i) } catch (l) { console.error("Error updating select arrows:", l), t.forEach(e => e.style.backgroundImage = "none") } } function toggleTheme() { let e = document.documentElement.getAttribute("data-theme") || "light", t = "light" === e ? "dark" : "light"; localStorage.setItem("decibelMeterTheme", t), applyTheme(t) } function loadInitialTheme() { let e = "light"; try { window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && (e = "dark") } catch (t) { console.warn("Could not read media query preference", t) } let a = localStorage.getItem("decibelMeterTheme"), r = a || e; applyTheme(r); try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => { localStorage.getItem("decibelMeterTheme") || applyTheme(e.matches ? "dark" : "light") }) } catch (n) { console.warn("Could not add media query listener", n) } } function togglePanel(e) { e.classList.contains("active"), qsa(".side-panel.active").forEach(t => { t !== e && t.classList.remove("active") }), e.classList.toggle("active"), overlay?.classList.toggle("active", !!qs(".side-panel.active")) } function toggleSettingsPanel() { settingsPanel && togglePanel(settingsPanel) } function toggleInfoPanel() { infoPanel && togglePanel(infoPanel) } function initializeChart() { if (!dbChartCanvas) return; let e = dbChartCanvas.getContext("2d"); if (!e) { console.error("Failed to get 2D context"), chartCont && (chartCont.innerHTML = "<p>Chart context failed.</p>"); return } chart && (chart.destroy(), chart = null); let t = getChartConfig(currentGraphType); try { chart = new Chart(e, t), updateChartScale(); let a = document.documentElement.getAttribute("data-theme") || "light"; updateChartColors(a), chart.update("none") } catch (r) { console.error("Chart.js initialization error:", r), chartCont && (chartCont.innerHTML = "<p>Chart failed to load.</p>") } } function getChartConfig(e) { let t = document.documentElement.getAttribute("data-theme") || "light", a = getComputedStyle(document.documentElement), r = "dark" === t ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)", n = a.getPropertyValue("--text-color-secondary").trim(), i = a.getPropertyValue("--primary-color").trim(), l = `${i}33`, s = getMinDisplayValue(currentScale, currentWeighting, currentCalibrationOffset), o = getMaxDisplayValue(currentScale, currentWeighting, currentCalibrationOffset), c = getYAxisLabel(currentScale, currentWeighting, currentCalibrationOffset), u = { responsive: !0, maintainAspectRatio: !1, animation: !1, layout: { padding: { top: 12, bottom: 4, left: 4, right: 12 } }, plugins: { legend: { display: !1 }, tooltip: { enabled: !1 } } }; if ("line" === e) return { type: "line", data: { labels: Array(maxHistoryLength).fill(""), datasets: [{ label: translations.chart_label_level || "Level", data: Array(maxHistoryLength).fill(s), borderColor: i, backgroundColor: l, borderWidth: 2, pointRadius: 0, tension: .4, fill: !0 }] }, options: { ...u, scales: { y: { min: s, max: o, grid: { color: r, drawBorder: !1, borderDash: [2, 3] }, ticks: { color: n, font: { size: 10, family: CHART_FONT_SANS }, padding: 8, autoSkip: !0, maxTicksLimit: 7 }, title: { display: !0, text: c, color: n, font: { size: 11, family: CHART_FONT_SANS, weight: "500" }, padding: { top: 0, bottom: 4 } } }, x: { grid: { display: !1 }, ticks: { display: !1 } } } } }; if ("bar" === e) return { type: "bar", data: { labels: [translations.chart_label_level || "Level"], datasets: [{ label: translations.chart_label_level || "Level", data: [s], backgroundColor: [i], borderColor: [i], borderWidth: 1, barThickness: 30, borderRadius: 3 }] }, options: { ...u, indexAxis: "y", scales: { x: { min: s, max: o, grid: { color: r, drawBorder: !1, borderDash: [2, 3] }, ticks: { color: n, font: { size: 10, family: CHART_FONT_SANS }, padding: 8, autoSkip: !0, maxTicksLimit: 7 }, title: { display: !0, text: c, color: n, font: { size: 11, family: CHART_FONT_SANS, weight: "500" }, padding: { top: 4, bottom: 0 } } }, y: { grid: { display: !1 }, ticks: { display: !1 } } } } }; if ("visualizer" === e) { let $ = frequencyLabels.length > 0 ? frequencyLabels.length : 1024, d = Array($).fill(-100); return { type: "bar", data: { labels: frequencyLabels.slice(0, $), datasets: [{ label: translations.chart_label_magnitude || "Magnitude", data: d, backgroundColor: i, borderColor: i, borderWidth: 0, barPercentage: 1, categoryPercentage: 1 }] }, options: { ...u, scales: { y: { min: -100, max: 0, grid: { color: r, drawBorder: !1, borderDash: [2, 3] }, ticks: { color: n, font: { size: 10, family: CHART_FONT_SANS }, padding: 8, autoSkip: !0, maxTicksLimit: 7 }, title: { display: !0, text: translations.chart_label_level_dbfs || "Level (dBFS)", color: n, font: { size: 11, family: CHART_FONT_SANS, weight: "500" }, padding: { top: 0, bottom: 4 } } }, x: { grid: { display: !1 }, ticks: { color: n, font: { size: 9, family: CHART_FONT_SANS }, maxRotation: 0, minRotation: 0, autoSkip: !0, maxTicksLimit: 10 } } } } } } if ("spectrum" === e) { let p = frequencyLabels.length > 0 ? frequencyLabels.length : 1024, g = Array(p).fill(-100); return { type: "line", data: { labels: frequencyLabels.slice(0, p), datasets: [{ label: translations.chart_label_spectrum || "Spectrum", data: g, borderColor: i, borderWidth: 1.5, pointRadius: 0, tension: .1, fill: !1 }] }, options: { ...u, scales: { y: { min: -100, max: 0, grid: { color: r, drawBorder: !1, borderDash: [2, 3] }, ticks: { color: n, font: { size: 10, family: CHART_FONT_SANS }, padding: 8, autoSkip: !0, maxTicksLimit: 7 }, title: { display: !0, text: translations.chart_label_level_dbfs || "Level (dBFS)", color: n, font: { size: 11, family: CHART_FONT_SANS, weight: "500" }, padding: { top: 0, bottom: 4 } } }, x: { grid: { color: r, drawBorder: !1, borderDash: [2, 3] }, ticks: { color: n, font: { size: 10, family: CHART_FONT_SANS }, padding: 8, autoSkip: !0, maxTicksLimit: 8, callback: function (e, t, a) { let r = this.getLabelForValue(t), n = parseFloat(r); return isNaN(n) ? r : n >= 1e3 ? (n / 1e3).toFixed(1) + "k" : n.toFixed(0) } }, title: { display: !0, text: translations.chart_label_frequency_hz || "Frequency (Hz)", color: n, font: { size: 11, family: CHART_FONT_SANS, weight: "500" }, padding: { top: 4, bottom: 0 } } } } } } } return {} } function updateChartColors(e) { if (!chart?.options?.scales) return; let t = getComputedStyle(document.documentElement), a = "dark" === e ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.05)", r = t.getPropertyValue("--text-color-secondary").trim(), n = t.getPropertyValue("--primary-color").trim(), i = `${n}33`; Object.values(chart.options.scales).forEach(e => { e.grid && (e.grid.color = a), e.ticks && (e.ticks.color = r), e.title && (e.title.color = r) }), chart.data?.datasets && chart.data.datasets.forEach(e => { switch (currentGraphType) { case "line": e.borderColor = n, e.backgroundColor = i; break; case "bar": case "visualizer": e.borderColor = n, e.backgroundColor = n; break; case "spectrum": e.borderColor = n, e.backgroundColor = "transparent" } }) } function updateChartScale() { if (!chart?.options?.scales) return; let e = getMinDisplayValue(currentScale, currentWeighting, currentCalibrationOffset), t = getMaxDisplayValue(currentScale, currentWeighting, currentCalibrationOffset), a = getYAxisLabel(currentScale, currentWeighting, currentCalibrationOffset), r = chart.options.scales; switch (currentGraphType) { case "line": r.y && (r.y.min = e, r.y.max = t, r.y.title && (r.y.title.text = a)); break; case "bar": r.x && (r.x.min = e, r.x.max = t, r.x.title && (r.x.title.text = a)); break; case "visualizer": case "spectrum": r.y && (r.y.min = -100, r.y.max = 0, r.y.title && (r.y.title.text = translations.chart_label_level_dbfs || "Level (dBFS)")) } } async function startMeter() { if (!isRunning) { if (!navigator.mediaDevices?.getUserMedia) { alert(translations.alert_getUserMedia_unsupported || "getUserMedia not supported."), updateUiForStoppedState(); return } if (!window.AudioContext && !window.webkitAudioContext) { alert(translations.alert_audioContext_unsupported || "AudioContext not supported."), updateUiForStoppedState(); return } try { try { mediaStream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: { ideal: !1 }, noiseSuppression: { ideal: !1 }, autoGainControl: { ideal: !1 } }, video: !1 }) } catch (e) { console.warn("Ideal constraints failed:", e), mediaStream = await navigator.mediaDevices.getUserMedia({ audio: !0, video: !1 }) } audioContext = new (window.AudioContext || window.webkitAudioContext), "suspended" === audioContext.state && await audioContext.resume(), (analyser = audioContext.createAnalyser()).fftSize = 2048, analyser.smoothingTimeConstant = .1, analyser.minDecibels = -110, analyser.maxDecibels = 0, (microphoneSource = audioContext.createMediaStreamSource(mediaStream)).connect(analyser); let t = analyser.frequencyBinCount; timeDataArray = new Float32Array(t), freqDataArray = new Float32Array(t), frequencyLabels = []; let a = audioContext.sampleRate / 2, r = a / t; for (let n = 0; n < t; n++) { let i = n * r; frequencyLabels.push(i.toFixed(0)) } if (chart && ("spectrum" === currentGraphType || "visualizer" === currentGraphType)) { chart.data.labels = frequencyLabels; let l = frequencyLabels.length; chart.data.datasets[0].data = Array(l).fill(-100), chart.update("none") } precomputeWeightingDbOffsets(currentWeighting, t, audioContext.sampleRate, analyser.fftSize), resetStatisticsAndUi(), dbHistory = Array(maxHistoryLength).fill(getMinDisplayValue(currentScale, currentWeighting, currentCalibrationOffset)), currentInstantaneousDb = null, currentDisplayDbValue = null, isClipping = !1, startTime = performance.now(), minDbDelayPassed = !1, isRunning = !0, isPaused = !1, localStorage.setItem("soundMeterRunning", "true"), startUiUpdateLoop(), animationFrameId = requestAnimationFrame(processAudioFrame), updateUiForRunningState() } catch (s) { console.error("Error starting microphone:", s), handleMicrophoneError(s), stopMeter() } } } function stopMeter() { (isRunning || mediaStream || audioContext) && (animationFrameId && (cancelAnimationFrame(animationFrameId), animationFrameId = null), stopUiUpdateLoop(), mediaStream?.getTracks().forEach(e => e.stop()), mediaStream = null, clearTimeout(peakHoldTimeoutId), peakHoldTimeoutId = null, clearTimeout(clippingTimeoutId), clippingTimeoutId = null, microphoneSource?.disconnect(), microphoneSource = null, analyser = null, audioContext && "closed" !== audioContext.state && audioContext.close().catch(e => console.warn("Error closing AC:", e)), audioContext = null, isRunning = !1, isPaused = !1, isClipping = !1, timeDataArray = null, freqDataArray = null, weightingDbOffsets = null, frequencyLabels = [], currentInstantaneousDb = null, currentDisplayDbValue = null, localStorage.setItem("soundMeterRunning", "false"), updateUiForStoppedState()) } function handleMicrophoneError(e) { let t = translations.alert_mic_generic_error ? `${translations.alert_mic_generic_error} ${e.message}` : `Mic Error: ${e.message}`; "NotAllowedError" === e.name || "PermissionDeniedError" === e.name ? t = translations.alert_mic_permission_denied || "Mic permission denied." : "NotFoundError" === e.name ? t = translations.alert_mic_not_found || "No microphone found." : "NotReadableError" === e.name ? t = translations.alert_mic_not_readable || "Mic in use/unreadable." : "SecurityError" === e.name && (t = translations.alert_mic_security_error || "Mic access blocked (HTTPS?)."), console.error("Mic Error Details:", e), alert(t) } function updateUiForRunningState() { startStopBtn && (startStopBtn.classList.remove("start"), startStopBtn.classList.add("stop"), startStopBtn.disabled = !1, startStopBtn.setAttribute("aria-label", translations.stop_button_label || "Stop Meter")), startStopIcon && (startStopIcon.innerHTML = SVG_STOP), startStopLbl && (startStopLbl.textContent = translations.stop_button_text || "Stop"), pauseResumeBtn && (pauseResumeBtn.disabled = !1, pauseResumeBtn.classList.remove("secondary"), pauseResumeIcon && (pauseResumeIcon.innerHTML = SVG_PAUSE), pauseResumeLbl && (pauseResumeLbl.textContent = translations.pause_button_text || "Pause"), pauseResumeBtn.setAttribute("aria-label", translations.pause_button_label || "Pause Meter")), resetBtn && (resetBtn.disabled = !1, resetBtn.classList.remove("secondary")) } function updateUiForStoppedState() { startStopBtn && checkPermissionsAndSetupStartButton(), pauseResumeBtn && (pauseResumeBtn.disabled = !0, pauseResumeBtn.classList.add("secondary"), pauseResumeIcon && (pauseResumeIcon.innerHTML = SVG_PAUSE), pauseResumeLbl && (pauseResumeLbl.textContent = translations.pause_button_text || "Pause"), pauseResumeBtn.setAttribute("aria-label", translations.pause_button_label || "Pause Meter")), resetBtn && (resetBtn.disabled = !0, resetBtn.classList.add("secondary")), clipIndicator && clipIndicator.classList.remove("visible"), isClipping = !1, clearTimeout(clippingTimeoutId) } function resetReadingsUI() { let e = getMinDisplayValue(currentScale, currentWeighting, currentCalibrationOffset), t = formatDisplayValue(e, currentScale, currentWeighting), a = formatStatsValue(e); currentDbEl && (currentDbEl.textContent = t.value), currentDbUnitEl && (currentDbUnitEl.textContent = t.unit), minDbEl && (minDbEl.textContent = a), avgDbEl && (avgDbEl.textContent = a), maxDbEl && (maxDbEl.textContent = a), peakDbEl && (peakDbEl.textContent = a), updateProgressBar(e), levelDescEl && (levelDescEl.textContent = getSoundLevelDescription(e)), clipIndicator && clipIndicator.classList.remove("visible"), isClipping = !1, clearTimeout(clippingTimeoutId) } function processAudioFrame() { if (!isRunning || !analyser || !audioContext || "closed" === audioContext.state) { isRunning && !isPaused && (animationFrameId = requestAnimationFrame(processAudioFrame)); return } if (isPaused) { animationFrameId = requestAnimationFrame(processAudioFrame); return } animationFrameId = requestAnimationFrame(processAudioFrame); try { timeDataArray || (timeDataArray = new Float32Array(analyser.frequencyBinCount)), analyser.getFloatTimeDomainData(timeDataArray) } catch (e) { console.error("TimeData error:", e); return } let t = 0; for (let a = 0; a < timeDataArray.length; a++)t += timeDataArray[a] * timeDataArray[a]; let r = Math.sqrt(t / timeDataArray.length), n = Math.max(-100, Math.min(0, 20 * Math.log10(r + 1e-10))), i = 0; for (let l = 0; l < timeDataArray.length; l++)i = Math.max(i, Math.abs(timeDataArray[l])); i >= .9440608762859234 && (!isClipping && clipIndicator && (clipIndicator.classList.add("visible"), isClipping = !0), clearTimeout(clippingTimeoutId), clippingTimeoutId = setTimeout(() => { clipIndicator && clipIndicator.classList.remove("visible"), isClipping = !1 }, 1500)); let s; if (freqDataArray || (freqDataArray = new Float32Array(analyser.frequencyBinCount)), "Z" !== currentWeighting || "visualizer" === currentGraphType || "spectrum" === currentGraphType) try { analyser.getFloatFrequencyData(freqDataArray), s = applyRealWeighting(n, freqDataArray) } catch (o) { console.error("FreqData/Weighting error:", o), s = n, freqDataArray.fill(-100) } else s = n, freqDataArray && freqDataArray.fill(-100); let c = s + currentCalibrationOffset; currentInstantaneousDb = c, Number.isFinite(c) && (!minDbDelayPassed && performance.now() - startTime >= 1e3 && (minDbDelayPassed = !0, minDbRaw = c), minDbDelayPassed && (minDbRaw = Math.min(minDbRaw, c)), maxDbRaw = Math.max(maxDbRaw, c), Number.isFinite(avgDbSum) && 1e15 > Math.abs(avgDbSum) ? (avgDbSum += c, avgDbCount++) : (avgDbSum = c, avgDbCount = 1), c > peakDbRaw && (peakDbRaw = c, clearTimeout(peakHoldTimeoutId), currentPeakHoldTime !== 1 / 0 && (peakHoldTimeoutId = setTimeout(() => { peakDbRaw = -1 / 0 }, currentPeakHoldTime)))) } function calculateUiIntervalDuration(e = currentUpdateInterval) { return 0 === e ? 50 : Math.max(50, e) } function startUiUpdateLoop() { stopUiUpdateLoop(); let e = calculateUiIntervalDuration(); uiUpdateIntervalId = setInterval(uiUpdateLoop, e) } function stopUiUpdateLoop() { uiUpdateIntervalId && (clearInterval(uiUpdateIntervalId), uiUpdateIntervalId = null) } function uiUpdateLoop() { if (isPaused || !isRunning || null === currentInstantaneousDb) return; let e = currentInstantaneousDb; null !== currentDisplayDbValue && Number.isFinite(currentDisplayDbValue) ? Number.isFinite(e) && (currentDisplayDbValue = .5 * e + .5 * currentDisplayDbValue) : currentDisplayDbValue = e; let t = getMinDisplayValue(currentScale, currentWeighting, currentCalibrationOffset, !1) - 10, a = getMaxDisplayValue(currentScale, currentWeighting, currentCalibrationOffset, !1) + 10; currentDisplayDbValue = Math.max(t, Math.min(a, currentDisplayDbValue)); let r = scaleValueForDisplay(currentDisplayDbValue, currentScale), n = scaleValueForDisplay(minDbRaw, currentScale), i = avgDbCount > 0 && Number.isFinite(avgDbSum) ? avgDbSum / avgDbCount : -100 + currentCalibrationOffset, l = scaleValueForDisplay(i, currentScale), s = scaleValueForDisplay(maxDbRaw, currentScale), o = scaleValueForDisplay(peakDbRaw, currentScale), c = formatDisplayValue(r, currentScale, currentWeighting), u = formatStatsValue(n), $ = formatStatsValue(l), d = formatStatsValue(s), p = formatStatsValue(o); currentDbEl && (currentDbEl.textContent = c.value), currentDbUnitEl && (currentDbUnitEl.textContent = c.unit), levelDescEl && (levelDescEl.textContent = getSoundLevelDescription(r)), minDbEl && (minDbEl.textContent = u), avgDbEl && (avgDbEl.textContent = $), maxDbEl && (maxDbEl.textContent = d), peakDbEl && (peakDbEl.textContent = p), updateProgressBar(r), updateChartData(r) } function togglePause() { if (!isRunning || !pauseResumeBtn) return; isPaused = !isPaused; let e = isPaused; pauseResumeIcon && (pauseResumeIcon.innerHTML = e ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/></svg>' : SVG_PAUSE), pauseResumeLbl && (pauseResumeLbl.textContent = e ? translations.resume_button_text || "Resume" : translations.pause_button_text || "Pause"), pauseResumeBtn.setAttribute("aria-label", e ? translations.resume_button_label || "Resume Meter" : translations.pause_button_label || "Pause Meter"), e && clearTimeout(clippingTimeoutId) } function resetStatisticsAndUi() { minDbRaw = 1 / 0, maxDbRaw = -1 / 0, avgDbSum = 0, avgDbCount = 0, peakDbRaw = -1 / 0, clearTimeout(peakHoldTimeoutId), peakHoldTimeoutId = null, clearTimeout(clippingTimeoutId), clippingTimeoutId = null; let e = getMinDisplayValue(currentScale, currentWeighting, currentCalibrationOffset); if (currentInstantaneousDb = e, currentDisplayDbValue = e, isClipping = !1, isRunning && (startTime = performance.now(), minDbDelayPassed = !1), resetReadingsUI(), dbHistory = Array(maxHistoryLength).fill(e), freqDataArray && freqDataArray.fill(-100), chart?.data?.datasets?.[0]) { let t = chart.data.datasets[0], a = chart.data.labels?.length || maxHistoryLength, r; switch (currentGraphType) { case "line": for (r = [...dbHistory]; r.length < maxHistoryLength;)r.unshift(e); t.data = r.slice(0, maxHistoryLength); break; case "bar": t.data = [e]; break; case "visualizer": case "spectrum": r = Array(a).fill(-100), t.data = r }chart.update("none") } } function scaleValueForDisplay(e, t) { return "positive" === t && Number.isFinite(e) ? e + 100 : e } function formatDisplayValue(e, t, a) { let r = "positive" === t, n = r ? "dB" : `dB${a}`, i = -100 + currentCalibrationOffset, l = scaleValueForDisplay(i, t); return !Number.isFinite(e) || e < l - 5 ? { value: r ? "0.0" : "-âˆž", unit: n } : { value: e.toFixed(1), unit: n } } function formatStatsValue(e) { let t = currentScale, a = -100 + currentCalibrationOffset, r = scaleValueForDisplay(a, t); return !Number.isFinite(e) || e < r - 5 ? "positive" === t ? "0.0 dB" : "-âˆž dB" : `${e.toFixed(1)} dB` } function getMinDisplayValue(e, t, a, r = !0) { let n = -90 + a, i = scaleValueForDisplay(n, e); return r ? 10 * Math.floor(i / 10) - 10 : n } function getMaxDisplayValue(e, t, a, r = !0) { let n = 0 + a, i = scaleValueForDisplay(n, e); return r ? 10 * Math.ceil(i / 10) + 10 : n } function getYAxisLabel(e, t, a) { let r = "positive" === e ? "dB" : `dB${t}`, n = (translations.chart_axis_label_base || "Level ({unit})").replace("{unit}", r); if (0 !== a) { let i = translations.chart_axis_label_cal_prefix || " (Cal ", l = translations.chart_axis_label_cal_suffix || ")"; n += i + (a > 0 ? "+" : "") + a.toFixed(1) + l } return n } function populateReferenceChart() { refChartList && (refChartList.innerHTML = "", referenceLevels.forEach(e => { let t = document.createElement("li"); t.className = "reference-chart-item"; let a = "function" == typeof e.description ? e.description() : e.description || ""; t.innerHTML = `<span class="reference-chart-color" style="background-color:${e.color};"></span><span class="reference-chart-level">${e.level} dB:</span><span class="reference-chart-desc">${a}</span>`, refChartList.appendChild(t) })) } function getSoundLevelDescription(e) { if (!Number.isFinite(e)) return "\xa0"; let t = e; "positive" === currentScale && (t -= 100), t -= currentCalibrationOffset, t += 90; for (let a = 0; a < referenceLevels.length; a++)if (t >= referenceLevels[a].level) return "function" == typeof referenceLevels[a].description ? referenceLevels[a].description() : referenceLevels[a].description || ""; let r = referenceLevels[referenceLevels.length - 1]?.description; return ("function" == typeof r ? r() : r) || translations.ref_desc_very_quiet || "Very Quiet" } function getReferenceColor(e) { if (!Number.isFinite(e)) return "var(--md-sys-color-surface-variant-light)"; let t = e; "positive" === currentScale && (t -= 100), t -= currentCalibrationOffset, t += 90; for (let a = 0; a < referenceLevels.length; a++)if (t >= referenceLevels[a].level) return referenceLevels[a].color; return referenceLevels[referenceLevels.length - 1]?.color || "var(--md-sys-color-primary-light)" } function updateSettings(e = !1) { let t = currentScale, a = currentGraphType, r = currentUpdateInterval, n = currentWeighting; currentScale = scaleSel?.value ?? defaultSettings.scale, currentWeighting = weightSel?.value ?? defaultSettings.weighting, maxHistoryLength = calculateHistoryLength(currentUpdateInterval = parseInt(intervalSel?.value ?? defaultSettings.updateInterval.toString(), 10)); let i = peakSel?.value ?? defaultSettings.peakHoldTime.toString(); currentPeakHoldTime = "Infinity" === i ? 1 / 0 : parseInt(i, 10), currentCalibrationOffset = parseFloat(calNum?.value ?? defaultSettings.calibrationOffset.toString()) || 0; let l = parseFloat(calNum?.min ?? "-30"), s = parseFloat(calNum?.max ?? "30"); currentCalibrationOffset = Math.max(l, Math.min(s, currentCalibrationOffset)), calSlide && (e || calSlide.value !== currentCalibrationOffset.toFixed(1)) && (calSlide.value = currentCalibrationOffset.toFixed(1)), calNum && calNum.value !== currentCalibrationOffset.toFixed(1) && (calNum.value = currentCalibrationOffset.toFixed(1)), currentGraphType = graphSel?.value ?? defaultSettings.graphType; let o = getMinDisplayValue(currentScale, currentWeighting, currentCalibrationOffset), c = formatDisplayValue(o, currentScale, currentWeighting); currentDbUnitEl && (currentDbUnitEl.textContent = c.unit); let u = currentScale !== t, $ = currentGraphType !== a, d = calculateUiIntervalDuration(currentUpdateInterval), p = calculateUiIntervalDuration(r); $ || !chart ? (dbHistory = Array(maxHistoryLength).fill(o), initializeChart()) : u && (updateChartScale(), chart && chart.update("none")), currentWeighting !== n && audioContext && analyser && isRunning && precomputeWeightingDbOffsets(currentWeighting, analyser.frequencyBinCount, audioContext.sampleRate, analyser.fftSize), isRunning && Math.abs(d - p) > 10 && startUiUpdateLoop(), isRunning && (clearTimeout(peakHoldTimeoutId), peakHoldTimeoutId = null, currentPeakHoldTime !== 1 / 0 && Number.isFinite(peakDbRaw) && peakDbRaw > -1 / 0 && (peakHoldTimeoutId = setTimeout(() => { peakDbRaw = -1 / 0 }, currentPeakHoldTime))), isRunning || isPaused ? isRunning && !$ && !u && (updateChartScale(), chart && chart.update("none")) : resetStatisticsAndUi() } function resetToDefaultSettings() { scaleSel && (scaleSel.value = defaultSettings.scale), weightSel && (weightSel.value = defaultSettings.weighting), intervalSel && (intervalSel.value = defaultSettings.updateInterval), peakSel && (peakSel.value = defaultSettings.peakHoldTime), calNum && (calNum.value = defaultSettings.calibrationOffset.toFixed(1)), graphSel && (graphSel.value = defaultSettings.graphType), updateSettings(!0) } function syncCalibrationInputs(e) { if (!calNum || !calSlide) return; let t = parseFloat(e.min), a = parseFloat(e.max), r = parseFloat(e.value) || 0; (r = Math.max(t, Math.min(a, r))).toFixed(1) !== currentCalibrationOffset.toFixed(1) ? (currentCalibrationOffset = r, e === calNum ? calSlide.value = r.toFixed(1) : e === calSlide && (calNum.value = r.toFixed(1)), updateSettings()) : e === calNum ? calSlide.value = r.toFixed(1) : e === calSlide && (calNum.value = r.toFixed(1)) } function calculateHistoryLength(e) { return Math.max(30, Math.min(500, Math.round(1e3 / (0 === e ? 50 : Math.max(50, e)) * 30))) } function updateProgressBar(e) { if (!progBar) return; let t = getMinDisplayValue(currentScale, currentWeighting, currentCalibrationOffset), a = getMaxDisplayValue(currentScale, currentWeighting, currentCalibrationOffset), r = a - t, n = r > 0 ? (Math.max(t, Math.min(a, e)) - t) / r * 100 : 0; n = Math.max(0, Math.min(100, n)), progBar.style.width = `${n}%`, progBar.style.backgroundColor = getReferenceColor(e) } function updateChartData(e) { if (!chart?.data?.datasets?.[0] || !isRunning || isPaused) return; let t = chart.data.datasets[0], a; if (a = "bar" === currentGraphType ? chart.options.scales.x : chart.options.scales.y) try { switch (currentGraphType) { case "line": if (!Number.isFinite(e)) return; let r = Math.max(a.min, Math.min(a.max, e)); dbHistory.push(r), dbHistory.length > maxHistoryLength && dbHistory.shift(); let n = [...dbHistory], i = a.min; for (; n.length < maxHistoryLength;)n.unshift(i); t.data = n.slice(0, maxHistoryLength); break; case "bar": if (!Number.isFinite(e)) return; let l = Math.max(a.min, Math.min(a.max, e)); t.data = [l]; break; case "visualizer": case "spectrum": if (freqDataArray && freqDataArray.length === chart.data.labels.length) { let s = chart.data.labels.length, o = new Float32Array(s); for (let c = 0; c < s; c++)o[c] = Math.max(a.min, Math.min(a.max, freqDataArray[c] ?? a.min)); t.data = o } }chart.update("none") } catch (u) { console.error("Error updating chart data:", u, "GraphType:", currentGraphType) } } async function checkPermissionsAndSetupStartButton() { if (!navigator.permissions) { console.warn("Perms API not supported."), startStopBtn && (startStopBtn.disabled = !1), updateStartButtonVisualState("prompt"); return } try { let e = await navigator.permissions.query({ name: "microphone" }); updateStartButtonVisualState(e.state), e.onchange = () => { console.log("Perm state changed:", e.state), updateStartButtonVisualState(e.state), "granted" !== e.state && isRunning && (alert(translations.alert_mic_permission_revoked || "Mic permission revoked. Stopping meter."), stopMeter()) } } catch (t) { console.error("Perm query failed:", t), startStopBtn && (startStopBtn.disabled = !1), updateStartButtonVisualState("prompt") } } function updateStartButtonVisualState(e) { if (startStopBtn && startStopIcon && startStopLbl) switch (e) { case "granted": startStopBtn.disabled = !1; let t = "true" === localStorage.getItem("soundMeterRunning"); t && !isRunning ? (localStorage.setItem("soundMeterRunning", "false"), startStopBtn.classList.remove("stop"), startStopBtn.classList.add("start"), startStopIcon.innerHTML = SVG_MIC, startStopLbl.textContent = translations.start_button_text || "Start", startStopBtn.setAttribute("aria-label", translations.start_button_label || "Start Meter")) : isRunning ? (startStopBtn.classList.remove("start"), startStopBtn.classList.add("stop"), startStopIcon.innerHTML = SVG_STOP, startStopLbl.textContent = translations.stop_button_text || "Stop", startStopBtn.setAttribute("aria-label", translations.stop_button_label || "Stop Meter")) : (startStopBtn.classList.remove("stop"), startStopBtn.classList.add("start"), startStopIcon.innerHTML = SVG_MIC, startStopLbl.textContent = translations.start_button_text || "Start", startStopBtn.setAttribute("aria-label", translations.start_button_label || "Start Meter")); break; case "prompt": startStopBtn.disabled = !1, startStopBtn.classList.remove("stop"), startStopBtn.classList.add("start"), startStopIcon.innerHTML = SVG_MIC, startStopLbl.textContent = translations.start_button_text || "Start", startStopBtn.setAttribute("aria-label", translations.start_permission_button_label || "Start Meter (Requires Permission)"); break; default: startStopBtn.disabled = !0, startStopBtn.classList.remove("stop"), startStopBtn.classList.add("start"), startStopIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor"><path d="m710-362-58-58q14-23 21-48t7-52h80q0 44-13 83.5T710-362ZM480-594Zm112 112-72-72v-206q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760v126l-80-80v-46q0-50 35-85t85-35q50 0 85 35t35 85v240q0 11-2.5 20t-5.5 18ZM440-120v-123q-104-14-172-93t-68-184h80q0 83 57.5 141.5T480-320q34 0 64.5-10.5T600-360l57 57q-29 23-63.5 39T520-243v123h-80Zm352 64L56-792l56-56 736 736-56 56Z"/></svg>', startStopLbl.textContent = translations.blocked_button_text || "Blocked", startStopBtn.setAttribute("aria-label", translations.mic_blocked_button_label || "Microphone Blocked") } } function addEventListeners() { let e = (e, t, a) => { e && e.addEventListener(t, a) }; e(themeToggleBtn, "click", toggleTheme), e(settingsBtn, "click", toggleSettingsPanel), e(closeSettingsBtn, "click", toggleSettingsPanel), e(infoBtn, "click", toggleInfoPanel), e(closeInfoBtn, "click", toggleInfoPanel), e(overlay, "click", () => { settingsPanel?.classList.contains("active") && toggleSettingsPanel(), infoPanel?.classList.contains("active") && toggleInfoPanel() }), e(startStopBtn, "click", () => { audioContext?.state === "suspended" ? audioContext.resume().then(() => { isRunning ? stopMeter() : startMeter() }).catch(e => { console.error("AC resume fail:", e), alert(translations.alert_audio_resume_failed || "Could not resume audio."), stopMeter() }) : isRunning ? stopMeter() : startMeter() }), e(pauseResumeBtn, "click", togglePause), e(resetBtn, "click", resetStatisticsAndUi), e(resetDefaultsBtn, "click", resetToDefaultSettings), e(scaleSel, "change", updateSettings), e(weightSel, "change", updateSettings), e(intervalSel, "change", updateSettings), e(peakSel, "change", updateSettings), e(graphSel, "change", updateSettings), e(calNum, "input", e => syncCalibrationInputs(e.target)), e(calSlide, "input", e => syncCalibrationInputs(e.target)), e(calNum, "change", e => syncCalibrationInputs(e.target)), e(calSlide, "change", e => syncCalibrationInputs(e.target)) } document.addEventListener("DOMContentLoaded", () => { "undefined" == typeof translations && (console.error("Translations object not found!"), window.translations = {}), scaleSel && (scaleSel.value = defaultSettings.scale), weightSel && (weightSel.value = defaultSettings.weighting), intervalSel && (intervalSel.value = defaultSettings.updateInterval), peakSel && (peakSel.value = defaultSettings.peakHoldTime), calNum && (calNum.value = defaultSettings.calibrationOffset.toFixed(1)), calSlide && (calSlide.value = defaultSettings.calibrationOffset.toFixed(1)), graphSel && (graphSel.value = defaultSettings.graphType), loadInitialTheme(), populateReferenceChart(), updateSettings(), initializeChart(), addEventListeners(), checkPermissionsAndSetupStartButton(), resetReadingsUI() });
+    </script>
 
 </body>
 
