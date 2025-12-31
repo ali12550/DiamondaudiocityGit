@@ -36,7 +36,9 @@
 
 
 // common organization and website global schema
-// Create a script element for Organization
+
+
+// Organization Schema
 const orgScript = document.createElement('script');
 orgScript.type = 'application/ld+json';
 orgScript.text = JSON.stringify({
@@ -51,7 +53,7 @@ orgScript.text = JSON.stringify({
 });
 document.head.appendChild(orgScript);
 
-// Create a script element for WebSite
+// WebSite Schema
 const siteScript = document.createElement('script');
 siteScript.type = 'application/ld+json';
 siteScript.text = JSON.stringify({
@@ -66,4 +68,19 @@ siteScript.text = JSON.stringify({
   }
 });
 document.head.appendChild(siteScript);
+
+// Person Schema
+const personScript = document.createElement('script');
+personScript.type = 'application/ld+json';
+personScript.text = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "John Smith",
+  "url": "https://diamondaudiocity.com/",
+  "sameAs": [
+    "https://www.facebook.com/p/Diamond-Audio-CiTy-100076963165150/"
+  ]
+});
+document.head.appendChild(personScript);
+
 
