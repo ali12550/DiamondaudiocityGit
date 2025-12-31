@@ -517,92 +517,92 @@
 
             </div>
         </div>
+    </div>
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js"></script>
+    <script src="/assets/tools.js" defer></script>
+    <!-- include js -->
+    <script>
 
-        <div id="footer"></div>
-        <script src="/assets/bootstrap5.js"></script>
-        <script src="/assets/tools.js" defer></script>
-        <!-- include js -->
-        <script>
 
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+    <!-- tool js -->
+    <script defer>
+        let audioContext;
+        let analyser;
+        let microphone;
+        let javascriptNode;
+        let running = false;
 
-            window.addEventListener("load", () => {
-                Promise.all([
-                    fetch("../../header.html").then(res => res.text()),
-                    fetch("../../footer.html").then(res => res.text())
-                ])
-                    .then(([header, footer]) => {
-                        document.getElementById("header").innerHTML = header;
-                        document.getElementById("footer").innerHTML = footer;
-                    })
-                    .catch(err => console.error("Include load failed:", err));
-            });
-        </script>
-        <!-- tool js -->
-        <script defer>
-            let audioContext;
-            let analyser;
-            let microphone;
-            let javascriptNode;
-            let running = false;
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const volumeLevel = document.getElementById('volumeLevel');
+        const statusText = document.getElementById('status');
 
-            const startBtn = document.getElementById('startBtn');
-            const stopBtn = document.getElementById('stopBtn');
-            const volumeLevel = document.getElementById('volumeLevel');
-            const statusText = document.getElementById('status');
+        startBtn.addEventListener('click', async () => {
+            if (running) return;
 
-            startBtn.addEventListener('click', async () => {
-                if (running) return;
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 256;
 
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    analyser = audioContext.createAnalyser();
-                    analyser.fftSize = 256;
+                microphone = audioContext.createMediaStreamSource(stream);
+                javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 
-                    microphone = audioContext.createMediaStreamSource(stream);
-                    javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+                microphone.connect(analyser);
+                analyser.connect(javascriptNode);
+                javascriptNode.connect(audioContext.destination);
 
-                    microphone.connect(analyser);
-                    analyser.connect(javascriptNode);
-                    javascriptNode.connect(audioContext.destination);
+                javascriptNode.onaudioprocess = () => {
+                    const array = new Uint8Array(analyser.frequencyBinCount);
+                    analyser.getByteFrequencyData(array);
+                    let values = 0;
+                    for (let i = 0; i < array.length; i++) {
+                        values += array[i];
+                    }
+                    let average = values / array.length;
+                    volumeLevel.style.width = Math.min(100, average) + '%';
+                };
 
-                    javascriptNode.onaudioprocess = () => {
-                        const array = new Uint8Array(analyser.frequencyBinCount);
-                        analyser.getByteFrequencyData(array);
-                        let values = 0;
-                        for (let i = 0; i < array.length; i++) {
-                            values += array[i];
-                        }
-                        let average = values / array.length;
-                        volumeLevel.style.width = Math.min(100, average) + '%';
-                    };
+                running = true;
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                statusText.textContent = 'Microphone is active...';
+            } catch (err) {
+                console.error(err);
+                statusText.textContent = 'Error accessing microphone: ' + err.message;
+            }
+        });
 
-                    running = true;
-                    startBtn.disabled = true;
-                    stopBtn.disabled = false;
-                    statusText.textContent = 'Microphone is active...';
-                } catch (err) {
-                    console.error(err);
-                    statusText.textContent = 'Error accessing microphone: ' + err.message;
-                }
-            });
+        stopBtn.addEventListener('click', () => {
+            if (!running) return;
+            javascriptNode.disconnect();
+            analyser.disconnect();
+            microphone.disconnect();
+            audioContext.close();
 
-            stopBtn.addEventListener('click', () => {
-                if (!running) return;
-                javascriptNode.disconnect();
-                analyser.disconnect();
-                microphone.disconnect();
-                audioContext.close();
-
-                running = false;
-                startBtn.disabled = false;
-                stopBtn.disabled = true;
-                volumeLevel.style.width = '0';
-                statusText.textContent = 'Microphone stopped.';
-            });
-        </script>
-        <!-- Schema: WebSite -->
-        <script type="application/ld+json">
+            running = false;
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            volumeLevel.style.width = '0';
+            statusText.textContent = 'Microphone stopped.';
+        });
+    </script>
+    <!-- Schema: WebSite -->
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -618,8 +618,8 @@
   }
 }
 </script>
-<!-- Schema: WebPage -->
-<script type="application/ld+json">
+    <!-- Schema: WebPage -->
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -633,8 +633,8 @@
   }
 }
 </script>
-<!-- Schema: HowTo -->
-<script type="application/ld+json">
+    <!-- Schema: HowTo -->
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "HowTo",
@@ -660,8 +660,8 @@
   ]
 }
 </script>
-<!-- Schema: FAQPage -->
-<script type="application/ld+json">
+    <!-- Schema: FAQPage -->
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -693,8 +693,8 @@
   ]
 }
 </script>
-<!-- Schema: Person -->
-<script type="application/ld+json">
+    <!-- Schema: Person -->
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -705,8 +705,8 @@
   }
 }
 </script>
-<!-- Schema: Organization -->
-<script type="application/ld+json">
+    <!-- Schema: Organization -->
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -715,8 +715,8 @@
   "logo": "https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png"
 }
 </script>
-<!-- Schema: SoftwareApplication (Corrected & Valid) -->
-<script type="application/ld+json">
+    <!-- Schema: SoftwareApplication (Corrected & Valid) -->
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
