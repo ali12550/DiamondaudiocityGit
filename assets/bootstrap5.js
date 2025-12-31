@@ -33,3 +33,37 @@
 // });
 
 //# sourceMappingURL=bootstrap.bundle.min.js.map
+
+
+// common organization and website global schema
+// Create a script element for Organization
+const orgScript = document.createElement('script');
+orgScript.type = 'application/ld+json';
+orgScript.text = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Diamond Audio City",
+  "url": "https://diamondaudiocity.com/",
+  "logo": "https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png",
+  "sameAs": [
+    "https://www.facebook.com/p/Diamond-Audio-CiTy-100076963165150/"
+  ]
+});
+document.head.appendChild(orgScript);
+
+// Create a script element for WebSite
+const siteScript = document.createElement('script');
+siteScript.type = 'application/ld+json';
+siteScript.text = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://diamondaudiocity.com/",
+  "name": "Diamond Audio City",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://diamondaudiocity.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+});
+document.head.appendChild(siteScript);
+
