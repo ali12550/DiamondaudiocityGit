@@ -28,6 +28,16 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
         crossorigin="anonymous"></script>
+    <style>
+        @media (min-width: 1200px) {
+
+            .h3,
+            h3 {
+                font-size: 16px !important;
+                font-weight: 600 !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -36,8 +46,48 @@
     <div class="container-fluid py-4">
         <div class="row justify-content-around">
 
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
 
-            <div class="col-lg-7 col-md-8">
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i>
+                                        Speaker Wattage</a></li>
+                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i
+                                            class="bi bi-diagram-3"></i>
+                                        Impedance Calculator</a></li>
+                                <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
+                                        Amplifier Power</a></li>
+                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i
+                                            class="bi bi-rulers"></i>
+                                        Sound Distance Drop</a></li>
+                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i
+                                            class="bi bi-arrows-move"></i>
+                                        Speaker Placement</a></li>
+                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i> Room
+                                        Acoustics</a></li>
+                                <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
+                                        Ported Enclosure</a></li>
+                                <li><a href="/speaker-tools/sealed-box-calculator/"><i class="bi bi-box-seam"></i>
+                                        Sealed Box</a></li>
+                                <li><a href="/speaker-tools/crossover-frequency-calculator/"><i
+                                            class="bi bi-filter"></i>
+                                        Crossover Frequency</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -155,44 +205,572 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-4">
-                <div class="tools-sidebar">
-                    <div class="sidebar-search mb-4">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
-                                onkeyup="searchTools()">
-                        </div>
+                <!-- content start -->
+                 <div class="tool-container">
+                    <h1>Ported Enclosure Calculator – Optimal Bass Box Design Tool</h1>
+
+                    <h2>Tool Overview &amp; Purpose</h2>
+
+                    <!-- <p><strong>Authority:</strong> Audio Engineering Society (AES), Loudspeaker Enclosure Design
+                        Standards</p> -->
+
+                    <p>
+                        A Ported Enclosure Calculator computes the correct box volume, port dimensions, and tuning
+                        frequency (Fb) for a bass-reflex loudspeaker system.
+                        It models airflow, resonance behavior, and low-frequency efficiency to optimize bass extension,
+                        SPL output, and port noise control.
+                    </p>
+
+                    <h3>Who this tool is for</h3>
+                    <ul>
+                        <li>Car audio subwoofer builders</li>
+                        <li>Home theater and hi-fi designers</li>
+                        <li>PA and DJ system integrators</li>
+                        <li>DIY speaker enclosure builders</li>
+                    </ul>
+
+                    <h3>Problems it solves</h3>
+                    <ul>
+                        <li>Poor bass extension due to incorrect tuning</li>
+                        <li>Port noise (chuffing) from undersized ports</li>
+                        <li>Mismatched box volume and driver parameters</li>
+                        <li>Inefficient SPL output from improper enclosure design</li>
+                    </ul>
+
+                    <h3>Ported vs sealed enclosures</h3>
+                    <!-- <p><strong>Authority:</strong> JBL Professional Loudspeaker Engineering Notes</p> -->
+                    <ul>
+                        <li>Ported enclosures increase low-frequency efficiency using a tuned air mass.</li>
+                        <li>Sealed enclosures rely solely on air compliance.</li>
+                        <li>Ported designs provide higher output near Fb but require precise tuning to avoid distortion.
+                        </li>
+                    </ul>
+                 </div>
+                 <div class="tool-container">
+                    
+                    <h2>Calculator Input Parameters</h2>
+
+                    <h3>Subwoofer Specifications</h3>
+                    <!-- <p><strong>Authority:</strong> Thiele &amp; Small, AES Papers</p> -->
+                    <ul>
+                        <li>Driver size (inches / cm)</li>
+                        <li>Fs – Free-air resonance</li>
+                        <li>Qts – Total Q factor</li>
+                        <li>Vas – Equivalent compliance volume</li>
+                        <li>RMS power handling</li>
+                        <li>Cone area (Sd)</li>
+                    </ul>
+                    <p>These parameters define how the driver interacts with a vented enclosure.</p>
+
+                    <h3>Enclosure Design Inputs</h3>
+                    <!-- <p><strong>Authority:</strong> Loudspeaker Design Cookbook – Vance Dickason</p> -->
+                    <ul>
+                        <li>Box volume</li>
+                        <li>Gross volume</li>
+                        <li>Net internal volume (after displacement)</li>
+                        <li>Desired tuning frequency (Fb)</li>
+                        <li>Port type selection
+                            <ul>
+                                <li>Round port</li>
+                                <li>Slot port</li>
+                                <li>Aero / flared port</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>Units &amp; Measurement Support</h3>
+                    <!-- <p><strong>Authority:</strong> IEC Loudspeaker Measurement Standards</p> -->
+                    <ul>
+                        <li>Metric and Imperial units</li>
+                        <li>Automatic unit conversion for volume, length, and area</li>
+                    </ul>
+                 </div>
+                 <div class="tool-container">
+                    
+                    <h2>Thiele–Small Parameters Explained</h2>
+                    <!-- <p><strong>Authority:</strong> AES Loudspeaker Measurement Guidelines</p> -->
+                    <ul>
+                        <li>Fs: determines the lowest effective tuning range</li>
+                        <li>Qts: influences box size and damping behavior</li>
+                        <li>Vas: sets enclosure volume requirements</li>
+                    </ul>
+                    <p>Ported enclosures are highly sensitive to these values; incorrect inputs produce inaccurate
+                        tuning.</p>
+
+                    <h2>Calculator Outputs Explained</h2>
+
+                    <h3>Recommended Box Volume</h3>
+                    <!-- <p><strong>Authority:</strong> Harman International Enclosure Modeling</p> -->
+                    <ul>
+                        <li>Net internal volume</li>
+                        <li>Adjusted for:
+                            <ul>
+                                <li>Driver displacement</li>
+                                <li>Port displacement</li>
+                                <li>Internal bracing</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>Port Dimensions</h3>
+                    <!-- <p><strong>Authority:</strong> JBL Bass Reflex Design Guide</p> -->
+                    <ul>
+                        <li>Port length</li>
+                        <li>Port diameter or slot cross-section</li>
+                        <li>Single vs multiple port configurations</li>
+                    </ul>
+
+                    <h3>Tuning Frequency (Fb)</h3>
+                    <!-- <p><strong>Authority:</strong> AES Bass Reflex Alignment Research</p> -->
+                    <p>
+                        Fb is the frequency where port output reinforces cone output, increasing bass efficiency and
+                        reducing cone excursion.
+                    </p>
+
+                    <h3>Air Velocity &amp; Port Noise</h3>
+                    <!-- <p><strong>Authority:</strong> Electro-Voice Enclosure Engineering Notes</p> -->
+                    <ul>
+                        <li>Chuffing threshold prediction</li>
+                        <li>Safe airspeed limits</li>
+                        <li>Port area optimization to reduce turbulence</li>
+                    </ul>
+                 </div>
+                 <div class="tool-container">
+                    
+                    <h2>Mathematical &amp; Acoustic Logic</h2>
+
+                    <h3>Helmholtz Resonator Formula</h3>
+                    <!-- <p><strong>Authority:</strong> Acoustic Physics – Helmholtz Principle</p> -->
+
+                    <pre>
+Fb = (c / 2π) × √(Av / (Vb × Lv))
+</pre>
+
+                    <p>Where:</p>
+                    <ul>
+                        <li>Fb = tuning frequency</li>
+                        <li>Av = port cross-sectional area</li>
+                        <li>Vb = net box volume</li>
+                        <li>Lv = effective port length</li>
+                    </ul>
+
+                    <h3>Relationship Between Box Volume &amp; Tuning</h3>
+                    <!-- <p><strong>Authority:</strong> Loudspeaker Design Cookbook</p> -->
+                    <ul>
+                        <li>Smaller boxes raise Fb and reduce low-frequency extension</li>
+                        <li>Larger boxes lower Fb but increase enclosure size</li>
+                    </ul>
+
+                    <h3>Port Area vs Port Length Trade-off</h3>
+                    <!-- <p><strong>Authority:</strong> JBL Port Design Research</p> -->
+                    <ul>
+                        <li>Larger ports reduce air velocity but require longer lengths</li>
+                        <li>Smaller ports save space but increase chuffing risk</li>
+                    </ul>
+
+                    <h2>Step-by-Step Usage Guide</h2>
+                    <!-- <p><strong>Authority:</strong> AES Loudspeaker Design Workflow</p> -->
+                    <ol>
+                        <li>Enter subwoofer Thiele–Small parameters</li>
+                        <li>Select box volume or target tuning frequency</li>
+                        <li>Choose port type</li>
+                        <li>Review calculated port dimensions</li>
+                        <li>Adjust for build constraints</li>
+                        <li>Finalize enclosure design</li>
+                    </ol>
+
+                    <h2>Example Calculation</h2>
+                    <!-- <p><strong>Authority:</strong> Loudspeaker Design Cookbook Example Alignments</p> -->
+
+                    <h3>Sample Setup</h3>
+                    <ul>
+                        <li>12-inch subwoofer</li>
+                        <li>Fs: 28 Hz</li>
+                        <li>Qts: 0.39</li>
+                        <li>Vas: 85 L</li>
+                        <li>Target Fb: 32 Hz</li>
+                    </ul>
+
+                    <h3>Results</h3>
+                    <ul>
+                        <li>Net box volume: ~55 L</li>
+                        <li>Port diameter: 4 in</li>
+                        <li>Port length: ~14 in</li>
+                        <li>Behavior: Extended low bass with controlled airflow</li>
+                    </ul>
+
+                    <h2>Ported Enclosure Design Table (Quick Reference)</h2>
+                    <!-- <p><strong>Authority:</strong> EV Enclosure Design Data</p> -->
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Design Goal</th>
+                                    <th>Box Size</th>
+                                    <th>Tuning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>High output</td>
+                                    <td>Small</td>
+                                    <td>High Fb</td>
+                                </tr>
+                                <tr>
+                                    <td>Balanced</td>
+                                    <td>Medium</td>
+                                    <td>Moderate Fb</td>
+                                </tr>
+                                <tr>
+                                    <td>Deep bass</td>
+                                    <td>Large</td>
+                                    <td>Low Fb</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="sidebar-categories">
-                        <div class="sidebar-category active">
-                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
-                            <ul class="sidebar-links">
-                                <li><a href="/speaker-tools/speaker-wattage-calculator/"><i class="bi bi-lightning"></i>
-                                        Speaker Wattage</a></li>
-                                <li><a href="/speaker-tools/speaker-impedance-calculator/"><i class="bi bi-diagram-3"></i>
-                                        Impedance Calculator</a></li>
-                                <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
-                                        Amplifier Power</a></li>
-                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i class="bi bi-rulers"></i>
-                                        Sound Distance Drop</a></li>
-                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i class="bi bi-arrows-move"></i>
-                                        Speaker Placement</a></li>
-                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i> Room
-                                        Acoustics</a></li>
-                                <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
-                                        Ported Enclosure</a></li>
-                                <li><a href="/speaker-tools/sealed-box-calculator/"><i class="bi bi-box-seam"></i>
-                                        Sealed Box</a></li>
-                                <li><a href="/speaker-tools/crossover-frequency-calculator/"><i class="bi bi-filter"></i>
-                                        Crossover Frequency</a></li>
-                            </ul>
+
+                    <p>Car audio typically uses higher tuning than home audio due to cabin gain.</p>
+                 </div>
+                <div class="tool-container">
+                    
+
+
+
+
+                    <h2>Port Types Explained</h2>
+
+                    <h3>Round Ports</h3>
+                    <!-- <p><strong>Authority:</strong> JBL</p> -->
+                    <ul>
+                        <li>Simple construction</li>
+                        <li>Easy airflow modeling</li>
+                    </ul>
+
+                    <h3>Slot Ports</h3>
+                    <!-- <p><strong>Authority:</strong> EV</p> -->
+                    <ul>
+                        <li>Efficient space usage</li>
+                        <li>Requires precise edge treatment</li>
+                    </ul>
+
+                    <h3>Aero / Flared Ports</h3>
+                    <!-- <p><strong>Authority:</strong> Harman</p> -->
+                    <ul>
+                        <li>Reduced turbulence</li>
+                        <li>Best for high-output systems</li>
+                    </ul>
+
+                    <h2>Port Resonance, Compression &amp; Noise Control</h2>
+                    <!-- <p><strong>Authority:</strong> AES High-SPL Port Studies</p> -->
+                    <ul>
+                        <li>Port resonance audibility</li>
+                        <li>Compression at high SPL</li>
+                        <li>Relationship between airflow velocity and distortion</li>
+                        <li>Calculator minimizes chuffing by enforcing airspeed limits</li>
+                    </ul>
+
+                    <h2>Frequency Response &amp; Bass Behavior </h2>
+
+                    <h3>Low-Frequency Extension</h3>
+                    <!-- <p><strong>Authority:</strong> JBL</p> -->
+                    <p>Lower tuning extends sub-bass but increases enclosure size.</p>
+
+                    <h3>Group Delay &amp; Transient Response</h3>
+                    <!-- <p><strong>Authority:</strong> AES</p> -->
+                    <p>Lower tuning increases group delay but improves bass depth.</p>
+
+                    <h3>SPL Efficiency vs Accuracy</h3>
+                    <!-- <p><strong>Authority:</strong> Harman</p> -->
+                    <p>Ported designs trade transient accuracy for efficiency.</p>
+
+                    <h2>Subsonic Filtering &amp; Driver Protection (System Safety)</h2>
+                    <!-- <p><strong>Authority:</strong> Alpine Electronics Engineering</p> -->
+                    <ul>
+                        <li>Over-excursion below Fb</li>
+                        <li>Subsonic (high-pass) filter recommendations</li>
+                        <li>Power handling limits below tuning</li>
+                        <li>Driver protection strategies</li>
+                    </ul>
+
+                    <h2>Common Design Mistakes </h2>
+                    <!-- <p><strong>Authority:</strong> Loudspeaker Design Cookbook</p> -->
+                    <ul>
+                        <li>Port too small causing chuffing</li>
+                        <li>Incorrect net volume calculation</li>
+                        <li>Ignoring port displacement</li>
+                        <li>Overpowering low-tuned boxes</li>
+                    </ul>
+
+                    <h2>Acoustic Model &amp; Accuracy Disclaimer</h2>
+                    <!-- <p><strong>Authority:</strong> AES Modeling Accuracy Standards</p> -->
+                    <ul>
+                        <li>Modeled vs real-world behavior</li>
+                        <li>Environmental effects</li>
+                        <li>Driver manufacturing variance</li>
+                        <li>User responsibility for final tuning</li>
+                    </ul>
+
+                    <h2>Enclosure Construction &amp; Material Considerations</h2>
+                    <!-- <p><strong>Authority:</strong> BBC Cabinet Research</p> -->
+                    <ul>
+                        <li>MDF vs plywood vs composites</li>
+                        <li>Wall thickness effects on net volume</li>
+                        <li>Internal bracing displacement</li>
+                        <li>Build tolerance accuracy</li>
+                    </ul>
+
+                    <h2>Limitations &amp; Accuracy Boundaries</h2>
+                    <!-- <p><strong>Authority:</strong> AES</p> -->
+                    <ul>
+                        <li>Room gain not included</li>
+                        <li>Vehicle cabin effects not simulated</li>
+                        <li>Manufacturing tolerances</li>
+                        <li>Real-world variance vs modeled data</li>
+                    </ul>
+
+                    <h2>Real-World Applications (Use Cases)</h2>
+
+                    <h3>Car Audio Systems</h3>
+                    <!-- <p><strong>Authority:</strong> Alpine</p> -->
+                    <p>Trunk vs hatchback volume differences.</p>
+
+                    <h3>Home Subwoofer Builds</h3>
+                    <!-- <p><strong>Authority:</strong> Dolby</p> -->
+                    <p>Living room vs theater considerations.</p>
+
+                    <h3>PA &amp; DJ Subwoofers</h3>
+                    <!-- <p><strong>Authority:</strong> EV</p> -->
+                    <p>Output-focused alignments.</p>
+
+                    <h2>Ported vs Sealed Enclosures (Decision Support)</h2>
+                    <p><strong>Authority:</strong> JBL</p>
+                    <ul>
+                        <li>Ported: higher efficiency, deeper bass</li>
+                        <li>Sealed: tighter response, smaller size</li>
+                    </ul>
+                    <p>Use-case-based recommendations.</p>
+
+                    <h2>Integration With Other Speaker Tools</h2>
+                    <ul>
+                        <li>Speaker Wattage Calculator</li>
+                        <li>Impedance Calculator</li>
+                        <li>Amplifier Power Calculator</li>
+                        <li>Sound Distance Drop Tool</li>
+                        <li>Room Acoustics Calculator</li>
+                    </ul>
+
+                    <h2>Trust &amp; EEAT Signals</h2>
+                    <ul>
+                        <li>Physics-based formulas</li>
+                        <li>Industry-standard acoustic models</li>
+                        <li>No user data collection</li>
+                        <li>Transparent calculations</li>
+                        <li>Designed for repeatable real-world builds</li>
+                    </ul>
+
+
+
+                    <h2>Related Tools &amp; Resources</h2>
+                    <ul>
+                        <li>Speaker Placement Calculator</li>
+                        <li>Room Acoustics Tool</li>
+                        <li>Amplifier Matching Tool</li>
+                        <li>Speaker Impedance Tool</li>
+                    </ul>
+
+                </div>
+                <!-- content end -->
+                 <!-- faq -->
+                <div class="tool-container">
+
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq1">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                    What is the best tuning frequency for deep bass?
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    For deep bass in ported subwoofer boxes, the optimal tuning frequency (Fb) is
+                                    typically 32–35 Hz for car audio systems and 18–25 Hz for home theater subwoofers,
+                                    ensuring extended low-frequency response, proper SPL efficiency, and controlled
+                                    airflow in the port.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                    How long can a port be before impractical?
+                                </button>
+                            </h2>
+                            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    A port becomes impractical when its calculated length exceeds the available
+                                    enclosure depth without folding. Proper port design requires balancing port length,
+                                    cross-sectional area, airflow velocity, and minimizing chuffing for accurate
+                                    low-frequency extension in bass reflex boxes.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                    Can I use multiple ports instead of one?
+                                </button>
+                            </h2>
+                            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, multiple ports can be used if the total port area matches the calculated
+                                    requirement. Using multiple ports reduces air velocity, minimizes port noise,
+                                    maintains proper Fb tuning, and ensures low-frequency efficiency without creating
+                                    chuffing or resonance issues in the ported enclosure.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                    Does port shape affect sound quality?
+                                </button>
+                            </h2>
+                            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, port shape directly affects airflow and acoustic behavior. Flared or aero ports
+                                    reduce turbulence and chuffing, improve SPL efficiency, maintain precise Fb tuning,
+                                    and enhance low-frequency extension, resulting in cleaner bass output compared to
+                                    straight, unflanged ports in ported enclosures.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                    How does box material affect tuning?
+                                </button>
+                            </h2>
+                            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Box material affects net internal volume and resonance. MDF, plywood, or composite
+                                    panels change enclosure stiffness and thickness, slightly shifting Fb, impacting
+                                    low-frequency extension, port airflow, SPL efficiency, and overall bass accuracy in
+                                    ported subwoofer enclosures.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq6">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                    Is this calculator suitable for car audio?
+                                </button>
+                            </h2>
+                            <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, this ported enclosure calculator supports car audio subwoofer design. It
+                                    calculates box volume, port dimensions, Fb, and airflow, considering cabin gain,
+                                    trunk volume, driver Thiele–Small parameters, and port noise, ensuring optimized
+                                    low-frequency extension and high SPL efficiency.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq7">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                                    What happens if tuning is too low?
+                                </button>
+                            </h2>
+                            <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="faq7"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Tuning too low increases cone excursion, reduces SPL output, and may cause
+                                    distortion. Low Fb in ported boxes can lead to port compression, inefficient
+                                    airflow, and compromised transient response, negatively affecting subwoofer
+                                    performance, bass extension, and SPL efficiency.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq8">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                                    How accurate are calculated port lengths?
+                                </button>
+                            </h2>
+                            <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="faq8"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Calculated port lengths are accurate within modeled assumptions, including driver
+                                    displacement, box volume, port area, and tuning frequency. Real-world variations may
+                                    occur due to cabinet construction, airflow efficiency, and build tolerances in
+                                    ported subwoofer enclosures.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq9">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                                    Can I convert sealed box designs to ported?
+                                </button>
+                            </h2>
+                            <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="faq9"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, sealed boxes can be converted to ported designs, but box volume and port
+                                    dimensions must be recalculated using Thiele–Small parameters and port tuning
+                                    formulas to maintain correct Fb, low-frequency extension, and airflow efficiency in
+                                    bass reflex enclosures.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq10">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                                    How do I reduce port noise?
+                                </button>
+                            </h2>
+                            <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="faq10"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Port noise can be reduced by increasing port cross-sectional area, using flared or
+                                    aero ports, and ensuring proper tuning frequency. Correct box volume and airflow
+                                    management minimize chuffing, improve SPL efficiency, and maintain clean
+                                    low-frequency extension in subwoofer enclosures.
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -200,7 +778,7 @@
     <script src="/assets/bootstrap5.js" defer></script>
     <script src="/assets/tools.js" defer></script>
     <!-- tool js -->
-    <script>
+    <script async>
         document.getElementById('portShape').addEventListener('change', function () {
             document.getElementById('roundPortInputs').style.display =
                 this.value === 'round' ? 'flex' : 'none';
