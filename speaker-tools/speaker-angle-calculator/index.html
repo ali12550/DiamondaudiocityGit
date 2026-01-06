@@ -1,79 +1,171 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Optimize Speaker Angles | Speaker Angle Calculator</title>
-    <meta name="description" content="Calculate the optimal speaker angle for accurate sound imaging, stereo field, and listening comfort. Perfect for home, car, or studio setups.">
-    <meta name="keywords" content="speaker angle calculator, stereo imaging, speaker positioning, listening angle, audio setup, home theater, car audio, studio monitors">
-    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/speaker-angle-calculator/">
+    <title>Speaker Angle Calculator (Advanced) – Diamond Audio City</title>
+    <meta name="description"
+        content="Advanced speaker angle calculator to compute left/right speaker toe-in angles for stereo, PA, and multi-speaker setups. Based on spaced geometry.">
+    <meta name="keywords"
+        content="advanced speaker angle calculator, PA speaker angle, stereo imaging, speaker spacing calculator">
+    <link rel="canonical" href="https://diamondaudiocity.com/speaker-tools/speaker-angle-calculator-advanced/">
 
     <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/bootstrap5.css" rel="stylesheet">
     <link href="/assets/style.css" rel="stylesheet">
     <link href="/assets/tools.css" rel="stylesheet">
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-NCHP45VYJ2');
-    </script>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
-        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div id="header"></div>
+<div id="header"></div>
 
-    <div class="container-fluid py-4">
-        <div class="row justify-content-around">
-            <div class="col-lg-7 col-md-8">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Speaker Angle Calculator</li>
-                    </ol>
-                </nav>
+<div class="container-fluid py-4">
+    <div class="row justify-content-around">
 
-                <div class="tool-container">
-                    <div class="tool-title">
-                        <h1><i class="bi bi-vector-pen me-2"></i>Speaker Angle Calculator</h1>
-                        <p>Calculate the ideal speaker angle for optimal stereo imaging, listening comfort, and soundstage accuracy.</p>
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-md-4">
+            <div class="tools-sidebar">
+
+                <div class="sidebar-search mb-4">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                            onkeyup="searchTools()">
                     </div>
+                </div>
 
-                    <div class="row mb-4">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Distance from Listener to Speaker (meters):</label>
-                            <input type="number" class="form-control" id="distance" value="2" min="0.5" max="10" step="0.1" oninput="calculateAngle()">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Desired Stereo Width (degrees):</label>
-                            <input type="number" class="form-control" id="stereoWidth" value="60" min="30" max="120" step="1" oninput="calculateAngle()">
-                        </div>
-                    </div>
-
-                    <div class="result-box">
-                        <h3>Recommended Speaker Angle</h3>
-                        <span id="angleResult" class="fs-4">--°</span>
-                    </div>
-
-                    <div class="mt-4 p-4 rounded bg-success bg-opacity-10">
-                        <h5><i class="bi bi-info-circle me-2"></i>Formula & Notes</h5>
-                        <ul>
-                            <li><strong>Speaker Angle (each side from center):</strong> <code>θ = arctan((W/2) / D)</code></li>
-                            <li>Where W = listener stereo width (meters), D = distance from listener to speakers.</li>
-                            <li>Use this to achieve an accurate stereo image and proper soundstage.</li>
+                <div class="sidebar-categories">
+                    <div class="sidebar-category active">
+                        <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
+                        <ul class="sidebar-links">
+                            <li><a href="/speaker-tools/impedance-frequency-plotter-advanced/"><i class="bi bi-diagram-3"></i> Impedance Plotter</a></li>
+                            <li><a href="/speaker-tools/zobel-network-calculator/"><i class="bi bi-gear"></i> Zobel Network</a></li>
+                            <li><a href="/speaker-tools/speaker-angle-calculator-advanced/" class="active"><i class="bi bi-vector-pen"></i> Advanced Speaker Angle</a></li>
                         </ul>
                     </div>
+                </div>
 
-                    <div class="tool-container mt-4">
+            </div>
+        </div>
+
+        <!-- Main Tool -->
+        <div class="col-lg-7 col-md-8">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                    <li class="breadcrumb-item active">Advanced Speaker Angle Calculator</li>
+                </ol>
+            </nav>
+
+            <div class="tool-container">
+                <div class="tool-title">
+                    <h1><i class="bi bi-vector-pen me-2"></i>Advanced Speaker Angle Calculator</h1>
+                    <p>Compute ideal speaker toe-in angles for stereo setups, PA systems, and multi-speaker arrays.</p>
+                </div>
+
+                <!-- Inputs -->
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Listener Distance to Speakers (m):</label>
+                        <input type="number" class="form-control" id="distance" value="5" min="0.5" step="0.1"
+                            oninput="calculateAdvancedAngle()">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Speaker Spacing (Left–Right) (m):</label>
+                        <input type="number" class="form-control" id="spacing" value="4" min="0.5" step="0.1"
+                            oninput="calculateAdvancedAngle()">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Number of Speakers per Side:</label>
+                        <input type="number" class="form-control" id="perSide" value="1" min="1" max="10"
+                            oninput="calculateAdvancedAngle()">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Listener Zone Width (m):</label>
+                        <input type="number" class="form-control" id="listenerWidth" value="1.5" min="0.5"
+                            step="0.1" oninput="calculateAdvancedAngle()">
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    <h3>Recommended Angles</h3>
+                    <p><strong>Angle per Speaker:</strong> <span id="anglePer">--°</span></p>
+                    <p><strong>Total Coverage:</strong> <span id="totalCoverage">--°</span></p>
+                </div>
+
+                <!-- Formula Info -->
+                <div class="mt-4 p-4 rounded bg-success bg-opacity-10">
+                    <h5><i class="bi bi-info-circle me-2"></i>Underlying Formula</h5>
+                    <ul>
+                        <li><strong>Per Speaker Angle:</strong> θ = arctan((Spacing/2) ÷ Distance)</li>
+                        <li><strong>Total Coverage:</strong> = θ × 2</li>
+                        <li>For multiple speakers per side, angles are averaged for best coverage.</li>
+                    </ul>
+                </div>
+
+                <!-- How to Use -->
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-play-btn me-2"></i>How to Use</h2>
+                        <ul>
+                            <li>Enter the distance from listener to speaker plane.</li>
+                            <li>Enter left-to-right spacing between speakers.</li>
+                            <li>Specify number of speakers per side (e.g., 2 for 2× PA stacks).</li>
+                            <li>Enter listener zone width (for audience width coverage).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FAQs -->
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>FAQs</h2>
+                        <div class="accordion" id="faqAdvAngle">
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqA1">
+                                        Why use multiple speakers per side?
+                                    </button>
+                                </h3>
+                                <div id="faqA1" class="accordion-collapse collapse show"
+                                    data-bs-parent="#faqAdvAngle">
+                                    <div class="accordion-body">
+                                        Multiple speakers per side help improve coverage and reduce angle extremes in large venues.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-target="#faqA2">
+                                        Does this work for home theater?
+                                    </button>
+                                </h3>
+                                <div id="faqA2" class="accordion-collapse collapse"
+                                    data-bs-parent="#faqAdvAngle">
+                                    <div class="accordion-body">
+                                        Yes — for home stereo and surround setups this calculator gives precise toe-in angles for balanced imaging.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+<div class="tool-container mt-4">
                         <div class="tool-section">
                             <h2 class="text-mid mb-4"><i class="bi bi-play-btn me-2"></i>How to Use</h2>
                             <ul>
@@ -176,66 +268,41 @@
                             </div>
                         </div>
                     </div>
-
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="tools-sidebar">
-                    <div class="sidebar-search mb-4">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
-                        </div>
-                    </div>
-                    <div class="sidebar-categories">
-                        <div class="sidebar-category active">
-                            <h5><i class="bi bi-speaker me-2"></i>Speaker Tools</h5>
-                            <ul class="sidebar-links">
-                                <li><a href="/speaker-tools/impedance-frequency-plotter-advanced/"><i class="bi bi-diagram-3"></i> Impedance Plotter</a></li>
-                                <li><a href="/speaker-tools/zobel-network-calculator/"><i class="bi bi-gear"></i> Zobel Network</a></li>
-                                <li><a href="/speaker-tools/speaker-angle-calculator/" class="active"><i class="bi bi-vector-pen"></i> Speaker Angle</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
+</div>
 
-    <div id="footer"></div>
+<div id="footer"></div>
 
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
-    <script>
-        function calculateAngle() {
-            const distance = parseFloat(document.getElementById('distance').value) || 2;
-            const stereoWidth = parseFloat(document.getElementById('stereoWidth').value) || 1.5;
+<script src="/assets/bootstrap5.js" defer></script>
+<script src="/assets/tools.js" defer></script>
 
-            // angle each side from center
-            const angleRad = Math.atan((stereoWidth / 2) / distance);
-            const angleDeg = angleRad * (180 / Math.PI);
+<script>
+function calculateAdvancedAngle() {
+    const D = parseFloat(document.getElementById("distance").value);
+    const S = parseFloat(document.getElementById("spacing").value);
+    const perSide = parseInt(document.getElementById("perSide").value) || 1;
+    const zoneW = parseFloat(document.getElementById("listenerWidth").value);
 
-            document.getElementById('angleResult').textContent = angleDeg.toFixed(1) + '°';
-        }
+    if (D <= 0 || S <= 0) {
+        document.getElementById("anglePer").innerText = "--°";
+        document.getElementById("totalCoverage").innerText = "--°";
+        return;
+    }
 
-        document.getElementById('distance').addEventListener('input', calculateAngle);
-        document.getElementById('stereoWidth').addEventListener('input', calculateAngle);
+    const baseAngleRadians = Math.atan((S/2)/D);
+    const baseAngle = baseAngleRadians * (180 / Math.PI);
+    const totalAngle = baseAngle * 2;
 
-        calculateAngle();
+    // Averaging for multiple speakers
+    const anglePerSpeaker = totalAngle / perSide;
 
-        window.addEventListener("load", () => {
-            Promise.all([
-                fetch("../../header.html").then(res => res.text()),
-                fetch("../../footer.html").then(res => res.text())
-            ])
-            .then(([header, footer]) => {
-                document.getElementById("header").innerHTML = header;
-                document.getElementById("footer").innerHTML = footer;
-            })
-            .catch(err => console.error("Include load failed:", err));
-        });
-    </script>
+    document.getElementById("anglePer").innerText = anglePerSpeaker.toFixed(1) + "°";
+    document.getElementById("totalCoverage").innerText = totalAngle.toFixed(1) + "°";
+}
+
+document.addEventListener("DOMContentLoaded", calculateAdvancedAngle);
+</script>
+
 </body>
 </html>
