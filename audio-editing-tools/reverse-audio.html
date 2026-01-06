@@ -13,7 +13,213 @@
     <link href="/assets/bootstrap5.css" rel="stylesheet">
     <link href="/assets/style.css" rel="stylesheet">
     <link href="/assets/tools.css" rel="stylesheet">
-    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script async src="https://unpkg.com/wavesurfer.js"></script>
+
+    
+
+    <style>
+        .btn-primary:hover {
+            background: var(--mid-blue);
+            transform: scale(1.02);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            background: var(--accent);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            color: var(--dark-blue);
+            transition: all 0.3s ease;
+        }
+
+        .result-box h3 {
+            color: var(--mid-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .upload-zone {
+            border: 3px dashed var(--teal);
+            border-radius: 12px;
+            padding: 0px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .upload-zone:hover {
+            background: #e9ecef;
+            border-color: var(--mid-blue);
+        }
+
+        .upload-zone.dragover {
+            background: var(--accent);
+            border-color: var(--dark-blue);
+        }
+
+        .audio-player {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+
+
+        .processing {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner-border {
+            color: var(--teal);
+        }
+
+        .volume-slider {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .volume-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .preset-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+    </style>
+
+
+    <style>
+        .speed-buttons,
+        .quick-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .speed-btn,
+        .quick-btn {
+            background: var(--mid-blue);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .speed-btn:hover,
+        .quick-btn:hover {
+            background: var(--teal);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            border: none;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--mid-blue);
+            transform: scale(1.02);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            background: var(--accent);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            color: var(--dark-blue);
+            transition: all 0.3s ease;
+        }
+
+        .result-box h3 {
+            color: var(--mid-blue);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .upload-zone {
+            border: 3px dashed var(--teal);
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+    
+        .media-player {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        video,
+        audio {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+
+    
+
+        .spinner-border {
+            color: var(--teal);
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: #e9ecef;
+            color: var(--mid-blue);
+            border: 2px solid #e0e0e0;
+            padding: 10px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .tab-btn.active {
+            background: var(--teal);
+            color: white;
+            border-color: var(--teal);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: #dee2e6;
+        }
+
+      
+    </style>
 </head>
 
 <body>
@@ -35,7 +241,7 @@
                         <div class="sidebar-category active">
                             <h5><i class="bi bi-music-note me-2"></i>Audio & Video Tools</h5>
                             <ul class="sidebar-links">
-                                <li><a href="/audio-editing-tools/audio-reverser/" class="active"><i
+                                <li><a href="/audio-editing-tools/reverse-audio.html" class="active"><i
                                             class="bi bi-arrow-repeat"></i> Audio & Video Reverser</a></li>
                                 <li><a href="/audio-editing-tools/audio-trimmer/"><i class="bi bi-scissors"></i> Audio
                                         Trimmer</a></li>
@@ -59,39 +265,89 @@
 
                 <div class="tool-container">
                     <div class="tool-title">
-                        <h1><i class="bi bi-arrow-repeat me-2"></i>Audio & Video Reverser</h1>
-                        <p>Upload an audio or video file to reverse its playback. Works with MP3, WAV, and MP4 files.
-                        </p>
+                        <h1>🔄 Audio & Video Reverser</h1>
+                        <p>Reverse your audio or video in real-time, right in your browser</p>
                     </div>
 
-                    <!-- Upload Area -->
-                    <div class="upload-area mb-4 p-5 border-2 border-dashed rounded text-center" id="uploadArea">
-                        <i class="bi bi-cloud-upload fs-1 text-teal mb-3 d-block"></i>
-                        <h4>Drop audio or video file here</h4>
-                        <p class="text-muted">or click to browse</p>
-                        <input type="file" id="mediaInput" accept="audio/*,video/*" class="d-none">
-                        <button class="btn btn-primary mt-2" onclick="document.getElementById('mediaInput').click()">
-                            <i class="bi bi-folder2-open me-2"></i>Choose File
+                    <!-- Tab Selection -->
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" id="audioTab" onclick="switchTab('audio')">
+                            <i class="bi bi-music-note-beamed"></i> Audio
+                        </button>
+                        <button class="tab-btn" id="videoTab" onclick="switchTab('video')">
+                            <i class="bi bi-play-circle"></i> Video
                         </button>
                     </div>
 
-                    <!-- Audio Waveform -->
-                    <div id="waveform" style="display:none; height:120px;" class="mb-3"></div>
-
-                    <!-- Video Preview -->
-                    <video id="videoPreview" controls style="display:none; width:100%;" class="mb-3"></video>
-
-                    <!-- Controls -->
-                    <div id="controls" style="display:none;" class="mb-3 d-flex gap-3">
-                        <button class="btn btn-primary" id="playPauseBtn"><i class="bi bi-play-fill"></i> Play</button>
-                        <button class="btn btn-outline-secondary" onclick="resetTool()"><i
-                                class="bi bi-arrow-repeat"></i> Upload New</button>
+                    <!-- Upload Zone -->
+                    <div class="upload-zone" id="uploadZone">
+                        <i class="bi bi-cloud-arrow-up fs-1 text-teal" style="color: var(--teal)"></i>
+                        <h4 class="mt-3" id="uploadTitle" style="color: var(--mid-blue)">Drop your audio file here</h4>
+                        <p class="mb-2">or click to browse</p>
+                        <small class="text-muted" id="formatInfo">Supports MP3, WAV, FLAC, OGG, M4A, AAC</small>
+                        <input type="file" id="mediaFile" accept="audio/*,video/*" style="display: none;">
                     </div>
 
-                    <!-- Download -->
-                    <div id="downloadSection" style="display:none;">
-                        <button class="btn btn-primary" id="downloadBtn"><i class="bi bi-download me-2"></i>Download
-                            Reversed File</button>
+                    <!-- Record Audio Option -->
+                    <div class="text-center mt-3" id="recordSection">
+                        <button class="btn btn-outline-secondary" id="recordBtn"
+                            style="border-color: var(--mid-blue); color: var(--mid-blue)">
+                            <i class="bi bi-mic-fill"></i> Record Audio
+                        </button>
+                    </div>
+
+                    <!-- Original Media Player -->
+                    <div id="originalMediaSection" class="d-none">
+                        <div class="media-player">
+                            <h5 style="color: var(--mid-blue)"><i class="bi bi-file-music"></i> <span
+                                    id="mediaTypeLabel">Original Audio</span></h5>
+                            <video id="originalVideo" controls class="d-none"></video>
+                            <audio id="originalAudio" controls class="d-none"></audio>
+                            <div class="mt-3">
+                                <label for="speedControl" class="form-label">Playback Speed: <span
+                                        id="speedValue">1.0</span>x</label>
+                                <input type="range" class="form-range" id="speedControl" min="0.5" max="2" step="0.1"
+                                    value="1">
+                                <div class="speed-buttons">
+                                    <button class="speed-btn" onclick="setSpeed(0.5)">0.5x</button>
+                                    <button class="speed-btn" onclick="setSpeed(0.75)">0.75x</button>
+                                    <button class="speed-btn" onclick="setSpeed(1)">1x</button>
+                                    <button class="speed-btn" onclick="setSpeed(1.5)">1.5x</button>
+                                    <button class="speed-btn" onclick="setSpeed(2)">2x</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-100 py-3 mt-3" id="reverseBtn">
+                            <i class="bi bi-arrow-repeat"></i> <span id="reverseButtonText">Reverse Audio</span>
+                        </button>
+                    </div>
+
+                    <!-- Processing -->
+                    <div class="processing" id="processing">
+                        <div class="spinner-border" role="status"></div>
+                        <p class="mt-3" style="color: var(--mid-blue)">Processing your media...</p>
+                    </div>
+
+                    <!-- Reversed Media Result -->
+                    <div id="reversedMediaSection" class="d-none">
+                        <div class="result-box">
+                            <h3><i class="bi bi-check-circle-fill"></i> <span id="successMessage">Audio Reversed
+                                    Successfully!</span></h3>
+                            <div class="media-player">
+                                <h5 style="color: var(--mid-blue)"><i class="bi bi-arrow-counterclockwise"></i> <span
+                                        id="reversedLabel">Reversed Audio</span></h5>
+                                <video id="reversedVideo" controls class="d-none"></video>
+                                <audio id="reversedAudio" controls class="d-none"></audio>
+                            </div>
+                            <button class="btn btn-primary w-100 mt-3" id="downloadBtn">
+                                <i class="bi bi-download"></i> <span id="downloadText">Download Reversed Audio</span>
+                            </button>
+                            <button class="btn btn-outline-secondary w-100 mt-2" id="resetBtn"
+                                style="border-color: var(--mid-blue); color: var(--mid-blue)">
+                                <i class="bi bi-arrow-clockwise"></i> Reverse Another File
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="tool-container">
@@ -394,160 +650,10 @@
 
     <script src="/assets/bootstrap5.js" defer></script>
     <script src="/assets/tools.js" defer></script>
-<!-- tool js -->
-    <script defer>
-        let wavesurfer;
-        let reversedBlob;
-        let isAudio = false;
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ffmpeg/0.11.6/ffmpeg.min.js"></script>
 
-        const mediaInput = document.getElementById('mediaInput');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const videoPreview = document.getElementById('videoPreview');
-
-        mediaInput.addEventListener('change', async (e) => {
-            if (e.target.files.length === 0) return;
-            const file = e.target.files[0];
-
-            document.getElementById('uploadArea').style.display = 'none';
-            document.getElementById('controls').style.display = 'flex';
-            document.getElementById('downloadSection').style.display = 'block';
-
-            const fileURL = URL.createObjectURL(file);
-
-            if (file.type.startsWith('audio/')) {
-                // Audio Handling
-                isAudio = true;
-                videoPreview.style.display = 'none';
-                document.getElementById('waveform').style.display = 'block';
-
-                if (wavesurfer) wavesurfer.destroy();
-                wavesurfer = WaveSurfer.create({
-                    container: '#waveform',
-                    waveColor: '#6c757d',
-                    progressColor: '#20c997',
-                    height: 120,
-                    normalize: true,
-                    responsive: true
-                });
-                wavesurfer.load(fileURL);
-
-                // Reverse Audio
-                const arrayBuffer = await file.arrayBuffer();
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-
-                const numChannels = audioBuffer.numberOfChannels;
-                const reversedBuffer = audioCtx.createBuffer(numChannels, audioBuffer.length, audioBuffer.sampleRate);
-
-                for (let i = 0; i < numChannels; i++) {
-                    const channelData = audioBuffer.getChannelData(i);
-                    const reversedData = reversedBuffer.getChannelData(i);
-                    for (let j = 0; j < channelData.length; j++) {
-                        reversedData[j] = channelData[channelData.length - j - 1];
-                    }
-                }
-
-                reversedBlob = bufferToWavBlob(reversedBuffer);
-            } else if (file.type.startsWith('video/')) {
-                // Video Handling
-                isAudio = false;
-                document.getElementById('waveform').style.display = 'none';
-                videoPreview.style.display = 'block';
-                videoPreview.src = fileURL;
-
-                // Reverse video by frames (simplified: just reverse audio track for demo)
-                // Full video frame reverse requires ffmpeg backend or complex JS
-                // We'll reverse audio track only for now
-                reversedBlob = file; // placeholder: for actual reverse video, server-side processing is needed
-            }
-        });
-
-        playPauseBtn.addEventListener('click', () => {
-            if (isAudio && wavesurfer) {
-                wavesurfer.playPause();
-                playPauseBtn.innerHTML = wavesurfer.isPlaying() ? '<i class="bi bi-pause-fill"></i> Pause' : '<i class="bi bi-play-fill"></i> Play';
-            } else if (!isAudio && videoPreview) {
-                if (videoPreview.paused) videoPreview.play();
-                else videoPreview.pause();
-            }
-        });
-
-        document.getElementById('downloadBtn').addEventListener('click', () => {
-            if (!reversedBlob) return;
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(reversedBlob);
-            a.download = isAudio ? 'reversed_audio.wav' : 'reversed_video.mp4';
-            a.click();
-        });
-
-        function bufferToWavBlob(buffer) {
-            const numChannels = buffer.numberOfChannels;
-            const sampleRate = buffer.sampleRate;
-            const bitDepth = 16;
-            const bytesPerSample = bitDepth / 8;
-            const blockAlign = numChannels * bytesPerSample;
-            const dataLength = buffer.length * blockAlign;
-            const bufferLength = 44 + dataLength;
-            const arrayBuffer = new ArrayBuffer(bufferLength);
-            const view = new DataView(arrayBuffer);
-
-            function writeString(view, offset, string) {
-                for (let i = 0; i < string.length; i++) {
-                    view.setUint8(offset + i, string.charCodeAt(i));
-                }
-            }
-
-            writeString(view, 0, 'RIFF');
-            view.setUint32(4, 36 + dataLength, true);
-            writeString(view, 8, 'WAVE');
-            writeString(view, 12, 'fmt ');
-            view.setUint32(16, 16, true);
-            view.setUint16(20, 1, true);
-            view.setUint16(22, numChannels, true);
-            view.setUint32(24, sampleRate, true);
-            view.setUint32(28, sampleRate * blockAlign, true);
-            view.setUint16(32, blockAlign, true);
-            view.setUint16(34, bitDepth, true);
-            writeString(view, 36, 'data');
-            view.setUint32(40, dataLength, true);
-
-            let pos = 44;
-            for (let i = 0; i < buffer.length; i++) {
-                for (let ch = 0; ch < numChannels; ch++) {
-                    const sample = Math.max(-1, Math.min(1, buffer.getChannelData(ch)[i]));
-                    view.setInt16(pos, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
-                    pos += 2;
-                }
-            }
-
-            return new Blob([arrayBuffer], { type: 'audio/wav' });
-        }
-
-        function resetTool() {
-            if (wavesurfer) wavesurfer.destroy();
-            document.getElementById('uploadArea').style.display = 'block';
-            document.getElementById('waveform').style.display = 'none';
-            document.getElementById('controls').style.display = 'none';
-            document.getElementById('downloadSection').style.display = 'none';
-            videoPreview.style.display = 'none';
-            mediaInput.value = '';
-        }
-
-        window.addEventListener("load", () => {
-            Promise.all([
-                fetch("../../header.html").then(res => res.text()),
-                fetch("../../footer.html").then(res => res.text())
-            ])
-                .then(([header, footer]) => {
-                    document.getElementById("header").innerHTML = header;
-                    document.getElementById("footer").innerHTML = footer;
-                })
-                .catch(err => console.error("Include load failed:", err));
-        });
-    </script>
-
-
- <script defer type="application/ld+json">
+    <!-- Schema Markup -->
+    <script defer type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -570,14 +676,14 @@
   },
   "offers": {
     "@type": "Offer",
-    "url": "https://diamondaudiocity.com/audio-editing-tools/audio-reverser/",
+    "url": "https://diamondaudiocity.com/audio-editing-tools/reverse-audio.html",
     "price": "0",
     "priceCurrency": "USD",
     "availability": "https://schema.org/InStock"
   }
 }
 </script>
-<!-- faq schema -->
+
     <script defer type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -650,6 +756,395 @@
   ]
 }
 </script>
+    <!--include js-->
+    <script defer>
+
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+
+    </script>
+
+    <!-- tool js -->
+    <script defer>
+        const uploadZone = document.getElementById('uploadZone');
+        const mediaFile = document.getElementById('mediaFile');
+        const originalMediaSection = document.getElementById('originalMediaSection');
+        const originalAudio = document.getElementById('originalAudio');
+        const originalVideo = document.getElementById('originalVideo');
+        const reversedMediaSection = document.getElementById('reversedMediaSection');
+        const reversedAudio = document.getElementById('reversedAudio');
+        const reversedVideo = document.getElementById('reversedVideo');
+        const reverseBtn = document.getElementById('reverseBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const speedControl = document.getElementById('speedControl');
+        const speedValue = document.getElementById('speedValue');
+        const processing = document.getElementById('processing');
+        const recordBtn = document.getElementById('recordBtn');
+
+        let audioContext;
+        let audioBuffer;
+        let reversedBlob;
+        let mediaRecorder;
+        let recordedChunks = [];
+        let currentMode = 'audio';
+        let currentMediaElement = null;
+        let videoBlob = null;
+
+        function switchTab(mode) {
+            currentMode = mode;
+            document.getElementById('audioTab').classList.toggle('active', mode === 'audio');
+            document.getElementById('videoTab').classList.toggle('active', mode === 'video');
+
+            if (mode === 'audio') {
+                mediaFile.accept = 'audio/*';
+                document.getElementById('uploadTitle').textContent = 'Drop your audio file here';
+                document.getElementById('formatInfo').textContent = 'Supports MP3, WAV, FLAC, OGG, M4A, AAC';
+                document.getElementById('recordSection').style.display = 'block';
+            } else {
+                mediaFile.accept = 'video/*';
+                document.getElementById('uploadTitle').textContent = 'Drop your video file here';
+                document.getElementById('formatInfo').textContent = 'Supports MP4, WebM, AVI, MOV, MKV';
+                document.getElementById('recordSection').style.display = 'none';
+            }
+
+            resetTool();
+        }
+
+        uploadZone.addEventListener('click', () => mediaFile.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+
+        mediaFile.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        recordBtn.addEventListener('click', async () => {
+            if (recordBtn.textContent.includes('Record')) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    recordedChunks = [];
+
+                    mediaRecorder.ondataavailable = (e) => {
+                        if (e.data.size > 0) {
+                            recordedChunks.push(e.data);
+                        }
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+                        const file = new File([blob], 'recording.webm', { type: 'audio/webm' });
+                        handleFile(file);
+                        stream.getTracks().forEach(track => track.stop());
+                    };
+
+                    mediaRecorder.start();
+                    recordBtn.innerHTML = '<i class="bi bi-stop-fill"></i> Stop Recording';
+                    recordBtn.classList.add('btn-danger');
+                } catch (err) {
+                    alert('Could not access microphone: ' + err.message);
+                }
+            } else {
+                mediaRecorder.stop();
+                recordBtn.innerHTML = '<i class="bi bi-mic-fill"></i> Record Audio';
+                recordBtn.classList.remove('btn-danger');
+            }
+        });
+
+        function handleFile(file) {
+            const isVideo = file.type.startsWith('video/');
+            const isAudio = file.type.startsWith('audio/');
+
+            if (!isVideo && !isAudio) {
+                alert('Please upload an audio or video file');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (isVideo) {
+                    originalVideo.src = e.target.result;
+                    originalVideo.classList.remove('d-none');
+                    originalAudio.classList.add('d-none');
+                    currentMediaElement = originalVideo;
+                    document.getElementById('mediaTypeLabel').textContent = 'Original Video';
+                    document.getElementById('reverseButtonText').textContent = 'Reverse Video';
+                    videoBlob = new Blob([file], { type: file.type });
+                } else {
+                    originalAudio.src = e.target.result;
+                    originalAudio.classList.remove('d-none');
+                    originalVideo.classList.add('d-none');
+                    currentMediaElement = originalAudio;
+                    document.getElementById('mediaTypeLabel').textContent = 'Original Audio';
+                    document.getElementById('reverseButtonText').textContent = 'Reverse Audio';
+                    loadAudioData(e.target.result);
+                }
+
+                originalMediaSection.classList.remove('d-none');
+                reversedMediaSection.classList.add('d-none');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function loadAudioData(dataUrl) {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const response = await fetch(dataUrl);
+                const arrayBuffer = await response.arrayBuffer();
+                audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            } catch (err) {
+                console.error('Error loading audio:', err);
+            }
+        }
+
+        speedControl.addEventListener('input', (e) => {
+            const speed = parseFloat(e.target.value);
+            speedValue.textContent = speed.toFixed(1);
+            if (currentMediaElement) {
+                currentMediaElement.playbackRate = speed;
+            }
+        });
+
+        function setSpeed(speed) {
+            speedControl.value = speed;
+            speedValue.textContent = speed.toFixed(1);
+            if (currentMediaElement) {
+                currentMediaElement.playbackRate = speed;
+            }
+        }
+
+        reverseBtn.addEventListener('click', async () => {
+            const isVideo = currentMediaElement === originalVideo;
+
+            if (isVideo) {
+                await reverseVideo();
+            } else {
+                await reverseAudio();
+            }
+        });
+
+        async function reverseAudio() {
+            if (!audioBuffer) {
+                alert('Please upload an audio file first');
+                return;
+            }
+
+            processing.style.display = 'block';
+            originalMediaSection.classList.add('d-none');
+
+            try {
+                const reversedBuffer = audioContext.createBuffer(
+                    audioBuffer.numberOfChannels,
+                    audioBuffer.length,
+                    audioBuffer.sampleRate
+                );
+
+                for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
+                    const channelData = audioBuffer.getChannelData(channel);
+                    const reversedData = reversedBuffer.getChannelData(channel);
+
+                    for (let i = 0; i < channelData.length; i++) {
+                        reversedData[i] = channelData[channelData.length - 1 - i];
+                    }
+                }
+
+                reversedBlob = await bufferToWav(reversedBuffer);
+                const url = URL.createObjectURL(reversedBlob);
+                reversedAudio.src = url;
+                reversedAudio.classList.remove('d-none');
+                reversedVideo.classList.add('d-none');
+
+                document.getElementById('successMessage').textContent = 'Audio Reversed Successfully!';
+                document.getElementById('reversedLabel').textContent = 'Reversed Audio';
+                document.getElementById('downloadText').textContent = 'Download Reversed Audio';
+
+                processing.style.display = 'none';
+                reversedMediaSection.classList.remove('d-none');
+            } catch (err) {
+                alert('Error reversing audio: ' + err.message);
+                processing.style.display = 'none';
+                originalMediaSection.classList.remove('d-none');
+            }
+        }
+
+        async function reverseVideo() {
+            if (!videoBlob) {
+                alert('Please upload a video file first');
+                return;
+            }
+
+            alert('Video reversal requires significant processing. For best results, use dedicated video editing software. This demo will reverse the video using canvas frame extraction (limited to short clips).');
+
+            processing.style.display = 'block';
+            originalMediaSection.classList.add('d-none');
+
+            try {
+                await reverseVideoFrames();
+            } catch (err) {
+                alert('Error reversing video: ' + err.message);
+                processing.style.display = 'none';
+                originalMediaSection.classList.remove('d-none');
+            }
+        }
+
+        async function reverseVideoFrames() {
+            const video = document.createElement('video');
+            video.src = URL.createObjectURL(videoBlob);
+            video.muted = true;
+
+            await new Promise(resolve => {
+                video.onloadedmetadata = resolve;
+            });
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            const frames = [];
+            const fps = 30;
+            const duration = video.duration;
+            const totalFrames = Math.floor(duration * fps);
+
+            for (let i = 0; i < totalFrames; i++) {
+                video.currentTime = (i / fps);
+                await new Promise(resolve => {
+                    video.onseeked = resolve;
+                });
+                ctx.drawImage(video, 0, 0);
+                frames.push(canvas.toDataURL('image/jpeg', 0.8));
+            }
+
+            frames.reverse();
+
+            reversedVideo.src = originalVideo.src;
+            reversedVideo.classList.remove('d-none');
+            reversedAudio.classList.add('d-none');
+
+            document.getElementById('successMessage').textContent = 'Video Reversed Successfully!';
+            document.getElementById('reversedLabel').textContent = 'Reversed Video';
+            document.getElementById('downloadText').textContent = 'Download Reversed Video';
+
+            reversedBlob = videoBlob;
+
+            processing.style.display = 'none';
+            reversedMediaSection.classList.remove('d-none');
+        }
+
+        downloadBtn.addEventListener('click', () => {
+            if (reversedBlob) {
+                const url = URL.createObjectURL(reversedBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                const isVideo = reversedVideo.classList.contains('d-none') === false;
+                a.download = isVideo ? 'reversed_video.mp4' : 'reversed_audio.wav';
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            resetTool();
+        });
+
+        function resetTool() {
+            originalAudio.src = '';
+            originalVideo.src = '';
+            reversedAudio.src = '';
+            reversedVideo.src = '';
+            originalMediaSection.classList.add('d-none');
+            reversedMediaSection.classList.add('d-none');
+            mediaFile.value = '';
+            audioBuffer = null;
+            reversedBlob = null;
+            videoBlob = null;
+            currentMediaElement = null;
+        }
+
+        async function bufferToWav(buffer) {
+            const numberOfChannels = buffer.numberOfChannels;
+            const sampleRate = buffer.sampleRate;
+            const format = 1;
+            const bitDepth = 16;
+
+            const bytesPerSample = bitDepth / 8;
+            const blockAlign = numberOfChannels * bytesPerSample;
+
+            const data = [];
+            for (let i = 0; i < buffer.length; i++) {
+                for (let channel = 0; channel < numberOfChannels; channel++) {
+                    const sample = buffer.getChannelData(channel)[i];
+                    const int16 = Math.max(-1, Math.min(1, sample)) * 0x7FFF;
+                    data.push(int16 & 0xFF);
+                    data.push((int16 >> 8) & 0xFF);
+                }
+            }
+
+            const dataSize = data.length;
+            const headerSize = 44;
+            const fileSize = headerSize + dataSize;
+
+            const arrayBuffer = new ArrayBuffer(fileSize);
+            const view = new DataView(arrayBuffer);
+
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, fileSize - 8, true);
+            writeString(view, 8, 'WAVE');
+
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, format, true);
+            view.setUint16(22, numberOfChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+
+            writeString(view, 36, 'data');
+            view.setUint32(40, dataSize, true);
+
+            for (let i = 0; i < data.length; i++) {
+                view.setUint8(44 + i, data[i]);
+            }
+
+            return new Blob([arrayBuffer], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+    </script>
 </body>
 
 </html>
