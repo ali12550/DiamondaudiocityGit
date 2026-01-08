@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Diamond Audio City",
-    "url": "https://diamondaudiocity.com/",
+    "url": "https://diamondaudiocity.com",
     "logo": "https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png",
     "sameAs": [
       "https://www.facebook.com/p/Diamond-Audio-CiTy-100076963165150/"
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
   siteScript.text = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "url": "https://diamondaudiocity.com/",
+    "url": "https://diamondaudiocity.com",
     "name": "Diamond Audio City",
     "potentialAction": {
       "@type": "SearchAction",
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "John Smith",
-    "url": "https://diamondaudiocity.com/",
+    "url": "https://diamondaudiocity.com",
     "worksFor": {
       "@type": "Organization",
       "name": "Diamond Audio City"
