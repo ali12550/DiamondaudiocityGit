@@ -1,18 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Normalizer | DiamondAudioCity</title>
-    <meta name="description" content="Normalize your audio files online. Adjust volume levels to a consistent standard for MP3, WAV, and more.">
+    <meta name="description"
+        content="Normalize your audio files online. Adjust volume levels to a consistent standard for MP3, WAV, and more.">
     <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/bootstrap5.css" rel="stylesheet">
     <link href="/assets/style.css" rel="stylesheet">
     <link href="/assets/tools.css" rel="stylesheet">
-    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <style>
+    .audio-player {
+      width: 100%;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+
+    .option-group {
+      background: #f7fafc;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
+
+    .option-group h3 {
+      color: #2d3748;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .radio-option:hover {
+      border-color: #667eea;
+      background: #f0f4ff;
+    }
+
+    .radio-option input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      cursor: pointer;
+      accent-color: #667eea;
+    }
+
+    .radio-option label {
+      margin: 0;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .radio-option .description {
+      color: #718096;
+      font-size: 13px;
+      font-weight: 400;
+      margin-top: 4px;
+    }
+
+    .target-level {
+      margin-top: 15px;
+    }
+
+    .target-level input[type="range"] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #e2e8f0;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .target-level input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #667eea;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .target-level input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: #667eea;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .level-display {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 14px;
+      color: #4a5568;
+    }
+
+    /* .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 20px;
+    } */
+
+    /* .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    } */
+
+    /* .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    } */
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .status-text {
+      text-align: center;
+      color: #667eea;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+
+    .result-box {
+      margin-top: 30px;
+      padding: 25px;
+      background: #f7fafc;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+    }
+
+    .result-box h3 {
+      color: #2d3748;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .audio-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .audio-box {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      border: 2px solid #e2e8f0;
+    }
+
+    .audio-box h4 {
+      color: #4a5568;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #48bb78;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .download-btn:hover {
+      background: #38a169;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .audio-comparison {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
     <div id="header"></div>
 
@@ -24,7 +232,8 @@
                     <div class="sidebar-search mb-4">
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..." onkeyup="searchTools()">
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                                onkeyup="searchTools()">
                         </div>
                     </div>
                     <div class="sidebar-categories">
@@ -33,15 +242,17 @@
                             <ul class="sidebar-links">
                                 <li><a href="/audio-editing-tools/audio-trimmer/"><i class="bi bi-scissors"></i> Audio
                                         Trimmer</a></li>
-                                <li><a href="/audio-editing-tools/audio-merger/"><i
-                                            class="bi bi-union"></i> Audio Merger</a></li>
+                                <li><a href="/audio-editing-tools/audio-merger/"><i class="bi bi-union"></i> Audio
+                                        Merger</a></li>
                                 <li><a href="/audio-editing-tools/Audio-Volume-Booster.html"><i
                                             class="bi bi-volume-up"></i>
                                         Volume Booster</a></li>
                                 <li><a href="/audio-editing-tools/audio-normalizer/"><i class="bi bi-volume-up"></i>
                                         Audio Normalizer</a></li>
-                                <li><a href="/audio-editing-tools/audio-speed-changer/"><i class="bi bi-volume-up"></i>Audio Speed Changer </a></li>
-                                <li><a href="/audio-editing-tools/loop-generator/"><i class="bi bi-volume-up"></i> Loop Generator </a></li>
+                                <li><a href="/audio-editing-tools/audio-speed-changer/"><i
+                                            class="bi bi-volume-up"></i>Audio Speed Changer </a></li>
+                                <li><a href="/audio-editing-tools/loop-generator/"><i class="bi bi-volume-up"></i> Loop
+                                        Generator </a></li>
                             </ul>
                         </div>
                     </div>
@@ -61,7 +272,8 @@
                 <div class="tool-container">
                     <div class="tool-title">
                         <h1><i class="bi bi-sliders me-2"></i>Audio Normalizer</h1>
-                        <p>Upload an audio file to normalize its volume. Ensure consistent loudness across your tracks.</p>
+                        <p>Upload an audio file to normalize its volume. Ensure consistent loudness across your tracks.
+                        </p>
                     </div>
 
                     <!-- Upload Area -->
@@ -69,25 +281,88 @@
                         <i class="bi bi-cloud-upload fs-1 text-teal mb-3 d-block"></i>
                         <h4>Drop audio file here</h4>
                         <p class="text-muted">or click to browse</p>
-                        <input type="file" id="audioInput" accept="audio/*" class="d-none">
+                       
+                        <input type="file" id="audioInput" accept="audio/*" class="d-none form-control">
                         <button class="btn btn-primary mt-2" onclick="document.getElementById('audioInput').click()">
                             <i class="bi bi-folder2-open me-2"></i>Choose File
                         </button>
                     </div>
+  <!-- Original Audio Preview -->
+          <div id="originalPreview" style="display:none;">
+            <label>Original Audio</label>
+            <audio id="originalAudio" class="audio-player" controls></audio>
+          </div>
 
-                    <!-- Waveform -->
-                    <div id="waveform" class="mb-3" style="display:none;"></div>
+          <!-- Normalization Options -->
+          <div id="optionsPanel" class="option-group" style="display:none;">
+            <h3>Normalization Method</h3>
 
-                    <!-- Controls -->
-                    <div id="controls" style="display:none;" class="mb-3 d-flex gap-3">
-                        <button class="btn btn-primary" id="playPauseBtn"><i class="bi bi-play-fill"></i> Play</button>
-                        <button class="btn btn-outline-secondary" onclick="resetTool()"><i class="bi bi-arrow-repeat"></i> Upload New</button>
-                    </div>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" name="method" id="peakNorm" value="peak" checked>
+                <label for="peakNorm">
+                  <div><strong>Peak Normalization</strong></div>
+                  <div class="description">Adjusts the loudest peak to target level (prevents clipping)</div>
+                </label>
+              </div>
 
-                    <!-- Download Button -->
-                    <div id="downloadSection" style="display:none;">
-                        <button class="btn btn-primary" id="downloadBtn"><i class="bi bi-download me-2"></i>Download Normalized Audio</button>
-                    </div>
+              <div class="radio-option">
+                <input type="radio" name="method" id="rmsNorm" value="rms">
+                <label for="rmsNorm">
+                  <div><strong>RMS Normalization</strong></div>
+                  <div class="description">Adjusts average loudness for consistent perceived volume</div>
+                </label>
+              </div>
+
+              <div class="radio-option">
+                <input type="radio" name="method" id="lufsNorm" value="lufs">
+                <label for="lufsNorm">
+                  <div><strong>LUFS Normalization (Loudness)</strong></div>
+                  <div class="description">Industry standard for broadcast and streaming platforms</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="target-level">
+              <label>Target Level: <span id="levelValue">-3 dB</span></label>
+              <input type="range" id="targetLevel" min="-20" max="0" value="-3" step="0.5">
+              <div class="level-display">
+                <span>Quieter (-20 dB)</span>
+                <span>Louder (0 dB)</span>
+              </div>
+            </div>
+          </div>
+
+          <button id="normalizeBtn" class="btn-primary" disabled>🎚️ Normalize Audio</button>
+
+          <!-- Progress -->
+          <div id="progressContainer" style="display:none;">
+            <div class="progress-bar">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <div id="statusText" class="status-text">Processing...</div>
+          </div>
+
+          <!-- Result Box -->
+          <div id="resultBox" class="result-box" style="display:none;">
+            <h3>✅ Normalization Complete!</h3>
+
+            <div class="audio-comparison">
+              <div class="audio-box">
+                <h4>📥 Original</h4>
+                <audio id="compareOriginal" controls style="width:100%;"></audio>
+              </div>
+              <div class="audio-box">
+                <h4>📤 Normalized</h4>
+                <audio id="normalizedAudio" controls style="width:100%;"></audio>
+              </div>
+            </div>
+
+            <div style="text-align:center; margin-top:20px;">
+              <a id="downloadBtn" class="download-btn">⬇️ Download Normalized Audio</a>
+            </div>
+          </div>
+                  
                 </div>
             </div>
         </div>
@@ -98,146 +373,292 @@
     <script src="/assets/bootstrap5.js" defer></script>
     <script src="/assets/tools.js" defer></script>
 
+    <!-- tool js -->
     <script defer>
-        let wavesurfer;
-        let audioBuffer;
-        let normalizedBlob;
-
         const audioInput = document.getElementById('audioInput');
-        const playPauseBtn = document.getElementById('playPauseBtn');
+        const originalAudio = document.getElementById('originalAudio');
+        const originalPreview = document.getElementById('originalPreview');
+        const optionsPanel = document.getElementById('optionsPanel');
+        const normalizeBtn = document.getElementById('normalizeBtn');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressFill = document.getElementById('progressFill');
+        const statusText = document.getElementById('statusText');
+        const resultBox = document.getElementById('resultBox');
+        const normalizedAudio = document.getElementById('normalizedAudio');
+        const compareOriginal = document.getElementById('compareOriginal');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const targetLevel = document.getElementById('targetLevel');
+        const levelValue = document.getElementById('levelValue');
 
-        audioInput.addEventListener('change', async (e) => {
-            if(e.target.files.length === 0) return;
-            const file = e.target.files[0];
+        let audioFile = null;
+        let audioBuffer = null;
+        let audioContext = null;
 
-            document.getElementById('uploadArea').style.display = 'none';
-            document.getElementById('waveform').style.display = 'block';
-            document.getElementById('controls').style.display = 'flex';
-            document.getElementById('downloadSection').style.display = 'block';
+        targetLevel.oninput = () => {
+            levelValue.textContent = targetLevel.value + ' dB';
+        };
 
-            if (wavesurfer) wavesurfer.destroy();
+        audioInput.onchange = async () => {
+            const file = audioInput.files[0];
+            if (!file) return;
 
-            wavesurfer = WaveSurfer.create({
-                container: '#waveform',
-                waveColor: '#6c757d',
-                progressColor: '#20c997',
-                height: 120,
-                normalize: true,
-                responsive: true
-            });
+            audioFile = file;
+            originalAudio.src = URL.createObjectURL(file);
+            originalPreview.style.display = 'block';
+            optionsPanel.style.display = 'block';
+            normalizeBtn.disabled = false;
+            resultBox.style.display = 'none';
 
-            const fileURL = URL.createObjectURL(file);
-            wavesurfer.load(fileURL);
-
-            // Normalize audio
+            // Load audio for processing
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const arrayBuffer = await file.arrayBuffer();
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+            audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+        };
 
-            const channelData = [];
-            let peak = 0;
-            for(let i=0; i<audioBuffer.numberOfChannels; i++){
-                const data = audioBuffer.getChannelData(i);
-                channelData.push(data);
-                for(let j=0;j<data.length;j++){
-                    if(Math.abs(data[j]) > peak) peak = Math.abs(data[j]);
+        normalizeBtn.onclick = async () => {
+            if (!audioBuffer) {
+                alert('Please upload an audio file first.');
+                return;
+            }
+
+            normalizeBtn.disabled = true;
+            progressContainer.style.display = 'block';
+            resultBox.style.display = 'none';
+
+            try {
+                const method = document.querySelector('input[name="method"]:checked').value;
+                const targetDb = parseFloat(targetLevel.value);
+
+                statusText.textContent = 'Analyzing audio...';
+                progressFill.style.width = '30%';
+
+                const normalizedBuffer = await normalizeAudio(audioBuffer, method, targetDb);
+
+                statusText.textContent = 'Encoding audio...';
+                progressFill.style.width = '70%';
+
+                const blob = await audioBufferToWav(normalizedBuffer);
+
+                progressFill.style.width = '100%';
+                statusText.textContent = 'Complete!';
+
+                // Show results
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                    showResults(blob);
+                }, 500);
+
+            } catch (error) {
+                console.error('Normalization error:', error);
+                alert('Error normalizing audio. Please try again.');
+                progressContainer.style.display = 'none';
+            } finally {
+                normalizeBtn.disabled = false;
+            }
+        };
+
+        async function normalizeAudio(buffer, method, targetDb) {
+            const channels = buffer.numberOfChannels;
+            const length = buffer.length;
+            const sampleRate = buffer.sampleRate;
+
+            // Create new buffer
+            const normalizedBuffer = audioContext.createBuffer(channels, length, sampleRate);
+
+            // Calculate gain based on method
+            let gain = 1;
+
+            if (method === 'peak') {
+                // Find peak value across all channels
+                let maxPeak = 0;
+                for (let ch = 0; ch < channels; ch++) {
+                    const data = buffer.getChannelData(ch);
+                    for (let i = 0; i < length; i++) {
+                        maxPeak = Math.max(maxPeak, Math.abs(data[i]));
+                    }
+                }
+
+                const targetLinear = Math.pow(10, targetDb / 20);
+                gain = targetLinear / maxPeak;
+
+            } else if (method === 'rms') {
+                // Calculate RMS
+                let sumSquares = 0;
+                let totalSamples = 0;
+
+                for (let ch = 0; ch < channels; ch++) {
+                    const data = buffer.getChannelData(ch);
+                    for (let i = 0; i < length; i++) {
+                        sumSquares += data[i] * data[i];
+                        totalSamples++;
+                    }
+                }
+
+                const rms = Math.sqrt(sumSquares / totalSamples);
+                const targetLinear = Math.pow(10, targetDb / 20);
+                gain = targetLinear / rms;
+
+            } else if (method === 'lufs') {
+                // Simplified LUFS (uses RMS as approximation)
+                let sumSquares = 0;
+                let totalSamples = 0;
+
+                for (let ch = 0; ch < channels; ch++) {
+                    const data = buffer.getChannelData(ch);
+                    for (let i = 0; i < length; i++) {
+                        sumSquares += data[i] * data[i];
+                        totalSamples++;
+                    }
+                }
+
+                const rms = Math.sqrt(sumSquares / totalSamples);
+                const currentLufs = -0.691 + 10 * Math.log10(rms);
+                const targetLufs = targetDb;
+                const gainDb = targetLufs - currentLufs;
+                gain = Math.pow(10, gainDb / 20);
+            }
+
+            // Apply gain with limiting to prevent clipping
+            const limitThreshold = 0.99;
+
+            for (let ch = 0; ch < channels; ch++) {
+                const inputData = buffer.getChannelData(ch);
+                const outputData = normalizedBuffer.getChannelData(ch);
+
+                for (let i = 0; i < length; i++) {
+                    let sample = inputData[i] * gain;
+
+                    // Soft clipping
+                    if (Math.abs(sample) > limitThreshold) {
+                        sample = Math.sign(sample) * limitThreshold;
+                    }
+
+                    outputData[i] = sample;
                 }
             }
 
-            // Calculate gain to normalize to -1..1
-            const gain = 1 / peak;
-            const newBuffer = audioCtx.createBuffer(audioBuffer.numberOfChannels, audioBuffer.length, audioBuffer.sampleRate);
+            return normalizedBuffer;
+        }
 
-            for(let i=0;i<audioBuffer.numberOfChannels;i++){
-                const data = audioBuffer.getChannelData(i);
-                const newData = newBuffer.getChannelData(i);
-                for(let j=0;j<data.length;j++){
-                    newData[j] = data[j]*gain;
-                }
-            }
+        function audioBufferToWav(buffer) {
+            return new Promise((resolve) => {
+                const offlineContext = new OfflineAudioContext(
+                    buffer.numberOfChannels,
+                    buffer.length,
+                    buffer.sampleRate
+                );
 
-            // Convert to WAV Blob
-            normalizedBlob = bufferToWavBlob(newBuffer);
-        });
+                const source = offlineContext.createBufferSource();
+                source.buffer = buffer;
+                source.connect(offlineContext.destination);
+                source.start();
 
-        playPauseBtn.addEventListener('click', () => {
-            if (!wavesurfer) return;
-            wavesurfer.playPause();
-            playPauseBtn.innerHTML = wavesurfer.isPlaying() ? '<i class="bi bi-pause-fill"></i> Pause' : '<i class="bi bi-play-fill"></i> Play';
-        });
+                offlineContext.startRendering().then(renderedBuffer => {
+                    const wav = encodeWAV(renderedBuffer);
+                    const blob = new Blob([wav], { type: 'audio/wav' });
+                    resolve(blob);
+                });
+            });
+        }
 
-        document.getElementById('downloadBtn').addEventListener('click', () => {
-            if (!normalizedBlob) return;
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(normalizedBlob);
-            a.download = 'normalized_audio.wav';
-            a.click();
-        });
-
-        function bufferToWavBlob(buffer) {
+        function encodeWAV(buffer) {
             const numChannels = buffer.numberOfChannels;
             const sampleRate = buffer.sampleRate;
-            const format = 1;
+            const format = 1; // PCM
             const bitDepth = 16;
-            const bytesPerSample = bitDepth/8;
+
+            const bytesPerSample = bitDepth / 8;
             const blockAlign = numChannels * bytesPerSample;
-            const dataLength = buffer.length * blockAlign;
+
+            const data = interleave(buffer);
+            const dataLength = data.length * bytesPerSample;
             const bufferLength = 44 + dataLength;
+
             const arrayBuffer = new ArrayBuffer(bufferLength);
             const view = new DataView(arrayBuffer);
 
-            function writeString(view, offset, string){
-                for(let i=0;i<string.length;i++){
-                    view.setUint8(offset+i,string.charCodeAt(i));
+            // RIFF header
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + dataLength, true);
+            writeString(view, 8, 'WAVE');
+
+            // fmt chunk
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, format, true);
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * blockAlign, true);
+            view.setUint16(32, blockAlign, true);
+            view.setUint16(34, bitDepth, true);
+
+            // data chunk
+            writeString(view, 36, 'data');
+            view.setUint32(40, dataLength, true);
+
+            floatTo16BitPCM(view, 44, data);
+
+            return arrayBuffer;
+        }
+
+        function interleave(buffer) {
+            const numChannels = buffer.numberOfChannels;
+            const length = buffer.length;
+            const result = new Float32Array(length * numChannels);
+
+            for (let ch = 0; ch < numChannels; ch++) {
+                const channelData = buffer.getChannelData(ch);
+                for (let i = 0; i < length; i++) {
+                    result[i * numChannels + ch] = channelData[i];
                 }
             }
 
-            writeString(view,0,'RIFF');
-            view.setUint32(4,36+dataLength,true);
-            writeString(view,8,'WAVE');
-            writeString(view,12,'fmt ');
-            view.setUint32(16,16,true);
-            view.setUint16(20,format,true);
-            view.setUint16(22,numChannels,true);
-            view.setUint32(24,sampleRate,true);
-            view.setUint32(28,sampleRate*blockAlign,true);
-            view.setUint16(32,blockAlign,true);
-            view.setUint16(34,bitDepth,true);
-            writeString(view,36,'data');
-            view.setUint32(40,dataLength,true);
+            return result;
+        }
 
-            let pos = 44;
-            for(let i=0;i<buffer.length;i++){
-                for(let ch=0;ch<numChannels;ch++){
-                    const sample = Math.max(-1, Math.min(1, buffer.getChannelData(ch)[i]));
-                    view.setInt16(pos, sample<0?sample*0x8000:sample*0x7FFF,true);
-                    pos+=2;
-                }
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
             }
-
-            return new Blob([arrayBuffer], {type:'audio/wav'});
         }
 
-        function resetTool(){
-            if (wavesurfer) wavesurfer.destroy();
-            document.getElementById('uploadArea').style.display = 'block';
-            document.getElementById('waveform').style.display = 'none';
-            document.getElementById('controls').style.display = 'none';
-            document.getElementById('downloadSection').style.display = 'none';
-            audioInput.value='';
+        function floatTo16BitPCM(view, offset, input) {
+            for (let i = 0; i < input.length; i++, offset += 2) {
+                const s = Math.max(-1, Math.min(1, input[i]));
+                view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+            }
         }
+
+        function showResults(blob) {
+            const url = URL.createObjectURL(blob);
+
+            normalizedAudio.src = url;
+            compareOriginal.src = originalAudio.src;
+
+            downloadBtn.href = url;
+            downloadBtn.download = 'normalized-audio-' + Date.now() + '.wav';
+
+            resultBox.style.display = 'block';
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    <!--include js-->
+    <script defer>
+
 
         window.addEventListener("load", () => {
             Promise.all([
                 fetch("../../header.html").then(res => res.text()),
                 fetch("../../footer.html").then(res => res.text())
             ])
-            .then(([header, footer]) => {
-                document.getElementById("header").innerHTML = header;
-                document.getElementById("footer").innerHTML = footer;
-            })
-            .catch(err => console.error("Include load failed:", err));
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
         });
+
     </script>
 </body>
+
 </html>
