@@ -32,18 +32,6 @@
 //   .catch(err => console.error("Include load failed:", err));
 // });
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-//# sourceMappingURL=bootstrap.bundle.min.js.map
-=======
->>>>>>> Stashed changes
-=======
-<<<<<<< HEAD
-//# sourceMappingURL=bootstrap.bundle.min.js.map
-=======
->>>>>>> Stashed changes
 //# sourceMappingURL=bootstrap.bundle.min.js.map
 
 
@@ -99,11 +87,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
->>>>>>> c762812656324eb2c6bd8d07d6a9d924d1b69405
->>>>>>> Stashed changes
-=======
->>>>>>> c762812656324eb2c6bd8d07d6a9d924d1b69405
->>>>>>> Stashed changes
