@@ -1,4 +1,12 @@
+<<<<<<< Updated upstream
 // DiamondAudioCity Tools JavaScript
+=======
+<<<<<<< HEAD
+// pitch detectors Tools JavaScript
+=======
+// DiamondAudioCity Tools JavaScript
+>>>>>>> c762812656324eb2c6bd8d07d6a9d924d1b69405
+>>>>>>> Stashed changes
 
 // Tool Search Functionality
 function searchTools() {
@@ -231,5 +239,13 @@ window.DiamondAudio = {
     A4_FREQ,
     getAudioContext
 };
+<<<<<<< Updated upstream
 
 
+=======
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> c762812656324eb2c6bd8d07d6a9d924d1b69405
+>>>>>>> Stashed changes
