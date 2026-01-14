@@ -1,11 +1,17 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // DiamondAudioCity Tools JavaScript
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
 // pitch detectors Tools JavaScript
 =======
 // DiamondAudioCity Tools JavaScript
 >>>>>>> c762812656324eb2c6bd8d07d6a9d924d1b69405
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 // Tool Search Functionality
@@ -240,12 +246,18 @@ window.DiamondAudio = {
     getAudioContext
 };
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
 =======
 
 
 >>>>>>> c762812656324eb2c6bd8d07d6a9d924d1b69405
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
