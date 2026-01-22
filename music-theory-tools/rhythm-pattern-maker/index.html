@@ -1,373 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Rhythm Pattern Maker — Fixed (Tone.js)</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rhythm Pattern Maker — Fixed (Tone.js)</title>
 
-<!-- Tone.js -->
-<script src="https://unpkg.com/tone@14.8.39/build/Tone.min.js"></script>
 
-<style>
-  body { background:#0f1724; color:#e6eef8; font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; padding:18px; }
-  .tool { max-width:1100px; margin:18px auto; background:#0b1220; padding:18px; border-radius:10px; box-shadow:0 6px 30px rgba(0,0,0,0.6); }
-  .title { color:#7ee3c3; font-weight:700; font-size:20px; margin-bottom:8px; }
-  .desc { color:#cde7f0; font-size:13px; margin-bottom:12px; }
-  .controls { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
-  .panel { background:#071026; padding:10px; border-radius:8px; min-width:150px; }
-  label { display:block; font-size:12px; color:#9fc7d9; margin-bottom:6px; }
-  select,input[type="range"] { width:100%; background:#0c1a26; color:#e6eef8; border-radius:6px; padding:6px; border:none; }
-  button { background:#3dd3a6; color:#00161a; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700; }
-  button.ghost { background:transparent; color:#9fc7d9; border:1px solid #102434; }
-  .gridWrap { overflow:auto; margin-top:14px; border-radius:8px; padding:8px; background:#071025; }
-  .grid { display:grid; gap:6px; align-items:center; }
-  .instLabel { text-align:right; padding-right:8px; font-weight:700; color:#9de3c9; }
-  .step { width:44px; height:28px; background:#071025; border-radius:6px; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.02); cursor:pointer; display:flex; align-items:center; justify-content:center; color:#89cbd1; user-select:none; }
-  .step.active { background:#3dd3a6; color:#00161a; box-shadow:none; }
-  .step.playhead { outline:3px solid rgba(61,211,166,0.12); }
-  .row { display:contents; }
-  .controlsBottom { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
-  .small { font-size:12px; padding:6px 8px; border-radius:6px; }
-  .info { margin-top:14px; font-size:13px; color:#9fc7d9; }
-  @media (max-width:700px){ .step { width:36px; height:26px; } }
-</style>
+  <link rel="icon" href="/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link href="/assets/tools.css" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NCHP45VYJ2');
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6855609395201774"
+    crossorigin="anonymous"></script>
+  <!-- Tone.js -->
+  <script async src="https://unpkg.com/tone@14.8.39/build/Tone.min.js"></script>
+
+  <style>
+  
+    .tool {
+      margin: 18px auto;
+      background: #0b1220;
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .title {
+      color: #7ee3c3;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .desc {
+      color: #cde7f0;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .panel {
+      background: #071026;
+      padding: 10px;
+      border-radius: 8px;
+      min-width: 150px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: #9fc7d9;
+      margin-bottom: 6px;
+    }
+
+    select,
+    input[type="range"] {
+      width: 100%;
+      background: #0c1a26;
+      color: #e6eef8;
+      border-radius: 6px;
+      padding: 6px;
+      border: none;
+    }
+
+    button {
+      background: #3dd3a6;
+      color: #00161a;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button.ghost {
+      background: transparent;
+      color: #9fc7d9;
+      border: 1px solid #102434;
+    }
+
+    .gridWrap {
+      overflow: auto;
+      margin-top: 14px;
+      border-radius: 8px;
+      padding: 8px;
+      background: #071025;
+    }
+
+    .grid {
+      display: grid;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .instLabel {
+      text-align: right;
+      padding-right: 8px;
+      font-weight: 700;
+      color: #9de3c9;
+    }
+
+    .step {
+      width: 44px;
+      height: 28px;
+      background: #071025;
+      border-radius: 6px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #89cbd1;
+      user-select: none;
+    }
+
+    .step.active {
+      background: #3dd3a6;
+      color: #00161a;
+      box-shadow: none;
+    }
+
+    .step.playhead {
+      outline: 3px solid rgba(61, 211, 166, 0.12);
+    }
+
+    /* .row {
+      display: contents;
+    } */
+
+    .controlsBottom {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .small {
+      font-size: 12px;
+      padding: 6px 8px;
+      border-radius: 6px;
+    }
+
+    .info {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #9fc7d9;
+    }
+
+    @media (max-width:700px) {
+      .step {
+        width: 36px;
+        height: 26px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <div id="header"></div>
 
-<div class="tool" role="application" aria-label="Rhythm Pattern Maker">
-  <div class="title">Rhythm Pattern Maker</div>
-  <div class="desc">16-step sequencer with swing, BPM, multiple instruments, step preview, randomize, export/import. Uses Tone.js for accurate timing.</div>
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 col-md-4">
+        <div class="tools-sidebar">
+          <div class="sidebar-search mb-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                onkeyup="searchTools()">
+            </div>
+          </div>
 
-  <div class="controls">
-    <div class="panel">
-      <label for="bpm">BPM</label>
-      <input id="bpm" type="range" min="40" max="240" value="120" />
-      <div style="margin-top:6px;color:#bfe8db;font-weight:700" id="bpmLabel">120 BPM</div>
-    </div>
+          <div class="sidebar-categories">
+            <div class="sidebar-category active">
+              <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/music-theory-tools/online-metronome/" class="active"><i class="bi bi-stopwatch"></i>
+                    Online Metronome</a></li>
+                <li><a href="/music-theory-tools/scale-finder/"><i class="bi bi-grid-3x3"></i> Scale
+                    Finder</a></li>
+                <li><a href="/music-theory-tools/chord-identifier/"><i class="bi bi-vinyl"></i> Chord
+                    Identifier</a></li>
+              </ul>
+            </div>
 
-    <div class="panel">
-      <label for="swing">Swing (%)</label>
-      <input id="swing" type="range" min="0" max="60" value="0" />
-      <div style="margin-top:6px;color:#bfe8db;font-weight:700" id="swingLabel">0%</div>
-    </div>
+            <div class="sidebar-category">
+              <h5><i class="bi bi-disc me-2"></i>DJ & Production Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
+                    BPM Tap Tempo</a></li>
+                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to
+                    Milliseconds</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-8">
+        <div class="tool" role="application" aria-label="Rhythm Pattern Maker">
+          <div class="title">Rhythm Pattern Maker</div>
+          <div class="desc">16-step sequencer with swing, BPM, multiple instruments, step preview, randomize,
+            export/import.
+            Uses Tone.js for accurate timing.</div>
 
-    <div class="panel">
-      <label for="patternLength">Pattern Length (steps)</label>
-      <select id="patternLength"><option value="16" selected>16</option><option value="32">32</option><option value="64">64</option></select>
-    </div>
+          <div class="controls">
+            <div class="panel">
+              <label for="bpm">BPM</label>
+              <input id="bpm" type="range" min="40" max="240" value="120" />
+              <div style="margin-top:6px;color:#bfe8db;font-weight:700" id="bpmLabel">120 BPM</div>
+            </div>
 
-    <div class="panel">
-      <label for="division">Division</label>
-      <select id="division"><option value="16n">1/16</option><option value="8n">1/8</option><option value="4n">1/4</option><option value="16t">Triplet 16</option></select>
-    </div>
+            <div class="panel">
+              <label for="swing">Swing (%)</label>
+              <input id="swing" type="range" min="0" max="60" value="0" />
+              <div style="margin-top:6px;color:#bfe8db;font-weight:700" id="swingLabel">0%</div>
+            </div>
 
-    <div class="panel">
-      <label for="kitSelect">Drum Kit</label>
-      <select id="kitSelect"><option value="classic">Classic</option><option value="505">505 Kit</option></select>
+            <div class="panel">
+              <label for="patternLength">Pattern Length (steps)</label>
+              <select id="patternLength">
+                <option value="16" selected>16</option>
+                <option value="32">32</option>
+                <option value="64">64</option>
+              </select>
+            </div>
+
+            <div class="panel">
+              <label for="division">Division</label>
+              <select id="division">
+                <option value="16n">1/16</option>
+                <option value="8n">1/8</option>
+                <option value="4n">1/4</option>
+                <option value="16t">Triplet 16</option>
+              </select>
+            </div>
+
+            <div class="panel">
+              <label for="kitSelect">Drum Kit</label>
+              <select id="kitSelect">
+                <option value="classic">Classic</option>
+                <option value="505">505 Kit</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="controlsBottom">
+            <button id="playBtn" class="small">▶ Play</button>
+            <button id="stopBtn" class="small ghost">⏹ Stop</button>
+            <button id="clearBtn" class="small ghost">🧹 Clear</button>
+            <button id="randomBtn" class="small ghost">🎲 Randomize</button>
+            <button id="exportBtn" class="small ghost">📤 Export JSON</button>
+            <button id="importBtn" class="small ghost">📥 Import JSON</button>
+          </div>
+
+          <div class="gridWrap" id="gridWrap" tabindex="0" style="margin-top:12px;">
+            <!-- dynamic grid inserted here -->
+            <div id="grid" class="grid"></div>
+          </div>
+
+          <div class="info">
+            Tip: click a step to toggle it (preview sound plays). Use Randomize to generate patterns. Export/Import uses
+            JSON.
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <div class="controlsBottom">
-    <button id="playBtn" class="small">▶ Play</button>
-    <button id="stopBtn" class="small ghost">⏹ Stop</button>
-    <button id="clearBtn" class="small ghost">🧹 Clear</button>
-    <button id="randomBtn" class="small ghost">🎲 Randomize</button>
-    <button id="exportBtn" class="small ghost">📤 Export JSON</button>
-    <button id="importBtn" class="small ghost">📥 Import JSON</button>
-  </div>
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js" defer></script>
+    <script src="/assets/tools.js" defer></script>
+    <!-- includde js -->
+     <script defer>
+      window.addEventListener("load", () => {
+            Promise.all([
+                fetch("/header.html").then(res => res.text()),
+                fetch("/footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+     </script>
+  <!-- tool js -->
+  <script defer>
+    /* ---------- CONFIG ---------- */
+    const DEFAULT_STEPS = 16;
+    const instruments = ["kick", "snare", "hihat", "openhat", "clap", "perc", "rim"];
+    let steps = DEFAULT_STEPS;
 
-  <div class="gridWrap" id="gridWrap" tabindex="0" style="margin-top:12px;">
-    <!-- dynamic grid inserted here -->
-    <div id="grid" class="grid"></div>
-  </div>
+    /* ---------- SAMPLES for kits ---------- */
+    const KITS = {
+      classic: {
+        kick: "https://tonejs.github.io/audio/drum-samples/CR78/kick.mp3",
+        snare: "https://tonejs.github.io/audio/drum-samples/CR78/snare.mp3",
+        hihat: "https://tonejs.github.io/audio/drum-samples/CR78/hihat.mp3",
+        openhat: "https://tonejs.github.io/audio/drum-samples/505/oh.mp3",
+        clap: "https://tonejs.github.io/audio/drum-samples/505/clap.mp3",
+        perc: "https://tonejs.github.io/audio/drum-samples/505/perc.mp3",
+        rim: "https://tonejs.github.io/audio/drum-samples/505/rim.mp3"
+      },
+      "505": {
+        kick: "https://tonejs.github.io/audio/drum-samples/505/kick.mp3",
+        snare: "https://tonejs.github.io/audio/drum-samples/505/snare.mp3",
+        hihat: "https://tonejs.github.io/audio/drum-samples/505/hihat.mp3",
+        openhat: "https://tonejs.github.io/audio/drum-samples/505/oh.mp3",
+        clap: "https://tonejs.github.io/audio/drum-samples/505/clap.mp3",
+        perc: "https://tonejs.github.io/audio/drum-samples/505/perc.mp3",
+        rim: "https://tonejs.github.io/audio/drum-samples/505/rim.mp3"
+      }
+    };
 
-  <div class="info">
-    Tip: click a step to toggle it (preview sound plays). Use Randomize to generate patterns. Export/Import uses JSON.
-  </div>
-</div>
+    /* ---------- TONE.JS SETUP ---------- */
+    const players = new Tone.Players(KITS["classic"]).toDestination();
+    const masterVol = new Tone.Volume(0).toDestination(); // placeholder if needed
+    // players.connect(masterVol); // optional routing
 
-<script>
-/* ---------- CONFIG ---------- */
-const DEFAULT_STEPS = 16;
-const instruments = ["kick","snare","hihat","openhat","clap","perc","rim"];
-let steps = DEFAULT_STEPS;
+    // pattern data structure: { instrument: [0|1,...] }
+    let pattern = {};
+    function initPattern() {
+      pattern = {};
+      instruments.forEach(i => pattern[i] = Array(steps).fill(0));
+    }
+    initPattern();
 
-/* ---------- SAMPLES for kits ---------- */
-const KITS = {
-  classic: {
-    kick: "https://tonejs.github.io/audio/drum-samples/CR78/kick.mp3",
-    snare: "https://tonejs.github.io/audio/drum-samples/CR78/snare.mp3",
-    hihat: "https://tonejs.github.io/audio/drum-samples/CR78/hihat.mp3",
-    openhat: "https://tonejs.github.io/audio/drum-samples/505/oh.mp3",
-    clap: "https://tonejs.github.io/audio/drum-samples/505/clap.mp3",
-    perc: "https://tonejs.github.io/audio/drum-samples/505/perc.mp3",
-    rim: "https://tonejs.github.io/audio/drum-samples/505/rim.mp3"
-  },
-  "505": {
-    kick: "https://tonejs.github.io/audio/drum-samples/505/kick.mp3",
-    snare: "https://tonejs.github.io/audio/drum-samples/505/snare.mp3",
-    hihat: "https://tonejs.github.io/audio/drum-samples/505/hihat.mp3",
-    openhat: "https://tonejs.github.io/audio/drum-samples/505/oh.mp3",
-    clap: "https://tonejs.github.io/audio/drum-samples/505/clap.mp3",
-    perc: "https://tonejs.github.io/audio/drum-samples/505/perc.mp3",
-    rim: "https://tonejs.github.io/audio/drum-samples/505/rim.mp3"
-  }
-};
+    /* ---------- GRID BUILD ---------- */
+    const gridEl = document.getElementById("grid");
+    function buildGrid() {
+      gridEl.innerHTML = "";
+      // grid columns = label + steps
+      gridEl.style.gridTemplateColumns = `120px repeat(${steps}, 48px)`;
+      // header row with step numbers (optional blank)
+      const blank = document.createElement("div");
+      blank.className = "instLabel";
+      blank.innerText = "";
+      gridEl.appendChild(blank);
+      for (let c = 0; c < steps; c++) {
+        const lbl = document.createElement("div");
+        lbl.className = "step";
+        lbl.style.background = "transparent";
+        lbl.style.color = "#9fc7d9";
+        lbl.style.fontWeight = "700";
+        lbl.style.border = "none";
+        lbl.innerText = (c + 1);
+        gridEl.appendChild(lbl);
+      }
 
-/* ---------- TONE.JS SETUP ---------- */
-const players = new Tone.Players(KITS["classic"]).toDestination();
-const masterVol = new Tone.Volume(0).toDestination(); // placeholder if needed
-// players.connect(masterVol); // optional routing
+      // instrument rows
+      instruments.forEach(inst => {
+        // label
+        const lab = document.createElement("div");
+        lab.className = "instLabel";
+        lab.innerText = inst.toUpperCase();
+        gridEl.appendChild(lab);
 
-// pattern data structure: { instrument: [0|1,...] }
-let pattern = {};
-function initPattern() {
-  pattern = {};
-  instruments.forEach(i => pattern[i] = Array(steps).fill(0));
-}
-initPattern();
+        for (let c = 0; c < steps; c++) {
+          const step = document.createElement("div");
+          step.className = "step";
+          step.dataset.inst = inst;
+          step.dataset.col = c;
+          if (pattern[inst][c]) step.classList.add("active");
 
-/* ---------- GRID BUILD ---------- */
-const gridEl = document.getElementById("grid");
-function buildGrid() {
-  gridEl.innerHTML = "";
-  // grid columns = label + steps
-  gridEl.style.gridTemplateColumns = `120px repeat(${steps}, 48px)`;
-  // header row with step numbers (optional blank)
-  const blank = document.createElement("div");
-  blank.className = "instLabel";
-  blank.innerText = "";
-  gridEl.appendChild(blank);
-  for(let c=0;c<steps;c++){
-    const lbl = document.createElement("div");
-    lbl.className = "step";
-    lbl.style.background = "transparent";
-    lbl.style.color = "#9fc7d9";
-    lbl.style.fontWeight = "700";
-    lbl.style.border = "none";
-    lbl.innerText = (c+1);
-    gridEl.appendChild(lbl);
-  }
+          // click toggles
+          step.addEventListener("click", async (e) => {
+            // ensure user gesture started audio context
+            if (Tone.context.state !== 'running') {
+              try { await Tone.start(); } catch (e) { /* ignore */ }
+            }
+            pattern[inst][c] = pattern[inst][c] ? 0 : 1;
+            step.classList.toggle("active");
+            // preview sample immediately on click
+            const player = players.player(inst);
+            if (player && typeof player.start === 'function') {
+              player.start();
+            }
+          });
 
-  // instrument rows
-  instruments.forEach(inst => {
-    // label
-    const lab = document.createElement("div");
-    lab.className = "instLabel";
-    lab.innerText = inst.toUpperCase();
-    gridEl.appendChild(lab);
+          // drag painting
+          let mouseDown = false;
+          step.addEventListener('mousedown', () => mouseDown = true);
+          step.addEventListener('mouseup', () => mouseDown = false);
+          step.addEventListener('mouseover', (ev) => { if (ev.buttons === 1) { pattern[inst][c] = 1; step.classList.add('active'); } });
 
-    for(let c=0;c<steps;c++){
-      const step = document.createElement("div");
-      step.className = "step";
-      step.dataset.inst = inst;
-      step.dataset.col = c;
-      if(pattern[inst][c]) step.classList.add("active");
-
-      // click toggles
-      step.addEventListener("click", async (e)=>{
-        // ensure user gesture started audio context
-        if (Tone.context.state !== 'running') {
-          try { await Tone.start(); } catch(e){ /* ignore */ }
-        }
-        pattern[inst][c] = pattern[inst][c] ? 0 : 1;
-        step.classList.toggle("active");
-        // preview sample immediately on click
-        const player = players.player(inst);
-        if(player && typeof player.start === 'function'){
-          player.start();
+          gridEl.appendChild(step);
         }
       });
-
-      // drag painting
-      let mouseDown = false;
-      step.addEventListener('mousedown', ()=> mouseDown = true);
-      step.addEventListener('mouseup', ()=> mouseDown = false);
-      step.addEventListener('mouseover', (ev)=> { if(ev.buttons===1){ pattern[inst][c] = 1; step.classList.add('active'); } });
-
-      gridEl.appendChild(step);
     }
-  });
-}
 
-/* ---------- PLAYHEAD & LOOP ---------- */
-let loop = null;
-let playIndex = 0;
+    /* ---------- PLAYHEAD & LOOP ---------- */
+    let loop = null;
+    let playIndex = 0;
 
-function startLoop() {
-  if (!players.loaded) {
-    // wait until samples loaded
-    players.onload = () => startLoop();
-    return;
-  }
-  if(loop) loop.stop();
-  playIndex = 0;
-  const division = document.getElementById("division").value; // e.g. '16n'
-  loop = new Tone.Loop((time) => {
-    // highlight column
-    highlightColumn(playIndex);
-    // iterate instruments
-    instruments.forEach(inst => {
-      if(pattern[inst][playIndex]) {
-        const p = players.player(inst);
-        // start at transport time for accurate sync
-        p.start(time);
+    function startLoop() {
+      if (!players.loaded) {
+        // wait until samples loaded
+        players.onload = () => startLoop();
+        return;
+      }
+      if (loop) loop.stop();
+      playIndex = 0;
+      const division = document.getElementById("division").value; // e.g. '16n'
+      loop = new Tone.Loop((time) => {
+        // highlight column
+        highlightColumn(playIndex);
+        // iterate instruments
+        instruments.forEach(inst => {
+          if (pattern[inst][playIndex]) {
+            const p = players.player(inst);
+            // start at transport time for accurate sync
+            p.start(time);
+          }
+        });
+        playIndex = (playIndex + 1) % steps;
+      }, division);
+      loop.start(0);
+      // apply swing
+      Tone.Transport.swing = document.getElementById("swing").value / 100;
+      // set BPM
+      Tone.Transport.bpm.value = Number(document.getElementById("bpm").value);
+      Tone.Transport.start();
+    }
+
+    function stopLoop() {
+      if (loop) loop.stop();
+      Tone.Transport.stop();
+      clearPlayhead();
+      playIndex = 0;
+    }
+
+    /* ---------- UI Helpers ---------- */
+    function highlightColumn(col) {
+      // remove playhead from previous
+      document.querySelectorAll('.step.playhead').forEach(n => n.classList.remove('playhead'));
+      // add to column header and all instrument steps for that column
+      // header offset = 1 (blank label) so header cells are index 1..steps
+      const nodes = Array.from(gridEl.children);
+      // header cells start at index 1, instrument rows start at index 1+steps, then each row has steps cells
+      // We'll compute positions: header cell index = 1 + col
+      const headerCell = nodes[1 + col];
+      if (headerCell) headerCell.classList.add('playhead');
+      // instrument start index = 1 + steps
+      let base = 1 + steps;
+      for (let r = 0; r < instruments.length; r++) {
+        const idx = base + r * steps + col;
+        const node = nodes[idx];
+        if (node) node.classList.add('playhead');
+      }
+    }
+
+    function clearPlayhead() {
+      document.querySelectorAll('.step.playhead').forEach(n => n.classList.remove('playhead'));
+    }
+
+    /* ---------- Controls wiring ---------- */
+    document.getElementById("bpm").addEventListener('input', (e) => {
+      document.getElementById("bpmLabel").innerText = `${e.target.value} BPM`;
+      Tone.Transport.bpm.value = Number(e.target.value);
+    });
+
+    document.getElementById("swing").addEventListener('input', (e) => {
+      document.getElementById("swingLabel").innerText = `${e.target.value}%`;
+      Tone.Transport.swing = e.target.value / 100;
+    });
+
+    document.getElementById("patternLength").addEventListener('change', (e) => {
+      steps = Number(e.target.value);
+      // recreate pattern arrays to new length (preserve existing prefix)
+      instruments.forEach(inst => {
+        const old = pattern[inst] || [];
+        const arr = Array(steps).fill(0);
+        for (let i = 0; i < Math.min(old.length, steps); i++) arr[i] = old[i];
+        pattern[inst] = arr;
+      });
+      buildGrid();
+    });
+
+    document.getElementById("division").addEventListener('change', (e) => {
+      // If playing, restart loop with new division
+      if (loop && Tone.Transport.state === 'started') {
+        loop.stop();
+        loop.interval = e.target.value;
+        loop.start(0);
+      } else if (loop) {
+        loop.interval = e.target.value;
       }
     });
-    playIndex = (playIndex + 1) % steps;
-  }, division);
-  loop.start(0);
-  // apply swing
-  Tone.Transport.swing = document.getElementById("swing").value / 100;
-  // set BPM
-  Tone.Transport.bpm.value = Number(document.getElementById("bpm").value);
-  Tone.Transport.start();
-}
 
-function stopLoop() {
-  if(loop) loop.stop();
-  Tone.Transport.stop();
-  clearPlayhead();
-  playIndex = 0;
-}
+    document.getElementById("kitSelect").addEventListener('change', (e) => {
+      const kitName = e.target.value;
+      // unload and load new kit
+      players.removeAll();
+      const kit = KITS[kitName] || KITS["classic"];
+      const newPlayers = new Tone.Players(kit, () => {
+        // after loaded, assign new players
+        Object.keys(kit).forEach(k => players.add(k, kit[k]));
+        // Note: simpler approach is to recreate players reference (we created players earlier).
+        // For safety, just recreate global players by assigning samples to existing players:
+        // (but Players API doesn't support straightforward replace; easier: reload page or reinitialize)
+        // To keep it simple: prompt user to reload to apply kit (or we can recreate players and continue).
+        // Quick approach: recreate players and override global 'players' variable isn't possible via const.
+        // So inform user to reload to apply new kit.
+        alert("Kit loaded. For full kit switch, please reload the page (or I can implement seamless kit switch).");
+      });
+    });
 
-/* ---------- UI Helpers ---------- */
-function highlightColumn(col) {
-  // remove playhead from previous
-  document.querySelectorAll('.step.playhead').forEach(n=>n.classList.remove('playhead'));
-  // add to column header and all instrument steps for that column
-  // header offset = 1 (blank label) so header cells are index 1..steps
-  const nodes = Array.from(gridEl.children);
-  // header cells start at index 1, instrument rows start at index 1+steps, then each row has steps cells
-  // We'll compute positions: header cell index = 1 + col
-  const headerCell = nodes[1 + col];
-  if(headerCell) headerCell.classList.add('playhead');
-  // instrument start index = 1 + steps
-  let base = 1 + steps;
-  for(let r=0;r<instruments.length;r++){
-    const idx = base + r*steps + col;
-    const node = nodes[idx];
-    if(node) node.classList.add('playhead');
-  }
-}
+    document.getElementById("playBtn").addEventListener('click', async () => {
+      // user gesture required; resume audio context
+      if (Tone.context.state !== 'running') await Tone.start();
+      // ensure players loaded
+      if (!players.loaded) {
+        players.onload = () => {
+          startLoop();
+        };
+      } else {
+        startLoop();
+      }
+    });
 
-function clearPlayhead() {
-  document.querySelectorAll('.step.playhead').forEach(n=>n.classList.remove('playhead'));
-}
+    document.getElementById("stopBtn").addEventListener('click', () => {
+      stopLoop();
+    });
 
-/* ---------- Controls wiring ---------- */
-document.getElementById("bpm").addEventListener('input', (e)=>{
-  document.getElementById("bpmLabel").innerText = `${e.target.value} BPM`;
-  Tone.Transport.bpm.value = Number(e.target.value);
-});
-
-document.getElementById("swing").addEventListener('input', (e)=>{
-  document.getElementById("swingLabel").innerText = `${e.target.value}%`;
-  Tone.Transport.swing = e.target.value / 100;
-});
-
-document.getElementById("patternLength").addEventListener('change', (e)=>{
-  steps = Number(e.target.value);
-  // recreate pattern arrays to new length (preserve existing prefix)
-  instruments.forEach(inst=>{
-    const old = pattern[inst] || [];
-    const arr = Array(steps).fill(0);
-    for(let i=0;i<Math.min(old.length, steps); i++) arr[i] = old[i];
-    pattern[inst] = arr;
-  });
-  buildGrid();
-});
-
-document.getElementById("division").addEventListener('change', (e)=>{
-  // If playing, restart loop with new division
-  if(loop && Tone.Transport.state === 'started') {
-    loop.stop();
-    loop.interval = e.target.value;
-    loop.start(0);
-  } else if(loop) {
-    loop.interval = e.target.value;
-  }
-});
-
-document.getElementById("kitSelect").addEventListener('change', (e)=>{
-  const kitName = e.target.value;
-  // unload and load new kit
-  players.removeAll();
-  const kit = KITS[kitName] || KITS["classic"];
-  const newPlayers = new Tone.Players(kit, ()=> {
-    // after loaded, assign new players
-    Object.keys(kit).forEach(k=> players.add(k, kit[k]));
-    // Note: simpler approach is to recreate players reference (we created players earlier).
-    // For safety, just recreate global players by assigning samples to existing players:
-    // (but Players API doesn't support straightforward replace; easier: reload page or reinitialize)
-    // To keep it simple: prompt user to reload to apply kit (or we can recreate players and continue).
-    // Quick approach: recreate players and override global 'players' variable isn't possible via const.
-    // So inform user to reload to apply new kit.
-    alert("Kit loaded. For full kit switch, please reload the page (or I can implement seamless kit switch).");
-  });
-});
-
-document.getElementById("playBtn").addEventListener('click', async ()=>{
-  // user gesture required; resume audio context
-  if(Tone.context.state !== 'running') await Tone.start();
-  // ensure players loaded
-  if(!players.loaded) {
-    players.onload = () => {
-      startLoop();
-    };
-  } else {
-    startLoop();
-  }
-});
-
-document.getElementById("stopBtn").addEventListener('click', ()=>{
-  stopLoop();
-});
-
-document.getElementById("clearBtn").addEventListener('click', ()=>{
-  instruments.forEach(inst=> pattern[inst] = Array(steps).fill(0));
-  buildGrid();
-});
-
-document.getElementById("randomBtn").addEventListener('click', ()=>{
-  instruments.forEach(inst=>{
-    pattern[inst] = Array(steps).fill(0).map(()=> Math.random() > 0.8 ? 1 : 0);
-  });
-  buildGrid();
-});
-
-document.getElementById("exportBtn").addEventListener('click', ()=>{
-  const json = JSON.stringify({steps, pattern});
-  // show in new window for easy copy
-  const w = window.open("", "_blank");
-  w.document.write("<pre>" + json.replace(/</g,"&lt;") + "</pre>");
-});
-
-document.getElementById("importBtn").addEventListener('click', ()=>{
-  const json = prompt("Paste pattern JSON (exported format):");
-  if(!json) return;
-  try {
-    const obj = JSON.parse(json);
-    if(obj.steps && obj.pattern) {
-      steps = Number(obj.steps);
-      pattern = obj.pattern;
-      document.getElementById("patternLength").value = steps;
+    document.getElementById("clearBtn").addEventListener('click', () => {
+      instruments.forEach(inst => pattern[inst] = Array(steps).fill(0));
       buildGrid();
-    } else {
-      alert("Invalid data");
-    }
-  } catch(e){
-    alert("Invalid JSON");
-  }
-});
+    });
 
-/* ---------- Initialize UI ---------- */
-buildGrid();
+    document.getElementById("randomBtn").addEventListener('click', () => {
+      instruments.forEach(inst => {
+        pattern[inst] = Array(steps).fill(0).map(() => Math.random() > 0.8 ? 1 : 0);
+      });
+      buildGrid();
+    });
 
-/* ---------- Ensure samples start loading so players.loaded becomes true ---------- */
-players.autostart = true; // will not autoplay sound, but starts preloading
-// Note: Tone.Players sets players.loaded when all buffers are ready
+    document.getElementById("exportBtn").addEventListener('click', () => {
+      const json = JSON.stringify({ steps, pattern });
+      // show in new window for easy copy
+      const w = window.open("", "_blank");
+      w.document.write("<pre>" + json.replace(/</g, "&lt;") + "</pre>");
+    });
 
-</script>
+    document.getElementById("importBtn").addEventListener('click', () => {
+      const json = prompt("Paste pattern JSON (exported format):");
+      if (!json) return;
+      try {
+        const obj = JSON.parse(json);
+        if (obj.steps && obj.pattern) {
+          steps = Number(obj.steps);
+          pattern = obj.pattern;
+          document.getElementById("patternLength").value = steps;
+          buildGrid();
+        } else {
+          alert("Invalid data");
+        }
+      } catch (e) {
+        alert("Invalid JSON");
+      }
+    });
+
+    /* ---------- Initialize UI ---------- */
+    buildGrid();
+
+    /* ---------- Ensure samples start loading so players.loaded becomes true ---------- */
+    players.autostart = true; // will not autoplay sound, but starts preloading
+    // Note: Tone.Players sets players.loaded when all buffers are ready
+
+    
+  </script>
 </body>
+
 </html>
