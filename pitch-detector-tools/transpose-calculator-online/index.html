@@ -31,53 +31,22 @@
         crossorigin="anonymous"></script>
 
     <style>
-        .transpose-display {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--mid-blue) 100%);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            color: #fff;
-            margin: 30px 0;
-        }
+       
 
-        .note-input {
-            font-size: 18px;
-            padding: 10px 15px;
-            border-radius: 10px;
-            border: none;
-            outline: none;
-            margin: 10px;
-        }
-
-        .transpose-btn {
-            background: var(--teal);
-            color: #fff;
-            border: none;
-            padding: 12px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .transpose-btn:hover {
-            background: var(--mid-blue);
-            transform: scale(1.05);
-        }
 
         .result-box {
-            background: #f8f9fa;
-            color: var(--dark-blue);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 30px;
-            text-align: center;
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-weight: bold;
+            min-height: 40px;
+            overflow-x: auto;
         }
 
-        .result-box h3 {
-            margin-bottom: 15px;
+        .copy-btn {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -86,7 +55,7 @@
     <div id="header"></div>
     <div class="container py-4">
         <div class="row">
-<!-- Sidebar -->
+            <!-- Sidebar -->
             <div class="col-lg-3 col-md-4">
                 <div class="tools-sidebar">
                     <!-- Search Box -->
@@ -105,13 +74,16 @@
                             <ul class="sidebar-links">
                                 <li><a href="/pitch-detector-tools/guitar-tuner-online/" class=""><i
                                             class="bi bi-music-note-beamed"></i> Guitar Tuner</a></li>
-                                <li><a href="/pitch-detector-tools/vocal-range-finder-online/"><i class="bi bi-mic"></i> Vocal
+                                <li><a href="/pitch-detector-tools/vocal-range-finder-online/"><i class="bi bi-mic"></i>
+                                        Vocal
                                         Range Finder</a></li>
                                 <li><a href="/pitch-detector-tools/frequency-to-note-online/"><i
                                             class="bi bi-arrow-left-right"></i> Frequency to Note</a></li>
-                                <li><a href="/pitch-detector-tools/note-to-frequency-online/"><i class="bi bi-calculator"></i>
+                                <li><a href="/pitch-detector-tools/note-to-frequency-online/"><i
+                                            class="bi bi-calculator"></i>
                                         Note to Frequency</a></li>
-                                <li><a href="/pitch-detector-tools/cents-calculator-online/"><i class="bi bi-rulers"></i> Cents
+                                <li><a href="/pitch-detector-tools/cents-calculator-online/"><i
+                                            class="bi bi-rulers"></i> Cents
                                         Calculator</a></li>
                                 <li><a href="/pitch-detector-tools/transpose-calculator-online/" class="active"><i
                                             class="bi bi-arrows-expand"></i> Transpose Calculator</a></li>
@@ -131,7 +103,8 @@
                                         Milliseconds</a></li>
                                 <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song
                                         Key Finder</a></li>
-                                <li><a href="https://diamondaudiocity.com/BPM-Pitch-Calculator.html"><i class="bi bi-sliders"></i>
+                                <li><a href="https://diamondaudiocity.com/BPM-Pitch-Calculator.html"><i
+                                            class="bi bi-sliders"></i>
                                         Pitch Shifter</a></li>
                                 <!-- <li><a href="/dj-music-production-tools/tempo-changer/"><i
                                             class="bi bi-fast-forward"></i> Tempo Changer</a></li> -->
@@ -157,15 +130,15 @@
                             <ul class="sidebar-links">
                                 <li><a href="/sound-analysis-tools/decibel-meter/"><i class="bi bi-volume-up"></i>
                                         Decibel Meter</a></li>
-                                 
+
                                 <li><a href="/sound-analysis-tools/loudness-meter/"><i class="bi bi-speaker"></i>
                                         Loudness Meter</a></li>
-                                        <li><a href="/sound-analysis-tools/microphone-test/"><i class="bi bi-mic"></i>
-                                                Microphone Test</a></li>
+                                <li><a href="/sound-analysis-tools/microphone-test/"><i class="bi bi-mic"></i>
+                                        Microphone Test</a></li>
                             </ul>
                         </div>
 
-                       
+
                     </div>
                 </div>
             </div>
@@ -181,31 +154,64 @@
                 </nav>
 
                 <div class="tool-container">
-                    <div class="tool-title">
-                        <h1><i class="bi bi-arrow-up-right-circle me-2"></i>Transpose Calculator</h1>
-                        <p>Easily shift music notes, transpose chords, and change key signatures up or down in
-                            semitones.
-                            Ideal for music composition, chord transposition, melody adjustment, and ear training
-                            exercises.</p>
+                    <h2 class="tool-title">Transpose Calculator</h2>
+                    <p>Easily shift music notes, transpose chords, and change key signatures up or down in semitones.
+                        Supports flats, multiple octaves, and keyboard shortcuts.</p>
+
+                    <div class="mb-3">
+                        <label for="inputNotes">Enter Notes / Chords</label>
+                        <input list="noteSuggestions" class="form-control" id="inputNotes" placeholder="C, D, E, F#">
+                        <datalist id="noteSuggestions">
+                            <option value="C">
+                            <option value="C#">
+                            <option value="Db">
+                            <option value="D">
+                            <option value="D#">
+                            <option value="Eb">
+                            <option value="E">
+                            <option value="F">
+                            <option value="F#">
+                            <option value="Gb">
+                            <option value="G">
+                            <option value="G#">
+                            <option value="Ab">
+                            <option value="A">
+                            <option value="A#">
+                            <option value="Bb">
+                            <option value="B">
+                            <option value="Cm">
+                            <option value="Dm">
+                            <option value="Em">
+                            <option value="Fmaj7">
+                            <option value="G7">
+                        </datalist>
+
                     </div>
 
-                    <!-- Transpose Calculator Display -->
-                    <div class="transpose-display">
-                        <label for="originalNote" class="form-label text-white">Original Note or Chord:</label>
-                        <input type="text" id="originalNote" class="note-input" placeholder="e.g., C, G#m, Fmaj7">
-
-                        <label for="semitones" class="form-label text-white">Transpose By (Semitones):</label>
-                        <input type="number" id="semitones" class="note-input" placeholder="e.g., 2, -3">
-
-                        <br>
-                        <button class="transpose-btn" onclick="transposeNote()">Transpose</button>
-
-                        <div class="result-box" id="transposeResult" style="display: none;">
-                            <h3>Transposed Result</h3>
-                            <p id="transposedNote">New Note/Chord: --</p>
-                        </div>
+                    <div class="mb-3">
+                        <label for="semitones" class="form-label">Transpose by Semitones</label>
+                        <input type="number" class="form-control" id="semitones" value="0">
                     </div>
+
+                    <div class="mb-3">
+                        <label for="octaveShift" class="form-label">Octave Shift</label>
+                        <select class="form-select" id="octaveShift">
+                            <option value="0">0 (no change)</option>
+                            <option value="1">+1 octave</option>
+                            <option value="2">+2 octaves</option>
+                            <option value="3">+3 octaves</option>
+                            <option value="-1">-1 octave</option>
+                            <option value="-2">-2 octaves</option>
+                            <option value="-3">-3 octaves</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary w-100" id="transposeBtn">Transpose</button>
+
+                    <div class="result-box" id="output"></div>
+                    <button class="btn btn-primary w-100 copy-btn" id="copyBtn">Copy Result</button>
                 </div>
+
 
                 <!-- How to Use -->
                 <div class="tool-container mt-4">
@@ -230,9 +236,195 @@
                         </ol>
                     </div>
                 </div>
+                <main class="tool-container my-5">
+
+                    <header class="mb-4">
+                        <h1 class="mb-3">Transpose Calculator Guide for Guitarists and Pianists</h1>
+                        <p>
+                            This page explains how a transpose calculator works, who it is for, and how guitarists and
+                            pianists use semitone-based transposition to adapt music accurately without altering
+                            harmonic structure.
+                        </p>
+                    </header>
+
+                    <!-- Guitarists -->
+                    <section class="content-section">
+                        <h2>
+                            Transpose Calculator for Guitarists
+
+                        </h2>
+
+                        <h3>How Guitarists Use a Transpose Calculator</h3>
+                        <p>
+                            Guitarists use a transpose calculator to change chord keys without relearning progressions.
+                            This is common when matching a singer’s range, changing capo positions, or simplifying chord
+                            shapes. The calculator rewrites chords accurately while preserving harmonic relationships.
+                        </p>
+
+                        <h3>Transposing Chords for Capo Use</h3>
+                        <p>
+                            A transpose calculator helps guitarists identify the correct chord names when using a capo.
+                            Instead of guessing shapes, the tool shows transposed chords that match the sounding pitch,
+                            preventing key confusion during practice or performance.
+                        </p>
+
+                        <h3>Why Guitarists Prefer Semitone-Based Transposition</h3>
+                        <p>
+                            Semitone transposition aligns with fretboard logic. Each fret equals one semitone, making
+                            numeric shifts intuitive for guitar players. This reduces theory dependency and speeds up
+                            real-time key changes.
+                        </p>
+                    </section>
+
+                    <!-- Pianists -->
+                    <section class="content-section">
+                        <h2>
+                            Transpose Calculator for Pianists
+                        </h2>
+
+                        <h3>How Pianists Use a Transpose Calculator</h3>
+                        <p>
+                            Pianists use transpose calculators to rewrite chord symbols and melodies into playable keys.
+                            This is especially useful for sight-reading, accompaniment, and adapting music for different
+                            vocalists without rewriting sheet music manually.
+                        </p>
+
+                        <h3>Handling Flats and Sharps on Keyboard</h3>
+                        <p>
+                            Transpose calculators that auto-detect flats (Db, Eb) help pianists avoid enharmonic
+                            confusion. Correct flat usage improves readability on sheet music and aligns with common
+                            piano key signatures.
+                        </p>
+
+                        <h3>Octave Awareness for Keyboard Players</h3>
+                        <p>
+                            Multi-octave support allows pianists to understand pitch shifts across registers. While
+                            chord names stay the same, octave awareness prevents accidental range clashes during
+                            performance.
+                        </p>
+                    </section>
+
+                    <!-- Featured Snippets -->
+                    <section class="content-section">
+                        <h2>How to Transpose Music Online</h2>
+                        <h3>How Do You Transpose Music Using a Calculator?</h3>
+                        <p>
+                            To transpose music online, enter chords or notes, choose the number of semitones to shift up
+                            or down, and apply the change. The calculator automatically converts each note to the
+                            correct pitch in the new key.
+                        </p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>When Should You Transpose a Song?</h2>
+                        <h3>When Is Transposing Music Necessary?</h3>
+                        <p>
+                            Transposition is necessary when a song does not fit a singer’s vocal range, an instrument’s
+                            preferred keys, or a performance context. It allows music to remain harmonically correct
+                            while becoming more playable or singable.
+                        </p>
+                    </section>
+
+                    <section class="content-section">
+                        <h2>Semitone vs Key-Based Transposition</h2>
+                        <h3>What Is the Difference Between Semitone and Key Transposition?</h3>
+                        <p>
+                            Semitone transposition shifts music by fixed half-steps, while key transposition moves music
+                            from one named key to another. Semitone methods are more precise and commonly used in
+                            digital transpose calculators.
+                        </p>
+                    </section>
+
+                    <!-- Limitations -->
+                    <section class="content-section">
+                        <h2>Limitations of Transpose Calculators</h2>
+                        <p>
+                            Transpose calculators change pitch relationships only. They do not adjust rhythm, tempo,
+                            chord voicings, fingering positions, or tablature layout. Manual musical judgment is still
+                            required for advanced arrangements.
+                        </p>
+                    </section>
+
+                    <!-- FAQs -->
+                    <section class="tool-container my-4">
+                        <h2>FAQs – Transpose Calculator</h2>
+
+                        <h3>What is a transpose calculator used for?</h3>
+                        <p>
+                            A transpose calculator is used to shift musical notes or chords into a different key by
+                            semitones. It helps musicians adapt songs for vocal range, instrument comfort, or
+                            performance needs without changing harmonic structure.
+                        </p>
+
+                        <h3>Can a transpose calculator handle complex chords?</h3>
+                        <p>
+                            Most transpose calculators support extended chords like seventh, minor, and suspended
+                            chords. Accuracy depends on proper chord formatting. Non-standard symbols or custom voicings
+                            may require manual review after transposition.
+                        </p>
+
+                        <h3>Is transposing music the same as changing pitch?</h3>
+                        <p>
+                            Transposing changes relative pitch relationships within music, not playback speed or tempo.
+                            It rewrites notes or chords into a new key while maintaining intervals, unlike audio
+                            pitch-shifting tools.
+                        </p>
+
+                        <h3>Do guitarists need music theory to transpose chords?</h3>
+                        <p>
+                            No. A transpose calculator removes the need for music theory by automatically converting
+                            chord names. Guitarists can focus on playing while the tool handles interval calculations
+                            accurately.
+                        </p>
+
+                        <h3>Why do some transposed results use flats instead of sharps?</h3>
+                        <p>
+                            Transpose calculators choose flats or sharps based on musical key context. Using flats like
+                            Db or Eb improves readability and follows standard key signature conventions, especially for
+                            piano and sheet music users.
+                        </p>
+                         <div class="card my-4 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
+
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2">
+                                        <a class="link-primary text-decoration-none fw-medium"
+                                            href="/pitch-detector-tools/pitch-detector/">
+                                            Online Pitch Detector
+                                        </a>
+                                    </li>
+
+                                    <li class="mb-2">
+                                        <a class="link-primary text-decoration-none fw-medium"
+                                            href="/pitch-detector-tools/guitar-tuner-online/">
+                                            Guitar Tuner
+                                        </a>
+                                    </li>
+
+                                    <li class="mb-2">
+                                        <a class="link-primary text-decoration-none fw-medium"
+                                            href="/pitch-detector-tools/frequency-to-note-online/">
+                                            Frequency to Note Converter
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="link-primary text-decoration-none fw-medium"
+                                            href="/pitch-detector-tools/note-to-frequency-online/">
+                                            Note to Frequency Converter
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </main>
 
                 <!-- FAQ Section -->
-                <div class="tool-container mt-4">
+                <!-- <div class="tool-container mt-4">
                     <div class="tool-section">
                         <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions
                         </h2>
@@ -305,87 +497,115 @@
                             </div>
                         </div>
                         <div class="card my-4 shadow-sm">
-  <div class="card-body">
-    <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
 
-    <ul class="list-unstyled mb-0">
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/pitch-detector-tools/pitch-detector/">
-          Online Pitch Detector
-        </a>
-      </li>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2">
+                                        <a class="link-primary text-decoration-none fw-medium"
+                                            href="/pitch-detector-tools/pitch-detector/">
+                                            Online Pitch Detector
+                                        </a>
+                                    </li>
 
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/pitch-detector-tools/guitar-tuner-online/">
-          Guitar Tuner
-        </a>
-      </li>
+                                    <li class="mb-2">
+                                        <a class="link-primary text-decoration-none fw-medium"
+                                            href="/pitch-detector-tools/guitar-tuner-online/">
+                                            Guitar Tuner
+                                        </a>
+                                    </li>
 
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/pitch-detector-tools/frequency-to-note-online/">
-          Frequency to Note Converter
-        </a>
-      </li>
+                                    <li class="mb-2">
+                                        <a class="link-primary text-decoration-none fw-medium"
+                                            href="/pitch-detector-tools/frequency-to-note-online/">
+                                            Frequency to Note Converter
+                                        </a>
+                                    </li>
 
-      <li>
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/pitch-detector-tools/note-to-frequency-online/">
-          Note to Frequency Converter
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+                                    <li>
+                                        <a class="link-primary text-decoration-none fw-medium"
+                                            href="/pitch-detector-tools/note-to-frequency-online/">
+                                            Note to Frequency Converter
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
     </div>
     <div id="footer"></div>
     <script src="/assets/bootstrap5.js" defer></script>
- 
+
     <!-- tool js -->
     <script defer>
-        const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        const notesSharp = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        const notesFlat = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+        const noteMap = { "Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#" };
 
-        function transposeNote() {
-            let input = document.getElementById('originalNote').value.trim();
-            let semitones = parseInt(document.getElementById('semitones').value);
-
-            if (!input || isNaN(semitones)) return;
-
-            // Detect root note and chord type
-            const regex = /^([A-G]#?)(.*)$/;
-            const match = input.match(regex);
-            if (!match) return;
-
-            const [_, root, chordType] = match;
-            let index = NOTE_NAMES.indexOf(root);
-            if (index === -1) return;
-
-            let transposedIndex = (index + semitones + 12) % 12;
-            let transposedNote = NOTE_NAMES[transposedIndex] + chordType;
-
-            document.getElementById('transposedNote').textContent = 'New Note/Chord: ' + transposedNote;
-            document.getElementById('transposeResult').style.display = 'block';
+        function normalizeNoteInput(note) {
+            note = note.trim();
+            // Separate note and octave
+            const match = note.match(/^([A-Ga-g][b#]?)(\d*)$/);
+            if (!match) return note;
+            let [_, n, octave] = match;
+            n = n.toUpperCase();
+            n = noteMap[n] || n;
+            return n + (octave || '');
         }
-        window.addEventListener("load", () => {
-            Promise.all([
-                fetch("../../header.html").then(res => res.text()),
-                fetch("../../footer.html").then(res => res.text())
-            ])
-                .then(([header, footer]) => {
-                    document.getElementById("header").innerHTML = header;
-                    document.getElementById("footer").innerHTML = footer;
-                })
-                .catch(err => console.error("Include load failed:", err));
+
+        function transposeNote(note, semitones, octaveShift) {
+            const match = note.match(/^([A-G][#]?)(\d*)$/);
+            if (!match) return note;
+            let [_, n, octave] = match;
+            octave = octave ? parseInt(octave) : 4;
+            let index = notesSharp.indexOf(n);
+            let total = index + semitones + (octaveShift * 12);
+            while (total < 0) total += 12;
+            index = total % 12;
+            octave += Math.floor(total / 12);
+            return notesSharp[index] + octave;
+        }
+
+        function transpose() {
+            const input = document.getElementById('inputNotes').value.split(',');
+            const semitones = parseInt(document.getElementById('semitones').value) || 0;
+            const octaveShift = parseInt(document.getElementById('octaveShift').value) || 0;
+
+            const result = input.map(note => transposeNote(normalizeNoteInput(note), semitones, octaveShift));
+            document.getElementById('output').innerText = result.join(', ');
+        }
+
+        document.getElementById('transposeBtn').addEventListener('click', transpose);
+
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const output = document.getElementById('output').innerText;
+            navigator.clipboard.writeText(output);
+            alert('Copied!');
+        });
+
+        // Keyboard shortcuts
+        document.getElementById('inputNotes').addEventListener('keydown', function (e) {
+            if (e.key === "Enter") transpose();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (document.activeElement.id === 'inputNotes') return; // handled separately
+            if (e.key === "ArrowUp") {
+                document.getElementById('semitones').value = parseInt(document.getElementById('semitones').value || 0) + 1;
+                transpose();
+            }
+            if (e.key === "ArrowDown") {
+                document.getElementById('semitones').value = parseInt(document.getElementById('semitones').value || 0) - 1;
+                transpose();
+            }
         });
     </script>
+
 </body>
 
 </html>
