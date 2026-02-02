@@ -50,26 +50,7 @@ ErrorDocument 404 /404.html
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:;"
 </IfModule>
 
-# ------------------------------
-# 6. GZIP & Brotli Compression
-# ------------------------------
-<IfModule mod_deflate.c>
-  # Text
-  AddOutputFilterByType DEFLATE text/html text/css text/plain
-  # JS/JSON
-  AddOutputFilterByType DEFLATE application/javascript text/javascript application/json
-  # XML
-  AddOutputFilterByType DEFLATE application/xml image/svg+xml
-  # Fonts
-  AddOutputFilterByType DEFLATE font/woff font/woff2 application/font-woff
-</IfModule>
 
-<IfModule mod_brotli.c>
-  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain
-  AddOutputFilterByType BROTLI_COMPRESS application/javascript text/javascript application/json
-  AddOutputFilterByType BROTLI_COMPRESS application/xml image/svg+xml
-  AddOutputFilterByType BROTLI_COMPRESS font/woff font/woff2 application/font-woff
-</IfModule>
 
 
 # ------------------------------
