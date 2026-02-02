@@ -15,15 +15,17 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://diamondaudiocity.com/pitch-detector-tools/pitch-detector/">
 
-  
+
   <!-- og -->
-<meta property="og:title" content="Pitch Detector – Real-Time Voice Pitch & Note Finder">
-<meta property="og:description" content="Analyze your voice pitch in real time using a microphone. View musical note, frequency (Hz), and tuning accuracy instantly with standard A4 = 440 Hz reference.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://diamondaudiocity.com/pitch-detector-tools/pitch-detector/">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pitch Detector – Real-Time Voice Pitch Analyzer">
-<meta name="twitter:description" content="Check your vocal pitch instantly with a microphone. See musical note, frequency (Hz), and tuning accuracy in real time.">
+  <meta property="og:title" content="Pitch Detector – Real-Time Voice Pitch & Note Finder">
+  <meta property="og:description"
+    content="Analyze your voice pitch in real time using a microphone. View musical note, frequency (Hz), and tuning accuracy instantly with standard A4 = 440 Hz reference.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://diamondaudiocity.com/pitch-detector-tools/pitch-detector/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pitch Detector – Real-Time Voice Pitch Analyzer">
+  <meta name="twitter:description"
+    content="Check your vocal pitch instantly with a microphone. See musical note, frequency (Hz), and tuning accuracy in real time.">
 
 
 
@@ -224,7 +226,7 @@
     }
 
     .black-key {
-      width: 30px;
+      width: 28px;
       height: 120px;
       background: #1a202c;
       border: 2px solid #000;
@@ -303,8 +305,23 @@
       }
 
       .black-key {
-        width: 24px;
+        width: 28px;
         height: 100px;
+      }
+
+      .piano-keyboard {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .keyboard {
+        min-width: 720px;
+        /* forces scroll on small screens */
+        justify-content: flex-start;
+      }
+      .start-btn{
+        padding: 12px 36px;
       }
     }
   </style>
@@ -405,7 +422,7 @@
       </div>
       <!-- Left: Main Tool -->
       <div class="col-lg-9 col-md-9">
-         <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/pitch-detector-tools/">Pitch Detector Tools</a></li>
@@ -939,7 +956,11 @@ Cent Deviation = 1200 × log₂(Detected Frequency / Reference Note Frequency)
             const blackKey = document.createElement('div');
             blackKey.className = 'black-key';
             blackKey.dataset.note = blackNote + octave;
-            blackKey.style.left = ((octave - 3) * 7 + blackNotePositions[blackNote]) * 50 + 'px';
+            // blackKey.style.left = ((octave - 3) * 7 + blackNotePositions[blackNote]) * 50 + 'px';
+            const totalWhiteKeys = octaves.length * 7;
+            const whiteIndex = (octave - 3.1) * 7 + blackNotePositions[blackNote];
+
+            blackKey.style.left = (whiteIndex / totalWhiteKeys) * 100 + '%';
 
             const blackLabel = document.createElement('div');
             blackLabel.className = 'key-label';
