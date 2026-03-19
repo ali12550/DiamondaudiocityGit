@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/xml; charset=UTF-8");
 
-$baseUrl = "https://diamondaudiocity.com";
+$baseUrl = "https://diamondaudiocity.com/";
 $rootDir = __DIR__;
 
 // Excluded directories
