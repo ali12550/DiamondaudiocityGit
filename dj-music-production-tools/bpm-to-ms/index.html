@@ -247,8 +247,8 @@
                     </div>
 
                     <!-- EXAMPLES TABLE -->
-                    <!-- <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">Examples & Quick Conversions</h2> -->
-                    <!-- <table class="table table-bordered text-center">
+                    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">Examples & Quick Conversions</h2>
+                     <table class="table table-bordered text-center">
                         <thead class="table-light">
                             <tr>
                                 <th>BPM</th>
@@ -288,7 +288,7 @@
                                 <td>0.4</td>
                             </tr>
                         </tbody>
-                    </table> -->
+                    </table> 
                     <section>
                         <h2>BPM to milliseconds examples (common tempos)</h2>
 
@@ -633,90 +633,116 @@
 
 
     <!-- tool js -->
-    <script defer>
-        let mode = 'bpm'; // default mode
+  <script defer>
+let mode = 'bpm';
 
-        function switchMode(newMode) {
-            mode = newMode;
-            if (mode === 'bpm') {
-                document.getElementById('bpmInputDiv').classList.remove('d-none');
-                document.getElementById('msInputDiv').classList.add('d-none');
-                document.getElementById('quickBPMDiv').classList.remove('d-none');
-                document.getElementById('bpmTab').classList.add('btn-teal');
-                document.getElementById('bpmTab').classList.remove('btn-outline-teal');
-                document.getElementById('msTab').classList.add('btn-outline-teal');
-                document.getElementById('msTab').classList.remove('btn-teal');
-            } else {
-                document.getElementById('bpmInputDiv').classList.add('d-none');
-                document.getElementById('msInputDiv').classList.remove('d-none');
-                document.getElementById('quickBPMDiv').classList.add('d-none');
-                document.getElementById('msTab').classList.add('btn-teal');
-                document.getElementById('msTab').classList.remove('btn-outline-teal');
-                document.getElementById('bpmTab').classList.add('btn-outline-teal');
-                document.getElementById('bpmTab').classList.remove('btn-teal');
-            }
-            calculate();
-        }
+function switchMode(newMode) {
+    mode = newMode;
 
-        function calculate() {
-            let bpm, quarterMs;
+    const bpmDiv = document.getElementById('bpmInputDiv');
+    const msDiv = document.getElementById('msInputDiv');
+    const quickDiv = document.getElementById('quickBPMDiv');
 
-            if (mode === 'bpm') {
-                bpm = parseFloat(document.getElementById('bpmInput').value) || 120;
-                quarterMs = 60000 / bpm;
-                document.getElementById('resultBPM').textContent = bpm.toFixed(2);
-            } else { // ms → BPM
-                quarterMs = parseFloat(document.getElementById('msInput').value) || 500;
-                if (quarterMs === 0) quarterMs = 1; // prevent division by zero
-                bpm = 60000 / quarterMs;
-                document.getElementById('resultBPM').textContent = bpm.toFixed(2);
+    const bpmTab = document.getElementById('bpmTab');
+    const msTab = document.getElementById('msTab');
 
-                // Optional: update BPM input if you want the value to reflect instantly
-                document.getElementById('bpmInput').value = bpm.toFixed(2);
-            }
+    if (mode === 'bpm') {
+        bpmDiv.classList.remove('d-none');
+        msDiv.classList.add('d-none');
+        quickDiv.classList.remove('d-none');
 
-            const noteValues = [
-                { name: '1 Bar (4/4)', beats: 4 },
-                { name: '1/2 Note', beats: 2 },
-                { name: '1/4 Note', beats: 1 },
-                { name: '1/8 Note', beats: 0.5 },
-                { name: '1/16 Note', beats: 0.25 },
-                { name: '1/32 Note', beats: 0.125 },
-                { name: '1/64 Note', beats: 0.0625 }
-            ];
+        bpmTab.classList.add('btn-teal');
+        bpmTab.classList.remove('btn-outline-teal');
 
-            let html = '';
-            noteValues.forEach(note => {
-                const normal = quarterMs * note.beats;
-                const dotted = normal * 1.5;
-                const triplet = normal * (2 / 3);
+        msTab.classList.add('btn-outline-teal');
+        msTab.classList.remove('btn-teal');
+    } else {
+        bpmDiv.classList.add('d-none');
+        msDiv.classList.remove('d-none');
+        quickDiv.classList.add('d-none');
 
-                html += `<tr>
+        msTab.classList.add('btn-teal');
+        msTab.classList.remove('btn-outline-teal');
+
+        bpmTab.classList.add('btn-outline-teal');
+        bpmTab.classList.remove('btn-teal');
+    }
+
+    calculate();
+}
+
+function calculate() {
+    let bpm = 120;
+    let quarterMs = 500;
+
+    if (mode === 'bpm') {
+        bpm = parseFloat(document.getElementById('bpmInput').value) || 120;
+        if (bpm <= 0) bpm = 120;
+
+        quarterMs = 60000 / bpm;
+
+        // sync ms input
+        document.getElementById('msInput').value = quarterMs.toFixed(2);
+
+    } else {
+        quarterMs = parseFloat(document.getElementById('msInput').value) || 500;
+        if (quarterMs <= 0) quarterMs = 500;
+
+        bpm = 60000 / quarterMs;
+
+        // sync bpm input
+        document.getElementById('bpmInput').value = bpm.toFixed(2);
+    }
+
+    document.getElementById('resultBPM').textContent = bpm.toFixed(2);
+
+    const noteValues = [
+        { name: '1 Bar (4/4)', beats: 4 },
+        { name: '1/2 Note', beats: 2 },
+        { name: '1/4 Note', beats: 1 },
+        { name: '1/8 Note', beats: 0.5 },
+        { name: '1/16 Note', beats: 0.25 },
+        { name: '1/32 Note', beats: 0.125 },
+        { name: '1/64 Note', beats: 0.0625 }
+    ];
+
+    let html = '';
+
+    noteValues.forEach(note => {
+        const normal = quarterMs * note.beats;
+        const dotted = normal * 1.5;
+        const triplet = normal * (2 / 3);
+
+        html += `
+        <tr>
             <td><strong>${note.name}</strong></td>
             <td>${normal.toFixed(2)}</td>
             <td>${dotted.toFixed(2)}</td>
             <td>${triplet.toFixed(2)}</td>
         </tr>`;
-            });
+    });
 
-            document.getElementById('resultsTable').innerHTML = html;
+    document.getElementById('resultsTable').innerHTML = html;
 
-            // Frequencies for LFO sync
-            document.getElementById('freq1bar').textContent = (1000 / (quarterMs * 4)).toFixed(3) + ' Hz';
-            document.getElementById('freqHalf').textContent = (1000 / (quarterMs * 2)).toFixed(3) + ' Hz';
-            document.getElementById('freqQuarter').textContent = (1000 / quarterMs).toFixed(3) + ' Hz';
-            document.getElementById('freqEighth').textContent = (1000 / (quarterMs * 0.5)).toFixed(3) + ' Hz';
-        }
+    // Frequencies
+    document.getElementById('freq1bar').textContent = (1000 / (quarterMs * 4)).toFixed(3) + ' Hz';
+    document.getElementById('freqHalf').textContent = (1000 / (quarterMs * 2)).toFixed(3) + ' Hz';
+    document.getElementById('freqQuarter').textContent = (1000 / quarterMs).toFixed(3) + ' Hz';
+    document.getElementById('freqEighth').textContent = (1000 / (quarterMs * 0.5)).toFixed(3) + ' Hz';
+}
 
-        function setBPM(bpm) {
-            if (mode === 'bpm') {
-                document.getElementById('bpmInput').value = bpm;
-                calculate();
-            }
-        }
-
+function setBPM(bpm) {
+    if (mode === 'bpm') {
+        document.getElementById('bpmInput').value = bpm;
         calculate();
-    </script>
+    }
+}
+
+// init
+document.addEventListener("DOMContentLoaded", () => {
+    switchMode('bpm');
+});
+</script>
 
 
     <!-- incluce js -->
