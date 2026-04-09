@@ -633,9 +633,10 @@
 
 
     <!-- tool js -->
-  <script defer>
+ <script defer>
 let mode = 'bpm';
 
+// SWITCH MODE
 function switchMode(newMode) {
     mode = newMode;
 
@@ -649,17 +650,20 @@ function switchMode(newMode) {
     if (mode === 'bpm') {
         bpmDiv.classList.remove('d-none');
         msDiv.classList.add('d-none');
-        quickDiv.classList.remove('d-none');
+
+        quickDiv.classList.remove('d-none'); // keep results visible
 
         bpmTab.classList.add('btn-teal');
         bpmTab.classList.remove('btn-outline-teal');
 
         msTab.classList.add('btn-outline-teal');
         msTab.classList.remove('btn-teal');
+
     } else {
         bpmDiv.classList.add('d-none');
         msDiv.classList.remove('d-none');
-        quickDiv.classList.add('d-none');
+
+        quickDiv.classList.remove('d-none'); // IMPORTANT: don't hide results
 
         msTab.classList.add('btn-teal');
         msTab.classList.remove('btn-outline-teal');
@@ -671,13 +675,14 @@ function switchMode(newMode) {
     calculate();
 }
 
+// MAIN CALCULATION
 function calculate() {
-    let bpm = 120;
-    let quarterMs = 500;
+    let bpm, quarterMs;
 
     if (mode === 'bpm') {
-        bpm = parseFloat(document.getElementById('bpmInput').value) || 120;
-        if (bpm <= 0) bpm = 120;
+        bpm = parseFloat(document.getElementById('bpmInput').value);
+
+        if (!bpm || bpm <= 0) return;
 
         quarterMs = 60000 / bpm;
 
@@ -685,8 +690,9 @@ function calculate() {
         document.getElementById('msInput').value = quarterMs.toFixed(2);
 
     } else {
-        quarterMs = parseFloat(document.getElementById('msInput').value) || 500;
-        if (quarterMs <= 0) quarterMs = 500;
+        quarterMs = parseFloat(document.getElementById('msInput').value);
+
+        if (!quarterMs || quarterMs <= 0) return;
 
         bpm = 60000 / quarterMs;
 
@@ -694,8 +700,10 @@ function calculate() {
         document.getElementById('bpmInput').value = bpm.toFixed(2);
     }
 
+    // update heading
     document.getElementById('resultBPM').textContent = bpm.toFixed(2);
 
+    // NOTE VALUES TABLE
     const noteValues = [
         { name: '1 Bar (4/4)', beats: 4 },
         { name: '1/2 Note', beats: 2 },
@@ -724,22 +732,30 @@ function calculate() {
 
     document.getElementById('resultsTable').innerHTML = html;
 
-    // Frequencies
-    document.getElementById('freq1bar').textContent = (1000 / (quarterMs * 4)).toFixed(3) + ' Hz';
-    document.getElementById('freqHalf').textContent = (1000 / (quarterMs * 2)).toFixed(3) + ' Hz';
-    document.getElementById('freqQuarter').textContent = (1000 / quarterMs).toFixed(3) + ' Hz';
-    document.getElementById('freqEighth').textContent = (1000 / (quarterMs * 0.5)).toFixed(3) + ' Hz';
+    // FREQUENCY CALCULATIONS (Hz)
+    document.getElementById('freq1bar').textContent =
+        (1000 / (quarterMs * 4)).toFixed(3) + ' Hz';
+
+    document.getElementById('freqHalf').textContent =
+        (1000 / (quarterMs * 2)).toFixed(3) + ' Hz';
+
+    document.getElementById('freqQuarter').textContent =
+        (1000 / quarterMs).toFixed(3) + ' Hz';
+
+    document.getElementById('freqEighth').textContent =
+        (1000 / (quarterMs * 0.5)).toFixed(3) + ' Hz';
 }
 
-function setBPM(bpm) {
+// QUICK BPM BUTTONS
+function setBPM(bpmValue) {
     if (mode === 'bpm') {
-        document.getElementById('bpmInput').value = bpm;
+        document.getElementById('bpmInput').value = bpmValue;
         calculate();
     }
 }
 
-// init
-document.addEventListener("DOMContentLoaded", () => {
+// INIT
+document.addEventListener("DOMContentLoaded", function () {
     switchMode('bpm');
 });
 </script>
