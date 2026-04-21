@@ -3,30 +3,21 @@
 # ==============================
 
 Options -Indexes
-RewriteEngine On
+
 
 RewriteEngine On
-RewriteRule ^site_map\.xml$ /site_map.php [L]
 
-# ------------------------------
-# 1. Force NON-WWW (first)
-# ------------------------------
+RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\.diamondaudiocity\.com$ [NC]
-RewriteRule ^(.*)$ https://diamondaudiocity.com/$1 [L,R=301]
+RewriteRule ^ https://diamondaudiocity.com%{REQUEST_URI} [L,R=301]
 
 # Redirect old audiobook tool URL → new URL
 RewriteRule ^audiobook-playback-speed-calculator\.html$ https://diamondaudiocity.com/audiobook-speed-calculator.html [R=301,L]
-
-
 RewriteRule ^dj-music-production-tools/pitch-shifter/?$ /pitch-detector-tools/pitch-shift-calculator/ [R=301,L]
 RewriteRule ^speaker-tools/speaker-box-volume-calculator/?$ https://diamondaudiocity.com/speaker-tools/sealed-box-calculator/ [R=301,L]
 RewriteRule ^bpm-to-speed\.html$ https://diamondaudiocity.com/dj-music-production-tools/bpm-to-speed/ [R=301,L]
 
-# ------------------------------
-# 2. Force HTTPS (second)
-# ------------------------------
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://diamondaudiocity.com%{REQUEST_URI} [L,R=301]
+
 # ------------------------------
 # 2. Static site_map Headers
 # ------------------------------
