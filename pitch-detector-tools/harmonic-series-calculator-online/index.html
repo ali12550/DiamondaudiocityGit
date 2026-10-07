@@ -4,64 +4,86 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Harmonic Series Calculator – Frequency & Overtones</title>
+    <title>Harmonic Series Calculator – Overtones, Subharmonics & Cents</title>
     <meta name="description"
-        content="Free harmonic series calculator to compute frequency overtones and harmonic intervals from a base pitch online. No downloads needed." />
-
+        content="Calculate exact harmonic series partials, overtone frequencies, subharmonics (utonality), and 12-TET cents deviations from any fundamental pitch. Listen with Web Audio synthesis." />
     <meta name="keywords"
-        content="harmonic series calculator, frequency overtone calculator, harmonic intervals tool, harmonic pitch calculator online" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Harmonic Series Calculator – Frequency & Overtones" />
-    <meta name="twitter:description"
-        content="Calculate harmonic overtones and frequency intervals from a base pitch with this free online tool. Easy and browser‑based." />
-    <meta name="twitter:image" content="/assets/imgs/logo.png" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Harmonic Series Calculator – Compute Frequency Overtones" />
-    <meta property="og:description"
-        content="Use this free harmonic series calculator to find frequency overtones and harmonic intervals from a base pitch. Browser‑based tool for musicians." />
-    <meta property="og:url"
-        content="https://pitchdetectors.com/pitch-detector-tools/harmonic-series-calculator-online/" />
-    <meta property="og:site_name" content="Pitchetectors" />
-    <meta property="og:image" content="/assets/imgs/logo.png" />
-    <meta property="og:image:alt" content="Harmonic Series Calculator Tool – Pitchetectors" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
+        content="harmonic series calculator, overtone calculator, subharmonic series, utonality calculator, harmonic partials frequencies, acoustic overtone series, piano inharmonicity" />
     <link rel="canonical" href="https://pitchdetectors.com/pitch-detector-tools/harmonic-series-calculator-online/" />
-
-
-
     <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/style.css">
     <link href="/assets/tools.css" rel="stylesheet">
-    <meta name="author" content="pitch detectors">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Harmonic Series Calculator — Harmonics, Subharmonics & Utonality" />
-    <meta property="og:description"
-        content="Generate harmonic partials and subharmonics from a chosen fundamental. Includes scaling factor, exponent, frequency addition, microtone quantize, MIDI and cents adjustment." />
-    <meta property="og:image" content="/assets/imgs/logo.png" />
-    <meta property="og:url"
-        content="https://pitchdetectors.com/pitch-detector-tools/harmonic-series-calculator-online/" />
-    <meta property="og:type" content="website" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-NCHP45VYJ2');
     </script>
-
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
         crossorigin="anonymous"></script>
-
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the harmonic series in acoustic physics?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The harmonic series is an infinite sequence of frequencies consisting of a fundamental frequency (f0) and integer multiples of that fundamental (2*f0, 3*f0, 4*f0, etc.). These individual components are called harmonics, partials, or overtones, and their relative amplitudes determine the unique timbre and acoustic color of physical instruments."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between an overtone and a harmonic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The fundamental frequency (f0) is the 1st harmonic. Overtones refer strictly to frequencies above the fundamental. Therefore, the 1st overtone is the 2nd harmonic (2*f0), the 2nd overtone is the 3rd harmonic (3*f0), and so forth. In ideal resonant systems, all harmonics are integer overtones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Utonality (the subharmonic series)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Utonality is an inverted harmonic series formulated by music theorists like Hugo Riemann and Harry Partch. Instead of multiplying the fundamental frequency (Otonality), the fundamental is divided by successive integers (f0/1, f0/2, f0/3, etc.). In acoustic synthesis, this calculator generates subharmonic partials below the fundamental pitch."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do some natural harmonics sound out-of-tune on an equal-tempered piano?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Natural harmonics are based on pure whole-number ratios (Just Intonation), whereas modern pianos use 12-Tone Equal Temperament (12-TET). For instance, the 7th harmonic is naturally 31.17 cents flatter than an equal-tempered minor seventh, and the 11th harmonic is 48.68 cents flatter than an equal-tempered augmented fourth."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the 'missing fundamental' psychoacoustic effect?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The missing fundamental (or virtual pitch) is an auditory phenomenon where the human brain perceives the pitch of the fundamental frequency even if that frequency is completely absent from the acoustic signal, provided sufficient higher harmonics (e.g., 3*f0, 4*f0, 5*f0) are present. This allows small smartphone speakers to convey perceived bass notes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What causes inharmonicity in acoustic piano strings?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In real-world strings, physical bending stiffness prevents the string from flexing perfectly at its termination points. This stiffness adds an acoustic restoring force that shifts higher partials progressively sharper than pure integer multiples: fn = n*f0 * sqrt(1 + B*n^2), where B is the inharmonicity coefficient. Piano tuners compensate by stretch-tuning octaves."
+          }
+        }
+      ]
+    }
+    </script>
     <style>
         .generator-panel {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--mid-blue) 100%);
+            background: linear-gradient(135deg, var(--dark-teal, #003161) 0%, var(--teal, #006a67) 100%);
             color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -78,34 +100,7 @@
 
         .result-table th,
         .result-table td {
-            vertical-align: middle
-        }
-
-        .lsibox {
-            font-size: 14px;
-            color: #0b2b4a;
-            background: #f3fbff;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #004764;
-        }
-
-        pre.codebox {
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 6px;
-            overflow: auto
-        }
-
-        .small-muted {
-            font-size: 13px;
-            color: #6b7785;
-        }
-
-        .controls-inline .form-control {
-            display: inline-block;
-            width: auto;
-            min-width: 120px;
+            vertical-align: middle;
         }
 
         .tab-output {
@@ -375,109 +370,403 @@
 
                     <!-- Theory / LSI -->
                     <div class="content_area container py-4">
+                        <section class="mb-4">
+                            <h2 class="text-teal mb-3"><i class="bi bi-soundwave me-2"></i>Acoustic Foundations of the Harmonic Series</h2>
+                            <p class="lead text-muted">
+                                Discover the fundamental acoustic architecture that governs musical timbre, pitch perception, and natural harmony. Calculate integer overtone partials, microtonal cent offsets against 12-TET, and inverted subharmonics with scientific precision.
+                            </p>
+                            <p>
+                                When an acoustic resonator&mdash;such as a stretched violin string, the air column inside an orchestral flute, or human vocal folds&mdash;is driven into vibration, it does not oscillate as a simple pure sine wave. Instead, it vibrates simultaneously at multiple integer subdivisions called <strong>normal modes</strong>. The lowest frequency produced is the <strong>fundamental frequency ($f_0$ or 1st harmonic)</strong>, which defines the perceived pitch of the sound. The higher co-existing modes of vibration are called <strong>harmonics, overtones, or partials</strong>, and their relative amplitudes, phase relationships, and decay rates create the unique timbre and acoustic color that allows human ears to distinguish an oboe from a grand piano playing the exact same note.
+                            </p>
+                        </section>
 
-                        <p>
-                            This <strong>Harmonic Series Calculator</strong> helps you compute the sequence of harmonic
-                            overtones and
-                            frequency intervals from a given base pitch. Enter a base frequency in hertz (Hz) to display
-                            corresponding
-                            harmonics, ratios, and pitch relationships — ideal for musicians, acousticians, and sound
-                            designers.
-                        </p>
-
-
-                        <div class="bg-light p-3 rounded mb-3">
-                            <pre class="codebox" style="margin:0;">
-Formulas used:
-Harmonics:
-  f_n = f0 * ( s*(n-1) + 1 )^e + α
-
-Subharmonics (Utonality):
-  f_n = f0 * ( s*(n-1) + 1 )^e - α
-
-Where:
-  f0 = fundamental frequency (Hz)
-  s  = scaling factor
-  n  = partial number (1..N)
-  e  = exponent
-  α  = frequency addition (Hz)
-Quantize: microtones quantized by rounding semitone value to selected fraction.
-              </pre>
-                        </div>
-
-                        <h2 class="h5 fw-semibold mt-3" style="color:#003161;">Use cases</h2>
-                        <ul>
-                            <li>Study overtone structure and timbre components.</li>
-                            <li>Create additive synthesis patches with custom partials.</li>
-                            <li>Compare harmonic partials to equal-tempered MIDI notes using cents adjustment.</li>
-                            <li>Export data to Excel/DAW for analysis or tuning work.</li>
-                        </ul>
-
-                        <h2 class="h5 fw-semibold mt-3" style="color:#003161;">FAQ</h2>
-                        <div class="accordion" id="faqAccordion">
-                            <div class="accordion-item">
-                                <h3 class="accordion-header"><button class="accordion-button" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#faq1">What is Utonality / subharmonic
-                                        series?</button></h3>
-                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">Utonality (subharmonics) are frequencies below the
-                                        fundamental produced by inverting the harmonic series (partials like 1/2, 1/3
-                                        ... of the fundamental). This tool approximates subharmonics using the provided
-                                        formula.</div>
+                        <!-- Mathematics of Standing Waves & Partials -->
+                        <section class="mb-4">
+                            <h2 class="text-teal mb-3"><i class="bi bi-calculator me-2"></i>The Mathematics of Harmonic & Subharmonic Partials</h2>
+                            <p>
+                                In an ideal one-dimensional acoustic system of length $L$ with fixed boundaries (such as a string tied at both ends), standing waves satisfy the boundary condition that displacement must be zero at the endpoints. This restricts allowable wavelengths to integer fractions:
+                            </p>
+                            <div class="row g-3 my-2">
+                                <div class="col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                                        <h5 class="fw-bold text-dark"><i class="bi bi-arrow-up-right text-teal me-2"></i>Harmonics (Otonality): Integer Multiplication</h5>
+                                        <p class="small text-muted mb-2">Each harmonic partial frequency is an exact integer multiple of the fundamental:</p>
+                                        <div class="p-2 bg-white rounded border font-monospace text-center mb-2">
+                                            $$lambda_n = rac{2L}{n} implies f_n = n 	imes f_0$$
+                                        </div>
+                                        <p class="small text-muted mb-0">
+                                            In this calculator, the generalized harmonic formula includes scaling factor $s$, exponent $e$, and frequency offset $alpha$:
+                                            <br>
+                                            <code>f_n = f_0 	imes [s(n - 1) + 1]^e + alpha</code>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                                        <h5 class="fw-bold text-dark"><i class="bi bi-arrow-down-right text-teal me-2"></i>Subharmonics (Utonality): Frequency Division</h5>
+                                        <p class="small text-muted mb-2">Subharmonics represent acoustic undertones beneath the fundamental:</p>
+                                        <div class="p-2 bg-white rounded border font-monospace text-center mb-2">
+                                            $$f_n = rac{f_0}{n}$$
+                                        </div>
+                                        <p class="small text-muted mb-0">
+                                            Conceptualized by Harry Partch and Hugo Riemann, subharmonics form the basis of inverted minor tonality and sub-harmonic bass synthesis:
+                                            <br>
+                                            <code>f_n = f_0 	imes [s(n - 1) + 1]^e - alpha</code>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+                        </section>
 
-                            <div class="accordion-item">
-                                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#faq2">Why quantize
-                                        microtones?</button></h3>
-                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">Quantization rounds microtonal pitches to the nearest
-                                        fraction of a semitone (1/4-tone, 1/8-tone etc.), useful for mapping to
-                                        microtonal systems or simplifying data before export.</div>
+                        <!-- Comprehensive Partials Reference Matrix -->
+                        <section class="mb-4">
+                            <h2 class="text-teal mb-3"><i class="bi bi-table me-2"></i>The First 16 Natural Harmonics vs. 12-TET Temperament</h2>
+                            <p class="small text-muted">
+                                While modern equal temperament (12-TET) divides the octave into equal 100-cent semitones, natural acoustic harmonics follow whole-number integer ratios. The table below analyzes the first 16 harmonics of concert $C_2$ ($65.41\text{ Hz}$), detailing their exact frequency, interval, and deviation in cents from the nearest equal-tempered key.
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered align-middle">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Harmonic Ratio</th>
+                                            <th>Frequency ($C_2=65.41$)</th>
+                                            <th>Nearest 12-TET Note</th>
+                                            <th>Musical Interval</th>
+                                            <th>Natural Cents</th>
+                                            <th>12-TET Error</th>
+                                            <th>Acoustic Role</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold">1</td>
+                                            <td><code>1:1</code></td>
+                                            <td>65.41 Hz</td>
+                                            <td>C2</td>
+                                            <td>Fundamental (P1)</td>
+                                            <td>0.0¢</td>
+                                            <td>0.0¢</td>
+                                            <td>Acoustic tonic center</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">2</td>
+                                            <td><code>2:1</code></td>
+                                            <td>130.81 Hz</td>
+                                            <td>C3</td>
+                                            <td>Octave (P8)</td>
+                                            <td>1200.0¢</td>
+                                            <td>0.0¢</td>
+                                            <td>Pure octave doubling</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">3</td>
+                                            <td><code>3:1</code></td>
+                                            <td>196.22 Hz</td>
+                                            <td>G3</td>
+                                            <td>Octave + Perfect 5th</td>
+                                            <td>1902.0¢</td>
+                                            <td class="text-primary fw-bold">+2.0¢</td>
+                                            <td>Pure acoustic fifth (dominant)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">4</td>
+                                            <td><code>4:1</code></td>
+                                            <td>261.63 Hz</td>
+                                            <td>C4</td>
+                                            <td>Double Octave (P15)</td>
+                                            <td>2400.0¢</td>
+                                            <td>0.0¢</td>
+                                            <td>Middle C anchor</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">5</td>
+                                            <td><code>5:1</code></td>
+                                            <td>327.03 Hz</td>
+                                            <td>E4</td>
+                                            <td>Double Octave + Major 3rd</td>
+                                            <td>2786.3¢</td>
+                                            <td class="text-danger fw-bold">-13.7¢ (Flat)</td>
+                                            <td>Pure major third (beats in 12-TET)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">6</td>
+                                            <td><code>6:1</code></td>
+                                            <td>392.44 Hz</td>
+                                            <td>G4</td>
+                                            <td>Double Octave + 5th</td>
+                                            <td>3102.0¢</td>
+                                            <td class="text-primary fw-bold">+2.0¢</td>
+                                            <td>Octave of 3rd harmonic</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">7</td>
+                                            <td><code>7:1</code></td>
+                                            <td>457.85 Hz</td>
+                                            <td>A#4 / Bb4</td>
+                                            <td>Harmonic Minor 7th</td>
+                                            <td>3368.8¢</td>
+                                            <td class="text-danger fw-bold">-31.2¢ (Very Flat)</td>
+                                            <td>Natural blues harmonic minor 7th</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">8</td>
+                                            <td><code>8:1</code></td>
+                                            <td>523.25 Hz</td>
+                                            <td>C5</td>
+                                            <td>Triple Octave</td>
+                                            <td>3600.0¢</td>
+                                            <td>0.0¢</td>
+                                            <td>Pure octave</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">9</td>
+                                            <td><code>9:1</code></td>
+                                            <td>588.66 Hz</td>
+                                            <td>D5</td>
+                                            <td>Triple Octave + Major 2nd</td>
+                                            <td>3803.9¢</td>
+                                            <td class="text-primary fw-bold">+3.9¢</td>
+                                            <td>Pure major tone (9:8 ratio)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">10</td>
+                                            <td><code>10:1</code></td>
+                                            <td>654.06 Hz</td>
+                                            <td>E5</td>
+                                            <td>Triple Octave + Major 3rd</td>
+                                            <td>3986.3¢</td>
+                                            <td class="text-danger fw-bold">-13.7¢ (Flat)</td>
+                                            <td>Octave of 5th harmonic</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">11</td>
+                                            <td><code>11:1</code></td>
+                                            <td>719.47 Hz</td>
+                                            <td>F#5</td>
+                                            <td>Lydian Tritone ("Alphorn Fa")</td>
+                                            <td>4151.3¢</td>
+                                            <td class="text-danger fw-bold">-48.7¢ (Quartertone)</td>
+                                            <td>Halway between F and F#</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">12</td>
+                                            <td><code>12:1</code></td>
+                                            <td>784.88 Hz</td>
+                                            <td>G5</td>
+                                            <td>Triple Octave + 5th</td>
+                                            <td>4302.0¢</td>
+                                            <td class="text-primary fw-bold">+2.0¢</td>
+                                            <td>Octave of 6th harmonic</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">13</td>
+                                            <td><code>13:1</code></td>
+                                            <td>850.28 Hz</td>
+                                            <td>G#5 / Ab5</td>
+                                            <td>Tridecimal Neutral 6th</td>
+                                            <td>4440.5¢</td>
+                                            <td class="text-success fw-bold">+40.5¢ (Sharp)</td>
+                                            <td>Microtonal neutral interval</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">14</td>
+                                            <td><code>14:1</code></td>
+                                            <td>915.69 Hz</td>
+                                            <td>Bb5</td>
+                                            <td>Triple Octave + Harmonic 7th</td>
+                                            <td>4568.8¢</td>
+                                            <td class="text-danger fw-bold">-31.2¢</td>
+                                            <td>Octave of 7th harmonic</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">15</td>
+                                            <td><code>15:1</code></td>
+                                            <td>981.10 Hz</td>
+                                            <td>B5</td>
+                                            <td>Triple Octave + Major 7th</td>
+                                            <td>4688.3¢</td>
+                                            <td class="text-danger fw-bold">-11.7¢</td>
+                                            <td>Pure leading tone (15:8 ratio)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">16</td>
+                                            <td><code>16:1</code></td>
+                                            <td>1046.50 Hz</td>
+                                            <td>C6</td>
+                                            <td>Quadruple Octave</td>
+                                            <td>4800.0¢</td>
+                                            <td>0.0¢</td>
+                                            <td>Pure octave</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <!-- Fourier's Theorem & Waveform Synthesis -->
+                        <section class="mb-4">
+                            <h2 class="text-teal mb-3"><i class="bi bi-activity me-2"></i>Fourier's Theorem & Waveform Timbre Construction</h2>
+                            <p>
+                                In 1822, French mathematician Joseph Fourier demonstrated that any periodic continuous waveform can be expressed as a linear summation of harmonically related sinusoidal functions:
+                            </p>
+                            <div class="p-3 bg-light rounded border text-center font-monospace mb-3">
+                                $$x(t) = sum_{n=1}^{infty} A_n sin(2pi n f_0 t + phi_n)$$
+                            </div>
+                            <p>
+                                The amplitude envelope $A_n$ across harmonic indices defines the fundamental waveforms of acoustic synthesis:
+                            </p>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="p-3 border rounded h-100 bg-light">
+                                        <h6 class="fw-bold text-dark"><i class="bi bi-triangle text-teal me-2"></i>Sawtooth Wave</h6>
+                                        <p class="small text-muted mb-0">Contains <strong>all integer harmonics</strong> ($1, 2, 3, 4, 5dots$) with amplitude decreasing proportionally to harmonic number: $A_n = 1/n$. Produces bright, buzzy brass and synth lead timbres.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3 border rounded h-100 bg-light">
+                                        <h6 class="fw-bold text-dark"><i class="bi bi-square text-teal me-2"></i>Square Wave</h6>
+                                        <p class="small text-muted mb-0">Contains <strong>odd harmonics only</strong> ($1, 3, 5, 7, 9dots$) with amplitude falling off as $A_n = 1/n$. Characteristic of cylindrical stopped pipes (such as the acoustic clarinet) and hollow chiptune leads.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3 border rounded h-100 bg-light">
+                                        <h6 class="fw-bold text-dark"><i class="bi bi-soundwave text-teal me-2"></i>Triangle Wave</h6>
+                                        <p class="small text-muted mb-0">Contains <strong>odd harmonics only</strong>, but amplitude attenuates rapidly as $A_n = 1/n^2$. Yields a soft, warm, flute-like tone with minimal high-frequency harmonic energy.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Inharmonicity in Real Instruments -->
+                        <section class="mb-4">
+                            <h2 class="text-teal mb-3"><i class="bi bi-tools me-2"></i>Inharmonicity & Piano Stretch Tuning</h2>
+                            <p>
+                                In real-world physical instruments, overtones are not perfectly mathematical integers due to <strong>inharmonicity</strong>. In piano strings, the acoustic restoring force comes not only from string tension ($T$) but also from the physical stiffness of the steel wire. This stiffness forces the string to bend slightly inward from its termination points, shortening effective acoustic wavelength at higher modes:
+                            </p>
+                            <div class="p-3 bg-light rounded border text-center font-monospace mb-2">
+                                $$f_n = n 	imes f_0 	imes sqrt{1 + B n^2}$$
+                            </div>
+                            <p class="small text-muted mb-0">
+                                Where $B$ is the <em>inharmonicity coefficient</em>. Because higher partials ring progressively sharper than pure mathematical multiples, piano technicians perform <strong>stretch tuning</strong>: tuning upper octaves slightly sharp and low bass notes slightly flat so that fundamental notes align with the stretched overtones of lower strings, eliminating acoustic beating.
+                            </p>
+                        </section>
+
+                        <!-- Frequently Asked Questions -->
+                        <section class="mb-4">
+                            <h2 class="text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
+                            <div class="accordion" id="harmonicFaqAccordion">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="hFaqHead1">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#hFaqCol1" aria-expanded="true" aria-controls="hFaqCol1">
+                                            What is the harmonic series in acoustic physics?
+                                        </button>
+                                    </h3>
+                                    <div id="hFaqCol1" class="accordion-collapse collapse show" aria-labelledby="hFaqHead1" data-bs-parent="#harmonicFaqAccordion">
+                                        <div class="accordion-body">
+                                            The harmonic series is an infinite sequence of frequencies consisting of a fundamental frequency ($f_0$) and integer multiples of that fundamental ($2f_0, 3f_0, 4f_0$, etc.). These individual components are called harmonics, partials, or overtones, and their relative amplitudes determine the unique timbre and acoustic color of physical instruments.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="hFaqHead2">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hFaqCol2" aria-expanded="false" aria-controls="hFaqCol2">
+                                            What is the difference between an overtone and a harmonic?
+                                        </button>
+                                    </h3>
+                                    <div id="hFaqCol2" class="accordion-collapse collapse" aria-labelledby="hFaqHead2" data-bs-parent="#harmonicFaqAccordion">
+                                        <div class="accordion-body">
+                                            The fundamental frequency ($f_0$) is the 1st harmonic. Overtones refer strictly to frequencies above the fundamental. Therefore, the 1st overtone is the 2nd harmonic ($2f_0$), the 2nd overtone is the 3rd harmonic ($3f_0$), and so forth. In ideal resonant systems, all harmonics are integer overtones.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="hFaqHead3">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hFaqCol3" aria-expanded="false" aria-controls="hFaqCol3">
+                                            What is Utonality (the subharmonic series)?
+                                        </button>
+                                    </h3>
+                                    <div id="hFaqCol3" class="accordion-collapse collapse" aria-labelledby="hFaqHead3" data-bs-parent="#harmonicFaqAccordion">
+                                        <div class="accordion-body">
+                                            Utonality is an inverted harmonic series formulated by music theorists like Hugo Riemann and Harry Partch. Instead of multiplying the fundamental frequency (Otonality), the fundamental is divided by successive integers ($f_0/1, f_0/2, f_0/3$, etc.). In acoustic synthesis, this calculator generates subharmonic partials below the fundamental pitch.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="hFaqHead4">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hFaqCol4" aria-expanded="false" aria-controls="hFaqCol4">
+                                            Why do some natural harmonics sound out-of-tune on an equal-tempered piano?
+                                        </button>
+                                    </h3>
+                                    <div id="hFaqCol4" class="accordion-collapse collapse" aria-labelledby="hFaqHead4" data-bs-parent="#harmonicFaqAccordion">
+                                        <div class="accordion-body">
+                                            Natural harmonics are based on pure whole-number ratios (Just Intonation), whereas modern pianos use 12-Tone Equal Temperament (12-TET). For instance, the 7th harmonic is naturally 31.17 cents flatter than an equal-tempered minor seventh, and the 11th harmonic is 48.68 cents flatter than an equal-tempered augmented fourth.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="hFaqHead5">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hFaqCol5" aria-expanded="false" aria-controls="hFaqCol5">
+                                            What is the 'missing fundamental' psychoacoustic effect?
+                                        </button>
+                                    </h3>
+                                    <div id="hFaqCol5" class="accordion-collapse collapse" aria-labelledby="hFaqHead5" data-bs-parent="#harmonicFaqAccordion">
+                                        <div class="accordion-body">
+                                            The missing fundamental (or virtual pitch) is an auditory phenomenon where the human brain perceives the pitch of the fundamental frequency even if that frequency is completely absent from the acoustic signal, provided sufficient higher harmonics (e.g., $3f_0, 4f_0, 5f_0$) are present. This allows small smartphone speakers to convey perceived bass notes.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="hFaqHead6">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hFaqCol6" aria-expanded="false" aria-controls="hFaqCol6">
+                                            What causes inharmonicity in acoustic piano strings?
+                                        </button>
+                                    </h3>
+                                    <div id="hFaqCol6" class="accordion-collapse collapse" aria-labelledby="hFaqHead6" data-bs-parent="#harmonicFaqAccordion">
+                                        <div class="accordion-body">
+                                            In real-world strings, physical bending stiffness prevents the string from flexing perfectly at its termination points. This stiffness adds an acoustic restoring force that shifts higher partials progressively sharper than pure integer multiples: $f_n = n f_0 \sqrt{1 + B n^2}$, where $B$ is the inharmonicity coefficient. Piano tuners compensate by stretch-tuning octaves.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Related Tools -->
+                        <div class="card my-4 shadow-sm border-0 bg-light">
+                            <div class="card-body p-4">
+                                <h5 class="fw-bold mb-3"><i class="bi bi-link-45deg text-teal me-2"></i>Explore Related Acoustic & Pitch Tools</h5>
+                                <div class="row g-2">
+                                    <div class="col-sm-6 col-md-3">
+                                        <a class="btn btn-outline-primary w-100 text-start" href="/pitch-detector-tools/pitch-detector/">
+                                            <i class="bi bi-soundwave me-1"></i> Pitch Detector
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <a class="btn btn-outline-primary w-100 text-start" href="/pitch-detector-tools/cents-calculator-online/">
+                                            <i class="bi bi-rulers me-1"></i> Cents Calculator
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <a class="btn btn-outline-primary w-100 text-start" href="/pitch-detector-tools/frequency-to-note-online/">
+                                            <i class="bi bi-arrow-left-right me-1"></i> Freq to Note
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <a class="btn btn-outline-primary w-100 text-start" href="/pitch-detector-tools/note-to-frequency-online/">
+                                            <i class="bi bi-calculator me-1"></i> Note to Freq
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card my-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
-
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/pitch-detector/">
-                                            Online Pitch Detector
-                                        </a>
-                                    </li>
-
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/guitar-tuner-online/">
-                                            Guitar Tuner
-                                        </a>
-                                    </li>
-
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/frequency-to-note-online/">
-                                            Frequency to Note Converter
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/note-to-frequency-online/">
-                                            Note to Frequency Converter
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
                     </div>
 
-                </div>
-            </div> <!-- /main col -->
+                </div> <!-- /main col -->
         </div>
     </div>
 

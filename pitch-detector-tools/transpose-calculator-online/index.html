@@ -4,20 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Transpose Calculator (Chords & Notes in Seconds)</title>
+    <title>Transpose Calculator Online – Transpose Chords, Notes & Keys</title>
     <meta name="description"
-        content="Transpose chords, notes, and keys up or down in semitones. Auto-detect flats, support multiple octaves, and copy results instantly. Free online tool.">
+        content="Transpose musical notes, chord progressions, and keys up or down by semitones and octaves. Fast chromatic transposition for guitarists, pianists, vocalists, and transposing brass/woodwinds." />
     <meta name="keywords"
-        content="transpose calculator, key transposition, pitch shift, music key change, chord transposer, semitone shift, melody transpose, chord transposition, scale transpose, transpose music, shift notes">
+        content="transpose calculator online, chord transposer, key transpose calculator, music transposition tool, transpose notes by semitones, capo chord calculator, transposing instruments bb eb" />
     <link rel="canonical" href="https://pitchdetectors.com/pitch-detector-tools/transpose-calculator-online/">
-
     <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/bootstrap5.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/style.css">
     <link href="/assets/tools.css" rel="stylesheet">
-
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
     <script>
@@ -26,22 +23,77 @@
         gtag('js', new Date());
         gtag('config', 'G-NCHP45VYJ2');
     </script>
-
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
         crossorigin="anonymous"></script>
-
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is musical transposition?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Transposition is the process of shifting a piece of music, chord progression, melody, or single note up or down in pitch by a constant interval. All interval relationships between notes remain identical, meaning the song retains its original harmonic character, melodic contour, and emotional feel while sounding in a higher or lower key."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you calculate how many semitones to transpose?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Count the number of half-steps (semitones) on the chromatic scale between the original key and your target key. For example, moving from C major to E major requires counting up: C → C# (1) → D (2) → D# (3) → E (4), which is +4 semitones. Moving from G major down to D major requires counting down 5 semitones (-5 semitones) or up 7 semitones (+7 semitones)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does transposition relate to guitar capo frets?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each guitar fret equals exactly one semitone (+1 semitone). Placing a capo on the 2nd fret transposes open chord fingerings up by 2 semitones (+2 st). For instance, playing open G major shapes with a capo on fret 2 produces concert A major; playing open C shapes with a capo on fret 4 produces concert E major."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do transposing instruments (Bb, Eb, F) transpose relative to concert pitch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bb instruments (trumpet, tenor sax, clarinet) sound 2 semitones lower than written; to write music for them from concert pitch, you must transpose up 2 semitones (+2 st). Eb instruments (alto sax, baritone sax) sound 9 semitones lower (or 3 semitones higher); transpose written music up 9 semitones (+9 st). F instruments (French horn, English horn) sound a perfect fifth lower; transpose written music up 7 semitones (+7 st)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between chromatic and diatonic transposition?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chromatic transposition shifts every pitch by the exact same number of semitones, preserving all exact interval qualities (major, minor, perfect). Diatonic transposition shifts notes by scale steps within a single key, causing interval qualities to change (e.g., a major third may become a minor third) to remain strictly within the parent key's key signature."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do some transposed notes use flats instead of sharps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Notes are spelled with sharps (#) or flats (b) to adhere to standard diatonic music notation. A proper major or minor scale must contain each letter name (A through G) exactly once. For example, in the key of F major, the fourth degree is spelled Bb rather than A# to avoid having two varieties of A (A natural and A#) in the same scale."
+          }
+        }
+      ]
+    }
+    </script>
     <style>
         .result-box {
-            background: var(--light-bg);
-            border: 1px solid var(--border-color);
+            background: #f8fafc;
+            border: 2px solid var(--border-color, #e2e8f0);
             border-radius: 8px;
-            padding: 15px;
+            padding: 18px;
             margin-top: 15px;
-            font-weight: bold;
-            min-height: 40px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            min-height: 55px;
             overflow-x: auto;
+            color: var(--teal, #006a67);
         }
-
         .copy-btn {
             margin-top: 10px;
         }
@@ -140,7 +192,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-8 col-md-10">
+            <div class="col-lg-9 col-md-8">
                 <!-- Breadcrumb -->
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -210,328 +262,368 @@
                 </div>
 
 
-                <!-- How to Use -->
-                <div class="tool-container mt-4">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Use This Transpose
-                            Calculator
-                        </h2>
-                        <ol>
-                            <li>Enter the original note or chord in the input box. You can input single notes (C, F#,
-                                etc.) or
-                                chords (Gmaj7, D#m, F#m7).</li>
-                            <li>Enter the number of semitones you want to shift. Positive numbers transpose up, negative
-                                numbers
-                                transpose down.</li>
-                            <li>Click "Transpose" to get the new note or chord in the desired key.</li>
-                            <li>This tool is useful for chord transposition, key signature changes, melody shifting, and
-                                music
-                                composition.</li>
-                            <li>Practice ear training by transposing chords and recognizing interval changes in
-                                different keys.
-                            </li>
-                        </ol>
+                <!-- Educational & Technical Content -->
+                <article class="tool-container mt-4">
+                    <section class="mb-4">
+                        <h1 class="mb-3">Transpose Calculator: Chromatic Modulation & Key Transposition Engine</h1>
+                        <p class="lead text-muted">
+                            Shift single pitches, complex chord voicings, and musical keys across any semitone interval or octave span with exact harmonic accuracy. Tailored for guitarists using capos, pianists accompanying vocalists, and composers arranging for transposing brass and woodwinds.
+                        </p>
+                        <p>
+                            In music theory and performance, <strong>transposition</strong> is the act of shifting a melody, harmony, or complete piece of music up or down in pitch by a fixed interval while preserving its internal scale degrees, interval distances, and emotional character. Whether you are accommodating a vocalist whose vocal tessitura is two semitones lower than the original recording, calculating the exact fret position for a guitar capo, or writing concert-pitch sheet music for $B\flat$ trumpets or $E\flat$ saxophones, precise chromatic transposition eliminates trial-and-error mistakes.
+                        </p>
+                    </section>
+
+                    <!-- The Mathematics of Transposition -->
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-calculator me-2"></i>The Mathematics of Chromatic Transposition</h2>
+                        <p>
+                            Modern Western music is organized around <strong>12-Tone Equal Temperament (12-TET)</strong>, where all twelve semitones form a cyclic group under modulo 12 arithmetic ($mathbb{Z}_{12}$). Pitch classes are mapped to integers from $0$ to $11$:
+                        </p>
+                        <div class="p-3 bg-light rounded border text-center font-monospace mb-3">
+                            $$C = 0, ; Csharp/Dlat = 1, ; D = 2, ; Dsharp/Elat = 3, ; E = 4, ; F = 5, ; Fsharp/Glat = 6, ; G = 7, ; Gsharp/Alat = 8, ; A = 9, ; Asharp/Blat = 10, ; B = 11$$
+                        </div>
+                        <p>
+                            When a source pitch class $P_{in}$ is transposed by $Delta S$ semitones and $Delta O$ octaves, the new pitch class $P_{out}$ and target octave $O_{out}$ are derived through:
+                        </p>
+                        <div class="row g-3 my-2">
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                                    <h6 class="fw-bold text-dark">Target Pitch Class ($P_{out}$)</h6>
+                                    <div class="p-2 bg-white rounded border font-monospace text-center mb-1">
+                                        $$P_{out} = (P_{in} + Delta S) pmod{12}$$
+                                    </div>
+                                    <p class="small text-muted mb-0">Computes the new chromatic note name within the 12-pitch cycle.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                                    <h6 class="fw-bold text-dark">Target Octave ($O_{out}$)</h6>
+                                    <div class="p-2 bg-white rounded border font-monospace text-center mb-1">
+                                        $$O_{out} = O_{in} + Delta O + leftlfloor rac{P_{in} + Delta S}{12} ightfloor$$
+                                    </div>
+                                    <p class="small text-muted mb-0">Automatically rolls over or under octave boundaries.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Complete Transposition Interval Matrix -->
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-table me-2"></i>Complete Semitone Transposition Matrix</h2>
+                        <p class="small text-muted">
+                            Reference intervals across one complete octave ($-12$ to $+12$ semitones) along with frequency multiplication ratios and common orchestral/capo applications:
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Semitones</th>
+                                        <th>Musical Interval</th>
+                                        <th>Frequency Ratio</th>
+                                        <th>Guitar Capo Fret</th>
+                                        <th>Common Instrument / Practical Use</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold text-primary">+12 st</td>
+                                        <td>Octave Up (+P8)</td>
+                                        <td><code>2.0000</code></td>
+                                        <td>12th Fret</td>
+                                        <td>Piccolo, Celesta, 12th-fret open harmonic</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">+9 st</td>
+                                        <td>Major 6th Up (+M6)</td>
+                                        <td><code>1.6818</code></td>
+                                        <td>9th Fret</td>
+                                        <td>Writing for Eb instruments (Alto Sax / Bari Sax)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">+7 st</td>
+                                        <td>Perfect 5th Up (+P5)</td>
+                                        <td><code>1.4983</code></td>
+                                        <td>7th Fret</td>
+                                        <td>Writing for F instruments (French Horn, English Horn)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">+5 st</td>
+                                        <td>Perfect 4th Up (+P4)</td>
+                                        <td><code>1.3348</code></td>
+                                        <td>5th Fret</td>
+                                        <td>Traditional folk guitar capo standard</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">+4 st</td>
+                                        <td>Major 3rd Up (+M3)</td>
+                                        <td><code>1.2599</code></td>
+                                        <td>4th Fret</td>
+                                        <td>Adapting tenor songs to soprano keys</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">+3 st</td>
+                                        <td>Minor 3rd Up (+m3)</td>
+                                        <td><code>1.1892</code></td>
+                                        <td>3rd Fret</td>
+                                        <td>A-minor to C-major relative modulation</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">+2 st</td>
+                                        <td>Major 2nd Up (+M2)</td>
+                                        <td><code>1.1225</code></td>
+                                        <td>2nd Fret</td>
+                                        <td>Writing for Bb instruments (Trumpet, Clarinet, Tenor Sax)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">+1 st</td>
+                                        <td>Minor 2nd Up (+m2)</td>
+                                        <td><code>1.0595</code></td>
+                                        <td>1st Fret</td>
+                                        <td>Classic half-step modulation ("truck driver's gear change")</td>
+                                    </tr>
+                                    <tr class="table-secondary">
+                                        <td class="fw-bold">0 st</td>
+                                        <td>Unison (Concert Pitch)</td>
+                                        <td><code>1.0000</code></td>
+                                        <td>Open (No Capo)</td>
+                                        <td>Original key signature</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-danger">-1 st</td>
+                                        <td>Minor 2nd Down (-m2)</td>
+                                        <td><code>0.9439</code></td>
+                                        <td>Eb Standard Tuning</td>
+                                        <td>Jimi Hendrix / Stevie Ray Vaughan Eb guitar tuning</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-danger">-2 st</td>
+                                        <td>Major 2nd Down (-M2)</td>
+                                        <td><code>0.8909</code></td>
+                                        <td>D Standard Tuning</td>
+                                        <td>Sounding pitch of Bb transposing instruments</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-danger">-5 st</td>
+                                        <td>Perfect 4th Down (-P4)</td>
+                                        <td><code>0.7492</code></td>
+                                        <td>—</td>
+                                        <td>Inversion of perfect fifth</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-danger">-7 st</td>
+                                        <td>Perfect 5th Down (-P5)</td>
+                                        <td><code>0.6674</code></td>
+                                        <td>—</td>
+                                        <td>Sounding pitch of F French horn</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-danger">-12 st</td>
+                                        <td>Octave Down (-P8)</td>
+                                        <td><code>0.5000</code></td>
+                                        <td>—</td>
+                                        <td>Bass guitar, Contrabass (sound 1 octave below written)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Guitarists, Pianists & Brass Applications -->
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-music-player me-2"></i>Instrument-Specific Transposition Workflows</h2>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                                    <h5 class="fw-bold text-dark"><i class="bi bi-guitar text-teal me-2"></i>Guitarists & Capos</h5>
+                                    <p class="small text-muted mb-2">
+                                        Guitarists use transposing to retain open resonant chord voicings (G, C, D, Em) while matching a singer's pitch. The golden capo formula:
+                                    </p>
+                                    <div class="p-2 bg-white rounded border small font-monospace text-center mb-2">
+                                        $$	ext{Concert Key} = 	ext{Chord Shape} + 	ext{Capo Fret}$$
+                                    </div>
+                                    <p class="small text-muted mb-0">
+                                        If a song is in $E\flat$ major, play open $C$ shapes with a capo on fret 3 ($C + 3\text{ st} = E\flat$).
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                                    <h5 class="fw-bold text-dark"><i class="bi bi-keyboard text-teal me-2"></i>Pianists & Vocalists</h5>
+                                    <p class="small text-muted mb-2">
+                                        When accompanying singers whose vocal stamina or morning audition limits their range, quick transposition is essential:
+                                    </p>
+                                    <ul class="small mb-0">
+                                        <li>Shifting down $-2\text{ st}$ (a whole tone) drops the high climax note from an unsustainable $A_4$ to a comfortable $G_4$.</li>
+                                        <li>Maintains exact triad and extended chord qualities without altering voice-leading.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                                    <h5 class="fw-bold text-dark"><i class="bi bi-soundwave text-teal me-2"></i>Transposing Instruments</h5>
+                                    <p class="small text-muted mb-2">
+                                        Orchestral instruments are built in different fundamental keys. To write a concert $C$ major chord:
+                                    </p>
+                                    <ul class="small mb-0">
+                                        <li><strong>$B\flat$ Clarinet/Trumpet:</strong> Write in $D$ major ($+2\text{ st}$).</li>
+                                        <li><strong>$E\flat$ Alto Saxophone:</strong> Write in $A$ major ($+9\text{ st}$).</li>
+                                        <li><strong>$F$ French Horn:</strong> Write in $G$ major ($+7\text{ st}$).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Worked Practical Examples -->
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-journal-code me-2"></i>Step-by-Step Worked Transposition Examples</h2>
+
+                        <div class="card border-0 shadow-sm p-4 mb-3 bg-light">
+                            <h5 class="fw-bold text-dark">Example 1: Transposing a Jazz Pop Progression</h5>
+                            <p class="mb-2">
+                                <strong>Problem:</strong> A jazz song has the progression <code>Cmaj7, Am7, Dm7, G7</code>. The vocalist requests moving the song up by <strong>$+3$ semitones</strong>. What is the resulting chord sequence?
+                            </p>
+                            <ol class="small mb-2">
+                                <li>$C\text{maj7} + 3\text{ st} \implies D\sharp\text{maj7}$ or $E\flat\text{maj7}$. In flat key notation: <strong>$E\flat\text{maj7}$</strong>.</li>
+                                <li>$A\text{m7} + 3\text{ st} \implies A\to A\sharp\to B\to C$. Result: <strong>$C\text{m7}$</strong>.</li>
+                                <li>$D\text{m7} + 3\text{ st} \implies D\to D\sharp\to E\to F$. Result: <strong>$F\text{m7}$</strong>.</li>
+                                <li>$G7 + 3\text{ st} \implies G\to G\sharp\to A\to B\flat$. Result: <strong>$B\flat 7$</strong>.</li>
+                            </ol>
+                            <div class="alert alert-info py-2 mb-0 small">
+                                <strong>Transposed Progression:</strong> <code>Ebmaj7, Cm7, Fm7, Bb7</code> (a textbook I - vi - ii - V progression in $E\flat$ major).
+                            </div>
+                        </div>
+
+                        <div class="card border-0 shadow-sm p-4 bg-light">
+                            <h5 class="fw-bold text-dark">Example 2: Acoustic Guitar Capo Calculation</h5>
+                            <p class="mb-2">
+                                <strong>Problem:</strong> A worship band is playing in the key of $F\sharp$ major. The guitarist prefers easy open $D$ major chord shapes (<code>D, G, Bm, A</code>). Where should the capo be placed?
+                            </p>
+                            <ol class="small mb-2">
+                                <li>Target concert key = $F\sharp$ ($P = 6$).</li>
+                                <li>Fingered shape key = $D$ ($P = 2$).</li>
+                                <li>Capo fret = $6 - 2 = 4$.</li>
+                            </ol>
+                            <div class="alert alert-info py-2 mb-0 small">
+                                <strong>Result:</strong> Place the capo on the <strong>4th Fret</strong> and play standard $D, G, B\text{m}, A$ shapes to sound in the key of $F\sharp$ major.
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Frequently Asked Questions -->
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
+                        <div class="accordion" id="transposeFaqAccordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="tFaqHead1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tFaqCol1" aria-expanded="true" aria-controls="tFaqCol1">
+                                        What is musical transposition?
+                                    </button>
+                                </h3>
+                                <div id="tFaqCol1" class="accordion-collapse collapse show" aria-labelledby="tFaqHead1" data-bs-parent="#transposeFaqAccordion">
+                                    <div class="accordion-body">
+                                        Transposition is the process of shifting a piece of music, chord progression, melody, or single note up or down in pitch by a constant interval. All interval relationships between notes remain identical, meaning the song retains its original harmonic character, melodic contour, and emotional feel while sounding in a higher or lower key.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="tFaqHead2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tFaqCol2" aria-expanded="false" aria-controls="tFaqCol2">
+                                        How do you calculate how many semitones to transpose?
+                                    </button>
+                                </h3>
+                                <div id="tFaqCol2" class="accordion-collapse collapse" aria-labelledby="tFaqHead2" data-bs-parent="#transposeFaqAccordion">
+                                    <div class="accordion-body">
+                                        Count the number of half-steps (semitones) on the chromatic scale between the original key and your target key. For example, moving from C major to E major requires counting up: C → C# (1) → D (2) → D# (3) → E (4), which is +4 semitones. Moving from G major down to D major requires counting down 5 semitones (-5 semitones) or up 7 semitones (+7 semitones).
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="tFaqHead3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tFaqCol3" aria-expanded="false" aria-controls="tFaqCol3">
+                                        How does transposition relate to guitar capo frets?
+                                    </button>
+                                </h3>
+                                <div id="tFaqCol3" class="accordion-collapse collapse" aria-labelledby="tFaqHead3" data-bs-parent="#transposeFaqAccordion">
+                                    <div class="accordion-body">
+                                        Each guitar fret equals exactly one semitone (+1 semitone). Placing a capo on the 2nd fret transposes open chord fingerings up by 2 semitones (+2 st). For instance, playing open G major shapes with a capo on fret 2 produces concert A major; playing open C shapes with a capo on fret 4 produces concert E major.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="tFaqHead4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tFaqCol4" aria-expanded="false" aria-controls="tFaqCol4">
+                                        How do transposing instruments (Bb, Eb, F) transpose relative to concert pitch?
+                                    </button>
+                                </h3>
+                                <div id="tFaqCol4" class="accordion-collapse collapse" aria-labelledby="tFaqHead4" data-bs-parent="#transposeFaqAccordion">
+                                    <div class="accordion-body">
+                                        Bb instruments (trumpet, tenor sax, clarinet) sound 2 semitones lower than written; to write music for them from concert pitch, you must transpose up 2 semitones (+2 st). Eb instruments (alto sax, baritone sax) sound 9 semitones lower (or 3 semitones higher); transpose written music up 9 semitones (+9 st). F instruments (French horn, English horn) sound a perfect fifth lower; transpose written music up 7 semitones (+7 st).
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="tFaqHead5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tFaqCol5" aria-expanded="false" aria-controls="tFaqCol5">
+                                        What is the difference between chromatic and diatonic transposition?
+                                    </button>
+                                </h3>
+                                <div id="tFaqCol5" class="accordion-collapse collapse" aria-labelledby="tFaqHead5" data-bs-parent="#transposeFaqAccordion">
+                                    <div class="accordion-body">
+                                        Chromatic transposition shifts every pitch by the exact same number of semitones, preserving all exact interval qualities (major, minor, perfect). Diatonic transposition shifts notes by scale steps within a single key, causing interval qualities to change (e.g., a major third may become a minor third) to remain strictly within the parent key's key signature.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="tFaqHead6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tFaqCol6" aria-expanded="false" aria-controls="tFaqCol6">
+                                        Why do some transposed notes use flats instead of sharps?
+                                    </button>
+                                </h3>
+                                <div id="tFaqCol6" class="accordion-collapse collapse" aria-labelledby="tFaqHead6" data-bs-parent="#transposeFaqAccordion">
+                                    <div class="accordion-body">
+                                        Notes are spelled with sharps (#) or flats (b) to adhere to standard diatonic music notation. A proper major or minor scale must contain each letter name (A through G) exactly once. For example, in the key of F major, the fourth degree is spelled Bb rather than A# to avoid having two varieties of A (A natural and A#) in the same scale.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Related Pitch Tools -->
+                    <div class="card my-4 shadow-sm border-0 bg-light">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3"><i class="bi bi-link-45deg text-teal me-2"></i>Explore Related Music Theory & Pitch Tools</h5>
+                            <div class="row g-2">
+                                <div class="col-sm-6 col-md-3">
+                                    <a class="btn btn-outline-primary w-100 text-start" href="/pitch-detector-tools/pitch-shift-calculator/">
+                                        <i class="bi bi-sliders me-1"></i> Pitch Shift Calc
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <a class="btn btn-outline-primary w-100 text-start" href="/dj-music-production-tools/key-transposition/">
+                                        <i class="bi bi-arrow-repeat me-1"></i> Key Transposition
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <a class="btn btn-outline-primary w-100 text-start" href="/pitch-detector-tools/note-to-frequency-online/">
+                                        <i class="bi bi-calculator me-1"></i> Note to Freq
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <a class="btn btn-outline-primary w-100 text-start" href="/pitch-detector-tools/cents-calculator-online/">
+                                        <i class="bi bi-rulers me-1"></i> Cents Calc
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <main class="tool-container my-5">
-
-                    <header class="mb-4">
-                        <h1 class="mb-3">Transpose Calculator Guide for Guitarists and Pianists</h1>
-                        <p>
-                            This page explains how a transpose calculator works, who it is for, and how guitarists and
-                            pianists use semitone-based transposition to adapt music accurately without altering
-                            harmonic structure.
-                        </p>
-                    </header>
-
-                    <!-- Guitarists -->
-                    <section class="content-section">
-                        <h2>
-                            Transpose Calculator for Guitarists
-
-                        </h2>
-
-                        <h3>How Guitarists Use a Transpose Calculator</h3>
-                        <p>
-                            Guitarists use a transpose calculator to change chord keys without relearning progressions.
-                            This is common when matching a singer’s range, changing capo positions, or simplifying chord
-                            shapes. The calculator rewrites chords accurately while preserving harmonic relationships.
-                        </p>
-
-                        <h3>Transposing Chords for Capo Use</h3>
-                        <p>
-                            A transpose calculator helps guitarists identify the correct chord names when using a capo.
-                            Instead of guessing shapes, the tool shows transposed chords that match the sounding pitch,
-                            preventing key confusion during practice or performance.
-                        </p>
-
-                        <h3>Why Guitarists Prefer Semitone-Based Transposition</h3>
-                        <p>
-                            Semitone transposition aligns with fretboard logic. Each fret equals one semitone, making
-                            numeric shifts intuitive for guitar players. This reduces theory dependency and speeds up
-                            real-time key changes.
-                        </p>
-                    </section>
-
-                    <!-- Pianists -->
-                    <section class="content-section">
-                        <h2>
-                            Transpose Calculator for Pianists
-                        </h2>
-
-                        <h3>How Pianists Use a Transpose Calculator</h3>
-                        <p>
-                            Pianists use transpose calculators to rewrite chord symbols and melodies into playable keys.
-                            This is especially useful for sight-reading, accompaniment, and adapting music for different
-                            vocalists without rewriting sheet music manually.
-                        </p>
-
-                        <h3>Handling Flats and Sharps on Keyboard</h3>
-                        <p>
-                            Transpose calculators that auto-detect flats (Db, Eb) help pianists avoid enharmonic
-                            confusion. Correct flat usage improves readability on sheet music and aligns with common
-                            piano key signatures.
-                        </p>
-
-                        <h3>Octave Awareness for Keyboard Players</h3>
-                        <p>
-                            Multi-octave support allows pianists to understand pitch shifts across registers. While
-                            chord names stay the same, octave awareness prevents accidental range clashes during
-                            performance.
-                        </p>
-                    </section>
-
-                    <!-- Featured Snippets -->
-                    <section class="content-section">
-                        <h2>How to Transpose Music Online</h2>
-                        <h3>How Do You Transpose Music Using a Calculator?</h3>
-                        <p>
-                            To transpose music online, enter chords or notes, choose the number of semitones to shift up
-                            or down, and apply the change. The calculator automatically converts each note to the
-                            correct pitch in the new key.
-                        </p>
-                    </section>
-
-                    <section class="content-section">
-                        <h2>When Should You Transpose a Song?</h2>
-                        <h3>When Is Transposing Music Necessary?</h3>
-                        <p>
-                            Transposition is necessary when a song does not fit a singer’s vocal range, an instrument’s
-                            preferred keys, or a performance context. It allows music to remain harmonically correct
-                            while becoming more playable or singable.
-                        </p>
-                    </section>
-
-                    <section class="content-section">
-                        <h2>Semitone vs Key-Based Transposition</h2>
-                        <h3>What Is the Difference Between Semitone and Key Transposition?</h3>
-                        <p>
-                            Semitone transposition shifts music by fixed half-steps, while key transposition moves music
-                            from one named key to another. Semitone methods are more precise and commonly used in
-                            digital transpose calculators.
-                        </p>
-                    </section>
-
-                    <!-- Limitations -->
-                    <section class="content-section">
-                        <h2>Limitations of Transpose Calculators</h2>
-                        <p>
-                            Transpose calculators change pitch relationships only. They do not adjust rhythm, tempo,
-                            chord voicings, fingering positions, or tablature layout. Manual musical judgment is still
-                            required for advanced arrangements.
-                        </p>
-                    </section>
-
-                    <!-- FAQs -->
-                    <section class="tool-container my-4">
-                        <h2>FAQs – Transpose Calculator</h2>
-
-                        <h3>What is a transpose calculator used for?</h3>
-                        <p>
-                            A transpose calculator is used to shift musical notes or chords into a different key by
-                            semitones. It helps musicians adapt songs for vocal range, instrument comfort, or
-                            performance needs without changing harmonic structure.
-                        </p>
-
-                        <h3>Can a transpose calculator handle complex chords?</h3>
-                        <p>
-                            Most transpose calculators support extended chords like seventh, minor, and suspended
-                            chords. Accuracy depends on proper chord formatting. Non-standard symbols or custom voicings
-                            may require manual review after transposition.
-                        </p>
-
-                        <h3>Is transposing music the same as changing pitch?</h3>
-                        <p>
-                            Transposing changes relative pitch relationships within music, not playback speed or tempo.
-                            It rewrites notes or chords into a new key while maintaining intervals, unlike audio
-                            pitch-shifting tools.
-                        </p>
-
-                        <h3>Do guitarists need music theory to transpose chords?</h3>
-                        <p>
-                            No. A transpose calculator removes the need for music theory by automatically converting
-                            chord names. Guitarists can focus on playing while the tool handles interval calculations
-                            accurately.
-                        </p>
-
-                        <h3>Why do some transposed results use flats instead of sharps?</h3>
-                        <p>
-                            Transpose calculators choose flats or sharps based on musical key context. Using flats like
-                            Db or Eb improves readability and follows standard key signature conventions, especially for
-                            piano and sheet music users.
-                        </p>
-                        <div class="card my-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
-
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/pitch-detector/">
-                                            Online Pitch Detector
-                                        </a>
-                                    </li>
-
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/guitar-tuner-online/">
-                                            Guitar Tuner
-                                        </a>
-                                    </li>
-
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/frequency-to-note-online/">
-                                            Frequency to Note Converter
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/note-to-frequency-online/">
-                                            Note to Frequency Converter
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-
-                </main>
-
-                <!-- FAQ Section -->
-                <!-- <div class="tool-container mt-4">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions
-                        </h2>
-
-                        <div class="accordion" id="faqAccordion">
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq1">
-                                        What is transposition in music?
-                                    </button>
-                                </h3>
-                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Transposition is shifting notes or chords up or down by a certain number of
-                                        semitones,
-                                        allowing musicians to change key signatures and adapt songs to different vocal
-                                        ranges or
-                                        instruments.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq2">
-                                        Can I transpose chords as well as single notes?
-                                    </button>
-                                </h3>
-                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Yes! This calculator supports both single notes and common chord symbols like
-                                        maj, min,
-                                        m7, and sus chords. The output shows the correctly transposed chord.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq3">
-                                        How do I know how many semitones to transpose?
-                                    </button>
-                                </h3>
-                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Count the distance between the original key and the target key. Positive numbers
-                                        transpose up, negative numbers transpose down. One semitone equals one half-step
-                                        on the
-                                        chromatic scale.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq4">
-                                        Can this help with ear training?
-                                    </button>
-                                </h3>
-                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Absolutely! Transposing notes and chords helps develop your ear by recognizing
-                                        intervals, pitch shifts, and key changes across different scales.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card my-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
-
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/pitch-detector/">
-                                            Online Pitch Detector
-                                        </a>
-                                    </li>
-
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/guitar-tuner-online/">
-                                            Guitar Tuner
-                                        </a>
-                                    </li>
-
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/frequency-to-note-online/">
-                                            Frequency to Note Converter
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/note-to-frequency-online/">
-                                            Note to Frequency Converter
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div> -->
-
+                </article>
             </div>
         </div>
     </div>
@@ -547,7 +639,7 @@
         function normalizeNoteInput(note) {
             note = note.trim();
             // Separate note and octave
-            const match = note.match(/^([A-Ga-g][b#]?)(\d*)$/);
+            const match = note.match(/^([A-Ga-g][b#]?)(d*)$/);
             if (!match) return note;
             let [_, n, octave] = match;
             n = n.toUpperCase();
@@ -556,7 +648,7 @@
         }
 
         function transposeNote(note, semitones, octaveShift) {
-            const match = note.match(/^([A-G][#]?)(\d*)$/);
+            const match = note.match(/^([A-G][#]?)(d*)$/);
             if (!match) return note;
             let [_, n, octave] = match;
             octave = octave ? parseInt(octave) : 4;
@@ -617,5 +709,4 @@
         });
     </script>
 </body>
-
 </html>
