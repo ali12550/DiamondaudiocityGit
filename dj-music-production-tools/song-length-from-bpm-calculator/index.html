@@ -4,58 +4,98 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>How Long Is a Song at Any BPM? Song Length Calculator</title>
-
+    <title>Song Length from BPM Calculator – Calculate Song Duration from Bars & Tempo</title>
     <meta name="description"
-        content="Calculate how long a song lasts using BPM and bars. This tool converts tempo into exact song duration for DJs and music producers worldwide.">
-
-    <meta name="keywords"
-        content="song length from bpm, how long is a song at bpm, bpm song duration, tempo to time calculator">
-
+        content="Free Song Length from BPM Calculator. Compute exact song duration in minutes, seconds, and milliseconds using tempo (BPM), time signature, and total measure count.">
     <link rel="canonical" href="https://pitchdetectors.com/dj-music-production-tools/song-length-from-bpm-calculator/">
 
-
     <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Song Length from BPM Calculator – Calculate Duration from Bars & Tempo">
+    <meta property="og:description"
+        content="Calculate exact song duration in minutes and seconds from BPM and measure count. Essential for music producers, arrangers, and DJs.">
+    <meta property="og:url" content="https://pitchdetectors.com/dj-music-production-tools/song-length-from-bpm-calculator/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/imgs/logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Song Length from BPM Calculator">
+    <meta name="twitter:description" content="Calculate song duration from BPM, bars, and time signature.">
+    <meta name="twitter:image" content="/assets/imgs/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/bootstrap5.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/style.css">
     <link href="/assets/tools.css" rel="stylesheet">
+    <meta name="author" content="Pitch Detectors">
 
-
-
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-NCHP45VYJ2');
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you calculate song length from BPM and bars?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply total measures (bars) by the number of beats per measure to get total beats. Then divide total beats by the BPM and multiply by 60 to get total song length in seconds: Duration (seconds) = (Measures × Beats Per Measure × 60) / BPM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many bars are in an average 3-minute pop song?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "At a standard pop tempo of 120 BPM in 4/4 time, each bar lasts exactly 2 seconds. A 3-minute song (180 seconds) contains exactly 90 bars. At 128 BPM, a 3-minute song requires approximately 96 bars."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does changing time signature affect song duration?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Time signature dictates how many beats are contained in each measure. A 4/4 measure has 4 beats, while a 3/4 waltz measure has only 3 beats. At 120 BPM, 100 measures in 4/4 time last 200 seconds (3m 20s), whereas 100 measures in 3/4 time last 150 seconds (2m 30s)—a 25% shorter duration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do club extended mixes have twice as many bars as radio edits?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Extended club mixes include dedicated 32-bar or 64-bar drum intro and outro mixing segments designed for DJs to beatmatch and blend without vocal collisions. Radio edits excise these functional mixing sections to deliver the vocal hooks within 2:30 to 3:15 for streaming algorithms and radio broadcast."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate how many bars to write for a 30-second or 60-second commercial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Rearrange the formula: Measures = (Target Seconds × BPM) / (Beats Per Measure × 60). For a 60-second commercial at 120 BPM in 4/4 time: (60 × 120) / (4 × 60) = 30 bars exactly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I account for tempo changes or ritardandos mid-song?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Calculate the duration of each constant-tempo section separately using the formula, then sum the section durations. For gradual tempo transitions (accelerando or ritardando), average the starting and ending BPM across the transitional bars to estimate the elapsed time."
+          }
+        }
+      ]
+    }
     </script>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
-        crossorigin="anonymous"></script>
-    <style>
-        /* Additional tool-specific CSS */
-        .calc-box {
-            max-width: 650px;
-            margin: auto;
-        }
-
-        .result-box {
-            margin-top: 25px;
-        }
-    </style>
 </head>
 
 <body>
     <div id="header"></div>
-    <div class="container">
-        <div class="row g-4 align-items-start justify-content-center py-5 mt-4">
-            <!-- Right: Sidebar Tools Box -->
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <!-- Sidebar -->
             <div class="col-lg-3 col-md-4">
                 <div class="tools-sidebar">
                     <div class="sidebar-search mb-4">
@@ -68,76 +108,462 @@
 
                     <div class="sidebar-categories">
                         <div class="sidebar-category active">
-                            <h5><i class="bi bi-disc me-2"></i>DJ & Production Tools</h5>
+                            <h5><i class="bi bi-disc me-2"></i>DJ & Music Production Tools</h5>
                             <ul class="sidebar-links">
-                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i
-                                            class="bi bi-speedometer2"></i>
-                                        BPM Calculator</a></li>
-                                <li><a href="/dj-music-production-tools/bpm-to-speed/" class=""><i
-                                            class="bi bi-speedometer2"></i> BPM to Speed Converter</a></li>
-                                <li><a href="https://pitchdetectors.com/BPM-Pitch-Calculator.html" class=""><i
-                                            class="bi bi-speedometer2"></i> BPM → Pitch (Semitone) Calculator</a></li>
-                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/" class=""><i
-                                            class="bi bi-hand-index"></i> BPM Tap Tempo</a></li>
-                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to
-                                        Milliseconds</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i> BPM Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-speed/"><i class="bi bi-speedometer2"></i> BPM to Speed Converter</a></li>
+                                <li><a href="/BPM-Pitch-Calculator.html"><i class="bi bi-music-note-slider"></i> BPM &rarr; Pitch Shift</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i> BPM Tap Tempo</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to Milliseconds</a></li>
+                                <li><a href="/dj-music-production-tools/dj-set-length-calculator/"><i class="bi bi-disc"></i> DJ Set Length Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/dj-transition-calculator/"><i class="bi bi-soundwave"></i> DJ Transition Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song Key Finder</a></li>
+                                <li><a href="/dj-music-production-tools/mix-compatibility-checker/"><i class="bi bi-check2-circle"></i> Mix Compatibility</a></li>
+                                <li><a href="/dj-music-production-tools/key-transposition/"><i class="bi bi-arrow-left-right"></i> Key Transposition</a></li>
+                                <li><a href="/dj-music-production-tools/song-length-from-bpm-calculator/" class="active"><i class="bi bi-music-note"></i> Song Length from BPM</a></li>
+                                <li><a href="/dj-music-production-tools/scale-practice-generator/"><i class="bi bi-file-music"></i> Scale Practice Generator</a></li>
+                            </ul>
+                        </div>
 
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-soundwave me-2"></i>Pitch Detector Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/pitch-detector-tools/guitar-tuner-online/"><i class="bi bi-music-note-beamed"></i> Guitar Tuner</a></li>
+                                <li><a href="/pitch-detector-tools/frequency-to-note-online/"><i class="bi bi-arrow-left-right"></i> Frequency to Note</a></li>
                             </ul>
                         </div>
 
                         <div class="sidebar-category">
                             <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
                             <ul class="sidebar-links">
-                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i>
-                                        Online Metronome</a></li>
+                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i> Online Metronome</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Left: Main Tool -->
-            <div class="col-lg-6">
+
+            <!-- Main Content -->
+            <div class="col-lg-9 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/dj-music-production-tools/">DJ & Music Production Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Song Length from BPM Calculator</li>
+                    </ol>
+                </nav>
+
                 <div class="tool-container">
-                    <div class="tool-title">
-                        <h1>Song Length from BPM Calculator</h1>
-                        <p>Calculate total song duration using BPM and number of measures.</p>
+                    <div class="tool-title mb-4">
+                        <h1 class="display-6 fw-bold text-teal"><i class="bi bi-music-note me-2"></i>Song Length from BPM Calculator</h1>
+                        <p class="lead text-muted">Compute exact song duration in minutes, seconds, and milliseconds using track tempo (BPM), time signature, and total measure count. Perfect for music arrangers, DAW producers, film scorers, and DJs.</p>
                     </div>
 
-                    <div class="calc-box">
-                        <label>BPM (Beats Per Minute)</label>
-                        <input type="number" id="bpm" class="form-control" placeholder="Enter BPM" />
+                    <!-- Calculator Input Form -->
+                    <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-body p-4 bg-light rounded">
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold">Tempo (BPM):</label>
+                                    <input type="number" id="bpm" class="form-control form-control-lg" value="128" min="20" max="300" oninput="calculateLength()" />
+                                    <span class="small text-muted">Quarter notes per minute</span>
+                                </div>
 
-                        <label style="margin-top:15px;">Beats Per Measure</label>
-                        <input type="number" id="beatsPerMeasure" class="form-control" value="4" />
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold">Time Signature (Beats / Measure):</label>
+                                    <select id="beatsPerMeasure" class="form-select form-select-lg" onchange="calculateLength()">
+                                        <option value="4" selected>4/4 (Common Time - 4 beats)</option>
+                                        <option value="3">3/4 (Waltz Time - 3 beats)</option>
+                                        <option value="2">2/4 (March / Polka - 2 beats)</option>
+                                        <option value="6">6/8 (Compound Meter - 6 beats)</option>
+                                        <option value="5">5/4 (Odd Meter - 5 beats)</option>
+                                        <option value="7">7/8 (Odd Meter - 7 beats)</option>
+                                    </select>
+                                    <span class="small text-muted">Beats in each bar</span>
+                                </div>
 
-                        <label style="margin-top:15px;">Total Measures</label>
-                        <input type="number" id="measures" class="form-control" placeholder="e.g., 120" />
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold">Total Measures (Bars):</label>
+                                    <input type="number" id="measures" class="form-control form-control-lg" value="128" min="1" max="5000" oninput="calculateLength()" />
+                                    <span class="small text-muted">Total bars in arrangement</span>
+                                </div>
+                            </div>
 
-                        <button class="btn-primary" style="width:100%; margin-top:20px;"
-                            onclick="calculateLength()">Calculate
-                            Length</button>
-
-                        <div class="result-box" id="result" style="display:none;">
-                            <h3>Song Length</h3>
-                            <p><strong>Total Time:</strong> <span id="timeFull"></span></p>
-                            <p><strong>Seconds:</strong> <span id="timeSec"></span></p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="small fw-bold text-uppercase text-muted align-self-center me-2">Quick Bar Presets:</span>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="setBars(32)">32 Bars (Short Hook)</button>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="setBars(64)">64 Bars (Beat / Loop)</button>
+                                <button class="btn btn-sm btn-outline-primary" onclick="setBars(96)">96 Bars (Pop Edit)</button>
+                                <button class="btn btn-sm btn-outline-primary" onclick="setBars(128)">128 Bars (Standard Club)</button>
+                                <button class="btn btn-sm btn-outline-primary" onclick="setBars(192)">192 Bars (Extended Mix)</button>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Output Results Dashboard -->
+                    <div class="card shadow-sm border-0 mb-5">
+                        <div class="card-body p-4 bg-white rounded border">
+                            <div class="row align-items-center mb-3">
+                                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                                    <span class="small text-muted text-uppercase fw-semibold">Calculated Total Song Length</span>
+                                    <div id="timeFull" class="display-5 fw-bold text-teal">4 min 00 sec</div>
+                                </div>
+                                <div class="col-md-6 text-center text-md-end">
+                                    <span class="small text-muted text-uppercase fw-semibold">Total Exact Seconds</span>
+                                    <div id="timeSec" class="display-6 fw-bold text-dark">240.00 s</div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row text-center mt-3 g-3">
+                                <div class="col-md-3 col-6">
+                                    <span class="text-muted small text-uppercase fw-semibold">Total Beats</span><br>
+                                    <span id="totalBeats" class="fs-5 fw-bold text-dark">512 beats</span>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <span class="text-muted small text-uppercase fw-semibold">Milliseconds</span><br>
+                                    <span id="timeMs" class="fs-5 fw-bold text-teal">240,000 ms</span>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <span class="text-muted small text-uppercase fw-semibold">Seconds / Bar</span><br>
+                                    <span id="secPerBar" class="fs-5 fw-bold text-dark">1.88 s/bar</span>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <span class="text-muted small text-uppercase fw-semibold">Bars / Minute</span><br>
+                                    <span id="barsPerMin" class="fs-5 fw-bold text-dark">32.0 bars/min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COMPREHENSIVE GUIDE & REFERENCE -->
+                    <div class="mt-5">
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">The Mathematics of Song Duration: How Tempo and Measures Dictate Time</h2>
+                            <p>
+                                In musical production, time is measured along two independent axes: <strong>musical time</strong> (beats, bars, and measures) and <strong>chronological time</strong> (minutes, seconds, and milliseconds). The bridge between these two worlds is <strong>tempo</strong>, quantified as <strong>Beats Per Minute (BPM)</strong>.
+                            </p>
+                            <p>
+                                Understanding the exact mathematical conversion between bars and running time is critical for:
+                            </p>
+                            <ul>
+                                <li><strong>Streaming & Radio Arrangement:</strong> Tailoring tracks to modern streaming sweet spots (between 2:30 and 3:15) without sacrificing necessary musical sections.</li>
+                                <li><strong>Film, TV & Commercial Sync Scoring:</strong> Crafting musical cues that resolve on exact video cut frames (e.g. 15-second TV bumpers or 30-second commercial spots).</li>
+                                <li><strong>Club DJ Mix Architectures:</strong> Structuring extended DJ intros and outros so that tracks can be seamlessly layered across standard 32-bar and 64-bar phrases.</li>
+                                <li><strong>Live Performance Pacing:</strong> Designing setlists to strictly obey strict festival and concert venue curfew limits.</li>
+                            </ul>
+                        </section>
+
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-3">The Mathematical Song Duration Formulas</h3>
+                            <p>
+                                The calculation begins by converting measures into total rhythmic beats, and then dividing by the rate of beats per second:
+                            </p>
+                            <div class="row g-4 my-2">
+                                <div class="col-md-6">
+                                    <div class="p-3 bg-light rounded border h-100">
+                                        <h5 class="fw-bold text-teal mb-2">1. Total Running Time in Seconds</h5>
+                                        <div class="p-2 bg-white rounded border font-monospace text-center mb-2">
+                                            $$	ext{Duration (s)} = rac{	ext{Measures} 	imes 	ext{Beats Per Measure} 	imes 60}{	ext{BPM}}$$
+                                        </div>
+                                        <p class="small text-muted mb-0"><strong>Example:</strong> 128 bars in 4/4 time at 128 BPM yields $(128 	imes 4 	imes 60) / 128 = 240	ext{ seconds}$ (exactly 4 minutes).</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 bg-light rounded border h-100">
+                                        <h5 class="fw-bold text-teal mb-2">2. Single Bar Duration</h5>
+                                        <div class="p-2 bg-white rounded border font-monospace text-center mb-2">
+                                            $$	ext{Seconds Per Bar} = rac{	ext{Beats Per Measure} 	imes 60}{	ext{BPM}}$$
+                                        </div>
+                                        <p class="small text-muted mb-0"><strong>Example:</strong> At 120 BPM in 4/4 time, each bar lasts $(4 	imes 60) / 120 = 2.0	ext{ seconds}$. At 150 BPM, each bar lasts $1.6	ext{ seconds}$.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-3">Song Structure & Measure Allocation Matrix</h3>
+                            <p>
+                                Modern commercial tracks are constructed from modular multi-bar blocks (usually multiples of 4, 8, or 16 bars). The table below outlines how measures are typically allocated across standard arrangements:
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Arrangement Section</th>
+                                            <th>Standard Pop / Radio Edit</th>
+                                            <th>Extended Club / DJ Mix</th>
+                                            <th>Musical Purpose</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>DJ Intro</strong></td>
+                                            <td>0 – 4 Bars (Instant vocal hook)</td>
+                                            <td>32 – 64 Bars (Drums & percussion only)</td>
+                                            <td>Enables beatmatching and long transitions in clubs.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Verse 1</strong></td>
+                                            <td>16 Bars</td>
+                                            <td>16 – 32 Bars</td>
+                                            <td>Establishes storyline, chord progression, and groove.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Pre-Chorus / Build</strong></td>
+                                            <td>8 Bars</td>
+                                            <td>8 – 16 Bars</td>
+                                            <td>Increases tension via snare rolls, pitch risers, and filter sweeps.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Chorus / Drop 1</strong></td>
+                                            <td>16 Bars</td>
+                                            <td>32 Bars</td>
+                                            <td>Maximum sonic energy, main hook melody, and bass drop.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Verse 2 / Breakdown</strong></td>
+                                            <td>8 – 16 Bars</td>
+                                            <td>16 – 32 Bars</td>
+                                            <td>Strips back drums to let dancers breathe before rebuild.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Chorus / Drop 2</strong></td>
+                                            <td>16 Bars</td>
+                                            <td>32 Bars</td>
+                                            <td>Peak emotional and rhythmic climax of the composition.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>DJ Outro</strong></td>
+                                            <td>4 – 8 Bars (Quick fade)</td>
+                                            <td>32 – 64 Bars (Drums & percussion loop)</td>
+                                            <td>Allows the next DJ to blend the next incoming track.</td>
+                                        </tr>
+                                        <tr class="table-light fw-bold">
+                                            <td>Total Measures & Duration</td>
+                                            <td><strong>88 – 104 Bars (~2:45 to 3:15)</strong></td>
+                                            <td><strong>192 – 256 Bars (~5:00 to 6:30)</strong></td>
+                                            <td>Optimized for intended playback environment.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-3">Song Length Reference Table Across Tempos (in 4/4 Time)</h3>
+                            <p>
+                                The table below shows the exact duration (minutes and seconds) across standard measure lengths at common musical tempos:
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Tempo (BPM)</th>
+                                            <th>Genre Context</th>
+                                            <th>64 Bars</th>
+                                            <th>96 Bars</th>
+                                            <th>128 Bars</th>
+                                            <th>160 Bars</th>
+                                            <th>192 Bars</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold">85 BPM</td>
+                                            <td class="text-start small">Hip-Hop / R&B / Trap</td>
+                                            <td>3m 00s</td>
+                                            <td>4m 31s</td>
+                                            <td>6m 01s</td>
+                                            <td>7m 31s</td>
+                                            <td>9m 02s</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">100 BPM</td>
+                                            <td class="text-start small">Moombahton / Midtempo</td>
+                                            <td>2m 33s</td>
+                                            <td>3m 50s</td>
+                                            <td>5m 07s</td>
+                                            <td>6m 24s</td>
+                                            <td>7m 40s</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">120 BPM</td>
+                                            <td class="text-start small">Standard Pop / Disco</td>
+                                            <td>2m 08s</td>
+                                            <td>3m 12s</td>
+                                            <td>4m 16s</td>
+                                            <td>5m 20s</td>
+                                            <td>6m 24s</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">124 BPM</td>
+                                            <td class="text-start small">Deep House / Melodic</td>
+                                            <td>2m 03s</td>
+                                            <td>3m 05s</td>
+                                            <td>4m 07s</td>
+                                            <td>5m 09s</td>
+                                            <td>6m 11s</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">128 BPM</td>
+                                            <td class="text-start small">Tech House / EDM Festival</td>
+                                            <td>2m 00s</td>
+                                            <td>3m 00s</td>
+                                            <td>4m 00s</td>
+                                            <td>5m 00s</td>
+                                            <td>6m 00s</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">140 BPM</td>
+                                            <td class="text-start small">Trance / Dubstep</td>
+                                            <td>1m 49s</td>
+                                            <td>2m 44s</td>
+                                            <td>3m 39s</td>
+                                            <td>4m 34s</td>
+                                            <td>5m 29s</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold">174 BPM</td>
+                                            <td class="text-start small">Drum &amp; Bass / Jungle</td>
+                                            <td>1m 28s</td>
+                                            <td>2m 12s</td>
+                                            <td>2m 56s</td>
+                                            <td>3m 40s</td>
+                                            <td>4m 24s</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <!-- FAQ Section -->
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
+                            <div class="accordion" id="slFaqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading1">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sf1" aria-expanded="true">
+                                            How do you calculate song length from BPM and bars?
+                                        </button>
+                                    </h2>
+                                    <div id="sf1" class="accordion-collapse collapse show" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            Multiply total measures (bars) by the number of beats per measure to get total beats. Then divide total beats by the BPM and multiply by 60 to get total song length in seconds: <code>Duration (seconds) = (Measures × Beats Per Measure × 60) / BPM</code>.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading2">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf2">
+                                            How many bars are in an average 3-minute pop song?
+                                        </button>
+                                    </h2>
+                                    <div id="sf2" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            At a standard pop tempo of 120 BPM in 4/4 time, each bar lasts exactly 2 seconds. A 3-minute song (180 seconds) contains exactly 90 bars. At 128 BPM, a 3-minute song requires approximately 96 bars.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading3">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf3">
+                                            How does changing time signature affect song duration?
+                                        </button>
+                                    </h2>
+                                    <div id="sf3" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            Time signature dictates how many beats are contained in each measure. A 4/4 measure has 4 beats, while a 3/4 waltz measure has only 3 beats. At 120 BPM, 100 measures in 4/4 time last 200 seconds (3m 20s), whereas 100 measures in 3/4 time last 150 seconds (2m 30s)—a 25% shorter duration.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading4">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf4">
+                                            Why do club extended mixes have twice as many bars as radio edits?
+                                        </button>
+                                    </h2>
+                                    <div id="sf4" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            Extended club mixes include dedicated 32-bar or 64-bar drum intro and outro mixing segments designed for DJs to beatmatch and blend without vocal collisions. Radio edits excise these functional mixing sections to deliver the vocal hooks within 2:30 to 3:15 for streaming algorithms and radio broadcast.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading5">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf5">
+                                            How do I calculate how many bars to write for a 30-second or 60-second commercial?
+                                        </button>
+                                    </h2>
+                                    <div id="sf5" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            Rearrange the formula: <code>Measures = (Target Seconds × BPM) / (Beats Per Measure × 60)</code>. For a 60-second commercial at 120 BPM in 4/4 time: <code>(60 × 120) / (4 × 60) = 30 bars</code> exactly.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading6">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf6">
+                                            How do I account for tempo changes or ritardandos mid-song?
+                                        </button>
+                                    </h2>
+                                    <div id="sf6" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            Calculate the duration of each constant-tempo section separately using the formula, then sum the section durations. For gradual tempo transitions (accelerando or ritardando), average the starting and ending BPM across the transitional bars to estimate the elapsed time.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 
-
     <div id="footer"></div>
     <script src="/assets/bootstrap5.js" defer></script>
+    <script src="/assets/tools.js" defer></script>
 
-
-    <!--include js-->
+    <!-- tools js -->
     <script defer>
+        function setBars(bars) {
+            document.getElementById('measures').value = bars;
+            calculateLength();
+        }
 
+        function calculateLength() {
+            const bpm = parseFloat(document.getElementById('bpm').value) || 128;
+            const beatsPerMeasure = parseFloat(document.getElementById('beatsPerMeasure').value) || 4;
+            const measures = parseFloat(document.getElementById('measures').value) || 128;
+
+            if (bpm <= 0 || beatsPerMeasure <= 0 || measures <= 0) {
+                return;
+            }
+
+            const totalBeats = beatsPerMeasure * measures;
+            const seconds = (totalBeats / bpm) * 60;
+            const milliseconds = seconds * 1000;
+
+            const mins = Math.floor(seconds / 60);
+            const remainingSecs = Math.floor(seconds % 60);
+
+            const secPerBar = (beatsPerMeasure * 60) / bpm;
+            const barsPerMin = bpm / beatsPerMeasure;
+
+            document.getElementById('timeFull').textContent = `${mins} min ${remainingSecs < 10 ? '0' : ''}${remainingSecs} sec`;
+            document.getElementById('timeSec').textContent = seconds.toFixed(2) + ' s';
+            document.getElementById('totalBeats').textContent = totalBeats + ' beats';
+            document.getElementById('timeMs').textContent = Math.round(milliseconds).toLocaleString() + ' ms';
+            document.getElementById('secPerBar').textContent = secPerBar.toFixed(2) + ' s/bar';
+            document.getElementById('barsPerMin').textContent = barsPerMin.toFixed(1) + ' bars/min';
+        }
+
+        calculateLength();
 
         window.addEventListener("load", () => {
             Promise.all([
@@ -150,30 +576,6 @@
                 })
                 .catch(err => console.error("Include load failed:", err));
         });
-
-    </script>
-    <!-- tools js -->
-    <script defer>
-        function calculateLength() {
-            const bpm = parseFloat(document.getElementById('bpm').value);
-            const beatsPerMeasure = parseFloat(document.getElementById('beatsPerMeasure').value);
-            const measures = parseFloat(document.getElementById('measures').value);
-
-            if (!bpm || !beatsPerMeasure || !measures || bpm <= 0) {
-                alert("Please enter valid values.");
-                return;
-            }
-
-            const totalBeats = beatsPerMeasure * measures;
-            const seconds = (totalBeats / bpm) * 60;
-
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-
-            document.getElementById('timeFull').textContent = `${mins} min ${secs} sec`;
-            document.getElementById('timeSec').textContent = seconds.toFixed(2);
-            document.getElementById('result').style.display = 'block';
-        }
     </script>
 </body>
 
