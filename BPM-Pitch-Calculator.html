@@ -213,143 +213,257 @@
   <div class="content_area container py-5">
 
     <!-- HOW TO USE BOX -->
-    <div
-      style="background: rgba(0,11,88,0.04); box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-radius: 10px; padding: 20px; margin-bottom: 40px;">
-      <h2 class="h5 fw-bold text-uppercase mb-3" style="color:#003161;">How to Use the BPM Pitch Calculator</h2>
-      <p class="mb-2">
-        1️⃣ Enter the <strong>original BPM</strong> and the <strong>target BPM</strong> of your song or track.<br>
-        2️⃣ The tool automatically calculates the <strong>pitch shift in semitones</strong> needed to match
-        tempo changes.<br>
-        3️⃣ Use this to adjust your track’s key accurately in your DAW or mixing software.<br>
-        4️⃣ Ideal for DJs, producers, and musicians who want to blend or remix tracks seamlessly. You can also
-        <a href="/dj-music-production-tools/mix-compatibility-checker/">check harmonic compatibility between tracks</a>.
-      </p>
+    <div style="background:rgba(20,184,166,0.06); border:1px solid rgba(20,184,166,0.2); border-radius:12px; padding:24px; margin-bottom:35px;">
+      <h2 class="h5 mb-3" style="color:var(--text-primary); font-weight:700;"><i class="bi bi-info-circle me-2 text-teal"></i>How to Use the BPM to Pitch Calculator</h2>
+      <ul class="mb-0" style="color:var(--text-secondary); line-height:1.7;">
+        <li>Enter your track’s <strong>Original BPM</strong> (e.g., <code>100</code>) and your desired <strong>New BPM</strong> (e.g., <code>120</code>).</li>
+        <li>Select your preferred <strong>Precision</strong> (number of decimal places for semitones, up to 3 decimals).</li>
+        <li>Click <strong>Calculate</strong> (or press Enter). The tool immediately outputs four synchronized metrics:
+          <strong>Pitch change in Semitones</strong>, <strong>Pitch change in Cents</strong> (100 cents = 1 semitone),
+          <strong>Pitch Multiplier</strong> (frequency ratio), and <strong>Tempo Change Percentage</strong>.
+        </li>
+        <li>Use <strong>Copy Results</strong> to save the data to your clipboard, <strong>Swap BPMs</strong> to invert the calculation, or <strong>Clear</strong> to start over.</li>
+      </ul>
     </div>
 
     <!-- MAIN CONTENT -->
-    <h1 class="fw-bold mb-3" style="color:#000b58;">BPM Pitch Calculator – Match Tempo & Tune Perfectly</h1>
-    <p>
-      The <strong>BPM Pitch Calculator</strong> is a powerful tool that helps music producers, DJs, and podcasters
-      understand how tempo (BPM) and pitch relate to each other. When you speed up or slow down a song, its pitch
-      changes and this calculator instantly tells you by how many <strong>semitones</strong> that shift occurs.
-      To analyze tempo changes separately, you can also
-      <a href="/dj-music-production-tools/bpm-to-speed/">convert BPM to playback speed</a>.
+    <h1 class="mb-3">BPM to Pitch Calculator – Semitone Shift, Cents &amp; Frequency Ratio</h1>
+
+    <p class="lead text-secondary mb-4">
+      When audio is sped up or slowed down without digital time-stretching (such as on vinyl turntables, tape machines, or DAW sampler channels set to resample mode), tempo and musical pitch shift together. This <strong>BPM to Pitch Calculator</strong> computes the exact pitch deviation in <strong>semitones</strong>, <strong>cents</strong>, and <strong>frequency ratios</strong> caused by any tempo alteration, empowering DJs, sample-based producers, and mastering engineers to maintain harmonic precision.
     </p>
 
-    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">What Is a BPM Pitch Calculator?</h2>
+    <h2 class="mt-5 mb-3">The Mathematical Relationship Between Tempo &amp; Pitch</h2>
     <p>
-      A <strong>BPM Pitch Calculator</strong> converts tempo changes into pitch differences. If you increase a
-      track’s BPM, the pitch rises; slow it down, and the pitch drops. This helps in remixing, syncing multiple
-      tracks, or keeping vocals natural while adjusting playback speed. To understand BPM fundamentals, see
-      <a href="/dj-music-production-tools/guides/what-is-bpm/">what BPM means in music</a>.
+      In Western music theory, the standard tuning system is <strong>12-Tone Equal Temperament (12-TET)</strong>. In this system, an octave represents an exact doubling of frequency ($2:1$ ratio), divided into twelve logarithmically equal semitones. Consequently, each semitone represents a frequency ratio equal to the twelfth root of two:
     </p>
 
-    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">How Does Pitch Affect BPM?</h2>
+    <div class="p-3 border rounded-3 bg-light my-3">
+      <code class="fs-6 fw-bold text-teal">Semitone Ratio = 2^(1/12) &approx; 1.05946309436</code>
+      <p class="small text-secondary mt-2 mb-0">
+        In practical terms: increasing playback speed by exactly <strong>+5.9463%</strong> raises the musical pitch by exactly <strong>one semitone (+100 cents)</strong>.
+      </p>
+    </div>
+
+    <h2 class="mt-5 mb-3">Core Conversion Formulas</h2>
     <p>
-      Pitch and tempo are mathematically connected. For every 6% change in tempo, pitch shifts by roughly one
-      semitone. For instance, going from 120 BPM to 127 BPM increases pitch by +1 semitone. This small change can
-      make or break harmonic balance when DJing or mastering music. For key adjustments, you can also
-      <a href="/dj-music-production-tools/key-transposition/">transpose musical key after tempo change</a>.
+      When converting arbitrary tempo differences into pitch shifts, the calculator utilizes continuous logarithmic equations:
     </p>
-    <h2>How Do You Calculate Pitch Change from BPM?</h2>
-    <p>The relationship between BPM and pitch is logarithmic. The standard formula used is:</p>
 
-    <p><strong><code>Pitch Shift (semitones) = 12 × log₂(New BPM ÷ Original BPM)</code></strong></p>
+    <div class="row g-4 my-3">
+      <div class="col-md-6">
+        <div class="p-3 border rounded-3 bg-light h-100">
+          <h5 class="fw-bold text-teal"><i class="bi bi-music-note-beamed me-2"></i>1. Semitone Shift Formula</h5>
+          <pre class="bg-white p-2 rounded border mb-2"><code>Semitones = 12 × log₂(New BPM / Original BPM)</code></pre>
+          <p class="small text-secondary mb-0">
+            Because $\log_2(x) = \ln(x) / \ln(2)$, this formula determines how many piano keys the pitch moves upward (+) or downward (&minus;).
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-3 border rounded-3 bg-light h-100">
+          <h5 class="fw-bold text-teal"><i class="bi bi-sliders me-2"></i>2. Cents Deviation Formula</h5>
+          <pre class="bg-white p-2 rounded border mb-2"><code>Cents = Semitones × 100 = 1200 × log₂(New BPM / Original BPM)</code></pre>
+          <p class="small text-secondary mb-0">
+            A cent is $1/100$th of a semitone. Fine-tune knobs on synthesizers and DAWs (Ableton, FL Studio, Logic) are calibrated in cents.
+          </p>
+        </div>
+      </div>
+    </div>
 
-    <p>This means doubling BPM increases pitch by one octave (+12 semitones), while small tempo changes result in
-      fractional semitone shifts. For example, a ~6% tempo increase equals roughly +1 semitone.</p>
-    <div class="table-responsive mt-3 mb-4">
-      <table class="table table-bordered text-center">
+    <div class="row g-4 my-3">
+      <div class="col-md-6">
+        <div class="p-3 border rounded-3 bg-light h-100">
+          <h5 class="fw-bold text-teal"><i class="bi bi-arrow-repeat me-2"></i>3. Pitch Multiplier (Frequency Ratio)</h5>
+          <pre class="bg-white p-2 rounded border mb-2"><code>Multiplier (Ratio) = New BPM / Original BPM</code></pre>
+          <p class="small text-secondary mb-0">
+            Represents the fundamental frequency scaling factor: $f_{\text{new}} = f_{\text{orig}} \times \text{Multiplier}$.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-3 border rounded-3 bg-light h-100">
+          <h5 class="fw-bold text-teal"><i class="bi bi-percent me-2"></i>4. Tempo Percentage Change</h5>
+          <pre class="bg-white p-2 rounded border mb-2"><code>Tempo Change % = ((New BPM / Original BPM) - 1) × 100</code></pre>
+          <p class="small text-secondary mb-0">
+            The exact slider position displayed on DJ turntables or CDJ pitch faders.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="mt-5 mb-3">Musical Interval &amp; Tempo Shift Reference Matrix</h2>
+    <p>
+      The table below details the exact playback speed ratios, tempo percentage fader adjustments, and cents required to shift pitch across musical intervals:
+    </p>
+
+    <div class="table-responsive my-4">
+      <table class="table table-bordered table-hover text-center align-middle">
         <thead class="table-light">
           <tr>
-            <th>Original BPM</th>
-            <th>Target BPM</th>
-            <th>Pitch Change</th>
+            <th>Musical Interval</th>
+            <th>Semitone Shift</th>
+            <th>Cents</th>
+            <th>Speed Multiplier</th>
+            <th>Pitch Fader %</th>
+            <th>Original 120 BPM Track</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>100</td>
-            <td>110</td>
-            <td>+1.65 semitones</td>
+            <td><strong>Octave Down (-1 Octave)</strong></td>
+            <td>-12.00 st</td>
+            <td>-1200.0</td>
+            <td>0.5000×</td>
+            <td>-50.00%</td>
+            <td>60.00 BPM</td>
           </tr>
           <tr>
-            <td>120</td>
-            <td>130</td>
-            <td>+1.35 semitones</td>
+            <td><strong>Perfect 5th Down</strong></td>
+            <td>-7.00 st</td>
+            <td>-700.0</td>
+            <td>0.6674×</td>
+            <td>-33.26%</td>
+            <td>80.09 BPM</td>
           </tr>
           <tr>
-            <td>90</td>
-            <td>80</td>
-            <td>-2.12 semitones</td>
+            <td><strong>Major 3rd Down</strong></td>
+            <td>-4.00 st</td>
+            <td>-400.0</td>
+            <td>0.7937×</td>
+            <td>-20.63%</td>
+            <td>95.24 BPM</td>
+          </tr>
+          <tr>
+            <td><strong>Minor 2nd Down</strong></td>
+            <td>-1.00 st</td>
+            <td>-100.0</td>
+            <td>0.9439×</td>
+            <td>-5.61%</td>
+            <td>113.27 BPM</td>
+          </tr>
+          <tr class="table-primary">
+            <td><strong>Unison (Original Pitch)</strong></td>
+            <td><strong>0.00 st</strong></td>
+            <td><strong>0.0</strong></td>
+            <td><strong>1.0000×</strong></td>
+            <td><strong>0.00%</strong></td>
+            <td><strong>120.00 BPM</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Minor 2nd Up (+1 Semitone)</strong></td>
+            <td>+1.00 st</td>
+            <td>+100.0</td>
+            <td>1.0595×</td>
+            <td>+5.95%</td>
+            <td>127.14 BPM</td>
+          </tr>
+          <tr>
+            <td><strong>Major 2nd Up (+1 Whole Step)</strong></td>
+            <td>+2.00 st</td>
+            <td>+200.0</td>
+            <td>1.1225×</td>
+            <td>+12.25%</td>
+            <td>134.70 BPM</td>
+          </tr>
+          <tr>
+            <td><strong>Minor 3rd Up</strong></td>
+            <td>+3.00 st</td>
+            <td>+300.0</td>
+            <td>1.1892×</td>
+            <td>+18.92%</td>
+            <td>142.70 BPM</td>
+          </tr>
+          <tr>
+            <td><strong>Major 3rd Up</strong></td>
+            <td>+4.00 st</td>
+            <td>+400.0</td>
+            <td>1.2599×</td>
+            <td>+25.99%</td>
+            <td>151.19 BPM</td>
+          </tr>
+          <tr>
+            <td><strong>Perfect 4th Up</strong></td>
+            <td>+5.00 st</td>
+            <td>+500.0</td>
+            <td>1.3348×</td>
+            <td>+33.48%</td>
+            <td>160.18 BPM</td>
+          </tr>
+          <tr>
+            <td><strong>Tritone Up</strong></td>
+            <td>+6.00 st</td>
+            <td>+600.0</td>
+            <td>1.4142×</td>
+            <td>+41.42%</td>
+            <td>169.71 BPM</td>
+          </tr>
+          <tr>
+            <td><strong>Perfect 5th Up</strong></td>
+            <td>+7.00 st</td>
+            <td>+700.0</td>
+            <td>1.4983×</td>
+            <td>+49.83%</td>
+            <td>179.80 BPM</td>
+          </tr>
+          <tr>
+            <td><strong>Octave Up (+1 Octave)</strong></td>
+            <td>+12.00 st</td>
+            <td>+1200.0</td>
+            <td>2.0000×</td>
+            <td>+100.00%</td>
+            <td>240.00 BPM</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">Why Use a BPM Pitch Calculator?</h2>
+    <h2 class="mt-5 mb-3">How to Compensate for Pitch Drift in DAWs &amp; Samplers</h2>
     <p>
-      Mixing tracks with different tempos can distort the sound or ruin key alignment. A <strong>BPM Pitch
-        Calculator</strong> ensures harmonic matching — so when you change BPM, your tracks stay in tune. It’s
-      an essential utility for DJs and music producers who mix across genres or transition between tempos live.
-      You can also <a href="/dj-music-production-tools/dj-transition-calculator/">calculate smooth DJ transitions</a>
-      for better mixing flow.
+      Sample-based hip-hop, vaporwave, drum &amp; bass, and lo-fi producers frequently accelerate or slow down vintage samples to fit project tempos. When pitching via resampling:
     </p>
-
     <ul>
-      <li>🎧 Helps maintain key consistency when adjusting tempo</li>
-      <li>🎶 Prevents distortion during remixes or mashups</li>
-      <li>🔊 Ideal for tuning vocals and beats accurately</li>
+      <li><strong>To Preserve the Original Concert Pitch:</strong> After speeding up a sample by $+1.65$ semitones, apply a pitch-shifting plugin or adjust the clip transpose knob down by <strong>&minus;1.65 semitones (&minus;165 cents)</strong>. This realigns the sample to its original key while maintaining the new, faster groove.</li>
+      <li><strong>To Fit a Specific Target Key:</strong> If your project is in D minor and your sample is in C minor (a 2 semitone difference), accelerating the tempo by $+12.25\%$ naturally transposes the sample up into D minor without digital timestretch artifacts.</li>
+      <li><strong>Ableton Live:</strong> Set Clip View warp mode to <em>Repitch</em> for vinyl behavior. In <em>Complex</em> or <em>Complex Pro</em>, you can adjust the <em>Transpose</em> (semitones) and <em>Cent</em> dials to compensate for pitch drift.</li>
+      <li><strong>FL Studio:</strong> In the Sampler channel window, select <em>Resample</em> mode, adjust tempo, and then adjust the <em>Pitch</em> knob by the exact calculated cents to tune to your session.</li>
     </ul>
 
-    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">Formulas Used in Pitch Calculation</h2>
+    <h2 class="mt-5 mb-3">Harmonic Mixing &amp; The Camelot Wheel Impact</h2>
     <p>
-      The mathematical formula for calculating pitch difference between two tempos is:
+      When DJing on analog turntables or with CDJ <em>Master Tempo</em> turned OFF, tempo changes rotate your track's musical key around the <strong>Camelot Wheel</strong>:
     </p>
-    <code>
-Pitch Shift (in semitones) = 12 × log₂(Target BPM / Original BPM)
-  </code>
-
-    <p>
-      This means doubling your BPM raises the pitch by one octave (+12 semitones). The calculator uses this
-      formula instantly saving you from manual math and ensuring accuracy every time. For timing precision,
-      you can also <a href="/dj-music-production-tools/bpm-to-ms/">convert BPM to milliseconds</a>.
-    </p>
-    <h2>How Much Pitch Changes Per BPM?</h2>
-    <p>Pitch does not change linearly with BPM. Instead, it follows a ratio-based system. A useful rule:</p>
-
     <ul>
-      <li>~6% BPM increase ≈ +1 semitone</li>
-      <li>~12% BPM increase ≈ +2 semitones</li>
-      <li>100% increase (doubling) = +12 semitones (1 octave)</li>
+      <li>Accelerating an <strong>8A (A minor)</strong> track from 120 BPM to 127.14 BPM (+5.95%) shifts its key up by $+1$ semitone into <strong>3A (B-flat minor)</strong>.</li>
+      <li>If you intend to mix into another 8A or 8B track, this $+1$ semitone shift causes intense harmonic clashing. Understanding the exact semitone shift tells you which new Camelot key your track has become, allowing you to select harmonically compatible incoming tracks.</li>
     </ul>
 
-    <p>This relationship helps DJs estimate pitch shift quickly during live mixing.</p>
-    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">Common Questions About BPM & Pitch</h2>
-    <p>
-      Many creators ask: <em>Is 70 BPM too slow?</em> Not necessarily — 70 BPM works great for ballads or
-      chill-hop. <em>Is 120 BPM fast?</em> It’s actually one of the most common tempos for dance music. For
-      deeper understanding, see <a href="/dj-music-production-tools/guides/bpm-vs-tempo-vs-time-signature/">BPM vs tempo
-        vs time signature</a>.
-    </p>
-    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">Quick Reference Tempos</h2>
-    <ul>
-      <li>60 BPM – Relaxed / Ballads</li>
-      <li>90 BPM – Hip-hop / Lo-fi</li>
-      <li>120 BPM – Dance / Pop</li>
-      <li>140 BPM – Dubstep / Trap</li>
-      <li>180 BPM – Drum & Bass</li>
-    </ul>
-
-
-
-    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">Final Thoughts</h2>
-    <p>
-      The <strong>BPM Pitch Calculator</strong> from <a href="https://pitchdetectors.com/"
-        style="color:#006a67; text-decoration:underline;">pitch detectors</a> helps you understand
-      tempo-to-pitch relationships instantly — no complex math or software required. Whether you're syncing two
-      tracks or mastering your mix, this calculator keeps your sound precise and musical.
-    </p>
+    <div class="card p-4 my-5 border-0 bg-light rounded-3">
+      <h4 class="fw-bold mb-3"><i class="bi bi-link-45deg me-2 text-teal"></i>Explore Complementary DJ &amp; Production Tools</h4>
+      <p class="text-secondary mb-3">Pair this pitch calculator with our complete suite of audio timing and tuning utilities:</p>
+      <div class="row g-2">
+        <div class="col-sm-6 col-md-3">
+          <a href="/dj-music-production-tools/bpm-to-speed/" class="btn btn-outline-secondary w-100 text-start py-2">
+            <i class="bi bi-speedometer2 me-2 text-teal"></i>BPM to Speed
+          </a>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <a href="/dj-music-production-tools/bpm-calculator/" class="btn btn-outline-secondary w-100 text-start py-2">
+            <i class="bi bi-calculator me-2 text-teal"></i>BPM Calculator
+          </a>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <a href="/dj-music-production-tools/bpm-to-ms/" class="btn btn-outline-secondary w-100 text-start py-2">
+            <i class="bi bi-clock me-2 text-teal"></i>BPM to Milliseconds
+          </a>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <a href="/dj-music-production-tools/key-transposition/" class="btn btn-outline-secondary w-100 text-start py-2">
+            <i class="bi bi-music-note me-2 text-teal"></i>Key Transposition
+          </a>
+        </div>
+      </div>
+    </div>
     <!-- =========================
      💡 FAQs — BPM & Pitch Explained
      ========================= -->
