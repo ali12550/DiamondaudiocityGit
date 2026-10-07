@@ -5,11 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Mode Calculator | Axial, Tangential & Oblique Resonances</title>
-
     <meta name="description"
-        content="Room mode calculator to detect axial, tangential, and oblique resonances. Optimize speaker placement, bass traps, and acoustic treatment.">
-    <meta name="keywords"
-        content="room modes calculator, axial modes, tangential modes, oblique modes, room resonance, bass traps, acoustic treatment, speaker placement">
+        content="Calculate standing wave room modes (axial, tangential, and oblique resonances) for rectangular listening rooms and studios. Identify modal clustering, bass nulls, and speaker placement.">
     <link rel="canonical" href="https://pitchdetectors.com/speaker-tools/room-modes-calculator/">
 
     <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
@@ -29,6 +26,81 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
         crossorigin="anonymous"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://pitchdetectors.com/speaker-tools/room-modes-calculator/#webpage",
+          "url": "https://pitchdetectors.com/speaker-tools/room-modes-calculator/",
+          "name": "Room Mode & Standing Wave Calculator",
+          "description": "Calculate standing wave frequencies, axial, tangential, and oblique room modes, and modal spacing for home theaters and recording studios.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://pitchdetectors.com/#website",
+            "name": "Pitch Detectors",
+            "url": "https://pitchdetectors.com/"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://pitchdetectors.com/speaker-tools/room-modes-calculator/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What are room modes and why do they cause bass problems?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Room modes are natural resonant standing waves that occur in enclosed spaces when the acoustic wavelength matches the room's boundary dimensions. At modal frequencies, reflected waves interfere constructively and destructively, creating permanent physical locations of extreme pressure buildup (+10 dB to +15 dB peaks) and complete sound cancellation (nulls of -20 dB to -35 dB) across the bass spectrum."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why are axial modes more acoustically severe than tangential or oblique modes?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Axial modes reflect strictly back and forth between two parallel boundary surfaces, suffering only two boundary reflections per cycle and retaining 100% of their acoustic energy. Tangential modes reflect off four surfaces (losing energy twice as fast with 50% relative strength), and oblique modes reflect off all six surfaces (losing energy four times as fast with 25% relative strength). As a result, axial modes dominate the audible boomy peaks and nulls in any room."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why should a listener never sit in the exact center (50% length or width) of a room?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The exact geometric midpoint of any room dimension is an acoustic pressure null (zero pressure node) for all odd-harmonic standing wave modes (the 1st fundamental mode n=1, 3rd harmonic n=3, 5th harmonic n=5). Sitting in the center causes the fundamental bass note to completely disappear from the listening position, resulting in weak, thin, and anemic sound."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the Bonello criterion in room mode evaluation?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Bonello criterion is an acoustic quality benchmark stating that when room modes are grouped into consecutive one-third octave bands, the number of modes in each band must increase monotonically (or stay equal) as frequency increases, and there should never be multiple identical modes (degeneracy) in the same band. If a band has fewer modes than the preceding lower band, acoustic coloration will be clearly audible."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does acoustic damping and bass trapping alter room mode decay?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Bass traps absorb acoustic kinetic or potential energy, lowering the quality factor (Q) of modal resonances. A high-Q room mode rings for hundreds of milliseconds after the note stops, muddying the rhythm. Installing dense corner bass traps broadens the resonance bandwidth, reduces peak amplitude, and drastically speeds up modal decay time."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can multiple subwoofers smooth out room mode peaks and nulls?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Research by Earl Geddes and Floyd Toole demonstrated that placing multiple subwoofers at asymmetrical room locations (such as opposing mid-walls or corners) excites distinct sets of room modes with opposing phase relationships. The acoustic outputs interleave and smooth out the standing wave pressure landscape, eliminating deep seat-to-seat nulls."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -37,6 +109,255 @@
     <div class="container-fluid py-4">
         <div class="row justify-content-around">
 
+            <!-- Main Content (col-lg-9 col-md-8) -->
+            <div class="col-lg-9 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Room Modes Calculator</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-soundwave me-2"></i>Room Mode Calculator</h1>
+                        <p>Calculate 3-dimensional axial, tangential, and oblique room mode resonances. Identify low-frequency standing wave frequencies, modal clustering, and pressure nodes for studio and home theater optimization.</p>
+                    </div>
+
+                    <!-- Inputs -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold">Length L (meters):</label>
+                            <input type="number" id="L" class="form-control" value="5" min="1" max="50" step="0.1" oninput="calculateModes()">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold">Width W (meters):</label>
+                            <input type="number" id="W" class="form-control" value="4" min="1" max="50" step="0.1" oninput="calculateModes()">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold">Height H (meters):</label>
+                            <input type="number" id="H" class="form-control" value="3" min="1" max="20" step="0.1" oninput="calculateModes()">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold">Upper Limit (Hz):</label>
+                            <input type="number" id="maxF" class="form-control" value="300" min="50" max="1000" step="10" oninput="calculateModes()">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg w-100 mb-4" onclick="calculateModes()">
+                        <i class="bi bi-cpu me-2"></i>Recalculate Room Modes
+                    </button>
+
+                    <!-- SUMMARY BOXES -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="result-box h-100 p-3">
+                                <h3 class="fs-5 text-teal mb-2"><i class="bi bi-arrow-down-up me-1"></i>Axial Modes (100% Energy)</h3>
+                                <div id="axialBox" class="fs-6 font-monospace lh-lg"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="result-box h-100 p-3">
+                                <h3 class="fs-5 text-teal mb-2"><i class="bi bi-arrows-collapse me-1"></i>Tangential Modes (50% Energy)</h3>
+                                <div id="tangentialBox" class="fs-6 font-monospace lh-lg"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="result-box h-100 p-3">
+                                <h3 class="fs-5 text-teal mb-2"><i class="bi bi-box me-1"></i>Oblique Modes (25% Energy)</h3>
+                                <div id="obliqueBox" class="fs-6 font-monospace lh-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FULL TABLE -->
+                    <div class="result-box mt-4">
+                        <h3 class="mb-3">Sorted Modal Distribution Spectrum (Lowest to Highest)</h3>
+                        <div class="table-responsive" style="max-height: 380px; overflow-y: auto;">
+                            <div id="modeTable"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Technical Guide -->
+                <div class="card border-0 shadow-sm mt-4 p-4">
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-wave-square text-teal me-2"></i>The Physics and Mathematics of Standing Wave Room Modes</h2>
+                    <p class="text-secondary">
+                        In any enclosed rectangular room, sound waves radiated by a loudspeaker reflect repeatedly between opposing rigid boundary surfaces (drywall, concrete, glass). When the distance between surfaces equals an integer multiple of half the acoustic wavelength ($lambda / 2$), the incident and reflected waves lock into an acoustic <strong>standing wave</strong> known as a <strong>room mode</strong>.
+                    </p>
+                    <p class="text-secondary">
+                        Standing waves do not travel through space; instead, they create stationary geographical zones of maximum acoustic pressure (antinodes) and zero acoustic pressure (nodes or nulls). In untreated rooms, room modes cause severe response irregularities of <strong>&plusmn;15 dB to &plusmn;30 dB</strong> across the critical sub-bass and mid-bass region (20 Hz to 300 Hz).
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">The Rayleigh Wave Formulation</h3>
+                    <p class="text-secondary">
+                        The resonance frequencies of all acoustic modes inside a rectangular room with rigid boundaries are governed by Lord Rayleigh's 3D wave equation:
+                    </p>
+                    <div class="p-3 bg-light rounded border text-center my-3">
+                        <span class="fs-5 text-dark font-monospace">$$f(n, m, p) = rac{c}{2} sqrt{left(rac{n}{L}ight)^2 + left(rac{m}{W}ight)^2 + left(rac{p}{H}ight)^2} quad [	ext{Hz}]$$</span>
+                        <div class="small text-muted mt-2">Where $c = 343,	ext{m/s}$ (speed of sound in air at 20&deg;C), $L, W, H$ are room length, width, and height in meters, and $n, m, p$ are non-negative mode harmonic integers ($0, 1, 2, 3dots$).</div>
+                    </div>
+
+                    <div class="table-responsive my-3">
+                        <table class="table table-bordered table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Mode Classification</th>
+                                    <th>Harmonic Indices</th>
+                                    <th>Reflecting Surfaces</th>
+                                    <th>Acoustic Energy & Impact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Axial Modes</strong></td>
+                                    <td>Only one index is non-zero (e.g. $1,0,0$ or $0,2,0$)</td>
+                                    <td>2 opposing parallel boundaries</td>
+                                    <td><strong>100% relative energy</strong>. Experience minimal boundary absorption per cycle. These cause the most severe bass peaks and complete nulls.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tangential Modes</strong></td>
+                                    <td>Two indices are non-zero (e.g. $1,1,0$ or $2,0,1$)</td>
+                                    <td>4 boundary surfaces</td>
+                                    <td><strong>50% relative energy (-3 dB)</strong>. Travel diagonally around the perimeter of the room. Moderate decay times.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Oblique Modes</strong></td>
+                                    <td>All three indices non-zero (e.g. $1,1,1$ or $2,1,1$)</td>
+                                    <td>All 6 boundary surfaces (corners)</td>
+                                    <td><strong>25% relative energy (-6 dB)</strong>. Damped rapidly by multi-surface friction. Minor influence on perceived frequency balance.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">Pressure Antinodes vs. Velocity Nodes: Where to Treat</h3>
+                    <p class="text-secondary">
+                        To treat room modes effectively, acousticians distinguish between <strong>sound pressure</strong> and <strong>particle velocity</strong>:
+                    </p>
+                    <ul class="text-secondary">
+                        <li class="mb-2"><strong>At Rigid Room Boundaries (Walls & Corners):</strong> Acoustic particle velocity is forced to zero ($u = 0$) because air cannot move through a solid surface. Consequently, kinetic energy converts entirely into potential energy, causing <strong>sound pressure to peak at maximum (+12 dB to +18 dB)</strong>. Because all axial, tangential, and oblique modes terminate at tri-hedral corners, <strong>corners are the most acoustically potent location for bass traps</strong>.</li>
+                        <li class="mb-2"><strong>At Quarter-Wavelength Distance ($lambda / 4$):</strong> Moving outward from a boundary wall, sound pressure drops to zero while particle velocity reaches its absolute maximum. Porous velocity absorbers (fiberglass, mineral wool) rely on air friction and are completely ineffective flush on a wall at low frequencies; they must be mounted with an air gap or built deep enough to reach the $lambda / 4$ velocity maximum.</li>
+                    </ul>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">The Center-Room Null Phenomenon</h3>
+                    <p class="text-secondary">
+                        For any odd-numbered axial mode ($n = 1, 3, 5$), the physical center of the room dimension ($x = L / 2$) corresponds precisely to a <strong>pressure zero-crossing (null)</strong>. If a studio mixing desk or home theater seating position is placed at exactly 50% of room length:
+                    </p>
+                    <div class="p-3 bg-light rounded border border-warning text-dark my-3">
+                        <span class="fw-bold"><i class="bi bi-exclamation-triangle text-warning me-2"></i>Critical Listener Placement Rule:</span> Sitting at the exact 50% length or width mark places your ears directly in the cancellation null of the fundamental room mode ($f_1 = c / 2L$). The deepest kick drum punch and bass guitar notes will vanish completely. <strong>Always position the listening chair at 38% or 62% of room length (the 38% rule) to sit in a balanced acoustic pressure gradient.</strong>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">The Bonello Criterion for Modal Spacing</h3>
+                    <p class="text-secondary">
+                        Acoustician Oscar Bonello established an objective mathematical standard for evaluating small room acoustic performance. When room modes are sorted into consecutive 1/3-octave frequency bands:
+                    </p>
+                    <ol class="text-secondary">
+                        <li class="mb-2">The number of modes per 1/3-octave band must increase monotonically as frequency rises (or at least remain equal to the previous band).</li>
+                        <li class="mb-2">No individual 1/3-octave band should have identical coincident modes (degenerate modes) spaced within 1 Hz of each other unless the band already contains 5 or more distinct modes.</li>
+                    </ol>
+                    <p class="text-secondary">
+                        A room that satisfies the Bonello criterion exhibits smooth, punchy bass without single-note ringing or drone resonances.
+                    </p>
+                </div>
+
+                <!-- Structured FAQ Accordion -->
+                <div class="card border-0 shadow-sm mt-4 p-4">
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently Asked Questions</h2>
+                    <div class="accordion" id="roomModeFAQ">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    What are room modes and why do they cause bass problems?
+                                </button>
+                            </h3>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#roomModeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    Room modes are natural resonant standing waves that occur in enclosed spaces when the acoustic wavelength matches the room's boundary dimensions. At modal frequencies, reflected waves interfere constructively and destructively, creating permanent physical locations of extreme pressure buildup (+10 dB to +15 dB peaks) and complete sound cancellation (nulls of -20 dB to -35 dB) across the bass spectrum.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Why are axial modes more acoustically severe than tangential or oblique modes?
+                                </button>
+                            </h3>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#roomModeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    Axial modes reflect strictly back and forth between two parallel boundary surfaces, suffering only two boundary reflections per cycle and retaining 100% of their acoustic energy. Tangential modes reflect off four surfaces (losing energy twice as fast with 50% relative strength), and oblique modes reflect off all six surfaces (losing energy four times as fast with 25% relative strength). As a result, axial modes dominate the audible boomy peaks and nulls in any room.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Why should a listener never sit in the exact center (50% length or width) of a room?
+                                </button>
+                            </h3>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#roomModeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    The exact geometric midpoint of any room dimension is an acoustic pressure null (zero pressure node) for all odd-harmonic standing wave modes (the 1st fundamental mode $n=1$, 3rd harmonic $n=3$, 5th harmonic $n=5$). Sitting in the center causes the fundamental bass note to completely disappear from the listening position, resulting in weak, thin, and anemic sound.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    What is the Bonello criterion in room mode evaluation?
+                                </button>
+                            </h3>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#roomModeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    The Bonello criterion is an acoustic quality benchmark stating that when room modes are grouped into consecutive one-third octave bands, the number of modes in each band must increase monotonically (or stay equal) as frequency increases, and there should never be multiple identical modes (degeneracy) in the same band. If a band has fewer modes than the preceding lower band, acoustic coloration will be clearly audible.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    How does acoustic damping and bass trapping alter room mode decay?
+                                </button>
+                            </h3>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#roomModeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    Bass traps absorb acoustic kinetic or potential energy, lowering the quality factor (Q) of modal resonances. A high-Q room mode rings for hundreds of milliseconds after the note stops, muddying the rhythm. Installing dense corner bass traps broadens the resonance bandwidth, reduces peak amplitude, and drastically speeds up modal decay time.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                    Can multiple subwoofers smooth out room mode peaks and nulls?
+                                </button>
+                            </h3>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#roomModeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    Yes. Research by Earl Geddes and Floyd Toole demonstrated that placing multiple subwoofers at asymmetrical room locations (such as opposing mid-walls or corners) excites distinct sets of room modes with opposing phase relationships. The acoustic outputs interleave and smooth out the standing wave pressure landscape, eliminating deep seat-to-seat nulls.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar (col-lg-3 col-md-4) -->
             <div class="col-lg-3 col-md-4">
                 <div class="tools-sidebar">
                     <div class="sidebar-search mb-4">
@@ -58,508 +379,22 @@
                                         Impedance Calculator</a></li>
                                 <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
                                         Amplifier Power</a></li>
-                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i
-                                            class="bi bi-rulers"></i>
-                                        Sound Distance Drop</a></li>
-                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i
-                                            class="bi bi-arrows-move"></i>
+                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i>
+                                        Room Acoustics</a></li>
+                                <li><a href="/speaker-tools/room-modes-calculator/" class="text-teal"><i class="bi bi-soundwave"></i>
+                                        Room Modes</a></li>
+                                <li><a href="/speaker-tools/room-volume-calculator/"><i class="bi bi-box-arrow-in-up-right"></i>
+                                        Room Volume</a></li>
+                                <li><a href="/speaker-tools/speaker-placement-calculator/"><i class="bi bi-arrows-move"></i>
                                         Speaker Placement</a></li>
-                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i> Room
-                                        Acoustics</a></li>
-                                <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
-                                        Ported Enclosure</a></li>
-                                <li><a href="/speaker-tools/sealed-box-calculator/"><i class="bi bi-box-seam"></i>
-                                        Sealed Box</a></li>
-                                <li><a href="/speaker-tools/crossover-frequency-calculator/"><i
-                                            class="bi bi-filter"></i>
-                                        Crossover Frequency</a></li>
+                                <li><a href="/speaker-tools/sound-distance-drop-calculator/"><i class="bi bi-rulers"></i>
+                                        Sound Distance Drop</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-8 col-md-9">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/speaker-tools/">Speaker Tools</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Room Modes Calculator</li>
-                    </ol>
-                </nav>
-                <div class="tool-container">
-
-                    <div class="tool-title">
-                        <h1><i class="bi bi-soundwave me-2"></i>Room Mode Calculator (Pro)</h1>
-                        <p>Calculate axial, tangential, and oblique room modes for accurate acoustic analysis and
-                            speaker placement optimization.</p>
-                    </div>
-
-                    <!-- Inputs -->
-                    <div class="row mb-4">
-                        <div class="col-md-3">
-                            <label>Length (m)</label>
-                            <input type="number" id="L" class="form-control" value="5">
-                        </div>
-                        <div class="col-md-3">
-                            <label>Width (m)</label>
-                            <input type="number" id="W" class="form-control" value="4">
-                        </div>
-                        <div class="col-md-3">
-                            <label>Height (m)</label>
-                            <input type="number" id="H" class="form-control" value="3">
-                        </div>
-                        <div class="col-md-3">
-                            <label>Max Frequency (Hz)</label>
-                            <input type="number" id="maxF" class="form-control" value="300">
-                        </div>
-                    </div>
-
-                    <button class="btn btn-primary btn-lg w-100" onclick="calculateModes()">
-                        Calculate Room Modes
-                    </button>
-                    <!-- SUMMARY BOXES -->
-                    <div class="row mt-4">
-
-                        <div class="col-md-4">
-                            <div class="result-box">
-                                <h3>↓ Axial Modes</h3>
-                                <div id="axialBox"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="result-box">
-                                <h3>↔ Tangential Modes</h3>
-                                <div id="tangentialBox"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="result-box">
-                                <h3>⬛ Oblique Modes</h3>
-                                <div id="obliqueBox"></div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- FULL TABLE -->
-                    <div class="result-box mt-4">
-                        <h3>All Room Modes (Detailed)</h3>
-                        <div id="modeTable"></div>
-                    </div>
-
-
-                    <!-- HOW TOOL WORKS -->
-                    <div class="tool-container mt-4">
-                        <div class="tool-section">
-                            <h2 class="text-mid mb-4"><i class="bi bi-info-circle me-2"></i>How to Use the Room Mode
-                                Calculator</h2>
-
-                            <p>This room mode calculator identifies standing wave frequencies based on room dimensions.
-                                It calculates axial, tangential, and oblique modes using standard acoustic formulas and
-                                helps detect bass buildup, nulls, and frequency imbalance in enclosed spaces.</p>
-
-                            <ol>
-                                <li>Enter room length, width, and height in meters or feet.</li>
-                                <li>Select the frequency range (typically up to 300 Hz).</li>
-                                <li>Run the calculation to generate room mode frequencies.</li>
-                                <li>Analyze spacing, clustering, and resonance peaks.</li>
-                                <li>Adjust speaker placement or acoustic treatment accordingly.</li>
-                            </ol>
-
-                            <h5 class="text-teal mt-3">Formula Used:</h5>
-                            <ul>
-                                <li>f = (c / 2) × √[(n/L)² + (m/W)² + (p/H)²]</li>
-                                <li>c = 343 m/s (speed of sound)</li>
-                                <li>L, W, H = room dimensions</li>
-                                <li>n, m, p = mode indices</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- EXPANDED CONTENT -->
-                    <div class="tool-container">
-
-                        <section class="container my-5">
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>What is a room mode calculator?</h2>
-                                    <p>A room mode calculator is an acoustic tool that calculates resonant frequencies
-                                        caused by sound reflections between room boundaries. It identifies standing
-                                        waves that affect bass response, frequency balance, and listening accuracy in
-                                        enclosed spaces.</p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>How does a room mode calculator work?</h2>
-                                    <p>The calculator uses the standard room mode formula based on the speed of sound
-                                        and room dimensions. It computes axial, tangential, and oblique modes by
-                                        analyzing how sound waves interact with room surfaces and form resonance
-                                        patterns.</p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>What are axial, tangential, and oblique room modes?</h2>
-                                    <p>Axial modes occur between two parallel surfaces and dominate low frequencies.
-                                        Tangential modes involve four surfaces, while oblique modes involve all six
-                                        surfaces. Axial modes have the highest amplitude and strongest acoustic impact.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>How to measure room modes in real conditions?</h2>
-                                    <p>Room modes are measured using measurement microphones, sine sweeps, and analysis
-                                        tools like :contentReference[oaicite:0]{index=0}. These measurements validate
-                                        theoretical frequencies and reveal actual acoustic behavior.</p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>What is the room mode calculation formula?</h2>
-                                    <p>The formula f = (c / 2) × √[(n/L)² + (m/W)² + (p/H)²] calculates frequency
-                                        distribution. It is used in tools like :contentReference[oaicite:1]{index=1} and
-                                        :contentReference[oaicite:2]{index=2}.</p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>What happens in a 3×3 room size?</h2>
-                                    <p>A 3×3 room creates overlapping axial modes because length and width are equal.
-                                        This causes frequency stacking, resulting in strong resonances and uneven bass
-                                        distribution, which requires acoustic treatment.</p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>What is the best room mode calculator?</h2>
-                                    <p>The best room mode calculator provides full 3D mode analysis, sorted frequencies,
-                                        and clear visualization. Common tools include
-                                        :contentReference[oaicite:3]{index=3}, :contentReference[oaicite:4]{index=4},
-                                        and :contentReference[oaicite:5]{index=5}.</p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>Can a room mode calculator help speaker placement?</h2>
-                                    <p>Yes. It identifies problematic frequencies and helps position speakers and
-                                        subwoofers away from modal peaks and nulls. This improves bass response and
-                                        overall system accuracy.</p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>What frequency range should be analyzed?</h2>
-                                    <p>Room modes primarily affect frequencies between 20 Hz and 300 Hz. Below this
-                                        range, wavelengths are large and reflections dominate. Above this range, sound
-                                        behaves more diffusely.</p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>Can this tool work for non-rectangular rooms?</h2>
-                                    <p>Most room mode calculators assume rectangular geometry. For irregular rooms or
-                                        vaulted ceilings, results are approximate and may require advanced simulation
-                                        tools for accurate modeling.</p>
-                                </div>
-                            </div>
-
-                            <!-- Section -->
-                            <div class="row mb-4">
-                                <div class="col-12">
-                                    <h2>What are the limitations of a room mode calculator?</h2>
-                                    <p>This tool does not include absorption, diffusion, furniture effects, or RT60
-                                        decay. It provides theoretical resonance frequencies, not full acoustic
-                                        performance analysis.</p>
-                                </div>
-                            </div>
-
-                        </section>
-
-                    </div>
-
-                    <!-- WHO CAN USE -->
-                    <div class="tool-container mt-4">
-                        <div class="tool-section">
-                            <h2 class="text-mid mb-4"><i class="bi bi-person-lines-fill me-2"></i>Who Can Use This
-                                Calculator</h2>
-                            <ul>
-                                <li>Audio engineers optimizing studio acoustics.</li>
-                                <li>Home theater users improving bass response.</li>
-                                <li>Hi-Fi enthusiasts refining speaker placement.</li>
-                                <li>Acoustic designers planning room treatment.</li>
-                                <li>Music producers analyzing low-frequency issues.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- WHERE TO USE -->
-                    <div class="tool-container mt-4">
-                        <div class="tool-section">
-                            <h2 class="text-mid mb-4"><i class="bi bi-geo-alt-fill me-2"></i>Where to Use</h2>
-                            <ul>
-                                <li>Home studios and listening rooms.</li>
-                                <li>Professional recording studios.</li>
-                                <li>Home theater environments.</li>
-                                <li>Broadcast and mixing rooms.</li>
-                                <li>Acoustic testing spaces.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tool-container mt-4">
-                        <div class="tool-section">
-                            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked
-                                Questions</h2>
-
-                            <div class="accordion" id="roomFaq">
-
-                                <!-- FAQ 1 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq1">
-                                            What is a room mode calculator?
-                                        </button>
-                                    </h2>
-                                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            A room mode calculator is an acoustic tool that calculates standing wave
-                                            frequencies based on room dimensions. It identifies axial, tangential, and
-                                            oblique modes affecting bass response, helping optimize speaker placement
-                                            and acoustic treatment in rooms.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 2 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq2">
-                                            How to calculate room modes?
-                                        </button>
-                                    </h2>
-                                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            Room modes are calculated using the formula f = (c / 2) × √[(n/L)² + (m/W)²
-                                            + (p/H)²]. A room mode calculator online automates this process for feet or
-                                            meters and provides frequency distribution results instantly.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 3 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq3">
-                                            Why are room modes important in acoustics?
-                                        </button>
-                                    </h2>
-                                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            Room modes create peaks and nulls in low-frequency response between 20 Hz
-                                            and 300 Hz. These standing waves affect sound clarity, bass accuracy, and
-                                            listening position, making room mode analysis essential for studio, home
-                                            theater, and hi-fi setups.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 4 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq4">
-                                            What is the best room size for acoustics?
-                                        </button>
-                                    </h2>
-                                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            The best room size avoids equal dimensions. Rectangular ratios reduce room
-                                            mode clustering, while square rooms like 3x3 or 4x4 create overlapping
-                                            frequencies. A room mode calculator helps evaluate ideal proportions for
-                                            balanced acoustic performance.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 5 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq5">
-                                            What is a room mode calculator for 3x3 or 4x4 rooms?
-                                        </button>
-                                    </h2>
-                                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            A room mode calculator for 3x3, 4x4, or 5x4 rooms analyzes frequency overlap
-                                            caused by equal or similar dimensions. These small room mode calculations
-                                            highlight resonance stacking, helping identify acoustic issues and necessary
-                                            bass treatment solutions.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 6 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq6">
-                                            Can I use a room mode calculator in feet or meters?
-                                        </button>
-                                    </h2>
-                                    <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            Yes, a room mode calculator supports both feet and meters. The tool converts
-                                            units internally and calculates frequencies accurately, making it suitable
-                                            for global users designing rooms, studios, or home theaters with different
-                                            measurement systems.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 7 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq7">
-                                            What is the best free room mode calculator online?
-                                        </button>
-                                    </h2>
-                                    <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            The best free room mode calculator online includes tools like AMROC, HOFA,
-                                            and Bob Golds calculators. These provide accurate axial, tangential, and
-                                            oblique mode frequencies, helping users analyze acoustic problems without
-                                            installing software.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 8 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq8">
-                                            How to fix or reduce room modes?
-                                        </button>
-                                    </h2>
-                                    <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            Room modes can be reduced using bass traps, acoustic panels, and proper
-                                            speaker placement. A room mode calculator helps locate problematic
-                                            frequencies, allowing targeted acoustic treatment to minimize standing waves
-                                            and improve low-frequency balance.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 9 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq9">
-                                            Can a room mode calculator help with speaker placement?
-                                        </button>
-                                    </h2>
-                                    <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            Yes, a room mode calculator for speaker placement identifies modal peaks and
-                                            nulls. This helps position speakers and subwoofers away from problematic
-                                            zones, improving bass accuracy, stereo imaging, and overall sound
-                                            performance in listening environments.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 10 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq10">
-                                            What is the difference between room mode and room acoustics calculator?
-                                        </button>
-                                    </h2>
-                                    <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            A room mode calculator focuses on resonant frequencies and standing waves,
-                                            while a room acoustics calculator includes additional factors like RT60,
-                                            absorption coefficients, and reflections. Both tools are used together for
-                                            complete acoustic analysis and treatment planning.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 11 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq11">
-                                            What frequency range should be analyzed for room modes?
-                                        </button>
-                                    </h2>
-                                    <div id="faq11" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            Room modes mainly affect frequencies between 20 Hz and 300 Hz. Within this
-                                            range, wavelengths interact with room boundaries, creating standing waves. A
-                                            room mode frequency calculator helps identify problematic resonances in this
-                                            critical bass region.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- FAQ 12 -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#faq12">
-                                            Can room mode calculators work for small or irregular rooms?
-                                        </button>
-                                    </h2>
-                                    <div id="faq12" class="accordion-collapse collapse" data-bs-parent="#roomFaq">
-                                        <div class="accordion-body">
-                                            Room mode calculators work best for rectangular rooms. For small rooms or
-                                            irregular shapes like angled walls or vaulted ceilings, results are
-                                            approximate. Advanced acoustic simulation tools are required for precise
-                                            modeling in complex environments.
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
         </div>
     </div>
 
@@ -567,16 +402,16 @@
 
     <script src="/assets/bootstrap5.js" defer></script>
     <script src="/assets/tools.js" defer></script>
+
     <!-- tool js  -->
     <script>
         function calculateModes() {
-
             const c = 343;
 
-            let L = parseFloat(document.getElementById("L").value);
-            let W = parseFloat(document.getElementById("W").value);
-            let H = parseFloat(document.getElementById("H").value);
-            let maxF = parseFloat(document.getElementById("maxF").value);
+            let L = parseFloat(document.getElementById("L").value) || 5;
+            let W = parseFloat(document.getElementById("W").value) || 4;
+            let H = parseFloat(document.getElementById("H").value) || 3;
+            let maxF = parseFloat(document.getElementById("maxF").value) || 300;
 
             let modes = [];
 
@@ -593,7 +428,6 @@
                         );
 
                         if (freq <= maxF) {
-
                             let type = "";
 
                             if ((n > 0 && m === 0 && p === 0) ||
@@ -613,24 +447,25 @@
                             modes.push({
                                 freq: freq,
                                 type: type,
-                                mode: `${n},${m},${p}`
+                                mode: `(${n}, ${m}, ${p})`
                             });
                         }
                     }
                 }
             }
 
-            // Sort
+            // Sort by frequency ascending
             modes.sort((a, b) => a.freq - b.freq);
 
-            // Separate types
+            // Separate types for top-5 summary
             let axial = modes.filter(m => m.type === "Axial").slice(0, 5);
             let tangential = modes.filter(m => m.type === "Tangential").slice(0, 5);
             let oblique = modes.filter(m => m.type === "Oblique").slice(0, 5);
 
             // BOX OUTPUT
             function renderBox(data) {
-                return data.map(m => `${m.freq.toFixed(1)} Hz`).join("<br>");
+                if (data.length === 0) return "<span class='text-muted'>None in range</span>";
+                return data.map(m => `${m.freq.toFixed(1)} Hz <span class='small text-muted'>${m.mode}</span>`).join("<br>");
             }
 
             document.getElementById("axialBox").innerHTML = renderBox(axial);
@@ -638,23 +473,36 @@
             document.getElementById("obliqueBox").innerHTML = renderBox(oblique);
 
             // TABLE OUTPUT
-            let table = "<table class='table table-bordered'>";
-            table += "<thead><tr><th>Frequency (Hz)</th><th>Type</th><th>(n,m,p)</th></tr></thead><tbody>";
+            let table = "<table class='table table-bordered table-striped text-center align-middle bg-white mb-0'>";
+            table += "<thead class='table-light'><tr><th>Frequency (Hz)</th><th>Mode Type</th><th>Harmonic Indices (n, m, p)</th></tr></thead><tbody>";
 
             modes.forEach(m => {
+                let badgeClass = m.type === "Axial" ? "bg-primary" : (m.type === "Tangential" ? "bg-info text-dark" : "bg-secondary");
                 table += `<tr>
-            <td>${m.freq.toFixed(2)}</td>
-            <td>${m.type}</td>
-            <td>${m.mode}</td>
-        </tr>`;
+                    <td class="fw-bold">${m.freq.toFixed(2)} Hz</td>
+                    <td><span class="badge ${badgeClass}">${m.type}</span></td>
+                    <td class="font-monospace">${m.mode}</td>
+                </tr>`;
             });
 
             table += "</tbody></table>";
-
             document.getElementById("modeTable").innerHTML = table;
         }
-    </script>
 
+        calculateModes();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../header.html").then(res => res.text()),
+                fetch("../../footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
 </body>
 
 </html>

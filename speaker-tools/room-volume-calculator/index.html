@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Volume Calculator | Pitchetectors</title>
+    <title>Room Volume Calculator | Cubic Feet, Cubic Meters & Subwoofer Sizing</title>
     <meta name="description"
-        content="Calculate your room volume for optimal subwoofer and PA system performance. Includes formulas, acoustic tips, FAQs, and semantic content for speaker setup.">
-    <meta name="keywords"
-        content="room volume calculator, subwoofer optimization, PA system, room acoustics, cubic feet, cubic meters, speaker placement, acoustic treatment, standing waves, bass traps, low-frequency management">
+        content="Calculate room volume in cubic feet and cubic meters. Determine subwoofer driver sizing, air volume displacement (Vd), pressure gain, and acoustic power requirements for home theaters and studios.">
     <link rel="canonical" href="https://pitchdetectors.com/speaker-tools/room-volume-calculator/">
 
     <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
@@ -17,6 +15,7 @@
     <link href="/assets/bootstrap5.css" rel="stylesheet">
     <link href="/assets/style.css" rel="stylesheet">
     <link href="/assets/tools.css" rel="stylesheet">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -27,6 +26,81 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
         crossorigin="anonymous"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://pitchdetectors.com/speaker-tools/room-volume-calculator/#webpage",
+          "url": "https://pitchdetectors.com/speaker-tools/room-volume-calculator/",
+          "name": "Room Volume & Subwoofer Sizing Calculator",
+          "description": "Calculate room volume in cubic feet and cubic meters to determine optimal subwoofer displacement, amplifier wattage, and acoustic room pressurization.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://pitchdetectors.com/#website",
+            "name": "Pitch Detectors",
+            "url": "https://pitchdetectors.com/"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://pitchdetectors.com/speaker-tools/room-volume-calculator/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Why is room volume (cubic feet) more important than floor area (square feet) for subwoofers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Subwoofers operate by compressing and rarefying the entire enclosed volume of air inside a room. Because bass wavelengths (e.g. 20 Hz is 56.5 feet long) are larger than the room dimensions, low frequencies pressurize the space three-dimensionally. A room with high 12-foot ceilings contains 50% more air mass to pressurize than a room with 8-foot ceilings with identical floor square footage."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is room pressurization (cabin gain) and how does volume affect it?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Room pressurization, or cabin gain, occurs below a room's lowest fundamental axial resonance (f0 = c / 2L). Below this frequency, sound stops behaving as a travelling wave and acts as an alternating hydraulic pressure vessel. Smaller rooms (<1,500 cu ft) generate strong natural cabin gain that lifts low bass by +12 dB per octave below 30 Hz, whereas large open-concept rooms (>4,000 cu ft) produce virtually zero cabin gain."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is subwoofer volume displacement (Vd) and why does it scale with room size?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Volume displacement (Vd) is the volume of air a subwoofer cone can physically sweep during one stroke, calculated as effective cone area multiplied by one-way linear excursion (Vd = Sd × Xmax). To produce reference sound pressure level (e.g. 115 dB peak) in larger rooms, a subwoofer must physically displace vastly more cubic centimeters of air to overcome acoustic dilution."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does open-concept architecture (connected hallways or kitchens) affect room volume calculations?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Low frequencies do not stop at archways or open doors. If a listening room opens into an adjoining dining room, kitchen, or staircase without solid doors, the subwoofer acoustic air mass includes all contiguous spaces. For sizing subwoofers, you must calculate the combined gross volume of all connected rooms."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why are dual or quadruple subwoofers recommended over a single larger subwoofer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "While a single large subwoofer can provide adequate total output, it can only excite room modes from one location, creating severe peaks and seat-to-seat nulls. Multiple subwoofers placed across opposing walls or corners actively cancel opposing modal resonances, providing uniform seat-to-seat bass response, higher system headroom, and reduced distortion."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What are standard industry room size classifications for home theater audio?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Industry standards classify rooms as: Small (<1,500 cubic feet / <42 m³), Medium (1,500 to 3,000 cubic feet / 42 to 85 m³), Large (3,000 to 5,000 cubic feet / 85 to 142 m³), and Extreme / Commercial (>5,000 cubic feet / >142 m³). Sizing subwoofers to match these categories ensures reaching clean reference dynamic peaks without driver clipping."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -34,7 +108,9 @@
 
     <div class="container-fluid py-4">
         <div class="row justify-content-around">
-            <div class="col-lg-7 col-md-8">
+
+            <!-- Main Content (col-lg-9 col-md-8) -->
+            <div class="col-lg-9 col-md-8">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -46,9 +122,7 @@
                 <div class="tool-container">
                     <div class="tool-title">
                         <h1><i class="bi bi-house me-2"></i>Room Volume Calculator</h1>
-                        <p>Calculate your room's volume for optimal subwoofer, PA, and acoustic performance. Includes
-                            formulas, acoustic tips, FAQs, and semantic guidance to maximize bass response and SPL
-                            efficiency.</p>
+                        <p>Calculate total enclosed acoustic room volume in cubic feet and cubic meters. Determine subwoofer driver sizing, air volume displacement ($V_d$), and low-frequency pressurization limits.</p>
                     </div>
 
                     <div class="row mb-4">
@@ -70,170 +144,196 @@
                     </div>
 
                     <div class="result-box">
-                        <h3>Room Volume</h3>
+                        <h3>Acoustic Enclosed Volume Output</h3>
                         <p class="result-value" id="roomVolume">3000 cubic feet</p>
                         <div class="row text-start mt-4">
                             <div class="col-md-6 mb-3">
-                                <strong>Volume (cubic meters):</strong><br>
-                                <span id="roomVolumeMeters" class="fs-4">85 m³</span>
+                                <strong>Metric Volume Equivalent:</strong><br>
+                                <span id="roomVolumeMeters" class="fs-4 text-teal">85.0 m³</span>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <strong>Recommended Subwoofer(s):</strong><br>
-                                <span id="subwooferRecommendation" class="fs-4">1-2 x 12"</span>
+                                <strong>Recommended Subwoofer Displacement:</strong><br>
+                                <span id="subwooferRecommendation" class="fs-4 text-teal">2 x 12"</span>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="mt-4 p-4 rounded bg-success bg-opacity-10">
-                        <h5><i class="bi bi-info-circle me-2"></i>Formulas & Acoustic Notes</h5>
-                        <ul>
-                            <li><strong>Room Volume:</strong> <code>V = L × W × H</code> (Length × Width × Height)</li>
-                            <li><strong>Cubic Meters Conversion:</strong> <code>V(m³) = V(ft³) × 0.0283168</code></li>
-                            <li><strong>Subwoofer Recommendation:</strong> 1 subwoofer per ~1500 ft³ for balanced
-                                low-frequency coverage</li>
-                            <li>Consider <em>room modes, standing waves, absorption, SPL efficiency</em> when placing
-                                subwoofers for even bass distribution</li>
-                            <li>High ceilings or irregular shapes may require multiple subwoofers or acoustic treatment
-                                (bass traps, diffusers)</li>
-                            <li>Use correct <em>speaker placement, orientation, and boundary effects</em> to avoid nulls
-                                and peaks</li>
-                        </ul>
+                <!-- Comprehensive Technical Guide -->
+                <div class="card border-0 shadow-sm mt-4 p-4">
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-box-seam text-teal me-2"></i>The Acoustic Physics of Enclosed Room Volume and Subwoofer Sizing</h2>
+                    <p class="text-secondary">
+                        In architectural electroacoustics, calculating enclosed air volume is the essential starting point for designing low-frequency sound reproduction systems. While mid and high frequencies radiate as directional sound beams that interact primarily with local wall surfaces, low-frequency sound waves (below 80 Hz) possess physical wavelengths measuring between 14 feet (at 80 Hz) and 56.5 feet (at 20 Hz).
+                    </p>
+                    <p class="text-secondary">
+                        Because these wavelengths exceed the physical dimensions of residential rooms, subwoofers do not simply radiate traveling sound rays into the room; they <strong>pneumatically compress and expand the entire air volume of the enclosed space</strong>. A room's cubic volume dictates its acoustic air compliance, its low-frequency pressurization threshold, and the physical air displacement ($V_d$) required to produce reference dynamic peaks.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">The Hydraulic Pressurization Threshold (Cabin Gain)</h3>
+                    <p class="text-secondary">
+                        Inside an enclosed room, sound radiation transitions across the fundamental axial cutoff frequency ($f_0$):
+                    </p>
+                    <div class="p-3 bg-light rounded border text-center my-3">
+                        <span class="fs-5 text-dark font-monospace">$$f_0 = rac{c}{2 cdot L_{max}} quad [	ext{Hz}]$$</span>
+                        <div class="small text-muted mt-2">Where $c approx 1125,	ext{ft/s}$ (343 m/s) is sound speed, and $L_{max}$ is the longest room dimension (typically length or corner diagonal).</div>
+                    </div>
+                    <ul class="text-secondary">
+                        <li class="mb-2"><strong>Above $f_0$ (Wave Acoustic Zone):</strong> Sound propagates as traveling waves that form room modes (standing waves) of peaks and cancellations.</li>
+                        <li class="mb-2"><strong>Below $f_0$ (Pressure Vessel Zone / Cabin Gain):</strong> Wavelengths can no longer fit inside the room. Instead of wave propagation, the subwoofer acts as an alternating hydraulic piston that pressurizes the enclosed room air as a single air spring. In rigid sealed rooms, this generates <strong>room gain rolling on at +12 dB per octave</strong> down to sub-audible frequencies. A compact subwoofer that rolls off at 12 dB/octave anechoically can achieve flat extension down to 10 Hz inside a compact room.</li>
+                    </ul>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">Subwoofer Volume Displacement Formulation ($V_d$)</h3>
+                    <p class="text-secondary">
+                        A subwoofer's ability to produce sound pressure in an enclosed space is governed directly by its <strong>linear volume displacement ($V_d$)</strong>, defined as the effective surface area of the cone ($S_d$) multiplied by its one-way linear excursion ($X_{max}$):
+                    </p>
+                    <div class="p-3 bg-light rounded border text-center my-3">
+                        <span class="fs-5 text-dark font-monospace">$$V_d = S_d cdot X_{max} quad [	ext{cm}^3 ;	ext{or}; 	ext{in}^3]$$</span>
+                    </div>
+                    <p class="text-secondary">
+                        To produce reference THX/Dolby sound pressure level ($115,	ext{dB SPL}$ peak at the listening position at 20 Hz), the required volume displacement scales directly with room cubic volume:
+                    </p>
+                    <div class="table-responsive my-3">
+                        <table class="table table-bordered table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Room Classification</th>
+                                    <th>Volume Range ($	ext{ft}^3$)</th>
+                                    <th>Metric Volume ($	ext{m}^3$)</th>
+                                    <th>Typical Subwoofer Requirement for Clean 115 dB Peaks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Small Room</strong></td>
+                                    <td>$&lt; 1,500,	ext{ft}^3$</td>
+                                    <td>$&lt; 42,	ext{m}^3$</td>
+                                    <td>One high-excursion 10" or 12" driver ($X_{max} ge 15,	ext{mm}$); strong cabin gain assistance.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Medium Room</strong></td>
+                                    <td>$1,500 - 3,000,	ext{ft}^3$</td>
+                                    <td>$42 - 85,	ext{m}^3$</td>
+                                    <td>Dual 12" subwoofers or single high-power 15" vented sub ($X_{max} ge 18,	ext{mm}$).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Large Room</strong></td>
+                                    <td>$3,000 - 5,000,	ext{ft}^3$</td>
+                                    <td>$85 - 142,	ext{m}^3$</td>
+                                    <td>Dual 15" or quad 12" subwoofers; minimal cabin gain assistance.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Extreme / Open-Concept</strong></td>
+                                    <td>$&gt; 5,000,	ext{ft}^3$</td>
+                                    <td>$&gt; 142,	ext{m}^3$</td>
+                                    <td>Dual to quad high-excursion 18" drivers; subwoofer must operate near full free-field acoustic output.</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="tool-container mt-4">
-                        <div class="tool-section">
-                            <h2 class="text-mid mb-4"><i class="bi bi-play-btn me-2"></i>How to Use</h2>
-                            <ul>
-                                <li>Measure the length, width, and height of your room in feet (or meters).</li>
-                                <li>Enter the values into the Room Volume Calculator fields.</li>
-                                <li>The tool calculates room volume in cubic feet and cubic meters automatically.</li>
-                                <li>Subwoofer recommendations are generated based on volume for optimal SPL coverage.
-                                </li>
-                                <li>Use this data to plan subwoofer placement, acoustic treatments, and PA speaker
-                                    positioning.</li>
-                            </ul>
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">The Multi-Subwoofer Advantage (Earl Geddes / Floyd Toole Method)</h3>
+                    <p class="text-secondary">
+                        In an enclosed room, a single subwoofer—regardless of price or power—creates severe spatial variations across the seating area due to destructive room mode cancellations. Acoustic research conducted by Dr. Floyd Toole and Dr. Earl Geddes demonstrated that:
+                    </p>
+                    <ul class="text-secondary">
+                        <li class="mb-2"><strong>Dual Subwoofers (Opposing Mid-Walls):</strong> Placing two subwoofers at the midpoints of opposing walls (front/back or left/right) cancels all odd-harmonic room modes across that dimension, dramatically smoothing bass across multiple seats.</li>
+                        <li class="mb-2"><strong>Four Subwoofers (Corners or Wall Centers):</strong> Quad subwoofers actively suppress all axial and tangential width and length modes, delivering uniform &plusmn;2 dB bass response across all listener seats prior to any digital EQ.</li>
+                        <li class="mb-2"><strong>Headroom &amp; Distortion:</strong> Adding a second identical subwoofer increases maximum acoustic output by <strong>+6 dB (mutual coupling)</strong> when collocated or +3 dB when distributed, halving driver excursion and dramatically reducing voice coil distortion.</li>
+                    </ul>
+                </div>
+
+                <!-- Structured FAQ Accordion -->
+                <div class="card border-0 shadow-sm mt-4 p-4">
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently Asked Questions</h2>
+                    <div class="accordion" id="roomVolumeFAQ">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Why is room volume (cubic feet) more important than floor area (square feet) for subwoofers?
+                                </button>
+                            </h3>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#roomVolumeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    Subwoofers operate by compressing and rarefying the entire enclosed volume of air inside a room. Because bass wavelengths (e.g. 20 Hz is 56.5 feet long) are larger than the room dimensions, low frequencies pressurize the space three-dimensionally. A room with high 12-foot ceilings contains 50% more air mass to pressurize than a room with 8-foot ceilings with identical floor square footage.
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="tool-container mt-4">
-                        <div class="tool-section">
-                            <h2 class="text-mid mb-4"><i class="bi bi-people me-2"></i>Who Can Use</h2>
-                            <ul>
-                                <li>Home theater enthusiasts and audiophiles.</li>
-                                <li>Professional sound engineers and PA system designers.</li>
-                                <li>Recording studio designers for subwoofer calibration.</li>
-                                <li>Musicians, DJs, and event organizers optimizing low-frequency coverage.</li>
-                                <li>Anyone looking to understand their room's acoustic properties for audio
-                                    optimization.</li>
-                            </ul>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    What is room pressurization (cabin gain) and how does volume affect it?
+                                </button>
+                            </h3>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#roomVolumeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    Room pressurization, or cabin gain, occurs below a room's lowest fundamental axial resonance ($f_0 = c / 2L$). Below this frequency, sound stops behaving as a travelling wave and acts as an alternating hydraulic pressure vessel. Smaller rooms (&lt;1,500 cu ft) generate strong natural cabin gain that lifts low bass by +12 dB per octave below 30 Hz, whereas large open-concept rooms (&gt;4,000 cu ft) produce virtually zero cabin gain.
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="tool-container mt-4">
-                        <div class="tool-section">
-                            <h2 class="text-mid mb-4"><i class="bi bi-geo-alt me-2"></i>Where to Use</h2>
-                            <ul>
-                                <li>Home theaters, living rooms, and media rooms for subwoofer calibration.</li>
-                                <li>Recording studios and control rooms for accurate low-frequency monitoring.</li>
-                                <li>Live venues, concert halls, and PA setups for even sound coverage.</li>
-                                <li>Rehearsal spaces, clubs, and event spaces requiring bass optimization.</li>
-                                <li>Any room or hall where accurate low-frequency response is critical.</li>
-                            </ul>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    What is subwoofer volume displacement (Vd) and why does it scale with room size?
+                                </button>
+                            </h3>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#roomVolumeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    Volume displacement ($V_d$) is the volume of air a subwoofer cone can physically sweep during one stroke, calculated as effective cone area multiplied by one-way linear excursion ($V_d = S_d 	imes X_{max}$). To produce reference sound pressure level (e.g. 115 dB peak) in larger rooms, a subwoofer must physically displace vastly more cubic centimeters of air to overcome acoustic dilution.
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="tool-container mt-4">
-                        <div class="tool-section">
-                            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>FAQs</h2>
-                            <div class="accordion" id="faqAccordion">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="faq1">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false"
-                                            aria-controls="collapse1">
-                                            Why is calculating room volume important for subwoofers?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Room volume determines low-frequency response, SPL efficiency, and bass
-                                            management. Accurate volume ensures subwoofers are matched to the space for
-                                            optimal performance.
-                                        </div>
-                                    </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    How does open-concept architecture affect room volume calculations?
+                                </button>
+                            </h3>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#roomVolumeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    Low frequencies do not stop at archways or open doors. If a listening room opens into an adjoining dining room, kitchen, or staircase without solid doors, the subwoofer acoustic air mass includes all contiguous spaces. For sizing subwoofers, you must calculate the combined gross volume of all connected rooms.
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="faq2">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false"
-                                            aria-controls="collapse2">
-                                            Can irregular-shaped rooms affect subwoofer performance?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Yes. Irregular shapes can cause uneven bass distribution and standing waves.
-                                            Multiple subwoofers or acoustic treatment may be needed to compensate.
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    Why are dual or quadruple subwoofers recommended over a single larger subwoofer?
+                                </button>
+                            </h3>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#roomVolumeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    While a single large subwoofer can provide adequate total output, it can only excite room modes from one location, creating severe peaks and seat-to-seat nulls. Multiple subwoofers placed across opposing walls or corners actively cancel opposing modal resonances, providing uniform seat-to-seat bass response, higher system headroom, and reduced distortion.
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="faq3">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false"
-                                            aria-controls="collapse3">
-                                            How do I convert cubic feet to cubic meters?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Use the formula: <code>Volume (m³) = Volume (ft³) × 0.0283168</code>. This
-                                            allows compatibility with metric acoustic data.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="faq4">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false"
-                                            aria-controls="collapse4">
-                                            How many subwoofers do I need for a given room?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            As a rule of thumb, 1 subwoofer per ~1500 ft³ provides even bass coverage.
-                                            Larger rooms may require more to avoid dead spots.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="faq5">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false"
-                                            aria-controls="collapse5">
-                                            Does room volume affect PA system setup?
-                                        </button>
-                                    </h2>
-                                    <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Yes, accurate room volume ensures proper speaker placement, coverage, and
-                                            avoids excessive reflections or underpowered zones for PA setups.
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                    What are standard industry room size classifications for home theater audio?
+                                </button>
+                            </h3>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#roomVolumeFAQ">
+                                <div class="accordion-body text-secondary">
+                                    Industry standards classify rooms as: Small (&lt;1,500 cubic feet / &lt;42 m³), Medium (1,500 to 3,000 cubic feet / 42 to 85 m³), Large (3,000 to 5,000 cubic feet / 85 to 142 m³), and Extreme / Commercial (&gt;5,000 cubic feet / &gt;142 m³). Sizing subwoofers to match these categories ensures reaching clean reference dynamic peaks without driver clipping.
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
+            <!-- Sidebar (col-lg-3 col-md-4) -->
             <div class="col-lg-3 col-md-4">
                 <div class="tools-sidebar">
                     <div class="sidebar-search mb-4">
@@ -253,8 +353,14 @@
                                             class="bi bi-diagram-3"></i> Impedance Calculator</a></li>
                                 <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
                                         Amplifier Power</a></li>
-                                <li><a href="/speaker-tools/room-volume-calculator/"><i class="bi bi-house"></i> Room
-                                        Volume</a></li>
+                                <li><a href="/speaker-tools/room-volume-calculator/" class="text-teal"><i class="bi bi-box-arrow-in-up-right"></i>
+                                        Room Volume</a></li>
+                                <li><a href="/speaker-tools/room-acoustics-calculator/"><i class="bi bi-house"></i>
+                                        Room Acoustics</a></li>
+                                <li><a href="/speaker-tools/room-modes-calculator/"><i class="bi bi-soundwave"></i>
+                                        Room Modes</a></li>
+                                <li><a href="/speaker-tools/subwoofer-enclosure-tuning-calculator/"><i class="bi bi-sliders"></i>
+                                        Subwoofer Tuning</a></li>
                             </ul>
                         </div>
                     </div>
