@@ -4,41 +4,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Pitch Detector – Real-Time Voice Pitch & Note Finder (Mic-Based)</title>
-  <meta name="description" content="Use this free Pitch Detector to analyze your voice in real time using a microphone. See your pitch note, frequency (Hz), and tuning accuracy instantly based on A4 = 440 Hz.
-" />
-
-  <meta name="keywords"
-    content="pitch detector online, detect pitch, musical pitch finder, note frequency detector, real time pitch analysis" />
-
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Pitch Detector – Real-Time Voice Pitch & Musical Note Finder</title>
+  <meta name="description"
+    content="Free online real-time pitch detector. Analyze your singing voice or instrument pitch via microphone. Detect fundamental frequency (Hz), musical note, octave, and cent tuning accuracy instantly based on A4 = 440 Hz.">
   <link rel="canonical" href="https://pitchdetectors.com/pitch-detector-tools/pitch-detector/">
-
-
-  <!-- og -->
-  <meta property="og:title" content="Pitch Detector – Real-Time Voice Pitch & Note Finder">
-  <meta property="og:description"
-    content="Analyze your voice pitch in real time using a microphone. View musical note, frequency (Hz), and tuning accuracy instantly with standard A4 = 440 Hz reference.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://pitchdetectors.com/pitch-detector-tools/pitch-detector/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Pitch Detector – Real-Time Voice Pitch Analyzer">
-  <meta name="twitter:description"
-    content="Check your vocal pitch instantly with a microphone. See musical note, frequency (Hz), and tuning accuracy in real time.">
-
-
-
-
-
   <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Pitch Detector – Real-Time Voice Pitch & Musical Note Finder">
+  <meta property="og:description"
+    content="Analyze vocal pitch and instrumental notes in real time using your microphone. View fundamental frequency, note name, and cent accuracy instantly.">
+  <meta property="og:url" content="https://pitchdetectors.com/pitch-detector-tools/pitch-detector/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/imgs/logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pitch Detector – Real-Time Voice & Note Finder">
+  <meta name="twitter:description" content="Check your singing pitch and instrument tuning in real time using your microphone.">
+  <meta name="twitter:image" content="/assets/imgs/logo.png">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="/assets/bootstrap5.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
   <link href="/assets/tools.css" rel="stylesheet">
-
-
-
+  <meta name="author" content="Pitch Detectors">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
@@ -46,244 +36,277 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-NCHP45VYJ2');
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
-    crossorigin="anonymous"></script>
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does this real-time pitch detector analyze sound?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The pitch detector processes microphone audio in real time using the Web Audio API. It captures waveform buffers and runs a normalized autocorrelation algorithm to detect the fundamental period of the sound wave, converting the period into fundamental frequency (Hz), closest musical note, and cent deviation from equal temperament standard A4 = 440 Hz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between pitch and frequency?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Frequency is an objective physical measurement of acoustic vibrations per second, expressed in Hertz (Hz). Pitch is the subjective psychoacoustic perception of frequency by the human auditory system. For example, a vibration of 440.00 Hz is perceived by human hearing as the musical note A in octave 4 (A4)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do 'cents' mean on the tuning meter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In music acoustics, a cent is a logarithmic unit of pitch measurement where one semitone (the distance between adjacent piano keys) equals exactly 100 cents. A reading of 0 cents means your pitch is perfectly in tune with equal temperament. +15 cents means sharp (slightly high), while -15 cents means flat (slightly low). Professional vocalists generally maintain pitch within ±5 to 10 cents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What vocal frequency range can this tool detect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This pitch detector tracks fundamental frequencies from approximately 50 Hz (sub-bass notes below low C2) up to 2000 Hz (soprano high C6 and whistle register). This comfortably encompasses all six standard classical vocal classifications: Bass, Baritone, Tenor, Contralto, Mezzo-Soprano, and Soprano."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is A4 = 440 Hz the default concert tuning standard?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A4 = 440 Hz was internationally adopted by the International Organization for Standardization (ISO 16) in 1955 as the universal concert pitch standard. It ensures that pianos, orchestral instruments, synthesizers, and digital audio workstations worldwide are calibrated to the exact same pitch reference."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my microphone audio recorded or sent to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All microphone audio capture, fast mathematical autocorrelation, and display rendering occur 100% locally inside your web browser via the Web Audio API. No audio streams or recordings are ever saved, stored, or transmitted to any external server."
+        }
+      }
+    ]
+  }
+  </script>
 
   <style>
     .subtitle {
       color: #718096;
       font-size: 16px;
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
-
     .instructions {
-      background: #f0f4ff;
-      border-left: 4px solid #667eea;
+      background: #f0fdfa;
+      border-left: 4px solid var(--text-teal);
       padding: 20px;
       border-radius: 8px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
-
     .instructions h3 {
-      color: #2d3748;
+      color: #0f766e;
       margin-bottom: 10px;
       font-size: 18px;
+      font-weight: 700;
     }
-
     .instructions ol {
       margin-left: 20px;
-      color: #4a5568;
-      line-height: 1.8;
+      color: #334155;
+      line-height: 1.7;
     }
-
     .control-panel {
       text-align: center;
-      margin: 30px 0;
+      margin: 25px 0;
     }
-
     .start-btn {
       padding: 16px 48px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: var(--text-teal);
       color: white;
       border: none;
       border-radius: 12px;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
     }
-
     .start-btn:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45);
+      background: #0f766e;
     }
-
     .start-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
     }
-
     .start-btn.active {
-      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      background: #dc2626 !important;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4) !important;
     }
-
     .display-box {
-      background: #1a202c;
+      background: #0f172a;
       border-radius: 16px;
-      padding: 40px;
-      margin: 30px 0;
+      padding: 35px;
+      margin: 25px 0;
       text-align: center;
-      min-height: 200px;
+      min-height: 190px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
-
     .note-display {
       font-size: 72px;
       font-weight: bold;
       color: #38bdf8;
-      margin-bottom: 10px;
-      text-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+      margin-bottom: 8px;
+      text-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
     }
-
     .frequency-display {
       font-size: 24px;
       color: #94a3b8;
       margin-bottom: 5px;
+      font-family: monospace;
     }
-
     .cents-display {
       font-size: 18px;
-      color: #64748b;
+      color: #cbd5e1;
+      font-weight: 600;
     }
-
     .tuning-meter {
       width: 100%;
-      max-width: 500px;
-      height: 40px;
+      max-width: 520px;
+      height: 38px;
       background: #334155;
       border-radius: 20px;
       margin: 20px auto;
       position: relative;
       overflow: hidden;
+      border: 2px solid #475569;
     }
-
     .tuning-zones {
       position: absolute;
       width: 100%;
       height: 100%;
       display: flex;
     }
-
     .zone {
       flex: 1;
       height: 100%;
     }
-
     .zone.flat {
       background: linear-gradient(90deg, #ef4444, #f59e0b);
     }
-
     .zone.intune {
       background: #10b981;
-      flex: 0.3;
+      flex: 0.35;
     }
-
     .zone.sharp {
       background: linear-gradient(90deg, #f59e0b, #ef4444);
     }
-
     .tuning-needle {
       position: absolute;
       width: 4px;
       height: 100%;
-      background: white;
+      background: #ffffff;
       left: 50%;
       transform: translateX(-50%);
-      transition: left 0.1s;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      transition: left 0.08s ease-out;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
     }
-
     .piano-keyboard {
-      background: #f7fafc;
-      padding: 30px;
+      background: #f8fafc;
+      padding: 25px;
       border-radius: 12px;
-      margin: 30px 0;
+      margin: 25px 0;
+      border: 1px solid #e2e8f0;
       overflow-x: auto;
     }
-
     .keyboard {
       display: flex;
       justify-content: center;
       position: relative;
-      height: 200px;
+      height: 190px;
       margin: 0 auto;
       max-width: 100%;
     }
-
     .white-key {
-      width: 50px;
-      height: 200px;
+      width: 48px;
+      height: 190px;
       background: white;
-      border: 2px solid #333;
+      border: 1.5px solid #334155;
       border-radius: 0 0 4px 4px;
       position: relative;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
-
     .white-key.active {
-      background: #38bdf8;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+      background: #0d9488 !important;
+      box-shadow: 0 0 20px rgba(13, 148, 136, 0.7);
     }
-
+    .white-key.active .key-label {
+      color: white !important;
+    }
     .black-key {
       width: 28px;
-      height: 120px;
-      background: #1a202c;
-      border: 2px solid #000;
+      height: 115px;
+      background: #0f172a;
+      border: 1.5px solid #000;
       border-radius: 0 0 4px 4px;
       position: absolute;
       cursor: pointer;
       z-index: 2;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
-
     .black-key.active {
-      background: #38bdf8;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+      background: #38bdf8 !important;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
     }
-
     .key-label {
       position: absolute;
-      bottom: 10px;
+      bottom: 8px;
       width: 100%;
       text-align: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: #4a5568;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
     }
-
     .black-key .key-label {
-      color: #94a3b8;
+      color: #cbd5e1;
     }
-
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin: 30px 0;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 25px 0;
     }
-
     .stat-box {
-      background: #f7fafc;
-      padding: 20px;
+      background: #f8fafc;
+      padding: 18px;
       border-radius: 12px;
       text-align: center;
-      border: 2px solid #e2e8f0;
+      border: 1px solid #e2e8f0;
     }
-
     .stat-label {
       color: #64748b;
-      font-size: 14px;
-      margin-bottom: 8px;
+      font-size: 13px;
+      margin-bottom: 6px;
       font-weight: 600;
+      text-transform: uppercase;
     }
-
     .stat-value {
-      color: #2d3748;
-      font-size: 28px;
+      color: #0f172a;
+      font-size: 26px;
       font-weight: bold;
     }
-
     .warning {
       background: #fef3c7;
       border-left: 4px solid #f59e0b;
@@ -293,37 +316,12 @@
       margin-top: 20px;
       display: none;
     }
-
     @media (max-width: 768px) {
-      .note-display {
-        font-size: 56px;
-      }
-
-      .white-key {
-        width: 40px;
-        height: 160px;
-      }
-
-      .black-key {
-        width: 28px;
-        height: 100px;
-      }
-
-      .piano-keyboard {
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .keyboard {
-        min-width: 720px;
-        /* forces scroll on small screens */
-        justify-content: flex-start;
-      }
-
-      .start-btn {
-        padding: 12px 36px;
-      }
+      .note-display { font-size: 52px; }
+      .white-key { width: 38px; height: 160px; }
+      .black-key { width: 24px; height: 95px; }
+      .keyboard { min-width: 680px; justify-content: flex-start; }
+      .start-btn { padding: 14px 32px; font-size: 16px; }
     }
   </style>
 </head>
@@ -489,352 +487,267 @@
           </div>
 
 
-          <!-- Accuracy -->
-          <div class="container my-5">
-            <div class="tool-container mb-5">
-              <h1>🎵 Pitch Detector – Real-Time Voice & Pitch Analyzer</h1>
+          <!-- COMPREHENSIVE GUIDE & REFERENCE -->
+          <div class="mt-5 pt-3">
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">Understanding Real-Time Pitch Detection: Acoustic Physics & Algorithmic Analysis</h2>
               <p>
-                This pitch detector analyzes your voice in real time using a microphone and displays the detected
-                musical note, frequency (Hz), and tuning accuracy instantly. As you sing, the tool tracks pitch changes
-                live and shows whether the note is sharp, flat, or in tune based on standard tuning (A4 = 440 Hz).
-              </p>
-            </div>
-
-
-            <div class="tool-container mb-5">
-              <h2>What is a Pitch Detector?</h2>
-              <p>
-                A pitch detector is a pitch detection tool that measures the fundamental frequency of sound produced by
-                the human voice. It converts microphone audio into frequency values (Hz) and maps them to the closest
-                musical note using standard note frequency references.
+                In musical acoustics, <strong>pitch</strong> is the perceptual attribute of sound that allows listeners to order audio on a frequency-related scale extending from low to high. While pitch is perceived subjectively by the human auditory cortex, it correlates mathematically with the <strong>fundamental frequency ($f_0$)</strong>—the rate of periodic repetition in the acoustic waveform.
               </p>
               <p>
-                This pitch detector is designed for real-time vocal analysis, not audio file uploads.
+                When a vocalist sings or an instrumentalist plays, vocal cords or vibrating strings produce complex waveforms consisting of the fundamental pitch alongside integer-multiple harmonics (overtones). The <strong>Pitch Detector</strong> isolates this periodic fundamental frequency in real time, compares it to international equal temperament standards ($A_4 = 440\text{ Hz}$), and provides instant feedback on exact musical note, octave, and microtonal cent deviation.
               </p>
-            </div>
+            </section>
 
-            <!-- <div class="tool-container mb-5">
-    <h2>How does this Pitch Detector work?</h2>
-    <p>
-      This pitch detector uses frequency analysis algorithms, commonly based on the autocorrelation algorithm, to track repeating patterns in sound waves captured by your microphone.
-    </p>
-    <ul>
-      <li>Microphone captures live voice input</li>
-      <li>Audio signal is analyzed in real time</li>
-      <li>Fundamental frequency is detected</li>
-      <li>Frequency is mapped to a musical note</li>
-      <li>Tuning accuracy is shown in cents</li>
-    </ul>
-    <p>
-      All processing occurs locally in your browser using modern Web Audio API technology.
-    </p>
-  </div> -->
-
-            <div class="tool-container mb-5">
-              <h2>What does the tuning meter show?</h2>
+            <section class="mb-5">
+              <h3 class="h4 fw-bold mb-3">The Mathematical Principles of Pitch Detection</h3>
               <p>
-                The tuning meter visualizes intonation accuracy relative to the detected pitch.
+                This tool performs live mathematical analysis in your browser using the <strong>Web Audio API</strong>:
               </p>
-              <ul>
-                <li>Center: in tune</li>
-                <li>Left: flat (frequency too low)</li>
-                <li>Right: sharp (frequency too high)</li>
-              </ul>
+              <div class="row g-4 my-2">
+                <div class="col-md-4">
+                  <div class="p-3 bg-light rounded border h-100">
+                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-activity me-2"></i>1. Autocorrelation Analysis</h5>
+                    <p class="small text-muted mb-0">Unlike simple Fast Fourier Transforms (FFT) which can suffer from spectral leakage at low frequencies, our engine employs time-domain <strong>autocorrelation</strong>. It shifts and correlates the audio buffer against itself to identify the exact cycle period ($\tau$ in samples):</p>
+                    <div class="bg-white p-2 rounded border font-monospace text-center small my-2">
+                      $$f_0 = \frac{\text{Sample Rate}}{\tau}$$
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 bg-light rounded border h-100">
+                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-music-note me-2"></i>2. Frequency to MIDI Note</h5>
+                    <p class="small text-muted mb-0">Once $f_0$ is isolated, it is mapped to the standard 12-Tone Equal Temperament chromatic scale calibrated to $A_4 = 440\text{ Hz}$ using the logarithmic formula:</p>
+                    <div class="bg-white p-2 rounded border font-monospace text-center small my-2">
+                      $$n = 69 + 12 \times \log_2\left(\frac{f_0}{440}\right)$$
+                    </div>
+                    <p class="small text-muted mb-0">The integer part corresponds to the MIDI note number ($60 = \text{C}_4$, $69 = \text{A}_4$).</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 bg-light rounded border h-100">
+                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-bullseye me-2"></i>3. Cent Tuning Deviation</h5>
+                    <p class="small text-muted mb-0">To quantify whether you are singing sharp or flat, the tool measures pitch distance in <strong>cents</strong> ($100\text{ cents} = 1\text{ semitone}$):</p>
+                    <div class="bg-white p-2 rounded border font-monospace text-center small my-2">
+                      $$\Delta c = 1200 \times \log_2\left(\frac{f_{\text{detected}}}{f_{\text{target}}}\right)$$
+                    </div>
+                    <p class="small text-muted mb-0">Values within $\pm 5\text{ cents}$ indicate professional in-tune intonation.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Human Vocal Classifications & Frequency Range -->
+            <section class="mb-5">
+              <h3 class="h4 fw-bold mb-3">Human Vocal Range & Frequency Reference Table</h3>
               <p>
-                This cent-level feedback allows precise vocal pitch control and intonation training.
+                Human singing voices are divided into six primary vocal registers based on anatomical vocal cord length, thickness, and vocal tract resonance:
               </p>
-            </div>
-
-            <div class="tool-container mb-5">
-              <h2>Which tuning standard does this Pitch Detector use?</h2>
-              <p>
-                This pitch detector uses Standard Tuning (A4 = 440 Hz) as the reference pitch.
-              </p>
-              <p>
-                A4 at 440 Hz is the globally accepted reference used by orchestras, music schools & conservatories, and
-                pianos and digital instruments.
-              </p>
-              <p>
-                Alternative standards (e.g., Verdi tuning) are not applied in this tool.
-              </p>
-            </div>
-
-            <div class="tool-container mb-5">
-              <h2>What pitch range can this Pitch Detector detect?</h2>
-              <p>
-                The pitch detector can identify low and high vocal frequencies typically produced by human voices.
-              </p>
-              <ul>
-                <li>Low frequencies: ~63 Hz</li>
-                <li>High frequencies: above 1,000 Hz</li>
-              </ul>
-              <p>
-                This range covers bass, baritone, tenor, alto, and soprano vocal registers. Actual accuracy depends on
-                microphone quality and background noise levels.
-              </p>
-            </div>
-            <div class="tool-container my-5">
-              <h2>Pitch Detection Formula Used by This Tool</h2>
-
-              <p>
-                This pitch detector calculates pitch by identifying the <strong>fundamental frequency</strong> of the
-                human voice captured through the microphone.
-                The detected frequency is then converted into a musical note using standard tuning references.
-              </p>
-
-              <h3>1. Fundamental Frequency Detection</h3>
-              <p>
-                The tool analyzes incoming sound waves and detects repeating patterns using an
-                <strong>autocorrelation algorithm</strong>.
-                The strongest repeating interval represents the fundamental frequency (Hz).
-              </p>
-
-              <pre class="bg-light p-3 border rounded">
-Fundamental Frequency (Hz) = Sample Rate / Period Length
-  </pre>
-
-              <h3>2. Frequency to Musical Note Conversion</h3>
-              <p>
-                Once frequency is detected, it is converted to a musical note using the
-                <strong>equal temperament system</strong> with A4 = 440 Hz.
-              </p>
-
-              <pre class="bg-light p-3 border rounded">
-Note Number = 69 + 12 × log₂(Frequency / 440)
-  </pre>
-
-              <p>
-                The calculated note number is then rounded to the nearest integer and mapped to a
-                musical note name (C, D, E, F, G, A, B).
-              </p>
-
-              <h3>3. Cent Deviation (Tuning Accuracy)</h3>
-              <p>
-                Tuning accuracy is measured in <strong>cents</strong>, where 100 cents equals one semitone.
-              </p>
-
-              <pre class="bg-light p-3 border rounded">
-Cent Deviation = 1200 × log₂(Detected Frequency / Reference Note Frequency)
-  </pre>
-
-              <p>
-                This value determines whether the voice is <strong>flat</strong>, <strong>sharp</strong>, or
-                <strong>in tune</strong> and drives the tuning meter display.
-              </p>
-            </div>
-
-            <div class="tool-container my-5">
-              <h2>Pitch to Frequency Reference (Standard Tuning)</h2>
-
               <div class="table-responsive">
-                <table class="table table-bordered table-striped align-middle">
-                  <thead class="table-dark">
+                <table class="table table-bordered table-hover align-middle">
+                  <thead class="table-light text-center">
                     <tr>
-                      <th>Musical Note</th>
-                      <th>Octave</th>
-                      <th>Frequency (Hz)</th>
-                      <th>Pitch Class</th>
-                      <th>Reference Standard</th>
+                      <th>Voice Type</th>
+                      <th>Category</th>
+                      <th>Typical Note Range</th>
+                      <th>Fundamental Frequency Range ($f_0$)</th>
+                      <th>Tessitura (Comfort Zone)</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>C</td>
-                      <td>4</td>
-                      <td>261.63 Hz</td>
-                      <td>C</td>
-                      <td>Equal Temperament</td>
+                      <td><strong>Bass</strong></td>
+                      <td>Male Low</td>
+                      <td>E2 &ndash; E4</td>
+                      <td>82.41 Hz &ndash; 329.63 Hz</td>
+                      <td>G2 &ndash; C4 (98 &ndash; 261 Hz)</td>
                     </tr>
                     <tr>
-                      <td>D</td>
-                      <td>4</td>
-                      <td>293.66 Hz</td>
-                      <td>D</td>
-                      <td>Equal Temperament</td>
+                      <td><strong>Baritone</strong></td>
+                      <td>Male Mid</td>
+                      <td>A2 &ndash; A4</td>
+                      <td>110.00 Hz &ndash; 440.00 Hz</td>
+                      <td>C3 &ndash; F4 (130 &ndash; 349 Hz)</td>
                     </tr>
                     <tr>
-                      <td>E</td>
-                      <td>4</td>
-                      <td>329.63 Hz</td>
-                      <td>E</td>
-                      <td>Equal Temperament</td>
+                      <td><strong>Tenor</strong></td>
+                      <td>Male High</td>
+                      <td>C3 &ndash; C5</td>
+                      <td>130.81 Hz &ndash; 523.25 Hz</td>
+                      <td>E3 &ndash; A4 (164 &ndash; 440 Hz)</td>
                     </tr>
                     <tr>
-                      <td>F</td>
-                      <td>4</td>
-                      <td>349.23 Hz</td>
-                      <td>F</td>
-                      <td>Equal Temperament</td>
+                      <td><strong>Contralto</strong></td>
+                      <td>Female Low</td>
+                      <td>F3 &ndash; F5</td>
+                      <td>174.61 Hz &ndash; 698.46 Hz</td>
+                      <td>A3 &ndash; D5 (220 &ndash; 587 Hz)</td>
                     </tr>
                     <tr>
-                      <td>G</td>
-                      <td>4</td>
-                      <td>392.00 Hz</td>
-                      <td>G</td>
-                      <td>Equal Temperament</td>
+                      <td><strong>Mezzo-Soprano</strong></td>
+                      <td>Female Mid</td>
+                      <td>A3 &ndash; A5</td>
+                      <td>220.00 Hz &ndash; 880.00 Hz</td>
+                      <td>C4 &ndash; F5 (261 &ndash; 698 Hz)</td>
                     </tr>
                     <tr>
-                      <td>A</td>
-                      <td>4</td>
-                      <td>440.00 Hz</td>
-                      <td>A</td>
-                      <td>Standard Tuning (A4)</td>
-                    </tr>
-                    <tr>
-                      <td>B</td>
-                      <td>4</td>
-                      <td>493.88 Hz</td>
-                      <td>B</td>
-                      <td>Equal Temperament</td>
+                      <td><strong>Soprano</strong></td>
+                      <td>Female High</td>
+                      <td>C4 &ndash; C6</td>
+                      <td>261.63 Hz &ndash; 1046.50 Hz</td>
+                      <td>E4 &ndash; A5 (329 &ndash; 880 Hz)</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </div>
+            </section>
 
-            <div class="tool-container mb-5">
-              <h2>Can this Pitch Detector analyze vibrato and pitch drift?</h2>
+            <!-- Standard Pitch Frequencies (Octave 4) -->
+            <section class="mb-5">
+              <h3 class="h4 fw-bold mb-3">Chromatic Note Frequencies in Equal Temperament ($A_4 = 440\text{ Hz}$)</h3>
               <p>
-                Yes. The real-time pitch tracker displays continuous pitch changes over time, making it suitable for
-                analyzing vibrato and pitch modulation, identifying pitch drift during sustained notes, and monitoring
-                vocal stability.
+                The table below provides exact frequencies, MIDI numbers, and period times for the central octave (Octave 4):
               </p>
-              <p>
-                This is especially useful for vocal training and melody accuracy assessment.
-              </p>
-            </div>
+              <div class="table-responsive">
+                <table class="table table-bordered text-center align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Note Name</th>
+                      <th>MIDI Number</th>
+                      <th>Exact Frequency ($f_0$)</th>
+                      <th>Wave Period (ms)</th>
+                      <th>Wavelength in Air (at 20&deg;C)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>C4 (Middle C)</strong></td><td>60</td><td>261.63 Hz</td><td>3.82 ms</td><td>1.31 m (51.6 in)</td></tr>
+                    <tr><td><strong>C#4 / Db4</strong></td><td>61</td><td>277.18 Hz</td><td>3.61 ms</td><td>1.24 m (48.7 in)</td></tr>
+                    <tr><td><strong>D4</strong></td><td>62</td><td>293.66 Hz</td><td>3.41 ms</td><td>1.17 m (46.0 in)</td></tr>
+                    <tr><td><strong>D#4 / Eb4</strong></td><td>63</td><td>311.13 Hz</td><td>3.21 ms</td><td>1.10 m (43.4 in)</td></tr>
+                    <tr><td><strong>E4</strong></td><td>64</td><td>329.63 Hz</td><td>3.03 ms</td><td>1.04 m (41.0 in)</td></tr>
+                    <tr><td><strong>F4</strong></td><td>65</td><td>349.23 Hz</td><td>2.86 ms</td><td>0.98 m (38.7 in)</td></tr>
+                    <tr><td><strong>F#4 / Gb4</strong></td><td>66</td><td>369.99 Hz</td><td>2.70 ms</td><td>0.93 m (36.5 in)</td></tr>
+                    <tr><td><strong>G4</strong></td><td>67</td><td>392.00 Hz</td><td>2.55 ms</td><td>0.87 m (34.4 in)</td></tr>
+                    <tr><td><strong>G#4 / Ab4</strong></td><td>68</td><td>415.30 Hz</td><td>2.41 ms</td><td>0.83 m (32.5 in)</td></tr>
+                    <tr><td><strong>A4 (Concert Pitch)</strong></td><td>69</td><td>440.00 Hz</td><td>2.27 ms</td><td>0.78 m (30.7 in)</td></tr>
+                    <tr><td><strong>A#4 / Bb4</strong></td><td>70</td><td>466.16 Hz</td><td>2.15 ms</td><td>0.74 m (29.0 in)</td></tr>
+                    <tr><td><strong>B4</strong></td><td>71</td><td>493.88 Hz</td><td>2.02 ms</td><td>0.69 m (27.3 in)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
 
-            <div class="tool-container mb-5">
-              <h2>Is this Pitch Detector suitable for vocal training?</h2>
-              <p>
-                Yes. This pitch detector is commonly used for vocal pitch accuracy practice, intonation control, melody
-                matching, and ear training.
-              </p>
-              <p>
-                It is trusted by music students, vocal coaches, and educators, including users from over 200 music
-                schools and conservatories.
-              </p>
-            </div>
+            <!-- Practical Vocal Tips -->
+            <section class="mb-5">
+              <h3 class="h4 fw-bold mb-3">Pro Tips for Accurate Pitch Practice</h3>
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <div class="p-3 bg-light rounded border h-100">
+                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-mic me-2"></i>1. Sing Straight Tones First</h5>
+                    <p class="small text-muted mb-0">When calibrating pitch, sing a straight, steady "ah" or "oo" vowel without vibrato. Natural vibrato oscillates pitch by &plusmn;20 to 50 cents, which makes testing your initial intonation center difficult.</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 bg-light rounded border h-100">
+                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-headphones me-2"></i>2. Monitor Over Headphones</h5>
+                    <p class="small text-muted mb-0">Avoid audio feedback from computer speakers entering your microphone. Use headphones with one ear off so you can hear your acoustic bone-conduction voice clearly while practicing.</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 bg-light rounded border h-100">
+                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-speedometer2 me-2"></i>3. Aim for the Green Center</h5>
+                    <p class="small text-muted mb-0">Watch the tuning needle. If it leans red to the left, support your breath from the diaphragm to raise the flat pitch. If it leans right, release throat tension to prevent pushing sharp.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-            <div class="tool-container mb-5">
-              <h2>What devices and operating systems are supported?</h2>
-              <p>
-                This online pitch detector works on modern devices with a microphone and supported web browser.
-              </p>
-              <ul>
-                <li>Desktop and laptop computers</li>
-                <li>Built-in or USB microphone</li>
-                <li>Windows, macOS, Linux</li>
-                <li>Chrome, Edge, Safari, Firefox</li>
-              </ul>
-              <p>
-                No software installation is required.
-              </p>
-            </div>
+            <!-- FAQ Section -->
+            <section class="mb-5">
+              <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
+              <div class="accordion" id="pdFaqAccordion">
 
-            <div class="tool-container mb-5">
-              <h2>Do I need to create an account or download anything?</h2>
-              <p>
-                No. This is a free online pitch detector.
-              </p>
-              <ul>
-                <li>No downloads</li>
-                <li>No account required</li>
-                <li>No recordings saved</li>
-              </ul>
-              <p>
-                Microphone access is temporary and user-controlled.
-              </p>
-            </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pdFaq1" aria-expanded="true">
+                      How does this real-time pitch detector analyze sound?
+                    </button>
+                  </h2>
+                  <div id="pdFaq1" class="accordion-collapse collapse show" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      The pitch detector processes microphone audio in real time using the Web Audio API. It captures waveform buffers and runs a normalized autocorrelation algorithm to detect the fundamental period of the sound wave, converting the period into fundamental frequency (Hz), closest musical note, and cent deviation from equal temperament standard A4 = 440 Hz.
+                    </div>
+                  </div>
+                </div>
 
-            <div class="tool-container mb-5">
-              <h2>How accurate is this Pitch Detector?</h2>
-              <p>
-                The pitch detector provides real-time cent-level accuracy under normal conditions.
-              </p>
-              <p>
-                Accuracy depends on microphone sensitivity, background noise, and vocal clarity. For best results, use a
-                quiet environment and sing a steady note.
-              </p>
-            </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pdFaq2">
+                      What is the difference between pitch and frequency?
+                    </button>
+                  </h2>
+                  <div id="pdFaq2" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      Frequency is an objective physical measurement of acoustic vibrations per second, expressed in Hertz (Hz). Pitch is the subjective psychoacoustic perception of frequency by the human auditory system. For example, a vibration of 440.00 Hz is perceived by human hearing as the musical note A in octave 4 (A4).
+                    </div>
+                  </div>
+                </div>
 
-            <div class="tool-container mb-5">
-              <h2>Who should use this Pitch Detector?</h2>
-              <p>
-                This pitch detector is designed for vocalists and singers, music students, vocal coaches, sound
-                engineers, and music educators.
-              </p>
-              <p>
-                It is ideal for real-time voice pitch monitoring, not instrument tuning via audio files.
-              </p>
-            </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pdFaq3">
+                      What do "cents" mean on the tuning meter?
+                    </button>
+                  </h2>
+                  <div id="pdFaq3" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      In music acoustics, a cent is a logarithmic unit of pitch measurement where one semitone (the distance between adjacent piano keys) equals exactly 100 cents. A reading of 0 cents means your pitch is perfectly in tune with equal temperament. +15 cents means sharp (slightly high), while -15 cents means flat (slightly low). Professional vocalists generally maintain pitch within &plusmn;5 to 10 cents.
+                    </div>
+                  </div>
+                </div>
 
-            <div class="tool-container mb-5">
-              <h2>What is the difference between pitch and frequency?</h2>
-              <p>
-                Frequency (Hz) is a physical measurement of sound wave vibration, while pitch is how humans perceive
-                that frequency.
-              </p>
-              <p>
-                This pitch detector converts frequency into musical note names using standardized note frequency tables.
-              </p>
-            </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pdFaq4">
+                      What vocal frequency range can this tool detect?
+                    </button>
+                  </h2>
+                  <div id="pdFaq4" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      This pitch detector tracks fundamental frequencies from approximately 50 Hz (sub-bass notes below low C2) up to 2000 Hz (soprano high C6 and whistle register). This comfortably encompasses all six standard classical vocal classifications: Bass, Baritone, Tenor, Contralto, Mezzo-Soprano, and Soprano.
+                    </div>
+                  </div>
+                </div>
 
-            <div class="tool-container mb-5">
-              <h2>Is microphone access safe?</h2>
-              <p>
-                Yes. Microphone input is processed locally in your browser.
-              </p>
-              <ul>
-                <li>No audio is uploaded</li>
-                <li>No data is stored</li>
-                <li>No recordings are saved</li>
-              </ul>
-              <p>
-                You can stop detection at any time by disabling microphone access.
-              </p>
-            </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pdFaq5">
+                      Why is A4 = 440 Hz the default concert tuning standard?
+                    </button>
+                  </h2>
+                  <div id="pdFaq5" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      A4 = 440 Hz was internationally adopted by the International Organization for Standardization (ISO 16) in 1955 as the universal concert pitch standard. It ensures that pianos, orchestral instruments, synthesizers, and digital audio workstations worldwide are calibrated to the exact same pitch reference.
+                    </div>
+                  </div>
+                </div>
 
-            <div class="tool-container mb-5">
-              <h2>How do I start using the Pitch Detector?</h2>
-              <ol>
-                <li>Click START DETECTION</li>
-                <li>Allow microphone access</li>
-                <li>Sing a note clearly</li>
-                <li>Watch the detected note, frequency, and tuning meter update in real time</li>
-              </ol>
-              <p>
-                The piano keyboard highlights the detected pitch instantly.
-              </p>
-            </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead6">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pdFaq6">
+                      Is my microphone audio recorded or sent to a server?
+                    </button>
+                  </h2>
+                  <div id="pdFaq6" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      No. All microphone audio capture, fast mathematical autocorrelation, and display rendering occur 100% locally inside your web browser via the Web Audio API. No audio streams or recordings are ever saved, stored, or transmitted to any external server.
+                    </div>
+                  </div>
+                </div>
 
-            <div class="tool-container mb-5">
-              <h2>Why use this Pitch Detector instead of other tools?</h2>
-              <p>
-                This pitch detector focuses on voice-only real-time pitch detection, instant visual feedback,
-                cent-accurate tuning display, and local, private audio processing.
-              </p>
-              <p>
-                It is built for clarity, accuracy, and educational use, not file conversion or audio uploads.
-              </p>
-            </div>
-
-            <div class="tool-container mb-5">
-              <h2>Tool Scope Disclaimer</h2>
-              <p>
-                This pitch detector analyzes live voice input only.
-              </p>
-              <ul>
-                <li>Does not upload audio files</li>
-                <li>Does not convert audio to MIDI</li>
-                <li>Does not generate sheet music</li>
-                <li>Does not save recordings</li>
-              </ul>
-            </div>
-
+              </div>
+            </section>
           </div>
-
-
         </div>
         <div class="card my-4 shadow-sm">
           <div class="card-body">
