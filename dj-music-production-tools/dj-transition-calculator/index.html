@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate DJ Transition Calculator — Mix Smarter, Sound Better</title>
+    <title>DJ Transition Calculator – BPM Difference, Key & Timing</title>
     <meta name="description"
-        content="Free DJ transition calculator. Instantly calculate BPM difference, tempo adjustment, key compatibility, and beat alignment for smooth DJ mixes.">
+        content="Calculate exact BPM difference, pitch adjustment percentage, Camelot key compatibility, and transition duration in seconds across 8, 16, 32, or 64 bars.">
     <meta name="keywords"
-        content="DJ transition, mix calculator, beat matching, harmonic mixing, DJ tools, transition planning">
+        content="DJ transition calculator, BPM difference, beatmatching calculator, harmonic mixing, Camelot wheel compatibility, transition timing bars">
     <link rel="canonical" href="https://pitchdetectors.com/dj-music-production-tools/dj-transition-calculator/">
 
     <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
@@ -28,6 +28,63 @@
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
         crossorigin="anonymous"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the maximum BPM difference for a smooth DJ transition?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For standard beatmatched blends, a difference of 0 to 4 BPM (under ±3%) sounds completely natural. Differences between 4 and 8 BPM (up to ±6%) are manageable with Key Lock (Master Tempo) enabled. For tempo gaps exceeding 10 to 15 BPM, use specialized transition techniques such as breakdown drops, echo-out freezes, half-time/double-time mixing, or transition tracks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Camelot Key compatibility work during transitions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Camelot system numbers keys from 1 to 12 with letters A (minor) and B (major). Harmonically compatible mixes include: same key (e.g., 8A to 8A), one step up or down on the wheel (8A to 9A or 8A to 7A), or swapping relative major and minor (8A to 8B). Moving to adjacent numbers shifts the root by a musical 5th or 4th, ensuring musical harmony without dissonance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you calculate transition duration in seconds from bars?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In 4/4 time signature, each bar contains 4 beats. Multiply the number of bars by 4 to get total beats, then divide by the target BPM and multiply by 60: Transition Time (seconds) = (Bars × 4 × 60) / Target BPM. For example, a 16-bar transition at 128 BPM equals (16 × 4 × 60) / 128 = 30.0 seconds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between matching Track A to Track B vs. meeting in the middle?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Matching to Track B requires speeding up or slowing down Track A while it is playing live on the floor. Matching to Track A keeps the dance floor at the current tempo and adjusts the incoming Track B before dropping it in. Meeting in the middle splits the tempo change equally between both tracks, minimizing the pitch and speed fader offset on either deck."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many bars should a DJ transition last?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standard EDM, Pop, and Tech House transitions typically last 16 bars (approx. 30 seconds at 128 BPM). Extended Progressive House, Trance, and Techno blends often last 32 or 64 bars (60 to 120 seconds). Quick-mixing genres like Hip-Hop and Trap favor 4-bar or 8-bar cuts (7.5 to 15 seconds) to maintain high energy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I prevent bass mud and phase cancellation during transitions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Never play two low-end kick drums and basslines at full volume simultaneously. As you introduce Track B, cut its Low EQ to 8 or 9 o'clock. At a phrase boundary (such as bar 8 or 16), perform a bass swap by cutting Track A's Low EQ while instantly bringing Track B's Low EQ to 12 o'clock."
+          }
+        }
+      ]
+    }
+    </script>
 
     <style>
         .formula-box {
@@ -127,16 +184,34 @@
                                 <div class="mb-3">
                                     <label class="form-label">Key:</label>
                                     <select class="form-select" id="trackAKey" onchange="calculate()">
-                                        <option value="8B">C Major (8B)</option>
-                                        <option value="9B">G Major (9B)</option>
-                                        <option value="10B">D Major (10B)</option>
-                                        <option value="11B" selected>A Major (11B)</option>
-                                        <option value="12B">E Major (12B)</option>
-                                        <option value="8A">A minor (8A)</option>
-                                        <option value="9A">E minor (9A)</option>
-                                        <option value="10A">B minor (10A)</option>
-                                        <option value="11A">F# minor (11A)</option>
-                                        <option value="12A">C# minor (12A)</option>
+                                        <optgroup label="Major Keys (B)">
+                                            <option value="1B">B Major (1B)</option>
+                                            <option value="2B">F# Major / Gb (2B)</option>
+                                            <option value="3B">Db Major / C# (3B)</option>
+                                            <option value="4B">Ab Major (4B)</option>
+                                            <option value="5B">Eb Major (5B)</option>
+                                            <option value="6B">Bb Major (6B)</option>
+                                            <option value="7B">F Major (7B)</option>
+                                            <option value="8B">C Major (8B)</option>
+                                            <option value="9B">G Major (9B)</option>
+                                            <option value="10B">D Major (10B)</option>
+                                            <option value="11B" selected>A Major (11B)</option>
+                                            <option value="12B">E Major (12B)</option>
+                                        </optgroup>
+                                        <optgroup label="Minor Keys (A)">
+                                            <option value="1A">G# minor / Abm (1A)</option>
+                                            <option value="2A">D# minor / Ebm (2A)</option>
+                                            <option value="3A">Bb minor (3A)</option>
+                                            <option value="4A">F minor (4A)</option>
+                                            <option value="5A">C minor (5A)</option>
+                                            <option value="6A">G minor (6A)</option>
+                                            <option value="7A">D minor (7A)</option>
+                                            <option value="8A">A minor (8A)</option>
+                                            <option value="9A">E minor (9A)</option>
+                                            <option value="10A">B minor (10A)</option>
+                                            <option value="11A">F# minor (11A)</option>
+                                            <option value="12A">C# minor (12A)</option>
+                                        </optgroup>
                                     </select>
                                 </div>
                             </div>
@@ -152,16 +227,34 @@
                                 <div class="mb-3">
                                     <label class="form-label">Key:</label>
                                     <select class="form-select" id="trackBKey" onchange="calculate()">
-                                        <option value="8B">C Major (8B)</option>
-                                        <option value="9B">G Major (9B)</option>
-                                        <option value="10B">D Major (10B)</option>
-                                        <option value="11B">A Major (11B)</option>
-                                        <option value="12B" selected>E Major (12B)</option>
-                                        <option value="8A">A minor (8A)</option>
-                                        <option value="9A">E minor (9A)</option>
-                                        <option value="10A">B minor (10A)</option>
-                                        <option value="11A">F# minor (11A)</option>
-                                        <option value="12A">C# minor (12A)</option>
+                                        <optgroup label="Major Keys (B)">
+                                            <option value="1B">B Major (1B)</option>
+                                            <option value="2B">F# Major / Gb (2B)</option>
+                                            <option value="3B">Db Major / C# (3B)</option>
+                                            <option value="4B">Ab Major (4B)</option>
+                                            <option value="5B">Eb Major (5B)</option>
+                                            <option value="6B">Bb Major (6B)</option>
+                                            <option value="7B">F Major (7B)</option>
+                                            <option value="8B">C Major (8B)</option>
+                                            <option value="9B">G Major (9B)</option>
+                                            <option value="10B">D Major (10B)</option>
+                                            <option value="11B">A Major (11B)</option>
+                                            <option value="12B" selected>E Major (12B)</option>
+                                        </optgroup>
+                                        <optgroup label="Minor Keys (A)">
+                                            <option value="1A">G# minor / Abm (1A)</option>
+                                            <option value="2A">D# minor / Ebm (2A)</option>
+                                            <option value="3A">Bb minor (3A)</option>
+                                            <option value="4A">F minor (4A)</option>
+                                            <option value="5A">C minor (5A)</option>
+                                            <option value="6A">G minor (6A)</option>
+                                            <option value="7A">D minor (7A)</option>
+                                            <option value="8A">A minor (8A)</option>
+                                            <option value="9A">E minor (9A)</option>
+                                            <option value="10A">B minor (10A)</option>
+                                            <option value="11A">F# minor (11A)</option>
+                                            <option value="12A">C# minor (12A)</option>
+                                        </optgroup>
                                     </select>
                                 </div>
                             </div>
@@ -224,6 +317,12 @@
                                 <strong>Beats in Transition:</strong><br>
                                 <span id="transitionBeats">64 beats</span>
                             </div>
+                        </div>
+
+                        <!-- Recommendations alert box dynamically populated by JS -->
+                        <div id="compatibilityBox" class="mt-3 p-3 rounded bg-success bg-opacity-10 border">
+                            <h6 class="fw-bold mb-2 text-teal"><i class="bi bi-info-circle me-2"></i>Transition Recommendations:</h6>
+                            <ul id="recommendations" class="mb-0 small ps-3"></ul>
                         </div>
                     </div>
 
