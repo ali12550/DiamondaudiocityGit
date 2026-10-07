@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impedance vs Frequency Plotter | Speaker Analysis Tool</title>
+    <title>Impedance vs Frequency Plotter | Dynamic Loudspeaker Load Curve Analysis</title>
     <meta name="description"
-        content="Plot speaker impedance over frequency with our free Impedance vs Frequency Plotter. Visualize your speaker response for better design and matching.">
-    <meta name="keywords"
-        content="Impedance vs Frequency, speaker impedance plot, frequency response, crossover design, audio analysis, speaker tuning, car audio, home theater, PA system">
+        content="Plot and analyze dynamic loudspeaker impedance vs frequency curves. Calculate Fs resonance peaks, minimum impedance dips, voice coil inductance rise, and amplifier EPDR load.">
     <link rel="canonical" href="https://pitchdetectors.com/speaker-tools/impedance-frequency-plotter-advanced/">
 
     <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
@@ -28,14 +26,90 @@
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
         crossorigin="anonymous"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://pitchdetectors.com/speaker-tools/impedance-frequency-plotter-advanced/#webpage",
+          "url": "https://pitchdetectors.com/speaker-tools/impedance-frequency-plotter-advanced/",
+          "name": "Loudspeaker Impedance vs Frequency Plotter",
+          "description": "Visualize dynamic speaker electrical impedance curves, motional back-EMF resonance peaks, and reactive amplifier loading.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://pitchdetectors.com/#website",
+            "name": "Pitch Detectors",
+            "url": "https://pitchdetectors.com/"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://pitchdetectors.com/speaker-tools/impedance-frequency-plotter-advanced/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Why does a loudspeaker impedance curve peak dramatically at its resonant frequency (Fs)?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "At the mechanical resonant frequency (Fs), the speaker cone achieves maximum velocity for a given electrical drive signal. This high velocity moving through the magnetic gap generates a strong counter-electromotive force (back-EMF) that opposes the incoming electrical current. This motional impedance adds directly in series with the DC voice coil resistance (Re), resulting in an electrical impedance peak (Zmax) that can reach 30 to 60 ohms or more."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the difference between DC resistance (Re) and nominal impedance (Znom)?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "DC resistance (Re) is the purely resistive static opposition of the voice coil copper or aluminum winding measured with an ohmmeter (0 Hz). Nominal impedance (Znom) is an industry-standard rating (commonly 4Ω, 6Ω, or 8Ω) representing the lowest impedance value in the passband above Fs. By IEC 60268-5 standards, a loudspeaker's minimum impedance must not dip more than 20% below its nominal rating (e.g., an 8-ohm rated speaker must not dip below 6.4 ohms)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does impedance rise at high frequencies, and how does it affect crossover filters?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The voice coil behaves as an electrical inductor with inductance Le. As frequency increases, inductive reactance XL = 2π f Le increases proportionally, causing the impedance curve to climb steadily. This rising impedance corrupts passive crossover filters because passive low-pass filters depend on a constant resistive termination. Without impedance equalization (a Zobel network), the crossover frequency shifts higher and attenuation slope degrades."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is Equivalent Peak Dissipation Resistance (EPDR) and why is it critical for amplifiers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "When a loudspeaker's impedance curve exhibits a steep phase angle (electrical phase θ between voltage and current), the amplifier output transistors experience peak current while simultaneously bearing significant voltage drop. EPDR calculates the purely resistive load that would produce the same peak transistor power dissipation. A speaker with 4Ω impedance and a -45° phase angle can impose an EPDR below 1.8Ω on the amplifier, potentially triggering thermal protection or current clipping."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does a ported enclosure alter the single Fs impedance peak?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A bass reflex (ported) enclosure replaces the single Fs resonance peak with a classic 'twin-peak' (saddle) impedance profile. The valley or dip between the two peaks falls exactly at the port tuning frequency (Fb), where the vibrating air slug inside the duct resonates and mechanically clamps driver cone motion to a near standstill, collapsing motional back-EMF."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does a Zobel network flatten a speaker's high-frequency impedance rise?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A Zobel network consists of a series resistor and capacitor placed in parallel across the speaker terminals. By setting R_z ≈ 1.25 · Re and C_z ≈ Le / Re², the capacitive branch impedance drops at the exact same rate that voice coil inductive impedance rises, canceling the inductive reactance and presenting a virtually flat resistive load to the passive crossover."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 
+<body>
 <body>
     <div id="header"></div>
 
     <div class="container-fluid py-4">
         <div class="row justify-content-around">
-            <div class="col-lg-7 col-md-6">
+                        <div class="col-lg-9 col-md-8">
                 <!-- Breadcrumb -->
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -49,8 +123,7 @@
                 <div class="tool-container">
                     <div class="tool-title">
                         <h1><i class="bi bi-speedometer2 me-2"></i>Impedance vs Frequency Plotter</h1>
-                        <p>Visualize the impedance curve of your speaker across frequency. Analyze resonance peaks,
-                            crossover behavior, and speaker load for accurate system design.</p>
+                        <p>Simulate and visualize dynamic loudspeaker impedance magnitude curves across the audible spectrum. Analyze resonance peaks (Fs), voice coil inductance, and reactive amplifier loading.</p>
                     </div>
 
                     <!-- Input Form -->
@@ -95,148 +168,201 @@
 
                     <!-- Chart -->
                     <div class="result-box">
-                        <canvas id="impedanceChart" height="300"></canvas>
+                        <h3 class="mb-3">Simulated Impedance Curve | Z(f) vs Log Frequency</h3>
+                        <div style="height: 320px; position: relative;">
+                            <canvas id="impedanceChart"></canvas>
+                        </div>
                     </div>
+                </div>
+                <!-- Authoritative Technical Guide -->
+                <div class="card border-0 shadow-sm mt-4 p-4">
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-graph-up text-teal me-2"></i>The Electroacoustic Anatomy of Loudspeaker Impedance Curves</h2>
+                    <p class="text-secondary">
+                        A dynamic moving-coil loudspeaker is not a simple pure resistor. Although consumer loudspeakers carry nominal ratings such as <strong>4&Omega;</strong>, <strong>6&Omega;</strong>, or <strong>8&Omega;</strong>, the electrical impedance $mathbf{Z}(f)$ presented to an amplifier varies dramatically as a complex frequency-dependent transfer function:
+                    </p>
+                    <div class="p-3 bg-light rounded border text-center my-3">
+                        <span class="fs-5 text-dark font-monospace">$$mathbf{Z}(f) = R(f) + j X(f) = |mathbf{Z}(f)| angle 	heta(f)$$</span>
+                        <div class="small text-muted mt-2">Where $R(f)$ represents real resistive losses, $X(f)$ represents reactive storage (inductive voice coil or capacitive mechanical suspension), and $	heta(f)$ is the phase angle between terminal voltage and current.</div>
+                    </div>
+                    <p class="text-secondary">
+                        A typical loudspeaker impedance curve reveals the physical electro-mechanical and acoustical coupling between the voice coil, the magnetic gap, the moving cone assembly ($M_{ms}$), and the acoustic boundary environment.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">Deconstructing the Four Key Regions of an Impedance Profile</h3>
+                    <div class="table-responsive my-3">
+                        <table class="table table-bordered table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Region</th>
+                                    <th>Frequency Range</th>
+                                    <th>Underlying Physics & Governing Equation</th>
+                                    <th>System Implication</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. DC Resistance Floor ($R_e$)</strong></td>
+                                    <td>0 Hz to sub-bass ($&lt; 0.5 cdot F_s$)</td>
+                                    <td>Purely ohmic resistance of voice coil wire ($R_{DC}$). Back-EMF is negligible because cone motion is stiffness-limited.</td>
+                                    <td>Determines the minimum power wasted as pure heat without producing acoustic sound.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Resonant Motional Peak ($F_s$, $Z_{max}$)</strong></td>
+                                    <td>Driver fundamental resonance ($F_s = rac{1}{2pi sqrt{M_{ms} C_{ms}}}$)</td>
+                                    <td>Mechanical resonance produces maximum cone velocity; back-EMF violently opposes electrical current: $$Z_{max} = R_e + R_{es} = R_e + rac{(Bl)^2}{R_{ms}}$$</td>
+                                    <td>Draws near-zero electrical current from the amp despite producing maximum cone excursion.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Minimum Impedance Dip ($Z_{min}$)</strong></td>
+                                    <td>Typically 100 Hz – 400 Hz (lower midrange)</td>
+                                    <td>Motional back-EMF collapses above resonance; inductive voice coil reactance has not yet kicked in: $$Z_{min} approx 1.10 	imes R_e$$</td>
+                                    <td>The heaviest electrical current demand on the power amplifier in the musical spectrum.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Semi-Inductive Rise ($L_e$)</strong></td>
+                                    <td>1 kHz to 20 kHz (treble)</td>
+                                    <td>Voice coil self-inductance ($X_L = 2pi f L_e$) combined with eddy currents in the pole piece: $$Z_L(f) = K cdot (jomega)^n quad (0.5 &lt; n &lt; 0.8)$$</td>
+                                    <td>Attenuates high-frequency current; destroys passive crossover filter attenuation without a Zobel network.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">Enclosure Interactions: Sealed Box vs. Bass Reflex Twin Peaks</h3>
+                    <p class="text-secondary">
+                        Mounting a bare driver into an acoustic cabinet fundamentally alters its impedance signature:
+                    </p>
+                    <ul class="text-secondary">
+                        <li class="mb-2"><strong>Sealed Enclosure ($V_b$):</strong> The air trapped inside the sealed box adds pneumatic stiffness ($C_{ab}$) in parallel with the driver's mechanical suspension ($C_{ms}$), shifting the single resonance peak upward to a higher system resonance frequency $F_c = F_s sqrt{1 + V_{as}/V_b}$. Total system quality factor $Q_{tc}$ rises proportionally.</li>
+                        <li class="mb-2"><strong>Bass Reflex (Ported) Enclosure:</strong> A ported box forms a coupled dual-mass Helmholtz resonator. The single driver $F_s$ peak splits into <strong>two distinct impedance peaks</strong> ($f_L$ and $f_H$). Exactly midway between these peaks lies a deep impedance valley at $F_b$ (box tuning frequency). At $F_b$, the resonant air plug inside the port reproduces nearly 100% of the acoustic output while clamping driver cone excursion to a dead stop, collapsing motional back-EMF down to $Z_{min} approx R_e$.</li>
+                    </ul>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">Reactive Loads & EPDR: Why Nominal Impedance Can Deceive</h3>
+                    <p class="text-secondary">
+                        Audio power amplifiers are tested on laboratory benches using pure 4-ohm or 8-ohm non-inductive dummy resistors. In real loudspeakers, however, the phase angle $	heta(f)$ frequently swings between <strong>capacitive (-50&deg;)</strong> and <strong>inductive (+50&deg;)</strong>:
+                    </p>
+                    <div class="p-3 bg-light rounded border text-center my-3">
+                        <span class="fs-5 text-dark font-monospace">$$	ext{EPDR} approx rac{|mathbf{Z}| cdot cos(	heta)}{1 + sin^2(	heta)}$$</span>
+                        <div class="small text-muted mt-2">EPDR (Equivalent Peak Dissipation Resistance) quantifies the resistive load that forces identical peak transistor junction heating in a Class-AB output stage.</div>
+                    </div>
+                    <p class="text-secondary">
+                        For example, a speaker with a magnitude of 4.2 &Omega; at 120 Hz and a phase angle of -48&deg; imposes an <strong>EPDR load of under 2.0 &Omega;</strong> on the amplifier. Amplifiers without generous power supply rails or robust current-delivery stages will overheat, trigger rail fuses, or clip prematurely on dynamic transients.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <h3 class="h4 text-dark fw-bold mb-3">Passive Crossover Optimization: The Zobel Network Solution</h3>
+                    <p class="text-secondary">
+                        Passive crossover filter equations (Butterworth, Linkwitz-Riley) assume a constant resistive load $R$. Because a woofer's voice coil inductance causes $|Z(f)|$ to double or triple between 500 Hz and 5 kHz, a standard low-pass inductor cannot achieve its designed filter slope. To correct this, an impedance equalization circuit (Zobel or Boucherot cell) is wired in parallel across the voice coil:
+                    </p>
+                    <div class="row g-3 my-2">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded border text-center">
+                                <span class="fw-bold text-dark">Zobel Resistor:</span><br>
+                                <span class="fs-5 font-monospace text-teal">$$R_z approx 1.25 	imes R_e$$</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded border text-center">
+                                <span class="fw-bold text-dark">Zobel Capacitor:</span><br>
+                                <span class="fs-5 font-monospace text-teal">$$C_z approx rac{L_e}{R_z^2} quad 	ext{or} quad rac{L_e}{R_e^2}$$</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-secondary">
+                        With the Zobel network installed, the capacitive impedance of $C_z$ decreases at the exact rate that the inductive impedance of $L_e$ increases, maintaining a flat resistive load across the entire crossover transition zone.
+                    </p>
                 </div>
 
-                <!-- How to Use -->
-                <div class="tool-container mt-4">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-4"><i class="bi bi-info-circle me-2"></i>How to Use the Impedance Plotter
-                        </h2>
-                        <p>This tool plots the speaker's impedance curve across the selected frequency range. Use it to:
-                        </p>
-                        <ul>
-                            <li>Identify resonance peaks at Fs and impedance rise.</li>
-                            <li>Analyze crossover impact on speaker load.</li>
-                            <li>Ensure amplifier compatibility and avoid clipping.</li>
-                            <li>Compare nominal vs peak impedance for system design.</li>
-                        </ul>
-                        <ol>
-                            <li>Set the frequency range (start and end Hz).</li>
-                            <li>Enter speaker nominal impedance, resonance frequency, and peak impedance.</li>
-                            <li>Set the number of points for plot smoothness.</li>
-                            <li>The chart will update automatically to show the impedance curve.</li>
-                        </ol>
-                        <h5 class="text-teal mt-3">Formula Used:</h5>
-                        <ul>
-                            <li>Impedance Z(f) = Znom + (Zmax - Znom) × exp(-((f - Fs)/Fs)^2)</li>
-                            <li>This Gaussian approximation simulates the resonance peak of a typical speaker.</li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- Structured FAQ Accordion -->
+                <div class="card border-0 shadow-sm mt-4 p-4">
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently Asked Questions</h2>
+                    <div class="accordion" id="impedancePlotterFAQ">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Why does a loudspeaker impedance curve peak dramatically at its resonant frequency (Fs)?
+                                </button>
+                            </h3>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#impedancePlotterFAQ">
+                                <div class="accordion-body text-secondary">
+                                    At the mechanical resonant frequency ($F_s$), the speaker cone achieves maximum velocity for a given electrical drive signal. This high velocity moving through the magnetic gap generates a strong counter-electromotive force (back-EMF) that opposes the incoming electrical current. This motional impedance adds directly in series with the DC voice coil resistance ($R_e$), resulting in an electrical impedance peak ($Z_{max}$) that can reach 30 to 60 ohms or more.
+                                </div>
+                            </div>
+                        </div>
 
-                <!-- Who Can Use -->
-                <div class="tool-container mt-4">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-4"><i class="bi bi-person-lines-fill me-2"></i>Who Can Use This
-                            Calculator</h2>
-                        <ul>
-                            <li>Speaker designers analyzing frequency response and impedance behavior.</li>
-                            <li>Car audio enthusiasts tuning subwoofers and speakers for amplifiers.</li>
-                            <li>Home theater installers verifying system load and amplifier safety.</li>
-                            <li>PA system designers checking speaker impedance in series/parallel setups.</li>
-                        </ul>
-                    </div>
-                </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    What is the difference between DC resistance (Re) and nominal impedance (Znom)?
+                                </button>
+                            </h3>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#impedancePlotterFAQ">
+                                <div class="accordion-body text-secondary">
+                                    DC resistance ($R_e$) is the purely resistive static opposition of the voice coil copper or aluminum winding measured with an ohmmeter (0 Hz). Nominal impedance ($Z_{	ext{nom}}$) is an industry-standard rating (commonly 4&Omega;, 6&Omega;, or 8&Omega;) representing the lowest impedance value in the passband above $F_s$. By IEC 60268-5 standards, a loudspeaker's minimum impedance must not dip more than 20% below its nominal rating (e.g., an 8-ohm rated speaker must not dip below 6.4 ohms).
+                                </div>
+                            </div>
+                        </div>
 
-                <!-- Where to Use -->
-                <div class="tool-container mt-4">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-4"><i class="bi bi-geo-alt-fill me-2"></i>Where to Use</h2>
-                        <ul>
-                            <li>Car audio subwoofer and full-range speaker systems.</li>
-                            <li>Home theater speakers and subwoofer banks.</li>
-                            <li>PA system speaker arrays and crossover design.</li>
-                            <li>Pro audio speaker system troubleshooting.</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- FAQ -->
-                <div class="tool-container mt-4">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>FAQ</h2>
-                        <div class="accordion" id="impedanceFAQ">
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq1">
-                                        What is the purpose of an Impedance vs Frequency Plot?
-                                    </button>
-                                </h3>
-                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#impedanceFAQ">
-                                    <div class="accordion-body">
-                                        It shows how a speaker's impedance changes across the frequency spectrum,
-                                        helping
-                                        to design amplifiers, crossovers, and prevent overloading.
-                                    </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Why does impedance rise at high frequencies, and how does it affect crossover filters?
+                                </button>
+                            </h3>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#impedancePlotterFAQ">
+                                <div class="accordion-body text-secondary">
+                                    The voice coil behaves as an electrical inductor with inductance $L_e$. As frequency increases, inductive reactance $X_L = 2pi f L_e$ increases proportionally, causing the impedance curve to climb steadily. This rising impedance corrupts passive crossover filters because passive low-pass filters depend on a constant resistive termination. Without impedance equalization (a Zobel network), the crossover frequency shifts higher and attenuation slope degrades.
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq2">
-                                        How do series and parallel configurations affect impedance?
-                                    </button>
-                                </h3>
-                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#impedanceFAQ">
-                                    <div class="accordion-body">
-                                        Series adds the impedance of speakers at each frequency, increasing total load,
-                                        while
-                                        parallel reduces overall impedance.
-                                    </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    What is Equivalent Peak Dissipation Resistance (EPDR) and why is it critical for amplifiers?
+                                </button>
+                            </h3>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#impedancePlotterFAQ">
+                                <div class="accordion-body text-secondary">
+                                    When a loudspeaker's impedance curve exhibits a steep phase angle (electrical phase $	heta$ between voltage and current), the amplifier output transistors experience peak current while simultaneously bearing significant voltage drop. EPDR calculates the purely resistive load that would produce the same peak transistor power dissipation. A speaker with 4&Omega; impedance and a -45&deg; phase angle can impose an EPDR below 1.8&Omega; on the amplifier, potentially triggering thermal protection or current clipping.
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq3">
-                                        Can I use this tool for multiple speakers?
-                                    </button>
-                                </h3>
-                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#impedanceFAQ">
-                                    <div class="accordion-body">
-                                        Yes, you can simulate series or parallel configurations for two identical
-                                        speakers. For
-                                        more complex setups, multiple instances or advanced curves may be needed.
-                                    </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    How does a ported enclosure alter the single Fs impedance peak?
+                                </button>
+                            </h3>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#impedancePlotterFAQ">
+                                <div class="accordion-body text-secondary">
+                                    A bass reflex (ported) enclosure replaces the single $F_s$ resonance peak with a classic 'twin-peak' (saddle) impedance profile. The valley or dip between the two peaks falls exactly at the port tuning frequency ($F_b$), where the vibrating air slug inside the duct resonates and mechanically clamps driver cone motion to a near standstill, collapsing motional back-EMF down to $R_e$.
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq4">
-                                        Why does the impedance peak at the resonant frequency?
-                                    </button>
-                                </h3>
-                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#impedanceFAQ">
-                                    <div class="accordion-body">
-                                        Speakers exhibit mechanical and electrical resonance, causing the impedance to
-                                        spike at
-                                        a certain frequency.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq5">
-                                        How can I use this plot to protect my amplifier?
-                                    </button>
-                                </h3>
-                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#impedanceFAQ">
-                                    <div class="accordion-body">
-                                        The plot helps identify low impedance dips or resonance peaks. Amplifiers should
-                                        not be
-                                        driven below their safe load limits to avoid overheating or damage.
-                                    </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                    How does a Zobel network flatten a speaker's high-frequency impedance rise?
+                                </button>
+                            </h3>
+                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#impedancePlotterFAQ">
+                                <div class="accordion-body text-secondary">
+                                    A Zobel network consists of a series resistor and capacitor placed in parallel across the speaker terminals. By setting $R_z approx 1.25 cdot R_e$ and $C_z approx L_e / R_e^2$, the capacitive branch impedance drops at the exact same rate that voice coil inductive impedance rises, canceling the inductive reactance and presenting a virtually flat resistive load to the passive crossover.
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
             <!-- Sidebar -->
@@ -345,56 +471,6 @@
                 .catch(err => console.error("Include load failed:", err));
         });
     </script>
-    <!-- schema -->
-    <script defer type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the purpose of an Impedance vs Frequency Plot?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It shows how a speaker's impedance changes across the frequency spectrum, helping to design amplifiers, crossovers, and prevent overloading."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do series and parallel configurations affect impedance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Series adds the impedance of speakers at each frequency, increasing total load, while parallel reduces overall impedance."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use this tool for multiple speakers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, you can simulate series or parallel configurations for two identical speakers. For more complex setups, multiple instances or advanced curves may be needed."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why does the impedance peak at the resonant frequency?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Speakers exhibit mechanical and electrical resonance, causing the impedance to spike at a certain frequency."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How can I use this plot to protect my amplifier?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The plot helps identify low impedance dips or resonance peaks. Amplifiers should not be driven below their safe load limits to avoid overheating or damage."
-      }
-    }
-  ]
-}
-</script>
-
+    
 </body>
-
 </html>
