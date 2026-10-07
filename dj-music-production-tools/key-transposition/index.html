@@ -4,542 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Transposition Calculator, Transpose Any Key Fast</title>
+    <title>Key Transposition Calculator – Transpose Musical Keys & Chords Fast</title>
     <meta name="description"
-        content="Need to change song key fast? Use this free key transposition calculator to shift keys, find intervals, and get capo position instantly. Perfect for DJs, producers, and musicians looking to transpose music on the fly.">
-    <meta name="keywords"
-        content="key transposition, transpose key, semitone shift, capo calculator, music transposition, key change">
+        content="Free key transposition calculator. Transpose songs and chords by semitones, calculate guitar capo positions, and convert between concert pitch and transposing instruments.">
     <link rel="canonical" href="https://pitchdetectors.com/dj-music-production-tools/key-transposition/">
 
     <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
 
+    <!-- Open Graph -->
+    <meta property="og:title" content="Key Transposition Calculator – Transpose Musical Keys & Chords Fast">
+    <meta property="og:description"
+        content="Transpose songs and chords by semitones, find musical intervals, and get capo positions instantly.">
+    <meta property="og:url" content="https://pitchdetectors.com/dj-music-production-tools/key-transposition/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/imgs/logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Key Transposition Calculator – Transpose Musical Keys & Chords Fast">
+    <meta name="twitter:description"
+        content="Transpose musical keys, find intervals, and calculate capo positions instantly.">
+    <meta name="twitter:image" content="/assets/imgs/logo.png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style.css">
+    <link href="/assets/style.css" rel="stylesheet">
     <link href="/assets/tools.css" rel="stylesheet">
+    <meta name="author" content="Pitch Detectors">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-NCHP45VYJ2');
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is key transposition in music?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Key transposition is the process of shifting every pitch, chord, and melody in a musical piece up or down by the exact same interval (number of semitones). The harmonic relationships, scale degrees, and emotional character remain identical, but the piece sounds higher or lower in concert pitch."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does transposing change chord progressions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When you transpose a chord progression, the root note of each chord moves by the chosen semitone shift, but the chord quality (major, minor, diminished, dominant 7th) remains unchanged. For example, transposing a I-V-vi-IV progression in C Major (C - G - Am - F) up two semitones yields D Major (D - A - Bm - G)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do guitarists use a capo for key transposition?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each fret on a guitar neck represents exactly one semitone (half-step). Placing a capo on fret 2 transposes the open strings up two semitones (+2). If you finger standard open G Major chord shapes with a capo on fret 5 (+5 semitones), your instrument produces the concert sounding pitch of C Major."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I transpose music for transposing instruments like trumpet or saxophone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Transposing instruments read notation differently from concert pitch (C instruments like piano or flute). For a B-flat instrument (trumpet, clarinet, tenor sax), transpose concert pitch UP 2 semitones (+1 whole step). For an E-flat instrument (alto saxophone), transpose concert pitch UP 9 semitones (or down 3 semitones). For an F instrument (French horn), transpose concert pitch UP 7 semitones (a perfect 5th)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the mathematical frequency formula for semitone transposition?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In 12-Tone Equal Temperament (12-TET), each semitone multiplies acoustic frequency by the 12th root of 2 (approximately 1.059463). Transposing a note by 'n' semitones changes its frequency according to f_new = f_original × 2^(n / 12)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many semitones are in an octave and a perfect fifth?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An octave contains exactly 12 semitones. A perfect fifth contains 7 semitones, and a perfect fourth contains 5 semitones. Transposing by +12 or -12 returns you to the exact same note name, one octave higher or lower."
+          }
+        }
+      ]
+    }
     </script>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
-        crossorigin="anonymous"></script>
-
-    <style>
-        :root {
-            --ink: #0f1923;
-            --teal: #0d9488;
-            --teal-bg: #f0fdfa;
-            --teal-mid: #14b8a6;
-            --gold: #d97706;
-            --muted: #475569;
-            --soft: #f8fafc;
-            --border: #e2e8f0;
-            --white: #ffffff;
-            --tag-bg: #ecfdf5;
-            --tag-txt: #065f46;
-        }
-
-
-        /* ─── ABOVE THE FOLD ─── */
-        .atf {
-            padding: 44px 0 0;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 40px;
-        }
-
-        .atf-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--teal);
-            background: var(--tag-bg);
-            color: var(--tag-txt);
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-bottom: 16px;
-        }
-
-        .atf h1 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
-            font-weight: 400;
-            line-height: 1.2;
-            color: var(--ink);
-            margin-bottom: 10px;
-        }
-
-        .atf-tagline {
-            font-size: 1.05rem;
-            color: var(--muted);
-            margin-bottom: 24px;
-            max-width: 560px;
-        }
-
-        .examples-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 28px;
-        }
-
-        .ex-pill {
-            background: var(--teal-bg);
-            border: 1px solid #99f6e4;
-            border-radius: 8px;
-            padding: 8px 16px;
-            font-size: 0.88rem;
-            font-weight: 500;
-            color: var(--ink);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ex-pill .arrow {
-            font-size: 1rem;
-            color: var(--teal);
-            font-weight: 700;
-        }
-
-        .ex-pill .result {
-            font-weight: 700;
-            color: var(--teal);
-        }
-
-        .steps-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 36px;
-        }
-
-        .step-card {
-            background: var(--soft);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 16px;
-            position: relative;
-        }
-
-        .step-num {
-            display: inline-block;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: var(--teal);
-            color: white;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-align: center;
-            line-height: 26px;
-            margin-bottom: 8px;
-        }
-
-        .step-card h4 {
-            font-size: 0.88rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-            color: var(--ink);
-        }
-
-        .step-card p {
-            font-size: 0.82rem;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        /* ─── SECTION STRUCTURE ─── */
-        section {
-            margin-bottom: 48px;
-        }
-
-        h2 {
-            font-family: 'DM Serif Display', Georgia, serif;
-            font-size: 1.45rem;
-            font-weight: 400;
-            color: var(--ink);
-            margin-bottom: 16px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--teal-bg);
-        }
-
-        h3 {
-            font-size: 0.92rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--teal);
-            margin-bottom: 6px;
-            margin-top: 20px;
-        }
-
-        p {
-            margin-bottom: 12px;
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        strong {
-            color: var(--ink);
-        }
-
-        /* ─── STEPS LIST ─── */
-        .how-to-list {
-            list-style: none;
-            padding: 0;
-            counter-reset: step;
-        }
-
-        .how-to-list li {
-            counter-increment: step;
-            display: grid;
-            grid-template-columns: 32px 1fr;
-            gap: 12px;
-            align-items: start;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.93rem;
-        }
-
-        .how-to-list li:last-child {
-            border-bottom: none;
-        }
-
-        .how-to-list li::before {
-            content: counter(step);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--teal);
-            color: white;
-            font-size: 0.78rem;
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .how-to-list li strong {
-            display: block;
-            margin-bottom: 2px;
-            font-size: 0.93rem;
-        }
-
-        .how-to-list li span {
-            color: var(--muted);
-            font-size: 0.88rem;
-        }
-
-        /* ─── OUTPUT CARDS ─── */
-        .output-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        .output-card {
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 18px 20px;
-            background: var(--white);
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .output-card:hover {
-            border-color: var(--teal-mid);
-            box-shadow: 0 4px 16px rgba(13, 148, 136, 0.08);
-        }
-
-        .output-card .label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--teal);
-            margin-bottom: 6px;
-        }
-
-        .output-card .title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 6px;
-        }
-
-        .output-card p {
-            font-size: 0.85rem;
-            margin: 0;
-            line-height: 1.55;
-        }
-
-        /* ─── TABLE ─── */
-        .table-note {
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin-bottom: 12px;
-            font-style: italic;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.88rem;
-        }
-
-        thead th {
-            background: var(--ink);
-            color: white;
-            padding: 10px 14px;
-            text-align: left;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-        }
-
-        tbody td {
-            padding: 9px 14px;
-            border-bottom: 1px solid var(--border);
-            color: var(--ink);
-        }
-
-        tbody tr:nth-child(even) td {
-            background: var(--soft);
-        }
-
-        tbody tr:hover td {
-            background: var(--teal-bg);
-        }
-
-        .st-highlight {
-            font-weight: 700;
-            color: var(--teal);
-        }
-
-        /* ─── USE CASE CARDS ─── */
-        .use-case-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        .uc-card {
-            border-radius: 10px;
-            padding: 20px;
-            border: 1px solid var(--border);
-        }
-
-        .uc-card .icon {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .uc-card h4 {
-            font-size: 0.92rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 6px;
-        }
-
-        .uc-card p {
-            font-size: 0.85rem;
-            margin: 0;
-            line-height: 1.55;
-        }
-
-        .uc-card.singer {
-            background: #fff7ed;
-            border-color: #fed7aa;
-        }
-
-        .uc-card.guitar {
-            background: #f0fdf4;
-            border-color: #bbf7d0;
-        }
-
-        .uc-card.piano {
-            background: #eff6ff;
-            border-color: #bfdbfe;
-        }
-
-        .uc-card.dj {
-            background: #fdf4ff;
-            border-color: #e9d5ff;
-        }
-
-        /* ─── MANUAL STEPS ─── */
-        .manual-steps {
-            list-style: none;
-            padding: 0;
-            counter-reset: ms;
-        }
-
-        .manual-steps li {
-            counter-increment: ms;
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-            margin-bottom: 14px;
-        }
-
-        .manual-steps li::before {
-            content: counter(ms);
-            flex-shrink: 0;
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            background: var(--teal-bg);
-            color: var(--teal);
-            font-weight: 700;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #99f6e4;
-            margin-top: 1px;
-        }
-
-        .manual-steps li .body {
-            font-size: 0.92rem;
-        }
-
-        .manual-steps li .body strong {
-            color: var(--ink);
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .manual-steps li .body span {
-            color: var(--muted);
-            font-size: 0.87rem;
-        }
-
-        /* ─── FAQ ─── */
-        .faq-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .faq-list li {
-            border-bottom: 1px solid var(--border);
-            padding: 18px 0;
-        }
-
-        .faq-list li:last-child {
-            border-bottom: none;
-        }
-
-        .faq-q {
-            font-size: 0.97rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 6px;
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-        }
-
-        .faq-q::before {
-            content: "Q";
-            flex-shrink: 0;
-            font-size: 0.72rem;
-            font-weight: 700;
-            background: var(--teal);
-            color: white;
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2px;
-        }
-
-        .faq-a {
-            font-size: 0.88rem;
-            color: var(--muted);
-            padding-left: 30px;
-            line-height: 1.6;
-        }
-
-        /* ─── TRY IT CTA ─── */
-        .try-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--teal);
-            color: white;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 9px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-top: 8px;
-            transition: background 0.2s;
-            cursor: pointer;
-            border: none;
-        }
-
-        .try-cta:hover {
-            background: var(--teal-mid);
-        }
-
-        .try-cta-soft {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.83rem;
-            font-weight: 600;
-            color: var(--teal);
-            margin-top: 10px;
-            cursor: pointer;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            background: none;
-            border: none;
-        }
-
-        /* ─── INLINE NOTE ─── */
-        .note {
-            background: var(--soft);
-            border-left: 3px solid var(--teal);
-            padding: 10px 16px;
-            border-radius: 0 6px 6px 0;
-            font-size: 0.85rem;
-            color: var(--muted);
-            margin: 16px 0;
-        }
-
-        .note strong {
-            color: var(--teal);
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 600px) {
-            .steps-row {
-                grid-template-columns: 1fr;
-            }
-
-            .output-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .use-case-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -547,6 +96,7 @@
 
     <div class="container-fluid py-4">
         <div class="row">
+            <!-- Sidebar -->
             <div class="col-lg-3 col-md-4">
                 <div class="tools-sidebar">
                     <div class="sidebar-search mb-4">
@@ -559,598 +109,367 @@
 
                     <div class="sidebar-categories">
                         <div class="sidebar-category active">
-                            <h5><i class="bi bi-disc me-2"></i>DJ & Production Tools</h5>
+                            <h5><i class="bi bi-disc me-2"></i>DJ & Music Production Tools</h5>
                             <ul class="sidebar-links">
-                                <li><a href="/dj-music-production-tools/key-transposition/" class="active"><i
-                                            class="bi bi-arrow-left-right"></i> Key Transposition</a></li>
-                                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song
-                                        Key Finder</a></li>
-                                <li><a href="https://pitchdetectors.com/BPM-Pitch-Calculator.html"><i
-                                            class="bi bi-sliders"></i>
-                                        Pitch Shifter</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i> BPM Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-speed/"><i class="bi bi-speedometer2"></i> BPM to Speed Converter</a></li>
+                                <li><a href="/BPM-Pitch-Calculator.html"><i class="bi bi-music-note-slider"></i> BPM &rarr; Pitch Shift</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i> BPM Tap Tempo</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to Milliseconds</a></li>
+                                <li><a href="/dj-music-production-tools/dj-set-length-calculator/"><i class="bi bi-disc"></i> DJ Set Length Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/dj-transition-calculator/"><i class="bi bi-soundwave"></i> DJ Transition Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song Key Finder</a></li>
+                                <li><a href="/dj-music-production-tools/mix-compatibility-checker/"><i class="bi bi-check2-circle"></i> Mix Compatibility</a></li>
+                                <li><a href="/dj-music-production-tools/key-transposition/" class="active"><i class="bi bi-arrow-left-right"></i> Key Transposition</a></li>
+                                <li><a href="/dj-music-production-tools/song-length-from-bpm-calculator/"><i class="bi bi-music-note"></i> Song Length from BPM</a></li>
+                                <li><a href="/dj-music-production-tools/scale-practice-generator/"><i class="bi bi-file-music"></i> Scale Practice Generator</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-soundwave me-2"></i>Pitch Detector Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/pitch-detector-tools/guitar-tuner-online/"><i class="bi bi-music-note-beamed"></i> Guitar Tuner</a></li>
+                                <li><a href="/pitch-detector-tools/frequency-to-note-online/"><i class="bi bi-arrow-left-right"></i> Frequency to Note</a></li>
                             </ul>
                         </div>
 
                         <div class="sidebar-category">
                             <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
                             <ul class="sidebar-links">
-                                <li><a href="/music-theory-tools/scale-finder/"><i class="bi bi-grid-3x3"></i> Scale
-                                        Finder</a></li>
-                                <li><a href="/music-theory-tools/chord-identifier/"><i class="bi bi-vinyl"></i> Chord
-                                        Identifier</a></li>
+                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i> Online Metronome</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Main Content Column -->
             <div class="col-lg-9 col-md-8">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/dj-music-production-tools/">DJ & Production Tools</a></li>
+                        <li class="breadcrumb-item"><a href="/dj-music-production-tools/">DJ & Music Production Tools</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Key Transposition</li>
                     </ol>
                 </nav>
 
                 <div class="tool-container">
-                    <div class="tool-title">
-                        <h2><i class="bi bi-arrow-left-right me-2"></i>Key Transposition Calculator</h2>
-                        <p>Transpose musical keys up or down by any number of semitones. Useful for changing song keys,
-                            capo calculations, and instrument transposition.</p>
+                    <div class="tool-title mb-4">
+                        <h1 class="display-6 fw-bold text-teal"><i class="bi bi-arrow-left-right me-2"></i>Key Transposition Calculator</h1>
+                        <p class="lead text-muted">Transpose musical keys, melodies, and chord progressions up or down by any semitone interval. Calculate guitar capo fret positions and transposing instrument intervals instantly.</p>
                     </div>
 
-                    <div class="row mb-4">
-                        <div class="col-md-4">
-                            <label class="form-label fw-bold">Original Key:</label>
-                            <select class="form-select form-select-lg" id="originalKey" onchange="calculate()">
-                                <option value="C">C</option>
-                                <option value="C#">C# / Db</option>
-                                <option value="D">D</option>
-                                <option value="D#">D# / Eb</option>
-                                <option value="E">E</option>
-                                <option value="F">F</option>
-                                <option value="F#">F# / Gb</option>
-                                <option value="G" selected>G</option>
-                                <option value="G#">G# / Ab</option>
-                                <option value="A">A</option>
-                                <option value="A#">A# / Bb</option>
-                                <option value="B">B</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-bold">Scale Type:</label>
-                            <select class="form-select form-select-lg" id="scaleType" onchange="calculate()">
-                                <option value="major">Major</option>
-                                <option value="minor">Minor</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-bold">Transpose by (semitones):</label>
-                            <input type="number" class="form-control form-control-lg" id="semitones" value="5" min="-12"
-                                max="12" oninput="calculate()">
-                        </div>
-                    </div>
+                    <!-- Input Controls -->
+                    <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-body p-4 bg-light rounded">
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold">Original Key Root:</label>
+                                    <select class="form-select form-select-lg" id="originalKey" onchange="calculate()">
+                                        <option value="C">C</option>
+                                        <option value="C#">C# / Db</option>
+                                        <option value="D">D</option>
+                                        <option value="D#">D# / Eb</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="F#">F# / Gb</option>
+                                        <option value="G" selected>G</option>
+                                        <option value="G#">G# / Ab</option>
+                                        <option value="A">A</option>
+                                        <option value="A#">A# / Bb</option>
+                                        <option value="B">B</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold">Scale Mode:</label>
+                                    <select class="form-select form-select-lg" id="scaleType" onchange="calculate()">
+                                        <option value="major">Major</option>
+                                        <option value="minor">Minor</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold">Transpose (Semitones):</label>
+                                    <input type="number" class="form-control form-control-lg" id="semitones" value="5" min="-12"
+                                        max="12" oninput="calculate()">
+                                </div>
+                            </div>
 
-                    <div class="mb-4">
-                        <label class="form-label">Quick Transposition:</label>
-                        <div class="quick-buttons">
-                            <button class="quick-btn" onclick="setSemitones(-7)">-7 (5th down)</button>
-                            <button class="quick-btn" onclick="setSemitones(-5)">-5 (4th down)</button>
-                            <button class="quick-btn" onclick="setSemitones(-2)">-2</button>
-                            <button class="quick-btn" onclick="setSemitones(-1)">-1</button>
-                            <button class="quick-btn" onclick="setSemitones(1)">+1</button>
-                            <button class="quick-btn" onclick="setSemitones(2)">+2</button>
-                            <button class="quick-btn" onclick="setSemitones(5)">+5 (4th up)</button>
-                            <button class="quick-btn" onclick="setSemitones(7)">+7 (5th up)</button>
-                        </div>
-                    </div>
-
-                    <div class="result-box">
-                        <h3>Transposition Result</h3>
-                        <div class="row mt-4">
-                            <div class="col-md-6 mb-3">
-                                <strong>Original Key:</strong><br>
-                                <span id="displayOriginal" class="fs-2 fw-bold">G Major</span>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <strong>New Key:</strong><br>
-                                <span id="displayNew" class="fs-2 fw-bold text-teal">C Major</span>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <strong>Interval:</strong><br>
-                                <span id="interval">Perfect 4th up</span>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <strong>Capo Position (guitar):</strong><br>
-                                <span id="capoPosition">Capo 5 (play G shapes)</span>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <strong>Pitch Shift:</strong><br>
-                                <span id="pitchShift">+5 semitones</span>
+                            <div class="mb-2">
+                                <label class="form-label small fw-bold text-uppercase text-muted">Quick Interval Presets:</label>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="setSemitones(-7)">-7 (5th down)</button>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="setSemitones(-5)">-5 (4th down)</button>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="setSemitones(-2)">-2 (Whole step down)</button>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="setSemitones(-1)">-1 (Half step down)</button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="setSemitones(1)">+1 (Half step up)</button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="setSemitones(2)">+2 (Whole step up)</button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="setSemitones(5)">+5 (4th up)</button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="setSemitones(7)">+7 (5th up)</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- ════════════════════════════════════════════
-     ABOVE THE FOLD
-════════════════════════════════════════════ -->
-                    <div class="atf">
-                        <h1>Key Transposition Calculator</h1>
-                        <p class="atf-tagline">
-                            Enter a key and semitone shift get your new key, interval name, capo
-                            position, and a full transposition chart instantly. You can also
-                            <a href="/BPM-Pitch-Calculator.html">calculate pitch shift from BPM</a>
-                            for tempo-based key changes.
-                        </p>
 
-                        <!-- Quick examples -->
-                        <div class="examples-row">
-                            <div class="ex-pill">G Major <span class="arrow">+5 →</span> <span class="result">C
-                                    Major</span></div>
-                            <div class="ex-pill">D Major <span class="arrow">−2 →</span> <span class="result">C
-                                    Major</span></div>
-                            <div class="ex-pill">A Minor <span class="arrow">+7 →</span> <span class="result">E
-                                    Minor</span></div>
-                        </div>
-
-                        <!-- How it works in 3 steps -->
-                        <div class="steps-row">
-                            <div class="step-card">
-                                <div class="step-num">1</div>
-                                <h4>Pick your key</h4>
-                                <p>Choose any of the 12 chromatic notes and select Major or Minor.</p>
-                            </div>
-                            <div class="step-card">
-                                <div class="step-num">2</div>
-                                <h4>Set semitones</h4>
-                                <p>Type a number or tap a quick-button (+5, +7, −2…). Positive = up, negative = down.
-                                </p>
-                            </div>
-                            <div class="step-card">
-                                <div class="step-num">3</div>
-                                <h4>Read the result</h4>
-                                <p>New key, interval name, capo position, and full chart appear instantly.</p>
-                            </div>
-                        </div>
-
-                        <a class="try-cta" href="#tool">↑ Try the calculator above</a>
-                    </div>
-
-
-                    <!-- ════════════════════════════════════════════
-     HOW TO USE
-════════════════════════════════════════════ -->
-                    <section id="how-to-use">
-                        <h2>How to Use the Key Transposition Calculator</h2>
-
-                        <ul class="how-to-list">
-                            <li>
-                                <div>
-                                    <strong>Select your original key</strong>
-                                    <span>Choose from C, C♯, D… through B. Enharmonic pairs (e.g. C♯/D♭) are shown
-                                        together.</span>
+                    <!-- Result Box -->
+                    <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-body p-4 bg-white rounded border">
+                            <div class="row align-items-center mb-3">
+                                <div class="col-md-5 text-center text-md-start mb-3 mb-md-0">
+                                    <span class="small text-muted text-uppercase fw-semibold">Original Key</span>
+                                    <div id="displayOriginal" class="display-6 fw-bold text-dark">G Major</div>
                                 </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <strong>Choose Major or Minor</strong>
-                                    <span>This controls how the result is labeled and which scale the chart
-                                        references.</span>
+                                <div class="col-md-2 text-center mb-3 mb-md-0">
+                                    <i class="bi bi-arrow-right fs-2 text-teal"></i>
                                 </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <strong>Enter semitones (−12 to +12)</strong>
-                                    <span>Positive numbers transpose up; negative numbers transpose down. Use the
-                                        quick-buttons for common intervals.</span>
+                                <div class="col-md-5 text-center text-md-end">
+                                    <span class="small text-muted text-uppercase fw-semibold">Transposed Target Key</span>
+                                    <div id="displayNew" class="display-6 fw-bold text-teal">C Major</div>
                                 </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <strong>Read your outputs</strong>
-                                    <span>The result panel updates immediately — new key, interval name, capo fret, and
-                                        pitch shift all shown at once.</span>
+                            </div>
+                            <hr>
+                            <div class="row text-center mt-3 g-3">
+                                <div class="col-md-4 col-6">
+                                    <span class="text-muted small text-uppercase fw-semibold">Musical Interval</span><br>
+                                    <span id="interval" class="fs-5 fw-bold text-dark">Perfect 4th up</span>
                                 </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <strong>Check the full chart</strong>
-                                    <span>Scroll down in the result panel to see every chromatic note transposed by the
-                                        same interval — useful for transposing entire chord progressions.</span>
+                                <div class="col-md-4 col-6">
+                                    <span class="text-muted small text-uppercase fw-semibold">Guitar Capo Position</span><br>
+                                    <span id="capoPosition" class="fs-5 fw-bold text-teal">Capo 5 (play G shapes)</span>
                                 </div>
-                            </li>
-                        </ul>
-
-                        <div class="note">
-                            <strong>Tip:</strong> Use the <strong>+5 (4th up)</strong> or <strong>+7 (5th up)</strong>
-                            quick-buttons for the most common key change moves in pop and jazz.
-                        </div>
-                    </section>
-
-
-                    <!-- ════════════════════════════════════════════
-     WHAT DOES THE CALCULATOR SHOW?
-════════════════════════════════════════════ -->
-                    <section id="outputs">
-                        <h2>What Does the Calculator Show?</h2>
-
-                        <div class="output-grid">
-                            <div class="output-card">
-                                <div class="label">Output 1</div>
-                                <div class="title">New Key</div>
-                                <p>The key that results from your transposition. Shown with full name (e.g. "C Major").
-                                    This is the key you'll perform, arrange, or mix in after the shift.</p>
+                                <div class="col-md-4 col-12">
+                                    <span class="text-muted small text-uppercase fw-semibold">DAW Pitch Shift</span><br>
+                                    <span id="pitchShift" class="fs-5 fw-bold text-dark">+5 semitones</span>
+                                </div>
                             </div>
-
-                            <div class="output-card">
-                                <div class="label">Output 2</div>
-                                <div class="title">Interval Name</div>
-                                <p>The music-theory name for your semitone distance — e.g. "Perfect 4th up" for +5
-                                    semitones. Useful for communicating key changes with other musicians.</p>
-                            </div>
-
-                            <div class="output-card">
-                                <div class="label">Output 3</div>
-                                <div class="title">Capo Position</div>
-                                <p>If you're a guitarist, this shows which fret to place the capo so you can play
-                                    familiar open-chord shapes in the new key. Example: Capo 5, play G shapes → sounds
-                                    in C.</p>
-                            </div>
-
-                            <div class="output-card">
-                                <div class="label">Output 4</div>
-                                <div class="title">Transposition Chart</div>
-                                <p>A complete table showing all 12 chromatic notes transposed by your chosen semitone
-                                    value. Use it to transpose every chord in a song at once.</p>
-                            </div>
-                        </div>
-
-                        <button class="try-cta-soft" onclick="window.scrollTo(0,0)">↑ Try it now — results appear as you
-                            type</button>
-                    </section>
-
-
-                    <!-- ════════════════════════════════════════════
-     SEMITONE REFERENCE TABLE
-════════════════════════════════════════════ -->
-                    <h2>Quick Semitone Reference</h2>
-                    <p class="table-note">All key transpositions are based on semitone distance — the number of
-                        half-steps between two notes on the chromatic scale.</p>
-                    <div id="semitone-table " class="table-responsive">
-
-
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Semitones</th>
-                                    <th>Interval Name</th>
-                                    <th>Common Use</th>
-                                    <th>Example (from G)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="st-highlight">1</td>
-                                    <td>Minor 2nd</td>
-                                    <td>Subtle key nudge</td>
-                                    <td>G → G♯</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">2</td>
-                                    <td>Major 2nd</td>
-                                    <td>Singer range tweak</td>
-                                    <td>G → A</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">3</td>
-                                    <td>Minor 3rd</td>
-                                    <td>Relative key shift</td>
-                                    <td>G → A♯</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">4</td>
-                                    <td>Major 3rd</td>
-                                    <td>Common modulation</td>
-                                    <td>G → B</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">5</td>
-                                    <td>Perfect 4th</td>
-                                    <td>Capo 5 / DJ pitch match</td>
-                                    <td>G → C</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">6</td>
-                                    <td>Tritone</td>
-                                    <td>Maximum contrast</td>
-                                    <td>G → C♯</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">7</td>
-                                    <td>Perfect 5th</td>
-                                    <td>Circle of fifths move</td>
-                                    <td>G → D</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">8</td>
-                                    <td>Minor 6th</td>
-                                    <td>Modal transposition</td>
-                                    <td>G → D♯</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">9</td>
-                                    <td>Major 6th</td>
-                                    <td>Brass transposition</td>
-                                    <td>G → E</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">10</td>
-                                    <td>Minor 7th</td>
-                                    <td>Blues/jazz key work</td>
-                                    <td>G → F</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">11</td>
-                                    <td>Major 7th</td>
-                                    <td>Rare, tight key change</td>
-                                    <td>G → F♯</td>
-                                </tr>
-                                <tr>
-                                    <td class="st-highlight">12</td>
-                                    <td>Octave</td>
-                                    <td>Same key, higher octave</td>
-                                    <td>G → G</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="note">
-                            <strong>How many semitones in an octave?</strong> 12. That's why transposing by +12 or −12
-                            returns you to the same key, just one octave higher or lower.
                         </div>
                     </div>
 
-
-                    <!-- ════════════════════════════════════════════
-     REAL USE CASES
-════════════════════════════════════════════ -->
-                    <section id="use-cases">
-                        <h2>When Would You Use a Key Transposition Calculator?</h2>
-
-                        <div class="use-case-grid">
-                            <div class="uc-card singer">
-                                <span class="icon">🎤</span>
-                                <h4>Singers — Matching Vocal Range</h4>
-                                <p>Song too high? Transpose down 2–3 semitones. Too low? Shift up. Enter your song's
-                                    original key, set the semitone shift, and immediately see the new key to share with
-                                    your accompanist.</p>
-                            </div>
-
-                            <div class="uc-card guitar">
-                                <span class="icon">🎸</span>
-                                <h4>Guitar — Capo Placement</h4>
-                                <p>Want to play in C Major using open G shapes? Transpose G → C (+5 semitones). The
-                                    calculator tells you: Capo 5. No theory needed — just pick up and play.</p>
-                            </div>
-
-                            <div class="uc-card piano">
-                                <span class="icon">🎹</span>
-                                <h4>Piano — Easier Key Signatures</h4>
-                                <p>A♭ Major (4 flats) too complex? Transpose down 1 semitone to G Major (1 sharp). Same
-                                    piece, much easier to read and play. Use the transpose key calculator to find the
-                                    simplest equivalent key.</p>
-                            </div>
-
-                            <div class="uc-card dj">
-                                <span class="icon">🎧</span>
-                                <h4>DJs & Producers — Key Matching</h4>
-                                <p>Need two tracks to blend harmonically? Find the semitone difference between their
-                                    keys and pitch-shift one track by that amount. Use the semitone calculator to get
-                                    the exact number before touching your DAW.</p>
+                    <!-- Chromatic Transposition Mapping Table -->
+                    <div class="card shadow-sm border-0 mb-5">
+                        <div class="card-header bg-light py-3 border">
+                            <h5 class="fw-bold mb-0 text-teal"><i class="bi bi-table me-2"></i>Full 12-Tone Chromatic Transposition Map</h5>
+                            <span class="small text-muted">Use this mapping to transpose every chord root in your song simultaneously.</span>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover text-center align-middle mb-0">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Original Note / Chord Root</th>
+                                            <th id="transHeader">Transposed Equivalent (+5 semitones)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="transpositionChart">
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </section>
+                    </div>
 
+                    <!-- COMPREHENSIVE GUIDE & REFERENCE -->
+                    <div class="mt-5">
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">Understanding Key Transposition: The Physics and Theory of Shifting Pitch</h2>
+                            <p>
+                                <strong>Transposition</strong> is the musical process of shifting every frequency, pitch, and chord in an arrangement up or down by a constant interval while keeping the proportional distance between every note invariant. Because the frequency ratios between notes remain preserved under standard 12-Tone Equal Temperament (12-TET), the listener hears the exact same melody, chord progressions, and emotions—simply adapted to a different pitch register.
+                            </p>
+                            <p>
+                                Key transposition is essential in four major disciplines:
+                            </p>
+                            <ul>
+                                <li><strong>Vocal Accompaniment:</strong> Repositioning a song into a singer's comfortable tessitura so they can hit high notes without vocal strain or reach low chest notes with power.</li>
+                                <li><strong>Guitar & String Performance:</strong> Utilizing capos to transpose into awkward flat keys (like E♭, A♭, or B♭) while keeping resonant open-string chord voicings.</li>
+                                <li><strong>Wind & Brass Arrangements:</strong> Translating concert pitch scores for transposing instruments such as B♭ trumpets, E♭ alto saxophones, and F French horns.</li>
+                                <li><strong>DAW Audio Production:</strong> Shifting audio samples, acapellas, and synthesizer patches to match the master key of an electronic production or remix.</li>
+                            </ul>
+                        </section>
 
-                    <!-- ════════════════════════════════════════════
-     HOW TO TRANSPOSE MANUALLY
-════════════════════════════════════════════ -->
-                    <section id="manual">
-                        <h2>How to Transpose a Key Manually</h2>
-                        <p>No tool nearby? Here's the fastest manual method:</p>
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-3">The Mathematical Equal Temperament Frequency Formula</h3>
+                            <p>
+                                In modern Western music, the octave is divided into 12 mathematically equal semitones. The frequency ratio between any two adjacent semitones is constant:
+                            </p>
+                            <div class="p-3 bg-light rounded border text-center font-monospace my-3">
+                                $$f_{	ext{target}} = f_{	ext{original}} 	imes 2^{rac{n}{12}}$$
+                            </div>
+                            <p class="small text-muted">
+                                Where $n$ is the number of semitones shifted ($+1$ to $+12$ for upward pitch transposition, $-1$ to $-12$ for downward transposition). Because $2^{1/12} approx 1.059463$, each semitone step up raises acoustic frequency by approximately 5.946%. Moving 12 semitones up doubles the frequency ($2^{12/12} = 2.0$), creating a perfect octave.
+                            </p>
+                        </section>
 
-                        <ul class="manual-steps">
-                            <li>
-                                <div class="body">
-                                    <strong>Count semitones between keys</strong>
-                                    <span>Write out the 12 chromatic notes (C, C♯, D, D♯, E, F, F♯, G, G♯, A, A♯, B) and
-                                        count the steps from your start key to your target key.</span>
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-3">Semitone Intervals & Modulation Reference Table</h3>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover align-middle">
+                                    <thead class="table-light text-center">
+                                        <tr>
+                                            <th>Semitones</th>
+                                            <th>Interval Name</th>
+                                            <th>Ratio ($2^{n/12}$)</th>
+                                            <th>Harmonic Application</th>
+                                            <th>Example (from G)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td class="text-center fw-bold">1</td><td>Minor 2nd (Half Step)</td><td>1.0595</td><td>Vocal micro-adjustment / Half-step truck driver modulation</td><td>G &rarr; G# / Ab</td></tr>
+                                        <tr><td class="text-center fw-bold">2</td><td>Major 2nd (Whole Step)</td><td>1.1225</td><td>Standard pop chorus modulation / B♭ instrument concert shift</td><td>G &rarr; A</td></tr>
+                                        <tr><td class="text-center fw-bold">3</td><td>Minor 3rd</td><td>1.1892</td><td>Blues modulation / Relative key shift down / E♭ instrument shift</td><td>G &rarr; Bb</td></tr>
+                                        <tr><td class="text-center fw-bold">4</td><td>Major 3rd</td><td>1.2599</td><td>Romantic modulation / Chromatic mediant shift</td><td>G &rarr; B</td></tr>
+                                        <tr><td class="text-center fw-bold">5</td><td>Perfect 4th</td><td>1.3348</td><td>Subdominant circle movement / Capo fret 5</td><td>G &rarr; C</td></tr>
+                                        <tr><td class="text-center fw-bold">6</td><td>Tritone (Diminished 5th)</td><td>1.4142</td><td>Maximum dissonance / Tritone substitution in jazz</td><td>G &rarr; C# / Db</td></tr>
+                                        <tr><td class="text-center fw-bold">7</td><td>Perfect 5th</td><td>1.4983</td><td>Dominant circle of fifths movement / F Horn concert shift</td><td>G &rarr; D</td></tr>
+                                        <tr><td class="text-center fw-bold">8</td><td>Minor 6th</td><td>1.5874</td><td>Inversion of Major 3rd / Film score tension shifts</td><td>G &rarr; Eb</td></tr>
+                                        <tr><td class="text-center fw-bold">9</td><td>Major 6th</td><td>1.6818</td><td>E♭ alto saxophone transposition up</td><td>G &rarr; E</td></tr>
+                                        <tr><td class="text-center fw-bold">10</td><td>Minor 7th</td><td>1.7818</td><td>Whole step down in upper register / Blues turnaround</td><td>G &rarr; F</td></tr>
+                                        <tr><td class="text-center fw-bold">11</td><td>Major 7th</td><td>1.8877</td><td>Leading tone transposition / High harmonic tension</td><td>G &rarr; F#</td></tr>
+                                        <tr><td class="text-center fw-bold">12</td><td>Perfect Octave</td><td>2.0000</td><td>Double frequency / Identical key class</td><td>G &rarr; G</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-3">Transposing Instruments: Orchestral & Band Conversion Chart</h3>
+                            <p>
+                                When an orchestra or band plays together, instruments built in different keys do not sound the pitch written on their sheet music. A pianist playing a written C produces a concert C, but a trumpet player playing a written C produces a concert B♭:
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Instrument Family</th>
+                                            <th>Key of Instrument</th>
+                                            <th>To Read Concert Pitch Score:</th>
+                                            <th>When Player Plays Written C, Sounds Like:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Piano, Flute, Violin, Guitar, Bass</strong></td>
+                                            <td>Concert Pitch (C)</td>
+                                            <td>No transposition needed (0 semitones)</td>
+                                            <td>Concert C</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>B♭ Trumpet, Clarinet, Tenor Sax, Soprano Sax</strong></td>
+                                            <td>B♭ Instruments</td>
+                                            <td>Transpose <strong>UP 2 semitones</strong> (+1 whole step)</td>
+                                            <td>Concert B♭</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>E♭ Alto Saxophone, Baritone Sax, E♭ Clarinet</strong></td>
+                                            <td>E♭ Instruments</td>
+                                            <td>Transpose <strong>UP 9 semitones</strong> (or down 3 semitones)</td>
+                                            <td>Concert E♭</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>French Horn, English Horn</strong></td>
+                                            <td>F Instruments</td>
+                                            <td>Transpose <strong>UP 7 semitones</strong> (a perfect 5th)</td>
+                                            <td>Concert F</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <!-- FAQ Section -->
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
+                            <div class="accordion" id="transFaqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="tfHeading1">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#tf1" aria-expanded="true">
+                                            What is key transposition in music?
+                                        </button>
+                                    </h2>
+                                    <div id="tf1" class="accordion-collapse collapse show" data-bs-parent="#transFaqAccordion">
+                                        <div class="accordion-body">
+                                            Key transposition is the process of shifting every pitch, chord, and melody in a musical piece up or down by the exact same interval (number of semitones). The harmonic relationships, scale degrees, and emotional character remain identical, but the piece sounds higher or lower in concert pitch.
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="body">
-                                    <strong>Apply that number to every chord root</strong>
-                                    <span>If the distance is +5, move every chord root up 5 semitones. Am → Dm, G → C,
-                                        Em → Am, and so on.</span>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="tfHeading2">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tf2">
+                                            How does transposing change chord progressions?
+                                        </button>
+                                    </h2>
+                                    <div id="tf2" class="accordion-collapse collapse" data-bs-parent="#transFaqAccordion">
+                                        <div class="accordion-body">
+                                            When you transpose a chord progression, the root note of each chord moves by the chosen semitone shift, but the chord quality (major, minor, diminished, dominant 7th) remains unchanged. For example, transposing a I-V-vi-IV progression in C Major (C - G - Am - F) up two semitones yields D Major (D - A - Bm - G).
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="body">
-                                    <strong>Keep the chord quality the same</strong>
-                                    <span>Major stays major, minor stays minor, dominant 7th stays dominant 7th. Only
-                                        the root pitch changes.</span>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="tfHeading3">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tf3">
+                                            How do guitarists use a capo for key transposition?
+                                        </button>
+                                    </h2>
+                                    <div id="tf3" class="accordion-collapse collapse" data-bs-parent="#transFaqAccordion">
+                                        <div class="accordion-body">
+                                            Each fret on a guitar neck represents exactly one semitone (half-step). Placing a capo on fret 2 transposes the open strings up two semitones (+2). If you finger standard open G Major chord shapes with a capo on fret 5 (+5 semitones), your instrument produces the concert sounding pitch of C Major.
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="body">
-                                    <strong>Check accidentals against the new key signature</strong>
-                                    <span>C♯ and D♭ are the same pitch — use whichever spelling the new key signature
-                                        calls for. The calculator handles this automatically.</span>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="tfHeading4">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tf4">
+                                            How do I transpose music for transposing instruments like trumpet or saxophone?
+                                        </button>
+                                    </h2>
+                                    <div id="tf4" class="accordion-collapse collapse" data-bs-parent="#transFaqAccordion">
+                                        <div class="accordion-body">
+                                            Transposing instruments read notation differently from concert pitch (C instruments like piano or flute). For a B-flat instrument (trumpet, clarinet, tenor sax), transpose concert pitch UP 2 semitones (+1 whole step). For an E-flat instrument (alto saxophone), transpose concert pitch UP 9 semitones (or down 3 semitones). For an F instrument (French horn), transpose concert pitch UP 7 semitones (a perfect 5th).
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                        </ul>
 
-                        <button class="try-cta-soft" onclick="window.scrollTo(0,0)">↑ Skip the manual work — use the
-                            calculator</button>
-                    </section>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="tfHeading5">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tf5">
+                                            What is the mathematical frequency formula for semitone transposition?
+                                        </button>
+                                    </h2>
+                                    <div id="tf5" class="accordion-collapse collapse" data-bs-parent="#transFaqAccordion">
+                                        <div class="accordion-body">
+                                            In 12-Tone Equal Temperament (12-TET), each semitone multiplies acoustic frequency by the 12th root of 2 (approximately 1.059463). Transposing a note by 'n' semitones changes its frequency according to:
+                                            <div class="p-2 bg-light rounded text-center my-2 font-monospace">
+                                                f_new = f_original × 2^(n / 12)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-
-
-                    <div class="mt-4 p-4 bg-light rounded">
-                        <h5 class="text-mid mb-3">All Keys Transposition Chart</h5>
-                        <div class="table-responsive ">
-                            <table class="table table-sm table-bordered">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th>Original</th>
-                                        <th id="transHeader">+5 semitones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="transpositionChart">
-                                </tbody>
-                            </table>
-                        </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="tfHeading6">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tf6">
+                                            How many semitones are in an octave and a perfect fifth?
+                                        </button>
+                                    </h2>
+                                    <div id="tf6" class="accordion-collapse collapse" data-bs-parent="#transFaqAccordion">
+                                        <div class="accordion-body">
+                                            An octave contains exactly 12 semitones. A perfect fifth contains 7 semitones, and a perfect fourth contains 5 semitones. Transposing by +12 or -12 returns you to the exact same note name, one octave higher or lower.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
-                <section class="tool-container mt-4 faq">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-4">
-                            <i class="bi bi-question-circle me-2"></i>FAQ
-                        </h2>
-
-                        <div class="accordion" id="faqAccordion">
-
-                            <!-- Item 1 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="faq1-heading">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq1">
-                                        Does transposing change the key?
-                                    </button>
-                                </h2>
-                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Yes — always. Transposing by any non-zero number of semitones results
-                                        in a new key with a different set of pitches and a different key signature. The
-                                        melody and chord relationships stay the same; only the pitch level and key name
-                                        change.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item 2 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="faq2-heading">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq2">
-                                        What is key transposition?
-                                    </button>
-                                </h2>
-                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Key transposition means shifting all the notes in a piece of music up
-                                        or down by the same interval. The result is musically identical content in a new
-                                        key. It's used to match a singer's range, suit an instrument, or align tracks in
-                                        a
-                                        mix.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item 3 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="faq3-heading">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq3">
-                                        How many semitones are in an octave?
-                                    </button>
-                                </h2>
-                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        There are 12 semitones in one octave. This is why the calculator
-                                        range goes from −12 to +12 — transposing by ±12 returns you to the same key
-                                        name,
-                                        just one octave higher or lower in pitch.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item 4 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="faq4-heading">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq4">
-                                        How do you transpose on guitar?
-                                    </button>
-                                </h2>
-                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Use a capo — each fret raises pitch by 1 semitone. To transpose up 5
-                                        semitones, place the capo on fret 5 and play your normal open chord shapes. The
-                                        calculator shows exactly which capo fret corresponds to your chosen semitone
-                                        shift.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item 5 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="faq5-heading">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq5">
-                                        How many semitones is a perfect fifth?
-                                    </button>
-                                </h2>
-                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        A perfect fifth is 7 semitones. It's one of the most common
-                                        transposition intervals in music — moving one step clockwise on the circle of
-                                        fifths. Example: C to G is a perfect fifth (+7 semitones).
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Item 6 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="faq6-heading">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq6">
-                                        Can I use this to transpose chord progressions?
-                                    </button>
-                                </h2>
-                                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        Yes. Enter your original key and semitone shift, then use the
-                                        transposition chart at the bottom of the result panel. Every row shows a source
-                                        note
-                                        alongside its transposed equivalent — map your chord roots through the chart to
-                                        transpose the full progression.
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-                <h2>Related DJ & Music Production Tools</h2>
-                <ul>
-                    <li><a href="/BPM-Pitch-Calculator.html">BPM Pitch Calculator</a></li>
-                    <li><a href="/dj-music-production-tools/bpm-to-speed/">BPM to Speed Calculator</a></li>
-                    <li><a href="/dj-music-production-tools/song-key-finder/">Song Key Finder</a></li>
-                    <li><a href="/dj-music-production-tools/mix-compatibility-checker/">Mix Compatibility Checker</a>
-                    </li>
-                </ul>
-
             </div>
         </div>
-    </div>
     </div>
 
     <div id="footer"></div>
     <script src="/assets/bootstrap5.js" defer></script>
+    <script src="/assets/tools.js" defer></script>
+
     <!-- tool js -->
     <script defer>
         const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
@@ -1184,7 +503,7 @@
 
             const absSemitones = Math.abs(semitones);
             const direction = semitones >= 0 ? 'up' : 'down';
-            const intervalName = intervals[absSemitones % 12] || 'Unknown';
+            const intervalName = intervals[absSemitones % 12] || 'Interval';
             document.getElementById('interval').textContent = intervalName + ' ' + direction;
 
             document.getElementById('pitchShift').textContent = (semitones >= 0 ? '+' : '') + semitones + ' semitones';
@@ -1198,11 +517,11 @@
                 document.getElementById('capoPosition').textContent = 'No capo needed';
             }
 
-            document.getElementById('transHeader').textContent = (semitones >= 0 ? '+' : '') + semitones + ' semitones';
+            document.getElementById('transHeader').textContent = `Transposed Equivalent (${semitones >= 0 ? '+' : ''}${semitones} semitones)`;
             let chartHtml = '';
             notes.forEach(note => {
                 const transposed = transposeNote(note, semitones);
-                chartHtml += `<tr><td>${note}</td><td class="fw-bold text-teal">${transposed}</td></tr>`;
+                chartHtml += `<tr><td class="fw-bold">${note}</td><td class="fw-bold text-teal">${transposed}</td></tr>`;
             });
             document.getElementById('transpositionChart').innerHTML = chartHtml;
         }
@@ -1221,83 +540,6 @@
                 .catch(err => console.error("Include load failed:", err));
         });
     </script>
-    <!-- schema tool page-->
-    <script defer type="application/ld+json">
-        {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Key Transposition Calculator",
-  "url": "https://pitchdetectors.com/dj-music-production-tools/key-transposition/",
-  "applicationCategory": "MusicApplication",
-  "operatingSystem": "Web",
-  "description": "Free online key transposition calculator to transpose music keys, calculate semitone shifts, intervals, and capo positions instantly.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "featureList": [
-    "Transpose musical keys instantly",
-    "Semitone shift calculation",
-    "Interval detection",
-    "Capo position suggestion",
-    "Supports major and minor keys"
-  ],
-  "creator": {
-    "@type": "Organization",
-    "name": "pitch detectors"
-  }
-}
-     </script>
-    <!-- faq schema -->
-    <script defer type="application/ld+json">
-        {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is key transposition?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Key transposition is the process of shifting all notes of a song up or down by a fixed number of semitones while preserving the intervals between notes. This changes the pitch but keeps the musical structure the same."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does transposing change the key?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, transposing changes the key of a piece of music. When all notes are shifted by the same number of semitones, the result is a new key with the same relative intervals and structure."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How many semitones are in an octave?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "There are 12 semitones in one octave in standard Western music. Moving up or down 12 semitones returns to the same note name at a higher or lower pitch."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do you transpose a key manually?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To transpose a key manually, determine the number of semitones to shift, move the root note by that amount, and then shift every note or chord in the progression by the same number of semitones while maintaining the original intervals."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do you transpose chords on guitar?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To transpose chords on guitar, shift each chord up or down by the same number of semitones. You can also use a capo to raise the pitch while keeping the same chord shapes, which simplifies playing in different keys."
-      }
-    }
-  ]
-}
-     </script>
 </body>
 
 </html>
