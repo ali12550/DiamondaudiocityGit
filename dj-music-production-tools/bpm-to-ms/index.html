@@ -164,288 +164,210 @@
 
                 <!-- content area -->
                 <div class="content_area container py-5">
+                    <div class="tool-container">
+                        <section id="bpm-to-ms-guide">
+                            <h1 class="mb-3">BPM to Milliseconds: Delay Time, Reverb &amp; LFO Sync Calculator</h1>
+                            <p class="lead text-muted mb-4">
+                                Convert musical tempo (BPM) into exact millisecond durations for delay times, reverb pre-delays, and compressor envelope settings, or convert millisecond sample lengths back into BPM. Includes full subdivision tables for straight, dotted, and triplet rhythmic values plus synthesizer LFO rates in Hertz (Hz).
+                            </p>
 
-                    <!-- QUICK SUMMARY -->
-                    <div
-                        style="background: rgba(0,11,88,0.04); box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-radius: 10px; padding: 20px; margin-bottom: 40px;">
-                        <h2>Quick Summary</h2>
-                        <ul>
+                            <h2>How This Converter Works</h2>
+                            <p>
+                                In audio engineering and modern music production, time-based effects (delays, reverbs, flangers, tremolos, and compressors) sound significantly cleaner and more cohesive when their timing parameters are locked to the tempo of the song.
+                            </p>
+                            <p>
+                                This tool operates in two interchangeable directions:
+                            </p>
+                            <div class="row g-4 my-3">
+                                <div class="col-md-6">
+                                    <div class="p-3 border rounded h-100 bg-light">
+                                        <h3 class="h5 fw-bold text-primary mb-2">1. BPM → Milliseconds</h3>
+                                        <p class="small text-muted mb-0">
+                                            Enter any project tempo (or click a quick preset like 120, 128, or 140 BPM). The calculator instantly breaks down the exact duration of <strong>7 note values</strong> (from a full 4/4 bar down to a 1/64 note) across three rhythmic variations: <em>Straight (Normal)</em>, <em>Dotted (1.5x)</em>, and <em>Triplet (0.667x)</em>. It also calculates the corresponding LFO oscillation frequency in Hertz (Hz).
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 border rounded h-100 bg-light">
+                                        <h3 class="h5 fw-bold text-primary mb-2">2. Milliseconds → BPM</h3>
+                                        <p class="small text-muted mb-0">
+                                            Switch to <em>ms → BPM</em> mode and enter the millisecond duration of a single beat or transient pulse. The tool reverses the equation to reveal the underlying project tempo and syncs the entire subdivision matrix automatically.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <li>The BPM to milliseconds calculator converts tempo into exact beat duration in
-                                milliseconds.</li>
-                            <li>The milliseconds to BPM calculator converts time intervals into tempo values.</li>
-                            <li>You use this tool for music production, DJing, delay timing, DAWs, MIDI sequencing,
-                                audio analysis, and tempo synchronization.</li>
-                        </ul>
-                    </div>
+                            <h2 class="mt-4">The Mathematical Formulas</h2>
+                            <p>
+                                One minute contains exactly 60 seconds, which equals $60{,}000\text{ milliseconds}$. Because musical meter defines tempo as beats per minute, the duration of one quarter-note beat ($1/4\text{ note}$) in standard 4/4 time is:
+                            </p>
 
-                    <!-- INTRO -->
-                    <h1 class="fw-bold mb-3" style="color:#000b58;">BPM to Milliseconds & Milliseconds to BPM Calculator
-                        – Accurate Beat Timing Tool
-                    </h1>
-                    <p>
-                        This calculator converts <strong>BPM to milliseconds</strong> and <strong>milliseconds to
-                            BPM</strong>.
-                        You use it to map tempo, calculate beat duration, set delay times, and synchronize tracks in
-                        DAWs,
-                        DJ software, and audio hardware.
-                    </p>
-                    <!-- WHAT IS BPM TO MILLISECONDS -->
-                    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">
-                        What Is BPM to Milliseconds?
-                    </h2>
-                    <p>
-                        BPM to milliseconds defines how long one beat lasts.
-                        The calculation uses the formula <strong>60,000 ÷ BPM</strong>.
-                        At 120 BPM, one beat equals 500 milliseconds.
-                        This value controls beat timing, sequencing, and rhythmic accuracy.
-                        <a href="/dj-music-production-tools/guides/what-is-bpm/">what BPM means in music</a>
-                    </p>
+                            <div class="table-responsive my-3">
+                                <table class="table table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 30%;">Parameter</th>
+                                            <th style="width: 40%;">Mathematical Formula</th>
+                                            <th style="width: 30%;">Explanation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Quarter Note ($1/4$)</strong></td>
+                                            <td><code>Quarter Note (ms) = 60,000 ÷ BPM</code></td>
+                                            <td>The fundamental timing pulse of 1 beat</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Any Note Value</strong></td>
+                                            <td><code>ms = (60,000 ÷ BPM) × Note Beats</code></td>
+                                            <td>Multiply quarter note by beat multiplier</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Dotted Note (.)</strong></td>
+                                            <td><code>Dotted ms = Normal ms × 1.5</code></td>
+                                            <td>Extends the note duration by half its value</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Triplet Note (T)</strong></td>
+                                            <td><code>Triplet ms = Normal ms × (2 ÷ 3)</code></td>
+                                            <td>Compresses 3 notes into the time of 2</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>ms to BPM</strong></td>
+                                            <td><code>BPM = 60,000 ÷ ms per beat</code></td>
+                                            <td>Calculates tempo from single-beat duration</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>LFO Frequency (Hz)</strong></td>
+                                            <td><code>Frequency (Hz) = 1,000 ÷ Note Duration (ms)</code></td>
+                                            <td>Cycles per second for synthesizer LFOs</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                    <!-- WHAT IS MILLISECONDS TO BPM -->
-                    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">
-                        What Is Milliseconds to BPM?
-                    </h2>
-                    <p>
-                        Milliseconds to BPM defines tempo from time.
-                        The formula is <strong>60,000 ÷ milliseconds</strong>.
-                        A 400 ms beat equals 150 BPM.
-                        This method identifies tempo from audio events, delays, and recordings.
-                    </p>
-                    <!-- FORMULAS -->
-                    <div class="tool-section mt-4">
-                        <h2 class="text-mid mb-3"><i class="bi bi-calculator me-2"></i>Formulas</h2>
-                        <div class="bg-light p-3 rounded mb-4">
-                            <h5>BPM to Milliseconds:</h5>
-                            <code style="font-size: 18px;">Milliseconds per Beat = 60,000 ÷ BPM</code>
-                        </div>
-                        <div class="bg-light p-3 rounded mb-4">
-                            <h5>Milliseconds to BPM:</h5>
-                            <code style="font-size: 18px;">BPM = 60,000 ÷ Milliseconds per Beat</code>
-                        </div>
-                        <div class="bg-light p-3 rounded mb-4">
-                            <h5>Examples:</h5>
-                            <code style="font-size: 18px;">
-60 BPM → 1000 ms per beat
-120 BPM → 500 ms per beat
-150 BPM → 400 ms per beat
-90 BPM → 666.67 ms per beat
-128 BPM → 468.75 ms per beat
-            </code>
+                            <h2 class="mt-4">Worked Example: Subdivision Matrix at 120 BPM</h2>
+                            <p>
+                                At <strong>120 BPM</strong>, one quarter note lasts exactly $60{,}000 / 120 = 500.00\text{ ms}$. Here is how the complete delay and modulation matrix calculates:
+                            </p>
 
+                            <div class="table-responsive my-3">
+                                <table class="table table-bordered table-striped text-center">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Note Value</th>
+                                            <th>Beat Multiplier</th>
+                                            <th>Normal (ms)</th>
+                                            <th>Dotted (ms)</th>
+                                            <th>Triplet (ms)</th>
+                                            <th>LFO Rate (Hz)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>1 Bar (4/4)</strong></td>
+                                            <td>4 beats</td>
+                                            <td>2,000.00 ms</td>
+                                            <td>3,000.00 ms</td>
+                                            <td>1,333.33 ms</td>
+                                            <td>0.500 Hz</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>1/2 Note</strong></td>
+                                            <td>2 beats</td>
+                                            <td>1,000.00 ms</td>
+                                            <td>1,500.00 ms</td>
+                                            <td>666.67 ms</td>
+                                            <td>1.000 Hz</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>1/4 Note</strong></td>
+                                            <td>1 beat</td>
+                                            <td>500.00 ms</td>
+                                            <td>750.00 ms</td>
+                                            <td>333.33 ms</td>
+                                            <td>2.000 Hz</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>1/8 Note</strong></td>
+                                            <td>0.5 beats</td>
+                                            <td>250.00 ms</td>
+                                            <td>375.00 ms</td>
+                                            <td>166.67 ms</td>
+                                            <td>4.000 Hz</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>1/16 Note</strong></td>
+                                            <td>0.25 beats</td>
+                                            <td>125.00 ms</td>
+                                            <td>187.50 ms</td>
+                                            <td>83.33 ms</td>
+                                            <td>8.000 Hz</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>1/32 Note</strong></td>
+                                            <td>0.125 beats</td>
+                                            <td>62.50 ms</td>
+                                            <td>93.75 ms</td>
+                                            <td>41.67 ms</td>
+                                            <td>16.000 Hz</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>1/64 Note</strong></td>
+                                            <td>0.0625 beats</td>
+                                            <td>31.25 ms</td>
+                                            <td>46.88 ms</td>
+                                            <td>20.83 ms</td>
+                                            <td>32.000 Hz</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                            <p class="mt-2"> <strong>These equations power:</strong></p>
+                            <h2 class="mt-4">Practical Mixing &amp; Sound Design Applications</h2>
+
+                            <h3>1. The Iconic Dotted 8th-Note Delay Effect</h3>
+                            <p>
+                                The <strong>dotted 8th note</strong> ($375.00\text{ ms}$ at 120 BPM or $351.56\text{ ms}$ at 128 BPM) is one of the most widely used delay timings in contemporary music. When played over straight quarter notes, it creates a syncopated, galloping counter-rhythm. Famous examples include the signature guitar tones of U2's The Edge (<em>"Where the Streets Have No Name"</em>), Pink Floyd's <em>"Run Like Hell"</em>, and modern trance and synthwave arpeggios.
+                            </p>
+
+                            <h3>2. Calculating Reverb Pre-Delay</h3>
+                            <p>
+                                <strong>Pre-delay</strong> dictates the gap in time between the dry sound (such as a lead vocal or snare drum) and the initial onset of the reverberant space. If pre-delay is set to 0 ms, the reverb immediately washes over the vocal, pushing it backward in the mix and causing intelligibility loss. By setting pre-delay to a <strong>1/32 note</strong> ($62.5\text{ ms}$ at 120 BPM) or a <strong>1/64 note</strong> ($31.25\text{ ms}$), the lead vocal hits upfront and clean before the lush reverb envelope blooms behind it.
+                            </p>
+
+                            <h3>3. Musical Reverb Decay Time ($RT_{60}$)</h3>
+                            <p>
+                                While reverb decay time ($RT_{60}$) depends on room size and aesthetic preference, setting total decay to a multiple of musical bars (such as 1 bar = $2.00\text{ s}$ or 2 bars = $4.00\text{ s}$ at 120 BPM) prevents reverb tails from overlapping chaotically into the next downbeat or chord change.
+                            </p>
+
+                            <h3>4. Triplet Delays for Dub Techno, Reggae &amp; Psytrance</h3>
+                            <p>
+                                <strong>Triplet delays</strong> (such as a 1/8T at $166.67\text{ ms}$ or 1/16T at $83.33\text{ ms}$ at 120 BPM) introduce a swinging, 3-against-2 polyrhythm that fits perfectly into shuffle beats, reggae tape dubs, and driving psytrance basslines without cluttering the downbeats.
+                            </p>
+
+                            <h3>5. Slapback Echo for Vintage Vocals &amp; Guitars</h3>
+                            <p>
+                                Classic 1950s rockabilly and John Lennon slapback delay relies on a single echo repetition set between <strong>75 ms and 130 ms</strong>. At 120 BPM, a straight 1/16 note ($125\text{ ms}$) provides an authentic, tempo-locked slapback that thickens a lead vocal without sounding like an echo chamber.
+                            </p>
+
+                            <h3>6. Synthesizer LFO Modulation Rates in Hertz (Hz)</h3>
+                            <p>
+                                Hardware synthesizers and analog modular Eurorack gear frequently express LFO speed in <strong>Hertz (cycles per second)</strong> rather than rhythmic note divisions. Use our lower frequency readout to set your LFO rate:
+                            </p>
                             <ul>
-                                <li>BPM to ms calculators</li>
-                                <li>ms to BPM converters</li>
-                                <li>delay BPM to ms tools</li>
-                                <li>Max/MSP tempo objects</li>
-                                <li>DAW tempo engines</li>
+                                <li><strong>0.500 Hz:</strong> Exactly 1 full LFO cycle across 1 measure (4 beats at 120 BPM). Ideal for sweeping filter sweeps across an arrangement.</li>
+                                <li><strong>2.000 Hz:</strong> Exactly 1 cycle per quarter note. Ideal for rhythmic sidechain pumping or tremolo.</li>
+                                <li><strong>4.000 Hz:</strong> Exactly 1 cycle per eighth note. Ideal for rotary speaker chorus and pulsing synth pads.</li>
                             </ul>
-                            <a href="/dj-music-production-tools/bpm-to-speed/">convert BPM to playback speed</a>
-                        </div>
-                    </div>
 
-                    <!-- EXAMPLES TABLE -->
-                    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">Examples & Quick Conversions</h2>
-                    <table class="table table-bordered text-center">
-                        <thead class="table-light">
-                            <tr>
-                                <th>BPM</th>
-                                <th>Milliseconds per Beat</th>
-                                <th>Seconds per Beat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>60</td>
-                                <td>1000</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>90</td>
-                                <td>666.67</td>
-                                <td>0.667</td>
-                            </tr>
-                            <tr>
-                                <td>120</td>
-                                <td>500</td>
-                                <td>0.5</td>
-                            </tr>
-                            <tr>
-                                <td>128</td>
-                                <td>468.75</td>
-                                <td>0.469</td>
-                            </tr>
-                            <tr>
-                                <td>140</td>
-                                <td>428.57</td>
-                                <td>0.429</td>
-                            </tr>
-                            <tr>
-                                <td>150</td>
-                                <td>400</td>
-                                <td>0.4</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <section>
-                        <h2>BPM to milliseconds examples (common tempos)</h2>
-
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>BPM</th>
-                                        <th>Milliseconds per beat</th>
-                                        <th>Musical context</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>60</td>
-                                        <td>1000 ms</td>
-                                        <td>Ambient, cinematic</td>
-                                    </tr>
-                                    <tr>
-                                        <td>70–75</td>
-                                        <td>857–800 ms</td>
-                                        <td>Downtempo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>80–90</td>
-                                        <td>750–667 ms</td>
-                                        <td>Hip-hop, lo-fi</td>
-                                    </tr>
-                                    <tr>
-                                        <td>100–110</td>
-                                        <td>600–545 ms</td>
-                                        <td>Pop</td>
-                                    </tr>
-                                    <tr>
-                                        <td>120</td>
-                                        <td>500 ms</td>
-                                        <td>House</td>
-                                    </tr>
-                                    <tr>
-                                        <td>128</td>
-                                        <td>468.75 ms</td>
-                                        <td>Techno</td>
-                                    </tr>
-                                    <tr>
-                                        <td>140</td>
-                                        <td>428.57 ms</td>
-                                        <td>Trance</td>
-                                    </tr>
-                                    <tr>
-                                        <td>160</td>
-                                        <td>375 ms</td>
-                                        <td>Drum &amp; Bass</td>
-                                    </tr>
-                                    <tr>
-                                        <td>190–200</td>
-                                        <td>316–300 ms</td>
-                                        <td>Hardcore</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <p>These values match BPM to milliseconds charts used in DAWs, delay units, and DJ software.</p>
-                        <p>Next, you’ll see how note values affect timing.</p>
-                    </section>
-                    <section>
-                        <h2>How note values change milliseconds per beat</h2>
-                        <p>Musical subdivisions alter timing mathematically.</p>
-                        <ul>
-                            <li>Quarter note → full beat duration</li>
-                            <li>Eighth note → divide by 2</li>
-                            <li>Dotted eighth → multiply by 1.5</li>
-                            <li>Triplet → divide by 3</li>
-                        </ul>
-
-                        <p><strong>Example:</strong><br>
-                            At 112 BPM, a dotted eighth delay equals 803.57 ms.<br>
-                            This calculation controls syncopation, groove, and rhythmic delay effects.</p>
-
-                        <p>Next, see real-world use cases.</p>
-                    </section>
-
-                    <section>
-                        <h2>Who uses BPM ↔ milliseconds conversion?</h2>
-
-                        <h3>Music producers</h3>
-                        <ul>
-                            <li>Align drum hits and MIDI notes</li>
-                            <li>Program sequencers precisely</li>
-                            <li><a href="/dj-music-production-tools/bpm-calculator/">Calculate BPM</a> to ms per beat
-                            </li>
-                        </ul>
-
-                        <h3>DJs</h3>
-                        <ul>
-                            <li>Match tempos manually</li>
-                            <li>Prepare transitions</li>
-                            <li>Measure live BPM from beat intervals</li>
-                        </ul>
-
-                        <h3>Sound designers</h3>
-                        <ul>
-                            <li>Sync delay effects to tempo</li>
-                            <li>Convert BPM to delay milliseconds</li>
-                            <li>Match reverb timing</li>
-                        </ul>
-
-                        <h3>Developers &amp; researchers</h3>
-                        <ul>
-                            <li>Convert heart rate ms to BPM</li>
-                            <li>Analyze ECG timing intervals</li>
-                            <li>Translate ms periods into frequency</li>
-                        </ul>
-
-                        <p>Next, you’ll see how this integrates with professional tools.</p>
-                    </section>
-
-                    <section>
-                        <h2>DAW, hardware, and software integration</h2>
-                        <p>You can apply BPM ↔ milliseconds values in:</p>
-                        <ul>
-                            <li>Ableton Live</li>
-                            <li>FL Studio</li>
-                            <li>Logic Pro</li>
-                            <li>Cubase</li>
-                            <li>Pro Tools</li>
-                            <li>Max/MSP</li>
-                            <li>Strymon Timeline</li>
-                            <li>MIDI sequencers</li>
-                            <li>LFO and Hz-to-ms converters</li>
-                        </ul>
-
-                        <p>These platforms rely on exact tempo equations, not approximations.</p>
-                        <p>Next, explore advanced conversion scenarios.</p>
-                    </section>
-                    <!-- USE CASES -->
-                    <div
-                        style="background: rgba(0,11,88,0.04); box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-radius: 10px; padding: 20px; margin-bottom: 40px;">
-                        <h2 class="h5 fw-bold text-uppercase mb-3" style="color:#003161;">Use Cases</h2>
-                        <ul>
-                            <li><strong>Music Production:</strong> Align drum loops, samples, and MIDI sequences with
-                                exact beat timing.</li>
-                            <li><strong>Live DJing:</strong> Plan transitions and mix tracks with precise tempo
-                                control.<a href="/dj-music-production-tools/mix-compatibility-checker/">calculate it
-                                    here : check mix compatibility between tracks</a>
-                            </li>
-                            <li><strong>DAW Integration:</strong> Input beat duration to sync instruments, effects, and
-                                loops accurately.</li>
-                            <li><strong>Electronic Music:</strong> Calculate timing for EDM, house, trance, techno, and
-                                hip-hop tracks.</li>
-                            <li><strong>Audio Analysis:</strong> Determine beat intervals for remixes, mashups, and
-                                sample timing.</li>
-                            <li><strong>Tempo Mapping:</strong> Measure and convert variable BPM tracks for consistent
-                                sequencing.</li>
-
-                        </ul>
-                    </div>
+                            <h2 class="mt-4">Common Mistakes When Syncing Delays</h2>
+                            <ul>
+                                <li><strong>Forgetting to Filter Delay Tails:</strong> Even perfectly timed delays will muddy your mix if low frequencies collide with your bass. Apply a high-pass filter (around 100–150 Hz) and low-pass filter (around 4–6 kHz) directly on your delay return auxiliary bus.</li>
+                                <li><strong>Neglecting Stereo Ping-Pong Offsets:</strong> When setting up dual stereo delays, setting the Left channel to a straight 1/8 note ($250\text{ ms}$) and the Right channel to a dotted 1/8 note ($375\text{ ms}$) creates incredible stereo width without phase cancellation.</li>
+                                <li><strong>Confusing Pre-Delay with Decay:</strong> Pre-delay is the initial wait time before reflections begin; decay time ($RT_{60}$) is how long those reflections take to fade into silence. Both can and should be musically synced using this calculator.</li>
+                            </ul>
+                        </section>
 
                     <!-- Semantic FAQ & Pro Tips Expansion -->
                     <div class="tool-container mt-5">
