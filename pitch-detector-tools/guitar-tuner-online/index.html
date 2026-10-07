@@ -2,1072 +2,1082 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Guitar Tuner (Free, Real-Time, Accurate)</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Guitar Tuner (Free, Real-Time, Accurate)</title>
 
-    <meta name="description"
-        content="Free online guitar tuner using your microphone. Tune acoustic, electric, bass, and drop tunings with real-time pitch and Hz accuracy.">
+  <meta name="description"
+    content="Free online guitar tuner using your microphone. Tune acoustic, electric, bass, and drop tunings with real-time pitch and Hz accuracy.">
 
-    <meta name="keywords"
-        content="guitar tuner online, free chromatic tuner, tune guitar, bass tuner, ukulele tuner, real-time guitar tuning, pitch detection online">
+  <meta name="keywords"
+    content="guitar tuner online, free chromatic tuner, tune guitar, bass tuner, ukulele tuner, real-time guitar tuning, pitch detection online">
 
-    <link rel="canonical" href="https://diamondaudiocity.com/pitch-detector-tools/guitar-tuner-online/">
+  <link rel="canonical" href="https://pitchdetectors.com/pitch-detector-tools/guitar-tuner-online/">
 
-    <link rel="icon" href="https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link href="/assets/tools.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link href="/assets/tools.css" rel="stylesheet">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-NCHP45VYJ2');
-    </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NCHP45VYJ2');
+  </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
-        crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
+    crossorigin="anonymous"></script>
 
-    <style>
-        .tuner-display {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--mid-blue) 100%);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            color: #fff;
-            margin: 30px 0;
-        }
+  <style>
+    .tuner-display {
+      background: linear-gradient(135deg, var(--dark-blue) 0%, var(--mid-blue) 100%);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      color: #fff;
+      margin: 30px 0;
+    }
 
-        .note-display {
-            font-size: 120px;
-            font-weight: 700;
-            line-height: 1;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
+    .note-display {
+      font-size: 120px;
+      font-weight: 700;
+      line-height: 1;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
 
-        .octave-display {
-            font-size: 40px;
-            vertical-align: super;
-            opacity: 0.8;
-        }
+    .octave-display {
+      font-size: 40px;
+      vertical-align: super;
+      opacity: 0.8;
+    }
 
-        .frequency-display {
-            font-size: 28px;
-            opacity: 0.9;
-            margin-top: 10px;
-        }
+    .frequency-display {
+      font-size: 28px;
+      opacity: 0.9;
+      margin-top: 10px;
+    }
 
-        .cents-meter {
-            margin: 30px auto;
-            max-width: 400px;
-        }
+    .cents-meter {
+      margin: 30px auto;
+      max-width: 400px;
+    }
 
-        .cents-bar {
-            height: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-        }
+    .cents-bar {
+      height: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .cents-indicator {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 30px;
-            background: var(--accent);
-            border-radius: 4px;
-            transition: left 0.1s ease;
-        }
+    .cents-indicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 30px;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: left 0.1s ease;
+    }
 
-        .cents-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-            font-size: 12px;
-            opacity: 0.7;
-        }
+    .cents-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      font-size: 12px;
+      opacity: 0.7;
+    }
 
-        .cents-value {
-            font-size: 24px;
-            margin-top: 15px;
-        }
+    .cents-value {
+      font-size: 24px;
+      margin-top: 15px;
+    }
 
-        .tuning-status {
-            font-size: 20px;
-            margin-top: 15px;
-            padding: 10px 30px;
-            border-radius: 30px;
-            display: inline-block;
-        }
+    .tuning-status {
+      font-size: 20px;
+      margin-top: 15px;
+      padding: 10px 30px;
+      border-radius: 30px;
+      display: inline-block;
+    }
 
-        .status-flat {
-            background: #e74c3c;
-        }
+    .status-flat {
+      background: #e74c3c;
+    }
 
-        .status-sharp {
-            background: #e67e22;
-        }
+    .status-sharp {
+      background: #e67e22;
+    }
 
-        .status-tune {
-            background: #27ae60;
-        }
+    .status-tune {
+      background: #27ae60;
+    }
 
-        .status-waiting {
-            background: rgba(255, 255, 255, 0.2);
-        }
+    .status-waiting {
+      background: rgba(255, 255, 255, 0.2);
+    }
 
-        .start-btn {
-            background: var(--teal);
-            color: #fff;
-            border: none;
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .start-btn {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      padding: 15px 40px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .start-btn:hover {
-            background: var(--mid-blue);
-            transform: scale(1.05);
-        }
+    .start-btn:hover {
+      background: var(--mid-blue);
+      transform: scale(1.05);
+    }
 
-        .start-btn.active {
-            background: #e74c3c;
-        }
+    .start-btn.active {
+      background: #e74c3c;
+    }
 
-        .tuning-presets {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-        }
+    .tuning-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 20px 0;
+    }
 
-        .preset-btn {
-            background: var(--mid-blue);
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    .preset-btn {
+      background: var(--mid-blue);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        .preset-btn:hover,
-        .preset-btn.active {
-            background: var(--teal);
-        }
+    .preset-btn:hover,
+    .preset-btn.active {
+      background: var(--teal);
+    }
 
-        .reference-notes {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
+    .reference-notes {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
 
-        .ref-note {
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 15px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    .ref-note {
+      background: #f8f9fa;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 15px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        .ref-note:hover {
-            border-color: var(--teal);
-            background: var(--accent);
-        }
+    .ref-note:hover {
+      border-color: var(--teal);
+      background: var(--accent);
+    }
 
-        .ref-note .note {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--dark-blue);
-        }
+    .ref-note .note {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark-blue);
+    }
 
-        .ref-note .freq {
-            font-size: 12px;
-            color: var(--mid-blue);
-        }
+    .ref-note .freq {
+      font-size: 12px;
+      color: var(--mid-blue);
+    }
 
-        @media (max-width: 576px) {
-            .note-display {
-                font-size: 80px;
-            }
+    @media (max-width: 576px) {
+      .note-display {
+        font-size: 80px;
+      }
 
-            .reference-notes {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    </style>
+      .reference-notes {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div id="header"></div>
-    <div class="container py-4">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-lg-3 col-md-4">
-                <div class="tools-sidebar">
-                    <!-- Search Box -->
-                    <div class="sidebar-search mb-4">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
-                                onkeyup="searchTools()">
-                        </div>
-                    </div>
+  <div id="header"></div>
+  <div class="container py-4">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 col-md-4">
+        <div class="tools-sidebar">
+          <!-- Search Box -->
+          <div class="sidebar-search mb-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                onkeyup="searchTools()">
+            </div>
+          </div>
 
-                    <!-- Categories -->
-                    <div class="sidebar-categories">
-                        <div class="sidebar-category active">
-                            <h5><i class="bi bi-soundwave me-2"></i>Pitch Detector Tools</h5>
-                            <ul class="sidebar-links">
-                                <li><a href="/pitch-detector-tools/guitar-tuner-online/" class="active"><i
-                                            class="bi bi-music-note-beamed"></i> Guitar Tuner</a></li>
-                                <li><a href="/pitch-detector-tools/vocal-range-finder-online/"><i class="bi bi-mic"></i>
-                                        Vocal
-                                        Range Finder</a></li>
-                                <li><a href="/pitch-detector-tools/frequency-to-note-online/"><i
-                                            class="bi bi-arrow-left-right"></i> Frequency to Note</a></li>
-                                <li><a href="/pitch-detector-tools/note-to-frequency-online/"><i
-                                            class="bi bi-calculator"></i>
-                                        Note to Frequency</a></li>
-                                <li><a href="/pitch-detector-tools/cents-calculator-online/"><i
-                                            class="bi bi-rulers"></i> Cents
-                                        Calculator</a></li>
-                                <li><a href="/pitch-detector-tools/transpose-calculator-online/"><i
-                                            class="bi bi-arrows-expand"></i> Transpose Calculator</a></li>
-                                <li><a href="/pitch-detector-tools/harmonic-series-calculator-online/"><i
-                                            class="bi bi-bar-chart-steps"></i> Harmonic Series</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-category">
-                            <h5><i class="bi bi-disc me-2"></i>DJ & Production Tools</h5>
-                            <ul class="sidebar-links">
-                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i
-                                            class="bi bi-speedometer2"></i> BPM Calculator</a></li>
-                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
-                                        BPM Tap Tempo</a></li>
-                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to
-                                        Milliseconds</a></li>
-                                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song
-                                        Key Finder</a></li>
-                                <li><a href="https://diamondaudiocity.com/BPM-Pitch-Calculator.html"><i class="bi bi-sliders"></i>
-                                        Pitch Shifter</a></li>
-
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-category">
-                            <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
-                            <ul class="sidebar-links">
-                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i>
-                                        Online Metronome</a></li>
-                                <li><a href="/music-theory-tools/scale-finder/"><i class="bi bi-grid-3x3"></i> Scale
-                                        Finder</a></li>
-                                <li><a href="/music-theory-tools/chord-identifier/"><i class="bi bi-vinyl"></i> Chord
-                                        Identifier</a></li>
-                                <li><a href="/music-theory-tools/rhythm-pattern-maker/"><i class="bi bi-activity"></i>
-                                        Rhythm Pattern Maker</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="sidebar-category">
-                            <h5><i class="bi bi-graph-up me-2"></i>Sound Analysis Tools</h5>
-                            <ul class="sidebar-links">
-                                <li><a href="/sound-analysis-tools/decibel-meter/"><i class="bi bi-volume-up"></i>
-                                        Decibel Meter</a></li>
-                                 
-    
-                                        <li><a href="/sound-analysis-tools/microphone-test/"><i class="bi bi-mic"></i>
-                                        Microphone Test</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
+          <!-- Categories -->
+          <div class="sidebar-categories">
+            <div class="sidebar-category active">
+              <h5><i class="bi bi-soundwave me-2"></i>Pitch Detector Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/pitch-detector-tools/guitar-tuner-online/" class="active"><i
+                      class="bi bi-music-note-beamed"></i> Guitar Tuner</a></li>
+                <li><a href="/pitch-detector-tools/vocal-range-finder-online/"><i class="bi bi-mic"></i>
+                    Vocal
+                    Range Finder</a></li>
+                <li><a href="/pitch-detector-tools/frequency-to-note-online/"><i class="bi bi-arrow-left-right"></i>
+                    Frequency to Note</a></li>
+                <li><a href="/pitch-detector-tools/note-to-frequency-online/"><i class="bi bi-calculator"></i>
+                    Note to Frequency</a></li>
+                <li><a href="/pitch-detector-tools/cents-calculator-online/"><i class="bi bi-rulers"></i> Cents
+                    Calculator</a></li>
+                <li><a href="/pitch-detector-tools/transpose-calculator-online/"><i class="bi bi-arrows-expand"></i>
+                    Transpose Calculator</a></li>
+                <li><a href="/pitch-detector-tools/harmonic-series-calculator-online/"><i
+                      class="bi bi-bar-chart-steps"></i> Harmonic Series</a></li>
+              </ul>
             </div>
 
-            <div class="col-lg-9 col-md-9">
-                <!-- Breadcrumb -->
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/pitch-detector-tools/">Pitch Detector Tools</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Guitar Tuner</li>
-                    </ol>
-                </nav>
+            <div class="sidebar-category">
+              <h5><i class="bi bi-disc me-2"></i>DJ & Production Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i> BPM
+                    Calculator</a></li>
+                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
+                    BPM Tap Tempo</a></li>
+                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to
+                    Milliseconds</a></li>
+                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song
+                    Key Finder</a></li>
+                <li><a href="https://pitchdetectors.com/BPM-Pitch-Calculator.html"><i class="bi bi-sliders"></i>
+                    Pitch Shifter</a></li>
 
-                <div class="tool-container">
-                    <div class="tool-title">
-                        <h1><i class="bi bi-music-note-beamed me-2"></i>Online Guitar Tuner</h1>
-                        <p>Free chromatic tuner with real-time pitch detection. Tune your guitar, bass, ukulele, or any
-                            instrument using your microphone.</p>
-                    </div>
-
-                    <!-- Tuner Display -->
-                    <div class="tuner-display">
-                        <div class="note-display">
-                            <span id="currentNote">--</span><span class="octave-display" id="currentOctave"></span>
-                        </div>
-                        <div class="frequency-display" id="currentFrequency">-- Hz</div>
-
-                        <div class="cents-meter">
-                            <div class="cents-bar">
-                                <div class="cents-indicator" id="centsIndicator"></div>
-                            </div>
-                            <div class="cents-labels">
-                                <span>-50¢</span>
-                                <span>0</span>
-                                <span>+50¢</span>
-                            </div>
-                            <div class="cents-value" id="centsValue">0 cents</div>
-                        </div>
-
-                        <div class="tuning-status status-waiting" id="tuningStatus">
-                            Click Start to begin tuning
-                        </div>
-                    </div>
-
-                    <!-- Start Button -->
-                    <div class="text-center mb-4">
-                        <button class="start-btn" id="startBtn" onclick="toggleTuner()">
-                            <i class="bi bi-mic-fill"></i>
-                            <span>Start Tuner</span>
-                        </button>
-                    </div>
-
-                    <!-- Tuning Presets -->
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Tuning Preset:</label>
-                        <div class="tuning-presets">
-                            <button class="preset-btn active" onclick="setTuning('standard')">Standard (EADGBE)</button>
-                            <button class="preset-btn" onclick="setTuning('dropd')">Drop D</button>
-                            <button class="preset-btn" onclick="setTuning('halfdown')">Half Step Down</button>
-                            <button class="preset-btn" onclick="setTuning('opend')">Open D</button>
-                            <button class="preset-btn" onclick="setTuning('dadgad')">DADGAD</button>
-                            <button class="preset-btn" onclick="setTuning('bass')">Bass (EADG)</button>
-                            <button class="preset-btn" onclick="setTuning('ukulele')">Ukulele (GCEA)</button>
-                        </div>
-                    </div>
-
-                    <!-- Reference Notes -->
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Reference Notes (Click to play):</label>
-                        <div class="reference-notes" id="referenceNotes">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-
-                    <!-- A4 Reference -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <label class="form-label">A4 Reference Frequency (Hz):</label>
-                            <input type="number" class="form-control" id="a4Reference" value="440" min="430" max="450"
-                                onchange="updateA4Reference()">
-                        </div>
-                    </div>
-
-                    <!-- Result Box -->
-                    <div class="result-box" id="resultBox" style="display: none;">
-                        <h3><i class="bi bi-check-circle me-2"></i>Perfect Tune!</h3>
-                        <p id="resultText" class="mb-0">Your string is in tune!</p>
-                    </div>
-                </div>
-
-                <!-- How to Use -->
-                <div class="tool-container mt-4">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Use This Guitar Tuner
-                        </h2>
-                        <div class="tool-steps">
-                            <ol>
-                                <li><strong>Grant Microphone Access:</strong> Click "Start Tuner" and allow microphone
-                                    access
-                                    when prompted.</li>
-                                <li><strong>Select Your Tuning:</strong> Choose a tuning preset (Standard, Drop D, etc.)
-                                    or use
-                                    chromatic mode for any note.</li>
-                                <li><strong>Play a String:</strong> Pluck one string at a time and let it ring out
-                                    clearly.</li>
-                                <li><strong>Read the Display:</strong> The detected note will appear on screen with
-                                    cents
-                                    deviation.</li>
-                                <li><strong>Adjust Your Tuning:</strong> If the indicator is left (flat), tighten the
-                                    string. If
-                                    right (sharp), loosen it.</li>
-                                <li><strong>Green = In Tune:</strong> When the indicator is centered and green, your
-                                    string is
-                                    perfectly tuned!</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-
-                <section class="tool-container">
-
-  <h2>Online Guitar Tuner for Accurate Real-Time Tuning</h2>
-  <p>
-    This <strong>online guitar tuner</strong> is a browser-based tuning tool that detects pitch through your device’s
-    microphone and converts it into musical notes and frequency values in hertz (Hz). It allows users to tune
-    <strong>acoustic guitars, electric guitars, bass guitars, and extended-range guitars</strong> without installing
-    any app, plugin, or software.
-  </p>
-  <p>
-    The tool works as a <strong>free guitar tuner online</strong> and supports standard tuning, chromatic tuning,
-    half-step and full-step tuning, drop tunings, and custom reference pitch calibration such as
-    <strong>440 Hz, 432 Hz, 444 Hz, and 425 Hz</strong>. It is designed for practice, learning, and general instrument
-    setup rather than stage-grade strobe tuning.
-  </p>
-
-  <h2>Who Uses an Online Guitar Tuner</h2>
-  <p>
-    An online guitar tuner is used by <strong>beginner guitar players, intermediate musicians, teachers, students,
-    home recordists, and multi-instrument players</strong> who need fast pitch reference without dedicated hardware.
-    It is commonly used for <strong>daily practice, lesson preparation, string changes, alternate tuning checks,
-    and rough intonation alignment</strong>.
-  </p>
-  <p>
-    Because the tuner is chromatic, it is also used as a <strong>pitch tuner online</strong> for bass guitar, ukulele,
-    violin, mandolin, and other string instruments that rely on note-to-frequency accuracy.
-  </p>
-
-  <h2>Supported Guitar Types and String Configurations</h2>
-  <ul>
-    <li>6-string acoustic, electric, and classical guitars (EADGBE)</li>
-    <li>7-string guitars including baritone and low-register tunings</li>
-    <li>8-string guitars and extended-range instruments</li>
-    <li>12-string guitars with paired octave strings</li>
-    <li>4-string and 5-string bass guitars</li>
-    <li>Ukulele, mandolin, violin, and other chromatic instruments</li>
-  </ul>
-
-  <h2>What This Guitar Tuner Does</h2>
-  <p>
-    The tuner listens to incoming audio through the microphone and performs <strong>real-time pitch detection</strong>.
-    The detected frequency is mapped to the nearest musical note using equal temperament tuning. The interface
-    displays whether the pitch is <strong>flat, sharp, or centered</strong>, allowing users to adjust string tension
-    accurately.
-  </p>
-  <p>
-    This process functions as a <strong>note-to-frequency and frequency-to-note converter</strong> optimized for
-    live instrument input rather than audio file analysis.
-  </p>
-
-  <h2>Supported Tuning Modes</h2>
-
-  <h3>Standard Guitar Tuning</h3>
-  <p>
-    Standard tuning for 6-string guitar follows the sequence:
-    <strong>E2 – A2 – D3 – G3 – B3 – E4</strong>. This is the default tuning reference used in most guitar music,
-    lessons, and chord charts.
-  </p>
-
-  <h3>Chromatic Tuning Mode</h3>
-  <p>
-    Chromatic mode allows the tuner to detect <strong>any musical note</strong> without restricting detection to
-    predefined string names. This mode is required for non-standard tunings, alternate instruments, and intonation
-    checks.
-  </p>
-
-  <h3>Alternate and Drop Tunings</h3>
-  <ul>
-    <li>Drop D, Drop C, Drop B, Drop A</li>
-    <li>D Standard, C Standard, Eb Standard</li>
-    <li>Open D, Open G, Open C, Open E</li>
-    <li>DADGAD and FACGCE</li>
-    <li>Baritone and extended low-frequency tunings</li>
-  </ul>
-
-  <h3>Step-Based and Micro-Tuning</h3>
-  <ul>
-    <li>Half-step down and half-step up tuning</li>
-    <li>Full-step down tuning</li>
-    <li>Quarter-step adjustments for fine pitch control</li>
-    <li>Custom tuning based on reference frequency (Hz)</li>
-  </ul>
-
-  <h2>How the Online Guitar Tuner Works</h2>
-
-  <h3>Microphone Audio Capture</h3>
-  <p>
-    The tuner accesses your device microphone only during active use. Plucked strings generate sound waves that are
-    captured as time-domain audio signals for analysis.
-  </p>
-
-  <h3>Frequency Detection and Note Mapping</h3>
-  <p>
-    The audio signal is converted into a fundamental frequency value in hertz. This value is compared against
-    standardized note frequency tables to determine the closest note and pitch deviation in cents.
-  </p>
-
-  <h3>Pitch Deviation Feedback</h3>
-  <p>
-    The tuning indicator shows real-time deviation. A centered indicator means the note is in tune. Movement to the
-    left indicates flat pitch, while movement to the right indicates sharp pitch.
-  </p>
-
-  <h2>Reference Pitch and Calibration</h2>
-  <ul>
-    <li>Default reference pitch: A4 = 440 Hz</li>
-    <li>Alternate references: 432 Hz, 444 Hz, 425 Hz</li>
-    <li>Manual adjustment for ensemble or historical tuning</li>
-  </ul>
-<section class="tool-container">
-  <h2>Guitar Tuning Frequency Formula</h2>
-
-  <p>
-    An online guitar tuner converts detected pitch into a musical note using the
-    equal temperament tuning system. Each note is mapped to a frequency value
-    relative to a reference pitch, commonly A4 = 440 Hz.
-  </p>
-
-  <p><strong>Frequency Formula:</strong></p>
-
-  <p>
-    f = 440 × 2<sup>(n − 69) / 12</sup>
-  </p>
-
-  <ul>
-    <li><strong>f</strong> = frequency in hertz (Hz)</li>
-    <li><strong>n</strong> = MIDI note number</li>
-    <li><strong>69</strong> = MIDI number for A4</li>
-    <li><strong>12</strong> = notes per octave</li>
-  </ul>
-
-  <p>
-    The tuner detects the fundamental frequency from the microphone, converts it
-    into a MIDI-equivalent value, and calculates pitch deviation in cents to
-    determine whether the string is flat, sharp, or in tune.
-  </p>
-</section>
-<section class="tool-container">
-  <h2>Standard Guitar Tuning Reference Table</h2>
-
-  <div class="table-responsive">
-    <table class="table table-bordered table-striped text-center align-middle">
-      <thead class="table-dark">
-        <tr>
-          <th>String</th>
-          <th>Note</th>
-          <th>Octave</th>
-          <th>Frequency (Hz)</th>
-          <th>MIDI Number</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>6th (Low)</td>
-          <td>E</td>
-          <td>2</td>
-          <td>82.41</td>
-          <td>40</td>
-        </tr>
-        <tr>
-          <td>5th</td>
-          <td>A</td>
-          <td>2</td>
-          <td>110.00</td>
-          <td>45</td>
-        </tr>
-        <tr>
-          <td>4th</td>
-          <td>D</td>
-          <td>3</td>
-          <td>146.83</td>
-          <td>50</td>
-        </tr>
-        <tr>
-          <td>3rd</td>
-          <td>G</td>
-          <td>3</td>
-          <td>196.00</td>
-          <td>55</td>
-        </tr>
-        <tr>
-          <td>2nd</td>
-          <td>B</td>
-          <td>3</td>
-          <td>246.94</td>
-          <td>59</td>
-        </tr>
-        <tr>
-          <td>1st (High)</td>
-          <td>E</td>
-          <td>4</td>
-          <td>329.63</td>
-          <td>64</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p>
-    This table represents standard 6-string guitar tuning using A4 = 440 Hz.
-    Alternate tunings shift frequencies proportionally based on reference pitch
-    calibration.
-  </p>
-</section>
-
-  <h2>Accuracy Factors and Limitations</h2>
-  <ul>
-    <li>Microphone sensitivity and quality</li>
-    <li>Ambient noise and room acoustics</li>
-    <li>Low-frequency detection on bass and extended-range guitars</li>
-    <li>String age, harmonics, and decay behavior</li>
-    <li>Browser audio processing latency</li>
-  </ul>
-
-  <h2>Common Use Cases</h2>
-  <ul>
-    <li>Daily practice and warm-up</li>
-    <li>Learning guitar tuning fundamentals</li>
-    <li>Checking alternate tunings quickly</li>
-    <li>Pre-recording rough tuning</li>
-    <li>Multi-instrument pitch reference</li>
-  </ul>
-
-  <h2>Online Guitar Tuner vs Other Tuning Methods</h2>
-  <p>
-    Online guitar tuners prioritize accessibility and convenience. Hardware pedal tuners and strobe tuners offer
-    higher precision for live performance, while DAW plugins provide tuning accuracy within recording workflows.
-    Browser-based tuners remain suitable for practice and general setup.
-  </p>
-
-  <h2>Privacy and Microphone Usage</h2>
-  <ul>
-    <li>Microphone access is temporary and user-controlled</li>
-    <li>No audio is recorded, saved, or transmitted</li>
-    <li>All pitch detection occurs locally in real time</li>
-  </ul>
-
-</section>
-<section class="tool-container">
-  <h2>Online Guitar Tuner – Frequently Asked Questions</h2>
-
-  <div class="accordion" id="guitarTunerFAQ">
-
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
-          What is an online guitar tuner?
-        </button>
-      </h2>
-      <div id="faq1" class="accordion-collapse collapse show">
-        <div class="accordion-body">
-          An online guitar tuner is a browser-based tuning tool that detects sound
-          through a microphone and converts pitch into musical notes and frequency
-          values. It allows guitarists to tune instruments without installing
-          hardware tuners, apps, or plugins.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
-          How accurate is a browser-based guitar tuner?
-        </button>
-      </h2>
-      <div id="faq2" class="accordion-collapse collapse">
-        <div class="accordion-body">
-          Accuracy depends on microphone quality, background noise, and browser
-          audio processing. Online guitar tuners provide sufficient accuracy for
-          practice, learning, and setup, but may not match the precision of strobe
-          tuners used in live performance environments.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
-          Does this guitar tuner support alternate and drop tunings?
-        </button>
-      </h2>
-      <div id="faq3" class="accordion-collapse collapse">
-        <div class="accordion-body">
-          Yes. Because the tuner operates in chromatic mode, it detects any musical
-          note regardless of string position. This allows accurate tuning for drop
-          tunings, open tunings, baritone guitars, and extended-range instruments.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
-          What reference pitch does the guitar tuner use?
-        </button>
-      </h2>
-      <div id="faq4" class="accordion-collapse collapse">
-        <div class="accordion-body">
-          The default reference pitch is A4 = 440 Hz, which is the international
-          tuning standard. The tuner also supports alternate calibration values such
-          as 432 Hz, 444 Hz, and 425 Hz for ensemble or historical tuning needs.
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">
-          Is microphone audio stored or recorded?
-        </button>
-      </h2>
-      <div id="faq5" class="accordion-collapse collapse">
-        <div class="accordion-body">
-          No. Microphone access is temporary and controlled by the user’s browser.
-          Audio data is processed locally for pitch detection only and is not saved,
-          transmitted, or stored on any server.
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<div class="card my-4 shadow-sm">
-  <div class="card-body">
-    <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
-
-    <ul class="list-unstyled mb-0">
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/pitch-detector-tools/pitch-detector/">
-          Online Pitch Detector
-        </a>
-      </li>
-
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/pitch-detector-tools/guitar-tuner-online/">
-          Guitar Tuner
-        </a>
-      </li>
-
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/pitch-detector-tools/frequency-to-note-online/">
-          Frequency to Note Converter
-        </a>
-      </li>
-
-      <li>
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/pitch-detector-tools/note-to-frequency-online/">
-          Note to Frequency Converter
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-
+              </ul>
             </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i>
+                    Online Metronome</a></li>
+                <li><a href="/music-theory-tools/scale-finder/"><i class="bi bi-grid-3x3"></i> Scale
+                    Finder</a></li>
+                <li><a href="/music-theory-tools/chord-identifier/"><i class="bi bi-vinyl"></i> Chord
+                    Identifier</a></li>
+                <li><a href="/music-theory-tools/rhythm-pattern-maker/"><i class="bi bi-activity"></i>
+                    Rhythm Pattern Maker</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-graph-up me-2"></i>Sound Analysis Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/sound-analysis-tools/decibel-meter/"><i class="bi bi-volume-up"></i>
+                    Decibel Meter</a></li>
+
+
+                <li><a href="/sound-analysis-tools/microphone-test/"><i class="bi bi-mic"></i>
+                    Microphone Test</a></li>
+              </ul>
+            </div>
+
+          </div>
         </div>
+      </div>
+
+      <div class="col-lg-9 col-md-9">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/pitch-detector-tools/">Pitch Detector Tools</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Guitar Tuner</li>
+          </ol>
+        </nav>
+
+        <div class="tool-container">
+          <div class="tool-title">
+            <h1><i class="bi bi-music-note-beamed me-2"></i>Online Guitar Tuner</h1>
+            <p>Free chromatic tuner with real-time pitch detection. Tune your guitar, bass, ukulele, or any
+              instrument using your microphone.</p>
+          </div>
+
+          <!-- Tuner Display -->
+          <div class="tuner-display">
+            <div class="note-display">
+              <span id="currentNote">--</span><span class="octave-display" id="currentOctave"></span>
+            </div>
+            <div class="frequency-display" id="currentFrequency">-- Hz</div>
+
+            <div class="cents-meter">
+              <div class="cents-bar">
+                <div class="cents-indicator" id="centsIndicator"></div>
+              </div>
+              <div class="cents-labels">
+                <span>-50¢</span>
+                <span>0</span>
+                <span>+50¢</span>
+              </div>
+              <div class="cents-value" id="centsValue">0 cents</div>
+            </div>
+
+            <div class="tuning-status status-waiting" id="tuningStatus">
+              Click Start to begin tuning
+            </div>
+          </div>
+
+          <!-- Start Button -->
+          <div class="text-center mb-4">
+            <button class="start-btn" id="startBtn" onclick="toggleTuner()">
+              <i class="bi bi-mic-fill"></i>
+              <span>Start Tuner</span>
+            </button>
+          </div>
+
+          <!-- Tuning Presets -->
+          <div class="mb-4">
+            <label class="form-label fw-bold">Tuning Preset:</label>
+            <div class="tuning-presets">
+              <button class="preset-btn active" onclick="setTuning('standard')">Standard (EADGBE)</button>
+              <button class="preset-btn" onclick="setTuning('dropd')">Drop D</button>
+              <button class="preset-btn" onclick="setTuning('halfdown')">Half Step Down</button>
+              <button class="preset-btn" onclick="setTuning('opend')">Open D</button>
+              <button class="preset-btn" onclick="setTuning('dadgad')">DADGAD</button>
+              <button class="preset-btn" onclick="setTuning('bass')">Bass (EADG)</button>
+              <button class="preset-btn" onclick="setTuning('ukulele')">Ukulele (GCEA)</button>
+            </div>
+          </div>
+
+          <!-- Reference Notes -->
+          <div class="mb-4">
+            <label class="form-label fw-bold">Reference Notes (Click to play):</label>
+            <div class="reference-notes" id="referenceNotes">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- A4 Reference -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <label class="form-label">A4 Reference Frequency (Hz):</label>
+              <input type="number" class="form-control" id="a4Reference" value="440" min="430" max="450"
+                onchange="updateA4Reference()">
+            </div>
+          </div>
+
+          <!-- Result Box -->
+          <div class="result-box" id="resultBox" style="display: none;">
+            <h3><i class="bi bi-check-circle me-2"></i>Perfect Tune!</h3>
+            <p id="resultText" class="mb-0">Your string is in tune!</p>
+          </div>
+        </div>
+
+        <!-- How to Use -->
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Use This Guitar Tuner
+            </h2>
+            <div class="tool-steps">
+              <ol>
+                <li><strong>Grant Microphone Access:</strong> Click "Start Tuner" and allow microphone
+                  access
+                  when prompted.</li>
+                <li><strong>Select Your Tuning:</strong> Choose a tuning preset (Standard, Drop D, etc.)
+                  or use
+                  chromatic mode for any note.</li>
+                <li><strong>Play a String:</strong> Pluck one string at a time and let it ring out
+                  clearly.</li>
+                <li><strong>Read the Display:</strong> The detected note will appear on screen with
+                  cents
+                  deviation.</li>
+                <li><strong>Adjust Your Tuning:</strong> If the indicator is left (flat), tighten the
+                  string. If
+                  right (sharp), loosen it.</li>
+                <li><strong>Green = In Tune:</strong> When the indicator is centered and green, your
+                  string is
+                  perfectly tuned!</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+
+        <section class="tool-container">
+
+          <h2>Online Guitar Tuner for Accurate Real-Time Tuning</h2>
+          <p>
+            This <strong>online guitar tuner</strong> is a browser-based tuning tool that detects pitch through your
+            device’s
+            microphone and converts it into musical notes and frequency values in hertz (Hz). It allows users to tune
+            <strong>acoustic guitars, electric guitars, bass guitars, and extended-range guitars</strong> without
+            installing
+            any app, plugin, or software.
+          </p>
+          <p>
+            The tool works as a <strong>free guitar tuner online</strong> and supports standard tuning, chromatic
+            tuning,
+            half-step and full-step tuning, drop tunings, and custom reference pitch calibration such as
+            <strong>440 Hz, 432 Hz, 444 Hz, and 425 Hz</strong>. It is designed for practice, learning, and general
+            instrument
+            setup rather than stage-grade strobe tuning.
+          </p>
+
+          <h2>Who Uses an Online Guitar Tuner</h2>
+          <p>
+            An online guitar tuner is used by <strong>beginner guitar players, intermediate musicians, teachers,
+              students,
+              home recordists, and multi-instrument players</strong> who need fast pitch reference without dedicated
+            hardware.
+            It is commonly used for <strong>daily practice, lesson preparation, string changes, alternate tuning checks,
+              and rough intonation alignment</strong>.
+          </p>
+          <p>
+            Because the tuner is chromatic, it is also used as a <strong>pitch tuner online</strong> for bass guitar,
+            ukulele,
+            violin, mandolin, and other string instruments that rely on note-to-frequency accuracy.
+          </p>
+
+          <h2>Supported Guitar Types and String Configurations</h2>
+          <ul>
+            <li>6-string acoustic, electric, and classical guitars (EADGBE)</li>
+            <li>7-string guitars including baritone and low-register tunings</li>
+            <li>8-string guitars and extended-range instruments</li>
+            <li>12-string guitars with paired octave strings</li>
+            <li>4-string and 5-string bass guitars</li>
+            <li>Ukulele, mandolin, violin, and other chromatic instruments</li>
+          </ul>
+
+          <h2>What This Guitar Tuner Does</h2>
+          <p>
+            The tuner listens to incoming audio through the microphone and performs <strong>real-time pitch
+              detection</strong>.
+            The detected frequency is mapped to the nearest musical note using equal temperament tuning. The interface
+            displays whether the pitch is <strong>flat, sharp, or centered</strong>, allowing users to adjust string
+            tension
+            accurately.
+          </p>
+          <p>
+            This process functions as a <strong>note-to-frequency and frequency-to-note converter</strong> optimized for
+            live instrument input rather than audio file analysis.
+          </p>
+
+          <h2>Supported Tuning Modes</h2>
+
+          <h3>Standard Guitar Tuning</h3>
+          <p>
+            Standard tuning for 6-string guitar follows the sequence:
+            <strong>E2 – A2 – D3 – G3 – B3 – E4</strong>. This is the default tuning reference used in most guitar
+            music,
+            lessons, and chord charts.
+          </p>
+
+          <h3>Chromatic Tuning Mode</h3>
+          <p>
+            Chromatic mode allows the tuner to detect <strong>any musical note</strong> without restricting detection to
+            predefined string names. This mode is required for non-standard tunings, alternate instruments, and
+            intonation
+            checks.
+          </p>
+
+          <h3>Alternate and Drop Tunings</h3>
+          <ul>
+            <li>Drop D, Drop C, Drop B, Drop A</li>
+            <li>D Standard, C Standard, Eb Standard</li>
+            <li>Open D, Open G, Open C, Open E</li>
+            <li>DADGAD and FACGCE</li>
+            <li>Baritone and extended low-frequency tunings</li>
+          </ul>
+
+          <h3>Step-Based and Micro-Tuning</h3>
+          <ul>
+            <li>Half-step down and half-step up tuning</li>
+            <li>Full-step down tuning</li>
+            <li>Quarter-step adjustments for fine pitch control</li>
+            <li>Custom tuning based on reference frequency (Hz)</li>
+          </ul>
+
+          <h2>How the Online Guitar Tuner Works</h2>
+
+          <h3>Microphone Audio Capture</h3>
+          <p>
+            The tuner accesses your device microphone only during active use. Plucked strings generate sound waves that
+            are
+            captured as time-domain audio signals for analysis.
+          </p>
+
+          <h3>Frequency Detection and Note Mapping</h3>
+          <p>
+            The audio signal is converted into a fundamental frequency value in hertz. This value is compared against
+            standardized note frequency tables to determine the closest note and pitch deviation in cents.
+          </p>
+
+          <h3>Pitch Deviation Feedback</h3>
+          <p>
+            The tuning indicator shows real-time deviation. A centered indicator means the note is in tune. Movement to
+            the
+            left indicates flat pitch, while movement to the right indicates sharp pitch.
+          </p>
+
+          <h2>Reference Pitch and Calibration</h2>
+          <ul>
+            <li>Default reference pitch: A4 = 440 Hz</li>
+            <li>Alternate references: 432 Hz, 444 Hz, 425 Hz</li>
+            <li>Manual adjustment for ensemble or historical tuning</li>
+          </ul>
+          <section class="tool-container">
+            <h2>Guitar Tuning Frequency Formula</h2>
+
+            <p>
+              An online guitar tuner converts detected pitch into a musical note using the
+              equal temperament tuning system. Each note is mapped to a frequency value
+              relative to a reference pitch, commonly A4 = 440 Hz.
+            </p>
+
+            <p><strong>Frequency Formula:</strong></p>
+
+            <p>
+              f = 440 × 2<sup>(n − 69) / 12</sup>
+            </p>
+
+            <ul>
+              <li><strong>f</strong> = frequency in hertz (Hz)</li>
+              <li><strong>n</strong> = MIDI note number</li>
+              <li><strong>69</strong> = MIDI number for A4</li>
+              <li><strong>12</strong> = notes per octave</li>
+            </ul>
+
+            <p>
+              The tuner detects the fundamental frequency from the microphone, converts it
+              into a MIDI-equivalent value, and calculates pitch deviation in cents to
+              determine whether the string is flat, sharp, or in tune.
+            </p>
+          </section>
+          <section class="tool-container">
+            <h2>Standard Guitar Tuning Reference Table</h2>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped text-center align-middle">
+                <thead class="table-dark">
+                  <tr>
+                    <th>String</th>
+                    <th>Note</th>
+                    <th>Octave</th>
+                    <th>Frequency (Hz)</th>
+                    <th>MIDI Number</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>6th (Low)</td>
+                    <td>E</td>
+                    <td>2</td>
+                    <td>82.41</td>
+                    <td>40</td>
+                  </tr>
+                  <tr>
+                    <td>5th</td>
+                    <td>A</td>
+                    <td>2</td>
+                    <td>110.00</td>
+                    <td>45</td>
+                  </tr>
+                  <tr>
+                    <td>4th</td>
+                    <td>D</td>
+                    <td>3</td>
+                    <td>146.83</td>
+                    <td>50</td>
+                  </tr>
+                  <tr>
+                    <td>3rd</td>
+                    <td>G</td>
+                    <td>3</td>
+                    <td>196.00</td>
+                    <td>55</td>
+                  </tr>
+                  <tr>
+                    <td>2nd</td>
+                    <td>B</td>
+                    <td>3</td>
+                    <td>246.94</td>
+                    <td>59</td>
+                  </tr>
+                  <tr>
+                    <td>1st (High)</td>
+                    <td>E</td>
+                    <td>4</td>
+                    <td>329.63</td>
+                    <td>64</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>
+              This table represents standard 6-string guitar tuning using A4 = 440 Hz.
+              Alternate tunings shift frequencies proportionally based on reference pitch
+              calibration.
+            </p>
+          </section>
+
+          <h2>Accuracy Factors and Limitations</h2>
+          <ul>
+            <li>Microphone sensitivity and quality</li>
+            <li>Ambient noise and room acoustics</li>
+            <li>Low-frequency detection on bass and extended-range guitars</li>
+            <li>String age, harmonics, and decay behavior</li>
+            <li>Browser audio processing latency</li>
+          </ul>
+
+          <h2>Common Use Cases</h2>
+          <ul>
+            <li>Daily practice and warm-up</li>
+            <li>Learning guitar tuning fundamentals</li>
+            <li>Checking alternate tunings quickly</li>
+            <li>Pre-recording rough tuning</li>
+            <li>Multi-instrument pitch reference</li>
+          </ul>
+
+          <h2>Online Guitar Tuner vs Other Tuning Methods</h2>
+          <p>
+            Online guitar tuners prioritize accessibility and convenience. Hardware pedal tuners and strobe tuners offer
+            higher precision for live performance, while DAW plugins provide tuning accuracy within recording workflows.
+            Browser-based tuners remain suitable for practice and general setup.
+          </p>
+
+          <h2>Privacy and Microphone Usage</h2>
+          <ul>
+            <li>Microphone access is temporary and user-controlled</li>
+            <li>No audio is recorded, saved, or transmitted</li>
+            <li>All pitch detection occurs locally in real time</li>
+          </ul>
+
+        </section>
+        <section class="tool-container">
+          <h2>Online Guitar Tuner – Frequently Asked Questions</h2>
+
+          <div class="accordion" id="guitarTunerFAQ">
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  What is an online guitar tuner?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                  An online guitar tuner is a browser-based tuning tool that detects sound
+                  through a microphone and converts pitch into musical notes and frequency
+                  values. It allows guitarists to tune instruments without installing
+                  hardware tuners, apps, or plugins.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  How accurate is a browser-based guitar tuner?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Accuracy depends on microphone quality, background noise, and browser
+                  audio processing. Online guitar tuners provide sufficient accuracy for
+                  practice, learning, and setup, but may not match the precision of strobe
+                  tuners used in live performance environments.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  Does this guitar tuner support alternate and drop tunings?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Yes. Because the tuner operates in chromatic mode, it detects any musical
+                  note regardless of string position. This allows accurate tuning for drop
+                  tunings, open tunings, baritone guitars, and extended-range instruments.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">
+                  What reference pitch does the guitar tuner use?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  The default reference pitch is A4 = 440 Hz, which is the international
+                  tuning standard. The tuner also supports alternate calibration values such
+                  as 432 Hz, 444 Hz, and 425 Hz for ensemble or historical tuning needs.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">
+                  Is microphone audio stored or recorded?
+                </button>
+              </h2>
+              <div id="faq5" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  No. Microphone access is temporary and controlled by the user’s browser.
+                  Audio data is processed locally for pitch detection only and is not saved,
+                  transmitted, or stored on any server.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <div class="card my-4 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
+
+            <ul class="list-unstyled mb-0">
+              <li class="mb-2">
+                <a class="link-primary text-decoration-none fw-medium" href="/pitch-detector-tools/pitch-detector/">
+                  Online Pitch Detector
+                </a>
+              </li>
+
+              <li class="mb-2">
+                <a class="link-primary text-decoration-none fw-medium"
+                  href="/pitch-detector-tools/guitar-tuner-online/">
+                  Guitar Tuner
+                </a>
+              </li>
+
+              <li class="mb-2">
+                <a class="link-primary text-decoration-none fw-medium"
+                  href="/pitch-detector-tools/frequency-to-note-online/">
+                  Frequency to Note Converter
+                </a>
+              </li>
+
+              <li>
+                <a class="link-primary text-decoration-none fw-medium"
+                  href="/pitch-detector-tools/note-to-frequency-online/">
+                  Note to Frequency Converter
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div id="footer"></div>
-    <script src="/assets/bootstrap5.js" defer></script>
-   
-    <!-- tools js -->
-    <script defer>
-        let audioContext = null;
-        let analyser = null;
-        let microphone = null;
-        let isRunning = false;
-        let a4Reference = 440;
-        let animationId = null;
+  </div>
+  <div id="footer"></div>
+  <script src="/assets/bootstrap5.js" defer></script>
 
-        const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+  <!-- tools js -->
+  <script defer>
+    let audioContext = null;
+    let analyser = null;
+    let microphone = null;
+    let isRunning = false;
+    let a4Reference = 440;
+    let animationId = null;
 
-        const TUNINGS = {
-            standard: [
-                { note: 'E', octave: 2, freq: 82.41 },
-                { note: 'A', octave: 2, freq: 110.00 },
-                { note: 'D', octave: 3, freq: 146.83 },
-                { note: 'G', octave: 3, freq: 196.00 },
-                { note: 'B', octave: 3, freq: 246.94 },
-                { note: 'E', octave: 4, freq: 329.63 }
-            ],
-            dropd: [
-                { note: 'D', octave: 2, freq: 73.42 },
-                { note: 'A', octave: 2, freq: 110.00 },
-                { note: 'D', octave: 3, freq: 146.83 },
-                { note: 'G', octave: 3, freq: 196.00 },
-                { note: 'B', octave: 3, freq: 246.94 },
-                { note: 'E', octave: 4, freq: 329.63 }
-            ],
-            halfdown: [
-                { note: 'D#', octave: 2, freq: 77.78 },
-                { note: 'G#', octave: 2, freq: 103.83 },
-                { note: 'C#', octave: 3, freq: 138.59 },
-                { note: 'F#', octave: 3, freq: 185.00 },
-                { note: 'A#', octave: 3, freq: 233.08 },
-                { note: 'D#', octave: 4, freq: 311.13 }
-            ],
-            opend: [
-                { note: 'D', octave: 2, freq: 73.42 },
-                { note: 'A', octave: 2, freq: 110.00 },
-                { note: 'D', octave: 3, freq: 146.83 },
-                { note: 'F#', octave: 3, freq: 185.00 },
-                { note: 'A', octave: 3, freq: 220.00 },
-                { note: 'D', octave: 4, freq: 293.66 }
-            ],
-            dadgad: [
-                { note: 'D', octave: 2, freq: 73.42 },
-                { note: 'A', octave: 2, freq: 110.00 },
-                { note: 'D', octave: 3, freq: 146.83 },
-                { note: 'G', octave: 3, freq: 196.00 },
-                { note: 'A', octave: 3, freq: 220.00 },
-                { note: 'D', octave: 4, freq: 293.66 }
-            ],
-            bass: [
-                { note: 'E', octave: 1, freq: 41.20 },
-                { note: 'A', octave: 1, freq: 55.00 },
-                { note: 'D', octave: 2, freq: 73.42 },
-                { note: 'G', octave: 2, freq: 98.00 }
-            ],
-            ukulele: [
-                { note: 'G', octave: 4, freq: 392.00 },
-                { note: 'C', octave: 4, freq: 261.63 },
-                { note: 'E', octave: 4, freq: 329.63 },
-                { note: 'A', octave: 4, freq: 440.00 }
-            ]
-        };
+    const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
-        let currentTuning = 'standard';
+    const TUNINGS = {
+      standard: [
+        { note: 'E', octave: 2, freq: 82.41 },
+        { note: 'A', octave: 2, freq: 110.00 },
+        { note: 'D', octave: 3, freq: 146.83 },
+        { note: 'G', octave: 3, freq: 196.00 },
+        { note: 'B', octave: 3, freq: 246.94 },
+        { note: 'E', octave: 4, freq: 329.63 }
+      ],
+      dropd: [
+        { note: 'D', octave: 2, freq: 73.42 },
+        { note: 'A', octave: 2, freq: 110.00 },
+        { note: 'D', octave: 3, freq: 146.83 },
+        { note: 'G', octave: 3, freq: 196.00 },
+        { note: 'B', octave: 3, freq: 246.94 },
+        { note: 'E', octave: 4, freq: 329.63 }
+      ],
+      halfdown: [
+        { note: 'D#', octave: 2, freq: 77.78 },
+        { note: 'G#', octave: 2, freq: 103.83 },
+        { note: 'C#', octave: 3, freq: 138.59 },
+        { note: 'F#', octave: 3, freq: 185.00 },
+        { note: 'A#', octave: 3, freq: 233.08 },
+        { note: 'D#', octave: 4, freq: 311.13 }
+      ],
+      opend: [
+        { note: 'D', octave: 2, freq: 73.42 },
+        { note: 'A', octave: 2, freq: 110.00 },
+        { note: 'D', octave: 3, freq: 146.83 },
+        { note: 'F#', octave: 3, freq: 185.00 },
+        { note: 'A', octave: 3, freq: 220.00 },
+        { note: 'D', octave: 4, freq: 293.66 }
+      ],
+      dadgad: [
+        { note: 'D', octave: 2, freq: 73.42 },
+        { note: 'A', octave: 2, freq: 110.00 },
+        { note: 'D', octave: 3, freq: 146.83 },
+        { note: 'G', octave: 3, freq: 196.00 },
+        { note: 'A', octave: 3, freq: 220.00 },
+        { note: 'D', octave: 4, freq: 293.66 }
+      ],
+      bass: [
+        { note: 'E', octave: 1, freq: 41.20 },
+        { note: 'A', octave: 1, freq: 55.00 },
+        { note: 'D', octave: 2, freq: 73.42 },
+        { note: 'G', octave: 2, freq: 98.00 }
+      ],
+      ukulele: [
+        { note: 'G', octave: 4, freq: 392.00 },
+        { note: 'C', octave: 4, freq: 261.63 },
+        { note: 'E', octave: 4, freq: 329.63 },
+        { note: 'A', octave: 4, freq: 440.00 }
+      ]
+    };
 
-        function setTuning(tuning) {
-            currentTuning = tuning;
-            document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            updateReferenceNotes();
-        }
+    let currentTuning = 'standard';
 
-        function updateReferenceNotes() {
-            const container = document.getElementById('referenceNotes');
-            const notes = TUNINGS[currentTuning];
-            container.innerHTML = notes.map((n, i) => `
+    function setTuning(tuning) {
+      currentTuning = tuning;
+      document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      updateReferenceNotes();
+    }
+
+    function updateReferenceNotes() {
+      const container = document.getElementById('referenceNotes');
+      const notes = TUNINGS[currentTuning];
+      container.innerHTML = notes.map((n, i) => `
                 <div class="ref-note" onclick="playReferenceNote(${n.freq})">
                     <div class="note">${n.note}${n.octave}</div>
                     <div class="freq">${n.freq.toFixed(2)} Hz</div>
                 </div>
             `).join('');
+    }
+
+    let oscillator = null;
+    function playReferenceNote(freq) {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (oscillator) {
+        oscillator.stop();
+      }
+      oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      oscillator.frequency.value = freq;
+      oscillator.type = 'sine';
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 1.5);
+    }
+
+    async function toggleTuner() {
+      const btn = document.getElementById('startBtn');
+      if (isRunning) {
+        stopTuner();
+        btn.innerHTML = '<i class="bi bi-mic-fill"></i><span>Start Tuner</span>';
+        btn.classList.remove('active');
+      } else {
+        try {
+          await startTuner();
+          btn.innerHTML = '<i class="bi bi-stop-fill"></i><span>Stop Tuner</span>';
+          btn.classList.add('active');
+        } catch (err) {
+          alert('Could not access microphone. Please allow microphone access and try again.');
         }
+      }
+    }
 
-        let oscillator = null;
-        function playReferenceNote(freq) {
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (oscillator) {
-                oscillator.stop();
-            }
-            oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            oscillator.frequency.value = freq;
-            oscillator.type = 'sine';
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
-            oscillator.start();
-            oscillator.stop(audioContext.currentTime + 1.5);
+    async function startTuner() {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 4096;
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      microphone = audioContext.createMediaStreamSource(stream);
+      microphone.connect(analyser);
+
+      isRunning = true;
+      updatePitch();
+    }
+
+    function stopTuner() {
+      isRunning = false;
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+      if (microphone) {
+        microphone.disconnect();
+      }
+      if (audioContext) {
+        audioContext.close();
+      }
+      document.getElementById('currentNote').textContent = '--';
+      document.getElementById('currentOctave').textContent = '';
+      document.getElementById('currentFrequency').textContent = '-- Hz';
+      document.getElementById('centsValue').textContent = '0 cents';
+      document.getElementById('centsIndicator').style.left = '50%';
+      const status = document.getElementById('tuningStatus');
+      status.textContent = 'Click Start to begin tuning';
+      status.className = 'tuning-status status-waiting';
+    }
+
+    function updatePitch() {
+      if (!isRunning) return;
+
+      const buffer = new Float32Array(analyser.fftSize);
+      analyser.getFloatTimeDomainData(buffer);
+
+      const frequency = autoCorrelate(buffer, audioContext.sampleRate);
+
+      if (frequency > 0) {
+        const noteData = frequencyToNote(frequency);
+        document.getElementById('currentNote').textContent = noteData.note;
+        document.getElementById('currentOctave').textContent = noteData.octave;
+        document.getElementById('currentFrequency').textContent = frequency.toFixed(2) + ' Hz';
+
+        const cents = noteData.cents;
+        document.getElementById('centsValue').textContent = (cents >= 0 ? '+' : '') + cents.toFixed(0) + ' cents';
+
+        const indicatorPos = 50 + (cents / 50) * 50;
+        document.getElementById('centsIndicator').style.left = Math.max(0, Math.min(100, indicatorPos)) + '%';
+
+        const status = document.getElementById('tuningStatus');
+        const resultBox = document.getElementById('resultBox');
+
+        if (Math.abs(cents) <= 5) {
+          status.textContent = '✓ In Tune!';
+          status.className = 'tuning-status status-tune';
+          resultBox.style.display = 'block';
+        } else if (cents < -5) {
+          status.textContent = '↓ Flat - Tighten string';
+          status.className = 'tuning-status status-flat';
+          resultBox.style.display = 'none';
+        } else {
+          status.textContent = '↑ Sharp - Loosen string';
+          status.className = 'tuning-status status-sharp';
+          resultBox.style.display = 'none';
         }
+      }
 
-        async function toggleTuner() {
-            const btn = document.getElementById('startBtn');
-            if (isRunning) {
-                stopTuner();
-                btn.innerHTML = '<i class="bi bi-mic-fill"></i><span>Start Tuner</span>';
-                btn.classList.remove('active');
-            } else {
-                try {
-                    await startTuner();
-                    btn.innerHTML = '<i class="bi bi-stop-fill"></i><span>Stop Tuner</span>';
-                    btn.classList.add('active');
-                } catch (err) {
-                    alert('Could not access microphone. Please allow microphone access and try again.');
-                }
-            }
+      animationId = requestAnimationFrame(updatePitch);
+    }
+
+    function autoCorrelate(buffer, sampleRate) {
+      let SIZE = buffer.length;
+      let rms = 0;
+      for (let i = 0; i < SIZE; i++) {
+        rms += buffer[i] * buffer[i];
+      }
+      rms = Math.sqrt(rms / SIZE);
+      if (rms < 0.01) return -1;
+
+      let r1 = 0, r2 = SIZE - 1;
+      const threshold = 0.2;
+      for (let i = 0; i < SIZE / 2; i++) {
+        if (Math.abs(buffer[i]) < threshold) { r1 = i; break; }
+      }
+      for (let i = 1; i < SIZE / 2; i++) {
+        if (Math.abs(buffer[SIZE - i]) < threshold) { r2 = SIZE - i; break; }
+      }
+
+      buffer = buffer.slice(r1, r2);
+      SIZE = buffer.length;
+
+      const c = new Array(SIZE).fill(0);
+      for (let i = 0; i < SIZE; i++) {
+        for (let j = 0; j < SIZE - i; j++) {
+          c[i] = c[i] + buffer[j] * buffer[j + i];
         }
+      }
 
-        async function startTuner() {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            analyser = audioContext.createAnalyser();
-            analyser.fftSize = 4096;
+      let d = 0;
+      while (c[d] > c[d + 1]) d++;
 
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            microphone = audioContext.createMediaStreamSource(stream);
-            microphone.connect(analyser);
-
-            isRunning = true;
-            updatePitch();
+      let maxval = -1, maxpos = -1;
+      for (let i = d; i < SIZE; i++) {
+        if (c[i] > maxval) {
+          maxval = c[i];
+          maxpos = i;
         }
+      }
 
-        function stopTuner() {
-            isRunning = false;
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-            if (microphone) {
-                microphone.disconnect();
-            }
-            if (audioContext) {
-                audioContext.close();
-            }
-            document.getElementById('currentNote').textContent = '--';
-            document.getElementById('currentOctave').textContent = '';
-            document.getElementById('currentFrequency').textContent = '-- Hz';
-            document.getElementById('centsValue').textContent = '0 cents';
-            document.getElementById('centsIndicator').style.left = '50%';
-            const status = document.getElementById('tuningStatus');
-            status.textContent = 'Click Start to begin tuning';
-            status.className = 'tuning-status status-waiting';
-        }
+      let T0 = maxpos;
+      const x1 = c[T0 - 1], x2 = c[T0], x3 = c[T0 + 1];
+      const a = (x1 + x3 - 2 * x2) / 2;
+      const b = (x3 - x1) / 2;
+      if (a) T0 = T0 - b / (2 * a);
 
-        function updatePitch() {
-            if (!isRunning) return;
+      return sampleRate / T0;
+    }
 
-            const buffer = new Float32Array(analyser.fftSize);
-            analyser.getFloatTimeDomainData(buffer);
+    function frequencyToNote(freq) {
+      const a4 = a4Reference;
+      const semitones = 12 * Math.log2(freq / a4);
+      const noteIndex = Math.round(semitones) + 9;
+      const octave = Math.floor((noteIndex + 12) / 12) + 3;
+      const note = NOTE_NAMES[(noteIndex % 12 + 12) % 12];
+      const exactFreq = a4 * Math.pow(2, Math.round(semitones) / 12);
+      const cents = 1200 * Math.log2(freq / exactFreq);
 
-            const frequency = autoCorrelate(buffer, audioContext.sampleRate);
+      return { note, octave, cents };
+    }
 
-            if (frequency > 0) {
-                const noteData = frequencyToNote(frequency);
-                document.getElementById('currentNote').textContent = noteData.note;
-                document.getElementById('currentOctave').textContent = noteData.octave;
-                document.getElementById('currentFrequency').textContent = frequency.toFixed(2) + ' Hz';
+    function updateA4Reference() {
+      a4Reference = parseFloat(document.getElementById('a4Reference').value) || 440;
+    }
 
-                const cents = noteData.cents;
-                document.getElementById('centsValue').textContent = (cents >= 0 ? '+' : '') + cents.toFixed(0) + ' cents';
+    updateReferenceNotes();
 
-                const indicatorPos = 50 + (cents / 50) * 50;
-                document.getElementById('centsIndicator').style.left = Math.max(0, Math.min(100, indicatorPos)) + '%';
+    window.addEventListener("load", () => {
+      Promise.all([
+        fetch("../../header.html").then(res => res.text()),
+        fetch("../../footer.html").then(res => res.text())
+      ])
+        .then(([header, footer]) => {
+          document.getElementById("header").innerHTML = header;
+          document.getElementById("footer").innerHTML = footer;
+        })
+        .catch(err => console.error("Include load failed:", err));
+    });
+  </script>
 
-                const status = document.getElementById('tuningStatus');
-                const resultBox = document.getElementById('resultBox');
 
-                if (Math.abs(cents) <= 5) {
-                    status.textContent = '✓ In Tune!';
-                    status.className = 'tuning-status status-tune';
-                    resultBox.style.display = 'block';
-                } else if (cents < -5) {
-                    status.textContent = '↓ Flat - Tighten string';
-                    status.className = 'tuning-status status-flat';
-                    resultBox.style.display = 'none';
-                } else {
-                    status.textContent = '↑ Sharp - Loosen string';
-                    status.className = 'tuning-status status-sharp';
-                    resultBox.style.display = 'none';
-                }
-            }
 
-            animationId = requestAnimationFrame(updatePitch);
-        }
-
-        function autoCorrelate(buffer, sampleRate) {
-            let SIZE = buffer.length;
-            let rms = 0;
-            for (let i = 0; i < SIZE; i++) {
-                rms += buffer[i] * buffer[i];
-            }
-            rms = Math.sqrt(rms / SIZE);
-            if (rms < 0.01) return -1;
-
-            let r1 = 0, r2 = SIZE - 1;
-            const threshold = 0.2;
-            for (let i = 0; i < SIZE / 2; i++) {
-                if (Math.abs(buffer[i]) < threshold) { r1 = i; break; }
-            }
-            for (let i = 1; i < SIZE / 2; i++) {
-                if (Math.abs(buffer[SIZE - i]) < threshold) { r2 = SIZE - i; break; }
-            }
-
-            buffer = buffer.slice(r1, r2);
-            SIZE = buffer.length;
-
-            const c = new Array(SIZE).fill(0);
-            for (let i = 0; i < SIZE; i++) {
-                for (let j = 0; j < SIZE - i; j++) {
-                    c[i] = c[i] + buffer[j] * buffer[j + i];
-                }
-            }
-
-            let d = 0;
-            while (c[d] > c[d + 1]) d++;
-
-            let maxval = -1, maxpos = -1;
-            for (let i = d; i < SIZE; i++) {
-                if (c[i] > maxval) {
-                    maxval = c[i];
-                    maxpos = i;
-                }
-            }
-
-            let T0 = maxpos;
-            const x1 = c[T0 - 1], x2 = c[T0], x3 = c[T0 + 1];
-            const a = (x1 + x3 - 2 * x2) / 2;
-            const b = (x3 - x1) / 2;
-            if (a) T0 = T0 - b / (2 * a);
-
-            return sampleRate / T0;
-        }
-
-        function frequencyToNote(freq) {
-            const a4 = a4Reference;
-            const semitones = 12 * Math.log2(freq / a4);
-            const noteIndex = Math.round(semitones) + 9;
-            const octave = Math.floor((noteIndex + 12) / 12) + 3;
-            const note = NOTE_NAMES[(noteIndex % 12 + 12) % 12];
-            const exactFreq = a4 * Math.pow(2, Math.round(semitones) / 12);
-            const cents = 1200 * Math.log2(freq / exactFreq);
-
-            return { note, octave, cents };
-        }
-
-        function updateA4Reference() {
-            a4Reference = parseFloat(document.getElementById('a4Reference').value) || 440;
-        }
-
-        updateReferenceNotes();
-
-        window.addEventListener("load", () => {
-            Promise.all([
-                fetch("../../header.html").then(res => res.text()),
-                fetch("../../footer.html").then(res => res.text())
-            ])
-                .then(([header, footer]) => {
-                    document.getElementById("header").innerHTML = header;
-                    document.getElementById("footer").innerHTML = footer;
-                })
-                .catch(err => console.error("Include load failed:", err));
-        });
-    </script>
-    
-   
- 
-    <!-- FAQPage Schema -->
-    <script defer type="application/ld+json">
+  <!-- FAQPage Schema -->
+  <script defer type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -1115,7 +1125,7 @@
   ]
 }
 </script>
-    
+
 
 </body>
 

@@ -1,42 +1,79 @@
 /* =========================================
-   Common Tool Layout Styles — DiamondAudioCity
+   Common Tool Layout Styles — Pitch Detectors
+   Brand Identity: Neon Wave Emerald, Amber Gold, Studio Obsidian
    ========================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+
 :root {
-    --dark-blue: #000b58;
-    --mid-blue: #003161;
-    --teal: #006a67;
-    --accent: #fdeb9e;
-    --light-bg: #f8f9fa;
-    --border-color: #e0e0e0;
+    --dark-blue: #0b111e;
+    --mid-blue: #162032;
+    --navy-surface: #101726;
+    --teal: #00e599;
+    /* Signature Neon Emerald Wave */
+    --teal-hover: #00fca8;
+    --teal-dark: #00b377;
+    --teal-glow: rgba(0, 229, 153, 0.28);
+    --accent: #f59e0b;
+    /* Signature Amber / Gold Focal Ring */
+    --accent-hover: #d97706;
+    --accent-light: #fef3c7;
+    --cyan: #00e5c9;
+    --light-bg: #f8fafc;
+    --border-color: #e2e8f0;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --gradient-accent: linear-gradient(135deg, #00e599 0%, #00b875 100%);
+    --gradient-gold: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
 }
 
 body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     overflow-x: hidden;
     background: var(--light-bg);
+    color: var(--text-dark);
 }
-        @media (min-width: 1200px) {
 
-            .h3,
-            h3 {
-                font-size: 16px !important;
-                font-weight: 600 !important;
-                color: #000000a8 !important;
-            }
-        }
-   
-        @media (min-width: 1200px) {
-    .h4, h4 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: 'Outfit', sans-serif !important;
+    letter-spacing: -0.02em;
+}
+
+@media (min-width: 1200px) {
+
+    .h3,
+    h3 {
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        color: var(--text-dark) !important;
+    }
+
+    .h4,
+    h4 {
         font-size: 14px !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
+        color: var(--text-dark) !important;
     }
 }
+
 /* ===== Sidebar Styles ===== */
 .tools-sidebar {
-    background: #fff;
+    background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    padding: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    padding: 22px;
     position: sticky;
     top: 20px;
     max-height: calc(100vh - 40px);
@@ -45,17 +82,18 @@ body {
 
 .sidebar-search .input-group-text {
     background: var(--light-bg);
-    border: 2px solid var(--border-color);
+    border: 1px solid var(--border-color);
     border-right: none;
     border-radius: 10px 0 0 10px;
-    color: var(--mid-blue);
+    color: var(--teal-dark);
 }
 
 .sidebar-search .form-control {
-    border: 2px solid var(--border-color);
+    border: 1px solid var(--border-color);
     border-left: none;
     border-radius: 0 10px 10px 0;
     padding: 12px 15px;
+    font-size: 14px;
 }
 
 .sidebar-search .form-control:focus {
@@ -76,22 +114,24 @@ body {
 }
 
 .sidebar-category h5 {
+    font-family: 'Outfit', sans-serif !important;
     font-size: 14px;
     font-weight: 700;
-    color: var(--dark-blue);
+    color: var(--text-dark);
     margin-bottom: 12px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.25s;
 }
 
 .sidebar-category h5:hover {
-    color: var(--teal);
+    color: var(--teal-dark);
 }
 
 .sidebar-category h5 i {
-    color: var(--teal);
+    color: var(--teal-dark);
+    margin-right: 8px;
 }
 
 .sidebar-links {
@@ -101,7 +141,7 @@ body {
 }
 
 .sidebar-links li {
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .sidebar-links a {
@@ -109,39 +149,43 @@ body {
     align-items: center;
     gap: 10px;
     padding: 8px 12px;
-    color: var(--mid-blue);
+    color: #334155;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 13.5px;
+    font-weight: 500;
     border-radius: 8px;
-    transition: all 0.3s;
+    transition: all 0.2s ease;
 }
 
 .sidebar-links a:hover {
-    background: var(--light-bg);
-    color: var(--teal);
-    transform: translateX(5px);
+    background: #f1f5f9;
+    color: var(--teal-dark);
+    transform: translateX(4px);
 }
 
 .sidebar-links a.active {
-    background: var(--accent);
-    color: var(--dark-blue);
-    font-weight: 600;
+    background: rgba(0, 229, 153, 0.12);
+    color: #047857;
+    font-weight: 700;
+    border-left: 3px solid var(--teal);
 }
 
 .sidebar-links a i {
-    font-size: 16px;
+    font-size: 15px;
     width: 20px;
     text-align: center;
+    color: var(--teal-dark);
 }
 
 /* ===== Tool Container ===== */
 .tool-container {
     margin: 10px auto;
-    background: #fff;
+    background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
     padding: 40px;
-    border-top: 6px solid var(--teal);
+    border-top: 4px solid var(--teal);
 }
 
 /* ===== Category Header ===== */
@@ -151,17 +195,20 @@ body {
 }
 
 .category-header h1 {
-    color: var(--dark-blue);
-    font-weight: 700;
-    font-size: 32px;
+    font-family: 'Outfit', sans-serif !important;
+    color: var(--text-dark);
+    font-weight: 800;
+    font-size: 34px;
+    letter-spacing: -0.03em;
     margin-bottom: 15px;
 }
 
 .category-header p {
-    color: var(--mid-blue);
-    font-size: 18px;
+    color: var(--text-muted);
+    font-size: 17px;
     max-width: 700px;
     margin: 0 auto;
+    line-height: 1.6;
 }
 
 /* ===== Tool Title ===== */
@@ -171,13 +218,15 @@ body {
 }
 
 .tool-title h1 {
-    font-weight: 700;
-    color: var(--dark-blue);
-    font-size: 26px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 800;
+    color: var(--text-dark);
+    font-size: 28px !important;
+    letter-spacing: -0.02em;
 }
 
 .tool-title p {
-    color: var(--mid-blue);
+    color: var(--text-muted);
     margin-bottom: 0;
     font-size: 16px;
 }
@@ -191,10 +240,11 @@ body {
 }
 
 .tool-card {
-    background: #fff;
-    border-radius: 12px;
+    background: #ffffff;
+    border-radius: 14px;
     padding: 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+    border: 1px solid var(--border-color);
     border-left: 4px solid var(--teal);
     transition: all 0.3s ease;
     text-decoration: none;
@@ -204,61 +254,72 @@ body {
 
 .tool-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 28px rgba(0, 229, 153, 0.12);
+    border-color: rgba(0, 229, 153, 0.45);
+    border-left: 4px solid var(--teal);
     color: inherit;
 }
 
 .tool-card .tool-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, var(--teal), var(--mid-blue));
+    background: var(--gradient-accent);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
+    box-shadow: 0 6px 14px rgba(0, 229, 153, 0.3);
 }
 
 .tool-card .tool-icon i {
-    font-size: 24px;
-    color: #fff;
+    font-size: 22px;
+    color: #070b12;
 }
 
 .tool-card h3 {
-    color: var(--dark-blue);
+    font-family: 'Outfit', sans-serif !important;
+    color: var(--text-dark);
     font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
 .tool-card p {
-    color: var(--mid-blue);
+    color: var(--text-muted);
     font-size: 14px;
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
 /* ===== Form Elements ===== */
 label {
-    color: var(--mid-blue);
-    font-weight: 500;
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
 }
 
-.form-control {
-    border: 2px solid #e0e0e0;
+.form-control,
+.form-select {
+    border: 1.5px solid var(--border-color);
     border-radius: 10px;
     padding: 12px 14px;
-    transition: all 0.3s ease;
+    color: var(--text-dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all 0.25s ease;
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
     border-color: var(--teal);
-    box-shadow: 0 0 0 0.25rem rgba(0, 106, 103, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(0, 229, 153, 0.25);
+    outline: none;
 }
 
 .form-control-lg {
-    font-size: 18px;
-    padding: 14px 12px;
+    font-size: 17px;
+    padding: 14px 14px;
 }
 
 /* ===== Quick Buttons ===== */
@@ -272,170 +333,220 @@ label {
 
 .speed-btn,
 .quick-btn {
-    background: var(--mid-blue);
-    color: #fff;
-    border: none;
-    padding: 10px 16px;
+    background: #0f172a;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 9px 16px;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.25s;
-    font-size: 14px;
-    font-weight: 500;
+    transition: all 0.2s ease;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
 }
 
 .speed-btn:hover,
 .quick-btn:hover {
     background: var(--teal);
+    color: #070b12;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 229, 153, 0.35);
 }
 
 /* ===== Primary Buttons ===== */
 .btn-primary {
-    background: var(--teal);
+    background: var(--gradient-accent);
+    color: #070b12 !important;
     border: none;
-    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
     border-radius: 10px;
-    transition: 0.3s;
+    transition: all 0.25s ease;
     padding: 12px 24px;
+    box-shadow: 0 4px 14px rgba(0, 229, 153, 0.3);
 }
 
 .btn-primary:hover {
-    background: var(--mid-blue);
-    transform: scale(1.02);
+    background: var(--gradient-gold);
+    color: #070b12 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
 }
 
 .btn-lg {
-    padding: 14px 28px;
+    padding: 14px 30px;
     font-size: 16px;
 }
 
 /* ===== Results Box ===== */
 .result-box {
     margin-top: 30px;
-    background: var(--accent);
-    border-radius: 12px;
+    background: linear-gradient(135deg, #070b12 0%, #111a2e 100%);
+    border: 1px solid rgba(0, 229, 153, 0.3);
+    border-radius: 14px;
     padding: 30px;
     text-align: center;
-    color: var(--dark-blue);
-    transition: all 0.3s ease;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.result-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-accent);
 }
 
 .result-box h3 {
-    color: var(--mid-blue);
+    color: #94a3b8;
+    font-family: 'Outfit', sans-serif !important;
     font-weight: 700;
-    margin-bottom: 10px;
-    font-size: 18px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .result-box .result-value {
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--dark-blue);
-    margin: 15px 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    color: var(--teal);
+    margin: 12px 0;
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 25px rgba(0, 229, 153, 0.45);
 }
 
 /* ===== Tool Section ===== */
 .tool-section {
-    padding: 10px 0;
+    padding: 15px 0;
 }
 
 .tool-section h2 {
+    font-family: 'Outfit', sans-serif !important;
     font-size: 22px;
     font-weight: 700;
-    color: var(--dark-blue);
+    color: var(--text-dark);
     margin-bottom: 20px;
 }
 
 /* ===== Utility Classes ===== */
 .text-teal {
-    color: var(--teal);
+    color: var(--teal-dark) !important;
 }
 
 .text-mid {
-    color: var(--mid-blue);
+    color: #1e293b !important;
 }
 
 .text-dark-blue {
-    color: var(--dark-blue);
+    color: var(--text-dark) !important;
 }
 
 .bg-accent {
-    background-color: var(--accent);
+    background-color: rgba(245, 158, 11, 0.15) !important;
+    color: #b45309 !important;
 }
 
 /* ===== Accordion Styles ===== */
+.accordion-item {
+    border-color: var(--border-color);
+}
+
 .accordion-button {
+    font-family: 'Outfit', sans-serif;
     font-weight: 600;
-    color: var(--dark-blue);
+    color: var(--text-dark);
 }
 
 .accordion-button:not(.collapsed) {
-    background: var(--accent);
-    color: var(--dark-blue);
+    background: rgba(0, 229, 153, 0.1);
+    color: #047857;
+    font-weight: 700;
+    box-shadow: none;
 }
 
 .accordion-button:focus {
-    box-shadow: 0 0 0 0.25rem rgba(0, 106, 103, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(0, 229, 153, 0.25);
+    border-color: var(--teal);
 }
 
 /* ===== Display Styles (Tuner, Meter, etc.) ===== */
 .tool-display {
-    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--mid-blue) 100%);
+    background: linear-gradient(135deg, #070b12 0%, #101726 100%);
+    border: 1px solid rgba(0, 229, 153, 0.25);
     border-radius: 20px;
     padding: 40px;
     text-align: center;
-    color: #fff;
+    color: #ffffff;
     margin: 20px 0;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .tool-display .main-value {
+    font-family: 'Outfit', sans-serif;
     font-size: 72px;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    color: var(--teal);
+    text-shadow: 0 0 30px rgba(0, 229, 153, 0.5);
+    letter-spacing: -0.03em;
 }
 
 .tool-display .sub-value {
-    font-size: 24px;
-    opacity: 0.9;
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
     margin-top: 10px;
+    font-weight: 600;
 }
 
 /* ===== Start/Stop Button ===== */
 .action-btn {
-    background: var(--teal);
-    color: #fff;
+    background: var(--gradient-accent);
+    color: #070b12;
     border: none;
-    padding: 15px 40px;
+    padding: 15px 42px;
+    font-family: 'Outfit', sans-serif;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 800;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    box-shadow: 0 6px 20px rgba(0, 229, 153, 0.35);
 }
 
 .action-btn:hover {
-    background: var(--mid-blue);
-    transform: scale(1.05);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 229, 153, 0.5);
+    color: #070b12;
 }
 
 .action-btn.active {
-    background: #e74c3c;
+    background: #ef4444;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
 }
 
 /* ===== Meter Styles ===== */
 .meter-container {
     margin: 30px auto;
-    max-width: 400px;
+    max-width: 420px;
 }
 
 .meter-bar {
-    height: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
     position: relative;
     overflow: hidden;
 }
@@ -445,53 +556,56 @@ label {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 8px;
-    height: 30px;
+    width: 10px;
+    height: 32px;
     background: var(--accent);
     border-radius: 4px;
+    box-shadow: 0 0 14px rgba(245, 158, 11, 0.9);
     transition: left 0.1s ease;
 }
 
 .meter-labels {
     display: flex;
     justify-content: space-between;
-    margin-top: 5px;
+    margin-top: 6px;
     font-size: 12px;
-    opacity: 0.7;
+    color: #94a3b8;
 }
 
 /* ===== Reference Items ===== */
 .reference-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
+    gap: 12px;
     margin: 20px 0;
 }
 
 .reference-item {
     background: var(--light-bg);
-    border: 2px solid var(--border-color);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 15px 10px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
 .reference-item:hover {
     border-color: var(--teal);
-    background: var(--accent);
+    background: rgba(0, 229, 153, 0.08);
+    transform: translateY(-2px);
 }
 
 .reference-item .value {
+    font-family: 'Outfit', sans-serif;
     font-size: 24px;
     font-weight: 700;
-    color: var(--dark-blue);
+    color: var(--text-dark);
 }
 
 .reference-item .label {
     font-size: 12px;
-    color: var(--mid-blue);
+    color: var(--text-muted);
 }
 
 /* ===== Responsive ===== */
@@ -507,11 +621,13 @@ label {
 @media (max-width: 768px) {
     .tool-container {
         margin: 1px;
-        padding: 10px;
+        padding: 16px;
     }
-.p-4 {
-    padding: 10px !important;
-}
+
+    .p-4 {
+        padding: 12px !important;
+    }
+
     .tool-title h1 {
         font-size: 22px !important;
     }
@@ -546,56 +662,53 @@ label {
 
 /* ===== Search Results Highlight ===== */
 .search-highlight {
-    background: var(--accent);
-    border-radius: 4px;
-    padding: 0 2px;
+    background: rgba(0, 229, 153, 0.25);
+    color: #047857;
+    border-radius: 3px;
+    padding: 0 4px;
+    font-weight: 700;
 }
 
 .no-results {
     text-align: center;
     padding: 20px;
-    color: var(--mid-blue);
+    color: var(--text-muted);
 }
 
-/* ===== Hidden Class ===== */
 .hidden {
     display: none !important;
 }
 
-
-/* sidebar menu hide */
-
-/* ===== Mobile Sidebar Toggle (NO HTML CHANGES NEEDED) ===== */
-
-/* Hide sidebar by default on mobile */
+/* ===== Mobile Sidebar Toggle ===== */
 @media (max-width: 991px) {
     .tools-sidebar {
         display: none;
     }
 
-    /* Sidebar visible when opened */
     .tools-sidebar.mobile-open {
         display: block !important;
-        background: #fff;
+        background: #ffffff;
         padding: 15px;
         border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
     }
 }
 
-/* Toggle button styling (auto-injected by JS) */
 .sidebar-toggle {
     width: 100%;
     padding: 12px;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
     border-radius: 10px;
-    background: var(--teal);
-    color: #fff;
+    background: var(--gradient-accent);
+    color: #070b12;
     border: none;
     margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0, 229, 153, 0.3);
 }
 
 .sidebar-toggle:hover {
-    background: var(--mid-blue);
+    background: var(--gradient-gold);
+    color: #070b12;
 }

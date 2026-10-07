@@ -1,13 +1,20 @@
-<!-- DiamondAudioCity Header -->
+<!-- Pitchetectors Header -->
 <nav class="navbar navbar-expand-lg navbar-dark main-nav">
     <div class="container px-0">
         <a class="navbar-brand fw-bold" href="/">
-            <i class="bi bi-soundwave me-2"></i>DiamondAudioCity
+            <img src="/assets/imgs/logo.png" alt="Pitch Detectors Logo" class="brand-logo me-2">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="d-flex align-items-center order-lg-3 ms-auto ms-lg-3">
+            <button class="nav-search-btn" id="navSearchTrigger" type="button" aria-label="Search tools" onclick="openGlobalSearch()">
+                <i class="bi bi-search"></i>
+                <span class="nav-search-label d-none d-sm-inline">Search tools...</span>
+                <span class="nav-search-kbd d-none d-md-inline">Ctrl+K</span>
+            </button>
+            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <!-- dj bpm category -->
                 <li class="nav-item dropdown">
@@ -33,13 +40,13 @@
                                     class="bi bi-key me-2"></i>Song
                                 Key Finder</a></li>
 
-                        <li><a class="dropdown-item" href="https://diamondaudiocity.com/BPM-Pitch-Calculator.html"><i
+                        <li><a class="dropdown-item" href="https://pitchdetectors.com/BPM-Pitch-Calculator.html"><i
                                     class="bi bi-sliders me-2"></i>Pitch
                                 Shifter</a></li>
-                                <hr>
+                        <hr>
                         <li><a class="dropdown-item" href="/dj-music-production-tools/guides/"><i
                                     class="bi bi-book-half me-2"></i>Guide
-                                </a></li>
+                            </a></li>
                     </ul>
                 </li>
                 <!-- music category -->
@@ -101,14 +108,14 @@
                         <i class="bi bi-mic-fill me-1"></i>Voice & Edit
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                       
+
                         <li><a class="dropdown-item" href="/audio-editing-tools/"><i
                                     class="bi bi-scissors me-2"></i>Audio Editing</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                      
-                       
+
+
                         <li><a class="dropdown-item" href="/sound-analysis-tools/"><i
                                     class="bi bi-music-note me-2"></i>Sound Analysis</a></li>
                     </ul>
@@ -119,21 +126,23 @@
                         <i class="bi bi-book me-1"></i>AudioBook Tools
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="https://diamondaudiocity.com/audiobook-speed-calculator.html"><i
+                        <li><a class="dropdown-item"
+                                href="https://pitchdetectors.com/audiobook-speed-calculator.html"><i
                                     class="bi bi-book me-2"></i>Audiobook
                                 Speed Calculator</a></li>
-                        <li><a class="dropdown-item" href="https://diamondaudiocity.com/audiobook-percentage-calculator.html"><i
+                        <li><a class="dropdown-item"
+                                href="https://pitchdetectors.com/audiobook-percentage-calculator.html"><i
                                     class="bi bi-book-fill me-2"></i>Audiobook
                                 Percentage Calculator</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="https://diamondaudiocity.com/Audiobook-Progress-Calculator.html"><i
+                        <li><a class="dropdown-item"
+                                href="https://pitchdetectors.com/Audiobook-Progress-Calculator.html"><i
                                     class="bi bi-book-half me-2"></i>Audiobook
                                 Progress Calculator</a></li>
-                        <li><a class="dropdown-item" href="https://diamondaudiocity.com/Audiobook-Length-Calculator.html
-"><i
-                                    class="bi bi-book-fill me-2"></i>Audiobook Length
+                        <li><a class="dropdown-item" href="https://pitchdetectors.com/Audiobook-Length-Calculator.html
+"><i class="bi bi-book-fill me-2"></i>Audiobook Length
                                 Calculator</a></li>
 
                     </ul>
@@ -209,3 +218,33 @@
         </div>
     </div>
 </nav>
+
+<!-- Global Search Modal -->
+<div id="globalSearchModal" class="search-modal-backdrop" onclick="closeGlobalSearch(event)">
+    <div class="search-modal-card" onclick="event.stopPropagation()">
+        <div class="search-modal-header">
+            <i class="bi bi-search search-modal-icon"></i>
+            <input type="text" id="modalSearchInput" class="search-modal-input" placeholder="Search 60+ audio calculators & tools..." autocomplete="off">
+            <button type="button" class="search-modal-close" onclick="closeGlobalSearch()" aria-label="Close search">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="search-modal-tags">
+            <button type="button" class="search-tag active" data-cat="all" onclick="filterModalCat(this, 'all')">All</button>
+            <button type="button" class="search-tag" data-cat="DJ & Production" onclick="filterModalCat(this, 'DJ & Production')">DJ & Production</button>
+            <button type="button" class="search-tag" data-cat="Speaker Tools" onclick="filterModalCat(this, 'Speaker Tools')">Speakers</button>
+            <button type="button" class="search-tag" data-cat="Pitch Detector" onclick="filterModalCat(this, 'Pitch Detector')">Pitch & Tuning</button>
+            <button type="button" class="search-tag" data-cat="Music Theory" onclick="filterModalCat(this, 'Music Theory')">Music Theory</button>
+            <button type="button" class="search-tag" data-cat="Sound Analysis" onclick="filterModalCat(this, 'Sound Analysis')">Analysis</button>
+            <button type="button" class="search-tag" data-cat="Audio Editing" onclick="filterModalCat(this, 'Audio Editing')">Editing</button>
+        </div>
+        <div id="modalSearchResults" class="search-modal-results">
+            <!-- Results dynamically generated -->
+        </div>
+        <div class="search-modal-footer">
+            <span class="d-none d-sm-inline"><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+            <span class="d-none d-sm-inline ms-3"><kbd>ESC</kbd> to close</span>
+            <span class="ms-auto"><i class="bi bi-soundwave text-teal me-1"></i>Pitch Detectors Tools</span>
+        </div>
+    </div>
+</div>

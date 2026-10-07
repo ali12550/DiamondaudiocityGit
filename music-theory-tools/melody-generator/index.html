@@ -6,14 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to Generate a Melody – Melody Generator Tool</title>
 
-<meta name="description" content="Generate melodies for songwriting, composition, and music theory practice. Designed for musicians and composers at any level.">
+  <meta name="description"
+    content="Generate melodies for songwriting, composition, and music theory practice. Designed for musicians and composers at any level.">
 
-<meta name="keywords" content="melody generator, how to generate a melody, melody creation tool, songwriting melody">
+  <meta name="keywords" content="melody generator, how to generate a melody, melody creation tool, songwriting melody">
 
-<link rel="canonical" href="https://diamondaudiocity.com/music-theory-tools/melody-generator/">
-  <link rel="icon" href="https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png" type="image/x-icon">
+  <link rel="canonical" href="https://pitchdetectors.com/music-theory-tools/melody-generator/">
+  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="/assets/bootstrap5.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">
   <link href="/assets/tools.css" rel="stylesheet">
@@ -21,12 +22,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-NCHP45VYJ2');
   </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
+    crossorigin="anonymous"></script>
 
   <style>
     /* Melody Grid */
@@ -56,12 +58,12 @@
 
     .melody-cell.active {
       background: #0099ff;
-      box-shadow: inset 0 0 6px rgba(0,0,0,0.08);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.08);
     }
 
     .melody-cell.playhead {
-      outline: 3px solid rgba(0,0,0,0.06);
-      background: rgba(0,153,255,0.12);
+      outline: 3px solid rgba(0, 0, 0, 0.06);
+      background: rgba(0, 153, 255, 0.12);
     }
 
     .controls {
@@ -78,19 +80,24 @@
       margin-left: 8px;
     }
 
-    .tool-title p { margin-bottom: 0.5rem; }
+    .tool-title p {
+      margin-bottom: 0.5rem;
+    }
 
     /* Responsive tweaks */
     @media (max-width: 768px) {
-      .melody-grid { height: 320px; grid-template-columns: repeat(12, 1fr); }
+      .melody-grid {
+        height: 320px;
+        grid-template-columns: repeat(12, 1fr);
+      }
     }
 
     .info-box {
-      background: rgba(0,11,88,0.04);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-      border-radius:10px;
-      padding:18px;
-      margin-bottom:20px;
+      background: rgba(0, 11, 88, 0.04);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -123,7 +130,8 @@
         <div class="tool-container">
           <div class="tool-title">
             <h1><i class="bi bi-music-note-list me-2"></i>Melody Generator</h1>
-            <p>Create melodies on a step-grid. Click cells to enable notes, set tempo, choose scale/instrument, then press Play.</p>
+            <p>Create melodies on a step-grid. Click cells to enable notes, set tempo, choose scale/instrument, then
+              press Play.</p>
           </div>
 
           <!-- Controls row: scale, instrument, play, tempo -->
@@ -142,9 +150,18 @@
             <div>
               <label class="form-label fw-bold mb-1">Root</label>
               <select id="rootSelect" class="form-select">
-                <option value="C" selected>C</option><option value="C#">C# / Db</option><option value="D">D</option><option value="D#">D# / Eb</option>
-                <option value="E">E</option><option value="F">F</option><option value="F#">F# / Gb</option><option value="G">G</option>
-                <option value="G#">G# / Ab</option><option value="A">A</option><option value="A#">A# / Bb</option><option value="B">B</option>
+                <option value="C" selected>C</option>
+                <option value="C#">C# / Db</option>
+                <option value="D">D</option>
+                <option value="D#">D# / Eb</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="F#">F# / Gb</option>
+                <option value="G">G</option>
+                <option value="G#">G# / Ab</option>
+                <option value="A">A</option>
+                <option value="A#">A# / Bb</option>
+                <option value="B">B</option>
               </select>
             </div>
 
@@ -164,7 +181,8 @@
               <button class="btn btn-secondary" id="clearBtn"><i class="bi bi-trash"></i> Clear</button>
 
               <label class="fw-bold ms-3 mb-0">Tempo</label>
-              <input type="range" min="60" max="200" value="120" id="tempoSlider" style="vertical-align: middle;margin-left:6px;">
+              <input type="range" min="60" max="200" value="120" id="tempoSlider"
+                style="vertical-align: middle;margin-left:6px;">
               <span id="tempoValue">120 BPM</span>
             </div>
           </div>
@@ -176,11 +194,15 @@
           <div class="content_area container py-4">
             <div class="info-box">
               <h2 class="h6 fw-bold text-uppercase mb-2" style="color:#003161;">Quick Summary</h2>
-              <p class="mb-0">The <strong>Melody Generator</strong> is a step-sequencer style tool for sketching musical ideas quickly. It supports selectable scales and roots, tempo control, and multiple oscillator voices to audition melodies in real-time.</p>
+              <p class="mb-0">The <strong>Melody Generator</strong> is a step-sequencer style tool for sketching musical
+                ideas quickly. It supports selectable scales and roots, tempo control, and multiple oscillator voices to
+                audition melodies in real-time.</p>
             </div>
 
             <h2 style="color:#003161;" class="fw-semibold mt-3 mb-2">How it works</h2>
-            <p>This is a browser-based sequencer using the Web Audio API. The grid represents <strong>12 pitch rows</strong> (one octave by default) and 16 step columns. Each column is a time step — when playback reaches a column, enabled notes in that column are sounded.</p>
+            <p>This is a browser-based sequencer using the Web Audio API. The grid represents <strong>12 pitch
+                rows</strong> (one octave by default) and 16 step columns. Each column is a time step — when playback
+              reaches a column, enabled notes in that column are sounded.</p>
 
             <div class="bg-light p-3 rounded mb-3">
               <pre style="margin:0; background:#f8fafc; padding:12px; border-radius:6px;">
@@ -209,7 +231,9 @@ This tool maps rows to MIDI notes (configurable via root & scale).
 
             <!-- Semantic keywords hidden -->
             <div style="position:relative; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
-              melody generator, step sequencer, melody maker, melody grid, music lab, web audio api, bpm, tempo, scale selector, pentatonic, music production tool, melodic ideas, sequencer, playhead, synth, oscillator, arpeggiator, melody sketch, midi export
+              melody generator, step sequencer, melody maker, melody grid, music lab, web audio api, bpm, tempo, scale
+              selector, pentatonic, music production tool, melodic ideas, sequencer, playhead, synth, oscillator,
+              arpeggiator, melody sketch, midi export
             </div>
 
             <!-- FAQ -->
@@ -218,69 +242,77 @@ This tool maps rows to MIDI notes (configurable via root & scale).
               <div class="accordion" id="faqAccordion">
                 <div class="accordion-item">
                   <h3 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">Why does the page ask to click Play before sound?</button>
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">Why
+                      does the page ask to click Play before sound?</button>
                   </h3>
                   <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Modern browsers require a user gesture to start audio. Click Play to resume audio context and allow sound playback.</div>
+                    <div class="accordion-body">Modern browsers require a user gesture to start audio. Click Play to
+                      resume audio context and allow sound playback.</div>
                   </div>
                 </div>
 
                 <div class="accordion-item">
                   <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Can I export MIDI or WAV?</button>
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#faq2">Can I export MIDI or WAV?</button>
                   </h3>
                   <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">This version produces live audio in-browser. MIDI/WAV export is possible and can be added — I can provide a version that generates downloadable MIDI or renders WAV client-side on request.</div>
+                    <div class="accordion-body">This version produces live audio in-browser. MIDI/WAV export is possible
+                      and can be added — I can provide a version that generates downloadable MIDI or renders WAV
+                      client-side on request.</div>
                   </div>
                 </div>
 
                 <div class="accordion-item">
                   <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">How do I change the scale or root?</button>
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#faq3">How do I change the scale or root?</button>
                   </h3>
                   <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Use the Scale & Root selectors above the grid. The grid remaps pitches immediately, preserving which cells are active so you can quickly audition the same pattern in a new key.</div>
+                    <div class="accordion-body">Use the Scale & Root selectors above the grid. The grid remaps pitches
+                      immediately, preserving which cells are active so you can quickly audition the same pattern in a
+                      new key.</div>
                   </div>
                 </div>
 
               </div>
               <div class="card my-4 shadow-sm">
-  <div class="card-body">
-    <h5 class="card-title mb-3">Related Music Theory Tools</h5>
-    <ul class="list-unstyled mb-0">
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/music-theory-tools/chord-progression-generator/">
-          Chord Progression Generator
-        </a>
-      </li>
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/music-theory-tools/interval-calculator/">
-          Interval Calculator
-        </a>
-      </li>
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/music-theory-tools/melody-generator/">
-          Melody Generator
-        </a>
-      </li>
-      <li class="mb-2">
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/music-theory-tools/online-metronome/">
-          Online Metronome
-        </a>
-      </li>
-      <li>
-        <a class="link-primary text-decoration-none fw-medium"
-           href="/music-theory-tools/rhythm-pattern-maker/">
-          Rhythm Pattern Maker
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+                <div class="card-body">
+                  <h5 class="card-title mb-3">Related Music Theory Tools</h5>
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                      <a class="link-primary text-decoration-none fw-medium"
+                        href="/music-theory-tools/chord-progression-generator/">
+                        Chord Progression Generator
+                      </a>
+                    </li>
+                    <li class="mb-2">
+                      <a class="link-primary text-decoration-none fw-medium"
+                        href="/music-theory-tools/interval-calculator/">
+                        Interval Calculator
+                      </a>
+                    </li>
+                    <li class="mb-2">
+                      <a class="link-primary text-decoration-none fw-medium"
+                        href="/music-theory-tools/melody-generator/">
+                        Melody Generator
+                      </a>
+                    </li>
+                    <li class="mb-2">
+                      <a class="link-primary text-decoration-none fw-medium"
+                        href="/music-theory-tools/online-metronome/">
+                        Online Metronome
+                      </a>
+                    </li>
+                    <li>
+                      <a class="link-primary text-decoration-none fw-medium"
+                        href="/music-theory-tools/rhythm-pattern-maker/">
+                        Rhythm Pattern Maker
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
 
             </div>
 
@@ -312,22 +344,22 @@ This tool maps rows to MIDI notes (configurable via root & scale).
     const instrSelect = document.getElementById("instrSelect");
 
     // Build grid cells array
-    let cells = Array.from({length: rows}).map(()=>Array.from({length: cols}));
+    let cells = Array.from({ length: rows }).map(() => Array.from({ length: cols }));
     let isPlaying = false;
     let currentCol = 0;
     let stepInterval = null;
 
     // Create grid DOM
     grid.style.gridTemplateColumns = `repeat(${cols},1fr)`;
-    for(let r=0;r<rows;r++){
-      for(let c=0;c<cols;c++){
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
         const cell = document.createElement('div');
         cell.className = 'melody-cell';
-        cell.setAttribute('role','gridcell');
-        cell.setAttribute('aria-label',`row ${r+1} col ${c+1}`);
+        cell.setAttribute('role', 'gridcell');
+        cell.setAttribute('aria-label', `row ${r + 1} col ${c + 1}`);
         cell.dataset.row = r;
         cell.dataset.col = c;
-        cell.addEventListener('click', ()=> cell.classList.toggle('active'));
+        cell.addEventListener('click', () => cell.classList.toggle('active'));
         grid.appendChild(cell);
         cells[r][c] = cell;
       }
@@ -341,7 +373,7 @@ This tool maps rows to MIDI notes (configurable via root & scale).
     masterGain.connect(audioCtx.destination);
 
     // ADSR pluck envelope (for 'pluck' instrument)
-    function playPluck(freq, dur=0.28){
+    function playPluck(freq, dur = 0.28) {
       const now = audioCtx.currentTime;
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
@@ -357,9 +389,9 @@ This tool maps rows to MIDI notes (configurable via root & scale).
     }
 
     // play a note with chosen instrument
-    function playNoteAtFreq(freq, duration=0.22){
+    function playNoteAtFreq(freq, duration = 0.22) {
       const instr = instrSelect.value;
-      if(instr === 'pluck') {
+      if (instr === 'pluck') {
         playPluck(freq, duration);
         return;
       }
@@ -383,18 +415,18 @@ This tool maps rows to MIDI notes (configurable via root & scale).
 
     // Scale definitions (intervals from root in semitones)
     const SCALES = {
-      chromatic: [0,1,2,3,4,5,6,7,8,9,10,11],
-      major: [0,2,4,5,7,9,11],
-      minor: [0,2,3,5,7,8,10],
-      pentatonic: [0,2,4,7,9],
-      blues: [0,3,5,6,7,10]
+      chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      major: [0, 2, 4, 5, 7, 9, 11],
+      minor: [0, 2, 3, 5, 7, 8, 10],
+      pentatonic: [0, 2, 4, 7, 9],
+      blues: [0, 3, 5, 6, 7, 10]
     };
 
     // Root to MIDI mapping for row 0 top -> highest note
-    const ROOT_MIDI = {'C':60,'C#':61,'D':62,'D#':63,'E':64,'F':65,'F#':66,'G':67,'G#':68,'A':69,'A#':70,'B':71};
+    const ROOT_MIDI = { 'C': 60, 'C#': 61, 'D': 62, 'D#': 63, 'E': 64, 'F': 65, 'F#': 66, 'G': 67, 'G#': 68, 'A': 69, 'A#': 70, 'B': 71 };
 
     // Make a mapping of rows -> midi notes based on selected root & scale
-    function computeRowToMidi(){
+    function computeRowToMidi() {
       const scaleName = scaleSelect.value;
       const root = rootSelect.value;
       const scaleIntervals = SCALES[scaleName] || SCALES['chromatic'];
@@ -403,13 +435,13 @@ This tool maps rows to MIDI notes (configurable via root & scale).
       const baseRoot = ROOT_MIDI[root] || 60;
       // generate several octaves of scale notes around baseRoot
       let notes = [];
-      for(let octave = -1; octave <= 3; octave++){
+      for (let octave = -1; octave <= 3; octave++) {
         scaleIntervals.forEach(i => {
-          notes.push(baseRoot + i + octave*12);
+          notes.push(baseRoot + i + octave * 12);
         });
       }
       // sort ascending, then pick highest `rows` notes
-      notes = Array.from(new Set(notes)).sort((a,b)=>a-b);
+      notes = Array.from(new Set(notes)).sort((a, b) => a - b);
       // pick the topmost `rows` notes (highest pitches)
       const topNotes = notes.slice(-rows);
       return topNotes; // index 0 -> lowest of selected chunk; but we want row 0 top -> highest pitch
@@ -419,52 +451,52 @@ This tool maps rows to MIDI notes (configurable via root & scale).
     let currentRowMidi = computeRowToMidi();
 
     // Apply mapping to rows (top row -> highest note)
-    function getFreqForRow(row){
+    function getFreqForRow(row) {
       // row 0 should be highest pitch in currentRowMidi
       const midi = currentRowMidi[currentRowMidi.length - 1 - row];
       return midiToFreq(midi);
     }
 
     // Update rows mapping when scale/root changes
-    function remapGridPreserve(){
+    function remapGridPreserve() {
       // keep active flags, just recompute row mapping
       currentRowMidi = computeRowToMidi();
     }
 
-    scaleSelect.addEventListener('change', ()=> remapGridPreserve());
-    rootSelect.addEventListener('change', ()=> remapGridPreserve());
+    scaleSelect.addEventListener('change', () => remapGridPreserve());
+    rootSelect.addEventListener('change', () => remapGridPreserve());
 
     // Visual playhead highlight/unhighlight
-    function highlightColumn(col){
+    function highlightColumn(col) {
       // clear previous playhead classes
       grid.querySelectorAll('.melody-cell.playhead').forEach(n => n.classList.remove('playhead'));
-      for(let r=0;r<rows;r++){
+      for (let r = 0; r < rows; r++) {
         const cell = cells[r][col];
         cell.classList.add('playhead');
       }
     }
 
-    function unhighlightAll(){
+    function unhighlightAll() {
       grid.querySelectorAll('.melody-cell.playhead').forEach(n => n.classList.remove('playhead'));
     }
 
     // Playback engine: step sequencer
-    function startPlayback(){
-      if(audioCtx.state === 'suspended') audioCtx.resume(); // resume on user gesture
-      const bpm = parseInt(tempoSlider.value,10);
+    function startPlayback() {
+      if (audioCtx.state === 'suspended') audioCtx.resume(); // resume on user gesture
+      const bpm = parseInt(tempoSlider.value, 10);
       const msPerBeat = 60000 / bpm; // ms per quarter note
       // We'll assume 16 steps = 1 bar (4/4), so step duration = msPerBeat / 4
       const stepMs = msPerBeat / 4;
       const stepSec = stepMs / 1000;
       // reset currentCol if needed
-      if(currentCol >= cols) currentCol = 0;
+      if (currentCol >= cols) currentCol = 0;
       highlightColumn(currentCol);
-      stepInterval = setInterval(()=>{
+      stepInterval = setInterval(() => {
         // play notes in currentCol
-        for(let r=0;r<rows;r++){
-          if(cells[r][currentCol].classList.contains('active')){
+        for (let r = 0; r < rows; r++) {
+          if (cells[r][currentCol].classList.contains('active')) {
             const freq = getFreqForRow(r);
-            playNoteAtFreq(freq, Math.max(0.12, stepSec*0.9));
+            playNoteAtFreq(freq, Math.max(0.12, stepSec * 0.9));
           }
         }
         // advance
@@ -473,17 +505,17 @@ This tool maps rows to MIDI notes (configurable via root & scale).
       }, stepMs);
     }
 
-    function stopPlayback(){
+    function stopPlayback() {
       clearInterval(stepInterval);
       unhighlightAll();
     }
 
     // Play/Stop button
-    playBtn.addEventListener('click', async function(){
+    playBtn.addEventListener('click', async function () {
       // user gesture: ensure audio context resumed
-      if(audioCtx.state === 'suspended') await audioCtx.resume();
+      if (audioCtx.state === 'suspended') await audioCtx.resume();
 
-      if(!isPlaying){
+      if (!isPlaying) {
         isPlaying = true;
         this.innerHTML = '<i class="bi bi-pause-circle"></i> Stop';
         startPlayback();
@@ -495,14 +527,14 @@ This tool maps rows to MIDI notes (configurable via root & scale).
     });
 
     // Clear button
-    clearBtn.addEventListener('click', ()=>{
-      for(let r=0;r<rows;r++) for(let c=0;c<cols;c++) cells[r][c].classList.remove('active');
+    clearBtn.addEventListener('click', () => {
+      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) cells[r][c].classList.remove('active');
     });
 
     // Tempo slider
-    tempoSlider.addEventListener('input', (e)=>{
+    tempoSlider.addEventListener('input', (e) => {
       tempoValue.textContent = `${e.target.value} BPM`;
-      if(isPlaying){
+      if (isPlaying) {
         // restart playback with new tempo
         stopPlayback();
         startPlayback();
@@ -516,24 +548,24 @@ This tool maps rows to MIDI notes (configurable via root & scale).
 
     // Ensure header/footer includes load
     window.addEventListener("load", () => {
-      fetch("/header.html").then(res => res.text()).then(html => document.getElementById("header").innerHTML = html).catch(()=>{});
-      fetch("/footer.html").then(res => res.text()).then(html => document.getElementById("footer").innerHTML = html).catch(()=>{});
+      fetch("/header.html").then(res => res.text()).then(html => document.getElementById("header").innerHTML = html).catch(() => { });
+      fetch("/footer.html").then(res => res.text()).then(html => document.getElementById("footer").innerHTML = html).catch(() => { });
     });
 
     // Accessibility: allow keyboard toggling of focused cell (optional)
-    grid.addEventListener('keydown', function(e){
+    grid.addEventListener('keydown', function (e) {
       const focused = document.activeElement;
-      if(focused && focused.classList && focused.classList.contains('melody-cell')){
-        if(e.code === 'Space' || e.code === 'Enter'){ e.preventDefault(); focused.classList.toggle('active'); }
+      if (focused && focused.classList && focused.classList.contains('melody-cell')) {
+        if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); focused.classList.toggle('active'); }
       }
     });
 
     // Allow click-and-drag painting
     let isMouseDown = false;
-    grid.addEventListener('mousedown', ()=> isMouseDown = true);
-    window.addEventListener('mouseup', ()=> isMouseDown = false);
-    grid.querySelectorAll('.melody-cell').forEach(cell=>{
-      cell.addEventListener('mouseover', (e)=> { if(isMouseDown) e.target.classList.toggle('active'); });
+    grid.addEventListener('mousedown', () => isMouseDown = true);
+    window.addEventListener('mouseup', () => isMouseDown = false);
+    grid.querySelectorAll('.melody-cell').forEach(cell => {
+      cell.addEventListener('mouseover', (e) => { if (isMouseDown) e.target.classList.toggle('active'); });
     });
 
   </script>

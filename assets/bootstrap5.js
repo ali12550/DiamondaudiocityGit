@@ -45,11 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
   orgScript.text = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Diamond Audio City",
-    "url": "https://diamondaudiocity.com/",
-    "logo": "https://diamondaudiocity.com/assets/imgs/diamond-audio-city.png",
+    "name": "pitch detectors",
+    "url": "https://pitchdetectors.com/",
+    "logo": "/assets/imgs/logo.png",
     "sameAs": [
-      "https://www.facebook.com/p/Diamond-Audio-CiTy-100076963165150/"
+      "https://www.facebook.com/p/pitchdetectors/"
     ]
   });
   document.head.appendChild(orgScript);
@@ -60,11 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
   siteScript.text = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "url": "https://diamondaudiocity.com/",
-    "name": "Diamond Audio City",
+    "url": "https://pitchdetectors.com/",
+    "name": "pitch detectors",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://diamondaudiocity.com/?s={search_term_string}",
+      "target": "https://pitchdetectors.com/?s={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   });
@@ -77,10 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "John Smith",
-    "url": "https://diamondaudiocity.com/",
+    "url": "https://pitchdetectors.com/",
     "worksFor": {
       "@type": "Organization",
-      "name": "Diamond Audio City"
+      "name": "pitch detectors"
     }
   });
   document.head.appendChild(personScript);
