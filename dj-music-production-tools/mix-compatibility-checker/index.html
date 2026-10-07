@@ -4,30 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mix Compatibility Checker | Key & BPM Mixing Tool | Pitchetectors</title>
+    <title>Mix Compatibility Checker – Key & BPM DJ Mixing Calculator</title>
     <meta name="description"
-        content="Free mix compatibility checker. Check if two tracks are compatible for DJ mixing based on key (Camelot) and BPM analysis.">
-    <meta name="keywords"
-        content="mix compatibility, harmonic mixing, key matching, BPM matching, DJ mixing, Camelot wheel">
+        content="Free DJ mix compatibility checker. Calculate harmonic key compatibility (Camelot wheel) and tempo difference (BPM) between any two songs instantly for flawless transitions.">
     <link rel="canonical" href="https://pitchdetectors.com/dj-music-production-tools/mix-compatibility-checker/">
 
     <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mix Compatibility Checker – Key & BPM DJ Mixing Calculator">
+    <meta property="og:description"
+        content="Check if two tracks are compatible for DJ mixing based on musical key (Camelot) and BPM analysis.">
+    <meta property="og:url" content="https://pitchdetectors.com/dj-music-production-tools/mix-compatibility-checker/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/imgs/logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mix Compatibility Checker – Key & BPM DJ Mixing Calculator">
+    <meta name="twitter:description"
+        content="Calculate harmonic key compatibility and tempo difference between any two tracks.">
+    <meta name="twitter:image" content="/assets/imgs/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/bootstrap5.css" rel="stylesheet">
     <link href="/assets/style.css" rel="stylesheet">
     <link href="/assets/tools.css" rel="stylesheet">
+    <meta name="author" content="Pitch Detectors">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-NCHP45VYJ2');
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes two tracks compatible for DJ mixing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Two tracks are compatible when their tempos (BPM) are close enough to sync without excessive audio artifacting (typically within ±3% to 5%) and their musical keys share overlapping scale notes on the Camelot Wheel (identical keys, relative major/minor, or adjacent fifths)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the Camelot Wheel calculate harmonic compatibility?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Camelot Wheel maps all 24 musical keys onto a 12-hour clock face. Songs sharing the same number (e.g. 8A to 8A) or adjacent numbers (8A to 7A or 9A) share 6 or 7 notes of their scale, guaranteeing that basslines and melodies blend consonantly without dissonant pitch clashes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the maximum acceptable BPM difference before music distorts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When using digital Key Lock (Master Tempo), tempo adjustments up to ±6% (approx. 7–8 BPM at house tempos) remain transparent. Beyond 8% to 10%, time-stretching introduces phase flanging and transient smearing. Without key lock, a 6% tempo shift raises or lowers pitch by one full semitone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I mix two songs that have completely different keys without clashing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, by isolating non-melodic elements. You can mix dissonant tracks during percussion-only intros/outros, drum breaks, or ambient risers. Alternatively, using an aggressive low-pass/high-pass EQ filter sweep, echo freeze, or quick cut on the downbeat prevents harmonic collision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is 'Energy Boost' mixing on the Camelot Wheel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Energy Boost mixing involves transitioning +2 numbers clockwise on the Camelot Wheel (e.g. from 8A / A minor to 10A / B minor). This transposes the root pitch up by two semitones (one whole step), creating a sudden perceived surge of excitement and drive on the dancefloor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I handle transitions between half-time and double-time tempos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tracks that share a 2:1 tempo ratio (such as 75 BPM trap and 150 BPM dubstep, or 87 BPM hip-hop and 174 BPM drum & bass) are mathematically tempo-compatible. The snare or clap on beat 3 of the half-time track aligns with beat 2 and 4 of the double-time track."
+          }
+        }
+      ]
+    }
     </script>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
-        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -35,6 +96,7 @@
 
     <div class="container-fluid py-4">
         <div class="row">
+            <!-- Sidebar -->
             <div class="col-lg-3 col-md-4">
                 <div class="tools-sidebar">
                     <div class="sidebar-search mb-4">
@@ -47,157 +109,361 @@
 
                     <div class="sidebar-categories">
                         <div class="sidebar-category active">
-                            <h5><i class="bi bi-disc me-2"></i>DJ & Production Tools</h5>
+                            <h5><i class="bi bi-disc me-2"></i>DJ & Music Production Tools</h5>
                             <ul class="sidebar-links">
-                                <li><a href="/dj-music-production-tools/mix-compatibility-checker/" class="active"><i
-                                            class="bi bi-check2-circle"></i> Mix Compatibility</a></li>
-                                <li><a href="/dj-music-production-tools/dj-transition-calculator/"><i
-                                            class="bi bi-shuffle"></i>
-                                        DJ Transition</a></li>
-                                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song
-                                        Key Finder</a></li>
-                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i
-                                            class="bi bi-speedometer2"></i>
-                                        BPM Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i> BPM Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-speed/"><i class="bi bi-speedometer2"></i> BPM to Speed Converter</a></li>
+                                <li><a href="/BPM-Pitch-Calculator.html"><i class="bi bi-music-note-slider"></i> BPM &rarr; Pitch Shift</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i> BPM Tap Tempo</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to Milliseconds</a></li>
+                                <li><a href="/dj-music-production-tools/dj-set-length-calculator/"><i class="bi bi-disc"></i> DJ Set Length Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/dj-transition-calculator/"><i class="bi bi-soundwave"></i> DJ Transition Calculator</a></li>
+                                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song Key Finder</a></li>
+                                <li><a href="/dj-music-production-tools/mix-compatibility-checker/" class="active"><i class="bi bi-check2-circle"></i> Mix Compatibility</a></li>
+                                <li><a href="/dj-music-production-tools/key-transposition/"><i class="bi bi-arrow-left-right"></i> Key Transposition</a></li>
+                                <li><a href="/dj-music-production-tools/song-length-from-bpm-calculator/"><i class="bi bi-music-note"></i> Song Length from BPM</a></li>
+                                <li><a href="/dj-music-production-tools/scale-practice-generator/"><i class="bi bi-file-music"></i> Scale Practice Generator</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-soundwave me-2"></i>Pitch Detector Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/pitch-detector-tools/guitar-tuner-online/"><i class="bi bi-music-note-beamed"></i> Guitar Tuner</a></li>
+                                <li><a href="/pitch-detector-tools/frequency-to-note-online/"><i class="bi bi-arrow-left-right"></i> Frequency to Note</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i> Online Metronome</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-7 col-md-6">
+            <!-- Main Content Column -->
+            <div class="col-lg-9 col-md-8">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/dj-music-production-tools/">DJ & Production Tools</a></li>
+                        <li class="breadcrumb-item"><a href="/dj-music-production-tools/">DJ & Music Production Tools</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Mix Compatibility Checker</li>
                     </ol>
                 </nav>
 
                 <div class="tool-container">
-                    <div class="tool-title">
-                        <h1><i class="bi bi-check2-circle me-2"></i>Mix Compatibility Checker</h1>
-                        <p>Check if two tracks are compatible for mixing based on musical key and BPM. Get
-                            recommendations for smooth transitions.</p>
+                    <div class="tool-title mb-4">
+                        <h1 class="display-6 fw-bold text-teal"><i class="bi bi-check2-circle me-2"></i>DJ Mix Compatibility Checker</h1>
+                        <p class="lead text-muted">Test the harmonic and rhythmic compatibility of two songs before mixing. Get immediate Camelot Wheel key analysis, tempo difference calculations, and practical transition recommendations.</p>
                     </div>
 
-                    <div class="row mb-4">
+                    <div class="row g-4 mb-4">
                         <div class="col-md-6">
-                            <div class="p-3 bg-light rounded mb-3">
-                                <h5 class="text-teal mb-3"><i class="bi bi-music-note me-2"></i>Track A</h5>
+                            <div class="p-4 bg-light rounded border h-100">
+                                <h5 class="fw-bold text-teal mb-3"><i class="bi bi-disc me-2"></i>Outgoing Track (Track A)</h5>
                                 <div class="mb-3">
-                                    <label class="form-label">BPM:</label>
-                                    <input type="number" class="form-control" id="bpmA" value="128" min="60" max="200"
+                                    <label class="form-label fw-bold">Tempo (BPM):</label>
+                                    <input type="number" class="form-control form-control-lg" id="bpmA" value="128" min="40" max="250"
                                         oninput="checkCompatibility()">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Key (Camelot):</label>
-                                    <select class="form-select" id="keyA" onchange="checkCompatibility()">
-                                        <option value="1A">1A - G#m / Ab minor</option>
-                                        <option value="1B">1B - B Major</option>
-                                        <option value="2A">2A - D#m / Eb minor</option>
-                                        <option value="2B">2B - F# / Gb Major</option>
-                                        <option value="3A">3A - Bbm / A# minor</option>
-                                        <option value="3B">3B - Db / C# Major</option>
-                                        <option value="4A">4A - Fm / F minor</option>
-                                        <option value="4B">4B - Ab / G# Major</option>
-                                        <option value="5A">5A - Cm / C minor</option>
-                                        <option value="5B">5B - Eb / D# Major</option>
-                                        <option value="6A">6A - Gm / G minor</option>
-                                        <option value="6B">6B - Bb / A# Major</option>
-                                        <option value="7A">7A - Dm / D minor</option>
-                                        <option value="7B">7B - F Major</option>
-                                        <option value="8A" selected>8A - Am / A minor</option>
-                                        <option value="8B">8B - C Major</option>
-                                        <option value="9A">9A - Em / E minor</option>
-                                        <option value="9B">9B - G Major</option>
-                                        <option value="10A">10A - Bm / B minor</option>
-                                        <option value="10B">10B - D Major</option>
-                                        <option value="11A">11A - F#m / Gb minor</option>
-                                        <option value="11B">11B - A Major</option>
-                                        <option value="12A">12A - C#m / Db minor</option>
-                                        <option value="12B">12B - E Major</option>
+                                    <label class="form-label fw-bold">Musical Key (Camelot):</label>
+                                    <select class="form-select form-select-lg" id="keyA" onchange="checkCompatibility()">
+                                        <option value="1A">1A – G#m / Ab minor</option>
+                                        <option value="1B">1B – B Major</option>
+                                        <option value="2A">2A – D#m / Eb minor</option>
+                                        <option value="2B">2B – F# / Gb Major</option>
+                                        <option value="3A">3A – Bbm / A# minor</option>
+                                        <option value="3B">3B – Db / C# Major</option>
+                                        <option value="4A">4A – Fm / F minor</option>
+                                        <option value="4B">4B – Ab / G# Major</option>
+                                        <option value="5A">5A – Cm / C minor</option>
+                                        <option value="5B">5B – Eb / D# Major</option>
+                                        <option value="6A">6A – Gm / G minor</option>
+                                        <option value="6B">6B – Bb / A# Major</option>
+                                        <option value="7A">7A – Dm / D minor</option>
+                                        <option value="7B">7B – F Major</option>
+                                        <option value="8A" selected>8A – Am / A minor</option>
+                                        <option value="8B">8B – C Major</option>
+                                        <option value="9A">9A – Em / E minor</option>
+                                        <option value="9B">9B – G Major</option>
+                                        <option value="10A">10A – Bm / B minor</option>
+                                        <option value="10B">10B – D Major</option>
+                                        <option value="11A">11A – F#m / Gb minor</option>
+                                        <option value="11B">11B – A Major</option>
+                                        <option value="12A">12A – C#m / Db minor</option>
+                                        <option value="12B">12B – E Major</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-6">
-                            <div class="p-3 bg-light rounded mb-3">
-                                <h5 class="text-mid mb-3"><i class="bi bi-music-note-beamed me-2"></i>Track B</h5>
+                            <div class="p-4 bg-light rounded border h-100">
+                                <h5 class="fw-bold text-teal mb-3"><i class="bi bi-disc-fill me-2"></i>Incoming Track (Track B)</h5>
                                 <div class="mb-3">
-                                    <label class="form-label">BPM:</label>
-                                    <input type="number" class="form-control" id="bpmB" value="126" min="60" max="200"
+                                    <label class="form-label fw-bold">Tempo (BPM):</label>
+                                    <input type="number" class="form-control form-control-lg" id="bpmB" value="126" min="40" max="250"
                                         oninput="checkCompatibility()">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Key (Camelot):</label>
-                                    <select class="form-select" id="keyB" onchange="checkCompatibility()">
-                                        <option value="1A">1A - G#m / Ab minor</option>
-                                        <option value="1B">1B - B Major</option>
-                                        <option value="2A">2A - D#m / Eb minor</option>
-                                        <option value="2B">2B - F# / Gb Major</option>
-                                        <option value="3A">3A - Bbm / A# minor</option>
-                                        <option value="3B">3B - Db / C# Major</option>
-                                        <option value="4A">4A - Fm / F minor</option>
-                                        <option value="4B">4B - Ab / G# Major</option>
-                                        <option value="5A">5A - Cm / C minor</option>
-                                        <option value="5B">5B - Eb / D# Major</option>
-                                        <option value="6A">6A - Gm / G minor</option>
-                                        <option value="6B">6B - Bb / A# Major</option>
-                                        <option value="7A">7A - Dm / D minor</option>
-                                        <option value="7B">7B - F Major</option>
-                                        <option value="8A">8A - Am / A minor</option>
-                                        <option value="8B">8B - C Major</option>
-                                        <option value="9A" selected>9A - Em / E minor</option>
-                                        <option value="9B">9B - G Major</option>
-                                        <option value="10A">10A - Bm / B minor</option>
-                                        <option value="10B">10B - D Major</option>
-                                        <option value="11A">11A - F#m / Gb minor</option>
-                                        <option value="11B">11B - A Major</option>
-                                        <option value="12A">12A - C#m / Db minor</option>
-                                        <option value="12B">12B - E Major</option>
+                                    <label class="form-label fw-bold">Musical Key (Camelot):</label>
+                                    <select class="form-select form-select-lg" id="keyB" onchange="checkCompatibility()">
+                                        <option value="1A">1A – G#m / Ab minor</option>
+                                        <option value="1B">1B – B Major</option>
+                                        <option value="2A">2A – D#m / Eb minor</option>
+                                        <option value="2B">2B – F# / Gb Major</option>
+                                        <option value="3A">3A – Bbm / A# minor</option>
+                                        <option value="3B">3B – Db / C# Major</option>
+                                        <option value="4A">4A – Fm / F minor</option>
+                                        <option value="4B">4B – Ab / G# Major</option>
+                                        <option value="5A">5A – Cm / C minor</option>
+                                        <option value="5B">5B – Eb / D# Major</option>
+                                        <option value="6A">6A – Gm / G minor</option>
+                                        <option value="6B">6B – Bb / A# Major</option>
+                                        <option value="7A">7A – Dm / D minor</option>
+                                        <option value="7B">7B – F Major</option>
+                                        <option value="8A">8A – Am / A minor</option>
+                                        <option value="8B">8B – C Major</option>
+                                        <option value="9A" selected>9A – Em / E minor</option>
+                                        <option value="9B">9B – G Major</option>
+                                        <option value="10A">10A – Bm / B minor</option>
+                                        <option value="10B">10B – D Major</option>
+                                        <option value="11A">11A – F#m / Gb minor</option>
+                                        <option value="11B">11B – A Major</option>
+                                        <option value="12A">12A – C#m / Db minor</option>
+                                        <option value="12B">12B – E Major</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="result-box" id="resultBox">
-                        <h3>Compatibility Result</h3>
-                        <p class="result-value" id="overallResult">✓ Good Match</p>
-                        <div class="row mt-4">
-                            <div class="col-md-4 col-6 mb-3">
-                                <strong>Key Compatibility:</strong><br>
-                                <span id="keyResult" class="fs-4">✓ Compatible</span>
+                    <!-- Compatibility Results Dashboard -->
+                    <div class="result-box p-4 rounded mb-4 shadow-sm border" id="resultBox">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="fw-bold mb-0">Compatibility Assessment:</h4>
+                            <span class="fs-3 fw-bold" id="overallResult">✓ Good Match</span>
+                        </div>
+                        <hr>
+                        <div class="row text-center mt-3 g-3">
+                            <div class="col-md-4 col-6">
+                                <span class="text-muted small text-uppercase fw-semibold">Harmonic Key Match</span><br>
+                                <span id="keyResult" class="fs-4 fw-bold">✓ Compatible</span>
                             </div>
-                            <div class="col-md-4 col-6 mb-3">
-                                <strong>BPM Compatibility:</strong><br>
-                                <span id="bpmResult" class="fs-4">✓ Easy Mix</span>
+                            <div class="col-md-4 col-6">
+                                <span class="text-muted small text-uppercase fw-semibold">BPM Difficulty</span><br>
+                                <span id="bpmResult" class="fs-4 fw-bold">✓ Easy Mix</span>
                             </div>
-                            <div class="col-md-4 col-6 mb-3">
-                                <strong>BPM Difference:</strong><br>
-                                <span id="bpmDiff" class="fs-4">2 BPM</span>
+                            <div class="col-md-4 col-12">
+                                <span class="text-muted small text-uppercase fw-semibold">Tempo Delta</span><br>
+                                <span id="bpmDiff" class="fs-4 fw-bold">2 BPM</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-4 p-4 rounded" id="recommendationsBox">
-                        <h5><i class="bi bi-lightbulb me-2"></i>Mixing Recommendations</h5>
-                        <ul id="recommendations" class="mb-0"></ul>
+                    <!-- Actionable Mixing Recommendations -->
+                    <div class="p-4 rounded border mb-5" id="recommendationsBox">
+                        <h5 class="fw-bold text-teal mb-3"><i class="bi bi-lightbulb me-2"></i>Actionable Mixing Instructions:</h5>
+                        <ul id="recommendations" class="mb-0 ps-3"></ul>
                     </div>
-                </div>
 
-                <div class="tool-container mt-4">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-4"><i class="bi bi-info-circle me-2"></i>Camelot Wheel Guide</h2>
-                        <p>The Camelot Wheel organizes musical keys for easy harmonic mixing:</p>
-                        <ul>
-                            <li><strong>Same key:</strong> Perfect compatibility</li>
-                            <li><strong>±1 number:</strong> Adjacent keys mix well (8A → 7A or 9A)</li>
-                            <li><strong>Same number, different letter:</strong> Relative major/minor (8A ↔ 8B)</li>
-                            <li><strong>Energy boost:</strong> +1 on wheel increases energy</li>
-                            <li><strong>Energy drop:</strong> -1 on wheel decreases energy</li>
-                        </ul>
+                    <!-- COMPREHENSIVE GUIDE & REFERENCE -->
+                    <div class="mt-5">
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">Mastering Mix Compatibility: The Science of Harmonic and Rhythmic Cohesion</h2>
+                            <p>
+                                In professional DJ performance, mixing two tracks is far more than matching drum beats. It is a live sonic composition where two independent musical arrangements meet in real time. If the tracks share complementary keys and close tempos, the transition sounds like an organic, studio-produced mashup. If their musical keys clash or their tempos require extreme pitch warping, the blend produces cacophony that disrupts the dancefloor.
+                            </p>
+                            <p>
+                                The <strong>DJ Mix Compatibility Checker</strong> evaluates both primary mixing dimensions simultaneously:
+                            </p>
+                            <div class="row g-4 my-2">
+                                <div class="col-md-6">
+                                    <div class="p-3 bg-light rounded border h-100">
+                                        <h5 class="fw-bold text-teal mb-2"><i class="bi bi-vinyl me-2"></i>1. Rhythmic Compatibility (BPM Delta)</h5>
+                                        <p class="small text-muted mb-0">Measures the tempo difference between Track A and Track B. Pitch sliders can bridge small BPM differences easily, but large speed shifts alter the rhythmic groove, vocal timbre, and transient punch of the music.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 bg-light rounded border h-100">
+                                        <h5 class="fw-bold text-teal mb-2"><i class="bi bi-music-note-beamed me-2"></i>2. Harmonic Compatibility (Camelot Wheel)</h5>
+                                        <p class="small text-muted mb-0">Quantifies how many scale notes both tracks share. The Camelot System translates musical theory into a visual 1–12 clock face, allowing DJs to predict instantly whether chords, vocals, and basslines will harmonize or clash.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-3">The Camelot Harmonic Mixing Matrix</h3>
+                            <p>
+                                The Camelot Wheel arranges the 12 chromatic notes according to the musical Circle of Fifths. Depending on where your incoming track sits relative to your current track, you can produce distinct psychological and emotional energy shifts:
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Relationship</th>
+                                            <th>Camelot Movement</th>
+                                            <th>Example (Starting 8A / A minor)</th>
+                                            <th>Acoustic Result & Energy Impact</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Exact Match</strong></td>
+                                            <td>Same Number & Letter (0)</td>
+                                            <td>8A &rarr; 8A (Am &rarr; Am)</td>
+                                            <td>Identical key signature. Melodies and baselines layer with absolute harmonic stability.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Relative Major/Minor</strong></td>
+                                            <td>Same Number, Swap Letter (A &harr; B)</td>
+                                            <td>8A &rarr; 8B (Am &rarr; C Maj)</td>
+                                            <td>Shares 100% of the same scale notes. Shifts the emotional color from dark minor to uplifting major.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Dominant (+1 Fifth)</strong></td>
+                                            <td>+1 Hour Clockwise</td>
+                                            <td>8A &rarr; 9A (Am &rarr; Em)</td>
+                                            <td>Shares 6 out of 7 scale notes. Injects a natural forward lift into the mix.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Subdominant (-1 Fifth)</strong></td>
+                                            <td>-1 Hour Counter-Clockwise</td>
+                                            <td>8A &rarr; 7A (Am &rarr; Dm)</td>
+                                            <td>Shares 6 out of 7 scale notes. Relaxes the harmonic tension; ideal for cooling down the room.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Energy Boost (+2 Steps)</strong></td>
+                                            <td>+2 Hours Clockwise</td>
+                                            <td>8A &rarr; 10A (Am &rarr; Bm)</td>
+                                            <td>Transposes root pitch up one whole step (+2 semitones). Creates an unmistakable burst of excitement.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Semitone Clash (&gt;2 Steps)</strong></td>
+                                            <td>Random Distance (e.g. +5 Hours)</td>
+                                            <td>8A &rarr; 3A (Am &rarr; Bbm)</td>
+                                            <td>Dissonant intervals (minor seconds / tritones). Requires cutting melodic elements and mixing during drum breaks.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-3">Tempo Compatibility Rules by Genre</h3>
+                            <p>
+                                The difficulty of beatmatching and blending two tracks is directly proportional to their percentage BPM delta:
+                            </p>
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <div class="p-3 bg-light rounded border h-100">
+                                        <h5 class="fw-bold text-success mb-2"><i class="bi bi-check-circle me-2"></i>Easy Blend (0 to 3 BPM)</h5>
+                                        <p class="small text-muted mb-0">Tempo adjustment is below 2.5%. Dancers will not notice the speed change. Both tracks can be layered for 32 to 64 bars without pitch warping or drum transient smearing.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3 bg-light rounded border h-100">
+                                        <h5 class="fw-bold text-warning mb-2"><i class="bi bi-exclamation-triangle me-2"></i>Moderate Transition (4 to 7 BPM)</h5>
+                                        <p class="small text-muted mb-0">Tempo shift between 3% and 5%. Master Tempo (Key Lock) must be engaged to prevent vocals from shifting pitch. Transition should be executed over 16 bars with active EQ filtering.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-3 bg-light rounded border h-100">
+                                        <h5 class="fw-bold text-danger mb-2"><i class="bi bi-x-octagon me-2"></i>Challenging Gap (&gt;8 BPM)</h5>
+                                        <p class="small text-muted mb-0">Extreme tempo mismatch. Direct blending will sound rushed or sluggish. Recommended techniques: echo-out transition on downbeat, half-time / double-time math, or vinyl backspin.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- FAQ Section -->
+                        <section class="mb-5">
+                            <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
+                            <div class="accordion" id="mixFaqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeading1">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mixFaq1" aria-expanded="true">
+                                            What makes two tracks compatible for DJ mixing?
+                                        </button>
+                                    </h2>
+                                    <div id="mixFaq1" class="accordion-collapse collapse show" data-bs-parent="#mixFaqAccordion">
+                                        <div class="accordion-body">
+                                            Two tracks are compatible when their tempos (BPM) are close enough to sync without excessive audio artifacting (typically within &plusmn;3% to 5%) and their musical keys share overlapping scale notes on the Camelot Wheel (identical keys, relative major/minor, or adjacent fifths).
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeading2">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mixFaq2">
+                                            How does the Camelot Wheel calculate harmonic compatibility?
+                                        </button>
+                                    </h2>
+                                    <div id="mixFaq2" class="accordion-collapse collapse" data-bs-parent="#mixFaqAccordion">
+                                        <div class="accordion-body">
+                                            The Camelot Wheel maps all 24 musical keys onto a 12-hour clock face. Songs sharing the same number (e.g. 8A to 8A) or adjacent numbers (8A to 7A or 9A) share 6 or 7 notes of their scale, guaranteeing that basslines and melodies blend consonantly without dissonant pitch clashes.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeading3">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mixFaq3">
+                                            What is the maximum acceptable BPM difference before music distorts?
+                                        </button>
+                                    </h2>
+                                    <div id="mixFaq3" class="accordion-collapse collapse" data-bs-parent="#mixFaqAccordion">
+                                        <div class="accordion-body">
+                                            When using digital Key Lock (Master Tempo), tempo adjustments up to &plusmn;6% (approx. 7–8 BPM at house tempos) remain transparent. Beyond 8% to 10%, time-stretching introduces phase flanging and transient smearing. Without key lock, a 6% tempo shift raises or lowers pitch by one full semitone.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeading4">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mixFaq4">
+                                            Can I mix two songs that have completely different keys without clashing?
+                                        </button>
+                                    </h2>
+                                    <div id="mixFaq4" class="accordion-collapse collapse" data-bs-parent="#mixFaqAccordion">
+                                        <div class="accordion-body">
+                                            Yes, by isolating non-melodic elements. You can mix dissonant tracks during percussion-only intros/outros, drum breaks, or ambient risers. Alternatively, using an aggressive low-pass/high-pass EQ filter sweep, echo freeze, or quick cut on the downbeat prevents harmonic collision.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeading5">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mixFaq5">
+                                            What is "Energy Boost" mixing on the Camelot Wheel?
+                                        </button>
+                                    </h2>
+                                    <div id="mixFaq5" class="accordion-collapse collapse" data-bs-parent="#mixFaqAccordion">
+                                        <div class="accordion-body">
+                                            Energy Boost mixing involves transitioning +2 numbers clockwise on the Camelot Wheel (e.g. from 8A / A minor to 10A / B minor). This transposes the root pitch up by two semitones (one whole step), creating a sudden perceived surge of excitement and drive on the dancefloor.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="faqHeading6">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mixFaq6">
+                                            How do I handle transitions between half-time and double-time tempos?
+                                        </button>
+                                    </h2>
+                                    <div id="mixFaq6" class="accordion-collapse collapse" data-bs-parent="#mixFaqAccordion">
+                                        <div class="accordion-body">
+                                            Tracks that share a 2:1 tempo ratio (such as 75 BPM trap and 150 BPM dubstep, or 87 BPM hip-hop and 174 BPM drum & bass) are mathematically tempo-compatible. The snare or clap on beat 3 of the half-time track aligns with beat 2 and 4 of the double-time track.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -227,7 +493,7 @@
 
             const overall = getOverallCompatibility(keyCompat.score, bpmCompat.score);
             document.getElementById('overallResult').textContent = overall.icon + ' ' + overall.text;
-            document.getElementById('resultBox').className = 'result-box ' + overall.bgClass;
+            document.getElementById('resultBox').className = 'result-box p-4 rounded mb-4 shadow-sm border ' + overall.bgClass;
 
             updateRecommendations(keyCompat, bpmCompat, bpmDiff, keyA, keyB);
         }
@@ -283,15 +549,15 @@
         function getOverallCompatibility(keyScore, bpmScore) {
             const total = keyScore + bpmScore;
             if (total >= 5) {
-                return { icon: '✓', text: 'Excellent Match', bgClass: '' };
+                return { icon: '✓', text: 'Excellent Match', bgClass: 'bg-success bg-opacity-10 border-success' };
             }
             if (total >= 3) {
-                return { icon: '✓', text: 'Good Match', bgClass: '' };
+                return { icon: '✓', text: 'Good Match', bgClass: 'bg-success bg-opacity-10 border-success' };
             }
             if (total >= 1) {
-                return { icon: '~', text: 'Possible Mix', bgClass: 'bg-warning bg-opacity-10' };
+                return { icon: '~', text: 'Possible Mix', bgClass: 'bg-warning bg-opacity-10 border-warning' };
             }
-            return { icon: '✗', text: 'Not Recommended', bgClass: 'bg-danger bg-opacity-10' };
+            return { icon: '✗', text: 'Not Recommended', bgClass: 'bg-danger bg-opacity-10 border-danger' };
         }
 
         function updateRecommendations(keyCompat, bpmCompat, bpmDiff, keyA, keyB) {
@@ -299,33 +565,33 @@
             const box = document.getElementById('recommendationsBox');
 
             if (keyCompat.score >= 2) {
-                recs.push('Keys are harmonically compatible - blend melodies freely');
+                recs.push('Keys are harmonically compatible – blend melodies and vocals freely without fear of collision.');
             } else if (keyCompat.score >= 0) {
-                recs.push('Use EQ to reduce melodic clashes during transition');
-                recs.push('Keep transition brief or use a breakdown');
+                recs.push('Use 3-band EQ filtering (cut mids and highs) to prevent minor key friction during the transition.');
+                recs.push('Keep the transition duration under 16 bars or blend during a percussion breakdown.');
             } else {
-                recs.push('Keys will clash - avoid overlapping melodic elements');
-                recs.push('Use a hard cut, breakdown, or effect-heavy transition');
+                recs.push('Harmonic clash detected – avoid overlapping melodic components or sustained chords.');
+                recs.push('Execute a drop swap, echo-out delay freeze, or cut on the downbeat.');
             }
 
             if (bpmDiff === 0) {
-                recs.push('BPMs match perfectly - no tempo adjustment needed');
+                recs.push('BPMs match identically – no pitch fader adjustment required.');
             } else if (bpmDiff <= 3) {
-                recs.push('Minor BPM difference - subtle pitch fader adjustment');
+                recs.push('Minor BPM difference – easy pitch fader nudge, transparent to the dancefloor.');
             } else if (bpmDiff <= 6) {
-                recs.push('Gradually adjust tempo over 16-32 bars');
+                recs.push('Moderate BPM gap – enable Master Tempo (Key Lock) to preserve vocal pitch.');
             } else {
-                recs.push('Large BPM gap - use beatmatch gradually or creative transition');
+                recs.push('Large BPM gap – consider transitioning through a breakdown, half-time rhythm, or tempo ramp.');
             }
 
-            document.getElementById('recommendations').innerHTML = recs.map(r => `<li>${r}</li>`).join('');
+            document.getElementById('recommendations').innerHTML = recs.map(r => `<li class="mb-2">${r}</li>`).join('');
 
             if (keyCompat.score < 0 || bpmCompat.score < 0) {
-                box.className = 'mt-4 p-4 rounded bg-danger bg-opacity-10';
+                box.className = 'p-4 rounded border bg-danger bg-opacity-10 border-danger mb-5';
             } else if (keyCompat.score <= 1 || bpmCompat.score <= 1) {
-                box.className = 'mt-4 p-4 rounded bg-warning bg-opacity-10';
+                box.className = 'p-4 rounded border bg-warning bg-opacity-10 border-warning mb-5';
             } else {
-                box.className = 'mt-4 p-4 rounded bg-success bg-opacity-10';
+                box.className = 'p-4 rounded border bg-success bg-opacity-10 border-success mb-5';
             }
         }
 
