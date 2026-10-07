@@ -4,20 +4,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Chord Progression Generator — Music Theory & Songwriting Tool </title>
+  <title>Chord Progression Generator – Musical Keys, Diatonic & Jazz Progressions</title>
   <meta name="description"
-    content="Generate chord progressions instantly. Chord Progression Generator for songwriters, producers, and musicians. Major, minor, 7th, and jazzy chords included." />
+    content="Generate musical chord progressions in all 12 keys. Explore pop 4-chord loops, jazz ii-V-I cadences, modal interchange, and functional Roman numeral analysis." />
   <meta name="keywords"
-    content="chord progression generator, chord sequences, song chord ideas, major minor chords, jazz chords, music theory tool, songwriting tool" />
+    content="chord progression generator, chord sequences, songwriting chords, diatonic chord generator, jazz chord progression generator, ii-v-i generator, pop chord progression" />
   <link rel="canonical" href="https://pitchdetectors.com/music-theory-tools/chord-progression-generator/" />
   <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="/assets/bootstrap5.css" rel="stylesheet">
-  <link href="/assets/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
   <link href="/assets/tools.css" rel="stylesheet">
-
-
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -25,471 +23,64 @@
     gtag('js', new Date());
     gtag('config', 'G-NCHP45VYJ2');
   </script>
-
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
     crossorigin="anonymous"></script>
-
-  <style>
-    :root {
-      --ink: #0d1b2a;
-      --blue: #003161;
-      --blue-mid: #0057b7;
-      --blue-bg: #eff6ff;
-      --teal: #0d9488;
-      --gold: #b45309;
-      --muted: #4b5563;
-      --soft: #f8fafc;
-      --border: #e2e8f0;
-      --white: #ffffff;
-      --tag: #dbeafe;
-      --tag-txt: #1e40af;
-    }
-
-    /* ── ATF ── */
-    .atf {
-      padding: 48px 0 36px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 44px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-family: 'Syne', sans-serif;
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--tag-txt);
-      background: var(--tag);
-      padding: 4px 13px;
-      border-radius: 20px;
-      margin-bottom: 18px;
-    }
-
-    .tagline {
-      font-family: 'Lora', serif;
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 580px;
-      margin-bottom: 26px;
-    }
-
-    /* quick examples */
-    .ex-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .ex-pill {
-      background: var(--blue-bg);
-      border: 1px solid #bfdbfe;
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.83rem;
-      font-weight: 600;
-      color: var(--ink);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .ex-pill .key {
-      color: var(--blue);
-    }
-
-    .ex-pill .chords {
-      color: var(--teal);
-      font-weight: 700;
-    }
-
-    /* 3-step grid */
-    .how-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-
-    .step-card {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-    }
-
-    .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--blue);
-      color: white;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .step-card h4 {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.87rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-      color: var(--ink);
-    }
-
-    .step-card p {
-      font-family: 'Lora', serif;
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    .try-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--blue);
-      color: white;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 10px 22px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-
-    .try-btn:hover {
-      background: var(--blue-mid);
-    }
-
-    .try-soft {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--blue);
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 10px;
-    }
-
-    /* ── SECTIONS ── */
-
-
-    /* ── HOW-TO LIST ── */
-    .how-list {
-      list-style: none;
-      padding: 0;
-      counter-reset: s;
-    }
-
-    .how-list li {
-      counter-increment: s;
-      display: grid;
-      grid-template-columns: 30px 1fr;
-      gap: 14px;
-      padding: 13px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.93rem;
-    }
-
-    .how-list li:last-child {
-      border-bottom: none;
-    }
-
-    .how-list li::before {
-      content: counter(s);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--blue);
-      color: white;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .how-list li .body strong {
-      display: block;
-      color: var(--ink);
-      font-family: 'Syne', sans-serif;
-      font-size: 0.92rem;
-      margin-bottom: 2px;
-    }
-
-    .how-list li .body span {
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
-
-    /* ── OUTPUT CARDS ── */
-    .out-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .out-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px 20px;
-      background: var(--white);
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .out-card:hover {
-      border-color: var(--blue-mid);
-      box-shadow: 0 4px 16px rgba(0, 49, 97, 0.07);
-    }
-
-    .out-card .lbl {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--blue);
-      margin-bottom: 5px;
-    }
-
-    .out-card .title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-
-    .out-card p {
-      font-size: 0.85rem;
-      margin: 0;
-      line-height: 1.55;
-    }
-
-    /* ── TABLES ── */
-    .tbl-note {
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-bottom: 12px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      margin-bottom: 6px;
-    }
-
-    thead th {
-      background: var(--blue);
-      color: white;
-      padding: 10px 14px;
-      text-align: left;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    tbody td {
-      padding: 9px 14px;
-      border-bottom: 1px solid var(--border);
-      color: var(--ink);
-    }
-
-    tbody tr:nth-child(even) td {
-      background: var(--soft);
-    }
-
-    tbody tr:hover td {
-      background: var(--blue-bg);
-    }
-
-    .hl {
-      font-weight: 700;
-      color: var(--blue);
-    }
-
-    /* ── USE CASES ── */
-    .uc-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .uc {
-      border-radius: 10px;
-      padding: 20px;
-      border: 1px solid var(--border);
-    }
-
-    .uc .icon {
-      font-size: 1.5rem;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .uc h4 {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-
-    .uc p {
-      font-size: 0.85rem;
-      margin: 0;
-      line-height: 1.55;
-    }
-
-    .uc.songwriting {
-      background: #fff7ed;
-      border-color: #fed7aa;
-    }
-
-    .uc.guitar {
-      background: #f0fdf4;
-      border-color: #bbf7d0;
-    }
-
-    .uc.piano {
-      background: var(--blue-bg);
-      border-color: #bfdbfe;
-    }
-
-    .uc.production {
-      background: #fdf4ff;
-      border-color: #e9d5ff;
-    }
-
-    .uc.learning {
-      background: #fefce8;
-      border-color: #fde68a;
-    }
-
-    .uc.backing {
-      background: #fff1f2;
-      border-color: #fecdd3;
-    }
-
-    /* ── GENRE TABLE ── */
-    .genre-badge {
-      display: inline-block;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 9px;
-      border-radius: 12px;
-      background: var(--blue-bg);
-      color: var(--blue);
-    }
-
-    /* ── NOTE BOX ── */
-    .note {
-      background: var(--soft);
-      border-left: 3px solid var(--blue);
-      padding: 12px 18px;
-      border-radius: 0 8px 8px 0;
-      font-size: 0.87rem;
-      color: var(--muted);
-      margin: 18px 0;
-    }
-
-    .note strong {
-      color: var(--blue);
-    }
-
-    /* ── FAQ ── */
-    .faq-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .faq-list li {
-      border-bottom: 1px solid var(--border);
-      padding: 18px 0;
-    }
-
-    .faq-list li:last-child {
-      border-bottom: none;
-    }
-
-    .faq-q {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.96rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 7px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .faq-q::before {
-      content: "Q";
-      flex-shrink: 0;
-      font-size: 0.7rem;
-      font-weight: 800;
-      background: var(--blue);
-      color: white;
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
-    }
-
-    .faq-a {
-      font-size: 0.88rem;
-      color: var(--muted);
-      padding-left: 30px;
-      line-height: 1.65;
-    }
-
-    /* roman numeral code */
-    code {
-      font-family: 'Courier New', monospace;
-      background: var(--blue-bg);
-      color: var(--blue);
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-size: 0.88rem;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-
-      .how-grid,
-      .out-grid,
-      .uc-grid {
-        grid-template-columns: 1fr;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a chord progression in music theory?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A chord progression is an intentional sequence of two or more musical chords played in succession. Progressions establish tonal gravity and harmonic direction by navigating between states of acoustic rest (tonic), departure or preparation (subdominant/predominant), and harmonic tension (dominant) that resolves back to the home key."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Roman numeral analysis in chord progressions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Roman numeral analysis represents chords by their scale degree within a parent key. Uppercase numerals (I, IV, V) represent major chords, while lowercase numerals (ii, iii, vi) represent minor chords, and a degree symbol (vii°) denotes diminished chords. This allows musicians to transpose progressions effortlessly to any of the 12 chromatic keys."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the most famous pop chord progression?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The I - V - vi - IV progression (in C major: C - G - Am - F) is the most commercially successful chord progression in modern music history. Featured in hundreds of chart-topping pop, rock, and country hits, it balances emotional uplift (I and V) with melancholic poignancy (vi) and open resolution (IV)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the jazz ii - V - I chord cadence?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The ii - V - I progression is the foundational harmonic cadence of jazz music. In C major, it is Dm7 (supertonic subdominant) to G7 (dominant 7th with tritone tension) to Cmaj7 (tonic resolution). The smooth circle-of-fifths root motion and stepwise half-step guide tone resolution make it the standard building block of jazz standards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is modal interchange (borrowed chords)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modal interchange occurs when a composer temporarily borrows chords from the parallel minor key while remaining in a major key. The most iconic example is the 'minor iv' chord (playing Fm instead of F in C major), which creates a poignant, bittersweet resolution back to the major tonic I."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does harmonic rhythm affect a song's feel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Harmonic rhythm is the rate at which chords change over time. Slower harmonic rhythm (changing chords every 1 to 2 measures) creates a spacious, atmospheric, or heavy foundation common in ambient, ballad, and trap music. Faster harmonic rhythm (changing chords every 1 to 2 beats) creates momentum, harmonic urgency, and virtuosic complexity common in bebop and classical counterpoint."
+        }
       }
-    }
-  </style>
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -524,7 +115,7 @@
       </div>
 
       <!-- Main content -->
-      <div class="col-lg-7 col-md-8">
+      <div class="col-lg-9 col-md-8">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -578,854 +169,303 @@
             <button class="btn btn-primary mt-3" onclick="generateProgression()">🔄 Generate New Progression</button>
           </div>
 
-          <!-- Chord formulas -->
-          <div class="content_area container py-4">
-            <div
-              style="background: rgba(0,11,88,0.04); box-shadow: 0 2px 10px rgba(0,0,0,0.06); border-radius:10px; padding:18px; margin-bottom:20px;">
-              <h2 class="h6 fw-bold text-uppercase mb-2" style="color:#003161;">Quick Summary</h2>
-              <p class="mb-0">Use this <strong>Chord Progression Generator</strong> to instantly create musical chord
-                sequences in any key. Supports major, minor, and 7th chords for songwriting, composing, and production.
+          <!-- Educational & Technical Content -->
+          <article class="tool-container mt-4">
+            <section class="mb-4">
+              <h1 class="mb-3">Chord Progression Generator: Harmonic Architecture & Cadence Engine</h1>
+              <p class="lead text-muted">
+                Create compelling musical chord progressions across all 12 chromatic keys. Explore diatonic harmony, functional Roman numeral analysis, modal interchange, and iconic cadences that define pop, jazz, rock, and classical composition.
               </p>
-            </div>
+              <p>
+                In musical composition, melody provides narrative contour, rhythm injects physical motion, but <strong>harmony establishes emotional context</strong>. A single melodic note like $E$ sounds triumphant over a $C\text{ major}$ chord, deeply melancholic over an $A\text{ minor}$ chord, mysterious over an $F\sharp\text{ half-diminished}$ chord, and breathtakingly dramatic over an $F\text{maj7}\sharp 11$. A chord progression is not merely a random string of chords; it is an organized acoustic journey that navigates between states of rest, departure, tension, and resolution.
+              </p>
+            </section>
 
-            <h2 style="color:#003161;" class="fw-semibold mt-3 mb-2">How it works</h2>
-            <p>The generator uses the selected key and basic diatonic chord formulas to produce common progressions.</p>
-            <div class="bg-light p-3 rounded mb-3">
-              <pre style="margin:0; background:#f8fafc; padding:12px; border-radius:6px;">
-I - ii - iii - IV - V - vi - vii°
-Major:   I, ii, iii, IV, V, vi, vii°
-Minor:   i, ii°, III, iv, v, VI, VII
-7th chords: I7, ii7, iii7, IV7, V7, vi7, viiø7
-              </pre>
-            </div>
-
-            <h2 style="color:#003161;" class="fw-semibold mt-3 mb-2">Examples</h2>
-            <table class="table table-bordered text-center">
-              <thead class="table-light">
-                <tr>
-                  <th>Key</th>
-                  <th>Common Progression</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>C</td>
-                  <td>C - G - Am - F</td>
-                </tr>
-                <tr>
-                  <td>G</td>
-                  <td>G - D - Em - C</td>
-                </tr>
-                <tr>
-                  <td>D</td>
-                  <td>D - A - Bm - G</td>
-                </tr>
-                <tr>
-                  <td>A</td>
-                  <td>A - E - F#m - D</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <h2 style="color:#003161;" class="fw-semibold mt-3 mb-2">Use Cases</h2>
-            <ul>
-              <li>Songwriting inspiration and chord ideas.</li>
-              <li>Backing track creation and arrangement planning.</li>
-              <li>Learning diatonic chords in any key.</li>
-              <li>Experimenting with major, minor, and 7th chord combinations.</li>
-            </ul>
-
-
-
-
-            <!-- content start -->
-            <!-- ══════════════════════════════════════════
-     ABOVE THE FOLD
-══════════════════════════════════════════ -->
-            <div class="atf">
-              <div class="eyebrow">🎵 Free Music Tool — No Signup Required</div>
-              <h1>Chord Progression Generator</h1>
-              <p class="tagline">Pick a key, set a length, and instantly generate diatonic chord progressions — with
-                major, minor, and 7th chords — for songwriting, guitar, piano, and music production.</p>
-
-              <div class="ex-row">
-                <div class="ex-pill"><span class="key">Key of C:</span> <span class="chords">C – G – Am – F</span></div>
-                <div class="ex-pill"><span class="key">Key of G:</span> <span class="chords">G – D – Em – C</span></div>
-                <div class="ex-pill"><span class="key">Key of A:</span> <span class="chords">A – E – F♯m – D</span>
-                </div>
-                <div class="ex-pill"><span class="key">D Minor:</span> <span class="chords">Dm – Gm – A – Bb</span>
-                </div>
-              </div>
-
-              <div class="how-grid">
-                <div class="step-card">
-                  <div class="step-num">1</div>
-                  <h4>Select a Key</h4>
-                  <p>Choose any of the 12 chromatic keys, from C to B, including all sharp/flat pairs.</p>
-                </div>
-                <div class="step-card">
-                  <div class="step-num">2</div>
-                  <h4>Set Progression Length</h4>
-                  <p>Choose 3, 4, 5, or 6 chords. Most songs use a 4-chord loop — a perfect starting point.</p>
-                </div>
-                <div class="step-card">
-                  <div class="step-num">3</div>
-                  <h4>Generate & Use</h4>
-                  <p>Hit Generate. Copy the progression into your DAW, lead sheet, tab, or play it directly.</p>
-                </div>
-              </div>
-
-              <a class="try-btn" href="#tool">↑ Try the generator above</a>
-            </div>
-
-
-            <!-- ══════════════════════════════════════════
-     HOW TO USE
-══════════════════════════════════════════ -->
-            <section id="how-to-use">
-              <h2>How to Use the Chord Progression Generator</h2>
-
-              <ul class="how-list">
-                <li>
-                  <div class="body">
-                    <strong>Choose your key</strong>
-                    <span>Select from all 12 chromatic keys. If you play guitar, C, G, D, A, and E are the most
-                      fret-friendly. For piano, C Major is the easiest to start with, but all keys work equally well
-                      here.</span>
+            <!-- Functional Harmony: Tonic, Subdominant, Dominant -->
+            <section class="mb-4">
+              <h2 class="text-teal mb-3"><i class="bi bi-compass me-2"></i>Functional Harmony: The Three Pillars of Tonal Gravity</h2>
+              <p>
+                Under classical and contemporary music theory, all diatonic chords belong to one of three functional families based on their acoustic tension and desire to resolve:
+              </p>
+              <div class="row g-3 my-2">
+                <div class="col-md-4">
+                  <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                    <h5 class="fw-bold text-dark"><i class="bi bi-house-door text-teal me-2"></i>1. Tonic Family ($T$)</h5>
+                    <p class="small text-muted mb-2">Chords: $I$ (Tonic), $vi$ (Submediant), $iii$ (Mediant)</p>
+                    <p class="small mb-0">
+                      Represents maximum stability, rest, and acoustic equilibrium. Progressions almost always begin or conclude here. The $vi$ chord acts as a softer, emotional tonic substitute (relative minor).
+                    </p>
                   </div>
-                </li>
-                <li>
-                  <div class="body">
-                    <strong>Set the progression length</strong>
-                    <span>3 chords work well for simple, repetitive loops (blues, folk). 4 chords are the most common in
-                      pop and rock. 5–6 chords suit jazz, R&amp;B, and more complex arrangements.</span>
+                </div>
+                <div class="col-md-4">
+                  <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                    <h5 class="fw-bold text-dark"><i class="bi bi-arrow-right-circle text-teal me-2"></i>2. Subdominant Family ($S$)</h5>
+                    <p class="small text-muted mb-2">Chords: $IV$ (Subdominant), $ii$ (Supertonic)</p>
+                    <p class="small mb-0">
+                      Represents departure, preparation, and moderate tension. Moves the listener away from home and serves as a harmonic bridge (predominant) leading directly toward the dominant.
+                    </p>
                   </div>
-                </li>
-                <li>
-                  <div class="body">
-                    <strong>Click "Generate New Progression"</strong>
-                    <span>Each click produces a new diatonic chord sequence. The generator pulls from proven
-                      progressions — not random noise. Every result will be musically coherent in your chosen
-                      key.</span>
+                </div>
+                <div class="col-md-4">
+                  <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                    <h5 class="fw-bold text-dark"><i class="bi bi-lightning-charge text-teal me-2"></i>3. Dominant Family ($D$)</h5>
+                    <p class="small text-muted mb-2">Chords: $V$ (Dominant), $vii^\circ$ (Leading Tone)</p>
+                    <p class="small mb-0">
+                      Contains maximum acoustic tension and instability. Driven by the leading tone (scale degree $\hat{7}$) pulling upward toward $\hat{1}$ and the tritone interval in dominant 7th chords ($V7$) that urgently demands resolution to $I$.
+                    </p>
                   </div>
-                </li>
-                <li>
-                  <div class="body">
-                    <strong>Try multiple results</strong>
-                    <span>Generate 3–5 variations. Progressions that feel "almost right" are often one chord swap away
-                      from being perfect. Take note of the Roman numeral pattern — e.g. I–V–vi–IV — and use it as your
-                      structural template.</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="body">
-                    <strong>Adapt to your instrument or DAW</strong>
-                    <span>Use the chord names directly in a chord chart, enter them into a piano roll in Ableton, FL
-                      Studio, Logic Pro, or GarageBand, or play them as guitar tabs. The progression works everywhere —
-                      the tool does the theory.</span>
-                  </div>
-                </li>
-              </ul>
-
-              <div class="note">
-                <strong>Quick tip:</strong> If a generated progression sounds too happy, try switching your key to its
-                minor parallel. C Major becomes C Minor — same root, completely different emotional weight.
+                </div>
               </div>
             </section>
 
-
-            <!-- ══════════════════════════════════════════
-     WHAT THE TOOL GENERATES
-══════════════════════════════════════════ -->
-            <section id="outputs">
-              <h2>What Does the Generator Produce?</h2>
-
-              <p>Every chord progression this tool generates is built from <strong>diatonic chords</strong> — meaning
-                all chords come from the same key's scale. This guarantees harmonic coherence. Here's what each result
-                includes:</p>
-
-              <div class="out-grid">
-                <div class="out-card">
-                  <div class="lbl">Output 1</div>
-                  <div class="title">Chord Sequence</div>
-                  <p>A ready-to-use sequence of 3–6 chord names (e.g. <strong>C – Am – F – G</strong>). Each chord is
-                    named using standard notation — playable on guitar, piano, ukulele, or any chordal instrument
-                    immediately.</p>
-                </div>
-
-                <div class="out-card">
-                  <div class="lbl">Output 2</div>
-                  <div class="title">Diatonic Chord Types</div>
-                  <p>The generator draws from major, minor, and 7th chord vocabulary — including <strong>I, ii, iii, IV,
-                      V, vi, vii°</strong> for major keys and <strong>i, ii°, III, iv, v, VI, VII</strong> for minor
-                    keys — giving you real harmonic variety, not just triads.</p>
-                </div>
-
-                <div class="out-card">
-                  <div class="lbl">Output 3</div>
-                  <div class="title">Progressions Based on Proven Patterns</div>
-                  <p>Results follow established chord progression rules — like the I–V–vi–IV (used in hundreds of pop
-                    songs) and ii–V–I (the cornerstone of jazz). Each output is a tested harmonic formula in a new key.
-                  </p>
-                </div>
-
-                <div class="out-card">
-                  <div class="lbl">Output 4</div>
-                  <div class="title">Instantly Transposable</div>
-                  <p>Don't like the key? Switch the selector — the same progression structure (Roman numerals) appears
-                    in any key you choose. This makes the tool function as a live transposition reference for any chord
-                    pattern.</p>
-                </div>
-              </div>
-
-              <button class="try-soft" onclick="window.scrollTo(0,0)">↑ Generate a progression now</button>
-            </section>
-
-
-            <!-- ══════════════════════════════════════════
-     DIATONIC CHORD FORMULAS
-══════════════════════════════════════════ -->
-            <section id="how-it-works">
-              <h2>How the Generator Works: Diatonic Chord Theory</h2>
-
-              <p>The chord progression generator uses <strong>diatonic chord formulas</strong> — the set of chords
-                naturally produced by a musical key. Every major key generates exactly 7 chords, one built on each scale
-                degree, following a fixed pattern of major, minor, and diminished quality.</p>
-
-              <h3>Major Key Formula</h3>
-              <p>In any major key, the chord qualities follow this pattern:</p>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
+            <!-- Diatonic Harmony Table: Major vs Minor -->
+            <section class="mb-4">
+              <h2 class="text-teal mb-3"><i class="bi bi-table me-2"></i>Diatonic Triads & 7th Chords Across Major and Minor Keys</h2>
+              <div class="table-responsive mb-3">
+                <table class="table table-hover table-bordered align-middle">
+                  <thead class="table-dark">
                     <tr>
                       <th>Degree</th>
-                      <th>Roman Numeral</th>
-                      <th>Chord Quality</th>
-                      <th>In C Major</th>
-                      <th>In G Major</th>
+                      <th>Major Key Triad</th>
+                      <th>Major Key 7th</th>
+                      <th>Harmonic Function</th>
+                      <th>Natural Minor Triad</th>
+                      <th>Natural Minor 7th</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>1st</td>
-                      <td class="hl">I</td>
-                      <td>Major</td>
-                      <td>C</td>
-                      <td>G</td>
+                      <td class="fw-bold">I / i</td>
+                      <td>Major ($I$)</td>
+                      <td>Major 7th ($I\text{maj7}$)</td>
+                      <td>Tonic (Home)</td>
+                      <td>Minor ($i$)</td>
+                      <td>Minor 7th ($i\text{m7}$)</td>
                     </tr>
                     <tr>
-                      <td>2nd</td>
-                      <td class="hl">ii</td>
-                      <td>Minor</td>
-                      <td>Dm</td>
-                      <td>Am</td>
+                      <td class="fw-bold">ii / ii°</td>
+                      <td>Minor ($ii$)</td>
+                      <td>Minor 7th ($ii\text{m7}$)</td>
+                      <td>Predominant / Subdominant</td>
+                      <td>Diminished ($ii^\circ$)</td>
+                      <td>Half-Diminished ($ii^{\varnothing 7}$)</td>
                     </tr>
                     <tr>
-                      <td>3rd</td>
-                      <td class="hl">iii</td>
-                      <td>Minor</td>
-                      <td>Em</td>
-                      <td>Bm</td>
+                      <td class="fw-bold">iii / III</td>
+                      <td>Minor ($iii$)</td>
+                      <td>Minor 7th ($iii\text{m7}$)</td>
+                      <td>Tonic Substitute / Mediant</td>
+                      <td>Major ($III$)</td>
+                      <td>Major 7th ($III\text{maj7}$)</td>
                     </tr>
                     <tr>
-                      <td>4th</td>
-                      <td class="hl">IV</td>
-                      <td>Major</td>
-                      <td>F</td>
-                      <td>C</td>
+                      <td class="fw-bold">IV / iv</td>
+                      <td>Major ($IV$)</td>
+                      <td>Major 7th ($IV\text{maj7}$)</td>
+                      <td>Subdominant</td>
+                      <td>Minor ($iv$)</td>
+                      <td>Minor 7th ($iv\text{m7}$)</td>
                     </tr>
                     <tr>
-                      <td>5th</td>
-                      <td class="hl">V</td>
-                      <td>Major (Dominant)</td>
-                      <td>G</td>
-                      <td>D</td>
+                      <td class="fw-bold">V / v</td>
+                      <td>Major ($V$)</td>
+                      <td>Dominant 7th ($V7$)</td>
+                      <td>Dominant (Tension)</td>
+                      <td>Minor ($v$) / Major ($V$)</td>
+                      <td>Dom 7th ($V7$ in Harmonic Minor)</td>
                     </tr>
                     <tr>
-                      <td>6th</td>
-                      <td class="hl">vi</td>
-                      <td>Minor (Relative)</td>
-                      <td>Am</td>
-                      <td>Em</td>
+                      <td class="fw-bold">vi / VI</td>
+                      <td>Minor ($vi$)</td>
+                      <td>Minor 7th ($vi\text{m7}$)</td>
+                      <td>Submediant / Relative Minor</td>
+                      <td>Major ($VI$)</td>
+                      <td>Major 7th ($VI\text{maj7}$)</td>
                     </tr>
                     <tr>
-                      <td>7th</td>
-                      <td class="hl">vii°</td>
-                      <td>Diminished</td>
-                      <td>Bdim</td>
-                      <td>F♯dim</td>
+                      <td class="fw-bold">vii° / VII</td>
+                      <td>Diminished ($vii^\circ$)</td>
+                      <td>Half-Dim ($vii^{\varnothing 7}$)</td>
+                      <td>Leading Tone Dominant</td>
+                      <td>Major ($VII$)</td>
+                      <td>Dominant 7th ($VII7$)</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <h3>Minor Key Formula</h3>
-              <p>Minor keys follow a different pattern, producing a darker, more tense harmonic palette:</p>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Degree</th>
-                      <th>Roman Numeral</th>
-                      <th>Chord Quality</th>
-                      <th>In A Minor</th>
-                      <th>In D Minor</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1st</td>
-                      <td class="hl">i</td>
-                      <td>Minor (Tonic)</td>
-                      <td>Am</td>
-                      <td>Dm</td>
-                    </tr>
-                    <tr>
-                      <td>2nd</td>
-                      <td class="hl">ii°</td>
-                      <td>Diminished</td>
-                      <td>Bdim</td>
-                      <td>Edim</td>
-                    </tr>
-                    <tr>
-                      <td>3rd</td>
-                      <td class="hl">III</td>
-                      <td>Major</td>
-                      <td>C</td>
-                      <td>F</td>
-                    </tr>
-                    <tr>
-                      <td>4th</td>
-                      <td class="hl">iv</td>
-                      <td>Minor</td>
-                      <td>Dm</td>
-                      <td>Gm</td>
-                    </tr>
-                    <tr>
-                      <td>5th</td>
-                      <td class="hl">v</td>
-                      <td>Minor</td>
-                      <td>Em</td>
-                      <td>Am</td>
-                    </tr>
-                    <tr>
-                      <td>6th</td>
-                      <td class="hl">VI</td>
-                      <td>Major</td>
-                      <td>F</td>
-                      <td>B♭</td>
-                    </tr>
-                    <tr>
-                      <td>7th</td>
-                      <td class="hl">VII</td>
-                      <td>Major</td>
-                      <td>G</td>
-                      <td>C</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <h3>7th Chord Extensions</h3>
-              <p>When the generator includes 7th chords, each diatonic triad gains a seventh interval, producing richer
-                harmonic color. These are standard in jazz, neo-soul, R&amp;B, and lo-fi production:</p>
-
-              <p style="font-size:0.9rem; color:var(--muted);">
-                <code>I7</code> (Major 7th) &nbsp;·&nbsp; <code>ii7</code> (Minor 7th) &nbsp;·&nbsp; <code>iii7</code>
-                (Minor 7th) &nbsp;·&nbsp; <code>IV7</code> (Major 7th) &nbsp;·&nbsp; <code>V7</code> (Dominant 7th)
-                &nbsp;·&nbsp; <code>vi7</code> (Minor 7th) &nbsp;·&nbsp; <code>viiø7</code> (Half-Diminished)
-              </p>
-
-              <div class="note">
-                <strong>Why diatonic?</strong> Diatonic chord progressions guarantee that every chord fits the key — no
-                jarring notes, no accidental dissonance. They're the foundation of every genre from classical and
-                baroque to pop, jazz, and EDM.
-              </div>
             </section>
 
-
-            <!-- ══════════════════════════════════════════
-     MOST FAMOUS PROGRESSIONS
-══════════════════════════════════════════ -->
-            <section id="famous-progressions">
-              <h2>The Most Common Chord Progressions (With Examples)</h2>
-
-              <p>These are the progressions that appear in thousands of songs across every genre. Understanding them by
-                their Roman numeral pattern — not just the chord names — lets you recognize and use them in any key.</p>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Pattern</th>
-                      <th>Name / Genre</th>
-                      <th>In C Major</th>
-                      <th>In G Major</th>
-                      <th>Famous Songs</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="hl">I – V – vi – IV</td>
-                      <td><span class="genre-badge">Pop</span></td>
-                      <td>C – G – Am – F</td>
-                      <td>G – D – Em – C</td>
-                      <td>Let It Be, No Woman No Cry, 4 Chords (Axis of Awesome)</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">I – IV – V</td>
-                      <td><span class="genre-badge">Blues / Rock</span></td>
-                      <td>C – F – G</td>
-                      <td>G – C – D</td>
-                      <td>La Bamba, Twist and Shout, dozens of blues standards</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">ii – V – I</td>
-                      <td><span class="genre-badge">Jazz</span></td>
-                      <td>Dm – G – C</td>
-                      <td>Am – D – G</td>
-                      <td>Autumn Leaves, Fly Me to the Moon (and virtually all jazz standards)</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">i – VI – III – VII</td>
-                      <td><span class="genre-badge">Minor / Emo</span></td>
-                      <td>Am – F – C – G</td>
-                      <td>Em – C – G – D</td>
-                      <td>Common in indie, emo, shoegaze, and midwest emo progressions</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">I – vi – IV – V</td>
-                      <td><span class="genre-badge">Classic / Doo-wop</span></td>
-                      <td>C – Am – F – G</td>
-                      <td>G – Em – C – D</td>
-                      <td>Stand By Me, Earth Angel, many 1950s standards</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">i – VII – VI – VII</td>
-                      <td><span class="genre-badge">EDM / House</span></td>
-                      <td>Am – G – F – G</td>
-                      <td>Em – D – C – D</td>
-                      <td>Common in house, EDM, and synth-driven productions</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">I – IV – vi – V</td>
-                      <td><span class="genre-badge">Country / Folk</span></td>
-                      <td>C – F – Am – G</td>
-                      <td>G – C – Em – D</td>
-                      <td>Widespread in country, Americana, and indie folk</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">ii – IV – I – V</td>
-                      <td><span class="genre-badge">Lo-fi / Neo-soul</span></td>
-                      <td>Dm – F – C – G</td>
-                      <td>Am – C – G – D</td>
-                      <td>Standard in lo-fi hip hop, neo-soul, and J-pop chord progressions</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="note">
-                <strong>The 4-chord rule:</strong> The most famous 4-chord progressions — especially
-                <code>I–V–vi–IV</code> — work in every key. Generating in D Major gives you D–A–Bm–G. In A Major:
-                A–E–F♯m–D. Same emotional character, different key color.
-              </div>
-            </section>
-
-
-            <!-- ══════════════════════════════════════════
-     REAL USE CASES
-══════════════════════════════════════════ -->
-            <section id="use-cases">
-              <h2>Who Uses a Chord Progression Generator?</h2>
-
-              <div class="uc-grid">
-                <div class="uc songwriting">
-                  <span class="icon">✍️</span>
-                  <h4>Songwriters — Beat Creative Block</h4>
-                  <p>Staring at a blank page? Generate 5–6 progressions in your key. One will click. Use it as your
-                    verse, chorus, or bridge and build the song from there. Most professional songwriters treat chord
-                    generators as a brainstorming tool, not a crutch.</p>
+            <!-- Legendary Chord Progressions -->
+            <section class="mb-4">
+              <h2 class="text-teal mb-3"><i class="bi bi-stars me-2"></i>Iconic Chord Progressions That Shaped Music</h2>
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <div class="p-3 border rounded h-100 bg-light">
+                    <h5 class="fw-bold text-dark"><i class="bi bi-disc text-teal me-2"></i>1. The Pop 4-Chord Loop ($I - V - vi - IV$)</h5>
+                    <p class="small text-muted mb-1">In C Major: <code>C – G – Am – F</code></p>
+                    <p class="small mb-0">
+                      The undisputed champion of modern songwriting, powering hundreds of global anthems (The Beatles' "Let It Be", Journey's "Don't Stop Believin'", Adele's "Someone Like You"). Rotations include the dramatic $vi - IV - I - V$ (Hans Zimmer, Lady Gaga).
+                    </p>
+                  </div>
                 </div>
-
-                <div class="uc guitar">
-                  <span class="icon">🎸</span>
-                  <h4>Guitar Players — Learn Real Chord Patterns</h4>
-                  <p>Generate progressions in guitar-friendly keys (G, D, A, E, C) and practice transitioning between
-                    the chords. Each generated progression teaches you a real harmonic formula used in actual songs —
-                    far more valuable than isolated chord exercises.</p>
+                <div class="col-md-6">
+                  <div class="p-3 border rounded h-100 bg-light">
+                    <h5 class="fw-bold text-dark"><i class="bi bi-vinyl text-teal me-2"></i>2. The Jazz Golden Cadence ($ii - V - I$)</h5>
+                    <p class="small text-muted mb-1">In C Major: <code>Dm7 – G7 – Cmaj7</code></p>
+                    <p class="small mb-0">
+                      The cornerstone of the American Songbook and bebop. Employs root motion by descending fifths ($D \to G \to C$) and half-step voice leading where the 7th of $ii$ falls smoothly to the 3rd of $V7$, which resolves into $I$.
+                    </p>
+                  </div>
                 </div>
-
-                <div class="uc piano">
-                  <span class="icon">🎹</span>
-                  <h4>Piano Players — Explore Any Key</h4>
-                  <p>Use the generator to practice playing diatonic chord progressions in keys you're less comfortable
-                    with. Generate in F♯ Major or B♭ Minor — keys pianists often avoid — and use the output as a
-                    structured practice exercise with musical meaning.</p>
+                <div class="col-md-6">
+                  <div class="p-3 border rounded h-100 bg-light">
+                    <h5 class="fw-bold text-dark"><i class="bi bi-record-circle text-teal me-2"></i>3. The Andalusian Cadence ($i - lat VII - lat VI - V$)</h5>
+                    <p class="small text-muted mb-1">In A Minor: <code>Am – G – F – E(7)</code></p>
+                    <p class="small mb-0">
+                      A descending phrygian tetrachord progression famous in flamenco, rock, and cinematic film scores (Dire Straits' "Sultans of Swing", Ray Charles' "Hit the Road Jack"). Concludes with an authoritative major $V$ resolution.
+                    </p>
+                  </div>
                 </div>
-
-                <div class="uc production">
-                  <span class="icon">🎧</span>
-                  <h4>Producers — Drop Into Your DAW</h4>
-                  <p>Copy the chord names into Ableton Live, FL Studio, Logic Pro X, GarageBand, or Reaper's piano roll.
-                    The generator replaces the blank-project paralysis that stops producers from starting. It works for
-                    EDM, house, trap, R&amp;B, lo-fi, and hip hop equally well.</p>
-                </div>
-
-                <div class="uc learning">
-                  <span class="icon">📖</span>
-                  <h4>Music Theory Students — Visualize Diatonic Harmony</h4>
-                  <p>Change the key and watch how the same Roman numeral pattern produces different chord names. This is
-                    the fastest way to internalize why the ii–V–I works in jazz, why I–V–vi–IV dominates pop, and how
-                    minor keys create emotional contrast.</p>
-                </div>
-
-                <div class="uc backing">
-                  <span class="icon">🥁</span>
-                  <h4>Backing Track Creation</h4>
-                  <p>Generate a 4-chord loop, load it into your DAW, and add rhythm instruments over it. You now have a
-                    complete harmonic backing track for practice, improvisation, or recording. Add a bass line following
-                    the chord roots and a drum pattern — song structure complete.</p>
+                <div class="col-md-6">
+                  <div class="p-3 border rounded h-100 bg-light">
+                    <h5 class="fw-bold text-dark"><i class="bi bi-music-note-beamed text-teal me-2"></i>4. The Royal Road Progression ($IV - V - iii - vi$)</h5>
+                    <p class="small text-muted mb-1">In C Major: <code>F – G – Em – Am</code></p>
+                    <p class="small mb-0">
+                      Dubbed <em>Oudou Shinkou</em> in Japanese music theory, this progression drives the majority of J-Pop, anime theme songs, and progressive EDM. Avoids landing on the root tonic $I$, maintaining an intoxicating forward momentum.
+                    </p>
+                  </div>
                 </div>
               </div>
             </section>
 
-
-
-
-            <!-- ══════════════════════════════════════════
-     GENRE GUIDE
-══════════════════════════════════════════ -->
-            <section id="genres">
-              <h2>Chord Progressions by Genre: A Quick Reference</h2>
-
-              <p>Different genres favor different harmonic patterns. This reference covers the most common progressions
-                per genre — all of which this online chord progression generator can produce.</p>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Genre</th>
-                      <th>Typical Pattern</th>
-                      <th>Key Characteristics</th>
-                      <th>Common Keys</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Blues</strong></td>
-                      <td class="hl">I – IV – V</td>
-                      <td>12-bar structure, dominant 7th chords</td>
-                      <td>A, E, G, C</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Jazz</strong></td>
-                      <td class="hl">ii7 – V7 – Imaj7</td>
-                      <td>Extended chords, ii–V–I movements, substitutions</td>
-                      <td>All keys equally</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Pop</strong></td>
-                      <td class="hl">I – V – vi – IV</td>
-                      <td>Simple, cyclical, works in all major keys</td>
-                      <td>C, G, D, A, E</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Rock</strong></td>
-                      <td class="hl">I – IV – V or i – VII – VI</td>
-                      <td>Power chords, pentatonic harmony, strong V→I</td>
-                      <td>E, A, G, D</td>
-                    </tr>
-                    <tr>
-                      <td><strong>R&amp;B / Neo-soul</strong></td>
-                      <td class="hl">Imaj7 – IVmaj7 – iii7 – vi7</td>
-                      <td>Extended chords, smooth voice leading, groove</td>
-                      <td>F, B♭, E♭, A♭</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Lo-fi Hip Hop</strong></td>
-                      <td class="hl">ii7 – V7 – Imaj7 – vi7</td>
-                      <td>Jazz-derived, unresolved feel, sampled textures</td>
-                      <td>C, F, B♭, E♭</td>
-                    </tr>
-                    <tr>
-                      <td><strong>EDM / House</strong></td>
-                      <td class="hl">i – VII – VI – VII</td>
-                      <td>Minor keys, looping 4–8 bar cycles, synth pads</td>
-                      <td>A minor, D minor, G minor</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Country</strong></td>
-                      <td class="hl">I – IV – V or I – IV – vi – V</td>
-                      <td>Simple triads, strong root movement, capo use</td>
-                      <td>G, D, A, C</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Indie / Shoegaze</strong></td>
-                      <td class="hl">I – III – IV or i – VI – III – VII</td>
-                      <td>Ambiguous tonality, layered textures, borrowed chords</td>
-                      <td>C, G, F, D minor</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Classical / Baroque</strong></td>
-                      <td class="hl">I – IV – V – I or I – ii – V – I</td>
-                      <td>Voice leading, counterpoint, cadences</td>
-                      <td>All major and minor keys</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="note">
-                <strong>Trap, emo, and J-pop:</strong> Trap progressions often use minor key loops with chromatic bass
-                lines. Midwest emo favors open-voiced major chords with unexpected minor moves. J-pop (and K-pop)
-                frequently uses the IV → V → iii → vi movement (the "royal road progression" in Japanese music theory)
-                for its distinctively emotional sound.
+            <!-- Modal Interchange & Advanced Harmonic Techniques -->
+            <section class="mb-4">
+              <h2 class="text-teal mb-3"><i class="bi bi-palette me-2"></i>Advanced Songwriting: Modal Interchange & Voice Leading</h2>
+              <div class="p-3 bg-light rounded border mb-3">
+                <h6 class="fw-bold text-dark mb-1"><i class="bi bi-droplet-half text-teal me-2"></i>The Magic of the "Minor iv" Chord ($I - IV - iv - I$)</h6>
+                <p class="small text-muted mb-2">
+                  One of the most emotionally devastating moves in songwriting is replacing or following a major $IV$ with a borrowed minor $iv$ (e.g., $C \to F \to Fm \to C$). In $Fm$, the note $A\flat$ is borrowed from the parallel minor scale. The voice leading drops in poignant half-steps: $A \to A\flat \to G$, creating an unforgettable pang of nostalgia and sorrow.
+                </p>
+                <h6 class="fw-bold text-dark mb-1"><i class="bi bi-arrow-repeat text-teal me-2"></i>Smooth Voice Leading Principle</h6>
+                <p class="small text-muted mb-0">
+                  Amateur chord progressions often sound clunky because the chords are jumped up and down the keyboard in root position. Professional arrangers keep <strong>common tones</strong> stationary and move other voices by the smallest possible scalar intervals (stepwise motion of 1 or 2 semitones).
+                </p>
               </div>
             </section>
 
+            <!-- Frequently Asked Questions -->
+            <section class="mb-4">
+              <h2 class="text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
+              <div class="accordion" id="progFaqAccordion">
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="pFaqHead1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pFaqCol1" aria-expanded="true" aria-controls="pFaqCol1">
+                      What is a chord progression in music theory?
+                    </button>
+                  </h3>
+                  <div id="pFaqCol1" class="accordion-collapse collapse show" aria-labelledby="pFaqHead1" data-bs-parent="#progFaqAccordion">
+                    <div class="accordion-body">
+                      A chord progression is an intentional sequence of two or more musical chords played in succession. Progressions establish tonal gravity and harmonic direction by navigating between states of acoustic rest (tonic), departure or preparation (subdominant/predominant), and harmonic tension (dominant) that resolves back to the home key.
+                    </div>
+                  </div>
+                </div>
 
-            <!-- ══════════════════════════════════════════
-     HOW MANY CHORDS
-══════════════════════════════════════════ -->
-            <section id="how-many-chords">
-              <h2>How Many Chords Should a Chord Progression Have?</h2>
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="pFaqHead2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pFaqCol2" aria-expanded="false" aria-controls="pFaqCol2">
+                      What is Roman numeral analysis in chord progressions?
+                    </button>
+                  </h3>
+                  <div id="pFaqCol2" class="accordion-collapse collapse" aria-labelledby="pFaqHead2" data-bs-parent="#progFaqAccordion">
+                    <div class="accordion-body">
+                      Roman numeral analysis represents chords by their scale degree within a parent key. Uppercase numerals (I, IV, V) represent major chords, while lowercase numerals (ii, iii, vi) represent minor chords, and a degree symbol (vii°) denotes diminished chords. This allows musicians to transpose progressions effortlessly to any of the 12 chromatic keys.
+                    </div>
+                  </div>
+                </div>
 
-              <p>There's no fixed rule, but chord count shapes the feel of your music significantly. Here's how the
-                options in this generator translate to real musical outcomes:</p>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Length</th>
-                      <th>Best For</th>
-                      <th>Feel</th>
-                      <th>Generator Setting</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="hl">2 chords</td>
-                      <td>Hypnotic loops, drone-based music</td>
-                      <td>Minimal, repetitive, trance-inducing</td>
-                      <td>Use 3-chord and ignore last chord</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">3 chords</td>
-                      <td>Blues, folk, country, punk</td>
-                      <td>Direct, energetic, easy to learn</td>
-                      <td>3 Chords setting</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">4 chords</td>
-                      <td>Pop, rock, R&amp;B, hip hop, EDM</td>
-                      <td>Balanced, complete loop, most versatile</td>
-                      <td>4 Chords setting (default)</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">5–6 chords</td>
-                      <td>Jazz, neo-soul, classical, complex pop</td>
-                      <td>Richer harmony, more movement, sophisticated</td>
-                      <td>5 or 6 Chords setting</td>
-                    </tr>
-                    <tr>
-                      <td class="hl">8 chords</td>
-                      <td>Jazz standards, classical sequences</td>
-                      <td>Full harmonic journey, two-phrase structure</td>
-                      <td>Generate two 4-chord progressions, combine</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="pFaqHead3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pFaqCol3" aria-expanded="false" aria-controls="pFaqCol3">
+                      What is the most famous pop chord progression?
+                    </button>
+                  </h3>
+                  <div id="pFaqCol3" class="accordion-collapse collapse" aria-labelledby="pFaqHead3" data-bs-parent="#progFaqAccordion">
+                    <div class="accordion-body">
+                      The I - V - vi - IV progression (in C major: C - G - Am - F) is the most commercially successful chord progression in modern music history. Featured in hundreds of chart-topping pop, rock, and country hits, it balances emotional uplift (I and V) with melancholic poignancy (vi) and open resolution (IV).
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="pFaqHead4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pFaqCol4" aria-expanded="false" aria-controls="pFaqCol4">
+                      What is the jazz ii - V - I chord cadence?
+                    </button>
+                  </h3>
+                  <div id="pFaqCol4" class="accordion-collapse collapse" aria-labelledby="pFaqHead4" data-bs-parent="#progFaqAccordion">
+                    <div class="accordion-body">
+                      The ii - V - I progression is the foundational harmonic cadence of jazz music. In C major, it is Dm7 (supertonic subdominant) to G7 (dominant 7th with tritone tension) to Cmaj7 (tonic resolution). The smooth circle-of-fifths root motion and stepwise half-step guide tone resolution make it the standard building block of jazz standards.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="pFaqHead5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pFaqCol5" aria-expanded="false" aria-controls="pFaqCol5">
+                      What is modal interchange (borrowed chords)?
+                    </button>
+                  </h3>
+                  <div id="pFaqCol5" class="accordion-collapse collapse" aria-labelledby="pFaqHead5" data-bs-parent="#progFaqAccordion">
+                    <div class="accordion-body">
+                      Modal interchange occurs when a composer temporarily borrows chords from the parallel minor key while remaining in a major key. The most iconic example is the 'minor iv' chord (playing Fm instead of F in C major), which creates a poignant, bittersweet resolution back to the major tonic I.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="pFaqHead6">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pFaqCol6" aria-expanded="false" aria-controls="pFaqCol6">
+                      How does harmonic rhythm affect a song's feel?
+                    </button>
+                  </h3>
+                  <div id="pFaqCol6" class="accordion-collapse collapse" aria-labelledby="pFaqHead6" data-bs-parent="#progFaqAccordion">
+                    <div class="accordion-body">
+                      Harmonic rhythm is the rate at which chords change over time. Slower harmonic rhythm (changing chords every 1 to 2 measures) creates a spacious, atmospheric, or heavy foundation common in ambient, ballad, and trap music. Faster harmonic rhythm (changing chords every 1 to 2 beats) creates momentum, harmonic urgency, and virtuosic complexity common in bebop and classical counterpoint.
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p>The most famous 4-chord progressions dominate popular music for a reason: four chords create a complete
-                harmonic cycle that loops naturally. The ear is satisfied by the return to the tonic (I chord) every 4
-                bars without feeling truncated (3 chords) or overloaded (6+ chords).</p>
             </section>
 
-
-            <!-- ══════════════════════════════════════════
-     CREATING YOUR OWN
-══════════════════════════════════════════ -->
-            <section id="creating">
-              <h2>How to Create a Chord Progression (Manual Method)</h2>
-
-              <p>Want to go beyond generated results and build your own progressions? Here's the fastest approach using
-                diatonic chord theory:</p>
-
-              <ul class="how-list">
-                <li>
-                  <div class="body">
-                    <strong>Write out your key's 7 diatonic chords</strong>
-                    <span>Use the formula tables above. In G Major: G, Am, Bm, C, D, Em, F♯dim. These are your only
-                      building blocks — every note in every chord belongs to the G Major scale.</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="body">
-                    <strong>Start on the I chord (or vi for minor feel)</strong>
-                    <span>Begin your progression on the tonic (G in G Major) for stability, or on the vi chord (Em) for
-                      a minor, introspective feel that still belongs to the major key.</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="body">
-                    <strong>Build tension by moving to IV or V</strong>
-                    <span>After your opening chord, move to C (IV) for a warm, open departure, or D (V) for stronger
-                      tension. The further you move from I, the more tension you create.</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="body">
-                    <strong>Resolve back to I — or subvert the expectation</strong>
-                    <span>End on I for resolution (V → I is the strongest). Or end on V or IV and loop back to the
-                      beginning — the progression then creates its own circular momentum, which is how most pop songs
-                      work.</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="body">
-                    <strong>Test it against the generator</strong>
-                    <span>If your manually-built progression sounds "off," compare it to what the generator produces in
-                      the same key. The difference often reveals a voice-leading issue or an unexpected chord quality.
-                      Use the generator as a reference, not a replacement for your ear.</span>
-                  </div>
-                </li>
-              </ul>
-            </section>
-
-
-            <!-- ══════════════════════════════════════════
-     FAQ
-══════════════════════════════════════════ -->
-            <section id="faq">
-              <h2>Frequently Asked Questions</h2>
-
-              <ul class="faq-list">
-
-                <li>
-                  <div class="faq-q">What is a chord progression?</div>
-                  <div class="faq-a">A chord progression is a sequence of chords played in a cyclical or linear pattern
-                    that forms the harmonic backbone of a piece of music. Most progressions use 3–6 chords drawn from
-                    the same key, creating a sense of movement between tension and resolution. They're the foundation of
-                    every genre — from blues and jazz to pop and EDM.</div>
-                </li>
-
-                <li>
-                  <div class="faq-q">How many chords are in a chord progression?</div>
-                  <div class="faq-a">Most chord progressions use between 3 and 6 chords. The 4-chord progression is the
-                    most common in pop and rock music. Simple 3-chord progressions (I–IV–V) power blues and folk. Jazz
-                    and neo-soul progressions often use 5–8 chords with extended chord types. There's no fixed limit —
-                    even a 2-chord loop can be a valid progression.</div>
-                </li>
-
-                <li>
-                  <div class="faq-q">What makes a good chord progression?</div>
-                  <div class="faq-a">A good chord progression creates tension and resolution in a way that serves the
-                    emotion you're targeting. It typically starts on the tonic (I), moves through subdominant (IV) or
-                    relative minor (vi) chords, builds tension on the dominant (V), and resolves. What makes it "good"
-                    is context — the same progression sounds triumphant at 130 BPM and melancholic at 60 BPM with minor
-                    voicings.</div>
-                </li>
-
-                <li>
-                  <div class="faq-q">What is a diatonic chord progression?</div>
-                  <div class="faq-a">A diatonic chord progression uses only chords that belong to the key of the piece —
-                    no borrowed or chromatic chords. Every note in every chord comes from the same scale. Most popular
-                    music is built on diatonic progressions because they sound naturally coherent. This generator
-                    produces diatonic progressions by default.</div>
-                </li>
-
-                <li>
-                  <div class="faq-q">Can I use this for guitar chord progressions?</div>
-                  <div class="faq-a">Yes. Select a guitar-friendly key (G, D, A, E, or C for open chord shapes) and
-                    generate a progression. Each chord name in the output corresponds directly to a standard guitar
-                    chord. For capo-based playing, use the Key Transposition Calculator to find equivalent open-chord
-                    positions in any target key.</div>
-                </li>
-
-                <li>
-                  <div class="faq-q">Can I use this for piano chord progressions?</div>
-                  <div class="faq-a">Yes. The chord names output directly maps to piano voicings. Start in C Major or G
-                    Major for the most intuitive fingering. As you get comfortable, generate in keys like F, B♭, or E♭ —
-                    common in R&amp;B and jazz — to expand your keyboard fluency while always having musically
-                    meaningful content to practice with.</div>
-                </li>
-
-                <li>
-                  <div class="faq-q">What is the most common 4-chord progression?</div>
-                  <div class="faq-a">The I–V–vi–IV progression is by far the most common 4-chord pattern in popular
-                    music. In C Major it's C–G–Am–F; in G Major it's G–D–Em–C. It's the basis of hundreds of hit songs
-                    in pop, rock, and country. The Axis of Awesome's "4 Chords" video demonstrates this by playing
-                    dozens of famous songs using this single pattern.</div>
-                </li>
-
-                <li>
-                  <div class="faq-q">How do I use a generated chord progression in Ableton, FL Studio, or Logic Pro?
-                  </div>
-                  <div class="faq-a">Generate a progression and note the chord names. Open a MIDI track in your DAW,
-                    select a piano or synthesizer instrument, and enter each chord manually in the piano roll.
-                    Alternatively, use a chord input plugin (like Scaler 3 or Hookpad) that accepts chord names
-                    directly. Each chord typically spans 1–2 bars at the start. Adjust durations to match your song's
-                    feel.</div>
-                </li>
-
-                <li>
-                  <div class="faq-q">What is the ii–V–I chord progression?</div>
-                  <div class="faq-a">The ii–V–I is the foundational chord progression in jazz. In C Major: Dm7–G7–Cmaj7.
-                    The ii chord (minor 7th) creates mild tension, the V chord (dominant 7th) creates strong tension,
-                    and the I chord (major 7th) resolves it. Nearly every jazz standard is built on a series of ii–V–I
-                    movements in different keys. Use the 3-chord setting in this generator to explore it in all 12 keys.
-                  </div>
-                </li>
-
-                <li>
-                  <div class="faq-q">Can I generate a chord progression based on a mood?</div>
-                  <div class="faq-a">Mood in chord progressions is driven primarily by major vs. minor key and chord
-                    choice. Major keys (C, G, D) with I–V–vi–IV patterns feel bright and uplifting. Minor keys (A minor,
-                    D minor, E minor) with i–VII–VI–VII patterns feel dark and introspective. Slower harmonic rhythm
-                    (chords held longer) feels more emotional; faster rhythm feels energetic. Use the key selector and
-                    experiment with both major and minor results to find the mood you need.</div>
-                </li>
-
-              </ul>
-            </section>
-
-
-
-            <!-- content end -->
-            <div class="card my-4 shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title mb-3">Related Music Theory Tools</h5>
-                <ul class="list-unstyled mb-0">
-                  <li class="mb-2">
-                    <a class="link-primary text-decoration-none fw-medium"
-                      href="/music-theory-tools/chord-progression-generator/">
-                      Chord Progression Generator
+            <!-- Related Music Theory Tools -->
+            <div class="card my-4 shadow-sm border-0 bg-light">
+              <div class="card-body p-4">
+                <h5 class="fw-bold mb-3"><i class="bi bi-link-45deg text-teal me-2"></i>Explore Related Music Theory Tools</h5>
+                <div class="row g-2">
+                  <div class="col-sm-6 col-md-3">
+                    <a class="btn btn-outline-primary w-100 text-start" href="/music-theory-tools/chord-identifier/">
+                      <i class="bi bi-vinyl me-1"></i> Chord Identifier
                     </a>
-                  </li>
-                  <li class="mb-2">
-                    <a class="link-primary text-decoration-none fw-medium"
-                      href="/music-theory-tools/interval-calculator/">
-                      Interval Calculator
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <a class="btn btn-outline-primary w-100 text-start" href="/music-theory-tools/scale-finder/">
+                      <i class="bi bi-grid-3x3 me-1"></i> Scale Finder
                     </a>
-                  </li>
-                  <li class="mb-2">
-                    <a class="link-primary text-decoration-none fw-medium" href="/music-theory-tools/melody-generator/">
-                      Melody Generator
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <a class="btn btn-outline-primary w-100 text-start" href="/music-theory-tools/interval-calculator/">
+                      <i class="bi bi-arrows-expand me-1"></i> Interval Calculator
                     </a>
-                  </li>
-                  <li class="mb-2">
-                    <a class="link-primary text-decoration-none fw-medium" href="/music-theory-tools/online-metronome/">
-                      Online Metronome
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <a class="btn btn-outline-primary w-100 text-start" href="/music-theory-tools/online-metronome/">
+                      <i class="bi bi-stopwatch me-1"></i> Online Metronome
                     </a>
-                  </li>
-                  <li>
-                    <a class="link-primary text-decoration-none fw-medium"
-                      href="/music-theory-tools/rhythm-pattern-maker/">
-                      Rhythm Pattern Maker
-                    </a>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
-
-          </div>
-
+          </article>
         </div>
       </div> <!-- /main col -->
     </div>
@@ -1485,95 +525,5 @@ Minor:   i, ii°, III, iv, v, VI, VII
     });
   </script>
 
-  <!-- faq schema -->
-  <script defer type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is a chord progression?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A chord progression is a sequence of chords played in a cyclical or linear pattern that forms the harmonic backbone of a piece of music. Most progressions use 3–6 chords drawn from the same key, creating a sense of movement between tension and resolution. They're the foundation of every genre — from blues and jazz to pop and EDM."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How many chords are in a chord progression?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most chord progressions use between 3 and 6 chords. The 4-chord progression is the most common in pop and rock music. Simple 3-chord progressions (I–IV–V) power blues and folk. Jazz and neo-soul progressions often use 5–8 chords with extended chord types. There's no fixed limit — even a 2-chord loop can be a valid progression."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What makes a good chord progression?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A good chord progression creates tension and resolution in a way that serves the emotion you're targeting. It typically starts on the tonic (I), moves through subdominant (IV) or relative minor (vi) chords, builds tension on the dominant (V), and resolves. What makes it \"good\" is context — the same progression sounds triumphant at 130 BPM and melancholic at 60 BPM with minor voicings."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a diatonic chord progression?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A diatonic chord progression uses only chords that belong to the key of the piece — no borrowed or chromatic chords. Every note in every chord comes from the same scale. Most popular music is built on diatonic progressions because they sound naturally coherent. This generator produces diatonic progressions by default."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use this for guitar chord progressions?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Select a guitar-friendly key (G, D, A, E, or C for open chord shapes) and generate a progression. Each chord name in the output corresponds directly to a standard guitar chord. For capo-based playing, use the Key Transposition Calculator to find equivalent open-chord positions in any target key."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use this for piano chord progressions?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The chord names output directly maps to piano voicings. Start in C Major or G Major for the most intuitive fingering. As you get comfortable, generate in keys like F, B♭, or E♭ — common in R&B and jazz — to expand your keyboard fluency while always having musically meaningful content to practice with."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the most common 4-chord progression?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The I–V–vi–IV progression is by far the most common 4-chord pattern in popular music. In C Major it's C–G–Am–F; in G Major it's G–D–Em–C. It's the basis of hundreds of hit songs in pop, rock, and country. The Axis of Awesome's \"4 Chords\" video demonstrates this by playing dozens of famous songs using this single pattern."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I use a generated chord progression in Ableton, FL Studio, or Logic Pro?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Generate a progression and note the chord names. Open a MIDI track in your DAW, select a piano or synthesizer instrument, and enter each chord manually in the piano roll. Alternatively, use a chord input plugin (like Scaler 3 or Hookpad) that accepts chord names directly. Each chord typically spans 1–2 bars at the start. Adjust durations to match your song's feel."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the ii–V–I chord progression?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The ii–V–I is the foundational chord progression in jazz. In C Major: Dm7–G7–Cmaj7. The ii chord (minor 7th) creates mild tension, the V chord (dominant 7th) creates strong tension, and the I chord (major 7th) resolves it. Nearly every jazz standard is built on a series of ii–V–I movements in different keys. Use the 3-chord setting in this generator to explore it in all 12 keys."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I generate a chord progression based on a mood?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mood in chord progressions is driven primarily by major vs. minor key and chord choice. Major keys (C, G, D) with I–V–vi–IV patterns feel bright and uplifting. Minor keys (A minor, D minor, E minor) with i–VII–VI–VII patterns feel dark and introspective. Slower harmonic rhythm (chords held longer) feels more emotional; faster rhythm feels energetic. Use the key selector and experiment with both major and minor results to find the mood you need."
-      }
-    }
-  ]
-}
-</script>
-</body>
-
+  </body>
 </html>
