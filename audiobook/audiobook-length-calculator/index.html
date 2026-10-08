@@ -10,7 +10,7 @@
   <meta name="description"
     content="Enter word count or page count to get total audiobook duration in hours and minutes. Built for authors, narrators, and listening session planning.">
   <meta name="keywords"
-    content="audiobook length calculator, audiobook duration calculator, audiobook total time, audiobook hours calculator, audiobook listening time calculator, manuscript audio length">
+    content="audiobook length calculator, audiobook duration calculator, audiobook total time, audiobook hours calculator, audiobook listening time calculator, audiobook listening duration, audiobook estimated time, audiobook playback duration, audiobook time estimate, audiobook length estimation, audiobook duration estimate, audiobook length in hours, audiobook time prediction, audiobook length converter, audiobook duration in minutes">
 
   <link rel="canonical" href="https://pitchdetectors.com/audiobook/audiobook-length-calculator/">
 
@@ -23,9 +23,9 @@
   <meta property="og:image" content="/assets/imgs/logo.png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Audiobook Length Calculator – Pitch Detectors">
+  <meta name="twitter:title" content="Audiobook Length Calculator – Estimate by Word Count or Pages">
   <meta name="twitter:description"
-    content="Accurately estimate finished audiobook recording runtime from manuscript word or page counts.">
+    content="Enter word count or page count to get total audiobook duration in hours and minutes. Built for authors, narrators, and listening session planning.">
   <meta name="twitter:image" content="/assets/imgs/logo.png">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
@@ -51,8 +51,8 @@
   <!-- Header Include -->
   <div id="header"></div>
 
-  <div class="container-fluid py-4">
-    <div class="row justify-content-start">
+  <div class="row justify-content-start py-5 mt-4">
+    <div class="row">
       <!-- Sidebar -->
       <div class="col-lg-3 col-md-4">
         <div class="tools-sidebar">
@@ -66,37 +66,37 @@
 
           <div class="sidebar-categories">
             <div class="sidebar-category active">
-              <h5><i class="bi bi-book me-2"></i>Audiobook Tools</h5>
+              <h5><i class="me-2"></i>🎧 Audiobook Tools</h5>
               <ul class="sidebar-links">
                 <li><a href="/audiobook/audiobook-speed-calculator/"><i class="bi bi-speedometer2"></i> Speed Calculator</a></li>
                 <li><a href="/audiobook/audiobook-length-calculator/" class="active"><i class="bi bi-clock"></i> Length Calculator</a></li>
                 <li><a href="/audiobook/audiobook-progress-calculator/"><i class="bi bi-graph-up"></i> Progress Calculator</a></li>
                 <li><a href="/audiobook/audiobook-percentage-calculator/"><i class="bi bi-percent"></i> Percentage Calculator</a></li>
-                <li><a href="/audiobook/audiobook-price-calculator/"><i class="bi bi-currency-dollar"></i> Price & Budget Calculator</a></li>
+                <li><a href="/audiobook/audiobook-price-calculator/"><i class="bi bi-currency-dollar"></i> Price Calculator</a></li>
               </ul>
             </div>
 
             <div class="sidebar-category">
-              <h5><i class="bi bi-disc me-2"></i>DJ & Production</h5>
-              <ul class="sidebar-links">
-                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i> BPM Calculator</a></li>
-                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i> Tap Tempo</a></li>
-              </ul>
-            </div>
-
-            <div class="sidebar-category">
-              <h5><i class="bi bi-soundwave me-2"></i>Pitch & Tuning</h5>
+              <h5><i class="bi bi-soundwave me-2"></i>Pitch Detector Tools</h5>
               <ul class="sidebar-links">
                 <li><a href="/pitch-detector-tools/guitar-tuner-online/"><i class="bi bi-music-note-beamed"></i> Guitar Tuner</a></li>
-                <li><a href="/pitch-detector-tools/pitch-detector/"><i class="bi bi-soundwave"></i> Pitch Detector</a></li>
+                <li><a href="/pitch-detector-tools/frequency-to-note-online/"><i class="bi bi-arrow-left-right"></i> Frequency to Note</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-music-note-list me-2"></i>Music Theory Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/music-theory-tools/online-metronome/"><i class="bi bi-stopwatch"></i> Online Metronome</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Main Tool Column -->
-      <div class="col-lg-7 col-md-8">
+      <!-- right: Main Tool -->
+      <div class="col-lg-7 col-md-6">
+
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -104,17 +104,16 @@
             <li class="breadcrumb-item active" aria-current="page">Audiobook Length Calculator</li>
           </ol>
         </nav>
-
         <div class="tool-container" id="audiobook-tool">
           <div class="tool-title">
-            <h2>🎧 Audiobook Length Calculator</h2>
-            <p>Estimate finished audiobook audio duration from page count or word count with playback speed options.</p>
+            <h1>Audiobook Length Calculator</h1>
+            <p>Estimate audiobook duration from page count or word count (with playback speed).</p>
           </div>
 
           <!-- Input type -->
           <div class="mb-3">
             <label for="inputType" class="form-label">Choose Input Type</label>
-            <select id="inputType" class="form-select">
+            <select id="inputType" class="form-control">
               <option value="pages">Page Count</option>
               <option value="words">Word Count</option>
             </select>
@@ -123,54 +122,53 @@
           <!-- Page Count row -->
           <div class="mb-3 input-group-row" id="pageRow">
             <label for="pageCount" class="form-label">Page Count</label>
-            <input id="pageCount" class="form-control" type="number" min="1" placeholder="Enter page count (e.g., 320)">
+            <input id="pageCount" class="form-control" type="number" min="1" placeholder="Enter page count">
           </div>
 
           <!-- Word Count row (hidden by default) -->
           <div class="mb-3 input-group-row" id="wordRow" style="display:none;">
             <label for="wordCount" class="form-label">Word Count</label>
-            <input id="wordCount" class="form-control" type="number" min="1" placeholder="Enter total words (e.g., 75000)">
+            <input id="wordCount" class="form-control" type="number" min="1"
+              placeholder="Enter total words e.g., 75000">
           </div>
 
           <!-- Average words per page -->
           <div class="mb-3">
             <label for="wordsPerPage" class="form-label">Average Words Per Page</label>
-            <input id="wordsPerPage" class="form-control" type="number" min="1" placeholder="Standard: 275 - 300 words">
-          </div>
-
-          <!-- Narration WPM -->
-          <div class="mb-3">
-            <label for="narratorWPM" class="form-label">Narration Speed (Words Per Minute)</label>
-            <input id="narratorWPM" class="form-control" type="number" min="100" max="250" value="150" placeholder="Standard: 150 WPM">
+            <input id="wordsPerPage" class="form-control" type="number" min="1" placeholder="e.g., 300">
           </div>
 
           <!-- Playback Speed slider + controls -->
           <div class="mb-3">
-            <label class="form-label">Playback Speed Multiplier</label>
+            <label class="form-label">Playback Speed</label>
+
             <div style="display:flex; align-items:center; gap:10px;">
               <button id="speedMinus" class="speed-btn" type="button" title="Decrease speed">-</button>
-              <input id="speedRange" type="range" class="form-range" min="0.5" max="3" step="0.05" value="1" style="flex:1;">
+
+              <input id="speedRange" type="range" min="0.5" max="3" step="0.05" value="1" style="flex:1;">
+
               <button id="speedPlus" class="speed-btn" type="button" title="Increase speed">+</button>
             </div>
+
             <div style="text-align:center; margin-top:8px;">
-              <span id="speedLabel" class="badge bg-secondary">1.00x</span>
+              <span id="speedLabel">1.00x</span>
             </div>
           </div>
 
           <!-- Calculate -->
           <div class="d-grid mb-3">
-            <button id="calcBtn" class="btn btn-primary">Calculate Audio Length</button>
+            <button id="calcBtn" class="btn btn-primary">Calculate</button>
           </div>
 
           <!-- Result box -->
           <div id="resultArea" class="result-box" style="display:none;">
             <h3>Estimated Audiobook Length:</h3>
-            <div id="resultTime" class="text-teal fw-bold" style="font-size:2rem; margin-top:8px;">00:00:00</div>
-            <div id="resultDetail" class="text-light" style="margin-top:8px;"></div>
+            <div id="resultTime" style="font-weight:700; font-size:1.6rem; margin-top:8px;">00:00:00</div>
+            <div id="resultDetail" style="margin-top:8px; color:var(--mid-blue);"></div>
           </div>
 
           <!-- Reset -->
-          <div class="d-grid mt-3">
+          <div class="d-grid" style="margin-top:12px;">
             <button id="resetBtn" class="btn btn-outline-secondary">Reset</button>
           </div>
         </div>
@@ -178,185 +176,362 @@
     </div>
   </div>
 
-  <!-- Content Area -->
-  <div class="content_area container py-4">
+  <!-- content area start -->
+  <div class="content_area container py-5">
 
     <!-- How to Use Box -->
-    <div class="p-4 rounded mb-4" style="background: rgba(0,255,200,0.05); border: 1px solid rgba(0,255,200,0.2);">
-      <h2 class="h5 fw-bold text-uppercase mb-3 text-teal">
+    <div
+      style="background: rgba(0,11,88,0.04); box-shadow: 0 2px 1px rgba(0,0,0,0.08); border-radius: 10px; padding: 20px; margin-bottom: 40px;">
+      <h2 class="h5 fw-bold text-uppercase mb-3" style="color:#003161;">
         How to Use the Audiobook Length Calculator
       </h2>
       <p class="mb-2">
-        1. Enter your manuscript <strong>word count</strong>, or choose <strong>page count</strong>.<br>
-        2. Set the <strong>narrator WPM</strong> (standard audiobook pacing is <strong>150 to 160 WPM</strong>).<br>
-        3. The calculator instantly generates <strong>total listening time</strong> in hours, minutes, and exact HH:MM:SS format.<br>
-        4. Use the results for <strong>ACX production planning</strong>, <strong>narrator budget calculations</strong>, and <strong>listening session scheduling</strong>.
+        1. Enter your manuscript <strong>word count</strong>, or use <strong>pages input</strong> or <strong>chapters
+          input</strong>.<br>
+        2. Select a <strong>narrator WPM</strong> or average <strong>reading speed</strong> (common presets:
+        <strong>150, 160, 170 WPM</strong>).<br>
+        3. The calculator instantly shows <strong>estimated listening time</strong>, <strong>total audiobook
+          duration</strong>, <strong>HH:MM:SS format</strong>, and predicted finish time.<br>
+        4. Use results for <strong>production planning</strong>, <strong>narrator pay estimates</strong>,
+        <strong>listening session planning</strong>, and <strong>scheduling multiple audiobooks</strong>. Supports batch
+        calculation for several books at once.
       </p>
     </div>
 
-    <div class="tool-container mb-4">
-      <h2>What Does the Audiobook Length Calculator Do?</h2>
-      <p>
-        The Audiobook Length Calculator converts written manuscript content into expected finished audio runtime. By combining word count or page count with realistic narrator pace (words per minute), authors and voice artists can forecast exact recording durations before booking studio time.
-      </p>
+    <div class="tool-container">
 
-      <h3 class="h5 mt-3">Standard Narration Formulas</h3>
-      <p>
-        <code>Audiobook Minutes = Total Words ÷ Narration WPM</code><br>
-        <code>Audiobook Hours = (Total Words ÷ Narration WPM) ÷ 60</code>
-      </p>
-    </div>
+      <h2 class="h2">Audiobook Length Calculator</h2>
 
-    <!-- Practical Examples -->
-    <div class="tool-container mb-4">
-      <h2>Manuscript Word Count to Finished Audio Estimates</h2>
-      <div class="table-responsive">
-        <table class="table table-dark table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Word Count</th>
-              <th>Narration Pace</th>
-              <th>Estimated Finished Runtime</th>
-              <th>Approximate Page Count (300 wpp)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>10,000 words (Novella / Short Guide)</td>
-              <td>150 WPM</td>
-              <td>~1 hour 07 minutes</td>
-              <td>~33 pages</td>
-            </tr>
-            <tr>
-              <td>50,000 words (Standard Non-Fiction)</td>
-              <td>150 WPM</td>
-              <td>~5 hours 33 minutes</td>
-              <td>~166 pages</td>
-            </tr>
-            <tr>
-              <td>80,000 words (Standard Novel)</td>
-              <td>155 WPM</td>
-              <td>~8 hours 36 minutes</td>
-              <td>~266 pages</td>
-            </tr>
-            <tr>
-              <td>100,000 words (Full-Length Fiction)</td>
-              <td>150 WPM</td>
-              <td>~11 hours 06 minutes</td>
-              <td>~333 pages</td>
-            </tr>
-            <tr>
-              <td>150,000 words (Epic Fantasy / Sci-Fi)</td>
-              <td>150 WPM</td>
-              <td>~16 hours 40 minutes</td>
-              <td>~500 pages</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <section class="mb-4">
+        <h2>What Does the Audiobook Length Calculator Do?</h2>
+        <p>
+          The Audiobook Length Calculator estimates the total duration of an audiobook based on written content. It
+          converts word count, page count, or chapter estimates into listening time using an average narration speed
+          measured in words per minute (WPM). The result is shown as total audiobook length in hours, minutes, or
+          HH:MM:SS format.
+        </p>
+      </section>
 
-    <!-- FAQ Accordion -->
-    <div class="tool-container mb-4">
-      <h2>❓ Frequently Asked Questions</h2>
-      <div class="accordion" id="lengthFaqs">
+      <section class="mb-4">
+        <h2>Inputs Used to Calculate Audiobook Length</h2>
 
-        <div class="accordion-item bg-dark border-secondary">
-          <h2 class="accordion-header" id="faq1Heading">
-            <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-              How many audio hours will my book be based on word count?
-            </button>
-          </h2>
-          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#lengthFaqs">
-            <div class="accordion-body text-light">
-              Audiobook runtime is calculated by dividing total words by narrator speed (typically 150 WPM). For example, a 90,000-word manuscript at 150 WPM results in approximately 10 finished audio hours (600 minutes).
+        <h3 class="h5">Word Count</h3>
+        <p>The total number of words in the manuscript. Word count is the most accurate input for calculating audiobook
+          duration.</p>
+
+        <h3 class="h5">Page Count (Optional)</h3>
+        <p>If the exact word count is unavailable, pages can be converted using an average words-per-page estimate.</p>
+
+        <h3 class="h5">Narration Speed (WPM)</h3>
+        <p>Narration speed represents how many words are spoken per minute. Common audiobook narration speeds range from
+          150 to 170 WPM, depending on style and language.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2>Output You Get From the Calculator</h2>
+        <h3 class="h5">Total Audiobook Duration</h3>
+        <p>
+          The calculator outputs the estimated audiobook length, expressed in:
+        </p>
+        <ul>
+          <li>Total hours</li>
+          <li>Minutes</li>
+          <li>HH:MM:SS format</li>
+        </ul>
+        <p>This represents the full listening time at normal narration speed, without playback speed adjustments.
+          To see how long it takes at 1.25x, 1.5x, or 2x, use the <strong>
+            <a href="/audiobook/audiobook-speed-calculator/">Audiobook Speed Calculator</a></strong>.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2>How Is Audiobook Length Calculated?</h2>
+        <p>Audiobook length is calculated using standard narration math based on words per minute.</p>
+
+        <p><strong>Formula:</strong></p>
+        <p>
+          Listening Time (minutes) = Word Count ÷ Narration Speed (WPM)<br>
+          Listening Time (hours) = (Word Count ÷ WPM) ÷ 60
+        </p>
+
+        <p>This method is widely used for audiobook duration estimation and production planning.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2>How to Calculate Audiobook Length Without Exact Word Count</h2>
+        <p>
+          If you do not know the exact word count, audiobook length can be estimated by converting pages or chapters
+          into words using an average value. This allows approximate audiobook duration calculation when only manuscript
+          structure is available.
+        </p>
+        <p>
+          The result is less precise than word count but useful for early planning.
+        </p>
+      </section>
+
+      <section class="mb-4">
+        <h2>What Is the Average Length of an Audiobook?</h2>
+        <p>
+          The average audiobook length typically ranges between 6 and 12 hours, depending on genre, narration style, and
+          writing density. Short nonfiction audiobooks may be under 6 hours, while epic fiction and academic works often
+          exceed 15 hours.
+        </p>
+        <p>
+          Audiobook length varies widely and should always be calculated per manuscript.
+        </p>
+      </section>
+
+      <section class="mb-4">
+        <h2>Audiobook Length Calculation Examples</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Word Count</th>
+                <th>Narration Speed (WPM)</th>
+                <th>Estimated Audiobook Length</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>50,000</td>
+                <td>150</td>
+                <td>~5 hours 33 minutes</td>
+              </tr>
+              <tr>
+                <td>90,000</td>
+                <td>150</td>
+                <td>~10 hours</td>
+              </tr>
+              <tr>
+                <td>120,000</td>
+                <td>160</td>
+                <td>~12 hours 30 minutes</td>
+              </tr>
+              <tr>
+                <td>10,000</td>
+                <td>160</td>
+                <td>~1 hour</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>These examples show how audiobook duration increases directly with word count.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2>What Affects Audiobook Length Accuracy?</h2>
+        <p>Audiobook length accuracy depends on:</p>
+        <ul>
+          <li>Correct word or page count</li>
+          <li>Realistic narration speed</li>
+          <li>Consistent reading pace</li>
+        </ul>
+        <p>Pauses, dramatic narration, or dialogue-heavy content may slightly increase total audiobook duration compared
+          to the estimate.</p>
+      </section>
+
+      <section class="mb-4">
+        <h2>What This Audiobook Length Calculator Does NOT Calculate</h2>
+        <p>To keep the intent clear, this calculator does not calculate:</p>
+        <ul>
+          <li>Playback speed listening time</li>
+          <li>Time remaining or time left</li>
+          <li>Listening progress or percentage completed</li>
+          <li>Audiobook pricing or narrator rates</li>
+        </ul>
+        <p>To calculate adjusted listening time at different playback speeds, use the
+          <a href="/audiobook/audiobook-speed-calculator/">Audiobook Speed Calculator</a>.
+          To track listening progress or percentage completed, use the
+          <a href="/audiobook/audiobook-progress-calculator/">Audiobook Progress Calculator</a>.
+        </p>
+      </section>
+
+      <section class="mb-4">
+        <h2>Audiobook Length Calculator FAQs</h2>
+
+        <div class="accordion" id="lengthFaqs">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1Heading">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
+                aria-expanded="true" aria-controls="faq1">
+                How many hours is my audiobook based on word count?
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faq1Heading"
+              data-bs-parent="#lengthFaqs">
+              <div class="accordion-body">
+                Audiobook hours are calculated by dividing total word count by narration speed in words per minute, then
+                converting the result into hours. For example, 90,000 words at 150 WPM results in an audiobook length of
+                approximately 10 hours.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item bg-dark border-secondary">
-          <h2 class="accordion-header" id="faq2Heading">
-            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-              What narrator WPM speed should I choose?
-            </button>
-          </h2>
-          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqFaqs">
-            <div class="accordion-body text-light">
-              Professional audiobook narrators read at an average pace of 150 to 160 words per minute. Fiction with dramatic pauses tends toward 145-150 WPM, while business and self-help non-fiction is typically 155-165 WPM.
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2Heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
+                aria-expanded="false" aria-controls="faq2">
+                Is this an audiobook duration calculator or time calculator?
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2Heading"
+              data-bs-parent="#lengthFaqs">
+              <div class="accordion-body">
+                This tool functions as both an audiobook length calculator and an audiobook duration calculator. It
+                estimates total listening time for an audiobook but does not calculate time remaining or playback
+                speed-adjusted listening time.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="accordion-item bg-dark border-secondary">
-          <h2 class="accordion-header" id="faq3Heading">
-            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-              How does this connect to production pricing?
-            </button>
-          </h2>
-          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#lengthFaqs">
-            <div class="accordion-body text-light">
-              Once you calculate finished audio hours, you can multiply by the narrator's Per Finished Hour (PFH) rate. Use our <a href="/audiobook/audiobook-price-calculator/">Audiobook Price Calculator</a> for complete budget breakdowns including mastering and proofing fees.
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq3Heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
+                aria-expanded="false" aria-controls="faq3">
+                Can I use this calculator for Audible audiobooks?
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3Heading"
+              data-bs-parent="#lengthFaqs">
+              <div class="accordion-body">
+                Yes. The calculator estimates audiobook length independently of platform. Audible, Spotify, and other
+                audiobook services use total duration metadata, which can be estimated accurately using word count and
+                narration speed.
+              </div>
             </div>
           </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq4Heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4"
+                aria-expanded="false" aria-controls="faq4">
+                What narration speed should I use for accurate audiobook length?
+              </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4Heading"
+              data-bs-parent="#lengthFaqs">
+              <div class="accordion-body">
+                Most audiobooks use narration speeds between 150 and 170 WPM. Slower narration increases audiobook
+                length, while faster narration shortens total duration. Choosing a realistic WPM value improves
+                audiobook length accuracy.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faq5Heading">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5"
+                aria-expanded="false" aria-controls="faq5">
+                Is audiobook length the same as audiobook time remaining?
+              </button>
+            </h2>
+            <div id="faq5" class="accordion-collapse collapse" aria-labelledby="faq5Heading"
+              data-bs-parent="#lengthFaqs">
+              <div class="accordion-body">
+                No. Audiobook length refers to the total duration of the audiobook. Time remaining depends on how much
+                has already been listened to and is calculated separately. Use the
+                <a href="/audiobook/audiobook-percentage-calculator/">Audiobook Percentage Calculator</a>
+                to find out what percentage of an audiobook you have completed.
+              </div>
+            </div>
+          </div>
+
         </div>
-
-      </div>
+      </section>
     </div>
 
-    <!-- Related Tools -->
-    <div class="tool-container mb-4">
-      <h2>🔗 Related Audiobook Tools</h2>
-      <ul>
-        <li><a href="/audiobook/audiobook-speed-calculator/">🎧 Audiobook Speed Calculator</a></li>
-        <li><a href="/audiobook/audiobook-progress-calculator/">🎧 Audiobook Progress Calculator</a></li>
-        <li><a href="/audiobook/audiobook-percentage-calculator/">🎧 Audiobook Percentage Calculator</a></li>
-        <li><a href="/audiobook/audiobook-price-calculator/">💰 Audiobook Price Calculator</a></li>
-      </ul>
-    </div>
+    <!-- Final Thoughts -->
+    <h2 style="color:#003161;" class="fw-semibold mt-4 mb-3">
+      Final Thoughts
+    </h2>
+    <p>
+      This <strong>Audiobook Length Calculator</strong> helps authors, narrators, and listeners accurately estimate
+      <strong>total audiobook duration</strong>, <strong>listening time</strong>, and <strong>recording length</strong>.
+      Once you know the total duration, track how far along you are with the
+      <a href="/audiobook/audiobook-progress-calculator/">Audiobook Progress Calculator</a>
+      — useful for planning multi-session listening across long audiobooks.
+    </p>
 
   </div>
 
-  <!-- FAQ Schema JSON-LD -->
-  <script defer type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How many audio hours will my book be based on word count?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Audiobook runtime is calculated by dividing total words by narrator speed (typically 150 WPM). For example, a 90,000-word manuscript at 150 WPM results in approximately 10 finished audio hours."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What narrator WPM speed should I choose?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Professional audiobook narrators read at an average pace of 150 to 160 words per minute."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does this connect to production pricing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Finished audio hours directly determine narrator compensation under the industry-standard Per Finished Hour (PFH) model."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <!-- Global Footer Include -->
   <div id="footer"></div>
 
   <script src="/assets/bootstrap5.js" defer></script>
   <script src="/assets/tools.js" defer></script>
 
-  <!-- Tool Logic JS -->
+  <!-- FAQ Schema JSON-LD -->
+  <script defer type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many hours is my audiobook based on word count?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Audiobook hours are calculated by dividing total word count by narration speed in words per minute, then converting the result into hours. For example, 90,000 words at 150 WPM results in an audiobook length of approximately 10 hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this an audiobook duration calculator or time calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool functions as both an audiobook length calculator and an audiobook duration calculator. It estimates total listening time for an audiobook but does not calculate time remaining or playback speed-adjusted listening time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this calculator for Audible audiobooks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The calculator estimates audiobook length independently of platform. Audible, Spotify, and other audiobook services use total duration metadata, which can be estimated accurately using word count and narration speed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What narration speed should I use for accurate audiobook length?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most audiobooks use narration speeds between 150 and 170 WPM. Slower narration increases audiobook length, while faster narration shortens total duration. Choosing a realistic WPM value improves audiobook length accuracy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is audiobook length the same as audiobook time remaining?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Audiobook length refers to the total duration of the audiobook. Time remaining depends on how much has already been listened to and is calculated using a separate audiobook time remaining calculator."
+      }
+    }
+  ]
+}
+</script>
+
+  <!-- WebPage Schema -->
+  <script defer type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Audiobook Length Calculator – Find Total Listening Time Accurately",
+    "url": "https://pitchdetectors.com/audiobook/audiobook-length-calculator/",
+    "headline": "Audiobook Length Calculator – Accurately Estimate Total Listening Time",
+    "description": "Use our free Audiobook Length Calculator to instantly estimate your audiobook's total listening time in hours and minutes, track progress, and adjust for playback speed. Ideal for audiobook fans, narrators, and authors.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Pitch Detectors",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "/assets/imgs/logo.png"
+      }
+    },
+    "inLanguage": "en-US",
+    "keywords": "audiobook length calculator, audiobook duration calculator, audiobook total time, audiobook hours calculator, audiobook listening time calculator, audiobook playback duration, audiobook estimated time"
+  }
+  </script>
+
+  <!-- tool js -->
   <script defer>
     (function () {
       const inputType = document.getElementById('inputType');
@@ -365,7 +540,6 @@
       const pageCount = document.getElementById('pageCount');
       const wordCount = document.getElementById('wordCount');
       const wordsPerPage = document.getElementById('wordsPerPage');
-      const narratorWPM = document.getElementById('narratorWPM');
 
       const speedRange = document.getElementById('speedRange');
       const speedLabel = document.getElementById('speedLabel');
@@ -387,19 +561,22 @@
         const mins = Math.floor((totalSeconds % 3600) / 60);
         const secs = totalSeconds % 60;
         const pad = n => String(n).padStart(2, '0');
-        return `${pad(hrs)}h ${pad(mins)}m ${pad(secs)}s`;
+        return `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
       }
 
       function updateInputRows() {
         if (inputType.value === 'pages') {
           pageRow.style.display = '';
           wordRow.style.display = 'none';
+          if (!wordsPerPage.value) wordsPerPage.placeholder = 'e.g., 300';
         } else {
           pageRow.style.display = 'none';
           wordRow.style.display = '';
+          if (!wordsPerPage.value) wordsPerPage.placeholder = 'Avg words per page (e.g., 300)';
         }
       }
       inputType.addEventListener('change', updateInputRows);
+      updateInputRows();
 
       function updateSpeedLabel() {
         speedLabel.textContent = parseFloat(speedRange.value).toFixed(2) + 'x';
@@ -415,15 +592,21 @@
         speedRange.value = clamp(parseFloat(speedRange.value) + step, parseFloat(speedRange.min), parseFloat(speedRange.max));
         updateSpeedLabel();
       });
+      updateSpeedLabel();
 
       function calculate() {
         let totalWords = 0;
         if (inputType.value === 'pages') {
           const pages = parseFloat(pageCount.value);
-          const wpp = parseFloat(wordsPerPage.value) || 280;
+          const wpp = parseFloat(wordsPerPage.value);
           if (!pages || pages <= 0) {
             alert('Please enter a valid page count (> 0).');
             pageCount.focus();
+            return;
+          }
+          if (!wpp || wpp <= 0) {
+            alert('Please enter average words per page (> 0).');
+            wordsPerPage.focus();
             return;
           }
           totalWords = pages * wpp;
@@ -437,25 +620,27 @@
           totalWords = words;
         }
 
-        const wpm = parseFloat(narratorWPM.value) || 150;
+        const defaultWPM = 150;
+        const wpm = defaultWPM;
         const playback = parseFloat(speedRange.value) || 1;
 
         const totalMinutes = totalWords / (wpm * playback);
+
         const formatted = formatHMS(totalMinutes);
         resultTime.textContent = formatted;
 
         const hoursDecimal = (totalMinutes / 60);
         const formattedHoursDecimal = (isFinite(hoursDecimal) ? hoursDecimal.toFixed(2) : '0.00');
 
-        resultDetail.innerHTML = `≈ <strong>${formattedHoursDecimal} Finished Hours</strong> (at ${wpm} WPM narration speed, ${playback.toFixed(2)}× playback) — Total <strong>${Math.round(totalWords).toLocaleString()}</strong> words`;
+        resultDetail.innerHTML = `≈ ${formattedHoursDecimal} hours (using ${wpm} WPM at ${playback.toFixed(2)}×) — ${totalWords.toLocaleString()} words`;
         resultArea.style.display = 'block';
+        resultArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
 
       function resetTool() {
         pageCount.value = '';
         wordCount.value = '';
         wordsPerPage.value = '';
-        narratorWPM.value = '150';
         speedRange.value = 1;
         updateSpeedLabel();
         resultArea.style.display = 'none';
@@ -464,7 +649,7 @@
       calcBtn.addEventListener('click', calculate);
       resetBtn.addEventListener('click', resetTool);
 
-      [pageCount, wordCount, wordsPerPage, narratorWPM].forEach(el => {
+      [pageCount, wordCount, wordsPerPage].forEach(el => {
         el && el.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
       });
 
@@ -472,7 +657,7 @@
     })();
   </script>
 
-  <!-- Header/Footer Fetch Script -->
+  <!-- include header/footer -->
   <script defer>
     window.addEventListener("load", () => {
       Promise.all([
