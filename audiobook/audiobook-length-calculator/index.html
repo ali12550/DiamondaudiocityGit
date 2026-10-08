@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+
+  <title>Audiobook Length Calculator – Estimate by Word Count or Pages</title>
+  <meta name="description"
+    content="Enter word count or page count to get total audiobook duration in hours and minutes. Built for authors, narrators, and listening session planning.">
+  <meta name="keywords"
+    content="audiobook length calculator, audiobook duration calculator, audiobook total time, audiobook hours calculator, audiobook listening time calculator, manuscript audio length">
+
+  <link rel="canonical" href="https://pitchdetectors.com/audiobook/audiobook-length-calculator/">
+
+  <meta property="og:title" content="Audiobook Length Calculator – Estimate by Word Count or Pages">
+  <meta property="og:description"
+    content="Enter word count or page count to get total audiobook duration in hours and minutes. Built for authors, narrators, and listening session planning.">
+  <meta property="og:url" content="https://pitchdetectors.com/audiobook/audiobook-length-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pitch Detectors">
+  <meta property="og:image" content="/assets/imgs/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Audiobook Length Calculator – Pitch Detectors">
+  <meta name="twitter:description"
+    content="Accurately estimate finished audiobook recording runtime from manuscript word or page counts.">
+  <meta name="twitter:image" content="/assets/imgs/logo.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/bootstrap5.css" rel="stylesheet">
+  <link href="/assets/style.css" rel="stylesheet">
+  <link href="/assets/tools.css" rel="stylesheet">
+  <meta name="author" content="Pitch Detectors">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NCHP45VYJ2');
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Header Include -->
+  <div id="header"></div>
+
+  <div class="container-fluid py-4">
+    <div class="row justify-content-start">
+      <!-- Sidebar -->
+      <div class="col-lg-3 col-md-4">
+        <div class="tools-sidebar">
+          <div class="sidebar-search mb-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                onkeyup="searchTools()">
+            </div>
+          </div>
+
+          <div class="sidebar-categories">
+            <div class="sidebar-category active">
+              <h5><i class="bi bi-book me-2"></i>Audiobook Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/audiobook/audiobook-speed-calculator/"><i class="bi bi-speedometer2"></i> Speed Calculator</a></li>
+                <li><a href="/audiobook/audiobook-length-calculator/" class="active"><i class="bi bi-clock"></i> Length Calculator</a></li>
+                <li><a href="/audiobook/audiobook-progress-calculator/"><i class="bi bi-graph-up"></i> Progress Calculator</a></li>
+                <li><a href="/audiobook/audiobook-percentage-calculator/"><i class="bi bi-percent"></i> Percentage Calculator</a></li>
+                <li><a href="/audiobook/audiobook-price-calculator/"><i class="bi bi-currency-dollar"></i> Price & Budget Calculator</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-disc me-2"></i>DJ & Production</h5>
+              <ul class="sidebar-links">
+                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i> BPM Calculator</a></li>
+                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i> Tap Tempo</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-soundwave me-2"></i>Pitch & Tuning</h5>
+              <ul class="sidebar-links">
+                <li><a href="/pitch-detector-tools/guitar-tuner-online/"><i class="bi bi-music-note-beamed"></i> Guitar Tuner</a></li>
+                <li><a href="/pitch-detector-tools/pitch-detector/"><i class="bi bi-soundwave"></i> Pitch Detector</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Tool Column -->
+      <div class="col-lg-7 col-md-8">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/audiobook/">Audiobook Tools</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Audiobook Length Calculator</li>
+          </ol>
+        </nav>
+
+        <div class="tool-container" id="audiobook-tool">
+          <div class="tool-title">
+            <h2>🎧 Audiobook Length Calculator</h2>
+            <p>Estimate finished audiobook audio duration from page count or word count with playback speed options.</p>
+          </div>
+
+          <!-- Input type -->
+          <div class="mb-3">
+            <label for="inputType" class="form-label">Choose Input Type</label>
+            <select id="inputType" class="form-select">
+              <option value="pages">Page Count</option>
+              <option value="words">Word Count</option>
+            </select>
+          </div>
+
+          <!-- Page Count row -->
+          <div class="mb-3 input-group-row" id="pageRow">
+            <label for="pageCount" class="form-label">Page Count</label>
+            <input id="pageCount" class="form-control" type="number" min="1" placeholder="Enter page count (e.g., 320)">
+          </div>
+
+          <!-- Word Count row (hidden by default) -->
+          <div class="mb-3 input-group-row" id="wordRow" style="display:none;">
+            <label for="wordCount" class="form-label">Word Count</label>
+            <input id="wordCount" class="form-control" type="number" min="1" placeholder="Enter total words (e.g., 75000)">
+          </div>
+
+          <!-- Average words per page -->
+          <div class="mb-3">
+            <label for="wordsPerPage" class="form-label">Average Words Per Page</label>
+            <input id="wordsPerPage" class="form-control" type="number" min="1" placeholder="Standard: 275 - 300 words">
+          </div>
+
+          <!-- Narration WPM -->
+          <div class="mb-3">
+            <label for="narratorWPM" class="form-label">Narration Speed (Words Per Minute)</label>
+            <input id="narratorWPM" class="form-control" type="number" min="100" max="250" value="150" placeholder="Standard: 150 WPM">
+          </div>
+
+          <!-- Playback Speed slider + controls -->
+          <div class="mb-3">
+            <label class="form-label">Playback Speed Multiplier</label>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <button id="speedMinus" class="speed-btn" type="button" title="Decrease speed">-</button>
+              <input id="speedRange" type="range" class="form-range" min="0.5" max="3" step="0.05" value="1" style="flex:1;">
+              <button id="speedPlus" class="speed-btn" type="button" title="Increase speed">+</button>
+            </div>
+            <div style="text-align:center; margin-top:8px;">
+              <span id="speedLabel" class="badge bg-secondary">1.00x</span>
+            </div>
+          </div>
+
+          <!-- Calculate -->
+          <div class="d-grid mb-3">
+            <button id="calcBtn" class="btn btn-primary">Calculate Audio Length</button>
+          </div>
+
+          <!-- Result box -->
+          <div id="resultArea" class="result-box" style="display:none;">
+            <h3>Estimated Audiobook Length:</h3>
+            <div id="resultTime" class="text-teal fw-bold" style="font-size:2rem; margin-top:8px;">00:00:00</div>
+            <div id="resultDetail" class="text-light" style="margin-top:8px;"></div>
+          </div>
+
+          <!-- Reset -->
+          <div class="d-grid mt-3">
+            <button id="resetBtn" class="btn btn-outline-secondary">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Area -->
+  <div class="content_area container py-4">
+
+    <!-- How to Use Box -->
+    <div class="p-4 rounded mb-4" style="background: rgba(0,255,200,0.05); border: 1px solid rgba(0,255,200,0.2);">
+      <h2 class="h5 fw-bold text-uppercase mb-3 text-teal">
+        How to Use the Audiobook Length Calculator
+      </h2>
+      <p class="mb-2">
+        1. Enter your manuscript <strong>word count</strong>, or choose <strong>page count</strong>.<br>
+        2. Set the <strong>narrator WPM</strong> (standard audiobook pacing is <strong>150 to 160 WPM</strong>).<br>
+        3. The calculator instantly generates <strong>total listening time</strong> in hours, minutes, and exact HH:MM:SS format.<br>
+        4. Use the results for <strong>ACX production planning</strong>, <strong>narrator budget calculations</strong>, and <strong>listening session scheduling</strong>.
+      </p>
+    </div>
+
+    <div class="tool-container mb-4">
+      <h2>What Does the Audiobook Length Calculator Do?</h2>
+      <p>
+        The Audiobook Length Calculator converts written manuscript content into expected finished audio runtime. By combining word count or page count with realistic narrator pace (words per minute), authors and voice artists can forecast exact recording durations before booking studio time.
+      </p>
+
+      <h3 class="h5 mt-3">Standard Narration Formulas</h3>
+      <p>
+        <code>Audiobook Minutes = Total Words ÷ Narration WPM</code><br>
+        <code>Audiobook Hours = (Total Words ÷ Narration WPM) ÷ 60</code>
+      </p>
+    </div>
+
+    <!-- Practical Examples -->
+    <div class="tool-container mb-4">
+      <h2>Manuscript Word Count to Finished Audio Estimates</h2>
+      <div class="table-responsive">
+        <table class="table table-dark table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Word Count</th>
+              <th>Narration Pace</th>
+              <th>Estimated Finished Runtime</th>
+              <th>Approximate Page Count (300 wpp)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10,000 words (Novella / Short Guide)</td>
+              <td>150 WPM</td>
+              <td>~1 hour 07 minutes</td>
+              <td>~33 pages</td>
+            </tr>
+            <tr>
+              <td>50,000 words (Standard Non-Fiction)</td>
+              <td>150 WPM</td>
+              <td>~5 hours 33 minutes</td>
+              <td>~166 pages</td>
+            </tr>
+            <tr>
+              <td>80,000 words (Standard Novel)</td>
+              <td>155 WPM</td>
+              <td>~8 hours 36 minutes</td>
+              <td>~266 pages</td>
+            </tr>
+            <tr>
+              <td>100,000 words (Full-Length Fiction)</td>
+              <td>150 WPM</td>
+              <td>~11 hours 06 minutes</td>
+              <td>~333 pages</td>
+            </tr>
+            <tr>
+              <td>150,000 words (Epic Fantasy / Sci-Fi)</td>
+              <td>150 WPM</td>
+              <td>~16 hours 40 minutes</td>
+              <td>~500 pages</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="tool-container mb-4">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="accordion" id="lengthFaqs">
+
+        <div class="accordion-item bg-dark border-secondary">
+          <h2 class="accordion-header" id="faq1Heading">
+            <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              How many audio hours will my book be based on word count?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#lengthFaqs">
+            <div class="accordion-body text-light">
+              Audiobook runtime is calculated by dividing total words by narrator speed (typically 150 WPM). For example, a 90,000-word manuscript at 150 WPM results in approximately 10 finished audio hours (600 minutes).
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item bg-dark border-secondary">
+          <h2 class="accordion-header" id="faq2Heading">
+            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              What narrator WPM speed should I choose?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqFaqs">
+            <div class="accordion-body text-light">
+              Professional audiobook narrators read at an average pace of 150 to 160 words per minute. Fiction with dramatic pauses tends toward 145-150 WPM, while business and self-help non-fiction is typically 155-165 WPM.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item bg-dark border-secondary">
+          <h2 class="accordion-header" id="faq3Heading">
+            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+              How does this connect to production pricing?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#lengthFaqs">
+            <div class="accordion-body text-light">
+              Once you calculate finished audio hours, you can multiply by the narrator's Per Finished Hour (PFH) rate. Use our <a href="/audiobook/audiobook-price-calculator/">Audiobook Price Calculator</a> for complete budget breakdowns including mastering and proofing fees.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Related Tools -->
+    <div class="tool-container mb-4">
+      <h2>🔗 Related Audiobook Tools</h2>
+      <ul>
+        <li><a href="/audiobook/audiobook-speed-calculator/">🎧 Audiobook Speed Calculator</a></li>
+        <li><a href="/audiobook/audiobook-progress-calculator/">🎧 Audiobook Progress Calculator</a></li>
+        <li><a href="/audiobook/audiobook-percentage-calculator/">🎧 Audiobook Percentage Calculator</a></li>
+        <li><a href="/audiobook/audiobook-price-calculator/">💰 Audiobook Price Calculator</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- FAQ Schema JSON-LD -->
+  <script defer type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many audio hours will my book be based on word count?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Audiobook runtime is calculated by dividing total words by narrator speed (typically 150 WPM). For example, a 90,000-word manuscript at 150 WPM results in approximately 10 finished audio hours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What narrator WPM speed should I choose?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Professional audiobook narrators read at an average pace of 150 to 160 words per minute."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does this connect to production pricing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Finished audio hours directly determine narrator compensation under the industry-standard Per Finished Hour (PFH) model."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Global Footer Include -->
+  <div id="footer"></div>
+
+  <script src="/assets/bootstrap5.js" defer></script>
+  <script src="/assets/tools.js" defer></script>
+
+  <!-- Tool Logic JS -->
+  <script defer>
+    (function () {
+      const inputType = document.getElementById('inputType');
+      const pageRow = document.getElementById('pageRow');
+      const wordRow = document.getElementById('wordRow');
+      const pageCount = document.getElementById('pageCount');
+      const wordCount = document.getElementById('wordCount');
+      const wordsPerPage = document.getElementById('wordsPerPage');
+      const narratorWPM = document.getElementById('narratorWPM');
+
+      const speedRange = document.getElementById('speedRange');
+      const speedLabel = document.getElementById('speedLabel');
+      const speedMinus = document.getElementById('speedMinus');
+      const speedPlus = document.getElementById('speedPlus');
+
+      const calcBtn = document.getElementById('calcBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      const resultArea = document.getElementById('resultArea');
+      const resultTime = document.getElementById('resultTime');
+      const resultDetail = document.getElementById('resultDetail');
+
+      function clamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
+      function formatHMS(totalMinutes) {
+        if (!isFinite(totalMinutes) || totalMinutes < 0) return '00:00:00';
+        const totalSeconds = Math.round(totalMinutes * 60);
+        const hrs = Math.floor(totalSeconds / 3600);
+        const mins = Math.floor((totalSeconds % 3600) / 60);
+        const secs = totalSeconds % 60;
+        const pad = n => String(n).padStart(2, '0');
+        return `${pad(hrs)}h ${pad(mins)}m ${pad(secs)}s`;
+      }
+
+      function updateInputRows() {
+        if (inputType.value === 'pages') {
+          pageRow.style.display = '';
+          wordRow.style.display = 'none';
+        } else {
+          pageRow.style.display = 'none';
+          wordRow.style.display = '';
+        }
+      }
+      inputType.addEventListener('change', updateInputRows);
+
+      function updateSpeedLabel() {
+        speedLabel.textContent = parseFloat(speedRange.value).toFixed(2) + 'x';
+      }
+      speedRange.addEventListener('input', updateSpeedLabel);
+      speedMinus.addEventListener('click', () => {
+        const step = parseFloat(speedRange.step) || 0.05;
+        speedRange.value = clamp(parseFloat(speedRange.value) - step, parseFloat(speedRange.min), parseFloat(speedRange.max));
+        updateSpeedLabel();
+      });
+      speedPlus.addEventListener('click', () => {
+        const step = parseFloat(speedRange.step) || 0.05;
+        speedRange.value = clamp(parseFloat(speedRange.value) + step, parseFloat(speedRange.min), parseFloat(speedRange.max));
+        updateSpeedLabel();
+      });
+
+      function calculate() {
+        let totalWords = 0;
+        if (inputType.value === 'pages') {
+          const pages = parseFloat(pageCount.value);
+          const wpp = parseFloat(wordsPerPage.value) || 280;
+          if (!pages || pages <= 0) {
+            alert('Please enter a valid page count (> 0).');
+            pageCount.focus();
+            return;
+          }
+          totalWords = pages * wpp;
+        } else {
+          const words = parseFloat(wordCount.value);
+          if (!words || words <= 0) {
+            alert('Please enter a valid word count (> 0).');
+            wordCount.focus();
+            return;
+          }
+          totalWords = words;
+        }
+
+        const wpm = parseFloat(narratorWPM.value) || 150;
+        const playback = parseFloat(speedRange.value) || 1;
+
+        const totalMinutes = totalWords / (wpm * playback);
+        const formatted = formatHMS(totalMinutes);
+        resultTime.textContent = formatted;
+
+        const hoursDecimal = (totalMinutes / 60);
+        const formattedHoursDecimal = (isFinite(hoursDecimal) ? hoursDecimal.toFixed(2) : '0.00');
+
+        resultDetail.innerHTML = `≈ <strong>${formattedHoursDecimal} Finished Hours</strong> (at ${wpm} WPM narration speed, ${playback.toFixed(2)}× playback) — Total <strong>${Math.round(totalWords).toLocaleString()}</strong> words`;
+        resultArea.style.display = 'block';
+      }
+
+      function resetTool() {
+        pageCount.value = '';
+        wordCount.value = '';
+        wordsPerPage.value = '';
+        narratorWPM.value = '150';
+        speedRange.value = 1;
+        updateSpeedLabel();
+        resultArea.style.display = 'none';
+      }
+
+      calcBtn.addEventListener('click', calculate);
+      resetBtn.addEventListener('click', resetTool);
+
+      [pageCount, wordCount, wordsPerPage, narratorWPM].forEach(el => {
+        el && el.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+      });
+
+      resetTool();
+    })();
+  </script>
+
+  <!-- Header/Footer Fetch Script -->
+  <script defer>
+    window.addEventListener("load", () => {
+      Promise.all([
+        fetch("/header.html").then(res => res.text()),
+        fetch("/footer.html").then(res => res.text())
+      ]).then(([header, footer]) => {
+        document.getElementById("header").innerHTML = header;
+        document.getElementById("footer").innerHTML = footer;
+      }).catch(err => console.error("Include load failed:", err));
+    });
+  </script>
+</body>
+
+</html>

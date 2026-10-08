@@ -72,10 +72,12 @@ const allAudioTools = [
     { name: 'Zobel Network Calculator', url: '/speaker-tools/zobel-network-calculator/', category: 'Speaker Tools', icon: 'bi-diagram-2', desc: 'Impedance equalization RC network' },
 
     // Audiobook Tools
-    { name: 'Audiobook Length Calculator', url: '/Audiobook-Length-Calculator.html', category: 'Audiobook Tools', icon: 'bi-book', desc: 'Calculate listening duration at adjusted speeds' },
-    { name: 'Audiobook Speed Calculator', url: '/audiobook-speed-calculator.html', category: 'Audiobook Tools', icon: 'bi-speedometer', desc: 'Determine time saved at 1.25x, 1.5x, 2x' },
-    { name: 'Audiobook Price Calculator', url: '/audiobook-price-calculator.html', category: 'Audiobook Tools', icon: 'bi-currency-dollar', desc: 'Evaluate per-hour listening value' },
-    { name: 'Audiobook Progress Calculator', url: '/Audiobook-Progress-Calculator.html', category: 'Audiobook Tools', icon: 'bi-bar-chart', desc: 'Track chapters and estimated finish dates' }
+    { name: 'Audiobook Tools Hub', url: '/audiobook/', category: 'Audiobook Tools', icon: 'bi-grid', desc: 'Suite of 5 calculators for listeners, authors & narrators' },
+    { name: 'Audiobook Speed Calculator', url: '/audiobook/audiobook-speed-calculator/', category: 'Audiobook Tools', icon: 'bi-speedometer', desc: 'Determine time saved at 1.25x, 1.5x, 2x' },
+    { name: 'Audiobook Length Calculator', url: '/audiobook/audiobook-length-calculator/', category: 'Audiobook Tools', icon: 'bi-clock', desc: 'Estimate finished audio runtime from word count' },
+    { name: 'Audiobook Progress Calculator', url: '/audiobook/audiobook-progress-calculator/', category: 'Audiobook Tools', icon: 'bi-graph-up', desc: 'Track listening progress and estimated finish dates' },
+    { name: 'Audiobook Percentage Calculator', url: '/audiobook/audiobook-percentage-calculator/', category: 'Audiobook Tools', icon: 'bi-percent', desc: 'Calculate exact percent of audiobook completed' },
+    { name: 'Audiobook Price Calculator', url: '/audiobook/audiobook-price-calculator/', category: 'Audiobook Tools', icon: 'bi-currency-dollar', desc: 'Calculate narrator PFH rates and production budget' }
 ];
 
 // Active modal filter category

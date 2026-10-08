@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+
+  <title>Audiobook Price Calculator – Narrator Cost & Production Budget</title>
+  <meta name="description"
+    content="Enter audiobook length and narrator rate per finished hour to estimate total production cost. Add editing and mastering fees for a complete budget breakdown.">
+  <meta name="keywords"
+    content="audiobook price calculator, audiobook cost estimator, narrator rate calculator, audiobook production cost, audiobook PFH calculator, audiobook budget tool">
+
+  <link rel="canonical" href="https://pitchdetectors.com/audiobook/audiobook-price-calculator/">
+
+  <meta property="og:title" content="Audiobook Price Calculator – Narrator Cost & Production Budget">
+  <meta property="og:description"
+    content="Enter audiobook length and narrator rate per finished hour to estimate total production cost. Add editing and mastering fees for a complete budget breakdown.">
+  <meta property="og:url" content="https://pitchdetectors.com/audiobook/audiobook-price-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pitch Detectors">
+  <meta property="og:image" content="/assets/imgs/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Audiobook Price & Budget Calculator – Pitch Detectors">
+  <meta name="twitter:description"
+    content="Estimate complete audiobook production costs from narrator Per Finished Hour (PFH) rates and compare audio formats.">
+  <meta name="twitter:image" content="/assets/imgs/logo.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/bootstrap5.css" rel="stylesheet">
+  <link href="/assets/style.css" rel="stylesheet">
+  <link href="/assets/tools.css" rel="stylesheet">
+  <meta name="author" content="Pitch Detectors">
+
+  <style>
+    .comparison-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .comparison-card:hover {
+      border-color: var(--teal, #00e5a3);
+      box-shadow: 0 4px 16px rgba(0, 229, 163, 0.15);
+    }
+
+    .best-value {
+      background: rgba(0, 229, 163, 0.08);
+      border-color: var(--teal, #00e5a3);
+      position: relative;
+    }
+
+    .best-value::before {
+      content: "🏆 Best Value";
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: #00e5a3;
+      color: #0d1117;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .price-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+    }
+
+    .price-metric-label {
+      font-weight: 600;
+      color: #adb5bd;
+    }
+
+    .price-metric-value {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: var(--teal, #00e5a3);
+    }
+
+    .format-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--teal, #00e5a3);
+      color: #0d1117;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .add-format-btn {
+      background: #198754;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .add-format-btn:hover {
+      background: #157347;
+    }
+
+    .remove-format-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85em;
+      float: right;
+    }
+
+    .remove-format-btn:hover {
+      background: #bb2d3b;
+    }
+
+    .savings-highlight {
+      background: rgba(255, 170, 0, 0.1);
+      border: 1px solid rgba(255, 170, 0, 0.4);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .savings-amount {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #ffaa00;
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NCHP45VYJ2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NCHP45VYJ2');
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5860966996605385"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Header Include -->
+  <div id="header"></div>
+
+  <div class="container-fluid py-4">
+    <div class="row justify-content-start">
+      <!-- Sidebar -->
+      <div class="col-lg-3 col-md-4">
+        <div class="tools-sidebar">
+          <div class="sidebar-search mb-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="toolSearch" placeholder="Search tools..."
+                onkeyup="searchTools()">
+            </div>
+          </div>
+
+          <div class="sidebar-categories">
+            <div class="sidebar-category active">
+              <h5><i class="bi bi-book me-2"></i>Audiobook Tools</h5>
+              <ul class="sidebar-links">
+                <li><a href="/audiobook/audiobook-speed-calculator/"><i class="bi bi-speedometer2"></i> Speed Calculator</a></li>
+                <li><a href="/audiobook/audiobook-length-calculator/"><i class="bi bi-clock"></i> Length Calculator</a></li>
+                <li><a href="/audiobook/audiobook-progress-calculator/"><i class="bi bi-graph-up"></i> Progress Calculator</a></li>
+                <li><a href="/audiobook/audiobook-percentage-calculator/"><i class="bi bi-percent"></i> Percentage Calculator</a></li>
+                <li><a href="/audiobook/audiobook-price-calculator/" class="active"><i class="bi bi-currency-dollar"></i> Price & Budget Calculator</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-disc me-2"></i>DJ & Production</h5>
+              <ul class="sidebar-links">
+                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i> BPM Calculator</a></li>
+                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i> Tap Tempo</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-soundwave me-2"></i>Pitch & Tuning</h5>
+              <ul class="sidebar-links">
+                <li><a href="/pitch-detector-tools/guitar-tuner-online/"><i class="bi bi-music-note-beamed"></i> Guitar Tuner</a></li>
+                <li><a href="/pitch-detector-tools/pitch-detector/"><i class="bi bi-soundwave"></i> Pitch Detector</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Tool -->
+      <div class="col-lg-7 col-md-8">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/audiobook/">Audiobook Tools</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Audiobook Price Calculator</li>
+          </ol>
+        </nav>
+
+        <div class="tool-container">
+          <div class="tool-title">
+            <h2>💰 Audiobook Price & Cost Calculator</h2>
+            <p>Calculate cost per hour, narrator budget, and compare purchase formats to find the best value.</p>
+          </div>
+
+          <div id="formatsContainer">
+            <div class="format-entry" data-format-id="1">
+              <h5>Format / Option 1</h5>
+              <div class="mb-3">
+                <label class="form-label">Format / Option Name</label>
+                <input type="text" class="format-name form-control" placeholder="e.g. Audible Credit / Narrator PFH" value="Audible Credit">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Total Price ($)</label>
+                <input type="number" class="format-price form-control" placeholder="e.g. 14.95" value="14.95" min="0" step="0.01">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Audiobook Duration (Hours)</label>
+                <input type="number" class="format-hours form-control" placeholder="e.g. 10" value="10" min="0" step="0.1">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Audiobook Duration (Minutes)</label>
+                <input type="number" class="format-minutes form-control" placeholder="e.g. 0" value="0" min="0" max="59">
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 my-3">
+            <button type="button" class="add-format-btn" onclick="addFormat()">+ Add Format to Compare</button>
+            <button type="button" class="btn btn-primary flex-grow-1" onclick="calculatePrices()">Calculate Cost / Value</button>
+          </div>
+
+          <div id="result" class="d-none mt-4">
+            <h4>Value Comparison Results:</h4>
+            <div id="comparisonResults"></div>
+
+            <div id="savingsInfo" class="savings-highlight d-none">
+              <div id="savingsAmount" class="savings-amount"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Area -->
+  <div class="content_area container py-4">
+
+    <!-- How to Use Box -->
+    <div class="p-4 rounded mb-4" style="background: rgba(0,255,200,0.05); border: 1px solid rgba(0,255,200,0.2);">
+      <h3 class="h5 fw-bold text-uppercase mb-3 text-teal">🛠️ How to Use the Audiobook Price Calculator</h3>
+      <ol class="mb-0">
+        <li>Enter the <strong>Format Name</strong> (e.g. Audible, Direct Buy, Library Subscription, or ACX Narrator Rate).</li>
+        <li>Enter the <strong>Price</strong> and <strong>Audiobook Duration</strong> in hours and minutes.</li>
+        <li>Click <strong>+ Add Format</strong> to compare multiple subscription or purchase options side-by-side.</li>
+        <li>Click <strong>Calculate</strong> to instantly view cost-per-hour, cost-per-minute, and identify the highest value choice.</li>
+      </ol>
+    </div>
+
+    <div class="tool-container mb-4">
+      <section class="mb-4">
+        <h1>Audiobook Price & Narrator Cost Estimator</h1>
+        <p>
+          Audiobook costs vary whether you are a listener deciding between a monthly credit versus retail purchase, or an indie author estimating studio budget under ACX's Per Finished Hour (PFH) model. This calculator simplifies the math by generating cost-per-hour benchmarks.
+        </p>
+
+        <h3 class="h5 mt-3">Audiobook Pricing Formulas</h3>
+        <ul>
+          <li><code>Total Duration (Hours) = Hours + (Minutes ÷ 60)</code></li>
+          <li><code>Cost per Hour = Total Price ÷ Total Duration (Hours)</code></li>
+          <li><code>Cost per Minute = Cost per Hour ÷ 60</code></li>
+          <li><code>Narrator Studio Total = Finished Hours × PFH Rate</code></li>
+        </ul>
+      </section>
+
+      <!-- Comparison Example -->
+      <section class="mb-4">
+        <h2>Comparison: Audible Credit vs Direct Retail Purchase</h2>
+        <div class="table-responsive">
+          <table class="table table-dark table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Audiobook Title / Length</th>
+                <th>Audible 1-Credit ($14.95)</th>
+                <th>Retail Price ($29.99)</th>
+                <th>Best Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>4-Hour Novella</td>
+                <td>$3.74 / hour</td>
+                <td>$7.50 / hour</td>
+                <td>Audible Credit</td>
+              </tr>
+              <tr>
+                <td>20-Hour Epic Novel</td>
+                <td>$0.75 / hour</td>
+                <td>$1.50 / hour</td>
+                <td>Audible Credit (Huge Value)</td>
+              </tr>
+              <tr>
+                <td>1.5-Hour Short Story ($5.99 Retail)</td>
+                <td>$9.97 / hour ($14.95 total)</td>
+                <td>$3.99 / hour ($5.99 total)</td>
+                <td>Direct Cash Purchase (Save credit!)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- FAQ -->
+    <div class="tool-container mb-4">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item bg-dark border-secondary">
+          <h2 class="accordion-header" id="faq1">
+            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+              How is audiobook production cost calculated?
+            </button>
+          </h2>
+          <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-light">
+              Audiobook production cost is calculated by multiplying finished audiobook runtime (hours) by the narrator's rate Per Finished Hour (PFH), then adding any mastering, editing, or proofing fees.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item bg-dark border-secondary">
+          <h2 class="accordion-header" id="faq2">
+            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+              What does narrator rate per finished hour (PFH) mean?
+            </button>
+          </h2>
+          <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-light">
+              PFH (Per Finished Hour) is the industry-standard billing unit. It is the amount charged per hour of completed, mastered audio, irrespective of how many raw recording takes were performed.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item bg-dark border-secondary">
+          <h2 class="accordion-header" id="faq3">
+            <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+              When is an Audible credit not worth using?
+            </button>
+          </h2>
+          <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body text-light">
+              If an audiobook's cash price is less than the cost of one subscription credit (typically ~$14.95), it is more cost-effective to buy it with cash and reserve your credit for audiobooks with higher retail prices or longer runtimes.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Related Tools -->
+    <div class="tool-container mb-4">
+      <h2>🔗 Related Audiobook Tools</h2>
+      <ul>
+        <li><a href="/audiobook/audiobook-speed-calculator/">🎧 Audiobook Speed Calculator</a></li>
+        <li><a href="/audiobook/audiobook-length-calculator/">🎧 Audiobook Length Calculator</a></li>
+        <li><a href="/audiobook/audiobook-progress-calculator/">🎧 Audiobook Progress Calculator</a></li>
+        <li><a href="/audiobook/audiobook-percentage-calculator/">🎧 Audiobook Percentage Calculator</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- FAQ Schema JSON-LD -->
+  <script defer type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is audiobook production cost calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Audiobook production cost is calculated by multiplying finished audiobook runtime (hours) by the narrator's rate Per Finished Hour (PFH), then adding any mastering or editing fees."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does narrator rate per finished hour (PFH) mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PFH (Per Finished Hour) is the amount charged per hour of completed, mastered audio."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When is an Audible credit not worth using?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When the cash price of an audiobook is lower than the cost of a credit (~$14.95)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Global Footer Include -->
+  <div id="footer"></div>
+
+  <script src="/assets/bootstrap5.js" defer></script>
+  <script src="/assets/tools.js" defer></script>
+
+  <!-- Tool Logic JS -->
+  <script defer>
+    let formatCount = 1;
+
+    function addFormat() {
+      formatCount++;
+      const container = document.getElementById('formatsContainer');
+      const newFormat = document.createElement('div');
+      newFormat.className = 'format-entry';
+      newFormat.setAttribute('data-format-id', formatCount);
+      newFormat.innerHTML = `
+        <hr class="my-4 border-secondary">
+        <h5>Format / Option ${formatCount} <button class="remove-format-btn" onclick="removeFormat(${formatCount})">Remove</button></h5>
+        <div class="mb-3">
+          <label class="form-label">Format Name</label>
+          <input type="text" class="format-name form-control" placeholder="e.g. Retail Purchase" value="Option ${formatCount}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Total Price ($)</label>
+          <input type="number" class="format-price form-control" placeholder="e.g. 24.95" min="0" step="0.01">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Duration (Hours)</label>
+          <input type="number" class="format-hours form-control" placeholder="e.g. 10" min="0" step="0.1">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Duration (Minutes)</label>
+          <input type="number" class="format-minutes form-control" placeholder="e.g. 0" min="0" max="59">
+        </div>
+      `;
+      container.appendChild(newFormat);
+    }
+
+    function removeFormat(formatId) {
+      const formatEntry = document.querySelector(`[data-format-id="${formatId}"]`);
+      if (formatEntry) {
+        formatEntry.remove();
+      }
+    }
+
+    function calculatePrices() {
+      const formats = document.querySelectorAll('.format-entry');
+      let results = [];
+      let hasError = false;
+
+      formats.forEach((format) => {
+        const name = format.querySelector('.format-name').value || 'Unnamed Option';
+        const price = parseFloat(format.querySelector('.format-price').value);
+        const hours = parseFloat(format.querySelector('.format-hours').value) || 0;
+        const minutes = parseFloat(format.querySelector('.format-minutes').value) || 0;
+
+        if (isNaN(price) || price < 0 || (hours === 0 && minutes === 0)) {
+          hasError = true;
+          return;
+        }
+
+        const totalHours = hours + (minutes / 60);
+        const costPerHour = price / totalHours;
+        const costPerMinute = costPerHour / 60;
+
+        results.push({
+          name,
+          price,
+          totalHours,
+          costPerHour,
+          costPerMinute
+        });
+      });
+
+      if (hasError || results.length === 0) {
+        alert('Please fill in valid price and duration for all options.');
+        return;
+      }
+
+      results.sort((a, b) => a.costPerHour - b.costPerHour);
+
+      const resultDiv = document.getElementById('result');
+      const comparisonDiv = document.getElementById('comparisonResults');
+      resultDiv.classList.remove('d-none');
+
+      let html = '';
+      results.forEach((result, index) => {
+        const isBest = index === 0;
+        html += `
+          <div class="comparison-card ${isBest ? 'best-value' : ''}">
+            <span class="format-badge">${result.name}</span>
+            <div class="price-metric">
+              <span class="price-metric-label">Total Price:</span>
+              <span class="price-metric-value">$${result.price.toFixed(2)}</span>
+            </div>
+            <div class="price-metric">
+              <span class="price-metric-label">Duration:</span>
+              <span class="price-metric-value">${result.totalHours.toFixed(2)} hours</span>
+            </div>
+            <div class="price-metric">
+              <span class="price-metric-label">Cost per Hour:</span>
+              <span class="price-metric-value">$${result.costPerHour.toFixed(2)}/hr</span>
+            </div>
+            <div class="price-metric">
+              <span class="price-metric-label">Cost per Minute:</span>
+              <span class="price-metric-value">$${result.costPerMinute.toFixed(3)}/min</span>
+            </div>
+          </div>
+        `;
+      });
+
+      comparisonDiv.innerHTML = html;
+
+      if (results.length > 1) {
+        const bestValue = results[0];
+        const worstValue = results[results.length - 1];
+        const savingsPerHour = worstValue.costPerHour - bestValue.costPerHour;
+        const totalSavings = savingsPerHour * bestValue.totalHours;
+
+        document.getElementById('savingsInfo').classList.remove('d-none');
+        document.getElementById('savingsAmount').textContent =
+          `Save $${totalSavings.toFixed(2)} ($${savingsPerHour.toFixed(2)}/hr) by choosing ${bestValue.name}`;
+      } else {
+        document.getElementById('savingsInfo').classList.add('d-none');
+      }
+    }
+  </script>
+
+  <!-- Header/Footer Fetch Script -->
+  <script defer>
+    window.addEventListener("load", () => {
+      Promise.all([
+        fetch("/header.html").then(res => res.text()),
+        fetch("/footer.html").then(res => res.text())
+      ]).then(([header, footer]) => {
+        document.getElementById("header").innerHTML = header;
+        document.getElementById("footer").innerHTML = footer;
+      }).catch(err => console.error("Include load failed:", err));
+    });
+  </script>
+</body>
+
+</html>
