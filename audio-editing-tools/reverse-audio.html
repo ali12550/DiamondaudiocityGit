@@ -11,7 +11,7 @@
         content="reverse audio, reverse audio online, play sound backwards, backwards audio player, audio reverser mp3, reverse wav file, reverse reverb effect, backmasking audio" />
 
     <link rel="canonical" href="https://pitchdetectors.com/audio-editing-tools/reverse-audio.html">
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -20,7 +20,7 @@
         content="Flip audio and video backwards in real-time right in your browser. 100% private in-memory Web Audio processing with instant uncompressed WAV export." />
     <meta property="og:url" content="https://pitchdetectors.com/audio-editing-tools/reverse-audio.html" />
     <meta property="og:site_name" content="Pitch Detectors" />
-    <meta property="og:image" content="/assets/imgs/logo.png" />
+    <meta property="og:image" content="./assets/imgs/logo.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Audio & Video Reverser Tool by Pitch Detectors" />
@@ -30,12 +30,12 @@
     <meta name="twitter:title" content="Reverse Audio Online – Play Sounds Backwards Free | Pitch Detectors">
     <meta name="twitter:description"
         content="Reverse MP3, WAV, and FLAC files online with high-fidelity Web Audio sample flipping and instant WAV download.">
-    <meta name="twitter:image" content="/assets/imgs/logo.png">
+    <meta name="twitter:image" content="./assets/imgs/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="./assets/bootstrap5.css" rel="stylesheet">
+    <link href="./assets/style.css" rel="stylesheet">
+    <link href="./assets/tools.css" rel="stylesheet">
 
     <!-- Google Analytics -->
 
@@ -127,7 +127,7 @@
             margin: 15px 0;
         }
     </style>
-<style>
+    <style>
         .speed-buttons,
         .quick-buttons {
             display: flex;
@@ -450,39 +450,58 @@
                 </div>
                 <article class="tool-container mt-4" id="main-content">
                     <header class="mb-4">
-                        <h1 class="text-teal mb-3">Reverse Audio: Technical Guide to Time-Reversal Symmetry, Phase Acoustics & Sound Design</h1>
+                        <h1 class="text-teal mb-3">Reverse Audio: Technical Guide to Time-Reversal Symmetry, Phase
+                            Acoustics & Sound Design</h1>
                         <p class="lead text-muted">
-                            Explore the acoustics and signal processing mechanics of time-reversed sound. Discover how inverting sample sequences flips the ADSR envelope, turns acoustic reverberation into anticipatory risers, and alters phase spectrum distribution without changing pitch.
+                            Explore the acoustics and signal processing mechanics of time-reversed sound. Discover how
+                            inverting sample sequences flips the ADSR envelope, turns acoustic reverberation into
+                            anticipatory risers, and alters phase spectrum distribution without changing pitch.
                         </p>
                     </header>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-arrow-left-right me-2"></i>1. The Mathematics of Digital Time-Reversal</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-arrow-left-right me-2"></i>1. The Mathematics of
+                            Digital Time-Reversal</h2>
                         <p>
-                            In digital signal processing (DSP), an audio signal is represented as an array of discrete amplitude values $x[n]$ sampled at uniform intervals $T = 1/f_s$. For a finite recording containing $N$ total samples indexed from $0$ to $N-1$, the <strong>time-reversal operator</strong> creates a new signal $y[n]$ defined by:
+                            In digital signal processing (DSP), an audio signal is represented as an array of discrete
+                            amplitude values $x[n]$ sampled at uniform intervals $T = 1/f_s$. For a finite recording
+                            containing $N$ total samples indexed from $0$ to $N-1$, the <strong>time-reversal
+                                operator</strong> creates a new signal $y[n]$ defined by:
                         </p>
                         <div class="p-3 border rounded bg-light mb-4 text-center">
                             <code>y[n] = x[N - 1 - n] \quad \text{for } 0 \le n &lt; N</code>
                         </div>
                         <p>
-                            When analyzing this transformation in the frequency domain via the Discrete-Time Fourier Transform (DTFT), a profound mathematical property emerges:
+                            When analyzing this transformation in the frequency domain via the Discrete-Time Fourier
+                            Transform (DTFT), a profound mathematical property emerges:
                         </p>
                         <div class="p-3 border rounded bg-light mb-4 text-center">
                             <code>x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X(e^{j\omega}) \implies y[n] = x[-n] \stackrel{\mathcal{F}}{\longleftrightarrow} X^*(e^{j\omega}) = X(e^{-j\omega})</code>
                         </div>
                         <p>
-                            The asterisk denotes the complex conjugate. This reveals two fundamental acoustic laws of reversed audio:
+                            The asterisk denotes the complex conjugate. This reveals two fundamental acoustic laws of
+                            reversed audio:
                         </p>
                         <ul>
-                            <li><strong>Magnitude Spectrum Invariance:</strong> $|Y(e^{jomega})| = |X(e^{jomega})|$. The energy across every frequency bin (bass, midrange, treble) remains <em>strictly identical</em> to the original forward signal. Pitch and harmonic frequencies do not change.</li>
-                            <li><strong>Phase Spectrum Inversion:</strong> $angle Y(e^{jomega}) = -angle X(e^{jomega})$. The phase angles of all sinusoidal components are negated. This shifts constructive and destructive interference boundaries across time, turning decaying acoustic energy into swelling waves.</li>
+                            <li><strong>Magnitude Spectrum Invariance:</strong> $|Y(e^{jomega})| = |X(e^{jomega})|$. The
+                                energy across every frequency bin (bass, midrange, treble) remains <em>strictly
+                                    identical</em> to the original forward signal. Pitch and harmonic frequencies do not
+                                change.</li>
+                            <li><strong>Phase Spectrum Inversion:</strong> $angle Y(e^{jomega}) = -angle X(e^{jomega})$.
+                                The phase angles of all sinusoidal components are negated. This shifts constructive and
+                                destructive interference boundaries across time, turning decaying acoustic energy into
+                                swelling waves.</li>
                         </ul>
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-activity me-2"></i>2. Psychoacoustics & The Inverted ADSR Envelope</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-activity me-2"></i>2. Psychoacoustics & The
+                            Inverted ADSR Envelope</h2>
                         <p>
-                            Natural acoustic instruments adhere to the standard <strong>ADSR (Attack, Decay, Sustain, Release)</strong> dynamic envelope. When an instrument is struck (piano hammer, guitar pluck, drum hit), energy transfers in a matter of milliseconds (fast attack $le 10\text{ ms}$), followed by an exponential decay into room acoustics.
+                            Natural acoustic instruments adhere to the standard <strong>ADSR (Attack, Decay, Sustain,
+                                Release)</strong> dynamic envelope. When an instrument is struck (piano hammer, guitar
+                            pluck, drum hit), energy transfers in a matter of milliseconds (fast attack $le 10\text{
+                            ms}$), followed by an exponential decay into room acoustics.
                         </p>
                         <div class="table-responsive mb-4">
                             <table class="table table-bordered table-hover align-middle">
@@ -519,17 +538,25 @@
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-disc me-2"></i>3. Historical Production Techniques: The Tape Era to Modern EDM</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-disc me-2"></i>3. Historical Production
+                            Techniques: The Tape Era to Modern EDM</h2>
                         <p>
-                            The musical aesthetic of reversed audio originated in 1950s *Musique Concrète* (Pierre Schaeffer) and exploded into commercial music during the psychedelic revolution of the 1960s:
+                            The musical aesthetic of reversed audio originated in 1950s *Musique Concrète* (Pierre
+                            Schaeffer) and exploded into commercial music during the psychedelic revolution of the
+                            1960s:
                         </p>
                         <div class="row g-4 mb-4">
                             <div class="col-md-6">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-record-circle me-2"></i>The Beatles & Analog Tape Flips</h3>
+                                        <h3 class="h6 text-teal"><i class="bi bi-record-circle me-2"></i>The Beatles &
+                                            Analog Tape Flips</h3>
                                         <p class="small text-muted mb-0">
-                                            In 1966, recording engineer Geoff Emerick flipped multi-track 1-inch magnetic tape reels upside down on Abbey Road Studios' Studer J37 recorders. George Harrison composed and tracked guitar melodies specifically designed to play backwards on <em>"I'm Only Sleeping"</em> and <em>"Tomorrow Never Knows"</em>.
+                                            In 1966, recording engineer Geoff Emerick flipped multi-track 1-inch
+                                            magnetic tape reels upside down on Abbey Road Studios' Studer J37 recorders.
+                                            George Harrison composed and tracked guitar melodies specifically designed
+                                            to play backwards on <em>"I'm Only Sleeping"</em> and <em>"Tomorrow Never
+                                                Knows"</em>.
                                         </p>
                                     </div>
                                 </div>
@@ -537,9 +564,13 @@
                             <div class="col-md-6">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-headphones me-2"></i>The 1980s Backmasking Controversies</h3>
+                                        <h3 class="h6 text-teal"><i class="bi bi-headphones me-2"></i>The 1980s
+                                            Backmasking Controversies</h3>
                                         <p class="small text-muted mb-0">
-                                            Heavy metal and rock bands were accused of embedding hidden backward messages ("backmasking") in vinyl grooves. In reality, phonetics when reversed produce phonemic pareidolia—the human brain's natural tendency to impose linguistic meaning onto random reversed formants.
+                                            Heavy metal and rock bands were accused of embedding hidden backward
+                                            messages ("backmasking") in vinyl grooves. In reality, phonetics when
+                                            reversed produce phonemic pareidolia—the human brain's natural tendency to
+                                            impose linguistic meaning onto random reversed formants.
                                         </p>
                                     </div>
                                 </div>
@@ -547,9 +578,12 @@
                             <div class="col-md-6">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-soundwave me-2"></i>Reverse Reverb Vocal Risers</h3>
+                                        <h3 class="h6 text-teal"><i class="bi bi-soundwave me-2"></i>Reverse Reverb
+                                            Vocal Risers</h3>
                                         <p class="small text-muted mb-0">
-                                            Modern pop, trap, and EDM mastering utilizes reverse reverb swells placed immediately ahead of downbeats. The reversed tail pulls air and space inward toward the lead vocal line, maximizing transitional impact.
+                                            Modern pop, trap, and EDM mastering utilizes reverse reverb swells placed
+                                            immediately ahead of downbeats. The reversed tail pulls air and space inward
+                                            toward the lead vocal line, maximizing transitional impact.
                                         </p>
                                     </div>
                                 </div>
@@ -557,9 +591,12 @@
                             <div class="col-md-6">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-lightning-charge me-2"></i>Reverse Cymbals & Impacts</h3>
+                                        <h3 class="h6 text-teal"><i class="bi bi-lightning-charge me-2"></i>Reverse
+                                            Cymbals & Impacts</h3>
                                         <p class="small text-muted mb-0">
-                                            Reversing acoustic crash cymbals or white noise bursts creates the iconic electronic dance music 'sweep' riser, building energetic density over 2 to 4 bars directly into a chorus drop.
+                                            Reversing acoustic crash cymbals or white noise bursts creates the iconic
+                                            electronic dance music 'sweep' riser, building energetic density over 2 to 4
+                                            bars directly into a chorus drop.
                                         </p>
                                     </div>
                                 </div>
@@ -568,37 +605,45 @@
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-circle me-2"></i>4. Step-by-Step Instructions: Reversing Audio Online</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-circle me-2"></i>4. Step-by-Step
+                            Instructions: Reversing Audio Online</h2>
                         <ol class="list-group list-group-numbered mb-4">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">Select Mode & Upload File</div>
-                                    Choose the <strong>Audio</strong> tab. Drag and drop any MP3, WAV, FLAC, OGG, or AAC file into the upload zone, or record your voice live using the microphone button.
+                                    Choose the <strong>Audio</strong> tab. Drag and drop any MP3, WAV, FLAC, OGG, or AAC
+                                    file into the upload zone, or record your voice live using the microphone button.
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">Preview Playback Speed</div>
-                                    Optionally audition the forward track at modified playback rates (<code>0.5×</code>, <code>0.75×</code>, <code>1.0×</code>, <code>1.5×</code>, <code>2.0×</code>) using the speed controls.
+                                    Optionally audition the forward track at modified playback rates (<code>0.5×</code>,
+                                    <code>0.75×</code>, <code>1.0×</code>, <code>1.5×</code>, <code>2.0×</code>) using
+                                    the speed controls.
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">Execute In-Memory Time Reversal</div>
-                                    Click <strong>Reverse Audio</strong>. The Web Audio API decodes the audio into 32-bit floating-point PCM sample arrays and inverts the sample indices in milliseconds.
+                                    Click <strong>Reverse Audio</strong>. The Web Audio API decodes the audio into
+                                    32-bit floating-point PCM sample arrays and inverts the sample indices in
+                                    milliseconds.
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">Audition & Download Lossless WAV</div>
-                                    Listen to the backwards rendering on the dedicated player and click <strong>Download Reversed Audio</strong> to save a pristine 16-bit PCM WAV file.
+                                    Listen to the backwards rendering on the dedicated player and click <strong>Download
+                                        Reversed Audio</strong> to save a pristine 16-bit PCM WAV file.
                                 </div>
                             </li>
                         </ol>
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-table me-2"></i>5. Audio Reversal Techniques: Technical Comparison</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-table me-2"></i>5. Audio Reversal Techniques:
+                            Technical Comparison</h2>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover align-middle">
                                 <thead class="table-light">
@@ -645,19 +690,27 @@
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>6. Frequently Asked Questions</h2>
+                        <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>6. Frequently Asked
+                            Questions</h2>
                         <div class="accordion" id="faqAccordion">
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading1">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
+                                        data-bs-target="#faqCollapse1" aria-expanded="false"
+                                        aria-controls="faqCollapse1">
                                         How does digital audio reversal work mathematically?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse1" class="accordion-collapse collapse" aria-labelledby="faqHeading1"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        In discrete signal processing, an audio signal consists of N samples indexed from 0 to N-1. Reversing audio performs time-reversal indexing: <code>y[n] = x[N - 1 - n]</code>. While the Fourier magnitude spectrum <code>|X(ω)|</code> remains identical (the overall frequency balance is preserved), the phase spectrum is negated (<code>∠Y(ω) = -∠X(ω)</code>). This flips the temporal envelope, transforming fast attack transients into slow exponential swells.
+                                        In discrete signal processing, an audio signal consists of N samples indexed
+                                        from 0 to N-1. Reversing audio performs time-reversal indexing:
+                                        <code>y[n] = x[N - 1 - n]</code>. While the Fourier magnitude spectrum
+                                        <code>|X(ω)|</code> remains identical (the overall frequency balance is
+                                        preserved), the phase spectrum is negated (<code>∠Y(ω) = -∠X(ω)</code>). This
+                                        flips the temporal envelope, transforming fast attack transients into slow
+                                        exponential swells.
                                     </div>
                                 </div>
                             </div>
@@ -665,14 +718,19 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                        data-bs-target="#faqCollapse2" aria-expanded="false"
+                                        aria-controls="faqCollapse2">
                                         Why does reversed speech or singing sound impossible to understand?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        Human speech perception relies heavily on phonetic attack transients (plosives like 'p', 't', 'k') followed by formant vowel resonance decays. Reversing audio inverts this sequence: vowels begin with gradual swelling resonances and terminate with unnatural, abrupt suction stops that our auditory cortex cannot parse as standard language phonemes.
+                                        Human speech perception relies heavily on phonetic attack transients (plosives
+                                        like 'p', 't', 'k') followed by formant vowel resonance decays. Reversing audio
+                                        inverts this sequence: vowels begin with gradual swelling resonances and
+                                        terminate with unnatural, abrupt suction stops that our auditory cortex cannot
+                                        parse as standard language phonemes.
                                     </div>
                                 </div>
                             </div>
@@ -680,14 +738,19 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading3">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                        data-bs-target="#faqCollapse3" aria-expanded="false"
+                                        aria-controls="faqCollapse3">
                                         How do music producers create the famous 'reverse reverb' vocal effect?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        Producers isolate the first word or note of a vocal track, apply a 100% wet reverb with a long 2- to 4-second decay tail, and render the resulting reverb to an audio file. They then reverse that reverb file and place it directly in front of the forward vocal entrance, creating a haunting, eerie vacuum swell that pulls the listener directly into the drop or verse.
+                                        Producers isolate the first word or note of a vocal track, apply a 100% wet
+                                        reverb with a long 2- to 4-second decay tail, and render the resulting reverb to
+                                        an audio file. They then reverse that reverb file and place it directly in front
+                                        of the forward vocal entrance, creating a haunting, eerie vacuum swell that
+                                        pulls the listener directly into the drop or verse.
                                     </div>
                                 </div>
                             </div>
@@ -695,14 +758,19 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading4">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                                        data-bs-target="#faqCollapse4" aria-expanded="false"
+                                        aria-controls="faqCollapse4">
                                         Does reversing audio change its musical pitch or tempo?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        No. Time-reversal preserves the exact duration of the file and leaves the fundamental frequencies intact. A middle C (261.63 Hz) piano chord still resonates at 261.63 Hz when reversed; only its dynamic envelope is inverted from sharp percussive hammer strike followed by string decay into a gradual string swell ending abruptly.
+                                        No. Time-reversal preserves the exact duration of the file and leaves the
+                                        fundamental frequencies intact. A middle C (261.63 Hz) piano chord still
+                                        resonates at 261.63 Hz when reversed; only its dynamic envelope is inverted from
+                                        sharp percussive hammer strike followed by string decay into a gradual string
+                                        swell ending abruptly.
                                     </div>
                                 </div>
                             </div>
@@ -710,14 +778,17 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading5">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                        data-bs-target="#faqCollapse5" aria-expanded="false"
+                                        aria-controls="faqCollapse5">
                                         What audio formats can I reverse and export?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        The tool supports all major browser-decodable audio formats including MP3, WAV, FLAC, AAC, OGG, and M4A. Reversed audio is synthesized directly into an uncompressed, studio-grade 16-bit PCM RIFF WAV container for immediate download.
+                                        The tool supports all major browser-decodable audio formats including MP3, WAV,
+                                        FLAC, AAC, OGG, and M4A. Reversed audio is synthesized directly into an
+                                        uncompressed, studio-grade 16-bit PCM RIFF WAV container for immediate download.
                                     </div>
                                 </div>
                             </div>
@@ -725,14 +796,18 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading6">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
+                                        data-bs-target="#faqCollapse6" aria-expanded="false"
+                                        aria-controls="faqCollapse6">
                                         Are my files uploaded to a remote server when reversing?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        No. Pitch Detectors Audio Reverser executes 100% in-browser via the W3C Web Audio API. Media files are read directly into your device's memory, flipped sample-by-sample via local CPU instructions, and rendered locally with zero external network transmission.
+                                        No. Pitch Detectors Audio Reverser executes 100% in-browser via the W3C Web
+                                        Audio API. Media files are read directly into your device's memory, flipped
+                                        sample-by-sample via local CPU instructions, and rendered locally with zero
+                                        external network transmission.
                                     </div>
                                 </div>
                             </div>
@@ -740,26 +815,34 @@
                     </section>
 
                     <section class="p-4 border rounded bg-light">
-                        <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Audio Editing Tools</h2>
+                        <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Audio Editing
+                            Tools</h2>
                         <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
-                            <li><a href="/audio-editing-tools/audio-speed-changer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-speedometer2 me-1"></i> Audio Speed Changer</a></li>
-                            <li><a href="/audio-editing-tools/audio-trimmer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-scissors me-1"></i> Audio Trimmer</a></li>
-                            <li><a href="/audio-editing-tools/loop-generator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-arrow-repeat me-1"></i> Loop Generator</a></li>
-                            <li><a href="/audio-editing-tools/Audio-Volume-Booster.html" class="btn btn-outline-teal btn-sm"><i class="bi bi-volume-up me-1"></i> Volume Booster</a></li>
-                            <li><a href="/audio-editing-tools/audio-normalizer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-sliders me-1"></i> Audio Normalizer</a></li>
+                            <li><a href="/audio-editing-tools/audio-speed-changer/"
+                                    class="btn btn-outline-teal btn-sm"><i class="bi bi-speedometer2 me-1"></i> Audio
+                                    Speed Changer</a></li>
+                            <li><a href="/audio-editing-tools/audio-trimmer/" class="btn btn-outline-teal btn-sm"><i
+                                        class="bi bi-scissors me-1"></i> Audio Trimmer</a></li>
+                            <li><a href="/audio-editing-tools/loop-generator/" class="btn btn-outline-teal btn-sm"><i
+                                        class="bi bi-arrow-repeat me-1"></i> Loop Generator</a></li>
+                            <li><a href="/audio-editing-tools/Audio-Volume-Booster.html"
+                                    class="btn btn-outline-teal btn-sm"><i class="bi bi-volume-up me-1"></i> Volume
+                                    Booster</a></li>
+                            <li><a href="/audio-editing-tools/audio-normalizer/" class="btn btn-outline-teal btn-sm"><i
+                                        class="bi bi-sliders me-1"></i> Audio Normalizer</a></li>
                         </ul>
                     </section>
                 </article>
             </div>
         </div>
     </div>
-<div id="footer"></div>
+    <div id="footer"></div>
 
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+    <script src="./assets/bootstrap5.js" defer></script>
+    <script src="./assets/tools.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ffmpeg/0.11.6/ffmpeg.min.js"></script>
 
-    
+
     <!-- tool js -->
     <script defer>
         const uploadZone = document.getElementById('uploadZone');

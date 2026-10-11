@@ -14,12 +14,12 @@
     content="audio waveform visualizer, music spectrum visualizer, online audio visualizer, audiogram generator, waveform video generator, fft audio visualizer">
 
   <link rel="canonical" href="https://pitchdetectors.com/sound-analysis-tools/audio-to-waveform-visualizer/" />
-  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+  <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/bootstrap5.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
-  <link href="/assets/tools.css" rel="stylesheet">
+  <link href="./assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/style.css">
+  <link href="./assets/tools.css" rel="stylesheet">
 
   <script type="application/ld+json">
   {
@@ -86,7 +86,7 @@
       background: #ffffff;
       border-radius: 14px;
       padding: 24px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
 
     button,
@@ -195,8 +195,15 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.6;
+      }
     }
 
     .status.ready {
@@ -210,7 +217,7 @@
       background: #0f172a;
       border-radius: 12px;
       display: block;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
     }
 
     .panel {
@@ -353,66 +360,102 @@
 
           <!-- How to Use -->
           <div class="tool-section mb-4">
-            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Use the Audio to Waveform Visualizer</h2>
+            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Use the Audio to Waveform Visualizer
+            </h2>
             <ol class="lead-steps mb-4">
-              <li><strong>Upload Your Audio Track:</strong> Click the <strong>Choose File</strong> button and select any audio file (MP3, WAV, AAC, FLAC, OGG). The tool decodes the audio locally in your browser.</li>
+              <li><strong>Upload Your Audio Track:</strong> Click the <strong>Choose File</strong> button and select any
+                audio file (MP3, WAV, AAC, FLAC, OGG). The tool decodes the audio locally in your browser.</li>
               <li><strong>Select Your Visualization Style:</strong> Choose between three reactive visual modes:
                 <ul>
-                  <li><strong>Bars:</strong> Classical graphic equalizer frequency spectrum bars with color gradients.</li>
-                  <li><strong>Wave:</strong> Continuous time-domain oscilloscope wave line with neon glow illumination.</li>
-                  <li><strong>Circle:</strong> 360-degree radial visualizer projecting frequency bursts outwards around a central sphere.</li>
+                  <li><strong>Bars:</strong> Classical graphic equalizer frequency spectrum bars with color gradients.
+                  </li>
+                  <li><strong>Wave:</strong> Continuous time-domain oscilloscope wave line with neon glow illumination.
+                  </li>
+                  <li><strong>Circle:</strong> 360-degree radial visualizer projecting frequency bursts outwards around
+                    a central sphere.</li>
                 </ul>
               </li>
-              <li><strong>Customize Visual Aesthetics:</strong> Use the live sliders to adjust the number of frequency bars, fine-tune the temporal smoothing factor, and pick custom neon accent colors.</li>
-              <li><strong>Generate & Download 60fps Video:</strong> Click <strong>🎬 Generate Video</strong>. The tool automatically plays your audio while recording the canvas frames at 60 fps into a synchronized WebM video file, ready for immediate download.</li>
+              <li><strong>Customize Visual Aesthetics:</strong> Use the live sliders to adjust the number of frequency
+                bars, fine-tune the temporal smoothing factor, and pick custom neon accent colors.</li>
+              <li><strong>Generate & Download 60fps Video:</strong> Click <strong>🎬 Generate Video</strong>. The tool
+                automatically plays your audio while recording the canvas frames at 60 fps into a synchronized WebM
+                video file, ready for immediate download.</li>
             </ol>
           </div>
 
           <!-- Technical Deep-Dive -->
           <div class="tool-section mb-4">
-            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>The Digital Signal Processing Behind Waveform Visualization</h2>
-            <p>Audio visualization is the transformation of acoustic digital signals into real-time graphical representations. Modern browser-based visualizers execute this in real time using the <strong>Web Audio API</strong> and <strong>Fast Fourier Transform (FFT)</strong> algorithms.</p>
+            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>The Digital Signal Processing Behind Waveform
+              Visualization</h2>
+            <p>Audio visualization is the transformation of acoustic digital signals into real-time graphical
+              representations. Modern browser-based visualizers execute this in real time using the <strong>Web Audio
+                API</strong> and <strong>Fast Fourier Transform (FFT)</strong> algorithms.</p>
 
             <div class="card p-3 my-3 bg-light border-0 shadow-sm">
               <h5 class="fw-bold mb-2">The Discrete Fourier Transform (DFT) Equation:</h5>
-              <p class="mb-1">To decompose a complex musical wave $x(n)$ of $N$ time-domain samples into its constituent sinusoids, the discrete Fourier transform evaluates:</p>
-              <code class="d-block p-2 bg-white rounded border fs-6 my-2 text-dark font-monospace">X(k) = Σ [n=0 to N-1] x(n) × e^(-j × 2π × k × n / N)</code>
+              <p class="mb-1">To decompose a complex musical wave $x(n)$ of $N$ time-domain samples into its constituent
+                sinusoids, the discrete Fourier transform evaluates:</p>
+              <code
+                class="d-block p-2 bg-white rounded border fs-6 my-2 text-dark font-monospace">X(k) = Σ [n=0 to N-1] x(n) × e^(-j × 2π × k × n / N)</code>
               <p class="mb-1">Where:</p>
               <ul class="small mb-1">
                 <li><code>N</code> = FFT Size (typically 2048 samples).</li>
                 <li><code>k</code> = Frequency bin index ($k = 0, 1, 2, \dots, N/2$).</li>
                 <li><code>e^(-j 2π k n / N)</code> = Complex exponential decomposing amplitude and phase.</li>
               </ul>
-              <p class="mb-0 text-muted small mt-2">The frequency bandwidth allocated to each bin is calculated as $\Delta f = f_s / N$. At a standard sampling rate of $f_s = 44,100\text{ Hz}$ with $N = 2048$, each frequency bin has an exact resolution of $21.53\text{ Hz}$.</p>
+              <p class="mb-0 text-muted small mt-2">The frequency bandwidth allocated to each bin is calculated as
+                $\Delta f = f_s / N$. At a standard sampling rate of $f_s = 44,100\text{ Hz}$ with $N = 2048$, each
+                frequency bin has an exact resolution of $21.53\text{ Hz}$.</p>
             </div>
 
-            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-layers me-2"></i>Time-Domain Oscilloscope vs. Frequency-Domain Spectrum</h3>
+            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-layers me-2"></i>Time-Domain Oscilloscope vs.
+              Frequency-Domain Spectrum</h3>
             <div class="row g-3 my-2">
               <div class="col-md-6">
                 <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                  <h6 class="fw-bold text-dark"><i class="bi bi-activity me-1 text-teal"></i> Time-Domain (Oscilloscope / Waveform)</h6>
-                  <p class="small text-muted mb-0">Obtained using <code>analyser.getFloatTimeDomainData()</code>. It plots instantaneous sound pressure amplitude ($y$-axis) directly against time ($x$-axis). This allows sound engineers to inspect peak clipping, phase symmetry, dc offsets, and transient attacks of drum hits.</p>
+                  <h6 class="fw-bold text-dark"><i class="bi bi-activity me-1 text-teal"></i> Time-Domain (Oscilloscope
+                    / Waveform)</h6>
+                  <p class="small text-muted mb-0">Obtained using <code>analyser.getFloatTimeDomainData()</code>. It
+                    plots instantaneous sound pressure amplitude ($y$-axis) directly against time ($x$-axis). This
+                    allows sound engineers to inspect peak clipping, phase symmetry, dc offsets, and transient attacks
+                    of drum hits.</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                  <h6 class="fw-bold text-dark"><i class="bi bi-bar-chart-steps me-1 text-teal"></i> Frequency-Domain (Spectral Bars)</h6>
-                  <p class="small text-muted mb-0">Obtained using <code>analyser.getByteFrequencyData()</code>. It displays acoustic energy across pitches, grouping bins from low sub-bass (20–60 Hz), punchy bass (60–250 Hz), vocal midrange (500 Hz–4 kHz), and high shimmer (8–20 kHz).</p>
+                  <h6 class="fw-bold text-dark"><i class="bi bi-bar-chart-steps me-1 text-teal"></i> Frequency-Domain
+                    (Spectral Bars)</h6>
+                  <p class="small text-muted mb-0">Obtained using <code>analyser.getByteFrequencyData()</code>. It
+                    displays acoustic energy across pitches, grouping bins from low sub-bass (20–60 Hz), punchy bass
+                    (60–250 Hz), vocal midrange (500 Hz–4 kHz), and high shimmer (8–20 kHz).</p>
                 </div>
               </div>
             </div>
 
-            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-water me-2"></i>Temporal Smoothing: Exponential Moving Averages</h3>
-            <p>Raw acoustic sound pressure changes thousands of times every second. If an equalizer or spectrum display responded instantly to every single raw FFT frame, the visual display would strobe violently and cause visual fatigue. To create smooth, organic motion, the visualizer applies an <strong>exponential moving average filter</strong> controlled by the <code>smoothingTimeConstant</code> ($\alpha$):</p>
-            <code class="d-block p-2 bg-light rounded border fs-6 my-2 text-dark font-monospace">P_display(t) = α × P_display(t - 1) + (1 - α) × P_raw(t)</code>
-            <p>When $\alpha = 0.70$–$0.80$, visual bars jump rapidly with percussive attacks but glide down gracefully, creating the familiar professional VU meter ballistics expected in broadcast studios and music videos.</p>
+            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-water me-2"></i>Temporal Smoothing: Exponential Moving
+              Averages</h3>
+            <p>Raw acoustic sound pressure changes thousands of times every second. If an equalizer or spectrum display
+              responded instantly to every single raw FFT frame, the visual display would strobe violently and cause
+              visual fatigue. To create smooth, organic motion, the visualizer applies an <strong>exponential moving
+                average filter</strong> controlled by the <code>smoothingTimeConstant</code> ($\alpha$):</p>
+            <code
+              class="d-block p-2 bg-light rounded border fs-6 my-2 text-dark font-monospace">P_display(t) = α × P_display(t - 1) + (1 - α) × P_raw(t)</code>
+            <p>When $\alpha = 0.70$–$0.80$, visual bars jump rapidly with percussive attacks but glide down gracefully,
+              creating the familiar professional VU meter ballistics expected in broadcast studios and music videos.</p>
 
-            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-film me-2"></i>Browser-Based 60fps Video Synthesis Architecture</h3>
-            <p>Unlike server-side rendering pipelines that require slow cloud transcoding, this tool leverages bleeding-edge modern browser hardware acceleration:</p>
+            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-film me-2"></i>Browser-Based 60fps Video Synthesis
+              Architecture</h3>
+            <p>Unlike server-side rendering pipelines that require slow cloud transcoding, this tool leverages
+              bleeding-edge modern browser hardware acceleration:</p>
             <ol>
-              <li><strong>HTML5 Canvas Stream Capture:</strong> The <code>canvas.captureStream(60)</code> API grabs raw framebuffers directly from your GPU at a fixed 60 frames per second.</li>
-              <li><strong>Web Audio Stream Destination:</strong> A dedicated <code>MediaStreamAudioDestinationNode</code> routes decoded PCM audio without passing through computer speakers.</li>
-              <li><strong>Real-Time Codec Multiplexing:</strong> The native <code>MediaRecorder</code> API encodes the synchronized visual and audio streams simultaneously into a high-efficiency <strong>WebM container</strong> using VP8/VP9 video compression and Opus 48 kHz stereo audio.</li>
+              <li><strong>HTML5 Canvas Stream Capture:</strong> The <code>canvas.captureStream(60)</code> API grabs raw
+                framebuffers directly from your GPU at a fixed 60 frames per second.</li>
+              <li><strong>Web Audio Stream Destination:</strong> A dedicated
+                <code>MediaStreamAudioDestinationNode</code> routes decoded PCM audio without passing through computer
+                speakers.</li>
+              <li><strong>Real-Time Codec Multiplexing:</strong> The native <code>MediaRecorder</code> API encodes the
+                synchronized visual and audio streams simultaneously into a high-efficiency <strong>WebM
+                  container</strong> using VP8/VP9 video compression and Opus 48 kHz stereo audio.</li>
             </ol>
           </div>
 
@@ -423,14 +466,16 @@
             <div class="accordion" id="faqAccordion">
               <div class="accordion-item">
                 <h3 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq1">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
                     How does an audio to waveform visualizer transform digital sound into visuals?
                   </button>
                 </h3>
                 <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    The tool uses the browser's Web Audio API and Fast Fourier Transform (FFT) algorithms. It analyzes incoming PCM audio samples in real time, converting time-domain pressure waves into discrete frequency bins (spectrum analysis) or drawing continuous amplitude oscillations across an HTML5 Canvas at 60 frames per second.
+                    The tool uses the browser's Web Audio API and Fast Fourier Transform (FFT) algorithms. It analyzes
+                    incoming PCM audio samples in real time, converting time-domain pressure waves into discrete
+                    frequency bins (spectrum analysis) or drawing continuous amplitude oscillations across an HTML5
+                    Canvas at 60 frames per second.
                   </div>
                 </div>
               </div>
@@ -444,7 +489,11 @@
                 </h3>
                 <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    A <strong>time-domain waveform (oscilloscope)</strong> plots sound pressure amplitude over time, displaying the physical shape of the sound wave, transients, and phase alignment. A <strong>frequency-domain spectrum visualizer</strong> decomposes the audio into individual frequency bands (sub-bass, midrange, and treble) to reveal how acoustic energy is distributed across the musical spectrum.
+                    A <strong>time-domain waveform (oscilloscope)</strong> plots sound pressure amplitude over time,
+                    displaying the physical shape of the sound wave, transients, and phase alignment. A
+                    <strong>frequency-domain spectrum visualizer</strong> decomposes the audio into individual frequency
+                    bands (sub-bass, midrange, and treble) to reveal how acoustic energy is distributed across the
+                    musical spectrum.
                   </div>
                 </div>
               </div>
@@ -458,7 +507,10 @@
                 </h3>
                 <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    The tool utilizes <code>HTMLCanvasElement.captureStream(60)</code> to record visual frames from the canvas at 60 fps, combined with a Web Audio <code>MediaStreamDestination</code> node for the original audio. The <code>MediaRecorder</code> API multiplexes both streams into an industry-standard WebM video container using hardware-accelerated VP8/VP9 and Opus codecs.
+                    The tool utilizes <code>HTMLCanvasElement.captureStream(60)</code> to record visual frames from the
+                    canvas at 60 fps, combined with a Web Audio <code>MediaStreamDestination</code> node for the
+                    original audio. The <code>MediaRecorder</code> API multiplexes both streams into an
+                    industry-standard WebM video container using hardware-accelerated VP8/VP9 and Opus codecs.
                   </div>
                 </div>
               </div>
@@ -472,7 +524,9 @@
                 </h3>
                 <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    Radial circular visualizers project frequency magnitude outwards along 360 degrees of rotation. They provide an aesthetically compelling focal point for music videos, podcast audiograms, and social media reels, often placed over album cover artwork to highlight kick drum thumps and bass pulses.
+                    Radial circular visualizers project frequency magnitude outwards along 360 degrees of rotation. They
+                    provide an aesthetically compelling focal point for music videos, podcast audiograms, and social
+                    media reels, often placed over album cover artwork to highlight kick drum thumps and bass pulses.
                   </div>
                 </div>
               </div>
@@ -486,7 +540,9 @@
                 </h3>
                 <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    WebM files can be uploaded directly to YouTube, Discord, and Chrome browsers. If you require MP4 format for Instagram or older editing suites, you can convert the exported WebM file using free tools like FFmpeg, HandBrake, or VLC Media Player without any loss of visual clarity.
+                    WebM files can be uploaded directly to YouTube, Discord, and Chrome browsers. If you require MP4
+                    format for Instagram or older editing suites, you can convert the exported WebM file using free
+                    tools like FFmpeg, HandBrake, or VLC Media Player without any loss of visual clarity.
                   </div>
                 </div>
               </div>
@@ -500,7 +556,10 @@
                 </h3>
                 <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    Raw audio transients change thousands of times per second, which causes untreated visual spectrum bars to flicker chaotically. Temporal smoothing (using exponential moving average filters between 0.6 and 0.85) creates smooth, musical animations where visual bars decay gracefully rather than strobing violently.
+                    Raw audio transients change thousands of times per second, which causes untreated visual spectrum
+                    bars to flicker chaotically. Temporal smoothing (using exponential moving average filters between
+                    0.6 and 0.85) creates smooth, musical animations where visual bars decay gracefully rather than
+                    strobing violently.
                   </div>
                 </div>
               </div>
@@ -510,20 +569,24 @@
           <!-- Related Tools Cards -->
           <div class="card my-4 shadow-sm border-0">
             <div class="card-body p-4 bg-light rounded">
-              <h5 class="card-title fw-bold mb-3"><i class="bi bi-grid-fill me-2 text-teal"></i>Related Sound Analysis Tools</h5>
+              <h5 class="card-title fw-bold mb-3"><i class="bi bi-grid-fill me-2 text-teal"></i>Related Sound Analysis
+                Tools</h5>
               <div class="row g-2">
                 <div class="col-md-4">
-                  <a class="btn btn-outline-secondary w-100 text-start py-2" href="/sound-analysis-tools/decibel-meter/">
+                  <a class="btn btn-outline-secondary w-100 text-start py-2"
+                    href="/sound-analysis-tools/decibel-meter/">
                     <i class="bi bi-speedometer me-1 text-teal"></i> Decibel Meter Online
                   </a>
                 </div>
                 <div class="col-md-4">
-                  <a class="btn btn-outline-secondary w-100 text-start py-2" href="/sound-analysis-tools/loudness-meter/">
+                  <a class="btn btn-outline-secondary w-100 text-start py-2"
+                    href="/sound-analysis-tools/loudness-meter/">
                     <i class="bi bi-volume-up-fill me-1 text-teal"></i> Loudness Meter (LUFS)
                   </a>
                 </div>
                 <div class="col-md-4">
-                  <a class="btn btn-outline-secondary w-100 text-start py-2" href="/sound-analysis-tools/microphone-test/">
+                  <a class="btn btn-outline-secondary w-100 text-start py-2"
+                    href="/sound-analysis-tools/microphone-test/">
                     <i class="bi bi-mic me-1 text-teal"></i> Microphone Test Online
                   </a>
                 </div>
@@ -533,12 +596,14 @@
                   </a>
                 </div>
                 <div class="col-md-4">
-                  <a class="btn btn-outline-secondary w-100 text-start py-2" href="/audio-editing-tools/audio-speed-changer/">
+                  <a class="btn btn-outline-secondary w-100 text-start py-2"
+                    href="/audio-editing-tools/audio-speed-changer/">
                     <i class="bi bi-speedometer2 me-1 text-teal"></i> Audio Speed Changer
                   </a>
                 </div>
                 <div class="col-md-4">
-                  <a class="btn btn-outline-secondary w-100 text-start py-2" href="/music-theory-tools/rhythm-pattern-maker/">
+                  <a class="btn btn-outline-secondary w-100 text-start py-2"
+                    href="/music-theory-tools/rhythm-pattern-maker/">
                     <i class="bi bi-soundwave me-1 text-teal"></i> Rhythm Pattern Maker
                   </a>
                 </div>
@@ -548,381 +613,381 @@
 
         </div>
 
-      <div id="footer"></div>
+        <div id="footer"></div>
 
-  <script src="/assets/bootstrap5.js" defer></script>
-  <script src="/assets/tools.js" defer></script>
-  <!-- include js -->
-  <script defer>
-    window.addEventListener("load", () => {
-      Promise.all([
-        fetch("../../header.html").then(res => res.text()),
-        fetch("../../footer.html").then(res => res.text())
-      ])
-        .then(([header, footer]) => {
-          document.getElementById("header").innerHTML = header;
-          document.getElementById("footer").innerHTML = footer;
-        })
-        .catch(err => console.error("Include load failed:", err));
-    });
-  </script>
-  <!-- tool js -->
-  <script defer>
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    const audio = document.getElementById("audio");
+        <script src="./assets/bootstrap5.js" defer></script>
+        <script src="./assets/tools.js" defer></script>
+        <!-- include js -->
+        <script defer>
+          window.addEventListener("load", () => {
+            Promise.all([
+              fetch("../../header.html").then(res => res.text()),
+              fetch("../../footer.html").then(res => res.text())
+            ])
+              .then(([header, footer]) => {
+                document.getElementById("header").innerHTML = header;
+                document.getElementById("footer").innerHTML = footer;
+              })
+              .catch(err => console.error("Include load failed:", err));
+          });
+        </script>
+        <!-- tool js -->
+        <script defer>
+          const canvas = document.getElementById("canvas");
+          const ctx = canvas.getContext("2d");
+          const audio = document.getElementById("audio");
 
-    let audioCtx = null;
-    let analyser = null;
-    let source = null;
-    let sourceNode = null;
-    let animationId = null;
-    let isPlaying = false;
-    let mediaRecorder = null;
-    let recordedChunks = [];
-    let isRecording = false;
+          let audioCtx = null;
+          let analyser = null;
+          let source = null;
+          let sourceNode = null;
+          let animationId = null;
+          let isPlaying = false;
+          let mediaRecorder = null;
+          let recordedChunks = [];
+          let isRecording = false;
 
-    // UI Elements
-    const playBtn = document.getElementById("playBtn");
-    const fileInput = document.getElementById("fileInput");
-    const barColorInput = document.getElementById("barColor");
-    const includeAudio = document.getElementById("includeAudio");
-    const preview = document.getElementById("preview");
-    const status = document.getElementById("status");
-    const generateBtn = document.getElementById("generateBtn");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const visualStyle = document.getElementById("visualStyle");
+          // UI Elements
+          const playBtn = document.getElementById("playBtn");
+          const fileInput = document.getElementById("fileInput");
+          const barColorInput = document.getElementById("barColor");
+          const includeAudio = document.getElementById("includeAudio");
+          const preview = document.getElementById("preview");
+          const status = document.getElementById("status");
+          const generateBtn = document.getElementById("generateBtn");
+          const downloadBtn = document.getElementById("downloadBtn");
+          const visualStyle = document.getElementById("visualStyle");
 
-    // Fixed values for bars and smoothing
-    const barCount = 64;
-    const smoothing = 0.7;
+          // Fixed values for bars and smoothing
+          const barCount = 64;
+          const smoothing = 0.7;
 
-    function ensureAudioGraph() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
+          function ensureAudioGraph() {
+            if (!audioCtx) {
+              audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
 
-      if (!analyser) {
-        analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 2048;
-        analyser.smoothingTimeConstant = 0.7;
-      }
+            if (!analyser) {
+              analyser = audioCtx.createAnalyser();
+              analyser.fftSize = 2048;
+              analyser.smoothingTimeConstant = 0.7;
+            }
 
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+            if (audioCtx.state === 'suspended') {
+              audioCtx.resume();
+            }
 
-      // Only create source once
-      if (!sourceNode && audio.src) {
-        try {
-          sourceNode = audioCtx.createMediaElementSource(audio);
-          sourceNode.connect(analyser);
-          analyser.connect(audioCtx.destination);
-        } catch (e) {
-          console.log("Source already connected or error:", e);
-        }
-      }
-    }
-
-    function draw() {
-      const width = canvas.width;
-      const height = canvas.height;
-      const color = barColorInput.value;
-      const style = visualStyle.value;
-
-      if (analyser) {
-        analyser.smoothingTimeConstant = smoothing;
-        const bufferLength = analyser.frequencyBinCount;
-        const data = new Uint8Array(bufferLength);
-        analyser.getByteFrequencyData(data);
-
-        // Clear canvas with background
-        ctx.fillStyle = "#000000";
-        ctx.fillRect(0, 0, width, height);
-
-        if (style === "bars") {
-          drawBars(data, bufferLength, width, height, barCount, color);
-        } else if (style === "wave") {
-          drawWave(data, bufferLength, width, height, color);
-        } else if (style === "circle") {
-          drawCircle(data, bufferLength, width, height, barCount, color);
-        }
-      } else {
-        // Draw empty state
-        ctx.fillStyle = "#000000";
-        ctx.fillRect(0, 0, width, height);
-        ctx.fillStyle = "#475569";
-        ctx.font = "24px sans-serif";
-        ctx.textAlign = "center";
-        ctx.fillText("Upload audio to visualize", width / 2, height / 2);
-      }
-
-      animationId = requestAnimationFrame(draw);
-    }
-
-    function drawBars(data, bufferLength, width, height, barCount, color) {
-      const barWidth = width / barCount;
-      const gap = barWidth * 0.1;
-
-      for (let i = 0; i < barCount; i++) {
-        const index = Math.floor((i / barCount) * bufferLength);
-        const v = data[index] / 255;
-        const barHeight = v * height * 0.9;
-
-        const gradient = ctx.createLinearGradient(0, height - barHeight, 0, height);
-        gradient.addColorStop(0, color);
-        gradient.addColorStop(1, color + '80');
-
-        ctx.fillStyle = gradient;
-        ctx.fillRect(
-          i * barWidth + gap / 2,
-          height - barHeight,
-          barWidth - gap,
-          barHeight
-        );
-      }
-    }
-
-    function drawWave(data, bufferLength, width, height, color) {
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = color;
-      ctx.beginPath();
-
-      const sliceWidth = width / bufferLength;
-      let x = 0;
-
-      for (let i = 0; i < bufferLength; i++) {
-        const v = data[i] / 255;
-        const y = height - (v * height * 0.8);
-
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-
-        x += sliceWidth;
-      }
-
-      ctx.stroke();
-
-      // Add glow effect
-      ctx.shadowBlur = 20;
-      ctx.shadowColor = color;
-      ctx.stroke();
-      ctx.shadowBlur = 0;
-    }
-
-    function drawCircle(data, bufferLength, width, height, barCount, color) {
-      const centerX = width / 2;
-      const centerY = height / 2;
-      const radius = Math.min(width, height) * 0.25;
-
-      for (let i = 0; i < barCount; i++) {
-        const index = Math.floor((i / barCount) * bufferLength);
-        const v = data[index] / 255;
-        const barHeight = v * radius;
-
-        const angle = (i / barCount) * Math.PI * 2;
-        const x1 = centerX + Math.cos(angle) * radius;
-        const y1 = centerY + Math.sin(angle) * radius;
-        const x2 = centerX + Math.cos(angle) * (radius + barHeight);
-        const y2 = centerY + Math.sin(angle) * (radius + barHeight);
-
-        ctx.strokeStyle = color;
-        ctx.lineWidth = (width / barCount) * 0.8;
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-      }
-    }
-
-    // Start drawing on load
-    draw();
-
-    playBtn.onclick = async () => {
-      if (!audio.src) {
-        alert("Please upload an audio file first");
-        return;
-      }
-
-      if (!isPlaying) {
-        ensureAudioGraph();
-        try {
-          await audioCtx.resume();
-          await audio.play();
-          isPlaying = true;
-          playBtn.innerHTML = "⏸ Pause";
-          playBtn.classList.add("danger");
-          playBtn.classList.remove("primary");
-        } catch (e) {
-          console.error("Playback error:", e);
-          alert("Playback error. Please try again.");
-        }
-      } else {
-        audio.pause();
-        isPlaying = false;
-        playBtn.innerHTML = "▶ Play";
-        playBtn.classList.add("primary");
-        playBtn.classList.remove("danger");
-      }
-    };
-
-    audio.onended = () => {
-      isPlaying = false;
-      playBtn.innerHTML = "▶ Play";
-      playBtn.classList.add("primary");
-      playBtn.classList.remove("danger");
-    };
-
-    fileInput.onchange = () => {
-      const file = fileInput.files[0];
-      if (!file) return;
-
-      const url = URL.createObjectURL(file);
-      audio.src = url;
-
-      // Reset source node when new file is loaded
-      sourceNode = null;
-
-      // Hide video preview and show canvas
-      preview.style.display = "none";
-      canvas.style.display = "block";
-      downloadBtn.style.display = "none";
-
-      status.textContent = "";
-      status.className = "status";
-
-      // Enable generate button
-      generateBtn.disabled = false;
-
-      // Reset audio context
-      if (audioCtx) {
-        ensureAudioGraph();
-      }
-    };
-
-    // Generate video
-    generateBtn.onclick = async () => {
-      if (!audio.src) {
-        alert("Please upload an audio file first");
-        return;
-      }
-
-      ensureAudioGraph();
-      await audioCtx.resume();
-
-      recordedChunks = [];
-      isRecording = true;
-
-      // Get canvas stream at 60fps
-      const canvasStream = canvas.captureStream(60);
-      let finalStream = null;
-
-      if (includeAudio.checked) {
-        // Create destination for audio
-        const dest = audioCtx.createMediaStreamDestination();
-        analyser.connect(dest);
-
-        finalStream = new MediaStream([
-          ...canvasStream.getVideoTracks(),
-          ...dest.stream.getAudioTracks()
-        ]);
-      } else {
-        finalStream = canvasStream;
-      }
-
-      // Setup MediaRecorder
-      const options = { mimeType: 'video/webm; codecs=vp8,opus' };
-
-      try {
-        mediaRecorder = new MediaRecorder(finalStream, options);
-      } catch (e) {
-        // Fallback without codecs specification
-        mediaRecorder = new MediaRecorder(finalStream);
-      }
-
-      mediaRecorder.ondataavailable = (e) => {
-        if (e.data.size > 0) {
-          recordedChunks.push(e.data);
-        }
-      };
-
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(recordedChunks, { type: "video/webm" });
-        preview.src = URL.createObjectURL(blob);
-        previewPanel.style.display = "block";
-
-        status.textContent = "✓ Video Generated Successfully!";
-        status.className = "status ready";
-
-        isRecording = false;
-        generateBtn.disabled = false;
-        generateBtn.innerHTML = "🎬 Generate Video";
-
-        // Reset audio
-        audio.pause();
-        audio.currentTime = 0;
-        isPlaying = false;
-        playBtn.innerHTML = "▶ Play";
-        playBtn.classList.add("primary");
-        playBtn.classList.remove("danger");
-      };
-
-      mediaRecorder.onerror = (e) => {
-        console.error("MediaRecorder error:", e);
-        alert("Recording error occurred");
-        isRecording = false;
-        generateBtn.disabled = false;
-        generateBtn.innerHTML = "🎬 Generate Video";
-      };
-
-      // Start recording
-      mediaRecorder.start(100);
-
-      // Reset and play audio from beginning
-      audio.currentTime = 0;
-      await audio.play();
-      isPlaying = true;
-
-      status.textContent = "● Generating Video...";
-      status.className = "status recording";
-
-      generateBtn.disabled = true;
-      generateBtn.innerHTML = "⏳ Generating...";
-
-      // Auto-stop when audio ends
-      audio.onended = () => {
-        if (mediaRecorder && mediaRecorder.state !== "inactive") {
-          mediaRecorder.stop();
-
-          // Stop all tracks
-          if (mediaRecorder.stream) {
-            mediaRecorder.stream.getTracks().forEach(track => track.stop());
+            // Only create source once
+            if (!sourceNode && audio.src) {
+              try {
+                sourceNode = audioCtx.createMediaElementSource(audio);
+                sourceNode.connect(analyser);
+                analyser.connect(audioCtx.destination);
+              } catch (e) {
+                console.log("Source already connected or error:", e);
+              }
+            }
           }
-        }
-      };
-    };
 
-    downloadBtn.onclick = () => {
-      if (!recordedChunks.length) {
-        alert("No recording available to download");
-        return;
-      }
+          function draw() {
+            const width = canvas.width;
+            const height = canvas.height;
+            const color = barColorInput.value;
+            const style = visualStyle.value;
 
-      const blob = new Blob(recordedChunks, { type: "video/webm" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `visualizer-${Date.now()}.webm`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+            if (analyser) {
+              analyser.smoothingTimeConstant = smoothing;
+              const bufferLength = analyser.frequencyBinCount;
+              const data = new Uint8Array(bufferLength);
+              analyser.getByteFrequencyData(data);
 
-      setTimeout(() => URL.revokeObjectURL(url), 100);
-    };
-  </script>
+              // Clear canvas with background
+              ctx.fillStyle = "#000000";
+              ctx.fillRect(0, 0, width, height);
+
+              if (style === "bars") {
+                drawBars(data, bufferLength, width, height, barCount, color);
+              } else if (style === "wave") {
+                drawWave(data, bufferLength, width, height, color);
+              } else if (style === "circle") {
+                drawCircle(data, bufferLength, width, height, barCount, color);
+              }
+            } else {
+              // Draw empty state
+              ctx.fillStyle = "#000000";
+              ctx.fillRect(0, 0, width, height);
+              ctx.fillStyle = "#475569";
+              ctx.font = "24px sans-serif";
+              ctx.textAlign = "center";
+              ctx.fillText("Upload audio to visualize", width / 2, height / 2);
+            }
+
+            animationId = requestAnimationFrame(draw);
+          }
+
+          function drawBars(data, bufferLength, width, height, barCount, color) {
+            const barWidth = width / barCount;
+            const gap = barWidth * 0.1;
+
+            for (let i = 0; i < barCount; i++) {
+              const index = Math.floor((i / barCount) * bufferLength);
+              const v = data[index] / 255;
+              const barHeight = v * height * 0.9;
+
+              const gradient = ctx.createLinearGradient(0, height - barHeight, 0, height);
+              gradient.addColorStop(0, color);
+              gradient.addColorStop(1, color + '80');
+
+              ctx.fillStyle = gradient;
+              ctx.fillRect(
+                i * barWidth + gap / 2,
+                height - barHeight,
+                barWidth - gap,
+                barHeight
+              );
+            }
+          }
+
+          function drawWave(data, bufferLength, width, height, color) {
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = color;
+            ctx.beginPath();
+
+            const sliceWidth = width / bufferLength;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+              const v = data[i] / 255;
+              const y = height - (v * height * 0.8);
+
+              if (i === 0) {
+                ctx.moveTo(x, y);
+              } else {
+                ctx.lineTo(x, y);
+              }
+
+              x += sliceWidth;
+            }
+
+            ctx.stroke();
+
+            // Add glow effect
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = color;
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+          }
+
+          function drawCircle(data, bufferLength, width, height, barCount, color) {
+            const centerX = width / 2;
+            const centerY = height / 2;
+            const radius = Math.min(width, height) * 0.25;
+
+            for (let i = 0; i < barCount; i++) {
+              const index = Math.floor((i / barCount) * bufferLength);
+              const v = data[index] / 255;
+              const barHeight = v * radius;
+
+              const angle = (i / barCount) * Math.PI * 2;
+              const x1 = centerX + Math.cos(angle) * radius;
+              const y1 = centerY + Math.sin(angle) * radius;
+              const x2 = centerX + Math.cos(angle) * (radius + barHeight);
+              const y2 = centerY + Math.sin(angle) * (radius + barHeight);
+
+              ctx.strokeStyle = color;
+              ctx.lineWidth = (width / barCount) * 0.8;
+              ctx.beginPath();
+              ctx.moveTo(x1, y1);
+              ctx.lineTo(x2, y2);
+              ctx.stroke();
+            }
+          }
+
+          // Start drawing on load
+          draw();
+
+          playBtn.onclick = async () => {
+            if (!audio.src) {
+              alert("Please upload an audio file first");
+              return;
+            }
+
+            if (!isPlaying) {
+              ensureAudioGraph();
+              try {
+                await audioCtx.resume();
+                await audio.play();
+                isPlaying = true;
+                playBtn.innerHTML = "⏸ Pause";
+                playBtn.classList.add("danger");
+                playBtn.classList.remove("primary");
+              } catch (e) {
+                console.error("Playback error:", e);
+                alert("Playback error. Please try again.");
+              }
+            } else {
+              audio.pause();
+              isPlaying = false;
+              playBtn.innerHTML = "▶ Play";
+              playBtn.classList.add("primary");
+              playBtn.classList.remove("danger");
+            }
+          };
+
+          audio.onended = () => {
+            isPlaying = false;
+            playBtn.innerHTML = "▶ Play";
+            playBtn.classList.add("primary");
+            playBtn.classList.remove("danger");
+          };
+
+          fileInput.onchange = () => {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            const url = URL.createObjectURL(file);
+            audio.src = url;
+
+            // Reset source node when new file is loaded
+            sourceNode = null;
+
+            // Hide video preview and show canvas
+            preview.style.display = "none";
+            canvas.style.display = "block";
+            downloadBtn.style.display = "none";
+
+            status.textContent = "";
+            status.className = "status";
+
+            // Enable generate button
+            generateBtn.disabled = false;
+
+            // Reset audio context
+            if (audioCtx) {
+              ensureAudioGraph();
+            }
+          };
+
+          // Generate video
+          generateBtn.onclick = async () => {
+            if (!audio.src) {
+              alert("Please upload an audio file first");
+              return;
+            }
+
+            ensureAudioGraph();
+            await audioCtx.resume();
+
+            recordedChunks = [];
+            isRecording = true;
+
+            // Get canvas stream at 60fps
+            const canvasStream = canvas.captureStream(60);
+            let finalStream = null;
+
+            if (includeAudio.checked) {
+              // Create destination for audio
+              const dest = audioCtx.createMediaStreamDestination();
+              analyser.connect(dest);
+
+              finalStream = new MediaStream([
+                ...canvasStream.getVideoTracks(),
+                ...dest.stream.getAudioTracks()
+              ]);
+            } else {
+              finalStream = canvasStream;
+            }
+
+            // Setup MediaRecorder
+            const options = { mimeType: 'video/webm; codecs=vp8,opus' };
+
+            try {
+              mediaRecorder = new MediaRecorder(finalStream, options);
+            } catch (e) {
+              // Fallback without codecs specification
+              mediaRecorder = new MediaRecorder(finalStream);
+            }
+
+            mediaRecorder.ondataavailable = (e) => {
+              if (e.data.size > 0) {
+                recordedChunks.push(e.data);
+              }
+            };
+
+            mediaRecorder.onstop = () => {
+              const blob = new Blob(recordedChunks, { type: "video/webm" });
+              preview.src = URL.createObjectURL(blob);
+              previewPanel.style.display = "block";
+
+              status.textContent = "✓ Video Generated Successfully!";
+              status.className = "status ready";
+
+              isRecording = false;
+              generateBtn.disabled = false;
+              generateBtn.innerHTML = "🎬 Generate Video";
+
+              // Reset audio
+              audio.pause();
+              audio.currentTime = 0;
+              isPlaying = false;
+              playBtn.innerHTML = "▶ Play";
+              playBtn.classList.add("primary");
+              playBtn.classList.remove("danger");
+            };
+
+            mediaRecorder.onerror = (e) => {
+              console.error("MediaRecorder error:", e);
+              alert("Recording error occurred");
+              isRecording = false;
+              generateBtn.disabled = false;
+              generateBtn.innerHTML = "🎬 Generate Video";
+            };
+
+            // Start recording
+            mediaRecorder.start(100);
+
+            // Reset and play audio from beginning
+            audio.currentTime = 0;
+            await audio.play();
+            isPlaying = true;
+
+            status.textContent = "● Generating Video...";
+            status.className = "status recording";
+
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = "⏳ Generating...";
+
+            // Auto-stop when audio ends
+            audio.onended = () => {
+              if (mediaRecorder && mediaRecorder.state !== "inactive") {
+                mediaRecorder.stop();
+
+                // Stop all tracks
+                if (mediaRecorder.stream) {
+                  mediaRecorder.stream.getTracks().forEach(track => track.stop());
+                }
+              }
+            };
+          };
+
+          downloadBtn.onclick = () => {
+            if (!recordedChunks.length) {
+              alert("No recording available to download");
+              return;
+            }
+
+            const blob = new Blob(recordedChunks, { type: "video/webm" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `visualizer-${Date.now()}.webm`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+          };
+        </script>
 </body>
 
 </html>

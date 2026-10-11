@@ -9,13 +9,13 @@
         content="Free online decibel meter measuring sound levels in real time. Features A/C/Z frequency weighting, peak hold, live spectrum graph, and OSHA safety analysis.">
     <meta name="keywords"
         content="online decibel meter, sound level meter online, spl meter, noise level monitor, dba vs dbc weighting, osha noise exposure calculator">
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
     <link rel="canonical" href="https://pitchdetectors.com/sound-analysis-tools/decibel-meter/" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="./assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link href="./assets/tools.css" rel="stylesheet">
 
     <script type="application/ld+json">
     {
@@ -150,7 +150,7 @@
             border-radius: 10px;
             text-align: center;
             border: 1px solid var(--reading-box-border);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .reading-box .label {
@@ -215,7 +215,7 @@
             border: none;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         .control-button.start {
@@ -248,6 +248,7 @@
             .stats-readings {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .current-db-display {
                 font-size: 3rem;
             }
@@ -473,51 +474,94 @@
 
                         <!-- How to Use -->
                         <div class="tool-section mb-4">
-                            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Use the Online Decibel Meter</h2>
+                            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Use the Online
+                                Decibel Meter</h2>
                             <ol class="lead-steps mb-4">
-                                <li><strong>Grant Microphone Permission:</strong> Click the green <strong>Start</strong> button. When prompted by your browser, grant audio access. For highest acoustic accuracy, disable operating system audio enhancements like auto-gain control (AGC) or noise suppression.</li>
-                                <li><strong>Select Acoustic Weighting:</strong> By default, the meter utilizes <strong>dBA (A-weighting)</strong>, matching human ear sensitivity for workplace safety and environmental noise. Switch to <strong>dBC</strong> for measuring subwoofer bass or concert dynamics, or <strong>dBZ</strong> for unweighted linear laboratory analysis.</li>
-                                <li><strong>Observe Real-Time Telemetry:</strong> Track instantaneous Sound Pressure Levels (SPL), minimum background noise floor ($L_{\text{min}}$), time-averaged energy ($L_{\text{avg}}$), and maximum acoustic peaks ($L_{\text{max}}$ / $L_{\text{peak}}$).</li>
-                                <li><strong>Calibrate to Known Reference:</strong> If comparing against a certified Class 1 or Class 2 sound level meter, fine-tune the calibration slider so your device microphone tracks true ambient physical decibels.</li>
+                                <li><strong>Grant Microphone Permission:</strong> Click the green <strong>Start</strong>
+                                    button. When prompted by your browser, grant audio access. For highest acoustic
+                                    accuracy, disable operating system audio enhancements like auto-gain control (AGC)
+                                    or noise suppression.</li>
+                                <li><strong>Select Acoustic Weighting:</strong> By default, the meter utilizes
+                                    <strong>dBA (A-weighting)</strong>, matching human ear sensitivity for workplace
+                                    safety and environmental noise. Switch to <strong>dBC</strong> for measuring
+                                    subwoofer bass or concert dynamics, or <strong>dBZ</strong> for unweighted linear
+                                    laboratory analysis.</li>
+                                <li><strong>Observe Real-Time Telemetry:</strong> Track instantaneous Sound Pressure
+                                    Levels (SPL), minimum background noise floor ($L_{\text{min}}$), time-averaged
+                                    energy ($L_{\text{avg}}$), and maximum acoustic peaks ($L_{\text{max}}$ /
+                                    $L_{\text{peak}}$).</li>
+                                <li><strong>Calibrate to Known Reference:</strong> If comparing against a certified
+                                    Class 1 or Class 2 sound level meter, fine-tune the calibration slider so your
+                                    device microphone tracks true ambient physical decibels.</li>
                             </ol>
                         </div>
 
                         <!-- Technical Deep-Dive -->
                         <div class="tool-section mb-4">
-                            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>The Physics and Mathematics of the Decibel Scale</h2>
-                            <p>The decibel (dB) is not an absolute unit of physical mass or distance; it is a dimensionless <strong>logarithmic ratio</strong> between a measured quantity and a standardized acoustic reference level. Because human ears register acoustic pressure across a vast range from $0.00002\,\text{Pa}$ to over $200\,\text{Pa}$ (a factor of $10,000,000:1$), linear scales are impractical.</p>
+                            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>The Physics and Mathematics of the
+                                Decibel Scale</h2>
+                            <p>The decibel (dB) is not an absolute unit of physical mass or distance; it is a
+                                dimensionless <strong>logarithmic ratio</strong> between a measured quantity and a
+                                standardized acoustic reference level. Because human ears register acoustic pressure
+                                across a vast range from $0.00002\,\text{Pa}$ to over $200\,\text{Pa}$ (a factor of
+                                $10,000,000:1$), linear scales are impractical.</p>
 
                             <div class="card p-3 my-3 bg-light border-0 shadow-sm">
                                 <h5 class="fw-bold mb-2">Sound Pressure Level (SPL) Mathematical Formula:</h5>
-                                <p class="mb-1">In airborne acoustics, Sound Pressure Level ($L_p$) is defined by the international ISO standard as:</p>
-                                <code class="d-block p-2 bg-white rounded border fs-6 my-2 text-dark font-monospace">L_p (dB SPL) = 20 × log₁₀(p_rms / p₀)</code>
+                                <p class="mb-1">In airborne acoustics, Sound Pressure Level ($L_p$) is defined by the
+                                    international ISO standard as:</p>
+                                <code
+                                    class="d-block p-2 bg-white rounded border fs-6 my-2 text-dark font-monospace">L_p (dB SPL) = 20 × log₁₀(p_rms / p₀)</code>
                                 <p class="mb-1">Where:</p>
                                 <ul class="small mb-1">
-                                    <li><code>p_rms</code> = Root Mean Square sound pressure of the measured wave in Pascals (Pa).</li>
-                                    <li><code>p₀</code> = Standard reference sound pressure in air = <strong>20 micropascals (20 μPa = 2 × 10⁻⁵ N/m²)</strong>, corresponding to the threshold of hearing for a healthy human ear at 1,000 Hz.</li>
+                                    <li><code>p_rms</code> = Root Mean Square sound pressure of the measured wave in
+                                        Pascals (Pa).</li>
+                                    <li><code>p₀</code> = Standard reference sound pressure in air = <strong>20
+                                            micropascals (20 μPa = 2 × 10⁻⁵ N/m²)</strong>, corresponding to the
+                                        threshold of hearing for a healthy human ear at 1,000 Hz.</li>
                                 </ul>
-                                <p class="mb-0 text-muted small mt-2">For sound intensity and acoustic power, where energy is proportional to the square of pressure ($I \propto p^2$), the formula employs a factor of 10: $L_I = 10 \times \log_{10}(I / I_0)$.</p>
+                                <p class="mb-0 text-muted small mt-2">For sound intensity and acoustic power, where
+                                    energy is proportional to the square of pressure ($I \propto p^2$), the formula
+                                    employs a factor of 10: $L_I = 10 \times \log_{10}(I / I_0)$.</p>
                             </div>
 
-                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-calculator me-2"></i>The 3 dB Energy Rule vs. The 10 dB Psychoacoustic Rule</h3>
-                            <p>A crucial source of confusion in audio engineering is the difference between physical acoustic energy and subjective human loudness:</p>
+                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-calculator me-2"></i>The 3 dB Energy Rule vs.
+                                The 10 dB Psychoacoustic Rule</h3>
+                            <p>A crucial source of confusion in audio engineering is the difference between physical
+                                acoustic energy and subjective human loudness:</p>
                             <div class="row g-3 my-2">
                                 <div class="col-md-6">
                                     <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i class="bi bi-lightning-charge me-1 text-teal"></i> The +3 dB Energy Rule (Physical Power)</h6>
-                                        <p class="small text-muted mb-0">Because $\log_{10}(2) \approx 0.3010$, multiplying sound power or amplifier wattage by a factor of 2 yields: $10 \times \log_{10}(2) = +3.01\text{ dB}$. Adding a second identical speaker doubles acoustic power, increasing output by exactly <strong>+3 dB</strong>.</p>
+                                        <h6 class="fw-bold text-dark"><i
+                                                class="bi bi-lightning-charge me-1 text-teal"></i> The +3 dB Energy Rule
+                                            (Physical Power)</h6>
+                                        <p class="small text-muted mb-0">Because $\log_{10}(2) \approx 0.3010$,
+                                            multiplying sound power or amplifier wattage by a factor of 2 yields: $10
+                                            \times \log_{10}(2) = +3.01\text{ dB}$. Adding a second identical speaker
+                                            doubles acoustic power, increasing output by exactly <strong>+3 dB</strong>.
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i class="bi bi-ear me-1 text-teal"></i> The +10 dB Psychoacoustic Rule (Perceived Loudness)</h6>
-                                        <p class="small text-muted mb-0">Due to the human auditory cortex compressing dynamic range, an increase of +3 dB is barely perceptible as a slight volume bump. A sound must increase by roughly <strong>+10 dB</strong> (a tenfold increase in acoustic energy, $10 \times p^2$) before a typical human listener judges it to be <em>twice as loud</em>.</p>
+                                        <h6 class="fw-bold text-dark"><i class="bi bi-ear me-1 text-teal"></i> The +10
+                                            dB Psychoacoustic Rule (Perceived Loudness)</h6>
+                                        <p class="small text-muted mb-0">Due to the human auditory cortex compressing
+                                            dynamic range, an increase of +3 dB is barely perceptible as a slight volume
+                                            bump. A sound must increase by roughly <strong>+10 dB</strong> (a tenfold
+                                            increase in acoustic energy, $10 \times p^2$) before a typical human
+                                            listener judges it to be <em>twice as loud</em>.</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-graph-up me-2"></i>Frequency Weighting Networks: dBA vs. dBC vs. dBZ</h3>
-                            <p>The human ear does not possess a flat frequency response. According to the ISO 226 equal-loudness contours (Fletcher-Munson curves), human hearing is exceptionally sensitive between 2 kHz and 5 kHz (the resonant frequencies of the human ear canal where speech intelligibility resides) and significantly less sensitive to deep bass below 100 Hz:</p>
+                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-graph-up me-2"></i>Frequency Weighting
+                                Networks: dBA vs. dBC vs. dBZ</h3>
+                            <p>The human ear does not possess a flat frequency response. According to the ISO 226
+                                equal-loudness contours (Fletcher-Munson curves), human hearing is exceptionally
+                                sensitive between 2 kHz and 5 kHz (the resonant frequencies of the human ear canal where
+                                speech intelligibility resides) and significantly less sensitive to deep bass below 100
+                                Hz:</p>
 
                             <div class="table-responsive my-3">
                                 <table class="table table-bordered table-striped align-middle">
@@ -532,28 +576,40 @@
                                     <tbody>
                                         <tr>
                                             <td><strong>dBA (A-Weighting)</strong></td>
-                                            <td>Aggressive high-pass roll-off: -50 dB at 20 Hz, -16 dB at 125 Hz, +1.2 dB peak at 2.5 kHz.</td>
-                                            <td>Replicates the 40-phon equal-loudness contour of quiet-to-moderate human hearing.</td>
-                                            <td>OSHA workplace noise compliance, environmental noise ordinances, classroom monitoring.</td>
+                                            <td>Aggressive high-pass roll-off: -50 dB at 20 Hz, -16 dB at 125 Hz, +1.2
+                                                dB peak at 2.5 kHz.</td>
+                                            <td>Replicates the 40-phon equal-loudness contour of quiet-to-moderate human
+                                                hearing.</td>
+                                            <td>OSHA workplace noise compliance, environmental noise ordinances,
+                                                classroom monitoring.</td>
                                         </tr>
                                         <tr>
                                             <td><strong>dBC (C-Weighting)</strong></td>
-                                            <td>Flatter response: -3 dB at 31.5 Hz and 8 kHz; only rolls off subsonic & ultrasonic frequencies.</td>
-                                            <td>Replicates human auditory response at high sound levels (90–100 phon) where ear sensitivity flattens.</td>
-                                            <td>Live concert mixing, subwoofer calibration, mechanical HVAC/engine rumble analysis.</td>
+                                            <td>Flatter response: -3 dB at 31.5 Hz and 8 kHz; only rolls off subsonic &
+                                                ultrasonic frequencies.</td>
+                                            <td>Replicates human auditory response at high sound levels (90–100 phon)
+                                                where ear sensitivity flattens.</td>
+                                            <td>Live concert mixing, subwoofer calibration, mechanical HVAC/engine
+                                                rumble analysis.</td>
                                         </tr>
                                         <tr>
                                             <td><strong>dBZ (Z-Weighting)</strong></td>
-                                            <td>Completely linear and unweighted (Zero weighting) from 10 Hz to 20,000 Hz ($pm 0.5\text{ dB}$).</td>
-                                            <td>Raw physical sound pressure measurement with zero perceptual compensation.</td>
-                                            <td>Laboratory acoustic testing, audio equipment specification, scientific noise emission surveys.</td>
+                                            <td>Completely linear and unweighted (Zero weighting) from 10 Hz to 20,000
+                                                Hz ($pm 0.5\text{ dB}$).</td>
+                                            <td>Raw physical sound pressure measurement with zero perceptual
+                                                compensation.</td>
+                                            <td>Laboratory acoustic testing, audio equipment specification, scientific
+                                                noise emission surveys.</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
 
-                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-shield-check me-2"></i>Occupational Hearing Safety: OSHA vs. NIOSH Standards</h3>
-                            <p>Prolonged exposure to excessive decibel levels causes permanent sensorineural hearing loss through mechanical destruction of stereocilia hair cells inside the cochlea. Occupational safety bodies regulate maximum daily noise doses using exchange rates:</p>
+                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-shield-check me-2"></i>Occupational Hearing
+                                Safety: OSHA vs. NIOSH Standards</h3>
+                            <p>Prolonged exposure to excessive decibel levels causes permanent sensorineural hearing
+                                loss through mechanical destruction of stereocilia hair cells inside the cochlea.
+                                Occupational safety bodies regulate maximum daily noise doses using exchange rates:</p>
 
                             <div class="table-responsive my-3">
                                 <table class="table table-bordered table-striped align-middle text-center">
@@ -617,12 +673,16 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="small text-muted mb-0">Notice that while OSHA permits 90 dBA for 8 hours using a 5 dB exchange rate, NIOSH (National Institute for Occupational Safety and Health) advocates an 85 dBA threshold with a scientifically rigorous 3 dB energy-doubling exchange rate to protect 96% of the workforce from permanent hearing loss.</p>
+                            <p class="small text-muted mb-0">Notice that while OSHA permits 90 dBA for 8 hours using a 5
+                                dB exchange rate, NIOSH (National Institute for Occupational Safety and Health)
+                                advocates an 85 dBA threshold with a scientifically rigorous 3 dB energy-doubling
+                                exchange rate to protect 96% of the workforce from permanent hearing loss.</p>
                         </div>
 
                         <!-- FAQ Section -->
                         <div class="tool-section mt-5">
-                            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
+                            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked
+                                Questions</h2>
 
                             <div class="accordion" id="faqAccordion">
                                 <div class="accordion-item">
@@ -632,79 +692,109 @@
                                             How does an online browser-based decibel meter calculate sound levels?
                                         </button>
                                     </h3>
-                                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div id="faq1" class="accordion-collapse collapse show"
+                                        data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            The online decibel meter uses the Web Audio API to stream raw audio from your device microphone. It computes the Root Mean Square (RMS) voltage of discrete audio buffers and calculates dBFS (decibels relative to full scale) using the formula $\text{dBFS} = 20 \times \log_{10}(\text{RMS} / \text{Max})$. Optional FFT spectral filters apply dBA or dBC weighting curves to simulate human acoustic perception.
+                                            The online decibel meter uses the Web Audio API to stream raw audio from
+                                            your device microphone. It computes the Root Mean Square (RMS) voltage of
+                                            discrete audio buffers and calculates dBFS (decibels relative to full scale)
+                                            using the formula $\text{dBFS} = 20 \times \log_{10}(\text{RMS} /
+                                            \text{Max})$. Optional FFT spectral filters apply dBA or dBC weighting
+                                            curves to simulate human acoustic perception.
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq2">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq2">
                                             What is the physical reference value for 0 dB SPL in acoustic physics?
                                         </button>
                                     </h3>
                                     <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            In air acoustics, 0 dB SPL represents the absolute threshold of human hearing at 1,000 Hz, standardized as a root-mean-square sound pressure of <strong>20 micropascals ($20\,\mu\text{Pa}$, or $2 \times 10^{-5}\,\text{N/m}^2$)</strong>. Any sound pressure level in dB SPL is computed as $L_p = 20 \times \log_{10}(p / p_0)$.
+                                            In air acoustics, 0 dB SPL represents the absolute threshold of human
+                                            hearing at 1,000 Hz, standardized as a root-mean-square sound pressure of
+                                            <strong>20 micropascals ($20\,\mu\text{Pa}$, or $2 \times
+                                                10^{-5}\,\text{N/m}^2$)</strong>. Any sound pressure level in dB SPL is
+                                            computed as $L_p = 20 \times \log_{10}(p / p_0)$.
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq3">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq3">
                                             What is the difference between dBA, dBC, and dBZ frequency weighting?
                                         </button>
                                     </h3>
                                     <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            <strong>dBA (A-weighting)</strong> mimics the human ear's sensitivity at moderate volumes by rolling off low sub-bass and ultra-high frequencies based on Fletcher-Munson curves; it is mandatory for OSHA workplace safety. <strong>dBC (C-weighting)</strong> provides a flatter response with modest bass roll-off, ideal for measuring subwoofers and concert peaks. <strong>dBZ (Zero-weighting)</strong> represents completely unweighted, linear acoustic measurement from 10 Hz to 20 kHz.
+                                            <strong>dBA (A-weighting)</strong> mimics the human ear's sensitivity at
+                                            moderate volumes by rolling off low sub-bass and ultra-high frequencies
+                                            based on Fletcher-Munson curves; it is mandatory for OSHA workplace safety.
+                                            <strong>dBC (C-weighting)</strong> provides a flatter response with modest
+                                            bass roll-off, ideal for measuring subwoofers and concert peaks. <strong>dBZ
+                                                (Zero-weighting)</strong> represents completely unweighted, linear
+                                            acoustic measurement from 10 Hz to 20 kHz.
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq4">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq4">
                                             What is the 3 dB rule versus the 10 dB rule in acoustic decibels?
                                         </button>
                                     </h3>
                                     <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            The <strong>3 dB rule</strong> states that an increase of +3 dB represents an exact doubling of acoustic sound power (energy). The <strong>10 dB rule</strong> relates to psychoacoustics: because the human brain perceives loudness logarithmically, an increase of approximately +10 dB is required for an average human listener to perceive the sound as twice as loud.
+                                            The <strong>3 dB rule</strong> states that an increase of +3 dB represents
+                                            an exact doubling of acoustic sound power (energy). The <strong>10 dB
+                                                rule</strong> relates to psychoacoustics: because the human brain
+                                            perceives loudness logarithmically, an increase of approximately +10 dB is
+                                            required for an average human listener to perceive the sound as twice as
+                                            loud.
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq5">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq5">
                                             What are the OSHA and NIOSH maximum permissible noise exposure limits?
                                         </button>
                                     </h3>
                                     <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            OSHA establishes a Permissible Exposure Limit (PEL) of <strong>90 dBA for an 8-hour workday</strong> with a 5 dB exchange rate (95 dBA is safe for 4 hours, 100 dBA for 2 hours). NIOSH recommends a stricter, safer standard of <strong>85 dBA for 8 hours</strong> with a 3 dB exchange rate (88 dBA is safe for 4 hours, 91 dBA for 2 hours, and 100 dBA for only 15 minutes).
+                                            OSHA establishes a Permissible Exposure Limit (PEL) of <strong>90 dBA for an
+                                                8-hour workday</strong> with a 5 dB exchange rate (95 dBA is safe for 4
+                                            hours, 100 dBA for 2 hours). NIOSH recommends a stricter, safer standard of
+                                            <strong>85 dBA for 8 hours</strong> with a 3 dB exchange rate (88 dBA is
+                                            safe for 4 hours, 91 dBA for 2 hours, and 100 dBA for only 15 minutes).
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq6">
-                                            How can I calibrate an online decibel meter for accurate environmental readings?
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faq6">
+                                            How can I calibrate an online decibel meter for accurate environmental
+                                            readings?
                                         </button>
                                     </h3>
                                     <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            Because consumer smartphone and laptop microphones lack factory SPL calibration and apply automatic gain control (AGC), you can calibrate this meter by generating a 1 kHz reference tone at a known SPL level (or placing a certified handheld SPL meter next to your microphone) and adjusting the Calibration Offset slider until both readings match.
+                                            Because consumer smartphone and laptop microphones lack factory SPL
+                                            calibration and apply automatic gain control (AGC), you can calibrate this
+                                            meter by generating a 1 kHz reference tone at a known SPL level (or placing
+                                            a certified handheld SPL meter next to your microphone) and adjusting the
+                                            Calibration Offset slider until both readings match.
                                         </div>
                                     </div>
                                 </div>
@@ -714,35 +804,43 @@
                         <!-- Related Tools Cards -->
                         <div class="card my-4 shadow-sm border-0">
                             <div class="card-body p-4 bg-light rounded">
-                                <h5 class="card-title fw-bold mb-3"><i class="bi bi-grid-fill me-2 text-teal"></i>Related Sound Analysis & Audio Tools</h5>
+                                <h5 class="card-title fw-bold mb-3"><i
+                                        class="bi bi-grid-fill me-2 text-teal"></i>Related Sound Analysis & Audio Tools
+                                </h5>
                                 <div class="row g-2">
                                     <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/sound-analysis-tools/loudness-meter/">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/sound-analysis-tools/loudness-meter/">
                                             <i class="bi bi-volume-up-fill me-1 text-teal"></i> LUFS Loudness Meter
                                         </a>
                                     </div>
                                     <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/sound-analysis-tools/microphone-test/">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/sound-analysis-tools/microphone-test/">
                                             <i class="bi bi-mic me-1 text-teal"></i> Microphone Test Online
                                         </a>
                                     </div>
                                     <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/sound-analysis-tools/audio-to-waveform-visualizer/">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/sound-analysis-tools/audio-to-waveform-visualizer/">
                                             <i class="bi bi-filetype-wav me-1 text-teal"></i> Waveform Visualizer
                                         </a>
                                     </div>
                                     <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/pitch-detector-tools/pitch-detector/">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/pitch-detector-tools/pitch-detector/">
                                             <i class="bi bi-activity me-1 text-teal"></i> Pitch Detector
                                         </a>
                                     </div>
                                     <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/dj-music-production-tools/bpm-tap-tempo/">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/dj-music-production-tools/bpm-tap-tempo/">
                                             <i class="bi bi-hand-index me-1 text-teal"></i> BPM Tap Tempo
                                         </a>
                                     </div>
                                     <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/music-theory-tools/online-metronome/">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/music-theory-tools/online-metronome/">
                                             <i class="bi bi-stopwatch me-1 text-teal"></i> Online Metronome
                                         </a>
                                     </div>
@@ -758,8 +856,8 @@
 
     <div id="footer"></div>
 
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+    <script src="./assets/bootstrap5.js" defer></script>
+    <script src="./assets/tools.js" defer></script>
 
     <!-- tool js -->
     <script defer>
@@ -780,4 +878,5 @@
         });
     </script>
 </body>
+
 </html>

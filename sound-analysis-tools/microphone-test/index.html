@@ -11,12 +11,12 @@
         content="microphone test online, mic check, test mic volume, microphone input tester, condenser vs dynamic mic, gain staging audio">
 
     <link rel="canonical" href="https://pitchdetectors.com/sound-analysis-tools/microphone-test/">
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="./assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link href="./assets/tools.css" rel="stylesheet">
 
     <script type="application/ld+json">
     {
@@ -104,7 +104,7 @@
             border: none;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .mic-btn.start {
@@ -137,7 +137,7 @@
             border-radius: 12px;
             overflow: hidden;
             margin: 20px 0;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         #volumeLevel {
@@ -229,375 +229,500 @@
 
                     <div class="mic-test-panel">
                         <div class="mic-controls">
-                            <button id="startBtn" class="mic-btn start"><i class="bi bi-mic-fill me-2"></i>Start Mic Test</button>
-                            <button id="stopBtn" class="mic-btn stop" disabled><i class="bi bi-stop-circle-fill me-2"></i>Stop Test</button>
-                        </div>
-                        
-                    <!-- Content Area -->
-                    <div class="content_area container py-4">
-
-                        <!-- How to Use -->
-                        <div class="tool-section mb-4">
-                            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Test Your Microphone Online</h2>
-                            <ol class="lead-steps mb-4">
-                                <li><strong>Initiate Hardware Connection:</strong> Click the yellow <strong>Start Mic Test</strong> button. Your browser will prompt for microphone permission—click <em>Allow</em>. For external USB or XLR audio interfaces, make sure your desired input is selected as the default recording device in system preferences.</li>
-                                <li><strong>Speak at Normal Performance Volume:</strong> Count aloud or recite a test sentence (e.g., <em>"Testing, one two three"</em>) at the exact vocal volume and distance you plan to use for streaming, Zoom meetings, or podcast recording.</li>
-                                <li><strong>Observe Input Meter Behavior:</strong> Watch the dynamic multi-color visualizer. A healthy vocal signal consistently activates the green segment and occasionally touches yellow (60% to 75% deflection). If the bar constantly pins in the red, your microphone is clipping and distorting; if it barely moves past 10%, your gain is set too low.</li>
-                                <li><strong>Evaluate Background Noise Floor:</strong> Cease speaking and remain silent for 3 seconds. The volume meter should drop to near zero. If the bar continues fluctuating above 20%, you have room ambient noise, fan hum, or electrical ground hum entering your signal path.</li>
-                            </ol>
+                            <button id="startBtn" class="mic-btn start"><i class="bi bi-mic-fill me-2"></i>Start Mic
+                                Test</button>
+                            <button id="stopBtn" class="mic-btn stop" disabled><i
+                                    class="bi bi-stop-circle-fill me-2"></i>Stop Test</button>
                         </div>
 
-                        <!-- Technical Deep-Dive -->
-                        <div class="tool-section mb-4">
-                            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>The Physics and Engineering of Microphone Transducers</h2>
-                            <p>A microphone is an electroacoustic transducer—a precision instrument that converts kinetic acoustic energy (sound waves oscillating in air) into proportional electrical voltage variations. Microphones are classified by their physical conversion mechanisms:</p>
+                        <!-- Content Area -->
+                        <div class="content_area container py-4">
 
-                            <div class="table-responsive my-3">
-                                <table class="table table-bordered table-striped align-middle">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>Transducer Type</th>
-                                            <th>Operating Principle</th>
-                                            <th>Sensitivity & SPL Limit</th>
-                                            <th>Power Required</th>
-                                            <th>Optimal Use Cases</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Dynamic (Moving Coil)</strong></td>
-                                            <td>Electromagnetic Induction: sound moves a Mylar diaphragm bonded to a voice coil inside a permanent magnet gap ($V = -N \frac{d\Phi}{dt}$).</td>
-                                            <td>Low sensitivity (1.0–2.5 mV/Pa); virtually un-clippable ($>150\text{ dB SPL}$).</td>
-                                            <td>None (Passive)</td>
-                                            <td>Live stage vocals, snare drums, guitar amplifier cabinets, broadcast radio (Shure SM58, SM7B).</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Condenser (Capacitor)</strong></td>
-                                            <td>Electrostatic Capacitance: sound vibrates a gold-sputtered foil diaphragm against a fixed backplate ($Q = C \times V$).</td>
-                                            <td>High sensitivity (10–30 mV/Pa); fast transient response; detailed top end.</td>
-                                            <td><strong>+48V Phantom Power</strong></td>
-                                            <td>Studio vocals, acoustic guitars, orchestral tracking, voiceover (Neumann U87, Rode NT1).</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Ribbon (Velocity)</strong></td>
-                                            <td>Electromagnetic: an ultra-thin corrugated aluminum ribbon ($<2\,\mu\text{m}$) suspended between two magnetic poles.</td>
-                                            <td>Very low sensitivity; natural bidirectional figure-8 pickup; smooth, warm high roll-off.</td>
-                                            <td>None (Passive; +48V can damage)</td>
-                                            <td>Brass instruments, violin, drum overheads, harsh guitar amps (Royer R-121, Coles 4038).</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>MEMS (Micro-Electro-Mechanical)</strong></td>
-                                            <td>Micro-machined silicon capacitor integrated directly onto an ASIC silicon chip with analog-to-digital converter.</td>
-                                            <td>Moderate sensitivity; highly miniaturized; shock and moisture resistant.</td>
-                                            <td>Low DC voltage (1.8V–3.3V)</td>
-                                            <td>Smartphones, laptops, True Wireless earbuds, webcams, smart speakers.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <!-- How to Use -->
+                            <div class="tool-section mb-4">
+                                <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Test Your
+                                    Microphone Online</h2>
+                                <ol class="lead-steps mb-4">
+                                    <li><strong>Initiate Hardware Connection:</strong> Click the yellow <strong>Start
+                                            Mic Test</strong> button. Your browser will prompt for microphone
+                                        permission—click <em>Allow</em>. For external USB or XLR audio interfaces, make
+                                        sure your desired input is selected as the default recording device in system
+                                        preferences.</li>
+                                    <li><strong>Speak at Normal Performance Volume:</strong> Count aloud or recite a
+                                        test sentence (e.g., <em>"Testing, one two three"</em>) at the exact vocal
+                                        volume and distance you plan to use for streaming, Zoom meetings, or podcast
+                                        recording.</li>
+                                    <li><strong>Observe Input Meter Behavior:</strong> Watch the dynamic multi-color
+                                        visualizer. A healthy vocal signal consistently activates the green segment and
+                                        occasionally touches yellow (60% to 75% deflection). If the bar constantly pins
+                                        in the red, your microphone is clipping and distorting; if it barely moves past
+                                        10%, your gain is set too low.</li>
+                                    <li><strong>Evaluate Background Noise Floor:</strong> Cease speaking and remain
+                                        silent for 3 seconds. The volume meter should drop to near zero. If the bar
+                                        continues fluctuating above 20%, you have room ambient noise, fan hum, or
+                                        electrical ground hum entering your signal path.</li>
+                                </ol>
                             </div>
 
-                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-compass me-2"></i>Directional Polar Patterns & Room Rejection</h3>
-                            <p>A microphone's polar pattern dictates how sensitive the capsule is to sounds arriving from different angles in 3D space:</p>
-                            <div class="row g-3 my-2">
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i class="bi bi-heart me-1 text-teal"></i> Cardioid (Heart-Shaped)</h6>
-                                        <p class="small text-muted mb-0">Captures sound primarily from the front ($0^\circ$) while rejecting sound arriving from the exact rear ($180^\circ$). It is the universal standard for home studios and stage performances because it isolates the vocalist from stage monitors and room echo.</p>
+                            <!-- Technical Deep-Dive -->
+                            <div class="tool-section mb-4">
+                                <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>The Physics and Engineering of
+                                    Microphone Transducers</h2>
+                                <p>A microphone is an electroacoustic transducer—a precision instrument that converts
+                                    kinetic acoustic energy (sound waves oscillating in air) into proportional
+                                    electrical voltage variations. Microphones are classified by their physical
+                                    conversion mechanisms:</p>
+
+                                <div class="table-responsive my-3">
+                                    <table class="table table-bordered table-striped align-middle">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Transducer Type</th>
+                                                <th>Operating Principle</th>
+                                                <th>Sensitivity & SPL Limit</th>
+                                                <th>Power Required</th>
+                                                <th>Optimal Use Cases</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>Dynamic (Moving Coil)</strong></td>
+                                                <td>Electromagnetic Induction: sound moves a Mylar diaphragm bonded to a
+                                                    voice coil inside a permanent magnet gap ($V = -N
+                                                    \frac{d\Phi}{dt}$).</td>
+                                                <td>Low sensitivity (1.0–2.5 mV/Pa); virtually un-clippable ($>150\text{
+                                                    dB SPL}$).</td>
+                                                <td>None (Passive)</td>
+                                                <td>Live stage vocals, snare drums, guitar amplifier cabinets, broadcast
+                                                    radio (Shure SM58, SM7B).</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Condenser (Capacitor)</strong></td>
+                                                <td>Electrostatic Capacitance: sound vibrates a gold-sputtered foil
+                                                    diaphragm against a fixed backplate ($Q = C \times V$).</td>
+                                                <td>High sensitivity (10–30 mV/Pa); fast transient response; detailed
+                                                    top end.</td>
+                                                <td><strong>+48V Phantom Power</strong></td>
+                                                <td>Studio vocals, acoustic guitars, orchestral tracking, voiceover
+                                                    (Neumann U87, Rode NT1).</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Ribbon (Velocity)</strong></td>
+                                                <td>Electromagnetic: an ultra-thin corrugated aluminum ribbon ($
+                                                    <2\,\mu\text{m}$) suspended between two magnetic poles.</td>
+                                                <td>Very low sensitivity; natural bidirectional figure-8 pickup; smooth,
+                                                    warm high roll-off.</td>
+                                                <td>None (Passive; +48V can damage)</td>
+                                                <td>Brass instruments, violin, drum overheads, harsh guitar amps (Royer
+                                                    R-121, Coles 4038).</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>MEMS (Micro-Electro-Mechanical)</strong></td>
+                                                <td>Micro-machined silicon capacitor integrated directly onto an ASIC
+                                                    silicon chip with analog-to-digital converter.</td>
+                                                <td>Moderate sensitivity; highly miniaturized; shock and moisture
+                                                    resistant.</td>
+                                                <td>Low DC voltage (1.8V–3.3V)</td>
+                                                <td>Smartphones, laptops, True Wireless earbuds, webcams, smart
+                                                    speakers.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <h3 class="text-mid mt-4 mb-3"><i class="bi bi-compass me-2"></i>Directional Polar
+                                    Patterns & Room Rejection</h3>
+                                <p>A microphone's polar pattern dictates how sensitive the capsule is to sounds arriving
+                                    from different angles in 3D space:</p>
+                                <div class="row g-3 my-2">
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded h-100 bg-white shadow-sm">
+                                            <h6 class="fw-bold text-dark"><i class="bi bi-heart me-1 text-teal"></i>
+                                                Cardioid (Heart-Shaped)</h6>
+                                            <p class="small text-muted mb-0">Captures sound primarily from the front
+                                                ($0^\circ$) while rejecting sound arriving from the exact rear
+                                                ($180^\circ$). It is the universal standard for home studios and stage
+                                                performances because it isolates the vocalist from stage monitors and
+                                                room echo.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded h-100 bg-white shadow-sm">
+                                            <h6 class="fw-bold text-dark"><i
+                                                    class="bi bi-record-circle me-1 text-teal"></i> Omnidirectional
+                                                (360° Sphere)</h6>
+                                            <p class="small text-muted mb-0">Captures sound equally from all directions
+                                                with zero proximity effect and exceptional natural bass response. Ideal
+                                                for acoustic measurements, lavalier lapel mics, and group choir
+                                                recordings in well-treated rooms.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded h-100 bg-white shadow-sm">
+                                            <h6 class="fw-bold text-dark"><i class="bi bi-bullseye me-1 text-teal"></i>
+                                                Supercardioid & Shotgun</h6>
+                                            <p class="small text-muted mb-0">Possesses a tighter front pickup angle than
+                                                cardioid with deeper side rejection, but features a small rear
+                                                sensitivity lobe. Widely utilized in film boom poles, news broadcasting,
+                                                and gaming headsets.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded h-100 bg-white shadow-sm">
+                                            <h6 class="fw-bold text-dark"><i class="bi bi-infinity me-1 text-teal"></i>
+                                                Figure-8 (Bidirectional)</h6>
+                                            <p class="small text-muted mb-0">Equally sensitive to sound arriving from
+                                                front ($0^\circ$) and back ($180^\circ$), with 100% acoustic
+                                                cancellation along the side null planes ($90^\circ$ and $270^\circ$).
+                                                Essential for podcast interviews across a single table and Blumlein
+                                                stereo recording.</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i class="bi bi-record-circle me-1 text-teal"></i> Omnidirectional (360° Sphere)</h6>
-                                        <p class="small text-muted mb-0">Captures sound equally from all directions with zero proximity effect and exceptional natural bass response. Ideal for acoustic measurements, lavalier lapel mics, and group choir recordings in well-treated rooms.</p>
-                                    </div>
+
+                                <h3 class="text-mid mt-4 mb-3"><i class="bi bi-sliders me-2"></i>Professional Gain
+                                    Staging: The -18 dBFS Rule</h3>
+                                <p>One of the most critical fundamentals in audio recording is <strong>gain
+                                        staging</strong>. Setting the hardware preamplifier gain dial correctly ensures
+                                    maximum audio resolution while preventing digital distortion:</p>
+
+                                <div class="card p-3 my-3 bg-light border-0 shadow-sm">
+                                    <h5 class="fw-bold mb-2">The Digital Headroom Golden Standard:</h5>
+                                    <p class="mb-1">In 24-bit fixed-point digital audio, $0\text{ dBFS}$ is the absolute
+                                        physical brickwall ceiling. Any electrical wave attempting to exceed $0\text{
+                                        dBFS}$ is abruptly squared off, producing catastrophic non-harmonic digital
+                                        clipping distortion.</p>
+                                    <ul class="small mb-0">
+                                        <li><strong>Target Average Dialogue Level:</strong>
+                                            <code>-18 dBFS to -12 dBFS</code> (equivalent to $0\text{ VU}$ on
+                                            traditional analog studio consoles).</li>
+                                        <li><strong>Target Maximum Peaks:</strong> <code>-6 dBFS to -3 dBFS</code>
+                                            during loud laughter, shouting, or emotional vocal peaks.</li>
+                                        <li><strong>Safety Headroom Margin:</strong> Keeping at least $6\text{ dB}$ of
+                                            headroom prevents unexpected plosive air bursts ("P" and "B" pops) from
+                                            ruining a take.</li>
+                                    </ul>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i class="bi bi-bullseye me-1 text-teal"></i> Supercardioid & Shotgun</h6>
-                                        <p class="small text-muted mb-0">Possesses a tighter front pickup angle than cardioid with deeper side rejection, but features a small rear sensitivity lobe. Widely utilized in film boom poles, news broadcasting, and gaming headsets.</p>
-                                    </div>
+
+                                <h3 class="text-mid mt-4 mb-3"><i class="bi bi-tools me-2"></i>Microphone Diagnostic &
+                                    Troubleshooting Matrix</h3>
+                                <div class="table-responsive my-3">
+                                    <table class="table table-bordered table-striped align-middle">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Symptom</th>
+                                                <th>Underlying Technical Cause</th>
+                                                <th>Immediate Corrective Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>No Signal / Flat Meter</strong></td>
+                                                <td>Browser permission denied, hardware mute engaged, or wrong default
+                                                    device selected.</td>
+                                                <td>Check browser padlock icon; ensure hardware mute switch is OFF;
+                                                    select the USB interface in OS Sound Settings.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Extremely Low Volume</strong></td>
+                                                <td>Low microphone sensitivity, talking into back of capsule, or missing
+                                                    phantom power.</td>
+                                                <td>Turn on +48V phantom power on audio interface; verify speaking into
+                                                    front badge of side-address condenser; increase input gain to 75%.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Harsher / Distorted Audio</strong></td>
+                                                <td>Analog preamp clipping or digital 0 dBFS clipping.</td>
+                                                <td>Reduce interface gain knob until peaks stay below the red zone; back
+                                                    away 4–6 inches from the microphone.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Echo / Feedback Squeal</strong></td>
+                                                <td>Open monitor speakers feeding microphone signal back into input
+                                                    stream.</td>
+                                                <td>Wear closed-back studio headphones; turn off hardware software
+                                                    direct monitoring through PC speakers.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Excessive "Popping" Plosives</strong></td>
+                                                <td>High-velocity turbulent air bursts impacting the delicate capsule
+                                                    diaphragm directly.</td>
+                                                <td>Install a mesh pop filter 2 inches from the capsule; speak slightly
+                                                    off-axis ($15^\circ$ angle).</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i class="bi bi-infinity me-1 text-teal"></i> Figure-8 (Bidirectional)</h6>
-                                        <p class="small text-muted mb-0">Equally sensitive to sound arriving from front ($0^\circ$) and back ($180^\circ$), with 100% acoustic cancellation along the side null planes ($90^\circ$ and $270^\circ$). Essential for podcast interviews across a single table and Blumlein stereo recording.</p>
+                            </div>
+
+                            <!-- FAQ Section -->
+                            <div class="tool-section mt-5">
+                                <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked
+                                    Questions</h2>
+
+                                <div class="accordion" id="faqAccordion">
+                                    <div class="accordion-item">
+                                        <h3 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#faq1">
+                                                How does an online browser-based microphone test function?
+                                            </button>
+                                        </h3>
+                                        <div id="faq1" class="accordion-collapse collapse show"
+                                            data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                The online microphone test accesses your device's audio hardware locally
+                                                via the Web Audio API and
+                                                <code>navigator.mediaDevices.getUserMedia</code>. An
+                                                <code>AnalyserNode</code> calculates real-time
+                                                <code>ByteFrequencyData</code> to gauge incoming acoustic amplitude
+                                                across time buffers. All audio processing runs locally inside your
+                                                browser sandbox; no audio data is ever transmitted or recorded.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h3 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq2">
+                                                What is the difference between a dynamic and a condenser microphone?
+                                            </button>
+                                        </h3>
+                                        <div id="faq2" class="accordion-collapse collapse"
+                                            data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                <strong>Dynamic microphones</strong> operate on electromagnetic
+                                                induction: sound waves move a plastic diaphragm attached to a wire coil
+                                                inside a magnetic field. They are durable, handle extreme SPL (sound
+                                                pressure levels), and do not require external power. <strong>Condenser
+                                                    microphones</strong> use a charged capacitor with an ultra-thin
+                                                gold-sputtered diaphragm; they offer faster transient response and wider
+                                                frequency coverage but require +48V phantom power.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h3 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq3">
+                                                What is the recommended target level when setting microphone gain?
+                                            </button>
+                                        </h3>
+                                        <div id="faq3" class="accordion-collapse collapse"
+                                            data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                In 24-bit digital recording, aim for your average spoken or sung
+                                                dialogue to hover between <strong>-18 dBFS and -12 dBFS</strong>, with
+                                                maximum emotional or dynamic peaks never exceeding <strong>-6
+                                                    dBFS</strong>. This provides ample digital headroom to prevent
+                                                accidental 0 dBFS brickwall distortion while maintaining a healthy
+                                                signal-to-noise ratio (SNR) well above the preamp noise floor.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h3 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq4">
+                                                Why is my microphone volume too quiet even though the hardware is
+                                                plugged in?
+                                            </button>
+                                        </h3>
+                                        <div id="faq4" class="accordion-collapse collapse"
+                                            data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                Low microphone volume is commonly caused by: (1) System software input
+                                                gain set below 75% in Windows Sound Control Panel or macOS Audio MIDI
+                                                Setup; (2) Inadvertently speaking into the back or top of a side-address
+                                                studio condenser microphone; (3) Needing an inline preamp booster (such
+                                                as a Cloudlifter) for low-output dynamic mics like the Shure SM7B; or
+                                                (4) Lack of required +48V phantom power on XLR interfaces.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h3 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq5">
+                                                What causes echo and hollow audio during voice calls and recordings?
+                                            </button>
+                                        </h3>
+                                        <div id="faq5" class="accordion-collapse collapse"
+                                            data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                Hollow sound usually results from acoustic comb filtering caused by
+                                                sound bouncing off hard untreated desk or wall surfaces and entering the
+                                                microphone milliseconds after the direct sound wave. Echo occurs when
+                                                your computer speakers feed audio back into an active open microphone
+                                                without headphones or hardware acoustic echo cancellation.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <h3 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq6">
+                                                What is the proximity effect in directional microphones?
+                                            </button>
+                                        </h3>
+                                        <div id="faq6" class="accordion-collapse collapse"
+                                            data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                The <strong>proximity effect</strong> is an acoustic phenomenon in
+                                                directional microphones (cardioid, supercardioid, figure-8) where low
+                                                frequencies (bass) are significantly boosted as the sound source moves
+                                                closer to the microphone capsule. Radio broadcasters use it to produce a
+                                                deep, intimate radio voice, but it can cause muddy plosives if placed
+                                                too close without a pop filter.
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-sliders me-2"></i>Professional Gain Staging: The -18 dBFS Rule</h3>
-                            <p>One of the most critical fundamentals in audio recording is <strong>gain staging</strong>. Setting the hardware preamplifier gain dial correctly ensures maximum audio resolution while preventing digital distortion:</p>
-
-                            <div class="card p-3 my-3 bg-light border-0 shadow-sm">
-                                <h5 class="fw-bold mb-2">The Digital Headroom Golden Standard:</h5>
-                                <p class="mb-1">In 24-bit fixed-point digital audio, $0\text{ dBFS}$ is the absolute physical brickwall ceiling. Any electrical wave attempting to exceed $0\text{ dBFS}$ is abruptly squared off, producing catastrophic non-harmonic digital clipping distortion.</p>
-                                <ul class="small mb-0">
-                                    <li><strong>Target Average Dialogue Level:</strong> <code>-18 dBFS to -12 dBFS</code> (equivalent to $0\text{ VU}$ on traditional analog studio consoles).</li>
-                                    <li><strong>Target Maximum Peaks:</strong> <code>-6 dBFS to -3 dBFS</code> during loud laughter, shouting, or emotional vocal peaks.</li>
-                                    <li><strong>Safety Headroom Margin:</strong> Keeping at least $6\text{ dB}$ of headroom prevents unexpected plosive air bursts ("P" and "B" pops) from ruining a take.</li>
-                                </ul>
+                            <!-- Related Tools Cards -->
+                            <div class="card my-4 shadow-sm border-0">
+                                <div class="card-body p-4 bg-light rounded">
+                                    <h5 class="card-title fw-bold mb-3"><i
+                                            class="bi bi-grid-fill me-2 text-teal"></i>Related Sound Analysis Tools</h5>
+                                    <div class="row g-2">
+                                        <div class="col-md-4">
+                                            <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                                href="/sound-analysis-tools/decibel-meter/">
+                                                <i class="bi bi-speedometer me-1 text-teal"></i> Decibel Meter Online
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                                href="/sound-analysis-tools/loudness-meter/">
+                                                <i class="bi bi-volume-up-fill me-1 text-teal"></i> Loudness Meter
+                                                (LUFS)
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                                href="/sound-analysis-tools/audio-to-waveform-visualizer/">
+                                                <i class="bi bi-filetype-wav me-1 text-teal"></i> Waveform Visualizer
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                                href="/pitch-detector-tools/pitch-detector/">
+                                                <i class="bi bi-activity me-1 text-teal"></i> Pitch Detector
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                                href="/pitch-detector-tools/vocal-range-finder-online/">
+                                                <i class="bi bi-mic me-1 text-teal"></i> Vocal Range Finder
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                                href="/pitch-detector-tools/guitar-tuner-online/">
+                                                <i class="bi bi-music-note-beamed me-1 text-teal"></i> Guitar Tuner
+                                                Online
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-tools me-2"></i>Microphone Diagnostic & Troubleshooting Matrix</h3>
-                            <div class="table-responsive my-3">
-                                <table class="table table-bordered table-striped align-middle">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>Symptom</th>
-                                            <th>Underlying Technical Cause</th>
-                                            <th>Immediate Corrective Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>No Signal / Flat Meter</strong></td>
-                                            <td>Browser permission denied, hardware mute engaged, or wrong default device selected.</td>
-                                            <td>Check browser padlock icon; ensure hardware mute switch is OFF; select the USB interface in OS Sound Settings.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Extremely Low Volume</strong></td>
-                                            <td>Low microphone sensitivity, talking into back of capsule, or missing phantom power.</td>
-                                            <td>Turn on +48V phantom power on audio interface; verify speaking into front badge of side-address condenser; increase input gain to 75%.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Harsher / Distorted Audio</strong></td>
-                                            <td>Analog preamp clipping or digital 0 dBFS clipping.</td>
-                                            <td>Reduce interface gain knob until peaks stay below the red zone; back away 4–6 inches from the microphone.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Echo / Feedback Squeal</strong></td>
-                                            <td>Open monitor speakers feeding microphone signal back into input stream.</td>
-                                            <td>Wear closed-back studio headphones; turn off hardware software direct monitoring through PC speakers.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Excessive "Popping" Plosives</strong></td>
-                                            <td>High-velocity turbulent air bursts impacting the delicate capsule diaphragm directly.</td>
-                                            <td>Install a mesh pop filter 2 inches from the capsule; speak slightly off-axis ($15^\circ$ angle).</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
-
-                        <!-- FAQ Section -->
-                        <div class="tool-section mt-5">
-                            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
-
-                            <div class="accordion" id="faqAccordion">
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq1">
-                                            How does an online browser-based microphone test function?
-                                        </button>
-                                    </h3>
-                                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            The online microphone test accesses your device's audio hardware locally via the Web Audio API and <code>navigator.mediaDevices.getUserMedia</code>. An <code>AnalyserNode</code> calculates real-time <code>ByteFrequencyData</code> to gauge incoming acoustic amplitude across time buffers. All audio processing runs locally inside your browser sandbox; no audio data is ever transmitted or recorded.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq2">
-                                            What is the difference between a dynamic and a condenser microphone?
-                                        </button>
-                                    </h3>
-                                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            <strong>Dynamic microphones</strong> operate on electromagnetic induction: sound waves move a plastic diaphragm attached to a wire coil inside a magnetic field. They are durable, handle extreme SPL (sound pressure levels), and do not require external power. <strong>Condenser microphones</strong> use a charged capacitor with an ultra-thin gold-sputtered diaphragm; they offer faster transient response and wider frequency coverage but require +48V phantom power.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq3">
-                                            What is the recommended target level when setting microphone gain?
-                                        </button>
-                                    </h3>
-                                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            In 24-bit digital recording, aim for your average spoken or sung dialogue to hover between <strong>-18 dBFS and -12 dBFS</strong>, with maximum emotional or dynamic peaks never exceeding <strong>-6 dBFS</strong>. This provides ample digital headroom to prevent accidental 0 dBFS brickwall distortion while maintaining a healthy signal-to-noise ratio (SNR) well above the preamp noise floor.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq4">
-                                            Why is my microphone volume too quiet even though the hardware is plugged in?
-                                        </button>
-                                    </h3>
-                                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Low microphone volume is commonly caused by: (1) System software input gain set below 75% in Windows Sound Control Panel or macOS Audio MIDI Setup; (2) Inadvertently speaking into the back or top of a side-address studio condenser microphone; (3) Needing an inline preamp booster (such as a Cloudlifter) for low-output dynamic mics like the Shure SM7B; or (4) Lack of required +48V phantom power on XLR interfaces.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq5">
-                                            What causes echo and hollow audio during voice calls and recordings?
-                                        </button>
-                                    </h3>
-                                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Hollow sound usually results from acoustic comb filtering caused by sound bouncing off hard untreated desk or wall surfaces and entering the microphone milliseconds after the direct sound wave. Echo occurs when your computer speakers feed audio back into an active open microphone without headphones or hardware acoustic echo cancellation.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq6">
-                                            What is the proximity effect in directional microphones?
-                                        </button>
-                                    </h3>
-                                    <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            The <strong>proximity effect</strong> is an acoustic phenomenon in directional microphones (cardioid, supercardioid, figure-8) where low frequencies (bass) are significantly boosted as the sound source moves closer to the microphone capsule. Radio broadcasters use it to produce a deep, intimate radio voice, but it can cause muddy plosives if placed too close without a pop filter.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Related Tools Cards -->
-                        <div class="card my-4 shadow-sm border-0">
-                            <div class="card-body p-4 bg-light rounded">
-                                <h5 class="card-title fw-bold mb-3"><i class="bi bi-grid-fill me-2 text-teal"></i>Related Sound Analysis Tools</h5>
-                                <div class="row g-2">
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/sound-analysis-tools/decibel-meter/">
-                                            <i class="bi bi-speedometer me-1 text-teal"></i> Decibel Meter Online
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/sound-analysis-tools/loudness-meter/">
-                                            <i class="bi bi-volume-up-fill me-1 text-teal"></i> Loudness Meter (LUFS)
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/sound-analysis-tools/audio-to-waveform-visualizer/">
-                                            <i class="bi bi-filetype-wav me-1 text-teal"></i> Waveform Visualizer
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/pitch-detector-tools/pitch-detector/">
-                                            <i class="bi bi-activity me-1 text-teal"></i> Pitch Detector
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/pitch-detector-tools/vocal-range-finder-online/">
-                                            <i class="bi bi-mic me-1 text-teal"></i> Vocal Range Finder
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2" href="/pitch-detector-tools/guitar-tuner-online/">
-                                            <i class="bi bi-music-note-beamed me-1 text-teal"></i> Guitar Tuner Online
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="footer"></div>
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
-    <!-- include js -->
-    <script defer>
+        <div id="footer"></div>
+        <script src="./assets/bootstrap5.js" defer></script>
+        <script src="./assets/tools.js" defer></script>
+        <!-- include js -->
+        <script defer>
 
 
-        window.addEventListener("load", () => {
-            Promise.all([
-                fetch("../../header.html").then(res => res.text()),
-                fetch("../../footer.html").then(res => res.text())
-            ])
-                .then(([header, footer]) => {
-                    document.getElementById("header").innerHTML = header;
-                    document.getElementById("footer").innerHTML = footer;
-                })
-                .catch(err => console.error("Include load failed:", err));
-        });
-    </script>
-    <!-- tool js -->
-    <script defer>
-        let audioContext;
-        let analyser;
-        let microphone;
-        let javascriptNode;
-        let running = false;
+            window.addEventListener("load", () => {
+                Promise.all([
+                    fetch("../../header.html").then(res => res.text()),
+                    fetch("../../footer.html").then(res => res.text())
+                ])
+                    .then(([header, footer]) => {
+                        document.getElementById("header").innerHTML = header;
+                        document.getElementById("footer").innerHTML = footer;
+                    })
+                    .catch(err => console.error("Include load failed:", err));
+            });
+        </script>
+        <!-- tool js -->
+        <script defer>
+            let audioContext;
+            let analyser;
+            let microphone;
+            let javascriptNode;
+            let running = false;
 
-        const startBtn = document.getElementById('startBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const volumeLevel = document.getElementById('volumeLevel');
-        const statusText = document.getElementById('status');
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const volumeLevel = document.getElementById('volumeLevel');
+            const statusText = document.getElementById('status');
 
-        startBtn.addEventListener('click', async () => {
-            if (running) return;
+            startBtn.addEventListener('click', async () => {
+                if (running) return;
 
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-                analyser.fftSize = 256;
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    analyser = audioContext.createAnalyser();
+                    analyser.fftSize = 256;
 
-                microphone = audioContext.createMediaStreamSource(stream);
-                javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+                    microphone = audioContext.createMediaStreamSource(stream);
+                    javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 
-                microphone.connect(analyser);
-                analyser.connect(javascriptNode);
-                javascriptNode.connect(audioContext.destination);
+                    microphone.connect(analyser);
+                    analyser.connect(javascriptNode);
+                    javascriptNode.connect(audioContext.destination);
 
-                javascriptNode.onaudioprocess = () => {
-                    const array = new Uint8Array(analyser.frequencyBinCount);
-                    analyser.getByteFrequencyData(array);
-                    let values = 0;
-                    for (let i = 0; i < array.length; i++) {
-                        values += array[i];
-                    }
-                    let average = values / array.length;
-                    volumeLevel.style.width = Math.min(100, average) + '%';
-                };
+                    javascriptNode.onaudioprocess = () => {
+                        const array = new Uint8Array(analyser.frequencyBinCount);
+                        analyser.getByteFrequencyData(array);
+                        let values = 0;
+                        for (let i = 0; i < array.length; i++) {
+                            values += array[i];
+                        }
+                        let average = values / array.length;
+                        volumeLevel.style.width = Math.min(100, average) + '%';
+                    };
 
-                running = true;
-                startBtn.disabled = true;
-                stopBtn.disabled = false;
-                statusText.textContent = 'Microphone is active...';
-            } catch (err) {
-                console.error(err);
-                statusText.textContent = 'Error accessing microphone: ' + err.message;
-            }
-        });
+                    running = true;
+                    startBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    statusText.textContent = 'Microphone is active...';
+                } catch (err) {
+                    console.error(err);
+                    statusText.textContent = 'Error accessing microphone: ' + err.message;
+                }
+            });
 
-        stopBtn.addEventListener('click', () => {
-            if (!running) return;
-            javascriptNode.disconnect();
-            analyser.disconnect();
-            microphone.disconnect();
-            audioContext.close();
+            stopBtn.addEventListener('click', () => {
+                if (!running) return;
+                javascriptNode.disconnect();
+                analyser.disconnect();
+                microphone.disconnect();
+                audioContext.close();
 
-            running = false;
-            startBtn.disabled = false;
-            stopBtn.disabled = true;
-            volumeLevel.style.width = '0';
-            statusText.textContent = 'Microphone stopped.';
-        });
-    </script>
+                running = false;
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                volumeLevel.style.width = '0';
+                statusText.textContent = 'Microphone stopped.';
+            });
+        </script>
 
 </body>
 

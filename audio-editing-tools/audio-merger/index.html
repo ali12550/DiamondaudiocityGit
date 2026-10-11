@@ -11,7 +11,7 @@
         content="audio merger, merge audio files online, combine mp3, join wav files, audio joiner, pcm concatenation, stitch audio tracks, browser audio merger" />
 
     <link rel="canonical" href="https://pitchdetectors.com/audio-editing-tools/audio-merger/">
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -20,7 +20,7 @@
         content="Merge multiple audio files into a single continuous track with browser-based Web Audio processing. Zero server uploads, lossless PCM fidelity, instant WAV export." />
     <meta property="og:url" content="https://pitchdetectors.com/audio-editing-tools/audio-merger/" />
     <meta property="og:site_name" content="Pitch Detectors" />
-    <meta property="og:image" content="/assets/imgs/logo.png" />
+    <meta property="og:image" content="./assets/imgs/logo.png" />
     <meta property="og:image:alt" content="Audio Merger Tool by Pitch Detectors" />
 
     <!-- Twitter Card -->
@@ -28,12 +28,12 @@
     <meta name="twitter:title" content="Audio Merger Online – Combine & Join Audio Files Free | Pitch Detectors" />
     <meta name="twitter:description"
         content="Combine MP3, WAV, FLAC, and OGG files online without quality loss. 100% private client-side audio concatenation." />
-    <meta name="twitter:image" content="/assets/imgs/logo.png" />
+    <meta name="twitter:image" content="./assets/imgs/logo.png" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="./assets/bootstrap5.css" rel="stylesheet">
+    <link href="./assets/style.css" rel="stylesheet">
+    <link href="./assets/tools.css" rel="stylesheet">
 
     <!-- Google Analytics -->
 
@@ -218,47 +218,71 @@
                 <!-- content -->
                 <article class="tool-container mt-4" id="main-content">
                     <header class="mb-4">
-                        <h1 class="text-teal mb-3">Audio Merger: Complete Technical Guide to Audio Concatenation & Digital Splicing</h1>
+                        <h1 class="text-teal mb-3">Audio Merger: Complete Technical Guide to Audio Concatenation &
+                            Digital Splicing</h1>
                         <p class="lead text-muted">
-                            Seamlessly combine multiple audio tracks, voiceover recordings, podcasts, and musical movements into a single high-fidelity audio stream. Explore the signal processing mechanics of PCM concatenation, buffer alignment, sample-rate interpolation, and click-free boundary transitions.
+                            Seamlessly combine multiple audio tracks, voiceover recordings, podcasts, and musical
+                            movements into a single high-fidelity audio stream. Explore the signal processing mechanics
+                            of PCM concatenation, buffer alignment, sample-rate interpolation, and click-free boundary
+                            transitions.
                         </p>
                     </header>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-cpu me-2"></i>1. How Digital Audio Concatenation Works</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-cpu me-2"></i>1. How Digital Audio Concatenation
+                            Works</h2>
                         <p>
-                            In digital signal processing (DSP), <strong>audio concatenation</strong> (often called track joining or splicing) is the sequential appending of time-domain audio buffers along a single continuous timeline. This differs fundamentally from audio <em>summing</em> or <em>mixing</em>:
+                            In digital signal processing (DSP), <strong>audio concatenation</strong> (often called track
+                            joining or splicing) is the sequential appending of time-domain audio buffers along a single
+                            continuous timeline. This differs fundamentally from audio <em>summing</em> or
+                            <em>mixing</em>:
                         </p>
                         <div class="row g-4 mb-4">
                             <div class="col-md-6">
                                 <div class="p-3 border rounded h-100 bg-light">
-                                    <h3 class="h6 text-teal mb-2"><i class="bi bi-layers me-2"></i>Audio Summing (Mixing)</h3>
-                                    <p class="small text-muted mb-2">Simultaneous signals played together at identical sample timestamps:</p>
+                                    <h3 class="h6 text-teal mb-2"><i class="bi bi-layers me-2"></i>Audio Summing
+                                        (Mixing)</h3>
+                                    <p class="small text-muted mb-2">Simultaneous signals played together at identical
+                                        sample timestamps:</p>
                                     <code>y[n] = x_1[n] + x_2[n] + ... + x_k[n]</code>
-                                    <p class="small text-muted mt-2">Requires amplitude attenuation to avoid clipping when combined voltages exceed 0 dBFS.</p>
+                                    <p class="small text-muted mt-2">Requires amplitude attenuation to avoid clipping
+                                        when combined voltages exceed 0 dBFS.</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="p-3 border rounded h-100 bg-light">
-                                    <h3 class="h6 text-teal mb-2"><i class="bi bi-arrow-right-square me-2"></i>Audio Concatenation (Splicing)</h3>
-                                    <p class="small text-muted mb-2">Sequential signals aligned end-to-end along the time axis:</p>
+                                    <h3 class="h6 text-teal mb-2"><i class="bi bi-arrow-right-square me-2"></i>Audio
+                                        Concatenation (Splicing)</h3>
+                                    <p class="small text-muted mb-2">Sequential signals aligned end-to-end along the
+                                        time axis:</p>
                                     <code>y[n] = x_1[n] \quad (0 \le n &lt; N_1), \quad x_2[n - N_1] \quad (N_1 \le n &lt; N_1 + N_2)</code>
-                                    <p class="small text-muted mt-2">Preserves independent dynamic ranges without causing intermodulation or summing saturation.</p>
+                                    <p class="small text-muted mt-2">Preserves independent dynamic ranges without
+                                        causing intermodulation or summing saturation.</p>
                                 </div>
                             </div>
                         </div>
                         <p>
-                            When you combine audio files using <strong>Pitch Detectors Audio Merger</strong>, the entire decoding and concatenation pipeline occurs locally inside your web browser via the standardized <code>Web Audio API</code>. No raw media is transmitted over the internet, ensuring maximum processing speed, zero bandwidth overhead, and complete privacy for sensitive studio material and voice recordings.
+                            When you combine audio files using <strong>Pitch Detectors Audio Merger</strong>, the entire
+                            decoding and concatenation pipeline occurs locally inside your web browser via the
+                            standardized <code>Web Audio API</code>. No raw media is transmitted over the internet,
+                            ensuring maximum processing speed, zero bandwidth overhead, and complete privacy for
+                            sensitive studio material and voice recordings.
                         </p>
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-sliders me-2"></i>2. Sample Rate, Channel & Bit Depth Normalization</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-sliders me-2"></i>2. Sample Rate, Channel & Bit
+                            Depth Normalization</h2>
                         <p>
-                            Real-world audio files often arrive with mismatched acoustic specifications: a field voice memo recorded at <code>22,050 Hz Mono</code>, a podcast intro mastered at <code>44,100 Hz Stereo</code>, and an interview stem recorded at <code>48,000 Hz Stereo</code>. Concatenating raw compressed bitstreams without decoding results in corrupted playback clocks and digital noise.
+                            Real-world audio files often arrive with mismatched acoustic specifications: a field voice
+                            memo recorded at <code>22,050 Hz Mono</code>, a podcast intro mastered at
+                            <code>44,100 Hz Stereo</code>, and an interview stem recorded at
+                            <code>48,000 Hz Stereo</code>. Concatenating raw compressed bitstreams without decoding
+                            results in corrupted playback clocks and digital noise.
                         </p>
                         <p>
-                            To produce a broadcast-grade output, this tool automatically executes a three-stage normalization sequence prior to buffer assembly:
+                            To produce a broadcast-grade output, this tool automatically executes a three-stage
+                            normalization sequence prior to buffer assembly:
                         </p>
                         <div class="table-responsive mb-4">
                             <table class="table table-bordered table-hover align-middle">
@@ -274,25 +298,29 @@
                                     <tr>
                                         <td><strong>Sample Rate ($f_s$)</strong></td>
                                         <td>Mixed (e.g., 44.1 kHz, 48 kHz, 96 kHz)</td>
-                                        <td>Polyphase band-limited sinc interpolation via browser audio context resampler.</td>
+                                        <td>Polyphase band-limited sinc interpolation via browser audio context
+                                            resampler.</td>
                                         <td>System Hardware Context ($44.1\text{ kHz}$ or $48\text{ kHz}$)</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Channel Geometry</strong></td>
                                         <td>Mono (1-ch) mixed with Stereo (2-ch)</td>
-                                        <td>Mono channel duplication: <code>L[n] = M[n], R[n] = M[n]</code> (Center Pan $+0\text{ dB}$).</td>
+                                        <td>Mono channel duplication: <code>L[n] = M[n], R[n] = M[n]</code> (Center Pan
+                                            $+0\text{ dB}$).</td>
                                         <td>True Interleaved Stereo (2 channels)</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Internal Precision</strong></td>
                                         <td>16-bit int, 24-bit int, or lossy codec frames</td>
-                                        <td>Decoded to IEEE 754 32-bit floating-point arrays ($-1.0$ to $+1.0$ headroom).</td>
+                                        <td>Decoded to IEEE 754 32-bit floating-point arrays ($-1.0$ to $+1.0$
+                                            headroom).</td>
                                         <td>Normalized 32-bit Float Internal Processing</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Export Formatting</strong></td>
                                         <td>Proprietary compressed containers</td>
-                                        <td>Linear Quantization to signed 16-bit little-endian PCM integers with RIFF header.</td>
+                                        <td>Linear Quantization to signed 16-bit little-endian PCM integers with RIFF
+                                            header.</td>
                                         <td>Broadcast WAV Container (1,411.2 kbps)</td>
                                     </tr>
                                 </tbody>
@@ -301,40 +329,59 @@
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-soundwave me-2"></i>3. Eliminating Boundary Pops & Zero-Crossing Dynamics</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-soundwave me-2"></i>3. Eliminating Boundary Pops &
+                            Zero-Crossing Dynamics</h2>
                         <p>
-                            A common artifact in amateur audio editing is an audible click or snap at the exact seam where two audio files meet. This artifact stems from two physical phenomena:
+                            A common artifact in amateur audio editing is an audible click or snap at the exact seam
+                            where two audio files meet. This artifact stems from two physical phenomena:
                         </p>
                         <ul>
                             <li>
-                                <strong>Discontinuous Waveform Jumps:</strong> If Track 1 terminates while the waveform is at $+0.5\text{ V}$ and Track 2 commences at $-0.4\text{ V}$, the speaker diaphragm is commanded to travel across a step voltage of $0.9\text{ V}$ in an infinitesimally small time step ($Delta t = 1/f_s \approx 22.7\ \mu\text{s}$). This step discontinuity generates high-frequency harmonic energy spanning the entire audio spectrum.
+                                <strong>Discontinuous Waveform Jumps:</strong> If Track 1 terminates while the waveform
+                                is at $+0.5\text{ V}$ and Track 2 commences at $-0.4\text{ V}$, the speaker diaphragm is
+                                commanded to travel across a step voltage of $0.9\text{ V}$ in an infinitesimally small
+                                time step ($Delta t = 1/f_s \approx 22.7\ \mu\text{s}$). This step discontinuity
+                                generates high-frequency harmonic energy spanning the entire audio spectrum.
                             </li>
                             <li>
-                                <strong>DC Offset:</strong> An asymmetrical bias in recording equipment can shift the resting equilibrium away from $0\text{ V}$. Splicing two files with differing DC offsets introduces an instantaneous baseline jump.
+                                <strong>DC Offset:</strong> An asymmetrical bias in recording equipment can shift the
+                                resting equilibrium away from $0\text{ V}$. Splicing two files with differing DC offsets
+                                introduces an instantaneous baseline jump.
                             </li>
                         </ul>
                         <div class="p-3 border rounded bg-light mb-4">
-                            <h4 class="h6 text-teal mb-2"><i class="bi bi-shield-check me-2"></i>Best Practices for Seamless Audio Splicing:</h4>
+                            <h4 class="h6 text-teal mb-2"><i class="bi bi-shield-check me-2"></i>Best Practices for
+                                Seamless Audio Splicing:</h4>
                             <ol class="mb-0 small text-muted">
-                                <li><strong>Zero-Crossing Alignment:</strong> Trim audio clips at the exact sample index where amplitude crosses $y[n] = 0.0$.</li>
-                                <li><strong>Micro-Fades (2–10 ms):</strong> Applying a cosine-shaped fade-out to the tail of Clip 1 and a fade-in to the head of Clip 2 guarantees smooth voltage continuity down to zero.</li>
-                                <li><strong>Equal-Power Crossfading:</strong> When overlapping ambient audio beds, apply an equal-power curve ($L(t) = \cos(\theta), R(t) = \sin(\theta)$) to maintain constant acoustic energy without a 3 dB dip in perceived loudness.</li>
+                                <li><strong>Zero-Crossing Alignment:</strong> Trim audio clips at the exact sample index
+                                    where amplitude crosses $y[n] = 0.0$.</li>
+                                <li><strong>Micro-Fades (2–10 ms):</strong> Applying a cosine-shaped fade-out to the
+                                    tail of Clip 1 and a fade-in to the head of Clip 2 guarantees smooth voltage
+                                    continuity down to zero.</li>
+                                <li><strong>Equal-Power Crossfading:</strong> When overlapping ambient audio beds, apply
+                                    an equal-power curve ($L(t) = \cos(\theta), R(t) = \sin(\theta)$) to maintain
+                                    constant acoustic energy without a 3 dB dip in perceived loudness.</li>
                             </ol>
                         </div>
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-diagram-3 me-2"></i>4. Professional Studio & Production Use Cases</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-diagram-3 me-2"></i>4. Professional Studio &
+                            Production Use Cases</h2>
                         <p>
-                            Merging audio files directly in the browser streamlines numerous creative and professional media workflows:
+                            Merging audio files directly in the browser streamlines numerous creative and professional
+                            media workflows:
                         </p>
                         <div class="row g-3 mb-4">
                             <div class="col-md-6">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-mic me-2"></i>Podcast & Voiceover Assembly</h3>
+                                        <h3 class="h6 text-teal"><i class="bi bi-mic me-2"></i>Podcast & Voiceover
+                                            Assembly</h3>
                                         <p class="small text-muted mb-0">
-                                            Combine host intros, sponsor bumpers, main interview segments, and credit outros into a single production track ready for loudness normalization and RSS distribution.
+                                            Combine host intros, sponsor bumpers, main interview segments, and credit
+                                            outros into a single production track ready for loudness normalization and
+                                            RSS distribution.
                                         </p>
                                     </div>
                                 </div>
@@ -342,9 +389,12 @@
                             <div class="col-md-6">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-disc me-2"></i>DJ Mixtape & Continuous Sets</h3>
+                                        <h3 class="h6 text-teal"><i class="bi bi-disc me-2"></i>DJ Mixtape & Continuous
+                                            Sets</h3>
                                         <p class="small text-muted mb-0">
-                                            Join consecutive transition tracks, live performance cue segments, and transition exercises into unbroken continuous mixes without inter-track silence gaps.
+                                            Join consecutive transition tracks, live performance cue segments, and
+                                            transition exercises into unbroken continuous mixes without inter-track
+                                            silence gaps.
                                         </p>
                                     </div>
                                 </div>
@@ -352,9 +402,12 @@
                             <div class="col-md-6">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-book me-2"></i>Audiobook & Lecture Mastering</h3>
+                                        <h3 class="h6 text-teal"><i class="bi bi-book me-2"></i>Audiobook & Lecture
+                                            Mastering</h3>
                                         <p class="small text-muted mb-0">
-                                            Stitch fragmented voice recordings, classroom lecture sessions, and chapter takes into coherent master files for distribution across ACX, Audible, and academic portals.
+                                            Stitch fragmented voice recordings, classroom lecture sessions, and chapter
+                                            takes into coherent master files for distribution across ACX, Audible, and
+                                            academic portals.
                                         </p>
                                     </div>
                                 </div>
@@ -362,9 +415,11 @@
                             <div class="col-md-6">
                                 <div class="card h-100 border-0 shadow-sm">
                                     <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-music-note-list me-2"></i>Music Medleys & Demo Reels</h3>
+                                        <h3 class="h6 text-teal"><i class="bi bi-music-note-list me-2"></i>Music Medleys
+                                            & Demo Reels</h3>
                                         <p class="small text-muted mb-0">
-                                            Assemble portfolio teasers, musical theatre medleys, and commercial audition reels into unified demonstration tracks with consistent stereo placement.
+                                            Assemble portfolio teasers, musical theatre medleys, and commercial audition
+                                            reels into unified demonstration tracks with consistent stereo placement.
                                         </p>
                                     </div>
                                 </div>
@@ -373,37 +428,46 @@
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-circle me-2"></i>5. Step-by-Step Instructions: Merging Your Tracks</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-circle me-2"></i>5. Step-by-Step
+                            Instructions: Merging Your Tracks</h2>
                         <ol class="list-group list-group-numbered mb-4">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">Upload Audio Files</div>
-                                    Drag and drop your audio files into the dropzone above or click "Choose Files". Select any combination of MP3, WAV, FLAC, OGG, or AAC recordings.
+                                    Drag and drop your audio files into the dropzone above or click "Choose Files".
+                                    Select any combination of MP3, WAV, FLAC, OGG, or AAC recordings.
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">Arrange Timeline Sequence</div>
-                                    Inspect your queue of loaded audio files with their displayed durations. Use the <strong><i class="bi bi-arrow-up"></i> Up</strong> and <strong><i class="bi bi-arrow-down"></i> Down</strong> buttons to reposition tracks into your exact playback order. Remove unwanted takes with the trash icon.
+                                    Inspect your queue of loaded audio files with their displayed durations. Use the
+                                    <strong><i class="bi bi-arrow-up"></i> Up</strong> and <strong><i
+                                            class="bi bi-arrow-down"></i> Down</strong> buttons to reposition tracks
+                                    into your exact playback order. Remove unwanted takes with the trash icon.
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">Execute In-Memory Merge</div>
-                                    Click <strong>Merge Audio</strong>. The browser will decode each file sequentially into floating-point PCM sample arrays and concatenate them into a unified memory buffer.
+                                    Click <strong>Merge Audio</strong>. The browser will decode each file sequentially
+                                    into floating-point PCM sample arrays and concatenate them into a unified memory
+                                    buffer.
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">Download Uncompressed Master</div>
-                                    Once synthesis is complete, click <strong>Download</strong> to retrieve your combined, pristine 16-bit 44.1/48 kHz RIFF WAV file instantly.
+                                    Once synthesis is complete, click <strong>Download</strong> to retrieve your
+                                    combined, pristine 16-bit 44.1/48 kHz RIFF WAV file instantly.
                                 </div>
                             </li>
                         </ol>
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-table me-2"></i>6. Audio Merging Methods: Technical Comparison</h2>
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-table me-2"></i>6. Audio Merging Methods:
+                            Technical Comparison</h2>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover align-middle">
                                 <thead class="table-light">
@@ -427,7 +491,8 @@
                                         <td><strong>Cloud Server Audio Joiners</strong></td>
                                         <td>Slow (Upload + Queue + Download wait)</td>
                                         <td>Format-dependent on cloud codecs</td>
-                                        <td><span class="badge bg-warning text-dark">Data Stored on 3rd-Party Server</span></td>
+                                        <td><span class="badge bg-warning text-dark">Data Stored on 3rd-Party
+                                                Server</span></td>
                                         <td>Generational loss from multi-pass MP3 lossy re-encoding</td>
                                     </tr>
                                     <tr>
@@ -450,19 +515,27 @@
                     </section>
 
                     <section class="mb-5">
-                        <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>7. Frequently Asked Questions</h2>
+                        <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>7. Frequently Asked
+                            Questions</h2>
                         <div class="accordion" id="faqAccordion">
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading1">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
+                                        data-bs-target="#faqCollapse1" aria-expanded="false"
+                                        aria-controls="faqCollapse1">
                                         How does client-side audio merging work without uploading files to a server?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse1" class="accordion-collapse collapse" aria-labelledby="faqHeading1"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        Pitch Detectors Audio Merger utilizes the W3C Web Audio API (<code>AudioContext</code>) directly inside your web browser. When you select audio files, your browser decodes the compressed bitstreams (MP3, AAC, FLAC, OGG) into uncompressed 32-bit floating-point PCM audio buffers in RAM. The tool arranges these sample arrays sequentially in a new <code>AudioBuffer</code> and encodes the combined samples into a standard 16-bit RIFF WAV file locally on your CPU.
+                                        Pitch Detectors Audio Merger utilizes the W3C Web Audio API
+                                        (<code>AudioContext</code>) directly inside your web browser. When you select
+                                        audio files, your browser decodes the compressed bitstreams (MP3, AAC, FLAC,
+                                        OGG) into uncompressed 32-bit floating-point PCM audio buffers in RAM. The tool
+                                        arranges these sample arrays sequentially in a new <code>AudioBuffer</code> and
+                                        encodes the combined samples into a standard 16-bit RIFF WAV file locally on
+                                        your CPU.
                                     </div>
                                 </div>
                             </div>
@@ -470,14 +543,20 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                        data-bs-target="#faqCollapse2" aria-expanded="false"
+                                        aria-controls="faqCollapse2">
                                         Does merging lossy audio formats like MP3 degrade sound quality?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        Merging audio through uncompressed PCM buffers preserves 100% of the decoded acoustic data without generational loss. When you merge MP3 files with this tool, they are decoded to full 32-bit float audio and exported as an uncompressed 16-bit PCM WAV container. Because the output is uncompressed, no second lossy perceptual encoding pass occurs, avoiding the artifact accumulation common in traditional re-encoding pipelines.
+                                        Merging audio through uncompressed PCM buffers preserves 100% of the decoded
+                                        acoustic data without generational loss. When you merge MP3 files with this
+                                        tool, they are decoded to full 32-bit float audio and exported as an
+                                        uncompressed 16-bit PCM WAV container. Because the output is uncompressed, no
+                                        second lossy perceptual encoding pass occurs, avoiding the artifact accumulation
+                                        common in traditional re-encoding pipelines.
                                     </div>
                                 </div>
                             </div>
@@ -485,14 +564,20 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading3">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                        data-bs-target="#faqCollapse3" aria-expanded="false"
+                                        aria-controls="faqCollapse3">
                                         What happens if I combine tracks with different sample rates or channel counts?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        The Web Audio API automatically normalizes all decoded audio buffers to the sample rate of your audio hardware (typically 44,100 Hz or 48,000 Hz) using high-quality sinc/polyphase interpolation. If you combine mono (1 channel) and stereo (2 channels) tracks, the mono channels are duplicated across left and right channels to maintain consistent stereo panning throughout the merged timeline.
+                                        The Web Audio API automatically normalizes all decoded audio buffers to the
+                                        sample rate of your audio hardware (typically 44,100 Hz or 48,000 Hz) using
+                                        high-quality sinc/polyphase interpolation. If you combine mono (1 channel) and
+                                        stereo (2 channels) tracks, the mono channels are duplicated across left and
+                                        right channels to maintain consistent stereo panning throughout the merged
+                                        timeline.
                                     </div>
                                 </div>
                             </div>
@@ -500,14 +585,21 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading4">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
-                                        What causes audible clicks or pops at the splice point between two merged tracks?
+                                        data-bs-target="#faqCollapse4" aria-expanded="false"
+                                        aria-controls="faqCollapse4">
+                                        What causes audible clicks or pops at the splice point between two merged
+                                        tracks?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        Clicks at splice boundaries are almost always caused by DC offset or non-zero-crossing cuts. If Track A ends at a sample amplitude of +0.4 and Track B immediately begins at -0.3, the instantaneous jump creates an impulse response containing infinite harmonic frequencies, heard as a sharp transient click. For seamless splices, ensure tracks have brief fade-outs/fade-ins or cut at zero-crossing points.
+                                        Clicks at splice boundaries are almost always caused by DC offset or
+                                        non-zero-crossing cuts. If Track A ends at a sample amplitude of +0.4 and Track
+                                        B immediately begins at -0.3, the instantaneous jump creates an impulse response
+                                        containing infinite harmonic frequencies, heard as a sharp transient click. For
+                                        seamless splices, ensure tracks have brief fade-outs/fade-ins or cut at
+                                        zero-crossing points.
                                     </div>
                                 </div>
                             </div>
@@ -515,14 +607,18 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading5">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                        data-bs-target="#faqCollapse5" aria-expanded="false"
+                                        aria-controls="faqCollapse5">
                                         Can I combine audio files of different formats, such as MP3 and WAV together?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        Yes. Because every file format is decoded into raw PCM sample arrays upon import, you can mix and match MP3, WAV, FLAC, AAC, and OGG files within a single merge queue. The tool handles the underlying structural differences seamlessly and exports a unified Master WAV.
+                                        Yes. Because every file format is decoded into raw PCM sample arrays upon
+                                        import, you can mix and match MP3, WAV, FLAC, AAC, and OGG files within a single
+                                        merge queue. The tool handles the underlying structural differences seamlessly
+                                        and exports a unified Master WAV.
                                     </div>
                                 </div>
                             </div>
@@ -530,14 +626,19 @@
                             <div class="accordion-item">
                                 <h3 class="accordion-header" id="faqHeading6">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
+                                        data-bs-target="#faqCollapse6" aria-expanded="false"
+                                        aria-controls="faqCollapse6">
                                         Is there a limit on the number of files or total duration I can merge?
                                     </button>
                                 </h3>
                                 <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6"
                                     data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        The only limit is your device's available system RAM. Since uncompressed 44.1 kHz 16-bit stereo audio requires approximately 10.5 MB of RAM per minute of audio, merging hours of continuous material requires sufficient client memory. Standard compilations, podcasts, and DJ sets under 2 to 3 hours run smoothly on standard mobile phones and laptops.
+                                        The only limit is your device's available system RAM. Since uncompressed 44.1
+                                        kHz 16-bit stereo audio requires approximately 10.5 MB of RAM per minute of
+                                        audio, merging hours of continuous material requires sufficient client memory.
+                                        Standard compilations, podcasts, and DJ sets under 2 to 3 hours run smoothly on
+                                        standard mobile phones and laptops.
                                     </div>
                                 </div>
                             </div>
@@ -545,13 +646,21 @@
                     </section>
 
                     <section class="p-4 border rounded bg-light">
-                        <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Audio Editing Tools</h2>
+                        <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Audio Editing
+                            Tools</h2>
                         <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
-                            <li><a href="/audio-editing-tools/audio-trimmer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-scissors me-1"></i> Audio Trimmer</a></li>
-                            <li><a href="/audio-editing-tools/Audio-Volume-Booster.html" class="btn btn-outline-teal btn-sm"><i class="bi bi-volume-up me-1"></i> Volume Booster</a></li>
-                            <li><a href="/audio-editing-tools/audio-normalizer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-sliders me-1"></i> Audio Normalizer</a></li>
-                            <li><a href="/audio-editing-tools/audio-speed-changer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-speedometer2 me-1"></i> Audio Speed Changer</a></li>
-                            <li><a href="/audio-editing-tools/loop-generator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-arrow-repeat me-1"></i> Loop Generator</a></li>
+                            <li><a href="/audio-editing-tools/audio-trimmer/" class="btn btn-outline-teal btn-sm"><i
+                                        class="bi bi-scissors me-1"></i> Audio Trimmer</a></li>
+                            <li><a href="/audio-editing-tools/Audio-Volume-Booster.html"
+                                    class="btn btn-outline-teal btn-sm"><i class="bi bi-volume-up me-1"></i> Volume
+                                    Booster</a></li>
+                            <li><a href="/audio-editing-tools/audio-normalizer/" class="btn btn-outline-teal btn-sm"><i
+                                        class="bi bi-sliders me-1"></i> Audio Normalizer</a></li>
+                            <li><a href="/audio-editing-tools/audio-speed-changer/"
+                                    class="btn btn-outline-teal btn-sm"><i class="bi bi-speedometer2 me-1"></i> Audio
+                                    Speed Changer</a></li>
+                            <li><a href="/audio-editing-tools/loop-generator/" class="btn btn-outline-teal btn-sm"><i
+                                        class="bi bi-arrow-repeat me-1"></i> Loop Generator</a></li>
                         </ul>
                     </section>
                 </article>
@@ -559,8 +668,8 @@
         </div>
     </div>
     <div id="footer"></div>
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+    <script src="./assets/bootstrap5.js" defer></script>
+    <script src="./assets/tools.js" defer></script>
 
     <script defer>
         let audioFiles = [];

@@ -8,7 +8,7 @@
     <meta name="description"
         content="Free online Frequency to Note Converter. Convert any acoustic frequency in Hertz (Hz) to its exact musical note, octave, MIDI number, and cent deviation relative to A4 = 440 Hz.">
     <link rel="canonical" href="https://pitchdetectors.com/pitch-detector-tools/frequency-to-note-online/">
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Frequency to Note Converter – Convert Hz to Musical Notes & Cents">
@@ -16,18 +16,19 @@
         content="Convert audio frequencies in Hz to musical notes, octaves, and cent deviation instantly. Calibrate reference pitch from 430 to 450 Hz.">
     <meta property="og:url" content="https://pitchdetectors.com/pitch-detector-tools/frequency-to-note-online/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="/assets/imgs/logo.png">
+    <meta property="og:image" content="./assets/imgs/logo.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Frequency to Note Converter – Hz to Musical Notes">
-    <meta name="twitter:description" content="Translate acoustic frequencies (Hz) into musical notes, octaves, and pitch cents.">
-    <meta name="twitter:image" content="/assets/imgs/logo.png">
+    <meta name="twitter:description"
+        content="Translate acoustic frequencies (Hz) into musical notes, octaves, and pitch cents.">
+    <meta name="twitter:image" content="./assets/imgs/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="./assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link href="./assets/tools.css" rel="stylesheet">
     <meta name="author" content="Pitch Detectors">
 
     <!-- FAQPage Schema -->
@@ -186,392 +187,539 @@
                         <li class="breadcrumb-item"><a href="/pitch-detector-tools/">Pitch Detector Tools</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Frequency to Note Converter</li>
                     </ol>
-                    </nav>
+                </nav>
 
-                    <div class="tool-container">
-                        <div class="tool-title">
-                            <h1><i class="bi bi-arrow-left-right me-2"></i>Frequency to Note Converter</h1>
-                            <p>Convert any frequency in Hertz (Hz) to its corresponding musical note. Get the note name,
-                                octave,
-                                cents deviation, and exact pitch information.</p>
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-arrow-left-right me-2"></i>Frequency to Note Converter</h1>
+                        <p>Convert any frequency in Hertz (Hz) to its corresponding musical note. Get the note name,
+                            octave,
+                            cents deviation, and exact pitch information.</p>
+                    </div>
+
+                    <!-- Input Section -->
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <label class="form-label">Enter Frequency (Hz):</label>
+                            <input type="number" class="form-control form-control-lg" id="frequencyInput"
+                                placeholder="e.g., 440" min="20" max="20000" step="0.01" value="440">
                         </div>
+                        <div class="col-md-4">
+                            <label class="form-label">A4 Reference (Hz):</label>
+                            <input type="number" class="form-control form-control-lg" id="a4Reference" value="440"
+                                min="430" max="450" step="1">
+                        </div>
+                    </div>
 
-                        <!-- Input Section -->
-                        <div class="row mb-4">
-                            <div class="col-md-8">
-                                <label class="form-label">Enter Frequency (Hz):</label>
-                                <input type="number" class="form-control form-control-lg" id="frequencyInput"
-                                    placeholder="e.g., 440" min="20" max="20000" step="0.01" value="440">
+                    <!-- Quick Buttons -->
+                    <div class="mb-4">
+                        <label class="form-label">Common Frequencies:</label>
+                        <div class="quick-buttons">
+                            <button class="quick-btn" onclick="setFrequency(261.63)">C4 (261.63)</button>
+                            <button class="quick-btn" onclick="setFrequency(440)">A4 (440)</button>
+                            <button class="quick-btn" onclick="setFrequency(523.25)">C5 (523.25)</button>
+                            <button class="quick-btn" onclick="setFrequency(880)">A5 (880)</button>
+                            <button class="quick-btn" onclick="setFrequency(1000)">1000 Hz</button>
+                            <button class="quick-btn" onclick="setFrequency(60)">60 Hz (Hum)</button>
+                        </div>
+                    </div>
+
+                    <!-- Convert Button -->
+                    <button class="btn btn-primary btn-lg w-100 mb-4" onclick="convertFrequency()">
+                        <i class="bi bi-arrow-repeat me-2"></i>Convert to Note
+                    </button>
+
+                    <!-- Result Box -->
+                    <div class="result-box" id="resultBox">
+                        <h3 id="resultNote">A4</h3>
+                        <p class="mb-2" style="font-size: 24px;" id="resultFreq">440.00 Hz</p>
+                        <div class="row text-start mt-4">
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Note:</strong><br>
+                                <span id="noteName">A</span>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Octave:</strong><br>
+                                <span id="noteOctave">4</span>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Cents:</strong><br>
+                                <span id="noteCents">0.00</span>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Exact Freq:</strong><br>
+                                <span id="exactFreq">440.00 Hz</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 p-3 bg-white rounded">
+                            <p class="mb-0" id="centsExplanation">This frequency is exactly at A4 (perfectly in
+                                tune).</p>
+                        </div>
+                    </div>
+
+                    <!-- Cents Visualization -->
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3">Cents Deviation</h5>
+                        <div
+                            style="height: 30px; background: #e0e0e0; border-radius: 15px; position: relative; overflow: hidden;">
+                            <div
+                                style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--dark-blue);">
+                            </div>
+                            <div id="centsIndicator"
+                                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; background: var(--teal); border-radius: 50%; transition: left 0.3s;">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <span>-50¢ (Flat)</span>
+                            <span>0¢</span>
+                            <span>+50¢ (Sharp)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- COMPREHENSIVE FREQUENCY TO NOTE GUIDE & REFERENCE -->
+                <div class="mt-5 pt-3">
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Understanding the Physics of Sound: Translating Acoustic
+                            Frequency (Hz) into Musical Notes</h2>
+                        <p>
+                            Every musical tone you hear is physically generated by pressure waves vibrating through the
+                            air. <strong>Frequency</strong>, measured in <strong>Hertz (Hz)</strong>, counts how many
+                            complete compression-rarefaction wave cycles occur every second. Higher frequencies produce
+                            higher perceived musical pitch, while lower frequencies produce deep bass tones.
+                        </p>
+                        <p>
+                            However, human pitch perception is not linear—it is strictly <strong>logarithmic</strong>.
+                            Doubling an acoustic frequency does not sound like adding a constant amount of pitch;
+                            rather, it raises the pitch by exactly one musical <strong>octave</strong>. For instance,
+                            moving from $A_3$ ($220\text{ Hz}$) to $A_4$ ($440\text{ Hz}$) is a gap of $220\text{ Hz}$,
+                            but moving from $A_4$ ($440\text{ Hz}$) to $A_5$ ($880\text{ Hz}$) spans a gap of $440\text{
+                            Hz}$. Both intervals are perceived as the exact same distance: one perfect octave.
+                        </p>
+                        <p>
+                            The <strong>Frequency to Note Converter</strong> bridges physical acoustics and music
+                            theory. It converts any continuous frequency value into its nearest discrete chromatic note,
+                            octave register, MIDI note number, and microtonal cent deviation under standard 12-Tone
+                            Equal Temperament (12-TET).
+                        </p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="h4 fw-bold mb-3">The Mathematical Conversion Formulas</h3>
+                        <div class="row g-4 my-2">
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded border h-100">
+                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-calculator me-2"></i>1. Semitones
+                                        from Reference Pitch</h5>
+                                    <p class="small text-muted mb-2">Calculates the continuous semitone distance ($n$)
+                                        from standard concert reference $A_4$ ($440\text{ Hz}$):</p>
+                                    <div class="bg-white p-2 rounded border font-monospace text-center small mb-2">
+                                        $$n = 12 \times \log_2\left(\frac{f}{f_{\text{ref}}}\right)$$
+                                    </div>
+                                    <p class="small text-muted mb-0">Rounding $n$ to the nearest integer identifies the
+                                        closest musical key.</p>
+                                </div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">A4 Reference (Hz):</label>
-                                <input type="number" class="form-control form-control-lg" id="a4Reference" value="440"
-                                    min="430" max="450" step="1">
+                                <div class="p-3 bg-light rounded border h-100">
+                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-music-note-beamed me-2"></i>2.
+                                        Exact In-Tune Note Frequency</h5>
+                                    <p class="small text-muted mb-2">Computes the exact theoretical frequency of that
+                                        nearest note:</p>
+                                    <div class="bg-white p-2 rounded border font-monospace text-center small mb-2">
+                                        $$f_{\text{target}} = f_{\text{ref}} \times 2^{\frac{\text{round}(n)}{12}}$$
+                                    </div>
+                                    <p class="small text-muted mb-0">For middle C ($C_4$, $n = -9$): $440 \times
+                                        2^{-9/12} = 261.63\text{ Hz}$.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded border h-100">
+                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-rulers me-2"></i>3. Cent
+                                        Deviation</h5>
+                                    <p class="small text-muted mb-2">Quantifies how far the input frequency is sharp
+                                        ($+$) or flat ($-$) from the target note ($100\text{ cents} = 1\text{
+                                        semitone}$):</p>
+                                    <div class="bg-white p-2 rounded border font-monospace text-center small mb-2">
+                                        $$\Delta c = 1200 \times \log_2\left(\frac{f}{f_{\text{target}}}\right)$$
+                                    </div>
+                                    <p class="small text-muted mb-0">A cent offset within $\pm 5$ cents is practically
+                                        undetectable to human hearing.</p>
+                                </div>
                             </div>
                         </div>
+                    </section>
 
-                        <!-- Quick Buttons -->
-                        <div class="mb-4">
-                            <label class="form-label">Common Frequencies:</label>
-                            <div class="quick-buttons">
-                                <button class="quick-btn" onclick="setFrequency(261.63)">C4 (261.63)</button>
-                                <button class="quick-btn" onclick="setFrequency(440)">A4 (440)</button>
-                                <button class="quick-btn" onclick="setFrequency(523.25)">C5 (523.25)</button>
-                                <button class="quick-btn" onclick="setFrequency(880)">A5 (880)</button>
-                                <button class="quick-btn" onclick="setFrequency(1000)">1000 Hz</button>
-                                <button class="quick-btn" onclick="setFrequency(60)">60 Hz (Hum)</button>
+                    <!-- Frequency Spectrum & Instrument Mapping -->
+                    <section class="mb-5">
+                        <h3 class="h4 fw-bold mb-3">Audio Frequency Spectrum &amp; Musical Note Ranges</h3>
+                        <p>
+                            Understanding which musical notes correspond to acoustic frequency bands allows producers
+                            and engineers to make precise mixing and EQ decisions:
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Acoustic Band</th>
+                                        <th>Frequency Range (Hz)</th>
+                                        <th>Musical Note Range</th>
+                                        <th>Instrument Elements &amp; Audio Application</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Sub-Bass</strong></td>
+                                        <td>20 Hz &ndash; 60 Hz</td>
+                                        <td>E0 &ndash; B1</td>
+                                        <td>Sub-kick rumble, 808 sub drops, 5-string bass low B. Felt more than heard.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Bass</strong></td>
+                                        <td>60 Hz &ndash; 250 Hz</td>
+                                        <td>B1 &ndash; B3</td>
+                                        <td>Bass guitar, kick drum body, low piano notes, male vocal chest resonance.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Low-Midrange</strong></td>
+                                        <td>250 Hz &ndash; 500 Hz</td>
+                                        <td>B3 &ndash; B4 (Middle Register)</td>
+                                        <td>Middle C (261 Hz), warmth of acoustic guitars, snare body, vocal
+                                            fundamentals.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Midrange</strong></td>
+                                        <td>500 Hz &ndash; 2 kHz</td>
+                                        <td>B4 &ndash; B6</td>
+                                        <td>Lead vocals, piano chords, trumpet, violin, synthesizer leads. Ear is most
+                                            sensitive here.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Upper Midrange</strong></td>
+                                        <td>2 kHz &ndash; 4 kHz</td>
+                                        <td>B6 &ndash; B7</td>
+                                        <td>Vocal articulation, snare snap, guitar pick attack. Harshness region if
+                                            over-boosted.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Presence &amp; Brilliance</strong></td>
+                                        <td>4 kHz &ndash; 20 kHz</td>
+                                        <td>B7 &ndash; Ultrasonic</td>
+                                        <td>Cymbal sizzle, vocal air, acoustic guitar string sheen, room reverb sparkle.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Complete 8-Octave Reference Table -->
+                    <section class="mb-5">
+                        <h3 class="h4 fw-bold mb-3">Complete 8-Octave Note-to-Frequency Reference Table ($A_4 =
+                            440\text{ Hz}$)</h3>
+                        <p>
+                            The table below displays the exact fundamental frequencies across all eight standard octaves
+                            for every diatonic note:
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Octave</th>
+                                        <th>C</th>
+                                        <th>D</th>
+                                        <th>E</th>
+                                        <th>F</th>
+                                        <th>G</th>
+                                        <th>A</th>
+                                        <th>B</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Octave 0</strong></td>
+                                        <td>16.35 Hz</td>
+                                        <td>18.35 Hz</td>
+                                        <td>20.60 Hz</td>
+                                        <td>21.83 Hz</td>
+                                        <td>24.50 Hz</td>
+                                        <td>27.50 Hz</td>
+                                        <td>30.87 Hz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Octave 1</strong></td>
+                                        <td>32.70 Hz</td>
+                                        <td>36.71 Hz</td>
+                                        <td>41.20 Hz</td>
+                                        <td>43.65 Hz</td>
+                                        <td>49.00 Hz</td>
+                                        <td>55.00 Hz</td>
+                                        <td>61.74 Hz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Octave 2</strong></td>
+                                        <td>65.41 Hz</td>
+                                        <td>73.42 Hz</td>
+                                        <td>82.41 Hz</td>
+                                        <td>87.31 Hz</td>
+                                        <td>98.00 Hz</td>
+                                        <td>110.00 Hz</td>
+                                        <td>123.47 Hz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Octave 3</strong></td>
+                                        <td>130.81 Hz</td>
+                                        <td>146.83 Hz</td>
+                                        <td>164.81 Hz</td>
+                                        <td>174.61 Hz</td>
+                                        <td>196.00 Hz</td>
+                                        <td>220.00 Hz</td>
+                                        <td>246.94 Hz</td>
+                                    </tr>
+                                    <tr class="table-success fw-bold">
+                                        <td><strong>Octave 4 (Mid)</strong></td>
+                                        <td>261.63 Hz</td>
+                                        <td>293.66 Hz</td>
+                                        <td>329.63 Hz</td>
+                                        <td>349.23 Hz</td>
+                                        <td>392.00 Hz</td>
+                                        <td>440.00 Hz</td>
+                                        <td>493.88 Hz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Octave 5</strong></td>
+                                        <td>523.25 Hz</td>
+                                        <td>587.33 Hz</td>
+                                        <td>659.25 Hz</td>
+                                        <td>698.46 Hz</td>
+                                        <td>783.99 Hz</td>
+                                        <td>880.00 Hz</td>
+                                        <td>987.77 Hz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Octave 6</strong></td>
+                                        <td>1046.50 Hz</td>
+                                        <td>1174.66 Hz</td>
+                                        <td>1318.51 Hz</td>
+                                        <td>1396.91 Hz</td>
+                                        <td>1567.98 Hz</td>
+                                        <td>1760.00 Hz</td>
+                                        <td>1975.53 Hz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Octave 7</strong></td>
+                                        <td>2093.00 Hz</td>
+                                        <td>2349.32 Hz</td>
+                                        <td>2637.02 Hz</td>
+                                        <td>2793.83 Hz</td>
+                                        <td>3135.96 Hz</td>
+                                        <td>3520.00 Hz</td>
+                                        <td>3951.07 Hz</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Octave 8</strong></td>
+                                        <td>4186.01 Hz</td>
+                                        <td>4698.64 Hz</td>
+                                        <td>5274.04 Hz</td>
+                                        <td>5587.65 Hz</td>
+                                        <td>6271.93 Hz</td>
+                                        <td>7040.00 Hz</td>
+                                        <td>7902.13 Hz</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Audio Engineering Applications -->
+                    <section class="mb-5">
+                        <h3 class="h4 fw-bold mb-3">Practical Audio Engineering Applications</h3>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded border h-100">
+                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-soundwave me-2"></i>1. Tuning 808
+                                        Basslines</h5>
+                                    <p class="small text-muted mb-0">When synthesizing 808 kicks, an out-of-tune bass
+                                        ruins low-end punch. If your song is in F Minor, set your 808 sine pitch to
+                                        $F_1$ (43.65 Hz) or $F_2$ (87.31 Hz) to prevent harmonic dissonance with the
+                                        chords.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded border h-100">
+                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-lightning-charge me-2"></i>2.
+                                        Surgical Notch Filtering</h5>
+                                    <p class="small text-muted mb-0">Live stage microphones often feedback at specific
+                                        ringing room modes. Use this converter to translate the feedback pitch (e.g.
+                                        ringing at a sharp G5) into its exact frequency (~784 Hz) and set an
+                                        ultra-narrow parametric EQ notch to cut it cleanly.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded border h-100">
+                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-cpu me-2"></i>3. Synthesizer
+                                        Calibration</h5>
+                                    <p class="small text-muted mb-0">Analog hardware synthesizers often drift out of
+                                        tune as internal circuits warm up. Convert your test oscillator frequency to
+                                        confirm exact pitch tracking across multiple octaves.</p>
+                                </div>
                             </div>
                         </div>
+                    </section>
 
-                        <!-- Convert Button -->
-                        <button class="btn btn-primary btn-lg w-100 mb-4" onclick="convertFrequency()">
-                            <i class="bi bi-arrow-repeat me-2"></i>Convert to Note
-                        </button>
+                    <!-- FAQ Section -->
+                    <section class="mb-5">
+                        <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
+                        <div class="accordion" id="fnFaqAccordion">
 
-                        <!-- Result Box -->
-                        <div class="result-box" id="resultBox">
-                            <h3 id="resultNote">A4</h3>
-                            <p class="mb-2" style="font-size: 24px;" id="resultFreq">440.00 Hz</p>
-                            <div class="row text-start mt-4">
-                                <div class="col-6 col-md-3 mb-3">
-                                    <strong>Note:</strong><br>
-                                    <span id="noteName">A</span>
-                                </div>
-                                <div class="col-6 col-md-3 mb-3">
-                                    <strong>Octave:</strong><br>
-                                    <span id="noteOctave">4</span>
-                                </div>
-                                <div class="col-6 col-md-3 mb-3">
-                                    <strong>Cents:</strong><br>
-                                    <span id="noteCents">0.00</span>
-                                </div>
-                                <div class="col-6 col-md-3 mb-3">
-                                    <strong>Exact Freq:</strong><br>
-                                    <span id="exactFreq">440.00 Hz</span>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq1" aria-expanded="true">
+                                        How do you calculate musical note from frequency (Hz)?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq1" class="accordion-collapse collapse show"
+                                    data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        Calculate semitone distance from reference pitch A4 (440 Hz) using the formula:
+                                        <code>n = 12 × log2(f / 440)</code>. Rounding 'n' to the nearest integer yields
+                                        the closest chromatic semitone. The corresponding MIDI note number is
+                                        <code>m = 69 + round(n)</code>, which maps directly to note names (C through B)
+                                        and octave numbers.
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mt-3 p-3 bg-white rounded">
-                                <p class="mb-0" id="centsExplanation">This frequency is exactly at A4 (perfectly in
-                                    tune).</p>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq2">
+                                        What note is 432 Hz in standard equal temperament?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq2" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        In standard A4 = 440 Hz tuning, 432 Hz is approximately 31.77 cents flat of A4
+                                        (440.00 Hz). In 432 Hz tuning systems, 432 Hz is designated as the exact
+                                        reference pitch for A4.
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq3">
+                                        What musical note corresponds to 60 Hz electrical mains hum?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq3" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        In regions with 60 Hz AC power grids (such as North America), electrical ground
+                                        loop hum occurs at 60 Hz. This corresponds to a microtonally sharp B-flat 1
+                                        (Bb1, exact pitch 58.27 Hz, +50.7 cents sharp). In 50 Hz power grids
+                                        (Europe/Asia), ground hum occurs at 50 Hz, corresponding to G1 (49.00 Hz, +35
+                                        cents sharp).
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq4">
+                                        What is the frequency of Middle C (C4)?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq4" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        Middle C (C4, MIDI note 60) has a fundamental frequency of 261.63 Hz under
+                                        standard equal temperament calibrated to A4 = 440 Hz.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq5">
+                                        Why do audio engineers need to convert frequencies to musical notes?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq5" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        Audio engineers convert frequencies to notes to tune 808 basslines and kick
+                                        drums to song keys, calibrate parametric EQ notch filters to remove resonant
+                                        feedback tones, tune synth oscillators, and align room mode acoustic treatment
+                                        with low musical notes.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq6">
+                                        How does cent deviation indicate tuning accuracy?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq6" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        A cent is 1/100th of an equal-tempered semitone. A reading of 0.00 cents
+                                        indicates that an audio frequency matches the musical note perfectly. Negative
+                                        cents indicate flat pitch (too low), while positive cents indicate sharp pitch
+                                        (too high).
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+                    </section>
+                </div>
+                <div class="card my-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
 
-                        <!-- Cents Visualization -->
-                        <div class="mt-4 p-4 bg-light rounded">
-                            <h5 class="text-mid mb-3">Cents Deviation</h5>
-                            <div
-                                style="height: 30px; background: #e0e0e0; border-radius: 15px; position: relative; overflow: hidden;">
-                                <div
-                                    style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--dark-blue);">
-                                </div>
-                                <div id="centsIndicator"
-                                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; background: var(--teal); border-radius: 50%; transition: left 0.3s;">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-2">
-                                <span>-50¢ (Flat)</span>
-                                <span>0¢</span>
-                                <span>+50¢ (Sharp)</span>
-                            </div>
-                        </div>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">
+                                <a class="link-primary text-decoration-none fw-medium"
+                                    href="/pitch-detector-tools/pitch-detector/">
+                                    Online Pitch Detector
+                                </a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="link-primary text-decoration-none fw-medium"
+                                    href="/pitch-detector-tools/guitar-tuner-online/">
+                                    Guitar Tuner
+                                </a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="link-primary text-decoration-none fw-medium"
+                                    href="/pitch-detector-tools/frequency-to-note-online/">
+                                    Frequency to Note Converter
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="link-primary text-decoration-none fw-medium"
+                                    href="/pitch-detector-tools/note-to-frequency-online/">
+                                    Note to Frequency Converter
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- COMPREHENSIVE FREQUENCY TO NOTE GUIDE & REFERENCE -->
-                    <div class="mt-5 pt-3">
-                        <section class="mb-5">
-                            <h2 class="h3 fw-bold text-teal mb-3">Understanding the Physics of Sound: Translating Acoustic Frequency (Hz) into Musical Notes</h2>
-                            <p>
-                                Every musical tone you hear is physically generated by pressure waves vibrating through the air. <strong>Frequency</strong>, measured in <strong>Hertz (Hz)</strong>, counts how many complete compression-rarefaction wave cycles occur every second. Higher frequencies produce higher perceived musical pitch, while lower frequencies produce deep bass tones.
-                            </p>
-                            <p>
-                                However, human pitch perception is not linear—it is strictly <strong>logarithmic</strong>. Doubling an acoustic frequency does not sound like adding a constant amount of pitch; rather, it raises the pitch by exactly one musical <strong>octave</strong>. For instance, moving from $A_3$ ($220\text{ Hz}$) to $A_4$ ($440\text{ Hz}$) is a gap of $220\text{ Hz}$, but moving from $A_4$ ($440\text{ Hz}$) to $A_5$ ($880\text{ Hz}$) spans a gap of $440\text{ Hz}$. Both intervals are perceived as the exact same distance: one perfect octave.
-                            </p>
-                            <p>
-                                The <strong>Frequency to Note Converter</strong> bridges physical acoustics and music theory. It converts any continuous frequency value into its nearest discrete chromatic note, octave register, MIDI note number, and microtonal cent deviation under standard 12-Tone Equal Temperament (12-TET).
-                            </p>
-                        </section>
+                </div>
 
-                        <section class="mb-5">
-                            <h3 class="h4 fw-bold mb-3">The Mathematical Conversion Formulas</h3>
-                            <div class="row g-4 my-2">
-                                <div class="col-md-4">
-                                    <div class="p-3 bg-light rounded border h-100">
-                                        <h5 class="fw-bold text-teal mb-2"><i class="bi bi-calculator me-2"></i>1. Semitones from Reference Pitch</h5>
-                                        <p class="small text-muted mb-2">Calculates the continuous semitone distance ($n$) from standard concert reference $A_4$ ($440\text{ Hz}$):</p>
-                                        <div class="bg-white p-2 rounded border font-monospace text-center small mb-2">
-                                            $$n = 12 \times \log_2\left(\frac{f}{f_{\text{ref}}}\right)$$
-                                        </div>
-                                        <p class="small text-muted mb-0">Rounding $n$ to the nearest integer identifies the closest musical key.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="p-3 bg-light rounded border h-100">
-                                        <h5 class="fw-bold text-teal mb-2"><i class="bi bi-music-note-beamed me-2"></i>2. Exact In-Tune Note Frequency</h5>
-                                        <p class="small text-muted mb-2">Computes the exact theoretical frequency of that nearest note:</p>
-                                        <div class="bg-white p-2 rounded border font-monospace text-center small mb-2">
-                                            $$f_{\text{target}} = f_{\text{ref}} \times 2^{\frac{\text{round}(n)}{12}}$$
-                                        </div>
-                                        <p class="small text-muted mb-0">For middle C ($C_4$, $n = -9$): $440 \times 2^{-9/12} = 261.63\text{ Hz}$.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="p-3 bg-light rounded border h-100">
-                                        <h5 class="fw-bold text-teal mb-2"><i class="bi bi-rulers me-2"></i>3. Cent Deviation</h5>
-                                        <p class="small text-muted mb-2">Quantifies how far the input frequency is sharp ($+$) or flat ($-$) from the target note ($100\text{ cents} = 1\text{ semitone}$):</p>
-                                        <div class="bg-white p-2 rounded border font-monospace text-center small mb-2">
-                                            $$\Delta c = 1200 \times \log_2\left(\frac{f}{f_{\text{target}}}\right)$$
-                                        </div>
-                                        <p class="small text-muted mb-0">A cent offset within $\pm 5$ cents is practically undetectable to human hearing.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Frequency Spectrum & Instrument Mapping -->
-                        <section class="mb-5">
-                            <h3 class="h4 fw-bold mb-3">Audio Frequency Spectrum &amp; Musical Note Ranges</h3>
-                            <p>
-                                Understanding which musical notes correspond to acoustic frequency bands allows producers and engineers to make precise mixing and EQ decisions:
-                            </p>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Acoustic Band</th>
-                                            <th>Frequency Range (Hz)</th>
-                                            <th>Musical Note Range</th>
-                                            <th>Instrument Elements &amp; Audio Application</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Sub-Bass</strong></td>
-                                            <td>20 Hz &ndash; 60 Hz</td>
-                                            <td>E0 &ndash; B1</td>
-                                            <td>Sub-kick rumble, 808 sub drops, 5-string bass low B. Felt more than heard.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Bass</strong></td>
-                                            <td>60 Hz &ndash; 250 Hz</td>
-                                            <td>B1 &ndash; B3</td>
-                                            <td>Bass guitar, kick drum body, low piano notes, male vocal chest resonance.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Low-Midrange</strong></td>
-                                            <td>250 Hz &ndash; 500 Hz</td>
-                                            <td>B3 &ndash; B4 (Middle Register)</td>
-                                            <td>Middle C (261 Hz), warmth of acoustic guitars, snare body, vocal fundamentals.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Midrange</strong></td>
-                                            <td>500 Hz &ndash; 2 kHz</td>
-                                            <td>B4 &ndash; B6</td>
-                                            <td>Lead vocals, piano chords, trumpet, violin, synthesizer leads. Ear is most sensitive here.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Upper Midrange</strong></td>
-                                            <td>2 kHz &ndash; 4 kHz</td>
-                                            <td>B6 &ndash; B7</td>
-                                            <td>Vocal articulation, snare snap, guitar pick attack. Harshness region if over-boosted.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Presence &amp; Brilliance</strong></td>
-                                            <td>4 kHz &ndash; 20 kHz</td>
-                                            <td>B7 &ndash; Ultrasonic</td>
-                                            <td>Cymbal sizzle, vocal air, acoustic guitar string sheen, room reverb sparkle.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
-
-                        <!-- Complete 8-Octave Reference Table -->
-                        <section class="mb-5">
-                            <h3 class="h4 fw-bold mb-3">Complete 8-Octave Note-to-Frequency Reference Table ($A_4 = 440\text{ Hz}$)</h3>
-                            <p>
-                                The table below displays the exact fundamental frequencies across all eight standard octaves for every diatonic note:
-                            </p>
-                            <div class="table-responsive">
-                                <table class="table table-bordered text-center align-middle">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Octave</th>
-                                            <th>C</th>
-                                            <th>D</th>
-                                            <th>E</th>
-                                            <th>F</th>
-                                            <th>G</th>
-                                            <th>A</th>
-                                            <th>B</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td><strong>Octave 0</strong></td><td>16.35 Hz</td><td>18.35 Hz</td><td>20.60 Hz</td><td>21.83 Hz</td><td>24.50 Hz</td><td>27.50 Hz</td><td>30.87 Hz</td></tr>
-                                        <tr><td><strong>Octave 1</strong></td><td>32.70 Hz</td><td>36.71 Hz</td><td>41.20 Hz</td><td>43.65 Hz</td><td>49.00 Hz</td><td>55.00 Hz</td><td>61.74 Hz</td></tr>
-                                        <tr><td><strong>Octave 2</strong></td><td>65.41 Hz</td><td>73.42 Hz</td><td>82.41 Hz</td><td>87.31 Hz</td><td>98.00 Hz</td><td>110.00 Hz</td><td>123.47 Hz</td></tr>
-                                        <tr><td><strong>Octave 3</strong></td><td>130.81 Hz</td><td>146.83 Hz</td><td>164.81 Hz</td><td>174.61 Hz</td><td>196.00 Hz</td><td>220.00 Hz</td><td>246.94 Hz</td></tr>
-                                        <tr class="table-success fw-bold"><td><strong>Octave 4 (Mid)</strong></td><td>261.63 Hz</td><td>293.66 Hz</td><td>329.63 Hz</td><td>349.23 Hz</td><td>392.00 Hz</td><td>440.00 Hz</td><td>493.88 Hz</td></tr>
-                                        <tr><td><strong>Octave 5</strong></td><td>523.25 Hz</td><td>587.33 Hz</td><td>659.25 Hz</td><td>698.46 Hz</td><td>783.99 Hz</td><td>880.00 Hz</td><td>987.77 Hz</td></tr>
-                                        <tr><td><strong>Octave 6</strong></td><td>1046.50 Hz</td><td>1174.66 Hz</td><td>1318.51 Hz</td><td>1396.91 Hz</td><td>1567.98 Hz</td><td>1760.00 Hz</td><td>1975.53 Hz</td></tr>
-                                        <tr><td><strong>Octave 7</strong></td><td>2093.00 Hz</td><td>2349.32 Hz</td><td>2637.02 Hz</td><td>2793.83 Hz</td><td>3135.96 Hz</td><td>3520.00 Hz</td><td>3951.07 Hz</td></tr>
-                                        <tr><td><strong>Octave 8</strong></td><td>4186.01 Hz</td><td>4698.64 Hz</td><td>5274.04 Hz</td><td>5587.65 Hz</td><td>6271.93 Hz</td><td>7040.00 Hz</td><td>7902.13 Hz</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
-
-                        <!-- Audio Engineering Applications -->
-                        <section class="mb-5">
-                            <h3 class="h4 fw-bold mb-3">Practical Audio Engineering Applications</h3>
-                            <div class="row g-4">
-                                <div class="col-md-4">
-                                    <div class="p-3 bg-light rounded border h-100">
-                                        <h5 class="fw-bold text-teal mb-2"><i class="bi bi-soundwave me-2"></i>1. Tuning 808 Basslines</h5>
-                                        <p class="small text-muted mb-0">When synthesizing 808 kicks, an out-of-tune bass ruins low-end punch. If your song is in F Minor, set your 808 sine pitch to $F_1$ (43.65 Hz) or $F_2$ (87.31 Hz) to prevent harmonic dissonance with the chords.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="p-3 bg-light rounded border h-100">
-                                        <h5 class="fw-bold text-teal mb-2"><i class="bi bi-lightning-charge me-2"></i>2. Surgical Notch Filtering</h5>
-                                        <p class="small text-muted mb-0">Live stage microphones often feedback at specific ringing room modes. Use this converter to translate the feedback pitch (e.g. ringing at a sharp G5) into its exact frequency (~784 Hz) and set an ultra-narrow parametric EQ notch to cut it cleanly.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="p-3 bg-light rounded border h-100">
-                                        <h5 class="fw-bold text-teal mb-2"><i class="bi bi-cpu me-2"></i>3. Synthesizer Calibration</h5>
-                                        <p class="small text-muted mb-0">Analog hardware synthesizers often drift out of tune as internal circuits warm up. Convert your test oscillator frequency to confirm exact pitch tracking across multiple octaves.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- FAQ Section -->
-                        <section class="mb-5">
-                            <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
-                            <div class="accordion" id="fnFaqAccordion">
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="fnHead1">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fnFaq1" aria-expanded="true">
-                                            How do you calculate musical note from frequency (Hz)?
-                                        </button>
-                                    </h2>
-                                    <div id="fnFaq1" class="accordion-collapse collapse show" data-bs-parent="#fnFaqAccordion">
-                                        <div class="accordion-body">
-                                            Calculate semitone distance from reference pitch A4 (440 Hz) using the formula: <code>n = 12 × log2(f / 440)</code>. Rounding 'n' to the nearest integer yields the closest chromatic semitone. The corresponding MIDI note number is <code>m = 69 + round(n)</code>, which maps directly to note names (C through B) and octave numbers.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="fnHead2">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fnFaq2">
-                                            What note is 432 Hz in standard equal temperament?
-                                        </button>
-                                    </h2>
-                                    <div id="fnFaq2" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
-                                        <div class="accordion-body">
-                                            In standard A4 = 440 Hz tuning, 432 Hz is approximately 31.77 cents flat of A4 (440.00 Hz). In 432 Hz tuning systems, 432 Hz is designated as the exact reference pitch for A4.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="fnHead3">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fnFaq3">
-                                            What musical note corresponds to 60 Hz electrical mains hum?
-                                        </button>
-                                    </h2>
-                                    <div id="fnFaq3" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
-                                        <div class="accordion-body">
-                                            In regions with 60 Hz AC power grids (such as North America), electrical ground loop hum occurs at 60 Hz. This corresponds to a microtonally sharp B-flat 1 (Bb1, exact pitch 58.27 Hz, +50.7 cents sharp). In 50 Hz power grids (Europe/Asia), ground hum occurs at 50 Hz, corresponding to G1 (49.00 Hz, +35 cents sharp).
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="fnHead4">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fnFaq4">
-                                            What is the frequency of Middle C (C4)?
-                                        </button>
-                                    </h2>
-                                    <div id="fnFaq4" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
-                                        <div class="accordion-body">
-                                            Middle C (C4, MIDI note 60) has a fundamental frequency of 261.63 Hz under standard equal temperament calibrated to A4 = 440 Hz.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="fnHead5">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fnFaq5">
-                                            Why do audio engineers need to convert frequencies to musical notes?
-                                        </button>
-                                    </h2>
-                                    <div id="fnFaq5" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
-                                        <div class="accordion-body">
-                                            Audio engineers convert frequencies to notes to tune 808 basslines and kick drums to song keys, calibrate parametric EQ notch filters to remove resonant feedback tones, tune synth oscillators, and align room mode acoustic treatment with low musical notes.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="fnHead6">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fnFaq6">
-                                            How does cent deviation indicate tuning accuracy?
-                                        </button>
-                                    </h2>
-                                    <div id="fnFaq6" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
-                                        <div class="accordion-body">
-                                            A cent is 1/100th of an equal-tempered semitone. A reading of 0.00 cents indicates that an audio frequency matches the musical note perfectly. Negative cents indicate flat pitch (too low), while positive cents indicate sharp pitch (too high).
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </section>
-                    </div>
-                    <div class="card my-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
-
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/pitch-detector/">
-                                            Online Pitch Detector
-                                        </a>
-                                    </li>
-
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/guitar-tuner-online/">
-                                            Guitar Tuner
-                                        </a>
-                                    </li>
-
-                                    <li class="mb-2">
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/frequency-to-note-online/">
-                                            Frequency to Note Converter
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="link-primary text-decoration-none fw-medium"
-                                            href="/pitch-detector-tools/note-to-frequency-online/">
-                                            Note to Frequency Converter
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
             </div>
         </div>
     </div>
+    </div>
     <div id="footer"></div>
-    <script src="/assets/bootstrap5.js" defer></script>
+    <script src="./assets/bootstrap5.js" defer></script>
 
     <!-- tool js -->
     <script defer>

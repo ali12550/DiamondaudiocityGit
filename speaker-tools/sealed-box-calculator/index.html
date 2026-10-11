@@ -9,12 +9,12 @@
         content="Calculate sealed (acoustic suspension) speaker and subwoofer box volume, system resonance (Fc), low-frequency cutoff (F3), and Qtc damping alignments (Butterworth, Bessel, Overdamped).">
     <link rel="canonical" href="https://pitchdetectors.com/speaker-tools/sealed-box-calculator/">
 
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="./assets/bootstrap5.css" rel="stylesheet">
+    <link href="./assets/style.css" rel="stylesheet">
+    <link href="./assets/tools.css" rel="stylesheet">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
         crossorigin="anonymous"></script>
@@ -114,7 +114,8 @@
                 <div class="tool-container">
                     <div class="tool-title">
                         <h1><i class="bi bi-box-seam me-2"></i>Sealed Box Calculator</h1>
-                        <p>Calculate precision sealed (acoustic suspension) loudspeaker and subwoofer enclosure volume, system resonance (Fc), low-frequency cutoff (F3), and target Qtc damping alignments.</p>
+                        <p>Calculate precision sealed (acoustic suspension) loudspeaker and subwoofer enclosure volume,
+                            system resonance (Fc), low-frequency cutoff (F3), and target Qtc damping alignments.</p>
                     </div>
 
                     <div class="row mb-4">
@@ -141,8 +142,8 @@
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-bold">Target System Damping (Qtc):</label>
-                            <input type="range" class="form-range" id="qtc" value="0.707" min="0.5" max="1.2" step="0.01"
-                                oninput="calculate()">
+                            <input type="range" class="form-range" id="qtc" value="0.707" min="0.5" max="1.2"
+                                step="0.01" oninput="calculate()">
                             <div class="d-flex justify-content-between">
                                 <small>0.5 (Tight / Damped)</small>
                                 <strong id="qtcDisplay" class="text-teal">0.707 (Butterworth)</strong>
@@ -183,15 +184,18 @@
                     </div>
 
                     <div class="mt-4 p-4 bg-light rounded border">
-                        <h5 class="text-dark fw-bold mb-3"><i class="bi bi-rulers text-teal me-2"></i>Physical Enclosure Dimensions (Reference Cube)</h5>
+                        <h5 class="text-dark fw-bold mb-3"><i class="bi bi-rulers text-teal me-2"></i>Physical Enclosure
+                            Dimensions (Reference Cube)</h5>
                         <div class="row text-center">
                             <div class="col-md-4 col-6 mb-3">
                                 <strong>Net Internal Dimensions:</strong><br>
-                                <span id="intDimensions" class="fs-5 font-monospace text-dark">30.5 × 30.5 × 30.5 cm</span>
+                                <span id="intDimensions" class="fs-5 font-monospace text-dark">30.5 × 30.5 × 30.5
+                                    cm</span>
                             </div>
                             <div class="col-md-4 col-6 mb-3">
                                 <strong>External Dimensions (3/4" walls):</strong><br>
-                                <span id="extDimensions" class="fs-5 font-monospace text-dark">34.3 × 34.3 × 34.3 cm</span>
+                                <span id="extDimensions" class="fs-5 font-monospace text-dark">34.3 × 34.3 × 34.3
+                                    cm</span>
                             </div>
                             <div class="col-md-4 col-6 mb-3">
                                 <strong>Wall Wood Displacement:</strong><br>
@@ -203,43 +207,60 @@
 
                 <!-- Comprehensive Technical Guide -->
                 <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-soundwave text-teal me-2"></i>Acoustic Suspension Physics & Sealed Loudspeaker Design</h2>
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-soundwave text-teal me-2"></i>Acoustic
+                        Suspension Physics & Sealed Loudspeaker Design</h2>
                     <p class="text-secondary">
-                        A sealed loudspeaker enclosure (also known as an <strong>acoustic suspension</strong> or closed-box design) isolates the radiation of the driver's rear wave from its front wave by trapping the rear acoustic output inside an airtight cabinet. Unlike bass reflex enclosures that rely on resonant air ports, a sealed box uses the trapped pneumatic volume of air as an acoustic restoring spring.
+                        A sealed loudspeaker enclosure (also known as an <strong>acoustic suspension</strong> or
+                        closed-box design) isolates the radiation of the driver's rear wave from its front wave by
+                        trapping the rear acoustic output inside an airtight cabinet. Unlike bass reflex enclosures that
+                        rely on resonant air ports, a sealed box uses the trapped pneumatic volume of air as an acoustic
+                        restoring spring.
                     </p>
                     <p class="text-secondary">
-                        Because the air trapped inside a sealed cabinet compresses and decompresses with near-perfect linearity, acoustic suspension enclosures exhibit <strong>superior transient impulse response, lower group delay, and a gentle 12 dB/octave roll-off</strong> that seamlessly integrates with domestic room gain and vehicle cabin gain.
+                        Because the air trapped inside a sealed cabinet compresses and decompresses with near-perfect
+                        linearity, acoustic suspension enclosures exhibit <strong>superior transient impulse response,
+                            lower group delay, and a gentle 12 dB/octave roll-off</strong> that seamlessly integrates
+                        with domestic room gain and vehicle cabin gain.
                     </p>
 
                     <hr class="my-4">
 
                     <h3 class="h4 text-dark fw-bold mb-3">The Thiele-Small Closed-Box Formulation</h3>
                     <p class="text-secondary">
-                        When a raw loudspeaker driver is installed into an airtight enclosure of net volume $V_b$, the pneumatic compliance of the box air ($C_{ab}$) adds in parallel with the driver's mechanical suspension compliance ($C_{ms}$), increasing the total system stiffness. The fundamental closed-box design equations derived by Richard Small and Neville Thiele govern this interaction:
+                        When a raw loudspeaker driver is installed into an airtight enclosure of net volume $V_b$, the
+                        pneumatic compliance of the box air ($C_{ab}$) adds in parallel with the driver's mechanical
+                        suspension compliance ($C_{ms}$), increasing the total system stiffness. The fundamental
+                        closed-box design equations derived by Richard Small and Neville Thiele govern this interaction:
                     </p>
                     <div class="row g-3 my-2">
                         <div class="col-md-6">
                             <div class="p-3 bg-light rounded border text-center">
                                 <span class="fw-bold text-dark">Required Net Box Volume ($V_b$):</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$V_b = rac{V_{as}}{left(rac{Q_{tc}}{Q_{ts}}ight)^2 - 1}$$</span>
+                                <span class="fs-5 font-monospace text-teal">$$V_b =
+                                    rac{V_{as}}{left(rac{Q_{tc}}{Q_{ts}}
+                                    ight)^2 - 1}$$</span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="p-3 bg-light rounded border text-center">
                                 <span class="fw-bold text-dark">System Resonant Frequency ($F_c$):</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$F_c = F_s cdot left(rac{Q_{tc}}{Q_{ts}}ight) = F_s sqrt{1 + rac{V_{as}}{V_b}}$$</span>
+                                <span class="fs-5 font-monospace text-teal">$$F_c = F_s cdot left(rac{Q_{tc}}{Q_{ts}}
+                                    ight) = F_s sqrt{1 + rac{V_{as}}{V_b}}$$</span>
                             </div>
                         </div>
                     </div>
                     <p class="text-secondary">
-                        Where $V_{as}$ is the driver's equivalent compliance volume, $F_s$ is free-air fundamental resonance, $Q_{ts}$ is total driver quality factor, and $Q_{tc}$ is the target closed-box system damping factor.
+                        Where $V_{as}$ is the driver's equivalent compliance volume, $F_s$ is free-air fundamental
+                        resonance, $Q_{ts}$ is total driver quality factor, and $Q_{tc}$ is the target closed-box system
+                        damping factor.
                     </p>
 
                     <hr class="my-4">
 
                     <h3 class="h4 text-dark fw-bold mb-3">Damping Factor Alignments ($Q_{tc}$) Compared</h3>
                     <p class="text-secondary">
-                        The system $Q_{tc}$ determines the frequency response curve, damping ratio, and time-domain transient ringing of the subwoofer:
+                        The system $Q_{tc}$ determines the frequency response curve, damping ratio, and time-domain
+                        transient ringing of the subwoofer:
                     </p>
                     <div class="table-responsive my-3">
                         <table class="table table-bordered table-hover align-middle">
@@ -268,13 +289,15 @@
                                     <td><strong>0.707</strong></td>
                                     <td>Butterworth (B2)</td>
                                     <td>Maximally flat magnitude response down to $F_3$ ($F_3 = F_c$).</td>
-                                    <td><strong>The gold standard</strong>. Best balance between extension, box size, and transient punch.</td>
+                                    <td><strong>The gold standard</strong>. Best balance between extension, box size,
+                                        and transient punch.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>0.85 – 0.95</strong></td>
                                     <td>Chebyshev / Car Audio</td>
                                     <td>Mild +1.0 dB to +1.5 dB peak before roll-off; slight transient ringing.</td>
-                                    <td>Compact car audio subwoofers; provides extra mid-bass presence in small trunks.</td>
+                                    <td>Compact car audio subwoofers; provides extra mid-bass presence in small trunks.
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><strong>&gt; 1.00</strong></td>
@@ -290,102 +313,150 @@
 
                     <h3 class="h4 text-dark fw-bold mb-3">Calculating the Half-Power Cutoff Frequency ($F_3$)</h3>
                     <p class="text-secondary">
-                        The frequency where the system's output drops by -3 dB relative to its mid-band sensitivity is calculated using:
+                        The frequency where the system's output drops by -3 dB relative to its mid-band sensitivity is
+                        calculated using:
                     </p>
                     <div class="p-3 bg-light rounded border text-center my-3">
-                        <span class="fs-5 text-dark font-monospace">$$F_3 = F_c left[ left(rac{1}{2 Q_{tc}^2} - 1ight) + sqrt{left(rac{1}{2 Q_{tc}^2} - 1ight)^2 + 1} ight]^{1/2}$$</span>
-                        <div class="small text-muted mt-2">Notice that when $Q_{tc} = rac{1}{sqrt{2}} approx 0.707$, the term $left(rac{1}{2 Q_{tc}^2} - 1ight) = 0$, reducing the formula to $F_3 = F_c$.</div>
+                        <span class="fs-5 text-dark font-monospace">$$F_3 = F_c left[ left(rac{1}{2 Q_{tc}^2} - 1
+                            ight) + sqrt{left(rac{1}{2 Q_{tc}^2} - 1
+                            ight)^2 + 1}
+                            ight]^{1/2}$$</span>
+                        <div class="small text-muted mt-2">Notice that when $Q_{tc} = rac{1}{sqrt{2}} approx 0.707$,
+                            the term $left(rac{1}{2 Q_{tc}^2} - 1
+                            ight) = 0$, reducing the formula to $F_3 = F_c$.</div>
                     </div>
 
                     <hr class="my-4">
 
                     <h3 class="h4 text-dark fw-bold mb-3">Thermodynamics: Isothermal vs. Adiabatic Polyfill Damping</h3>
                     <p class="text-secondary">
-                        When an unlined wooden box compresses air, the process is <strong>adiabatic</strong> (air heats up as it compresses and cools as it expands, increasing the acoustic stiffness $gamma approx 1.4$).
+                        When an unlined wooden box compresses air, the process is <strong>adiabatic</strong> (air heats
+                        up as it compresses and cools as it expands, increasing the acoustic stiffness $gamma approx
+                        1.4$).
                     </p>
                     <p class="text-secondary">
-                        Lining or loosely stuffing the sealed enclosure with <strong>0.5 to 1.0 pound of polyfill or fiberglass per cubic foot</strong> alters the thermodynamics toward an <strong>isothermal process</strong> ($gamma approx 1.0$). The fine fibers absorb heat from the compressed air, slowing the speed of sound and tricking the subwoofer driver into behaving as if the box volume were <strong>10% to 20% larger</strong>. This allows designers to build cabinets up to 15% smaller while maintaining a target 0.707 Butterworth alignment.
+                        Lining or loosely stuffing the sealed enclosure with <strong>0.5 to 1.0 pound of polyfill or
+                            fiberglass per cubic foot</strong> alters the thermodynamics toward an <strong>isothermal
+                            process</strong> ($gamma approx 1.0$). The fine fibers absorb heat from the compressed air,
+                        slowing the speed of sound and tricking the subwoofer driver into behaving as if the box volume
+                        were <strong>10% to 20% larger</strong>. This allows designers to build cabinets up to 15%
+                        smaller while maintaining a target 0.707 Butterworth alignment.
                     </p>
                 </div>
 
                 <!-- Structured FAQ Accordion -->
                 <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently Asked Questions</h2>
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently
+                        Asked Questions</h2>
                     <div class="accordion" id="sealedBoxFAQ">
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
                                     What is the acoustic suspension principle in sealed box loudspeaker design?
                                 </button>
                             </h3>
                             <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#sealedBoxFAQ">
                                 <div class="accordion-body text-secondary">
-                                    The acoustic suspension design (invented by Edgar Villchur in 1954) uses a driver with a very compliant mechanical suspension mounted inside a small, airtight enclosure. Instead of relying on a stiff mechanical spider, the trapped pocket of air inside the sealed box acts as a linear pneumatic spring that restores the cone to center, reducing harmonic distortion and providing smooth 12 dB/octave low-frequency roll-off.
+                                    The acoustic suspension design (invented by Edgar Villchur in 1954) uses a driver
+                                    with a very compliant mechanical suspension mounted inside a small, airtight
+                                    enclosure. Instead of relying on a stiff mechanical spider, the trapped pocket of
+                                    air inside the sealed box acts as a linear pneumatic spring that restores the cone
+                                    to center, reducing harmonic distortion and providing smooth 12 dB/octave
+                                    low-frequency roll-off.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
                                     What is Qtc and how does it alter subwoofer sound quality?
                                 </button>
                             </h3>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
                                 <div class="accordion-body text-secondary">
-                                    Qtc is the total quality factor of the speaker-enclosure system at its resonant frequency ($F_c$). A $Q_{tc}$ of 0.50 is critically damped with zero overshoot and fast transient decay; $Q_{tc}$ of 0.577 (Bessel) provides optimal linear phase and group delay; $Q_{tc}$ of 0.707 (Butterworth) provides the maximally flat passband with the lowest $F_3$ cutoff; and $Q_{tc}$ above 0.9 creates a boomy resonant bass peak suitable for small car audio setups.
+                                    Qtc is the total quality factor of the speaker-enclosure system at its resonant
+                                    frequency ($F_c$). A $Q_{tc}$ of 0.50 is critically damped with zero overshoot and
+                                    fast transient decay; $Q_{tc}$ of 0.577 (Bessel) provides optimal linear phase and
+                                    group delay; $Q_{tc}$ of 0.707 (Butterworth) provides the maximally flat passband
+                                    with the lowest $F_3$ cutoff; and $Q_{tc}$ above 0.9 creates a boomy resonant bass
+                                    peak suitable for small car audio setups.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                    Why is the low-frequency roll-off of a sealed box 12 dB/octave compared to 24 dB/octave in a ported box?
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    Why is the low-frequency roll-off of a sealed box 12 dB/octave compared to 24
+                                    dB/octave in a ported box?
                                 </button>
                             </h3>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
                                 <div class="accordion-body text-secondary">
-                                    A sealed box behaves as a 2nd-order high-pass acoustic filter, resulting in a gentle 12 dB per octave roll-off below its resonant frequency ($F_c$). A ported enclosure is a 4th-order resonant system rolling off at a steep 24 dB per octave. Because vehicle cabin gain and small room boundary gain increase bass at roughly +12 dB per octave, sealed enclosures naturally complement small rooms, often producing usable bass down to 10 Hz.
+                                    A sealed box behaves as a 2nd-order high-pass acoustic filter, resulting in a gentle
+                                    12 dB per octave roll-off below its resonant frequency ($F_c$). A ported enclosure
+                                    is a 4th-order resonant system rolling off at a steep 24 dB per octave. Because
+                                    vehicle cabin gain and small room boundary gain increase bass at roughly +12 dB per
+                                    octave, sealed enclosures naturally complement small rooms, often producing usable
+                                    bass down to 10 Hz.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq4">
                                     How does acoustic polyfill stuffing increase the apparent volume of a sealed box?
                                 </button>
                             </h3>
                             <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
                                 <div class="accordion-body text-secondary">
-                                    When air is compressed inside an empty enclosure, it undergoes adiabatic compression where air temperature rises during compression and cools during expansion. Adding loose fibrous damping material (such as Dacron polyfill or acoustic fiberglass) absorbs heat during compression, converting the thermodynamic cycle toward isothermal compression. This slows sound speed and increases apparent enclosure volume by 10% to 20%, lowering $F_c$ and $Q_{tc}$.
+                                    When air is compressed inside an empty enclosure, it undergoes adiabatic compression
+                                    where air temperature rises during compression and cools during expansion. Adding
+                                    loose fibrous damping material (such as Dacron polyfill or acoustic fiberglass)
+                                    absorbs heat during compression, converting the thermodynamic cycle toward
+                                    isothermal compression. This slows sound speed and increases apparent enclosure
+                                    volume by 10% to 20%, lowering $F_c$ and $Q_{tc}$.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq5">
                                     What happens if a sealed enclosure is built smaller than the calculated volume?
                                 </button>
                             </h3>
                             <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
                                 <div class="accordion-body text-secondary">
-                                    If a sealed box is too small, the air spring becomes overly stiff. System resonance ($F_c$) shifts upward and $Q_{tc}$ rises significantly above 0.707, producing an underdamped response with a resonant boom in the 60 Hz to 90 Hz region while sacrificing deep sub-bass extension below 40 Hz. It also reduces transient precision and increases cone ringing.
+                                    If a sealed box is too small, the air spring becomes overly stiff. System resonance
+                                    ($F_c$) shifts upward and $Q_{tc}$ rises significantly above 0.707, producing an
+                                    underdamped response with a resonant boom in the 60 Hz to 90 Hz region while
+                                    sacrificing deep sub-bass extension below 40 Hz. It also reduces transient precision
+                                    and increases cone ringing.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq6">
                                     How do you account for driver displacement when building a sealed enclosure?
                                 </button>
                             </h3>
                             <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
                                 <div class="accordion-body text-secondary">
-                                    The volume calculated by the formula ($V_b$) is the net internal acoustic air space. When building the physical wooden box, you must add the volume physically displaced by the subwoofer magnet and basket structure (typically 0.05 to 0.15 cubic feet for a 12-inch driver) plus any internal bracing to determine the gross internal volume.
+                                    The volume calculated by the formula ($V_b$) is the net internal acoustic air space.
+                                    When building the physical wooden box, you must add the volume physically displaced
+                                    by the subwoofer magnet and basket structure (typically 0.05 to 0.15 cubic feet for
+                                    a 12-inch driver) plus any internal bracing to determine the gross internal volume.
                                 </div>
                             </div>
                         </div>
@@ -415,122 +486,123 @@
                                         Impedance Calculator</a></li>
                                 <li><a href="/speaker-tools/amplifier-power-calculator/"><i class="bi bi-plug"></i>
                                         Amplifier Power</a></li>
-                                <li><a href="/speaker-tools/sealed-box-calculator/" class="text-teal"><i class="bi bi-box-seam"></i>
+                                <li><a href="/speaker-tools/sealed-box-calculator/" class="text-teal"><i
+                                            class="bi bi-box-seam"></i>
                                         Sealed Box</a></li>
                                 <li><a href="/speaker-tools/ported-enclosure-calculator/"><i class="bi bi-box"></i>
                                         Ported Enclosure</a></li>
-                                <li><a href="/speaker-tools/subwoofer-enclosure-tuning-calculator/"><i class="bi bi-sliders"></i>
+                                <li><a href="/speaker-tools/subwoofer-enclosure-tuning-calculator/"><i
+                                            class="bi bi-sliders"></i>
                                         Subwoofer Tuning</a></li>
-                                <li><a href="/speaker-tools/subwoofer-impedance-matching-calculator/"><i class="bi bi-diagram-2"></i>
+                                <li><a href="/speaker-tools/subwoofer-impedance-matching-calculator/"><i
+                                            class="bi bi-diagram-2"></i>
                                         Subwoofer Impedance</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
+                </div. /assets/ ./assets/ </div>
             </div>
 
-        </div>
-    </div>
+            <div id="footer"></div>
+            <script src="/assets/bootstrap5.js" defer></script>
+            <script src="/assets/tools.js" defer></script>
 
-    <div id="footer"></div>
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+            <script defer>
+                function calculate() {
+                    const vas = parseFloat(document.getElementById('vas').value) || 50;
+                    const qts = parseFloat(document.getElementById('qts').value) || 0.4;
+                    const fs = parseFloat(document.getElementById('fs').value) || 30;
+                    const qtc = parseFloat(document.getElementById('qtc').value) || 0.707;
+                    const volumeUnit = document.getElementById('volumeUnit').value;
 
-    <script defer>
-        function calculate() {
-            const vas = parseFloat(document.getElementById('vas').value) || 50;
-            const qts = parseFloat(document.getElementById('qts').value) || 0.4;
-            const fs = parseFloat(document.getElementById('fs').value) || 30;
-            const qtc = parseFloat(document.getElementById('qtc').value) || 0.707;
-            const volumeUnit = document.getElementById('volumeUnit').value;
+                    // Update Qtc display
+                    let qtcLabel = qtc.toFixed(3);
+                    if (Math.abs(qtc - 0.707) < 0.01) qtcLabel += ' (Butterworth)';
+                    else if (Math.abs(qtc - 0.577) < 0.01) qtcLabel += ' (Bessel)';
+                    else if (qtc < 0.6) qtcLabel += ' (Tight)';
+                    else if (qtc > 0.9) qtcLabel += ' (Warm)';
+                    document.getElementById('qtcDisplay').textContent = qtcLabel;
 
-            // Update Qtc display
-            let qtcLabel = qtc.toFixed(3);
-            if (Math.abs(qtc - 0.707) < 0.01) qtcLabel += ' (Butterworth)';
-            else if (Math.abs(qtc - 0.577) < 0.01) qtcLabel += ' (Bessel)';
-            else if (qtc < 0.6) qtcLabel += ' (Tight)';
-            else if (qtc > 0.9) qtcLabel += ' (Warm)';
-            document.getElementById('qtcDisplay').textContent = qtcLabel;
+                    // Calculate box volume: Vb = Vas / ((Qtc/Qts)² - 1)
+                    const ratio = Math.pow(qtc / qts, 2) - 1;
+                    let boxVolumeLiters = vas / ratio;
 
-            // Calculate box volume: Vb = Vas / ((Qtc/Qts)² - 1)
-            const ratio = Math.pow(qtc / qts, 2) - 1;
-            let boxVolumeLiters = vas / ratio;
+                    if (boxVolumeLiters < 0 || !isFinite(boxVolumeLiters)) {
+                        boxVolumeLiters = vas * 0.5; // Fallback
+                    }
 
-            if (boxVolumeLiters < 0 || !isFinite(boxVolumeLiters)) {
-                boxVolumeLiters = vas * 0.5; // Fallback
-            }
+                    // System resonance: Fc = Fs × (Qtc/Qts)
+                    const systemFc = fs * (qtc / qts);
 
-            // System resonance: Fc = Fs × (Qtc/Qts)
-            const systemFc = fs * (qtc / qts);
+                    // F3: F3 ≈ Fc × sqrt(1 - 1/(2×Qtc²)) for Qtc > 0.5
+                    let f3;
+                    if (qtc > 0.5) {
+                        f3 = systemFc * Math.sqrt(1 - 1 / (2 * Math.pow(qtc, 2)));
+                    } else {
+                        f3 = systemFc * 0.9;
+                    }
 
-            // F3: F3 ≈ Fc × sqrt(1 - 1/(2×Qtc²)) for Qtc > 0.5
-            let f3;
-            if (qtc > 0.5) {
-                f3 = systemFc * Math.sqrt(1 - 1 / (2 * Math.pow(qtc, 2)));
-            } else {
-                f3 = systemFc * 0.9;
-            }
+                    // Convert volume
+                    let volumeDisplay, unitLabel;
+                    switch (volumeUnit) {
+                        case 'liters':
+                            volumeDisplay = boxVolumeLiters.toFixed(1);
+                            unitLabel = 'L';
+                            break;
+                        case 'cuft':
+                            volumeDisplay = (boxVolumeLiters / 28.317).toFixed(2);
+                            unitLabel = 'ft³';
+                            break;
+                        case 'cuin':
+                            volumeDisplay = (boxVolumeLiters * 61.024).toFixed(0);
+                            unitLabel = 'in³';
+                            break;
+                    }
 
-            // Convert volume
-            let volumeDisplay, unitLabel;
-            switch (volumeUnit) {
-                case 'liters':
-                    volumeDisplay = boxVolumeLiters.toFixed(1);
-                    unitLabel = 'L';
-                    break;
-                case 'cuft':
-                    volumeDisplay = (boxVolumeLiters / 28.317).toFixed(2);
-                    unitLabel = 'ft³';
-                    break;
-                case 'cuin':
-                    volumeDisplay = (boxVolumeLiters * 61.024).toFixed(0);
-                    unitLabel = 'in³';
-                    break;
-            }
+                    document.getElementById('boxVolumeResult').textContent = volumeDisplay + ' ' + unitLabel;
+                    document.getElementById('boxVolume').textContent = volumeDisplay + ' ' + unitLabel;
+                    document.getElementById('systemFc').textContent = Math.round(systemFc) + ' Hz';
+                    document.getElementById('f3').textContent = Math.round(f3) + ' Hz';
 
-            document.getElementById('boxVolumeResult').textContent = volumeDisplay + ' ' + unitLabel;
-            document.getElementById('boxVolume').textContent = volumeDisplay + ' ' + unitLabel;
-            document.getElementById('systemFc').textContent = Math.round(systemFc) + ' Hz';
-            document.getElementById('f3').textContent = Math.round(f3) + ' Hz';
+                    // Response type
+                    let responseType = 'Custom';
+                    if (Math.abs(qtc - 0.707) < 0.02) responseType = 'Butterworth';
+                    else if (Math.abs(qtc - 0.577) < 0.02) responseType = 'Bessel';
+                    else if (qtc < 0.6) responseType = 'Overdamped';
+                    else if (qtc > 0.85) responseType = 'Warm/Peaked';
+                    document.getElementById('responseType').textContent = responseType;
 
-            // Response type
-            let responseType = 'Custom';
-            if (Math.abs(qtc - 0.707) < 0.02) responseType = 'Butterworth';
-            else if (Math.abs(qtc - 0.577) < 0.02) responseType = 'Bessel';
-            else if (qtc < 0.6) responseType = 'Overdamped';
-            else if (qtc > 0.85) responseType = 'Warm/Peaked';
-            document.getElementById('responseType').textContent = responseType;
+                    // Calculate dimensions (cube)
+                    const volumeCm3 = boxVolumeLiters * 1000;
+                    const sideCm = Math.pow(volumeCm3, 1 / 3);
+                    const wallThickness = 1.9; // cm (3/4")
+                    const extSideCm = sideCm + 2 * wallThickness;
 
-            // Calculate dimensions (cube)
-            const volumeCm3 = boxVolumeLiters * 1000;
-            const sideCm = Math.pow(volumeCm3, 1 / 3);
-            const wallThickness = 1.9; // cm (3/4")
-            const extSideCm = sideCm + 2 * wallThickness;
+                    document.getElementById('intDimensions').textContent =
+                        `${sideCm.toFixed(1)} × ${sideCm.toFixed(1)} × ${sideCm.toFixed(1)} cm`;
+                    document.getElementById('extDimensions').textContent =
+                        `${extSideCm.toFixed(1)} × ${extSideCm.toFixed(1)} × ${extSideCm.toFixed(1)} cm`;
 
-            document.getElementById('intDimensions').textContent =
-                `${sideCm.toFixed(1)} × ${sideCm.toFixed(1)} × ${sideCm.toFixed(1)} cm`;
-            document.getElementById('extDimensions').textContent =
-                `${extSideCm.toFixed(1)} × ${extSideCm.toFixed(1)} × ${extSideCm.toFixed(1)} cm`;
+                    const extVolume = Math.pow(extSideCm, 3) / 1000;
+                    const materialVolume = extVolume - boxVolumeLiters;
+                    document.getElementById('materialVol').textContent = `~${materialVolume.toFixed(1)} liters`;
+                }
 
-            const extVolume = Math.pow(extSideCm, 3) / 1000;
-            const materialVolume = extVolume - boxVolumeLiters;
-            document.getElementById('materialVol').textContent = `~${materialVolume.toFixed(1)} liters`;
-        }
+                calculate();
 
-        calculate();
-
-        window.addEventListener("load", () => {
-            Promise.all([
-                fetch("../../header.html").then(res => res.text()),
-                fetch("../../footer.html").then(res => res.text())
-            ])
-                .then(([header, footer]) => {
-                    document.getElementById("header").innerHTML = header;
-                    document.getElementById("footer").innerHTML = footer;
-                })
-                .catch(err => console.error("Include load failed:", err));
-        });
-    </script>
+                window.addEventListener("load", () => {
+                    Promise.all([
+                        fetch("../../header.html").then(res => res.text()),
+                        fetch("../../footer.html").then(res => res.text())
+                    ])
+                        .then(([header, footer]) => {
+                            document.getElementById("header").innerHTML = header;
+                            document.getElementById("footer").innerHTML = footer;
+                        })
+                        .catch(err => console.error("Include load failed:", err));
+                });
+            </script>
 </body>
 
 </html>

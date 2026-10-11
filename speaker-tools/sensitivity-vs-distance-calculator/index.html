@@ -9,12 +9,12 @@
         content="Calculate sound pressure level (SPL) at any listening distance based on speaker sensitivity, amplifier wattage, and the acoustic Inverse Square Law. Compare free-field vs in-room sound decay.">
     <link rel="canonical" href="https://pitchdetectors.com/speaker-tools/sensitivity-vs-distance-calculator/">
 
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="./assets/bootstrap5.css" rel="stylesheet">
+    <link href="./assets/style.css" rel="stylesheet">
+    <link href="./assets/tools.css" rel="stylesheet">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
         crossorigin="anonymous"></script>
@@ -114,7 +114,8 @@
                 <div class="tool-container">
                     <div class="tool-title">
                         <h1><i class="bi bi-rulers me-2"></i>Sensitivity vs Distance Calculator</h1>
-                        <p>Calculate sound pressure level (SPL) at any listening distance based on loudspeaker sensitivity, applied amplifier wattage, and spherical Inverse Square Law attenuation.</p>
+                        <p>Calculate sound pressure level (SPL) at any listening distance based on loudspeaker
+                            sensitivity, applied amplifier wattage, and spherical Inverse Square Law attenuation.</p>
                     </div>
 
                     <div class="row mb-4">
@@ -138,44 +139,60 @@
                     <div class="result-box mb-4">
                         <h3>Predicted Sound Pressure Level</h3>
                         <p class="result-value" id="splOutput">108.0 dB</p>
-                        <p class="fs-5 text-secondary mb-0">Predicted continuous SPL at <span id="distanceDisplay" class="fw-bold text-dark">1</span> meter(s) listening position</p>
+                        <p class="fs-5 text-secondary mb-0">Predicted continuous SPL at <span id="distanceDisplay"
+                                class="fw-bold text-dark">1</span> meter(s) listening position</p>
                     </div>
                 </div>
 
                 <!-- Comprehensive Technical Guide -->
                 <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-soundwave text-teal me-2"></i>Acoustic Propagation Physics: Inverse Square Law & Distance Loss</h2>
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-soundwave text-teal me-2"></i>Acoustic
+                        Propagation Physics: Inverse Square Law & Distance Loss</h2>
                     <p class="text-secondary">
-                        Predicting how loud a loudspeaker will sound at a listener's ears requires bridging two distinct physical relationships: electrical power conversion (sensitivity to 1-meter acoustic output) and acoustic wavefront propagation through three-dimensional space.
+                        Predicting how loud a loudspeaker will sound at a listener's ears requires bridging two distinct
+                        physical relationships: electrical power conversion (sensitivity to 1-meter acoustic output) and
+                        acoustic wavefront propagation through three-dimensional space.
                     </p>
                     <p class="text-secondary">
-                        Loudspeaker sensitivity describes the acoustic efficiency of converting electrical voltage and current into mechanical cone motion. In anechoic free space (free field), as that acoustic pressure travels away from the transducer, the acoustic energy expands across an ever-larger surface area, reducing the sound pressure level arriving at the ear.
+                        Loudspeaker sensitivity describes the acoustic efficiency of converting electrical voltage and
+                        current into mechanical cone motion. In anechoic free space (free field), as that acoustic
+                        pressure travels away from the transducer, the acoustic energy expands across an ever-larger
+                        surface area, reducing the sound pressure level arriving at the ear.
                     </p>
 
                     <hr class="my-4">
 
                     <h3 class="h4 text-dark fw-bold mb-3">The Mathematical Formulation</h3>
                     <p class="text-secondary">
-                        The combined transfer function modeling acoustic sound pressure level at distance $r$ under electrical drive power $P$ is given by:
+                        The combined transfer function modeling acoustic sound pressure level at distance $r$ under
+                        electrical drive power $P$ is given by:
                     </p>
                     <div class="p-3 bg-light rounded border text-center my-3">
-                        <span class="fs-5 text-dark font-monospace">$$	ext{SPL}(r) = 	ext{Sensitivity} + 10 log_{10}(P) - 20 log_{10}(r) quad [	ext{dB SPL}]$$</span>
-                        <div class="small text-muted mt-2">Where $	ext{Sensitivity}$ is measured in dB at 1 watt at 1 meter, $P$ is electrical amplifier power in Watts RMS, and $r$ is axial distance in meters.</div>
+                        <span class="fs-5 text-dark font-monospace">$$ ext{SPL}(r) = ext{Sensitivity} + 10 log_{10}(P) -
+                            20 log_{10}(r) quad [ ext{dB SPL}]$$</span>
+                        <div class="small text-muted mt-2">Where $ ext{Sensitivity}$ is measured in dB at 1 watt at 1
+                            meter, $P$ is electrical amplifier power in Watts RMS, and $r$ is axial distance in meters.
+                        </div>
                     </div>
 
                     <div class="row g-3 my-2">
                         <div class="col-md-6">
                             <div class="p-3 bg-light rounded border text-center">
                                 <span class="fw-bold text-dark">Power Gain Term:</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$Delta 	ext{SPL}_{	ext{power}} = 10 log_{10}(P)$$</span>
-                                <div class="small text-muted mt-1">Every doubling of amplifier wattage adds +3.01 dB.</div>
+                                <span class="fs-5 font-monospace text-teal">$$Delta ext{SPL}_{ ext{power}} = 10
+                                    log_{10}(P)$$</span>
+                                <div class="small text-muted mt-1">Every doubling of amplifier wattage adds +3.01 dB.
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="p-3 bg-light rounded border text-center">
                                 <span class="fw-bold text-dark">Distance Attenuation Term:</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$Delta 	ext{SPL}_{	ext{dist}} = -20 log_{10}left(rac{r_2}{r_1}ight)$$</span>
-                                <div class="small text-muted mt-1">Every doubling of distance reduces SPL by -6.02 dB.</div>
+                                <span class="fs-5 font-monospace text-teal">$$Delta ext{SPL}_{ ext{dist}} = -20
+                                    log_{10}left(rac{r_2}{r_1}
+                                    ight)$$</span>
+                                <div class="small text-muted mt-1">Every doubling of distance reduces SPL by -6.02 dB.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -207,7 +224,8 @@
                                     <td><strong>Line Source (Concert Line Array)</strong></td>
                                     <td>Cylindrical ($A = 2pi r h$)</td>
                                     <td><strong>-3.0 dB / doubling</strong> ($1/r$ intensity in near field)</td>
-                                    <td>Stadium line arrays, vertical column speakers, tall planar ribbon transducers.</td>
+                                    <td>Stadium line arrays, vertical column speakers, tall planar ribbon transducers.
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -215,24 +233,35 @@
 
                     <hr class="my-4">
 
-                    <h3 class="h4 text-dark fw-bold mb-3">Real-World In-Room Acoustics: The Critical Distance ($D_c$)</h3>
+                    <h3 class="h4 text-dark fw-bold mb-3">Real-World In-Room Acoustics: The Critical Distance ($D_c$)
+                    </h3>
                     <p class="text-secondary">
-                        The theoretical $-6,	ext{dB}$ drop per doubling strictly applies outdoors or inside an anechoic chamber. Inside domestic living rooms, auditoriums, and clubs, boundary reflections retain acoustic energy within the room:
+                        The theoretical $-6, ext{dB}$ drop per doubling strictly applies outdoors or inside an anechoic
+                        chamber. Inside domestic living rooms, auditoriums, and clubs, boundary reflections retain
+                        acoustic energy within the room:
                     </p>
                     <div class="p-3 bg-light rounded border text-center my-3">
-                        <span class="fs-5 text-dark font-monospace">$$D_c approx 0.057 sqrt{rac{Q cdot V}{T_{60}}} quad [	ext{meters}]$$</span>
-                        <div class="small text-muted mt-2">Where $Q$ is speaker directivity factor, $V$ is room volume in $	ext{m}^3$, and $T_{60}$ is reverberation time in seconds.</div>
+                        <span class="fs-5 text-dark font-monospace">$$D_c approx 0.057 sqrt{rac{Q cdot V}{T_{60}}} quad
+                            [ ext{meters}]$$</span>
+                        <div class="small text-muted mt-2">Where $Q$ is speaker directivity factor, $V$ is room volume
+                            in $ ext{m}^3$, and $T_{60}$ is reverberation time in seconds.</div>
                     </div>
                     <ul class="text-secondary">
-                        <li class="mb-2"><strong>Within Critical Distance ($r &lt; D_c$):</strong> Direct sound dominates. SPL decays at approximately <strong>-4.5 dB to -6 dB</strong> per distance doubling. Stereo imaging is crisp and direct.</li>
-                        <li class="mb-2"><strong>Beyond Critical Distance ($r &gt; D_c$):</strong> Diffuse reverberant reflections dominate. The sound level plateaus into a reverberant sound field that decays by only <strong>-1.5 dB to -3 dB</strong> per doubling of distance.</li>
+                        <li class="mb-2"><strong>Within Critical Distance ($r &lt; D_c$):</strong> Direct sound
+                            dominates. SPL decays at approximately <strong>-4.5 dB to -6 dB</strong> per distance
+                            doubling. Stereo imaging is crisp and direct.</li>
+                        <li class="mb-2"><strong>Beyond Critical Distance ($r &gt; D_c$):</strong> Diffuse reverberant
+                            reflections dominate. The sound level plateaus into a reverberant sound field that decays by
+                            only <strong>-1.5 dB to -3 dB</strong> per doubling of distance.</li>
                     </ul>
 
                     <hr class="my-4">
 
-                    <h3 class="h4 text-dark fw-bold mb-3">Engineering Reference Table: Distance vs. Required Amplifier Wattage</h3>
+                    <h3 class="h4 text-dark fw-bold mb-3">Engineering Reference Table: Distance vs. Required Amplifier
+                        Wattage</h3>
                     <p class="text-secondary">
-                        To maintain a constant target listening volume of <strong>90 dB SPL</strong> using an 88 dB/1W/1m sensitivity speaker across increasing listening distances:
+                        To maintain a constant target listening volume of <strong>90 dB SPL</strong> using an 88
+                        dB/1W/1m sensitivity speaker across increasing listening distances:
                     </p>
                     <div class="table-responsive my-3">
                         <table class="table table-bordered table-striped text-center align-middle bg-white">
@@ -282,82 +311,121 @@
 
                 <!-- Structured FAQ Accordion -->
                 <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently Asked Questions</h2>
+                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently
+                        Asked Questions</h2>
                     <div class="accordion" id="sensitivityDistFAQ">
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                    Why does sound pressure level (SPL) drop by 6 dB for every doubling of distance in free space?
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    Why does sound pressure level (SPL) drop by 6 dB for every doubling of distance in
+                                    free space?
                                 </button>
                             </h3>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#sensitivityDistFAQ">
+                            <div id="faq1" class="accordion-collapse collapse show"
+                                data-bs-parent="#sensitivityDistFAQ">
                                 <div class="accordion-body text-secondary">
-                                    In a free-field acoustic environment without reflective boundaries, sound radiates outward from a point source as an expanding spherical wavefront. The surface area of a sphere is proportional to the square of its radius ($A = 4pi r^2$). Because total acoustic power remains constant, acoustic intensity drops with the square of distance ($1/r^2$), which translates mathematically to a 6.02 dB drop per doubling of distance ($20 log_{10}(d_2 / d_1)$).
+                                    In a free-field acoustic environment without reflective boundaries, sound radiates
+                                    outward from a point source as an expanding spherical wavefront. The surface area of
+                                    a sphere is proportional to the square of its radius ($A = 4pi r^2$). Because total
+                                    acoustic power remains constant, acoustic intensity drops with the square of
+                                    distance ($1/r^2$), which translates mathematically to a 6.02 dB drop per doubling
+                                    of distance ($20 log_{10}(d_2 / d_1)$).
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
                                     What is the critical distance (Dc) and why does sound drop less inside a room?
                                 </button>
                             </h3>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
                                 <div class="accordion-body text-secondary">
-                                    The critical distance ($D_c$) is the boundary location where the direct acoustic sound pressure from the speaker equals the diffuse reverberant sound pressure reflected from the walls, floor, and ceiling. Closer than $D_c$, the direct wave dominates and sound drops at nearly -6 dB per doubling. Beyond $D_c$, the reverberant sound field dominates, causing SPL to level off to a near-constant baseline that decays by only 2 to 3 dB per doubling.
+                                    The critical distance ($D_c$) is the boundary location where the direct acoustic
+                                    sound pressure from the speaker equals the diffuse reverberant sound pressure
+                                    reflected from the walls, floor, and ceiling. Closer than $D_c$, the direct wave
+                                    dominates and sound drops at nearly -6 dB per doubling. Beyond $D_c$, the
+                                    reverberant sound field dominates, causing SPL to level off to a near-constant
+                                    baseline that decays by only 2 to 3 dB per doubling.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                    How does a line array speaker differ from a standard point source speaker over distance?
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    How does a line array speaker differ from a standard point source speaker over
+                                    distance?
                                 </button>
                             </h3>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
                                 <div class="accordion-body text-secondary">
-                                    A standard point source radiates a spherical wavefront and drops at 6 dB per doubling of distance. A line array (a tall vertical column of closely spaced drivers) couples acoustically to produce a cylindrical wavefront in its near field. Cylindrical wavefronts expand over area $A = 2pi r h$, resulting in an intensity drop of only $1/r$, or 3 dB per doubling of distance. This allows line arrays to throw intelligible sound much farther in auditoriums and outdoor concerts.
+                                    A standard point source radiates a spherical wavefront and drops at 6 dB per
+                                    doubling of distance. A line array (a tall vertical column of closely spaced
+                                    drivers) couples acoustically to produce a cylindrical wavefront in its near field.
+                                    Cylindrical wavefronts expand over area $A = 2pi r h$, resulting in an intensity
+                                    drop of only $1/r$, or 3 dB per doubling of distance. This allows line arrays to
+                                    throw intelligible sound much farther in auditoriums and outdoor concerts.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                    How much amplifier power is needed when moving from 1 meter to 4 meters listening distance?
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq4">
+                                    How much amplifier power is needed when moving from 1 meter to 4 meters listening
+                                    distance?
                                 </button>
                             </h3>
                             <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
                                 <div class="accordion-body text-secondary">
-                                    Doubling distance from 1 meter to 2 meters causes a 6 dB drop, and doubling again to 4 meters causes another 6 dB drop, for a total loss of 12 dB. Because every 3 dB increase in acoustic output requires doubling electrical amplifier wattage ($10^{12/10} = 15.85$), an amplifier must supply approximately 16 times more power to maintain the exact same SPL at 4 meters as it produced at 1 meter.
+                                    Doubling distance from 1 meter to 2 meters causes a 6 dB drop, and doubling again to
+                                    4 meters causes another 6 dB drop, for a total loss of 12 dB. Because every 3 dB
+                                    increase in acoustic output requires doubling electrical amplifier wattage
+                                    ($10^{12/10} = 15.85$), an amplifier must supply approximately 16 times more power
+                                    to maintain the exact same SPL at 4 meters as it produced at 1 meter.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq5">
                                     What is the difference between sensitivity rated at 1W/1m versus 2.83V/1m?
                                 </button>
                             </h3>
                             <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
                                 <div class="accordion-body text-secondary">
-                                    For a standard 8-ohm nominal speaker, 2.83 volts RMS delivers exactly 1 watt of power ($P = V^2 / R = 2.83^2 / 8 = 1.0,	ext{W}$), meaning the two ratings are identical. However, for a 4-ohm speaker, 2.83 volts delivers 2 watts of power ($2.83^2 / 4 = 2.0,	ext{W}$). Consequently, a 4-ohm speaker rated at 2.83V/1m will measure 3 dB higher than its true 1W/1m sensitivity.
+                                    For a standard 8-ohm nominal speaker, 2.83 volts RMS delivers exactly 1 watt of
+                                    power ($P = V^2 / R = 2.83^2 / 8 = 1.0, ext{W}$), meaning the two ratings are
+                                    identical. However, for a 4-ohm speaker, 2.83 volts delivers 2 watts of power
+                                    ($2.83^2 / 4 = 2.0, ext{W}$). Consequently, a 4-ohm speaker rated at 2.83V/1m will
+                                    measure 3 dB higher than its true 1W/1m sensitivity.
                                 </div>
                             </div>
                         </div>
 
                         <div class="accordion-item">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq6">
                                     Does adding a second identical speaker double the volume?
                                 </button>
                             </h3>
                             <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
                                 <div class="accordion-body text-secondary">
-                                    Adding a second identical loudspeaker playing the same coherent audio signal increases acoustic output by +3 dB if powered separately with the same total wattage, or by +6 dB (mutual acoustic coupling) if both drivers are positioned within 1/4 wavelength of each other and each receives full amplifier power. Subjectively, a 10 dB increase is perceived by the human ear as a doubling of loudness.
+                                    Adding a second identical loudspeaker playing the same coherent audio signal
+                                    increases acoustic output by +3 dB if powered separately with the same total
+                                    wattage, or by +6 dB (mutual acoustic coupling) if both drivers are positioned
+                                    within 1/4 wavelength of each other and each receives full amplifier power.
+                                    Subjectively, a 10 dB increase is perceived by the human ear as a doubling of
+                                    loudness.
                                 </div>
                             </div>
                         </div>
@@ -406,41 +474,42 @@
         </div>
     </div>
 
-    <div id="footer"></div>
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+    <div id="foot./assets/v>
+    <script src=" ./assets/bootstrap5.js" defer>
+        </script>
+        <script src="/assets/tools.js" defer></script>
 
-    <!-- tool js -->
-    <script defer>
-        function calculateSPL() {
-            const sensitivity = parseFloat(document.getElementById('sensitivity').value) || 88;
-            const power = parseFloat(document.getElementById('power').value) || 1;
-            const distance = parseFloat(document.getElementById('distance').value) || 1;
+        <!-- tool js -->
+        <script defer>
+            function calculateSPL() {
+                const sensitivity = parseFloat(document.getElementById('sensitivity').value) || 88;
+                const power = parseFloat(document.getElementById('power').value) || 1;
+                const distance = parseFloat(document.getElementById('distance').value) || 1;
 
-            // SPL at 1 meter
-            const spl1m = sensitivity + 10 * Math.log10(power);
+                // SPL at 1 meter
+                const spl1m = sensitivity + 10 * Math.log10(power);
 
-            // SPL at distance
-            const splAtDistance = spl1m - 20 * Math.log10(distance);
+                // SPL at distance
+                const splAtDistance = spl1m - 20 * Math.log10(distance);
 
-            document.getElementById('splOutput').textContent = splAtDistance.toFixed(1) + ' dB';
-            document.getElementById('distanceDisplay').textContent = distance;
-        }
+                document.getElementById('splOutput').textContent = splAtDistance.toFixed(1) + ' dB';
+                document.getElementById('distanceDisplay').textContent = distance;
+            }
 
-        calculateSPL();
+            calculateSPL();
 
-        window.addEventListener("load", () => {
-            Promise.all([
-                fetch("../../header.html").then(res => res.text()),
-                fetch("../../footer.html").then(res => res.text())
-            ])
-                .then(([header, footer]) => {
-                    document.getElementById("header").innerHTML = header;
-                    document.getElementById("footer").innerHTML = footer;
-                })
-                .catch(err => console.error("Include load failed:", err));
-        });
-    </script>
+            window.addEventListener("load", () => {
+                Promise.all([
+                    fetch("../../header.html").then(res => res.text()),
+                    fetch("../../footer.html").then(res => res.text())
+                ])
+                    .then(([header, footer]) => {
+                        document.getElementById("header").innerHTML = header;
+                        document.getElementById("footer").innerHTML = footer;
+                    })
+                    .catch(err => console.error("Include load failed:", err));
+            });
+        </script>
 </body>
 
 </html>

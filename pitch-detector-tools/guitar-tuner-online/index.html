@@ -8,7 +8,7 @@
   <meta name="description"
     content="Free online guitar tuner using your microphone. Fast, real-time chromatic pitch detection for acoustic, electric, bass guitar, and ukulele. Supports Standard, Drop D, DADGAD, Open D, and custom A4 reference calibration.">
   <link rel="canonical" href="https://pitchdetectors.com/pitch-detector-tools/guitar-tuner-online/">
-  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+  <link rel="icon" href="./assets/imgs/logo.png" type="image/x-icon">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Online Guitar Tuner – Free, Real-Time Chromatic Tuner">
@@ -16,18 +16,19 @@
     content="Tune acoustic, electric, and bass guitar with real-time mic pitch detection. Standard, Drop D, Open tunings, and reference tones.">
   <meta property="og:url" content="https://pitchdetectors.com/pitch-detector-tools/guitar-tuner-online/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/assets/imgs/logo.png">
+  <meta property="og:image" content="./assets/imgs/logo.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Online Guitar Tuner – Real-Time Mic Tuning">
-  <meta name="twitter:description" content="Accurate chromatic guitar and bass tuner with instant frequency and cent feedback.">
-  <meta name="twitter:image" content="/assets/imgs/logo.png">
+  <meta name="twitter:description"
+    content="Accurate chromatic guitar and bass tuner with instant frequency and cent feedback.">
+  <meta name="twitter:image" content="./assets/imgs/logo.png">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/bootstrap5.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
-  <link href="/assets/tools.css" rel="stylesheet">
+  <link href="./assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/style.css">
+  <link href="./assets/tools.css" rel="stylesheet">
   <meta name="author" content="Pitch Detectors">
 
   <!-- FAQPage Schema -->
@@ -98,6 +99,7 @@
       margin: 25px 0;
       border: 1px solid #334155;
     }
+
     .note-display {
       font-size: 100px;
       font-weight: 800;
@@ -105,22 +107,26 @@
       color: #38bdf8;
       text-shadow: 0 4px 25px rgba(56, 189, 248, 0.4);
     }
+
     .octave-display {
       font-size: 36px;
       vertical-align: super;
       opacity: 0.85;
       color: #94a3b8;
     }
+
     .frequency-display {
       font-size: 24px;
       color: #cbd5e1;
       margin-top: 8px;
       font-family: monospace;
     }
+
     .cents-meter {
       margin: 25px auto 15px;
       max-width: 440px;
     }
+
     .cents-bar {
       height: 22px;
       background: #334155;
@@ -129,6 +135,7 @@
       overflow: hidden;
       border: 1px solid #475569;
     }
+
     .cents-indicator {
       position: absolute;
       top: 50%;
@@ -141,6 +148,7 @@
       transition: left 0.08s ease;
       box-shadow: 0 0 10px rgba(13, 148, 136, 0.8);
     }
+
     .cents-labels {
       display: flex;
       justify-content: space-between;
@@ -149,12 +157,14 @@
       color: #94a3b8;
       font-weight: 600;
     }
+
     .cents-value {
       font-size: 20px;
       font-weight: 700;
       margin-top: 10px;
       color: #f8fafc;
     }
+
     .tuning-status {
       font-size: 18px;
       font-weight: 600;
@@ -163,10 +173,26 @@
       border-radius: 30px;
       display: inline-block;
     }
-    .status-flat { background: #ef4444; color: white; }
-    .status-sharp { background: #f59e0b; color: white; }
-    .status-tune { background: #10b981; color: white; }
-    .status-waiting { background: rgba(255, 255, 255, 0.15); color: #cbd5e1; }
+
+    .status-flat {
+      background: #ef4444;
+      color: white;
+    }
+
+    .status-sharp {
+      background: #f59e0b;
+      color: white;
+    }
+
+    .status-tune {
+      background: #10b981;
+      color: white;
+    }
+
+    .status-waiting {
+      background: rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+    }
 
     .start-btn {
       background: var(--text-teal);
@@ -183,15 +209,18 @@
       gap: 10px;
       box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
     }
+
     .start-btn:hover {
       background: #0f766e;
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45);
     }
+
     .start-btn.active {
       background: #dc2626 !important;
       box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4) !important;
     }
+
     .tuning-presets {
       display: flex;
       flex-wrap: wrap;
@@ -199,6 +228,7 @@
       justify-content: flex-start;
       margin: 15px 0;
     }
+
     .preset-btn {
       background: #f1f5f9;
       color: #334155;
@@ -210,18 +240,21 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
+
     .preset-btn:hover,
     .preset-btn.active {
       background: var(--text-teal) !important;
       color: #fff !important;
       border-color: var(--text-teal) !important;
     }
+
     .reference-notes {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 10px;
       margin: 15px 0;
     }
+
     .ref-note {
       background: #f8fafc;
       border: 1.5px solid #cbd5e1;
@@ -231,24 +264,33 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
+
     .ref-note:hover {
       border-color: var(--text-teal);
       background: #f0fdfa;
       transform: translateY(-2px);
     }
+
     .ref-note .note {
       font-size: 22px;
       font-weight: 700;
       color: #0f172a;
     }
+
     .ref-note .freq {
       font-size: 11px;
       color: #64748b;
       font-family: monospace;
     }
+
     @media (max-width: 576px) {
-      .note-display { font-size: 72px; }
-      .reference-notes { grid-template-columns: repeat(3, 1fr); }
+      .note-display {
+        font-size: 72px;
+      }
+
+      .reference-notes {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
   </style>
 </head>
@@ -429,18 +471,27 @@
         <!-- COMPREHENSIVE GUITAR TUNING GUIDE & REFERENCE -->
         <div class="mt-5 pt-3">
           <section class="mb-5">
-            <h2 class="h3 fw-bold text-teal mb-3">Mastering Guitar Tuning: The Physics of String Vibration, Harmonics, and Pitch Stability</h2>
+            <h2 class="h3 fw-bold text-teal mb-3">Mastering Guitar Tuning: The Physics of String Vibration, Harmonics,
+              and Pitch Stability</h2>
             <p>
-              Tuning a guitar is an acoustic calibration that aligns string vibrations with mathematical pitch intervals. When you pluck an open guitar string, it produces a fundamental standing wave along its speaking length ($L$, the distance from nut to bridge saddle) whose frequency is governed by <strong>Mersenne's Law</strong>:
+              Tuning a guitar is an acoustic calibration that aligns string vibrations with mathematical pitch
+              intervals. When you pluck an open guitar string, it produces a fundamental standing wave along its
+              speaking length ($L$, the distance from nut to bridge saddle) whose frequency is governed by
+              <strong>Mersenne's Law</strong>:
             </p>
             <div class="p-3 bg-light rounded border text-center font-monospace my-3">
               $$f = \frac{1}{2L} \sqrt{\frac{T}{\mu}}$$
             </div>
             <p class="small text-muted mb-3">
-              Where $T$ is string tension (in Newtons or pounds of pull) and $\mu$ is linear mass density (the thickness/gauge of the string). Turning a tuning peg increases tension $T$, pulling pitch sharp; loosening the peg decreases tension, dropping pitch flat.
+              Where $T$ is string tension (in Newtons or pounds of pull) and $\mu$ is linear mass density (the
+              thickness/gauge of the string). Turning a tuning peg increases tension $T$, pulling pitch sharp; loosening
+              the peg decreases tension, dropping pitch flat.
             </p>
             <p>
-              Because guitar strings are non-ideal physical wires with stiffness and overtones, standard human hearing can struggle to distinguish the true fundamental frequency from bright metallic upper harmonics. This <strong>Online Guitar Tuner</strong> applies a 4096-sample time-domain autocorrelation algorithm to strip away harmonic distortion and lock onto the true fundamental string frequency with cent-level precision.
+              Because guitar strings are non-ideal physical wires with stiffness and overtones, standard human hearing
+              can struggle to distinguish the true fundamental frequency from bright metallic upper harmonics. This
+              <strong>Online Guitar Tuner</strong> applies a 4096-sample time-domain autocorrelation algorithm to strip
+              away harmonic distortion and lock onto the true fundamental string frequency with cent-level precision.
             </p>
           </section>
 
@@ -448,7 +499,9 @@
           <section class="mb-5">
             <h3 class="h4 fw-bold mb-3">Open String Frequencies Across Stringed Instruments</h3>
             <p>
-              The table below displays the exact fundamental frequencies, octaves, and MIDI note values for standard 6-string guitar, 7-string extended guitar, 4-string and 5-string bass, and standard soprano/concert ukulele:
+              The table below displays the exact fundamental frequencies, octaves, and MIDI note values for standard
+              6-string guitar, 7-string extended guitar, 4-string and 5-string bass, and standard soprano/concert
+              ukulele:
             </p>
             <div class="table-responsive">
               <table class="table table-bordered table-hover text-center align-middle">
@@ -463,25 +516,130 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="table-light"><td colspan="6" class="text-start fw-bold text-teal">6-String Standard Guitar (EADGBE)</td></tr>
-                  <tr><td>Guitar</td><td>6th (Thickest)</td><td><strong>E2</strong></td><td>82.41 Hz</td><td>40</td><td>4.16 m</td></tr>
-                  <tr><td>Guitar</td><td>5th</td><td><strong>A2</strong></td><td>110.00 Hz</td><td>45</td><td>3.12 m</td></tr>
-                  <tr><td>Guitar</td><td>4th</td><td><strong>D3</strong></td><td>146.83 Hz</td><td>50</td><td>2.34 m</td></tr>
-                  <tr><td>Guitar</td><td>3rd</td><td><strong>G3</strong></td><td>196.00 Hz</td><td>55</td><td>1.75 m</td></tr>
-                  <tr><td>Guitar</td><td>2nd</td><td><strong>B3</strong></td><td>246.94 Hz</td><td>59</td><td>1.39 m</td></tr>
-                  <tr><td>Guitar</td><td>1st (Thinnest)</td><td><strong>E4</strong></td><td>329.63 Hz</td><td>64</td><td>1.04 m</td></tr>
+                  <tr class="table-light">
+                    <td colspan="6" class="text-start fw-bold text-teal">6-String Standard Guitar (EADGBE)</td>
+                  </tr>
+                  <tr>
+                    <td>Guitar</td>
+                    <td>6th (Thickest)</td>
+                    <td><strong>E2</strong></td>
+                    <td>82.41 Hz</td>
+                    <td>40</td>
+                    <td>4.16 m</td>
+                  </tr>
+                  <tr>
+                    <td>Guitar</td>
+                    <td>5th</td>
+                    <td><strong>A2</strong></td>
+                    <td>110.00 Hz</td>
+                    <td>45</td>
+                    <td>3.12 m</td>
+                  </tr>
+                  <tr>
+                    <td>Guitar</td>
+                    <td>4th</td>
+                    <td><strong>D3</strong></td>
+                    <td>146.83 Hz</td>
+                    <td>50</td>
+                    <td>2.34 m</td>
+                  </tr>
+                  <tr>
+                    <td>Guitar</td>
+                    <td>3rd</td>
+                    <td><strong>G3</strong></td>
+                    <td>196.00 Hz</td>
+                    <td>55</td>
+                    <td>1.75 m</td>
+                  </tr>
+                  <tr>
+                    <td>Guitar</td>
+                    <td>2nd</td>
+                    <td><strong>B3</strong></td>
+                    <td>246.94 Hz</td>
+                    <td>59</td>
+                    <td>1.39 m</td>
+                  </tr>
+                  <tr>
+                    <td>Guitar</td>
+                    <td>1st (Thinnest)</td>
+                    <td><strong>E4</strong></td>
+                    <td>329.63 Hz</td>
+                    <td>64</td>
+                    <td>1.04 m</td>
+                  </tr>
 
-                  <tr class="table-light"><td colspan="6" class="text-start fw-bold text-teal">4-String Standard Bass Guitar (EADG - 1 Octave Below Guitar)</td></tr>
-                  <tr><td>Bass</td><td>4th (Low)</td><td><strong>E1</strong></td><td>41.20 Hz</td><td>28</td><td>8.32 m</td></tr>
-                  <tr><td>Bass</td><td>3rd</td><td><strong>A1</strong></td><td>55.00 Hz</td><td>33</td><td>6.24 m</td></tr>
-                  <tr><td>Bass</td><td>2nd</td><td><strong>D2</strong></td><td>73.42 Hz</td><td>38</td><td>4.67 m</td></tr>
-                  <tr><td>Bass</td><td>1st (High)</td><td><strong>G2</strong></td><td>98.00 Hz</td><td>43</td><td>3.50 m</td></tr>
+                  <tr class="table-light">
+                    <td colspan="6" class="text-start fw-bold text-teal">4-String Standard Bass Guitar (EADG - 1 Octave
+                      Below Guitar)</td>
+                  </tr>
+                  <tr>
+                    <td>Bass</td>
+                    <td>4th (Low)</td>
+                    <td><strong>E1</strong></td>
+                    <td>41.20 Hz</td>
+                    <td>28</td>
+                    <td>8.32 m</td>
+                  </tr>
+                  <tr>
+                    <td>Bass</td>
+                    <td>3rd</td>
+                    <td><strong>A1</strong></td>
+                    <td>55.00 Hz</td>
+                    <td>33</td>
+                    <td>6.24 m</td>
+                  </tr>
+                  <tr>
+                    <td>Bass</td>
+                    <td>2nd</td>
+                    <td><strong>D2</strong></td>
+                    <td>73.42 Hz</td>
+                    <td>38</td>
+                    <td>4.67 m</td>
+                  </tr>
+                  <tr>
+                    <td>Bass</td>
+                    <td>1st (High)</td>
+                    <td><strong>G2</strong></td>
+                    <td>98.00 Hz</td>
+                    <td>43</td>
+                    <td>3.50 m</td>
+                  </tr>
 
-                  <tr class="table-light"><td colspan="6" class="text-start fw-bold text-teal">Standard Ukulele (Re-entrant GCEA)</td></tr>
-                  <tr><td>Ukulele</td><td>4th</td><td><strong>G4</strong></td><td>392.00 Hz</td><td>67</td><td>0.87 m</td></tr>
-                  <tr><td>Ukulele</td><td>3rd</td><td><strong>C4</strong></td><td>261.63 Hz</td><td>60</td><td>1.31 m</td></tr>
-                  <tr><td>Ukulele</td><td>2nd</td><td><strong>E4</strong></td><td>329.63 Hz</td><td>64</td><td>1.04 m</td></tr>
-                  <tr><td>Ukulele</td><td>1st</td><td><strong>A4</strong></td><td>440.00 Hz</td><td>69</td><td>0.78 m</td></tr>
+                  <tr class="table-light">
+                    <td colspan="6" class="text-start fw-bold text-teal">Standard Ukulele (Re-entrant GCEA)</td>
+                  </tr>
+                  <tr>
+                    <td>Ukulele</td>
+                    <td>4th</td>
+                    <td><strong>G4</strong></td>
+                    <td>392.00 Hz</td>
+                    <td>67</td>
+                    <td>0.87 m</td>
+                  </tr>
+                  <tr>
+                    <td>Ukulele</td>
+                    <td>3rd</td>
+                    <td><strong>C4</strong></td>
+                    <td>261.63 Hz</td>
+                    <td>60</td>
+                    <td>1.31 m</td>
+                  </tr>
+                  <tr>
+                    <td>Ukulele</td>
+                    <td>2nd</td>
+                    <td><strong>E4</strong></td>
+                    <td>329.63 Hz</td>
+                    <td>64</td>
+                    <td>1.04 m</td>
+                  </tr>
+                  <tr>
+                    <td>Ukulele</td>
+                    <td>1st</td>
+                    <td><strong>A4</strong></td>
+                    <td>440.00 Hz</td>
+                    <td>69</td>
+                    <td>0.78 m</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -491,7 +649,8 @@
           <section class="mb-5">
             <h3 class="h4 fw-bold mb-3">Popular Alternate Guitar Tunings &amp; Tone Guide</h3>
             <p>
-              Altering open string pitches transforms fingerings, resonances, and chord voicings. The table below lists the most widely utilized alternate tunings across rock, blues, folk, and metal:
+              Altering open string pitches transforms fingerings, resonances, and chord voicings. The table below lists
+              the most widely utilized alternate tunings across rock, blues, folk, and metal:
             </p>
             <div class="table-responsive">
               <table class="table table-bordered table-hover align-middle">
@@ -514,7 +673,8 @@
                     <td><strong>Half Step Down (Eb)</strong></td>
                     <td>E&flat; &ndash; A&flat; &ndash; D&flat; &ndash; G&flat; &ndash; B&flat; &ndash; E&flat;</td>
                     <td>All strings down 1 semitone (-1)</td>
-                    <td>Jimi Hendrix, Stevie Ray Vaughan, Guns N' Roses, Nirvana. Warmer tone, easier string bending.</td>
+                    <td>Jimi Hendrix, Stevie Ray Vaughan, Guns N' Roses, Nirvana. Warmer tone, easier string bending.
+                    </td>
                   </tr>
                   <tr>
                     <td><strong>DADGAD (Celtic)</strong></td>
@@ -551,20 +711,30 @@
             <div class="row g-4">
               <div class="col-md-4">
                 <div class="p-3 bg-light rounded border h-100">
-                  <h5 class="fw-bold text-teal mb-2"><i class="bi bi-arrow-up-circle me-2"></i>1. Always Tune UP to Pitch</h5>
-                  <p class="small text-muted mb-0">Never tune down into a note. If a string is sharp, detune it half a turn BELOW the target pitch, then slowly tune UP into the green center. This prevents slack in the tuning gear box from slipping when you bend notes.</p>
+                  <h5 class="fw-bold text-teal mb-2"><i class="bi bi-arrow-up-circle me-2"></i>1. Always Tune UP to
+                    Pitch</h5>
+                  <p class="small text-muted mb-0">Never tune down into a note. If a string is sharp, detune it half a
+                    turn BELOW the target pitch, then slowly tune UP into the green center. This prevents slack in the
+                    tuning gear box from slipping when you bend notes.</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="p-3 bg-light rounded border h-100">
-                  <h5 class="fw-bold text-teal mb-2"><i class="bi bi-hand-index-thumb me-2"></i>2. Mute Sympathetic Strings</h5>
-                  <p class="small text-muted mb-0">When tuning a single string, rest your palm lightly across the remaining five strings. Unmuted open strings will vibrate sympathetically (acoustic resonance), confusing the microphone pitch analyzer with multiple frequencies.</p>
+                  <h5 class="fw-bold text-teal mb-2"><i class="bi bi-hand-index-thumb me-2"></i>2. Mute Sympathetic
+                    Strings</h5>
+                  <p class="small text-muted mb-0">When tuning a single string, rest your palm lightly across the
+                    remaining five strings. Unmuted open strings will vibrate sympathetically (acoustic resonance),
+                    confusing the microphone pitch analyzer with multiple frequencies.</p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="p-3 bg-light rounded border h-100">
-                  <h5 class="fw-bold text-teal mb-2"><i class="bi bi-shield-check me-2"></i>3. Check 12th-Fret Intonation</h5>
-                  <p class="small text-muted mb-0">Tune the open string to 0 cents, then lightly touch the string over the 12th fret wire to play a 12th-fret harmonic. Next, press down and play the 12th fretted note. If the fretted note is sharp compared to the harmonic, your bridge saddle needs to be adjusted back.</p>
+                  <h5 class="fw-bold text-teal mb-2"><i class="bi bi-shield-check me-2"></i>3. Check 12th-Fret
+                    Intonation</h5>
+                  <p class="small text-muted mb-0">Tune the open string to 0 cents, then lightly touch the string over
+                    the 12th fret wire to play a 12th-fret harmonic. Next, press down and play the 12th fretted note. If
+                    the fretted note is sharp compared to the harmonic, your bridge saddle needs to be adjusted back.
+                  </p>
                 </div>
               </div>
             </div>
@@ -577,20 +747,25 @@
 
               <div class="accordion-item">
                 <h2 class="accordion-header" id="gtHeading1">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq1" aria-expanded="true">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq1"
+                    aria-expanded="true">
                     How does this online guitar tuner detect string pitch through a microphone?
                   </button>
                 </h2>
                 <div id="gtFaq1" class="accordion-collapse collapse show" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    The online tuner captures plucked string audio through your device microphone into a 4096-sample buffer. It applies parabolic interpolation autocorrelation to isolate the fundamental vibrating frequency (Hz) from string overtones, calculating cent deviation relative to your selected tuning standard (A4 = 440 Hz).
+                    The online tuner captures plucked string audio through your device microphone into a 4096-sample
+                    buffer. It applies parabolic interpolation autocorrelation to isolate the fundamental vibrating
+                    frequency (Hz) from string overtones, calculating cent deviation relative to your selected tuning
+                    standard (A4 = 440 Hz).
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
                 <h2 class="accordion-header" id="gtHeading2">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#gtFaq2">
                     What are the exact frequencies for standard 6-string guitar tuning (EADGBE)?
                   </button>
                 </h2>
@@ -611,52 +786,66 @@
 
               <div class="accordion-item">
                 <h2 class="accordion-header" id="gtHeading3">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#gtFaq3">
                     Why should I always tune UP to a note rather than down?
                   </button>
                 </h2>
                 <div id="gtFaq3" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    Guitar tuning machine heads (gears and posts) contain subtle mechanical slack (backlash). If you tune down to a note, friction holds the gear teeth loosely; as soon as you bend a string or strum hard, the slack releases and the string drops flat. By tuning down below the pitch and tuning UP into the target, string tension locks the tuning post gears securely.
+                    Guitar tuning machine heads (gears and posts) contain subtle mechanical slack (backlash). If you
+                    tune down to a note, friction holds the gear teeth loosely; as soon as you bend a string or strum
+                    hard, the slack releases and the string drops flat. By tuning down below the pitch and tuning UP
+                    into the target, string tension locks the tuning post gears securely.
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
                 <h2 class="accordion-header" id="gtHeading4">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#gtFaq4">
                     How do I tune an electric guitar without an amplifier plugged into my computer?
                   </button>
                 </h2>
                 <div id="gtFaq4" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    Unplugged solid-body electric guitars produce quiet acoustic string vibrations. To tune an unplugged electric guitar, sit in a quiet room and hold the guitar body or headstock directly within 6 to 12 inches of your laptop or phone microphone. Pluck the string firmly with a pick or thumb.
+                    Unplugged solid-body electric guitars produce quiet acoustic string vibrations. To tune an unplugged
+                    electric guitar, sit in a quiet room and hold the guitar body or headstock directly within 6 to 12
+                    inches of your laptop or phone microphone. Pluck the string firmly with a pick or thumb.
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
                 <h2 class="accordion-header" id="gtHeading5">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#gtFaq5">
                     How do alternate tunings like Drop D, DADGAD, and Half Step Down work?
                   </button>
                 </h2>
                 <div id="gtFaq5" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    Drop D lowers only the 6th string from E2 down to D2 (73.42 Hz), enabling one-finger power chords. Half Step Down lowers all six strings by one semitone (Eb-Ab-Db-Gb-Bb-Eb) for reduced string tension and warmer vocal accompaniment. DADGAD creates an open Celtic modal tuning (D2-A2-D3-G3-A3-D4) with rich droning resonances.
+                    Drop D lowers only the 6th string from E2 down to D2 (73.42 Hz), enabling one-finger power chords.
+                    Half Step Down lowers all six strings by one semitone (Eb-Ab-Db-Gb-Bb-Eb) for reduced string tension
+                    and warmer vocal accompaniment. DADGAD creates an open Celtic modal tuning (D2-A2-D3-G3-A3-D4) with
+                    rich droning resonances.
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
                 <h2 class="accordion-header" id="gtHeading6">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#gtFaq6">
                     Can this tuner calibrate to A4 = 432 Hz or other reference pitches?
                   </button>
                 </h2>
                 <div id="gtFaq6" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    Yes. While standard concert pitch is calibrated to A4 = 440 Hz, you can use the A4 Reference Frequency input on this tool to adjust calibration anywhere between 430 Hz and 450 Hz (such as 432 Hz for philosophical/orchestral tuning or 442 Hz for European classical concerts).
+                    Yes. While standard concert pitch is calibrated to A4 = 440 Hz, you can use the A4 Reference
+                    Frequency input on this tool to adjust calibration anywhere between 430 Hz and 450 Hz (such as 432
+                    Hz for philosophical/orchestral tuning or 442 Hz for European classical concerts).
                   </div>
                 </div>
               </div>
@@ -703,7 +892,7 @@
     </div>
   </div>
   <div id="footer"></div>
-  <script src="/assets/bootstrap5.js" defer></script>
+  <script src="./assets/bootstrap5.js" defer></script>
 
   <!-- tools js -->
   <script defer>
@@ -985,7 +1174,7 @@
 
 
   <!-- FAQPage Schema -->
-  
+
 
 
 </body>
