@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificador de acordes: nombra cualquier acorde</title>
+    <meta name="description"
+    content="Nombra cualquier acorde a partir de sus notas con este identificador gratuito: tríadas, séptimas, extensiones, inversiones y fórmulas de intervalos.">
+    <meta name="keywords"
+        content="chord identifier, reverse chord finder, identify chord from notes, piano chord identifier, chord namer online, reverse chord analyzer, guitar chord identifier" />
+    <link rel="canonical" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/identificador-de-acordes/">
+    <link rel="alternate" hreflang="es" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/identificador-de-acordes/">
+    <link rel="alternate" hreflang="en" href="https://pitchdetectors.com/music-theory-tools/chord-identifier/">
+    <link rel="alternate" hreflang="x-default" href="https://pitchdetectors.com/music-theory-tools/chord-identifier/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="Identificador de acordes: nombra cualquier acorde">
+    <meta property="og:description" content="Nombra cualquier acorde a partir de sus notas con este identificador gratuito: tríadas, séptimas, extensiones, inversiones y fórmulas de intervalos.">
+    <meta property="og:url" content="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/identificador-de-acordes/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Identificador de acordes: nombra cualquier acorde">
+    <meta name="twitter:description" content="Nombra cualquier acorde a partir de sus notas con este identificador gratuito: tríadas, séptimas, extensiones, inversiones y fórmulas de intervalos.">
+    <link rel="icon" href="../../../assets/imgs/logo.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../../assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <link href="../../../assets/tools.css" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
+        crossorigin="anonymous"></script>
+        <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo funciona un identificador de acordes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prueba cada nota que introdujiste como posible fundamental, convierte el resto en intervalos en semitonos sobre esa fundamental y compara cada patrón con una biblioteca de fórmulas de acordes. Se informa cada par coincidente de fundamental y plantilla: así, C–E–G devuelve C major, con la fórmula 0 – 4 – 7."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué notas forman un acorde de C major?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C, E y G: fundamental, tercera mayor (4 semitonos) y quinta justa (7 semitonos). Cualquier voicing que contenga exactamente estas clases de notas en cualquier octava u orden es alguna forma de C major; la inversión depende de la nota más grave."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué mi acorde tiene varios nombres?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Porque el mismo conjunto de notas encaja en más de una plantilla: C–E–G–A es tanto Am7 como C6. Los nombres de los acordes describen la función además del contenido, así que el nombre \"correcto\" depende de tu nota del bajo y de dónde resuelva el acorde. Revisa las lecturas alternativas y elige la que coincida con tu progresión."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es una inversión de acorde y cómo se detecta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una inversión es el mismo acorde con una nota distinta de la fundamental en el bajo: C–E–G se convierte en C/E (primera inversión) con E como nota más grave, o en C/G (segunda inversión) con G como más grave. La herramienta interpreta tu nota seleccionada más grave como el bajo y etiqueta la inversión a partir de ella; por eso construye los voicings de grave a agudo tal como los tocas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo distingo los acordes de séptima de las tríadas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuenta las notas y revisa el intervalo superior: una tríada tiene 3 notas (0 – 4 – 7 para la mayor), mientras que un acorde de séptima añade una cuarta nota a una séptima sobre la fundamental: 11 semitonos para la séptima mayor (soñadora), 10 para la séptima dominante o menor (bluesy o jazzy). La lectura de la fórmula hace visible la diferencia al instante."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre voicing e inversión?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La inversión se refiere solo a qué nota es la más grave (C/E frente a C/G). El voicing es la disposición vertical completa: qué octavas, duplicaciones y espaciamientos usas. Dos pianistas pueden tocar la misma inversión con voicings completamente distintos; el identificador nombra el acorde y la inversión, mientras que el voicing sigue siendo tu elección artística."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puede identificar extensiones de jazz como novenas y trecenas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, si la biblioteca de plantillas las incluye: una novena es simplemente la segunda una octava arriba (14 semitonos desde la fundamental), una oncena es 17 y una trecena 21. Selecciona las cinco o seis notas de tu voicing extendido y el comparador encontrará la plantilla de extensión. Los voicings de jazz \"sin fundamental\" dispersos pueden devolver varios candidatos; usa la nota del bajo para desambiguar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas notas necesito para identificar un acorde?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Al menos tres: dos notas forman un intervalo, no un acorde. Tres notas definen una tríada; cuatro o más abren la puerta a acordes de séptima y extensiones. Más notas suelen significar una identificación más específica, aunque los clústeres muy densos pueden no coincidir con ninguna plantilla estándar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es un poliacorde y puede esta herramienta nombrarlo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un poliacorde apila dos tríadas reconocibles, como D major sobre C major (se escribe D/C). El identificador analiza todas las notas seleccionadas como un solo conjunto, así que puede devolver un único nombre de acorde extendido. Para los poliacordes, identifica las tríadas superior e inferior por separado, de tres en tres."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué importa la escritura enarmónica (F♯ frente a G♭)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las notas enarmónicas suenan igual (F♯ = G♭) pero se escriben distinto, y la escritura indica la función: F♯ pertenece a tonalidades con sostenidos como G major, y G♭ a tonalidades con bemoles como D♭ major. La herramienta informa una sola escritura; si parece incorrecta para tu tonalidad, reescríbela mentalmente: el sonido no cambia."
+      }
+    }
+  ]
+}
+    </script>
+    <style>
+        .note-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .note-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 2px solid var(--teal, #006a67);
+            background: #fff;
+            color: var(--teal, #006a67);
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .note-btn:hover {
+            background: rgba(0, 106, 103, 0.08);
+            transform: scale(1.05);
+        }
+
+        .note-btn.selected {
+            background: var(--teal, #006a67);
+            border-color: var(--teal, #006a67);
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 106, 103, 0.3);
+        }
+
+        .chord-result {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--dark-teal, #003161);
+            margin: 10px 0;
+        }
+
+        .chord-type {
+            font-size: 18px;
+            color: var(--teal, #006a67);
+            font-weight: 600;
+        }
+
+        .chord-matches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .chord-match {
+            background: #f8fafc;
+            border: 2px solid var(--border-color, #e2e8f0);
+            border-radius: 10px;
+            padding: 10px 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chord-match:hover {
+            border-color: var(--teal, #006a67);
+            background: rgba(0, 106, 103, 0.05);
+        }
+
+        .chord-match.primary {
+            border-color: var(--teal, #006a67);
+            background: rgba(0, 106, 103, 0.12);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Buscar herramientas..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Herramientas de teoría musical</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sp/herramientas-de-teoria-musical/identificador-de-acordes/" class="active"><i
+                                            class="bi bi-vinyl"></i> Identificador de acordes</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/buscador-de-escalas/"><i class="bi bi-grid-3x3"></i> Buscador de escalas</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/generador-de-progresiones-de-acordes/"><i
+                                            class="bi bi-diagram-3"></i>
+                                        Progresión de acordes</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/metronomo-online/"><i class="bi bi-stopwatch"></i>
+                                        Metrónomo online</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="/sp/herramientas-de-teoria-musical/">Herramientas de teoría musical</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Identificador de acordes</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h2><i class="bi bi-vinyl me-2"></i>Identificador de acordes</h2>
+                        <p>Selecciona notas para identificar el acorde. Admite tríadas, acordes de séptima, acordes extendidos e inversiones.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Selecciona notas (clic para activar):</label>
+                        <div class="note-selector" id="noteSelector"></div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-outline-secondary" onclick="clearNotes()">
+                                <i class="bi bi-x-circle me-1"></i>Borrar todo
+                            </button>
+                            <button class="btn btn-primary ms-2" onclick="playChord()">
+                                <i class="bi bi-play-fill me-1"></i>Reproducir acorde
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3>Acorde identificado</h3>
+                        <p class="chord-result" id="chordResult">-</p>
+                        <p class="chord-type" id="chordType">Selecciona al menos 3 notas</p>
+
+                        <div id="alternativeChords" style="display: none;">
+                            <h5 class="mt-4 mb-3">Posibles interpretaciones:</h5>
+                            <div class="chord-matches" id="chordMatches"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3">Notas seleccionadas</h5>
+                        <p id="selectedNotesDisplay">Ninguna seleccionada</p>
+                        <hr>
+                        <h5 class="text-mid mb-3">Fórmula del acorde</h5>
+                        <p id="chordFormula">-</p>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-book me-2"></i>Tipos de acordes comunes</h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo de acorde</th>
+                                        <th>Símbolo</th>
+                                        <th>Fórmula</th>
+                                        <th>Ejemplo (C)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Mayor</td>
+                                        <td>C</td>
+                                        <td>1 - 3 - 5</td>
+                                        <td>C - E - G</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Menor</td>
+                                        <td>Cm</td>
+                                        <td>1 - ♭3 - 5</td>
+                                        <td>C - E♭ - G</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Disminuido</td>
+                                        <td>Cdim</td>
+                                        <td>1 - ♭3 - ♭5</td>
+                                        <td>C - E♭ - G♭</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aumentado</td>
+                                        <td>Caug</td>
+                                        <td>1 - 3 - #5</td>
+                                        <td>C - E - G#</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Séptima mayor</td>
+                                        <td>Cmaj7</td>
+                                        <td>1 - 3 - 5 - 7</td>
+                                        <td>C - E - G - B</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Séptima menor</td>
+                                        <td>Cm7</td>
+                                        <td>1 - ♭3 - 5 - ♭7</td>
+                                        <td>C - E♭ - G - B♭</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Séptima dominante</td>
+                                        <td>C7</td>
+                                        <td>1 - 3 - 5 - ♭7</td>
+                                        <td>C - E - G - B♭</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sus4</td>
+                                        <td>Csus4</td>
+                                        <td>1 - 4 - 5</td>
+                                        <td>C - F - G</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sus2</td>
+                                        <td>Csus2</td>
+                                        <td>1 - 2 - 5</td>
+                                        <td>C - D - G</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- content -->
+                                <article class="tool-container mt-4">
+                    <section class="mb-4">
+                        <h1 class="mb-3">Identificador de acordes: analizador inverso de armonía y voicings</h1>
+                        <p class="text-muted small">Última actualización: 12 de octubre de 2026 · Written by the Pitch Detectors Editorial Team</p>
+                        <p class="lead text-muted">
+                            Un <strong>identificador de acordes</strong> es un buscador inverso de acordes: introduce las notas que estás tocando y nombra el acorde —su fundamental, cualidad, fórmula de intervalos e inversión. Selecciona cualquier combinación de notas y obtén una identificación instantánea con rigor teórico.
+                        </p>
+                    </section>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Puntos clave</h2>
+                        <ul>
+                            <li><strong>Un identificador de acordes nombra cualquier acorde a partir de sus notas</strong> — selecciona 3 o más notas y obtén el nombre del acorde, su cualidad, fórmula de intervalos e inversión.</li>
+                            <li>Los acordes se identifican por <strong>patrones de intervalos</strong>: C–E–G siempre es una tríada mayor (4 + 3 semitonos), sin importar la octava o el orden.</li>
+                            <li><strong>Un mismo voicing puede tener varios nombres válidos</strong> (Cmaj7/E frente a Em9 sin fundamental) — la herramienta muestra alternativas en lugar de adivinar.</li>
+                            <li>La <strong>nota del bajo decide la inversión</strong>: las mismas tres notas están en estado fundamental, primera o segunda inversión según cuál sea la más grave.</li>
+                            <li>Lleva los acordes identificados al <a href="../generador-de-progresiones-de-acordes/">generador de progresiones de acordes</a> para construir una sección completa de canción alrededor de tu voicing.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-info-circle me-2"></i>¿Qué es un identificador de acordes?</h2>
+                        <p><strong>Un identificador de acordes es un buscador inverso de acordes: introduces las notas que estás tocando y te dice el nombre del acorde.</strong> En lugar de buscar "cómo se toca Cmaj9", trabajas hacia atrás desde un voicing que descubriste — en piano, guitarra o en tu DAW — hasta su nombre formal, su cualidad y su fórmula de intervalos.</p>
+                        <p>Esta dirección "inversa" es lo que lo convierte en una herramienta de composición. Los compositores descubren constantemente por oído voicings hermosos sin conocer sus nombres; el identificador cierra esa brecha y te da la etiqueta teórica que necesitas para comunicar el acorde, transportarlo con nuestra herramienta de <a href="../../dj-music-production-tools/key-transposition/">transposición de tonalidad</a> o reutilizarlo en una progresión.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-gear me-2"></i>Cómo funciona esta calculadora</h2>
+                        <p>La herramienta identifica acordes mediante <strong>análisis exhaustivo de fundamentales</strong> — el mismo método que usa un teórico, automatizado. Este es el procedimiento exacto:</p>
+                        <ol>
+                            <li><strong>Prueba cada nota como fundamental:</strong> cada nota seleccionada se prueba por turno como posible fundamental.</li>
+                            <li><strong>Mide los intervalos:</strong> las notas restantes se convierten en distancias en semitonos sobre esa fundamental candidata (módulo 12, para que las octavas colapsen).</li>
+                            <li><strong>Compara plantillas:</strong> cada patrón de intervalos se compara con una biblioteca de fórmulas de acordes: tríadas, séptimas, novenas, suspensiones y más.</li>
+                            <li><strong>Muestra todas las coincidencias:</strong> se listan todas las combinaciones de fundamental y plantilla que encajan, con la fórmula de intervalos (p. ej., 0 – 4 – 7 – 11) y la inversión que implica tu nota más grave.</li>
+                        </ol>
+                        <p>Como se prueba cada fundamental candidata, la herramienta nunca impone una única respuesta en voicings ambiguos: te muestra las alternativas y deja que tu oído decida.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-calculator me-2"></i>Fórmula del acorde y ejemplo resuelto</h2>
+                        <p>Cada acorde es una receta de intervalos medida en semitonos desde la fundamental:</p>
+                        <p><code><strong>tríada mayor = 0 – 4 – 7 (fundamental, tercera mayor, quinta justa)</strong></code></p>
+                        <p><strong>Ejemplo resuelto:</strong> seleccionas C, E, G y B en el selector de notas.</p>
+                        <ol>
+                            <li>Probando <strong>C como fundamental</strong>: los intervalos son 0 (C), 4 (E), 7 (G), 11 (B) → coincide con la plantilla de <strong>séptima mayor</strong> → <strong>Cmaj7</strong>.</li>
+                            <li>Probando <strong>E como fundamental</strong>: los intervalos son 0 (E), 3 (G), 8 (B), 9 (C) → ninguna plantilla estándar encaja con claridad.</li>
+                            <li>Las demás fundamentales tampoco encajan, así que la herramienta informa <strong>Cmaj7</strong> como lectura principal, fórmula 0 – 4 – 7 – 11.</li>
+                            <li>Si tu nota seleccionada más grave fuera E, el mismo conjunto de notas se informaría como <strong>Cmaj7/E — primera inversión</strong>.</li>
+                        </ol>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-list-ol me-2"></i>Cómo usar esta calculadora</h2>
+                        <ol>
+                            <li><strong>Selecciona notas:</strong> haz clic en las notas del selector interactivo (elige al menos 3; el orden no importa).</li>
+                            <li><strong>Lee el nombre del acorde:</strong> la identificación principal aparece al instante, con la cualidad del acorde (mayor, menor, disminuido…).</li>
+                            <li><strong>Revisa la fórmula:</strong> el patrón de intervalos (p. ej., 0 – 3 – 7) te muestra la anatomía del acorde en semitonos.</li>
+                            <li><strong>Revisa las alternativas:</strong> abre las lecturas alternativas: distintas fundamentales pueden explicar las mismas notas.</li>
+                            <li><strong>Escúchalo:</strong> pulsa reproducir para escuchar el voicing y confirmar que coincide con lo que imaginabas.</li>
+                        </ol>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-table me-2"></i>Cómo leer tu resultado: fórmulas comunes de acordes</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>Tipo de acorde</th><th>Fórmula de intervalos (semitonos)</th><th>Ejemplo (fundamental C)</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Tríada mayor</td><td>0 – 4 – 7</td><td>C – E – G</td></tr>
+                                    <tr><td>Tríada menor</td><td>0 – 3 – 7</td><td>C – E♭ – G</td></tr>
+                                    <tr><td>Tríada disminuida</td><td>0 – 3 – 6</td><td>C – E♭ – G♭</td></tr>
+                                    <tr><td>Tríada aumentada</td><td>0 – 4 – 8</td><td>C – E – G♯</td></tr>
+                                    <tr><td>Séptima mayor</td><td>0 – 4 – 7 – 11</td><td>C – E – G – B</td></tr>
+                                    <tr><td>Séptima dominante</td><td>0 – 4 – 7 – 10</td><td>C – E – G – B♭</td></tr>
+                                    <tr><td>Séptima menor</td><td>0 – 3 – 7 – 10</td><td>C – E♭ – G – B♭</td></tr>
+                                    <tr><td>Cuarta suspendida</td><td>0 – 5 – 7</td><td>C – F – G</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-question-circle me-2"></i>Por qué un mismo voicing tiene tres nombres</h2>
+                        <p><strong>Lo más confuso — y lo más útil — que enseña un identificador de acordes es que los nombres de los acordes son interpretaciones, no hechos.</strong> C–E–G–B es Cmaj7 con C en el bajo, pero el conjunto C–E–G–A es tanto <strong>Am7</strong> (A–C–E–G) como <strong>C6</strong> (C–E–G–A). Las mismas cuatro notas, dos nombres legítimos, distintas funciones armónicas.</p>
+                        <p>Regla práctica: el nombre sigue a la <strong>nota del bajo y al contexto</strong>. Si el bajista toca A, llámalo Am7; si la progresión resuelve en F, probablemente C6 describe mejor su función. Las lecturas alternativas de la herramienta existen justo para que elijas el nombre que encaja con tu música; luego usa la <a href="../calculadora-de-intervalos/">calculadora de intervalos</a> para verificar cualquier intervalo individual del que dudes.</p>
+                    </section>
+
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagrama: las notas C–E–G–A en un pentagrama etiquetadas de dos formas — "Am7" con A en el bajo, "C6" con C en el bajo]</div><figcaption class="small text-muted mt-2">Texto alternativo: diagrama de pentagrama que muestra cómo las mismas cuatro notas se nombran Am7 o C6 según la nota del bajo.</figcaption></figure>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-arrow-down-up me-2"></i>Inversiones: la nota del bajo lo cambia todo</h2>
+                        <p><strong>Una inversión es el mismo acorde con una nota distinta en el bajo.</strong> C–E–G con C como nota más grave es estado fundamental; con E es primera inversión (se escribe C/E); con G, segunda inversión (C/G). La identidad del acorde no cambia, pero su estabilidad y su conducción de voces sí: las tríadas en segunda inversión suenan inquietas y "necesitan" resolver, por eso los compositores las usan en las cadencias.</p>
+                        <p>Como la herramienta interpreta tu nota seleccionada más grave como el bajo, <strong>el orden de selección importa para la etiqueta de inversión</strong> (aunque no para el nombre del acorde). Construir el voicing de grave a agudo tal como lo tocas da la lectura más útil.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-music-note-list me-2"></i>De un acorde a una progresión completa</h2>
+                        <p><strong>Un acorde con nombre es un punto de partida; las progresiones son el destino.</strong> Una vez que el identificador nombra tu voicing, lleva su fundamental y su cualidad al <a href="../generador-de-progresiones-de-acordes/">generador de progresiones de acordes</a>: un descubrimiento de Cmaj7 se convierte en el acorde I de una progresión I–vi–ii–V en C, y el generador te muestra los compañeros diatónicos que harán que suene intencional en lugar de accidental.</p>
+                        <p>Los productores usan este ciclo constantemente: tararean un voicing en un piano roll, lo identifican, generan tres progresiones a su alrededor y eligen la que tiene el arco emocional adecuado para la pista. La teoría sirve al oído, nunca al revés.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitaciones</h2>
+                        <ul>
+                            <li><strong>Necesita al menos 3 notas.</strong> Dos notas forman un intervalo, no un acorde; usa la calculadora de intervalos para las díadas.</li>
+                            <li><strong>Se asume temperamento igual de 12 tonos.</strong> Los voicings microtonales o de entonación justa se redondearán a la plantilla de semitono más cercana.</li>
+                            <li><strong>Nomenclatura sin contexto.</strong> La herramienta nombra el conjunto de notas, no su función en tu canción; Am7 frente a C6 es, en última instancia, tu decisión.</li>
+                            <li><strong>Los voicings en clúster pueden no coincidir con nada.</strong> Los clústeres cromáticos densos (p. ej., C–C♯–D) no tienen un nombre de acorde estándar, y la herramienta lo dirá con honestidad.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>Identificador de acordes frente a alternativas</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>Método</th><th>Cómo funciona</th><th>Ideal para</th><th>Ten en cuenta</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Esta herramienta</td><td>Entrada de notas → comparación de plantillas, todas las fundamentales probadas</td><td>Nomenclatura rápida, inversiones, alternativas</td><td>Sin contexto; tú eliges el nombre final</td></tr>
+                                    <tr><td>Libro/app de diccionario de acordes</td><td>Busca formas por nombre</td><td>Aprender voicings estándar</td><td>Una sola dirección (nombre → notas)</td></tr>
+                                    <tr><td>Pista de acordes del DAW</td><td>Analiza el MIDI de tu proyecto</td><td>Acordes ya presentes en una sesión</td><td>Ligado a un DAW; la nomenclatura varía</td></tr>
+                                    <tr><td>Profesor / foro</td><td>Análisis humano</td><td>Voicings de jazz ambiguos</td><td>Lento; las respuestas varían según el teórico</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-4">
+                        <p class="small text-muted"><em>Los nombres de los acordes son interpretaciones analíticas de conjuntos de notas. Los resultados se ofrecen con fines informativos y creativos; en casos ambiguos, elige el nombre que coincida con la función de tu acorde en la música.</em></p>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="mb-4">
+                        <h3 class="h4 fw-bold mb-4">Preguntas frecuentes</h3>
+                        <div class="accordion" id="chordFaqAccordion">
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol1" aria-expanded="true">
+                                        ¿Cómo funciona un identificador de acordes?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol1" class="accordion-collapse collapse show" aria-labelledby="cFaqHead1"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        Prueba cada nota que introdujiste como posible fundamental, convierte el resto en intervalos en semitonos sobre esa fundamental y compara cada patrón con una biblioteca de fórmulas de acordes. Se informa cada par coincidente de fundamental y plantilla: así, C–E–G devuelve C major, con la fórmula 0 – 4 – 7.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol2">
+                                        ¿Qué notas forman un acorde de C major?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol2" class="accordion-collapse collapse" aria-labelledby="cFaqHead2"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        C, E y G: fundamental, tercera mayor (4 semitonos) y quinta justa (7 semitonos). Cualquier voicing que contenga exactamente estas clases de notas en cualquier octava u orden es alguna forma de C major; la inversión depende de la nota más grave.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol3">
+                                        ¿Por qué mi acorde tiene varios nombres?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol3" class="accordion-collapse collapse" aria-labelledby="cFaqHead3"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        Porque el mismo conjunto de notas encaja en más de una plantilla: C–E–G–A es tanto Am7 como C6. Los nombres de los acordes describen la función además del contenido, así que el nombre "correcto" depende de tu nota del bajo y de dónde resuelva el acorde. Revisa las lecturas alternativas y elige la que coincida con tu progresión.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol4">
+                                        ¿Qué es una inversión de acorde y cómo se detecta?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol4" class="accordion-collapse collapse" aria-labelledby="cFaqHead4"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        Una inversión es el mismo acorde con una nota distinta de la fundamental en el bajo: C–E–G se convierte en C/E (primera inversión) con E como nota más grave, o en C/G (segunda inversión) con G como más grave. La herramienta interpreta tu nota seleccionada más grave como el bajo y etiqueta la inversión a partir de ella; por eso construye los voicings de grave a agudo tal como los tocas.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol5">
+                                        ¿Cómo distingo los acordes de séptima de las tríadas?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol5" class="accordion-collapse collapse" aria-labelledby="cFaqHead5"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        Cuenta las notas y revisa el intervalo superior: una tríada tiene 3 notas (0 – 4 – 7 para la mayor), mientras que un acorde de séptima añade una cuarta nota a una séptima sobre la fundamental: 11 semitonos para la séptima mayor (soñadora), 10 para la séptima dominante o menor (bluesy o jazzy). La lectura de la fórmula hace visible la diferencia al instante.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol6">
+                                        ¿Cuál es la diferencia entre voicing e inversión?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol6" class="accordion-collapse collapse" aria-labelledby="cFaqHead6"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        La inversión se refiere solo a qué nota es la más grave (C/E frente a C/G). El voicing es la disposición vertical completa: qué octavas, duplicaciones y espaciamientos usas. Dos pianistas pueden tocar la misma inversión con voicings completamente distintos; el identificador nombra el acorde y la inversión, mientras que el voicing sigue siendo tu elección artística.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead7">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol7">
+                                        ¿Puede identificar extensiones de jazz como novenas y trecenas?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol7" class="accordion-collapse collapse" aria-labelledby="cFaqHead7"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        Sí, si la biblioteca de plantillas las incluye: una novena es simplemente la segunda una octava arriba (14 semitonos desde la fundamental), una oncena es 17 y una trecena 21. Selecciona las cinco o seis notas de tu voicing extendido y el comparador encontrará la plantilla de extensión. Los voicings de jazz "sin fundamental" dispersos pueden devolver varios candidatos; usa la nota del bajo para desambiguar.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead8">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol8">
+                                        ¿Cuántas notas necesito para identificar un acorde?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol8" class="accordion-collapse collapse" aria-labelledby="cFaqHead8"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        Al menos tres: dos notas forman un intervalo, no un acorde. Tres notas definen una tríada; cuatro o más abren la puerta a acordes de séptima y extensiones. Más notas suelen significar una identificación más específica, aunque los clústeres muy densos pueden no coincidir con ninguna plantilla estándar.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead9">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol9">
+                                        ¿Qué es un poliacorde y puede esta herramienta nombrarlo?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol9" class="accordion-collapse collapse" aria-labelledby="cFaqHead9"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        Un poliacorde apila dos tríadas reconocibles, como D major sobre C major (se escribe D/C). El identificador analiza todas las notas seleccionadas como un solo conjunto, así que puede devolver un único nombre de acorde extendido. Para los poliacordes, identifica las tríadas superior e inferior por separado, de tres en tres.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="cFaqHead10">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#cFaqCol10">
+                                        ¿Por qué importa la escritura enarmónica (F♯ frente a G♭)?
+                                    </button>
+                                </h3>
+                                <div id="cFaqCol10" class="accordion-collapse collapse" aria-labelledby="cFaqHead10"
+                                    data-bs-parent="#chordFaqAccordion">
+                                    <div class="accordion-body">
+                                        Las notas enarmónicas suenan igual (F♯ = G♭) pero se escriben distinto, y la escritura indica la función: F♯ pertenece a tonalidades con sostenidos como G major, y G♭ a tonalidades con bemoles como D♭ major. La herramienta informa una sola escritura; si parece incorrecta para tu tonalidad, reescríbela mentalmente: el sonido no cambia.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </article>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="../../../assets/bootstrap5.js" defer></script>
+    <script src="../../../assets/tools.js" defer></script>
+    <!-- tool js -->
+    <script defer>
+        const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        let selectedNotes = [];
+        let audioContext = null;
+
+        const chordTypes = {
+            'major': { intervals: [0, 4, 7], symbol: '', name: 'Major' },
+            'minor': { intervals: [0, 3, 7], symbol: 'm', name: 'Minor' },
+            'diminished': { intervals: [0, 3, 6], symbol: 'dim', name: 'Diminished' },
+            'augmented': { intervals: [0, 4, 8], symbol: 'aug', name: 'Augmented' },
+            'sus2': { intervals: [0, 2, 7], symbol: 'sus2', name: 'Suspended 2nd' },
+            'sus4': { intervals: [0, 5, 7], symbol: 'sus4', name: 'Suspended 4th' },
+            'major7': { intervals: [0, 4, 7, 11], symbol: 'maj7', name: 'Major 7th' },
+            'minor7': { intervals: [0, 3, 7, 10], symbol: 'm7', name: 'Minor 7th' },
+            'dominant7': { intervals: [0, 4, 7, 10], symbol: '7', name: 'Dominant 7th' },
+            'dim7': { intervals: [0, 3, 6, 9], symbol: 'dim7', name: 'Diminished 7th' },
+            'halfDim7': { intervals: [0, 3, 6, 10], symbol: 'm7♭5', name: 'Half-Diminished 7th' },
+            'minMaj7': { intervals: [0, 3, 7, 11], symbol: 'm(maj7)', name: 'Minor Major 7th' },
+            'aug7': { intervals: [0, 4, 8, 10], symbol: 'aug7', name: 'Augmented 7th' },
+            'add9': { intervals: [0, 4, 7, 14], symbol: 'add9', name: 'Add 9' },
+            '6': { intervals: [0, 4, 7, 9], symbol: '6', name: 'Major 6th' },
+            'm6': { intervals: [0, 3, 7, 9], symbol: 'm6', name: 'Minor 6th' }
+        };
+
+        function initNoteSelector() {
+            const selector = document.getElementById('noteSelector');
+            notes.forEach(note => {
+                const btn = document.createElement('button');
+                btn.className = 'note-btn';
+                btn.textContent = note;
+                btn.onclick = () => toggleNote(note);
+                selector.appendChild(btn);
+            });
+        }
+
+        function toggleNote(note) {
+            const index = selectedNotes.indexOf(note);
+            if (index > -1) {
+                selectedNotes.splice(index, 1);
+            } else {
+                selectedNotes.push(note);
+            }
+            updateUI();
+            identifyChord();
+        }
+
+        function clearNotes() {
+            selectedNotes = [];
+            updateUI();
+            identifyChord();
+        }
+
+        function updateUI() {
+            document.querySelectorAll('.note-btn').forEach(btn => {
+                btn.classList.toggle('selected', selectedNotes.includes(btn.textContent));
+            });
+            document.getElementById('selectedNotesDisplay').textContent =
+                selectedNotes.length ? selectedNotes.join(' - ') : 'None selected';
+        }
+
+        function identifyChord() {
+            if (selectedNotes.length < 3) {
+                document.getElementById('chordResult').textContent = '-';
+                document.getElementById('chordType').textContent = 'Select at least 3 notes';
+                document.getElementById('chordFormula').textContent = '-';
+                document.getElementById('alternativeChords').style.display = 'none';
+                return;
+            }
+
+            const matches = [];
+
+            selectedNotes.forEach(root => {
+                const rootIndex = notes.indexOf(root);
+                const intervals = selectedNotes.map(n => (notes.indexOf(n) - rootIndex + 12) % 12).sort((a, b) => a - b);
+
+                for (const [type, data] of Object.entries(chordTypes)) {
+                    if (arraysEqual(intervals, data.intervals)) {
+                        matches.push({
+                            root: root,
+                            type: type,
+                            symbol: root + data.symbol,
+                            name: root + ' ' + data.name,
+                            formula: data.intervals.join(' - ')
+                        });
+                    }
+                }
+            });
+
+            if (matches.length > 0) {
+                const primary = matches[0];
+                document.getElementById('chordResult').textContent = primary.symbol;
+                document.getElementById('chordType').textContent = primary.name;
+                document.getElementById('chordFormula').textContent = 'Intervals: ' + primary.formula;
+
+                if (matches.length > 1) {
+                    document.getElementById('alternativeChords').style.display = 'block';
+                    let html = '';
+                    matches.forEach((m, i) => {
+                        html += `<div class="chord-match ${i === 0 ? 'primary' : ''}" onclick="selectChord('${m.symbol}', '${m.name}')">
+                            <strong>${m.symbol}</strong><br><small>${m.name}</small>
+                        </div>`;
+                    });
+                    document.getElementById('chordMatches').innerHTML = html;
+                } else {
+                    document.getElementById('alternativeChords').style.display = 'none';
+                }
+            } else {
+                document.getElementById('chordResult').textContent = 'Unknown';
+                document.getElementById('chordType').textContent = 'Try different note combinations';
+                document.getElementById('chordFormula').textContent = '-';
+                document.getElementById('alternativeChords').style.display = 'none';
+            }
+        }
+
+        function selectChord(symbol, name) {
+            document.getElementById('chordResult').textContent = symbol;
+            document.getElementById('chordType').textContent = name;
+        }
+
+        function arraysEqual(a, b) {
+            return a.length === b.length && a.every((v, i) => v === b[i]);
+        }
+
+        function playChord() {
+            if (selectedNotes.length === 0) return;
+
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            selectedNotes.forEach(note => {
+                const noteIndex = notes.indexOf(note);
+                const freq = 261.63 * Math.pow(2, noteIndex / 12);
+
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+
+                osc.frequency.value = freq;
+                osc.type = 'sine';
+
+                gain.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+
+                osc.start();
+                osc.stop(audioContext.currentTime + 1);
+            });
+        }
+
+        initNoteSelector();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../../sp/header.html").then(res => res.text()),
+                fetch("../../../sp/footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

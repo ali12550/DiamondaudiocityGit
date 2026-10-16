@@ -4,74 +4,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Melody Generator Online – Step Sequencer, Scales & Synth Hooks</title>
+  <title>Melody Generator: Write Hooks with a Step Sequencer</title>
   <meta name="description"
-    content="Create, audition, and sketch melodies with our interactive 16-step sequencer. Select scales, roots, BPM, and synth instruments for songwriting, beatmaking, and ear training." />
+  content="Write catchy melodies free: a scale-locked step sequencer with tempo and instrument controls. Compose hooks that always stay in key.">
   <meta name="keywords"
     content="melody generator online, step sequencer web audio, melody maker, melodic hook generator, synth sequencer online, scale melody creator, songwriting tools" />
-  <link rel="canonical" href="https://pitchdetectors.com/music-theory-tools/melody-generator/" />
-  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+  <link rel="canonical" href="https://pitchdetectors.com/music-theory-tools/melody-generator/"
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Melody Generator: Write Hooks with a Step Sequencer">
+    <meta property="og:description" content="Write catchy melodies free: a scale-locked step sequencer with tempo and instrument controls. Compose hooks that always stay in key.">
+    <meta property="og:url" content="https://pitchdetectors.com/music-theory-tools/melody-generator/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Melody Generator: Write Hooks with a Step Sequencer">
+    <meta name="twitter:description" content="Write catchy melodies free: a scale-locked step sequencer with tempo and instrument controls. Compose hooks that always stay in key."> />
+  <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/bootstrap5.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
-  <link href="/assets/tools.css" rel="stylesheet">
+  <link href="../../assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link href="../../assets/tools.css" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
     crossorigin="anonymous"></script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How does a step-sequencer melody generator work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A step sequencer divides musical time into discrete grid steps (typically 16 sixteenth notes per measure) and vertical pitch rows. As the playhead sweeps across columns at a set BPM, activated cells trigger synthesizer oscillators (sine, square, triangle, saw, or pluck) tuned to scale degrees in the selected key."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What makes a melody catchy and memorable?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A memorable melody balances predictability with surprise. It predominantly uses conjunct (stepwise) motion for vocal singability, punctuated by an occasional dramatic leap that is followed by a stepwise change in direction (the law of recovery). A distinct rhythmic motif repeated with slight variations creates immediate earworm retention."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is the Pentatonic scale so popular for melody creation?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The Pentatonic scale removes the 4th and 7th degrees of the major scale, completely eliminating half-step semitones and the unstable tritone interval. Because there are no clashing dissonances against underlying major or minor triads, every note in the pentatonic scale sounds harmonious and singable."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the difference between conjunct and disjunct melodic motion?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Conjunct motion moves smoothly along adjacent scale steps (major and minor seconds), creating flowing, lyrical melodies. Disjunct motion moves by leaps (thirds, fourths, fifths, octaves), injecting energy, drama, and sudden emotion into the melodic contour."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do you develop a melodic motif in songwriting?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A short 3 to 5 note motif can be developed through sequence (repeating the shape on a higher or lower scale degree), rhythmic variation (augmenting or syncopating notes), melodic inversion (flipping upward steps into downward steps), and call-and-response phrasing."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which synth waveform is best for sketching melodies?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sine waves offer clean, pure fundamental tones without distracting overtones. Pluck envelopes with fast decay times mimic acoustic guitars or harps, making note transitions crisp. Sawtooth waves provide rich harmonic bite ideal for energetic electronic leads."
-        }
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does the melody generator work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is a step sequencer: columns are time steps, rows are pitches from your chosen scale. Click cells to place notes, set a tempo and instrument, and press play — the browser schedules each note via the Web Audio API and loops the pattern. Because rows are scale-locked, every click stays in key."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a step sequencer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A grid-based composer where time flows left to right in fixed steps and pitch runs bottom to top. Each filled cell triggers its note when the playhead reaches that column. Step sequencers power classic drum machines and synth arpeggiators — this one is tuned for melody writing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I write a catchy melody?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with rhythm on a single pitch, then assign 3–4 scale degrees to that rhythm. Repeat a short motif, vary its ending, and keep the range within an octave. Catchiness comes from repetition plus one small surprise — not from using many different notes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What scale should I choose for my melody?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Match your song's key: major for bright pop and dance, natural minor for darker or emotional tracks, pentatonic for foolproof hooks (five notes, zero wrong choices). If your chords are already written, use their key — the melody must live in the same harmonic house."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many notes should a hook have?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fewer than you think — most iconic hooks use 3–4 distinct pitches across 4–8 rhythmic hits. The magic is repetition with variation: state a motif, repeat it, then change just the last note. If your grid uses all seven scale degrees equally, simplify."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What tempo should my melody be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your song's tempo — the melody must lock to the track. Common zones: 90–100 BPM for hip-hop and R&B, 120–130 for house and pop, 140+ for energetic electronic. Set the slider to match your DAW project before composing so the rhythm translates directly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use generated melodies commercially?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — you composed every note by clicking the grid, so the melody is your original work. (This differs from AI generators where authorship can be murky.) Short, common motifs aren't copyrightable anyway, but your specific rhythmic-melodic combination is yours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I make my melody less random-sounding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Impose structure: limit yourself to 3 pitch rows, repeat a 4-step motif twice with a varied ending, and leave at least a quarter of the cells empty as rests. Randomness comes from too many pitches and no repetition — remove both and musicality appears."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a melody and a hook?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A melody is the full tune; a hook is the short, repeated fragment designed to stick — usually the chorus's catchiest 4–8 notes. Every hook is a melody, but not every melody is a hook. Compose hooks on the grid, then expand them into full melodies in your DAW."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I export my melody to a DAW?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Recreate the grid in your DAW's piano roll by ear: set the same tempo and scale, then place notes at matching steps (16 grid steps at 120 BPM = one 4/4 bar of 16ths). Record the browser audio as a reference track if your DAW supports loopback, and use it as a guide while programming the final MIDI."
+      }
+    }
+  ]
+}
   </script>
   <style>
     /* Melody Grid */
@@ -161,6 +201,7 @@
         <div class="tool-container">
           <div class="tool-title">
             <h1><i class="bi bi-music-note-list me-2"></i>Melody Generator</h1>
+            <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
             <p>Create melodies on a step-grid. Click cells to enable notes, set tempo, choose scale/instrument, then
               press Play.</p>
           </div>
@@ -222,300 +263,283 @@
           <div class="melody-grid" id="melodyGrid" role="grid" aria-label="Melody step grid"></div>
 
           <!-- Educational & Technical Content -->
-          <article class="tool-container mt-4">
-            <section class="mb-4">
-              <h1 class="mb-3">Melody Generator: Interactive Step Sequencer & Hook Composer</h1>
-              <p class="lead text-muted">
-                Compose, audition, and develop memorable melodic themes on an interactive 16-step matrix sequencer.
-                Experiment with chromatic, major, minor, pentatonic, and blues scales, adjust tempos, and sculpt melodic
-                contour with real-time Web Audio synthesis.
-              </p>
-              <p>
-                In musical composition, the <strong>melody</strong> is the emotional voice of a song&mdash;the primary
-                element that listeners hum, sing along with, and remember long after the music stops. While rhythm
-                establishes physical propulsion and harmony provides architectural color, melody tells the narrative
-                story. This tool functions as a digital step-sequencing canvas, allowing producers, songwriters, and
-                composers to construct melodic motifs, test interval relationships, and unlock creative inspiration
-                without getting bogged down in complex DAW piano-roll setup.
-              </p>
-            </section>
+                          <article class="tool-container mt-4">
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+                        <ul>
+                            <li><strong>A melody generator is a scale-constrained step sequencer:</strong> click grid cells to place notes that always stay in key — wrong notes are impossible by design.</li>
+                            <li><strong>Constraint beats freedom for beginners:</strong> limiting yourself to 7 scale notes produces better melodies than 88 piano keys.</li>
+                            <li>The catchiest hooks use <strong>3–4 distinct pitches</strong> — repetition with small variations is what makes melodies memorable.</li>
+                            <li><strong>Compose rhythm first, pitches second:</strong> tap a rhythm on one note, then assign scale degrees to it.</li>
+                            <li>Export your pattern by ear into your DAW, then develop it with the <a href="../chord-progression-generator/">chord progression generator</a> for harmony underneath.</li>
+                        </ul>
+                    </section>
 
-            <!-- The Dimensions of Melody -->
-            <section class="mb-4">
-              <h2 class="text-teal mb-3"><i class="bi bi-music-note-beamed me-2"></i>The Three Dimensions of a Great
-                Melody</h2>
-              <div class="row g-3 my-2">
-                <div class="col-md-4">
-                  <div class="card h-100 border-0 shadow-sm p-3 bg-light">
-                    <h5 class="fw-bold text-dark"><i class="bi bi-graph-up text-teal me-2"></i>1. Melodic Contour</h5>
-                    <p class="small text-muted mb-0">
-                      The geometric shape formed by rising and falling pitches. The most timeless melodies follow an
-                      <strong>arch contour</strong>: ascending gently toward an emotional apex around two-thirds into
-                      the phrase (the golden ratio), followed by a satisfying downward release toward the tonic.
-                    </p>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card h-100 border-0 shadow-sm p-3 bg-light">
-                    <h5 class="fw-bold text-dark"><i class="bi bi-stopwatch text-teal me-2"></i>2. Rhythmic Cadence</h5>
-                    <p class="small text-muted mb-0">
-                      A sequence of pitches without rhythm is merely a scale. Placing notes on syncopated upbeats,
-                      introducing pauses (rests), and varying note lengths (quarter notes vs. sixteenth notes) gives a
-                      melody its distinct personality and kinetic groove.
-                    </p>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card h-100 border-0 shadow-sm p-3 bg-light">
-                    <h5 class="fw-bold text-dark"><i class="bi bi-arrow-repeat text-teal me-2"></i>3. Motif & Repetition
-                    </h5>
-                    <p class="small text-muted mb-0">
-                      Human brains crave pattern recognition. The secret to commercial earworms is taking a short
-                      3-to-5-note idea (a <em>motif</em>) and repeating it with subtle variation across harmonic changes
-                      (e.g. Beethoven's 5th Symphony or Dua Lipa's "Levitating").
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-info-circle me-2"></i>What Is a Melody Generator?</h2>
+                        <p><strong>A melody generator is an interactive step sequencer that lets you compose melodies by clicking notes onto a grid.</strong> Each column is a time step, each row is a pitch from your chosen scale — click cells to place notes, press play, and hear your melody looped at your chosen tempo with a synthesized instrument.</p>
+                        <p>Unlike random melody tools, this one is <strong>compositional, not generative</strong>: every note is your choice, but the grid only offers in-scale pitches, so nothing you click can clash with your key. It is a melody sketchpad that removes the fear of wrong notes.</p>
+                    </section>
 
-            <!-- Conjunct vs Disjunct Motion -->
-            <section class="mb-4">
-              <h2 class="text-teal mb-3"><i class="bi bi-bezier2 me-2"></i>Conjunct vs. Disjunct Motion & The Law of
-                Recovery</h2>
-              <p>
-                In vocal and instrumental melody writing, pitch transitions fall into two categories:
-              </p>
-              <div class="table-responsive">
-                <table class="table table-hover table-bordered align-middle">
-                  <thead class="table-dark">
-                    <tr>
-                      <th>Motion Type</th>
-                      <th>Interval Characteristics</th>
-                      <th>Psychological Effect</th>
-                      <th>Best Used For</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="fw-bold text-primary">Conjunct (Stepwise)</td>
-                      <td>Major & Minor Seconds (1 to 2 semitones)</td>
-                      <td>Smooth, lyrical, predictable, effortlessly singable</td>
-                      <td>Verses, intimate vocal delivery, story-driven lyrics</td>
-                    </tr>
-                    <tr>
-                      <td class="fw-bold text-success">Disjunct (Leaps)</td>
-                      <td>Thirds, Fourths, Fifths, Octaves (3+ semitones)</td>
-                      <td>Exciting, dramatic, athletic, emotional explosion</td>
-                      <td>Chorus hooks, anthemic vocal climaxes, brass fanfares</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="p-3 bg-light rounded border mt-3">
-                <h6 class="fw-bold text-dark mb-1"><i class="bi bi-shield-check text-teal me-2"></i>The Classical Law of
-                  Recovery:</h6>
-                <p class="small text-muted mb-0">
-                  When a melody makes a wide leap (e.g., an ascending perfect fifth or octave), musical tension sharply
-                  rises. Classical composers and hit pop songwriters universally balance this by immediately following
-                  the leap with <strong>stepwise motion in the opposite direction</strong>, gently soothing the ear and
-                  restoring equilibrium.
-                </p>
-              </div>
-            </section>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-gear me-2"></i>How This Calculator Works</h2>
+                        <p>The widget above is a <strong>browser-based step sequencer</strong> running on the Web Audio API. The exact mechanics:</p>
+                        <ol>
+                            <li><strong>Choose a scale and root:</strong> the grid's rows remap to the selected scale's pitches (e.g. C major: C–D–E–F–G–A–B across two octaves).</li>
+                            <li><strong>Click cells:</strong> each filled cell schedules one note at that step; empty cells are rests. Multiple filled cells in one column play as a chord.</li>
+                            <li><strong>Set tempo and instrument:</strong> the tempo slider (60–200 BPM) sets step duration; the instrument selector changes the oscillator timbre.</li>
+                            <li><strong>Press play:</strong> a scheduler walks the columns left to right, triggering Web Audio oscillators at each step's frequency — looping until you stop it.</li>
+                        </ol>
+                        <p>Because the grid only contains scale tones, <strong>every possible click pattern is diatonic</strong> — the tool constrains pitch so you can focus entirely on rhythm and contour.</p>
+                    </section>
 
-            <!-- Scale Character & Mood Selection -->
-            <section class="mb-4">
-              <h2 class="text-teal mb-3"><i class="bi bi-palette me-2"></i>Selecting the Right Scale for Your Genre</h2>
-              <div class="row g-4">
-                <div class="col-md-6">
-                  <div class="p-3 border rounded h-100 bg-light">
-                    <h5 class="fw-bold text-dark"><i class="bi bi-sun text-teal me-2"></i>Major Pentatonic (1 - 2 - 3 -
-                      5 - 6)</h5>
-                    <p class="small text-muted mb-0">
-                      The universal melody scale of human culture. By eliminating scale degrees 4 and 7, there are zero
-                      dissonant half-steps and zero tritone instability. Virtually impossible to hit a wrong
-                      note&mdash;favored in pop, folk, country, and children's music.
-                    </p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="p-3 border rounded h-100 bg-light">
-                    <h5 class="fw-bold text-dark"><i class="bi bi-moon-stars text-teal me-2"></i>Natural Minor (1 - 2 -
-                      ♭3 - 4 - 5 - ♭6 - ♭7)</h5>
-                    <p class="small text-muted mb-0">
-                      The emotional engine of melancholic pop, trap, Nordic folk, and film scores. The minor third ($1
-                      \to \flat 3$) immediately introduces sadness, while the $\flat 6$ degree creates deep harmonic
-                      tension.
-                    </p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="p-3 border rounded h-100 bg-light">
-                    <h5 class="fw-bold text-dark"><i class="bi bi-lightning text-teal me-2"></i>Blues Scale (1 - ♭3 - 4
-                      - ♭5 - 5 - ♭7)</h5>
-                    <p class="small text-muted mb-0">
-                      Features the historic "blue note" (diminished fifth, $\flat 5$). Sliding between degrees 4, $\flat
-                      5$, and 5 produces the unmistakable grit, attitude, and vocal expressiveness of blues, funk, and
-                      rock guitar solos.
-                    </p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="p-3 border rounded h-100 bg-light">
-                    <h5 class="fw-bold text-dark"><i class="bi bi-stars text-teal me-2"></i>Full Chromatic (12
-                      Semitones)</h5>
-                    <p class="small text-muted mb-0">
-                      Allows unrestricted access to all semitones. Indispensable for incorporating passing tones,
-                      chromatic enclosures, bebop licks, and modern experimental sound design.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-calculator me-2"></i>Melody Math and Worked Example</h2>
+                        <p>The timing math behind the grid is simple division:</p>
+                        <p><code><strong>step duration (seconds) = 60 ÷ BPM ÷ steps per beat</strong></code></p>
+                        <p><strong>Worked example:</strong> 16-step grid at 120 BPM with 4 steps per beat (16th notes).</p>
+                        <ol>
+                            <li>One beat: 60 ÷ 120 = <strong>0.5 seconds</strong>.</li>
+                            <li>One step: 0.5 ÷ 4 = <strong>0.125 seconds (125 ms)</strong>.</li>
+                            <li>One full 16-step loop: 16 × 0.125 = <strong>2.0 seconds = one 4/4 bar</strong>.</li>
+                            <li>Frequencies come from equal temperament: A4 = 440 Hz, each semitone multiplies by 2<sup>1/12</sup>.</li>
+                        </ol>
+                    </section>
 
-            <!-- Frequently Asked Questions -->
-            <section class="mb-4">
-              <h2 class="text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
-              <div class="accordion" id="melodyFaqAccordion">
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="mFaqHead1">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol1"
-                      aria-expanded="true" aria-controls="mFaqCol1">
-                      How does a step-sequencer melody generator work?
-                    </button>
-                  </h3>
-                  <div id="mFaqCol1" class="accordion-collapse collapse show" aria-labelledby="mFaqHead1"
-                    data-bs-parent="#melodyFaqAccordion">
-                    <div class="accordion-body">
-                      A step sequencer divides musical time into discrete grid steps (typically 16 sixteenth notes per
-                      measure) and vertical pitch rows. As the playhead sweeps across columns at a set BPM, activated
-                      cells trigger synthesizer oscillators (sine, square, triangle, saw, or pluck) tuned to scale
-                      degrees in the selected key.
-                    </div>
-                  </div>
-                </div>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-list-ol me-2"></i>How to Use This Calculator</h2>
+                        <ol>
+                            <li><strong>Pick a scale and root:</strong> start with major for bright hooks or natural minor for darker ones.</li>
+                            <li><strong>Set the tempo:</strong> match your project's BPM (find it with <a href="../../dj-music-production-tools/bpm-tap-tempo/">BPM tap tempo</a>).</li>
+                            <li><strong>Click a rhythm:</strong> fill 4–8 cells in one row first — rhythm before pitch.</li>
+                            <li><strong>Assign pitches:</strong> move some notes to different rows, keeping the rhythm. Small moves (neighboring scale degrees) sound most natural.</li>
+                            <li><strong>Loop and refine:</strong> press play, listen on repeat, and adjust one note at a time until it sticks in your head.</li>
+                        </ol>
+                    </section>
 
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="mFaqHead2">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#mFaqCol2" aria-expanded="false" aria-controls="mFaqCol2">
-                      What makes a melody catchy and memorable?
-                    </button>
-                  </h3>
-                  <div id="mFaqCol2" class="accordion-collapse collapse" aria-labelledby="mFaqHead2"
-                    data-bs-parent="#melodyFaqAccordion">
-                    <div class="accordion-body">
-                      A memorable melody balances predictability with surprise. It predominantly uses conjunct
-                      (stepwise) motion for vocal singability, punctuated by an occasional dramatic leap that is
-                      followed by a stepwise change in direction (the law of recovery). A distinct rhythmic motif
-                      repeated with slight variations creates immediate earworm retention.
-                    </div>
-                  </div>
-                </div>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-table me-2"></i>Reading Your Result: What Makes a Grid Pattern Work</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>Pattern trait</th><th>What to check</th><th>Why it matters</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Pitch count</td><td>How many different rows are used</td><td>3–4 pitches = memorable; 7+ = wandering</td></tr>
+                                    <tr><td>Contour</td><td>The shape: up, down, arch, or flat</td><td>Arches (up then down) feel most songlike</td></tr>
+                                    <tr><td>Rest density</td><td>Empty cells between notes</td><td>Rests create breathing room and groove</td></tr>
+                                    <tr><td>Repetition</td><td>Does a 2–4 step motif repeat?</td><td>Repetition is what makes hooks hook</td></tr>
+                                    <tr><td>Range</td><td>Highest vs lowest row used</td><td>An octave or less stays singable</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
 
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="mFaqHead3">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#mFaqCol3" aria-expanded="false" aria-controls="mFaqCol3">
-                      Why is the Pentatonic scale so popular for melody creation?
-                    </button>
-                  </h3>
-                  <div id="mFaqCol3" class="accordion-collapse collapse" aria-labelledby="mFaqHead3"
-                    data-bs-parent="#melodyFaqAccordion">
-                    <div class="accordion-body">
-                      The Pentatonic scale removes the 4th and 7th degrees of the major scale, completely eliminating
-                      half-step semitones and the unstable tritone interval. Because there are no clashing dissonances
-                      against underlying major or minor triads, every note in the pentatonic scale sounds harmonious and
-                      singable.
-                    </div>
-                  </div>
-                </div>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-bounding-box me-2"></i>Why Constraint Creates Better Melodies</h2>
+                        <p><strong>Beginners write better melodies with 7 allowed notes than with 88.</strong> This is the paradox the grid exploits: unlimited choice produces random wandering, while a scale constraint forces you to make music from rhythm, repetition, and contour — the actual ingredients of memorable melody. Jazz improvisers practice the same way, restricting themselves to one scale until it sings.</p>
+                        <p>Try the experiment: compose one 16-step pattern using all rows, then one using only 3 rows. The 3-row version will almost always sound more like a "real" hook. Limitation is a compositional technique, not a training wheel.</p>
+                    </section>
 
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="mFaqHead4">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#mFaqCol4" aria-expanded="false" aria-controls="mFaqCol4">
-                      What is the difference between conjunct and disjunct melodic motion?
-                    </button>
-                  </h3>
-                  <div id="mFaqCol4" class="accordion-collapse collapse" aria-labelledby="mFaqHead4"
-                    data-bs-parent="#melodyFaqAccordion">
-                    <div class="accordion-body">
-                      Conjunct motion moves smoothly along adjacent scale steps (major and minor seconds), creating
-                      flowing, lyrical melodies. Disjunct motion moves by leaps (thirds, fourths, fifths, octaves),
-                      injecting energy, drama, and sudden emotion into the melodic contour.
-                    </div>
-                  </div>
-                </div>
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: two 16-step grids side by side — a scattered 7-pitch pattern labeled "wandering" vs a tight 3-pitch repeating motif labeled "hook"]</div><figcaption class="small text-muted mt-2">Alt text: Comparison of two step-sequencer grids showing a scattered pattern versus a tight repeating hook motif.</figcaption></figure>
 
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="mFaqHead5">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#mFaqCol5" aria-expanded="false" aria-controls="mFaqCol5">
-                      How do you develop a melodic motif in songwriting?
-                    </button>
-                  </h3>
-                  <div id="mFaqCol5" class="accordion-collapse collapse" aria-labelledby="mFaqHead5"
-                    data-bs-parent="#melodyFaqAccordion">
-                    <div class="accordion-body">
-                      A short 3 to 5 note motif can be developed through sequence (repeating the shape on a higher or
-                      lower scale degree), rhythmic variation (augmenting or syncopating notes), melodic inversion
-                      (flipping upward steps into downward steps), and call-and-response phrasing.
-                    </div>
-                  </div>
-                </div>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-music-note-beamed me-2"></i>The 3-Note Hook Rule</h2>
+                        <p><strong>The most memorable melodies in pop history use shockingly few distinct pitches.</strong> Think of hooks you can whistle: most live on 3–4 scale degrees, repeated with rhythmic variation. The brain latches onto small pitch sets because it can predict them — and prediction fulfilled feels like catchiness.</p>
+                        <p>Practical method: fill your grid using only the root, third, and fifth of your scale (the 1–3–5 of the tonic triad). Write 8 steps. Then allow yourself <em>one</em> outside pitch as an accent. That single surprise note against a stable 3-note core is the entire craft of hook writing in miniature.</p>
+                    </section>
 
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="mFaqHead6">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#mFaqCol6" aria-expanded="false" aria-controls="mFaqCol6">
-                      Which synth waveform is best for sketching melodies?
-                    </button>
-                  </h3>
-                  <div id="mFaqCol6" class="accordion-collapse collapse" aria-labelledby="mFaqHead6"
-                    data-bs-parent="#melodyFaqAccordion">
-                    <div class="accordion-body">
-                      Sine waves offer clean, pure fundamental tones without distracting overtones. Pluck envelopes with
-                      fast decay times mimic acoustic guitars or harps, making note transitions crisp. Sawtooth waves
-                      provide rich harmonic bite ideal for energetic electronic leads.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-bezier2 me-2"></i>Rhythm First, Pitches Second</h2>
+                        <p><strong>Professional songwriters compose rhythm before pitch.</strong> The groove of a melody — where notes fall against the beat — determines its feel far more than which notes they are. A great rhythm on one repeated pitch already sounds like music; great pitches with dead rhythm sound like an exercise.</p>
+                        <p>Grid workflow: click 6–8 cells all in the <em>same row</em> until the rhythm grooves on loop. Only then start moving individual notes to new rows. You will find the melody almost writes itself — because the hard part (rhythm) is already solved.</p>
+                    </section>
 
-            <!-- Related Music Theory Tools -->
-            <div class="card my-4 shadow-sm border-0 bg-light">
-              <div class="card-body p-4">
-                <h5 class="fw-bold mb-3"><i class="bi bi-link-45deg text-teal me-2"></i>Explore Related Music Theory
-                  Tools</h5>
-                <div class="row g-2">
-                  <div class="col-sm-6 col-md-3">
-                    <a class="btn btn-outline-primary w-100 text-start"
-                      href="/music-theory-tools/chord-progression-generator/">
-                      <i class="bi bi-diagram-3 me-1"></i> Chord Progression
-                    </a>
-                  </div>
-                  <div class="col-sm-6 col-md-3">
-                    <a class="btn btn-outline-primary w-100 text-start" href="/music-theory-tools/chord-identifier/">
-                      <i class="bi bi-vinyl me-1"></i> Chord Identifier
-                    </a>
-                  </div>
-                  <div class="col-sm-6 col-md-3">
-                    <a class="btn btn-outline-primary w-100 text-start" href="/music-theory-tools/scale-finder/">
-                      <i class="bi bi-grid-3x3 me-1"></i> Scale Finder
-                    </a>
-                  </div>
-                  <div class="col-sm-6 col-md-3">
-                    <a class="btn btn-outline-primary w-100 text-start" href="/music-theory-tools/online-metronome/">
-                      <i class="bi bi-stopwatch me-1"></i> Online Metronome
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-box-arrow-up-right me-2"></i>From Grid to DAW: Finishing Your Melody</h2>
+                        <p><strong>The grid is a sketchpad; your DAW is the canvas.</strong> Once a pattern loops well, recreate it in your DAW's piano roll by ear (16 steps at 120 BPM = one bar — count it in), then develop it: add a second phrase that answers the first, vary the ending, and harmonize it with chords from the <a href="../chord-progression-generator/">chord progression generator</a>.</p>
+                        <p>Check your melody's note set against the <a href="../scale-finder/">scale finder</a> if you plan key changes, and verify any sung version sits in a comfortable range with the <a href="../../pitch-detector-tools/vocal-range-finder-online/">vocal range finder</a>.</p>
+                    </section>
+
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Infographic: the 5-step workflow — scale → rhythm → pitches → loop/refine → DAW — with icons]</div><figcaption class="small text-muted mt-2">Alt text: Infographic of the five-step melody workflow from scale selection to DAW production.</figcaption></figure>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+                        <ul>
+                            <li><strong>Diatonic only:</strong> chromatic passing tones and blue notes aren't on the grid — add them in your DAW.</li>
+                            <li><strong>Fixed grid resolution:</strong> triplets and swung rhythms can't be represented on an even step grid.</li>
+                            <li><strong>Synth preview, not production audio:</strong> the Web Audio timbres sketch the idea; final sound design happens in your DAW.</li>
+                            <li><strong>No dynamics:</strong> every step plays at equal velocity — accents and phrasing are up to you.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>Melody Generator vs Alternatives</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>Method</th><th>How it works</th><th>Best for</th><th>Watch out for</th></tr></thead>
+                                <tbody>
+                                    <tr><td>This step sequencer</td><td>Click notes on a scale-locked grid</td><td>Beginners, quick hooks, no wrong notes</td><td>Diatonic only; fixed grid</td></tr>
+                                    <tr><td>AI melody generators</td><td>Model composes for you</td><td>Instant ideas, block-breaking</td><td>Generic output; you didn't write it</td></tr>
+                                    <tr><td>Piano roll (DAW)</td><td>Full manual composition</td><td>Complete control, production-ready</td><td>Blank-page paralysis for beginners</td></tr>
+                                    <tr><td>Humming into a mic</td><td>Voice memo + transcription</td><td>Capturing inspiration anywhere</td><td>Needs transcription to become usable</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-4">
+                        <p class="small text-muted"><em>Melodies you compose with this tool are your own original work. The grid constrains pitches to your chosen scale but every rhythmic and melodic decision is yours.</em></p>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="mb-4">
+                        <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
+                        <div class="accordion" id="melodyFaqAccordion">
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol1"
+                                        aria-expanded="true">
+                                        How does the melody generator work?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol1" class="accordion-collapse collapse show" aria-labelledby="mFaqHead1"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        It is a step sequencer: columns are time steps, rows are pitches from your chosen scale. Click cells to place notes, set a tempo and instrument, and press play — the browser schedules each note via the Web Audio API and loops the pattern. Because rows are scale-locked, every click stays in key.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol2">
+                                        What is a step sequencer?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol2" class="accordion-collapse collapse" aria-labelledby="mFaqHead2"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        A grid-based composer where time flows left to right in fixed steps and pitch runs bottom to top. Each filled cell triggers its note when the playhead reaches that column. Step sequencers power classic drum machines and synth arpeggiators — this one is tuned for melody writing.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol3">
+                                        How do I write a catchy melody?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol3" class="accordion-collapse collapse" aria-labelledby="mFaqHead3"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Start with rhythm on a single pitch, then assign 3–4 scale degrees to that rhythm. Repeat a short motif, vary its ending, and keep the range within an octave. Catchiness comes from repetition plus one small surprise — not from using many different notes.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol4">
+                                        What scale should I choose for my melody?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol4" class="accordion-collapse collapse" aria-labelledby="mFaqHead4"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Match your song's key: major for bright pop and dance, natural minor for darker or emotional tracks, pentatonic for foolproof hooks (five notes, zero wrong choices). If your chords are already written, use their key — the melody must live in the same harmonic house.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol5">
+                                        How many notes should a hook have?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol5" class="accordion-collapse collapse" aria-labelledby="mFaqHead5"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Fewer than you think — most iconic hooks use 3–4 distinct pitches across 4–8 rhythmic hits. The magic is repetition with variation: state a motif, repeat it, then change just the last note. If your grid uses all seven scale degrees equally, simplify.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol6">
+                                        What tempo should my melody be?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol6" class="accordion-collapse collapse" aria-labelledby="mFaqHead6"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Your song's tempo — the melody must lock to the track. Common zones: 90–100 BPM for hip-hop and R&B, 120–130 for house and pop, 140+ for energetic electronic. Set the slider to match your DAW project before composing so the rhythm translates directly.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead7">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol7">
+                                        Can I use generated melodies commercially?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol7" class="accordion-collapse collapse" aria-labelledby="mFaqHead7"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Yes — you composed every note by clicking the grid, so the melody is your original work. (This differs from AI generators where authorship can be murky.) Short, common motifs aren't copyrightable anyway, but your specific rhythmic-melodic combination is yours.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead8">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol8">
+                                        How do I make my melody less random-sounding?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol8" class="accordion-collapse collapse" aria-labelledby="mFaqHead8"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Impose structure: limit yourself to 3 pitch rows, repeat a 4-step motif twice with a varied ending, and leave at least a quarter of the cells empty as rests. Randomness comes from too many pitches and no repetition — remove both and musicality appears.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead9">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol9">
+                                        What is the difference between a melody and a hook?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol9" class="accordion-collapse collapse" aria-labelledby="mFaqHead9"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        A melody is the full tune; a hook is the short, repeated fragment designed to stick — usually the chorus's catchiest 4–8 notes. Every hook is a melody, but not every melody is a hook. Compose hooks on the grid, then expand them into full melodies in your DAW.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead10">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol10">
+                                        How do I export my melody to a DAW?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol10" class="accordion-collapse collapse" aria-labelledby="mFaqHead10"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Recreate the grid in your DAW's piano roll by ear: set the same tempo and scale, then place notes at matching steps (16 grid steps at 120 BPM = one 4/4 bar of 16ths). Record the browser audio as a reference track if your DAW supports loopback, and use it as a guide while programming the final MIDI.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </article>
+
         </div>
       </div> <!-- /main col -->
     </div>
@@ -523,8 +547,8 @@
 
   <div id="footer"></div>
 
-  <script src="/assets/bootstrap5.js" defer></script>
-  <script src="/assets/tools.js" defer></script>
+  <script src="../../assets/bootstrap5.js" defer></script>
+  <script src="../../assets/tools.js" defer></script>
 
   <!-- tool js -->
   <script defer>

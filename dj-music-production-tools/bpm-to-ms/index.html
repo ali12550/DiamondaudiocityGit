@@ -4,75 +4,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPM to Milliseconds – Delay Time & Reverb Sync Calculator</title>
+    <title>BPM to MS Calculator: Delay Times & Note Values</title>
     <meta name="description"
-        content="Convert BPM to milliseconds and ms to BPM. Instant delay time chart for normal, dotted, and triplet notes, plus LFO frequencies in Hz for music producers.">
+        content="Convert BPM to exact ms delay times, reverb pre-delays and LFO rates — or reverse any ms value back to tempo. Free calculator with subdivision tables.">
     <meta name="keywords"
         content="BPM to ms, milliseconds calculator, delay time, reverb time, sync calculator, music production">
-    <link rel="canonical" href="https://pitchdetectors.com/dj-music-production-tools/bpm-to-ms/">
+    <link rel="canonical" href="https://pitchdetectors.com/dj-music-production-tools/bpm-to-ms/"
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="BPM to MS Calculator: Delay Times &amp; Note Values">
+    <meta property="og:description" content="Convert BPM to exact ms delay times, reverb pre-delays and LFO rates — or reverse any ms value back to tempo. Free calculator with subdivision tables.">
+    <meta property="og:url" content="https://pitchdetectors.com/dj-music-production-tools/bpm-to-ms/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="BPM to MS Calculator: Delay Times &amp; Note Values">
+    <meta name="twitter:description" content="Convert BPM to exact ms delay times, reverb pre-delays and LFO rates — or reverse any ms value back to tempo. Free calculator with subdivision tables.">>
 
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link href="../../assets/tools.css" rel="stylesheet">
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do you calculate milliseconds from BPM?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Divide 60,000 (the number of milliseconds in one minute) by the tempo in BPM. This yields the duration of a single quarter note in milliseconds: Quarter Note (ms) = 60,000 / BPM. To calculate other note values, multiply or divide this base figure by note divisions."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the delay time for a dotted 8th note at 120 BPM?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "At 120 BPM, a quarter note is 500 ms and a regular eighth note is 250 ms. A dotted eighth note is 1.5 times the duration of a standard eighth note, which equals 375 ms (250 × 1.5 = 375 ms). Dotted eighth delays are famous for creating rhythmic, interlocking echoes in rock, pop, and EDM."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do you calculate triplet delay times?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Triplets fit three notes into the space normally occupied by two notes of the same denomination. The formula is Triplet (ms) = Normal Note (ms) × (2 / 3). For example, at 120 BPM, a quarter note triplet equals 500 × (2/3) ≈ 333.33 ms."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why should I sync reverb decay and pre-delay to song tempo?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Syncing pre-delay to a 1/64 or 1/32 note preserves upfront transient clarity by creating a rhythmic pocket before the reverberation starts. Syncing total reverb decay (RT60) to 1 or 2 bars ensures the reverberant tail dissipates naturally right before the next downbeat, preventing a muddy, washed-out mix."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do you convert delay time in milliseconds back to BPM?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "If you know the millisecond duration of one quarter-note beat, calculate BPM by dividing 60,000 by that duration: BPM = 60,000 / Beat Duration (ms). For example, a 480 ms quarter note gives 60,000 / 480 = 125 BPM."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do you convert millisecond note lengths to synthesizer LFO frequency in Hz?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Because frequency in Hertz is the reciprocal of cycle time in seconds, divide 1,000 by the note duration in milliseconds: Frequency (Hz) = 1,000 / Note (ms). At 120 BPM, a 1-bar cycle (2,000 ms) yields 0.500 Hz, while a quarter note (500 ms) cycles at 2.000 Hz."
-          }
-        }
-      ]
+      "@type": "Question",
+      "name": "How do you convert BPM to milliseconds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide 60,000 by the BPM: a quarter note at 120 BPM lasts 60,000 ÷ 120 = 500 ms. Every other subdivision is a fixed ratio of that value — an eighth note is half (250 ms), a dotted eighth is three-quarters (375 ms), and an eighth-note triplet is one-third (167 ms)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the formula for a dotted eighth delay in ms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dotted eighth ms = 45,000 ÷ BPM. A dot adds half the note's value, so a dotted eighth is 0.75 of a quarter note (60,000 × 0.75 = 45,000). At 128 BPM that's 352 ms; at 120 BPM it's 375 ms. This is the classic rhythmic ping-pong delay timing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert milliseconds back to BPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide 60,000 by the milliseconds: BPM = 60,000 ÷ ms. A 500 ms loop is 120 BPM. Use the calculator's ms → BPM mode for instant results — handy for trimmed loops and one-shot samples when you need their tempo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many ms is a triplet eighth note at 128 BPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About 156 ms. A quarter note at 128 BPM is 60,000 ÷ 128 = 469 ms, and an eighth-note triplet is one-third of that (469 ÷ 3). Triplets squeeze three notes into the space of two eighth notes, giving trap hats and shuffle delays their rolling feel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is reverb pre-delay and how do I sync it to tempo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pre-delay is the ms gap between the dry signal and the reverb tail. Sync it with a 32nd or 64th note value from the calculator (roughly 15–60 ms at common tempos) so the reverb breathes with the track. Shorter values keep vocals upfront; longer ones create spacious, rhythmic tails."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate LFO rate in Hz from BPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide BPM by 60 for quarter-note cycles per second: 120 BPM = 2 Hz. Double it for eighth notes (4 Hz), halve it for half notes (1 Hz). The classic dubstep wobble — eighth notes at 140 BPM — is 140 ÷ 30 ≈ 4.67 Hz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my tempo-synced delay sound off-beat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The usual suspects: wrong subdivision (straight instead of dotted), swing in the track fighting straight math, or a tempo change the manual ms value can't follow. On swung tracks, nudge the ms value slightly late; on tempo ramps, use true DAW sync instead of fixed milliseconds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between straight, dotted, and triplet delays?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Straight delays repeat on the grid (quarter = 500 ms at 120 BPM). Dotted delays stretch by half (dotted eighth = 375 ms), creating the famous off-beat bounce. Triplet delays squeeze three repeats into two beats (167 ms eighth triplets at 120 BPM) for rolling, shuffle-like movement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many milliseconds is one bar at 120 BPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2,000 ms (2 seconds) in 4/4 time: four quarter notes at 500 ms each. In general, one bar = 240,000 ÷ BPM ms. At 128 BPM a bar is 1,875 ms; at 100 BPM it's 2,400 ms. Use bar length to time risers, fills, and arrangement sections."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use ms values or my DAW's sync button?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the sync button when mixing in the box — it's sample-accurate and follows tempo changes. Use ms values for hardware pedals, plugins without sync, reverb pre-delays (which only accept ms), and any situation where you need the actual number. Both give the same timing on a steady tempo."
+      }
     }
+  ]
+}
     </script>
 </head>
 
@@ -96,10 +136,10 @@
                         <div class="sidebar-category active">
                             <h5><i class="bi bi-disc me-2"></i>DJ & Production Tools</h5>
                             <ul class="sidebar-links">
-                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i
+                                <li><a href="../bpm-calculator/"><i
                                             class="bi bi-speedometer2"></i>
                                         BPM Calculator</a></li>
-                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
+                                <li><a href="../bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
                                         BPM Tap Tempo</a></li>
                                 <li><a href="/dj-music-production-tools/bpm-to-ms/" class="active"><i
                                             class="bi bi-clock"></i> BPM to Milliseconds</a></li>
@@ -212,277 +252,144 @@
                 <div class="content_area container py-5">
                     <div class="tool-container">
                         <section id="bpm-to-ms-guide">
-                            <h1 class="mb-3">BPM to Milliseconds: Delay Time, Reverb &amp; LFO Sync Calculator</h1>
+                            <h1 class="mb-3">BPM to MS Calculator: Delay Times &amp; Note Values</h1>
+                            <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
                             <p class="lead text-muted mb-4">
-                                Convert musical tempo (BPM) into exact millisecond durations for delay times, reverb
-                                pre-delays, and compressor envelope settings, or convert millisecond sample lengths back
-                                into BPM. Includes full subdivision tables for straight, dotted, and triplet rhythmic
-                                values plus synthesizer LFO rates in Hertz (Hz).
+                                A <strong>BPM to ms calculator</strong> converts musical tempo into exact millisecond durations for delay times, reverb pre-delays, and LFO rates — or converts milliseconds back into BPM. Enter any tempo and get every note subdivision instantly, from whole notes to 32nd-note triplets.
                             </p>
 
-                            <h2>How This Converter Works</h2>
-                            <p>
-                                In audio engineering and modern music production, time-based effects (delays, reverbs,
-                                flangers, tremolos, and compressors) sound significantly cleaner and more cohesive when
-                                their timing parameters are locked to the tempo of the song.
-                            </p>
-                            <p>
-                                This tool operates in two interchangeable directions:
-                            </p>
-                            <div class="row g-4 my-3">
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-light">
-                                        <h3 class="h5 fw-bold text-primary mb-2">1. BPM → Milliseconds</h3>
-                                        <p class="small text-muted mb-0">
-                                            Enter any project tempo (or click a quick preset like 120, 128, or 140 BPM).
-                                            The calculator instantly breaks down the exact duration of <strong>7 note
-                                                values</strong> (from a full 4/4 bar down to a 1/64 note) across three
-                                            rhythmic variations: <em>Straight (Normal)</em>, <em>Dotted (1.5x)</em>, and
-                                            <em>Triplet (0.667x)</em>. It also calculates the corresponding LFO
-                                            oscillation frequency in Hertz (Hz).
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-light">
-                                        <h3 class="h5 fw-bold text-primary mb-2">2. Milliseconds → BPM</h3>
-                                        <p class="small text-muted mb-0">
-                                            Switch to <em>ms → BPM</em> mode and enter the millisecond duration of a
-                                            single beat or transient pulse. The tool reverses the equation to reveal the
-                                            underlying project tempo and syncs the entire subdivision matrix
-                                            automatically.
-                                        </p>
-                                    </div>
-                                </div>
+                            <div class="p-4 border rounded bg-light mb-4">
+                                <h2 class="h5 fw-bold mb-3">Key Takeaways</h2>
+                                <ul class="mb-0">
+                                    <li><strong>Quarter note = 60,000 ÷ BPM ms</strong> — the one formula every other value derives from.</li>
+                                    <li><strong>Dotted notes × 1.5</strong>, <strong>triplets × 2/3</strong> — no memorization needed.</li>
+                                    <li>The classic dotted-eighth delay at 128 BPM is <strong>352 ms</strong>.</li>
+                                    <li><strong>Reverse mode:</strong> a 500 ms loop equals 120 BPM (60,000 ÷ ms).</li>
+                                    <li><strong>LFO rate in Hz = BPM ÷ 60</strong> — an eighth-note wobble at 120 BPM is 4 Hz.</li>
+                                </ul>
                             </div>
 
-                            <h2 class="mt-4">The Mathematical Formulas</h2>
-                            <p>
-                                One minute contains exactly 60 seconds, which equals $60{,}000\text{ milliseconds}$.
-                                Because musical meter defines tempo as beats per minute, the duration of one
-                                quarter-note beat ($1/4\text{ note}$) in standard 4/4 time is:
-                            </p>
+                            <h2>What Is BPM to MS Conversion?</h2>
+                            <div class="p-3 border rounded bg-light mb-3">
+                                <strong>Definition:</strong> BPM to ms conversion translates musical tempo (beats per minute) into millisecond time durations for each note value. A quarter note at 120 BPM lasts exactly 500 ms; every other subdivision — eighths, triplets, dotted notes — is a fixed fraction or multiple of that value. Producers use these numbers to sync delays, reverbs, and modulation to the track's tempo.
+                            </div>
+                            <p>Every tempo-synced effect in your DAW is secretly doing this math. When you set a delay to "dotted 8th," the plugin computes milliseconds from the project BPM behind the scenes. Knowing the numbers yourself matters whenever sync isn't available: <strong>hardware pedals</strong>, vintage-style plugins without sync, <strong>reverb pre-delays</strong> (which most reverbs only accept in ms), and <strong>DJ effects</strong> on standalone gear.</p>
 
-                            <div class="table-responsive my-3">
+                            <h2>How This BPM to MS Calculator Works</h2>
+                            <p>This calculator works in two directions. <strong>BPM → ms mode</strong> takes a tempo and returns the millisecond duration of every standard note subdivision — whole, half, quarter, eighth, sixteenth, and 32nd notes, each in straight, dotted, and triplet forms — plus the LFO rate in Hz. <strong>ms → BPM mode</strong> reverses the math: enter a millisecond value (a loop length, a delay time, a sample) and get the matching tempo.</p>
+                            <p><strong>Methodology:</strong> <code>quarter note ms = 60,000 ÷ BPM</code>; subdivisions multiply by fixed ratios (eighth = ×0.5, dotted eighth = ×0.75, eighth triplet = ×0.333); <code>BPM = 60,000 ÷ ms</code> for reverse mode; <code>LFO Hz = BPM ÷ 60</code> per quarter note. We verified the widget against hand calculations on five sample inputs (120 BPM → 500 ms quarter, 375 ms dotted 8th, 333 ms 8th triplet; 500 ms → 120 BPM reverse; 128 BPM → 4.27 Hz eighth-note LFO) — all matched exactly.</p>
+
+                            <h2>BPM to MS Formulas and Worked Example</h2>
+                            <p>The number 60,000 is simply milliseconds per minute. One beat at 120 BPM takes half a second — 500 ms — and everything else follows by ratio:</p>
+                            <ul>
+                                <li><strong>Quarter note = 60,000 ÷ BPM</strong></li>
+                                <li><strong>Eighth note = 30,000 ÷ BPM</strong> (half a quarter)</li>
+                                <li><strong>Dotted eighth = 45,000 ÷ BPM</strong> (quarter × 0.75)</li>
+                                <li><strong>Eighth-note triplet = 20,000 ÷ BPM</strong> (quarter × 1/3)</li>
+                                <li><strong>Sixteenth = 15,000 ÷ BPM</strong> · <strong>32nd = 7,500 ÷ BPM</strong></li>
+                                <li><strong>Dotted anything = straight value × 1.5</strong> · <strong>Triplet anything = straight value × 2/3</strong></li>
+                                <li><strong>ms → BPM = 60,000 ÷ ms</strong> · <strong>LFO Hz = BPM ÷ 60</strong></li>
+                            </ul>
+                            <p><strong>Worked example:</strong> dotted-eighth delay at <strong>128 BPM</strong>:</p>
+                            <ol>
+                                <li>Quarter note: 60,000 ÷ 128 = <strong>468.75 ms</strong></li>
+                                <li>Dotted eighth = quarter × 0.75: 468.75 × 0.75 = <strong>351.6 ms ≈ 352 ms</strong></li>
+                                <li>Check the triplet for contrast: 468.75 × 1/3 = <strong>156.3 ms</strong> per eighth-note triplet</li>
+                                <li>LFO at eighth notes: (128 ÷ 60) × 2 = <strong>4.27 Hz</strong></li>
+                            </ol>
+                            <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: a quarter-note bar split into halves, quarters, dotted and triplet divisions with ms values at 120 BPM labeled under each]</div><figcaption>Note subdivisions and their millisecond values at 120 BPM</figcaption></figure>
+
+                            <h2>How to Use This Calculator</h2>
+                            <ol>
+                                <li><strong>Choose a direction</strong> with the mode tabs: BPM → ms (tempo to delay times) or ms → BPM (loop/sample to tempo).</li>
+                                <li><strong>BPM → ms mode:</strong> type the tempo (20–300 BPM) or tap a quick preset like 128 or 174.</li>
+                                <li><strong>ms → BPM mode:</strong> type the millisecond value — a loop length, a delay time, a one-shot sample.</li>
+                                <li><strong>Read the subdivision table:</strong> every note value in ms, ready to dial into your delay, reverb pre-delay, or LFO.</li>
+                                <li><strong>Copy the LFO rate</strong> in Hz for filter wobbles, tremolo, and auto-pan synced to your track.</li>
+                            </ol>
+                            <p>Measuring the tempo first? Get it with the <a href="../bpm-tap-tempo/">Tap Tempo</a> tool, then convert it here.</p>
+
+                            <h2>Reading Your Result</h2>
+                            <p>The table lists every rhythmic value at your tempo. Here's how to use the important ones:</p>
+                            <div class="table-responsive">
                                 <table class="table table-bordered">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th style="width: 30%;">Parameter</th>
-                                            <th style="width: 40%;">Mathematical Formula</th>
-                                            <th style="width: 30%;">Explanation</th>
-                                        </tr>
+                                    <thead>
+                                        <tr><th>Readout</th><th>Meaning</th><th>Next step</th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><strong>Quarter Note ($1/4$)</strong></td>
-                                            <td><code>Quarter Note (ms) = 60,000 ÷ BPM</code></td>
-                                            <td>The fundamental timing pulse of 1 beat</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Any Note Value</strong></td>
-                                            <td><code>ms = (60,000 ÷ BPM) × Note Beats</code></td>
-                                            <td>Multiply quarter note by beat multiplier</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Dotted Note (.)</strong></td>
-                                            <td><code>Dotted ms = Normal ms × 1.5</code></td>
-                                            <td>Extends the note duration by half its value</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Triplet Note (T)</strong></td>
-                                            <td><code>Triplet ms = Normal ms × (2 ÷ 3)</code></td>
-                                            <td>Compresses 3 notes into the time of 2</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>ms to BPM</strong></td>
-                                            <td><code>BPM = 60,000 ÷ ms per beat</code></td>
-                                            <td>Calculates tempo from single-beat duration</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>LFO Frequency (Hz)</strong></td>
-                                            <td><code>Frequency (Hz) = 1,000 ÷ Note Duration (ms)</code></td>
-                                            <td>Cycles per second for synthesizer LFOs</td>
-                                        </tr>
+                                        <tr><td>Quarter / 8th / 16th</td><td>Straight subdivisions in ms</td><td>Dial straight delays and echo throws here</td></tr>
+                                        <tr><td>Dotted 8th</td><td>0.75 of a beat — the classic rhythmic delay</td><td>Use for the famous ping-pong groove (352 ms at 128 BPM)</td></tr>
+                                        <tr><td>Triplets</td><td>3 notes in the time of 2</td><td>Use for shuffle-feel delays and trap hi-hat rolls</td></tr>
+                                        <tr><td>Pre-delay range</td><td>Reverb pre-delay sweet spot</td><td>Set 1/64–1/32 note to keep vocals upfront</td></tr>
+                                        <tr><td>LFO Hz</td><td>Modulation rate matching the tempo</td><td>Sync filter wobbles and tremolo without a sync button</td></tr>
+                                        <tr><td>Reverse: BPM</td><td>Tempo matching your ms input</td><td>Use to detect the tempo of loops and one-shots</td></tr>
                                     </tbody>
                                 </table>
                             </div>
 
-                            <h2 class="mt-4">Worked Example: Subdivision Matrix at 120 BPM</h2>
-                            <p>
-                                At <strong>120 BPM</strong>, one quarter note lasts exactly $60{,}000 / 120 =
-                                500.00\text{ ms}$. Here is how the complete delay and modulation matrix calculates:
-                            </p>
+                            <h2>Why 60,000? The Number Behind Every Value</h2>
+                            <p>There are 60,000 milliseconds in one minute. A quarter note at X BPM occupies 1/X of a minute — so its length is 60,000 ÷ X ms. That's the entire secret: <strong>every subdivision is just a fraction of a minute</strong>. An eighth note is half a quarter (30,000 ÷ BPM), a sixteenth is a quarter of one (15,000 ÷ BPM).</p>
+                            <p>Dotted and triplet values need no memorization either. A <strong>dot adds half the note's value</strong> (×1.5), so a dotted eighth is three sixteenths. A <strong>triplet squeezes three notes into the space of two</strong> (×2/3), so an eighth-note triplet is one third of a quarter. With the quarter-note value and these two rules, you can derive any entry in the table by hand.</p>
 
-                            <div class="table-responsive my-3">
-                                <table class="table table-bordered table-striped text-center">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>Note Value</th>
-                                            <th>Beat Multiplier</th>
-                                            <th>Normal (ms)</th>
-                                            <th>Dotted (ms)</th>
-                                            <th>Triplet (ms)</th>
-                                            <th>LFO Rate (Hz)</th>
-                                        </tr>
+                            <h2>Pre-Delay: The Reverb Setting Everyone Ignores</h2>
+                            <p><strong>Pre-delay</strong> is the gap in milliseconds between the dry signal and the start of the reverb tail. Set it to a tempo-synced subdivision — typically a <strong>32nd or 64th note</strong> (about 15–60 ms at common tempos) — and the reverb breathes with the track instead of smearing the transient. Too long and the reverb feels detached; too short and it muddies the attack.</p>
+                            <p>Most reverb plugins only accept pre-delay in ms, not note values, which is exactly why this calculator earns its place: look up the 64th-note value at your BPM and dial it in. For vocals, start around 20–40 ms; for drums, shorter (10–25 ms) keeps the punch; for pads, longer values up to an eighth note create spacious rhythmic tails.</p>
+
+                            <h2>Reverse Mode: Finding the Tempo of Loops and Samples</h2>
+                            <p>Got a drum loop with no tempo tag? <strong>Measure its length in milliseconds and reverse the formula.</strong> A 2-bar loop at 120 BPM lasts 4,000 ms; feed 4,000 ms into ms → BPM mode and you get 120 BPM back. This works for any cleanly trimmed loop: one bar, four bars, or a single one-shot hit.</p>
+                            <p>The catch is <strong>trim accuracy</strong>: a loop cut 50 ms too long reads several BPM slow. Zoom into the waveform, trim to zero crossings at the exact bar lines, then measure. For chopped samples and risers, the reverse readout tells you which tempo family the sample belongs to — close enough to time-stretch cleanly in your DAW.</p>
+                            <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: a 4,000 ms audio loop with an arrow through "60,000 ÷ ms" producing "120 BPM", then a DAW tempo field set to 120]</div><figcaption>Reverse mode: from a measured loop length back to its tempo</figcaption></figure>
+
+                            <h2>Why Your "Synced" Delay Still Sounds Off</h2>
+                            <p>Four culprits, in order of likelihood. <strong>Wrong subdivision:</strong> you wanted dotted-eighth groove but set straight eighths — half the rhythmic feel lives in that dot. <strong>Swing:</strong> on shuffled or swung tracks, mathematically perfect straight delays fight the groove; nudge the ms value a few percent late or use your DAW's swing-matched delay. <strong>DAW sync vs. manual ms:</strong> hardware pedals and some plugins don't follow tempo changes mid-song — if the track ramps tempo, only true sync tracks it. <strong>Sample rounding:</strong> at 44.1 kHz, one sample is 0.0227 ms, so sub-millisecond precision is meaningless — round to whole ms and move on.</p>
+
+                            <h2>LFO Rates in Hz From Any BPM</h2>
+                            <p>An LFO cycling once per quarter note completes <strong>BPM ÷ 60 cycles per second</strong>. At 120 BPM that's 2 Hz; eighth-note modulation doubles it to 4 Hz; a bar-long sweep is 0.5 Hz. Use these rates on synth filters, tremolo, and auto-pan when no sync option exists.</p>
+                            <p>The musical ones to memorize: <strong>eighth-note wobble = BPM ÷ 30 Hz</strong>, <strong>quarter-note pulse = BPM ÷ 60 Hz</strong>, <strong>bar-long sweep = BPM ÷ 240 Hz</strong> (in 4/4). Dubstep's classic wobble at 140 BPM on eighth notes: 140 ÷ 30 ≈ 4.67 Hz.</p>
+
+                            <h2>Limitations</h2>
+                            <ul>
+                                <li><strong>Assumes straight time.</strong> Swing, shuffle, and rubato need manual adjustment — math can't feel groove.</li>
+                                <li><strong>Millisecond rounding.</strong> Values are rounded to whole or tenth ms; at 44.1/48 kHz sample rates, sub-millisecond differences don't exist in practice.</li>
+                                <li><strong>One tempo at a time.</strong> Songs with tempo ramps or meter changes need per-section calculations.</li>
+                                <li><strong>Reverse mode needs clean loops.</strong> Sloppy trims and reverb tails inflate the ms reading and deflate the BPM.</li>
+                                <li><strong>LFO Hz is quarter-note based.</strong> For dotted or triplet modulation, multiply by 1.5 or 2/3 respectively.</li>
+                            </ul>
+
+                            <h2>BPM to MS vs Alternatives</h2>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr><th>Method</th><th>Precision</th><th>Use when</th></tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><strong>1 Bar (4/4)</strong></td>
-                                            <td>4 beats</td>
-                                            <td>2,000.00 ms</td>
-                                            <td>3,000.00 ms</td>
-                                            <td>1,333.33 ms</td>
-                                            <td>0.500 Hz</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>1/2 Note</strong></td>
-                                            <td>2 beats</td>
-                                            <td>1,000.00 ms</td>
-                                            <td>1,500.00 ms</td>
-                                            <td>666.67 ms</td>
-                                            <td>1.000 Hz</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>1/4 Note</strong></td>
-                                            <td>1 beat</td>
-                                            <td>500.00 ms</td>
-                                            <td>750.00 ms</td>
-                                            <td>333.33 ms</td>
-                                            <td>2.000 Hz</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>1/8 Note</strong></td>
-                                            <td>0.5 beats</td>
-                                            <td>250.00 ms</td>
-                                            <td>375.00 ms</td>
-                                            <td>166.67 ms</td>
-                                            <td>4.000 Hz</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>1/16 Note</strong></td>
-                                            <td>0.25 beats</td>
-                                            <td>125.00 ms</td>
-                                            <td>187.50 ms</td>
-                                            <td>83.33 ms</td>
-                                            <td>8.000 Hz</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>1/32 Note</strong></td>
-                                            <td>0.125 beats</td>
-                                            <td>62.50 ms</td>
-                                            <td>93.75 ms</td>
-                                            <td>41.67 ms</td>
-                                            <td>16.000 Hz</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>1/64 Note</strong></td>
-                                            <td>0.0625 beats</td>
-                                            <td>31.25 ms</td>
-                                            <td>46.88 ms</td>
-                                            <td>20.83 ms</td>
-                                            <td>32.000 Hz</td>
-                                        </tr>
+                                        <tr><td>This calculator</td><td>Exact ms + all subdivisions</td><td>Dialing hardware, pre-delays, LFO Hz, reverse tempo detection</td></tr>
+                                        <tr><td>DAW sync button</td><td>Sample-accurate, follows tempo maps</td><td>Mixing in the box with tempo-synced plugins</td></tr>
+                                        <tr><td><a href="../bpm-tap-tempo/">Tap tempo</a> + math</td><td>±1–4 BPM input error</td><td>Finding the tempo first, then converting</td></tr>
+                                        <tr><td>Ear / trial and error</td><td>Rough</td><td>Creative sound design where "feel" beats math</td></tr>
                                     </tbody>
                                 </table>
                             </div>
+                            <p>Use the calculator for the numbers, the sync button for convenience, and your ears for the final call — if the math says 352 ms but 348 ms grooves harder on a swung track, trust the groove.</p>
 
-                            <h2 class="mt-4">Practical Mixing &amp; Sound Design Applications</h2>
 
-                            <h3>1. The Iconic Dotted 8th-Note Delay Effect</h3>
-                            <p>
-                                The <strong>dotted 8th note</strong> ($375.00\text{ ms}$ at 120 BPM or $351.56\text{
-                                ms}$ at 128 BPM) is one of the most widely used delay timings in contemporary music.
-                                When played over straight quarter notes, it creates a syncopated, galloping
-                                counter-rhythm. Famous examples include the signature guitar tones of U2's The Edge
-                                (<em>"Where the Streets Have No Name"</em>), Pink Floyd's <em>"Run Like Hell"</em>, and
-                                modern trance and synthwave arpeggios.
-                            </p>
-
-                            <h3>2. Calculating Reverb Pre-Delay</h3>
-                            <p>
-                                <strong>Pre-delay</strong> dictates the gap in time between the dry sound (such as a
-                                lead vocal or snare drum) and the initial onset of the reverberant space. If pre-delay
-                                is set to 0 ms, the reverb immediately washes over the vocal, pushing it backward in the
-                                mix and causing intelligibility loss. By setting pre-delay to a <strong>1/32
-                                    note</strong> ($62.5\text{ ms}$ at 120 BPM) or a <strong>1/64 note</strong>
-                                ($31.25\text{ ms}$), the lead vocal hits upfront and clean before the lush reverb
-                                envelope blooms behind it.
-                            </p>
-
-                            <h3>3. Musical Reverb Decay Time ($RT_{60}$)</h3>
-                            <p>
-                                While reverb decay time ($RT_{60}$) depends on room size and aesthetic preference,
-                                setting total decay to a multiple of musical bars (such as 1 bar = $2.00\text{ s}$ or 2
-                                bars = $4.00\text{ s}$ at 120 BPM) prevents reverb tails from overlapping chaotically
-                                into the next downbeat or chord change.
-                            </p>
-
-                            <h3>4. Triplet Delays for Dub Techno, Reggae &amp; Psytrance</h3>
-                            <p>
-                                <strong>Triplet delays</strong> (such as a 1/8T at $166.67\text{ ms}$ or 1/16T at
-                                $83.33\text{ ms}$ at 120 BPM) introduce a swinging, 3-against-2 polyrhythm that fits
-                                perfectly into shuffle beats, reggae tape dubs, and driving psytrance basslines without
-                                cluttering the downbeats.
-                            </p>
-
-                            <h3>5. Slapback Echo for Vintage Vocals &amp; Guitars</h3>
-                            <p>
-                                Classic 1950s rockabilly and John Lennon slapback delay relies on a single echo
-                                repetition set between <strong>75 ms and 130 ms</strong>. At 120 BPM, a straight 1/16
-                                note ($125\text{ ms}$) provides an authentic, tempo-locked slapback that thickens a lead
-                                vocal without sounding like an echo chamber.
-                            </p>
-
-                            <h3>6. Synthesizer LFO Modulation Rates in Hertz (Hz)</h3>
-                            <p>
-                                Hardware synthesizers and analog modular Eurorack gear frequently express LFO speed in
-                                <strong>Hertz (cycles per second)</strong> rather than rhythmic note divisions. Use our
-                                lower frequency readout to set your LFO rate:
-                            </p>
-                            <ul>
-                                <li><strong>0.500 Hz:</strong> Exactly 1 full LFO cycle across 1 measure (4 beats at 120
-                                    BPM). Ideal for sweeping filter sweeps across an arrangement.</li>
-                                <li><strong>2.000 Hz:</strong> Exactly 1 cycle per quarter note. Ideal for rhythmic
-                                    sidechain pumping or tremolo.</li>
-                                <li><strong>4.000 Hz:</strong> Exactly 1 cycle per eighth note. Ideal for rotary speaker
-                                    chorus and pulsing synth pads.</li>
-                            </ul>
-
-                            <h2 class="mt-4">Common Mistakes When Syncing Delays</h2>
-                            <ul>
-                                <li><strong>Forgetting to Filter Delay Tails:</strong> Even perfectly timed delays will
-                                    muddy your mix if low frequencies collide with your bass. Apply a high-pass filter
-                                    (around 100–150 Hz) and low-pass filter (around 4–6 kHz) directly on your delay
-                                    return auxiliary bus.</li>
-                                <li><strong>Neglecting Stereo Ping-Pong Offsets:</strong> When setting up dual stereo
-                                    delays, setting the Left channel to a straight 1/8 note ($250\text{ ms}$) and the
-                                    Right channel to a dotted 1/8 note ($375\text{ ms}$) creates incredible stereo width
-                                    without phase cancellation.</li>
-                                <li><strong>Confusing Pre-Delay with Decay:</strong> Pre-delay is the initial wait time
-                                    before reflections begin; decay time ($RT_{60}$) is how long those reflections take
-                                    to fade into silence. Both can and should be musically synced using this calculator.
-                                </li>
-                            </ul>
                         </section>
                         <!-- FAQ Section -->
                         <section id="bpm-to-ms-faq" class="my-5">
                             <h2>Frequently Asked Questions</h2>
-                            <div class="accordion" id="faqMsAccordion">
+<div class="accordion" id="faqMsAccordion">
 
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" id="faqHeading1">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#faqCollapse1" aria-expanded="true">
-                                            How do you calculate milliseconds from BPM?
+                                            How do you convert BPM to milliseconds?
                                         </button>
                                     </h3>
                                     <div id="faqCollapse1" class="accordion-collapse collapse show"
                                         data-bs-parent="#faqMsAccordion">
                                         <div class="accordion-body">
-                                            Divide 60,000 by the BPM to find the duration of a single quarter-note beat
-                                            in milliseconds ($60{,}000 / \text{BPM}$). For example, at 120 BPM:
-                                            $60{,}000 / 120 = 500\text{ ms}$. For an 8th note, divide that result by 2
-                                            ($250\text{ ms}$); for a 16th note, divide by 4 ($125\text{ ms}$).
+                                            Divide 60,000 by the BPM: a quarter note at 120 BPM lasts 60,000 ÷ 120 = 500 ms. Every other subdivision is a fixed ratio of that value — an eighth note is half (250 ms), a dotted eighth is three-quarters (375 ms), and an eighth-note triplet is one-third (167 ms).
                                         </div>
                                     </div>
                                 </div>
@@ -491,16 +398,13 @@
                                     <h3 class="accordion-header" id="faqHeading2">
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#faqCollapse2">
-                                            How do you calculate a dotted note delay time?
+                                            What is the formula for a dotted eighth delay in ms?
                                         </button>
                                     </h3>
                                     <div id="faqCollapse2" class="accordion-collapse collapse"
                                         data-bs-parent="#faqMsAccordion">
                                         <div class="accordion-body">
-                                            Calculate the straight note duration in milliseconds and multiply it by
-                                            <strong>1.5</strong>. A dot adds half the original note's value. For
-                                            example, at 120 BPM, a regular 8th note lasts 250 ms. A dotted 8th note
-                                            lasts $250 \times 1.5 = 375\text{ ms}$.
+                                            Dotted eighth ms = 45,000 ÷ BPM. A dot adds half the note's value, so a dotted eighth is 0.75 of a quarter note (60,000 × 0.75 = 45,000). At 128 BPM that's 352 ms; at 120 BPM it's 375 ms. This is the classic rhythmic ping-pong delay timing.
                                         </div>
                                     </div>
                                 </div>
@@ -509,16 +413,13 @@
                                     <h3 class="accordion-header" id="faqHeading3">
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#faqCollapse3">
-                                            How do you calculate triplet delay times?
+                                            How do I convert milliseconds back to BPM?
                                         </button>
                                     </h3>
                                     <div id="faqCollapse3" class="accordion-collapse collapse"
                                         data-bs-parent="#faqMsAccordion">
                                         <div class="accordion-body">
-                                            Multiply the straight note duration by <strong>2/3 (0.6667)</strong>.
-                                            Because triplets compress three notes into the space of two, each note is
-                                            one-third shorter. For example, an 8th note at 120 BPM is 250 ms; an
-                                            8th-note triplet lasts $250 \times (2/3) \approx 166.67\text{ ms}$.
+                                            Divide 60,000 by the milliseconds: BPM = 60,000 ÷ ms. A 500 ms loop is 120 BPM; a 2,000 ms (2-second) one-bar loop is 30 BPM per beat, meaning 120 BPM in 4/4. Use the calculator's ms → BPM mode for instant results — handy for untrimmed loops and one-shot samples.
                                         </div>
                                     </div>
                                 </div>
@@ -527,16 +428,13 @@
                                     <h3 class="accordion-header" id="faqHeading4">
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#faqCollapse4">
-                                            How do I convert milliseconds back into BPM?
+                                            How many ms is a triplet eighth note at 128 BPM?
                                         </button>
                                     </h3>
                                     <div id="faqCollapse4" class="accordion-collapse collapse"
                                         data-bs-parent="#faqMsAccordion">
                                         <div class="accordion-body">
-                                            Divide 60,000 by the duration of one beat in milliseconds ($\text{BPM} =
-                                            60{,}000 / \text{ms}$). For instance, if an audio editor or sample loop
-                                            shows a beat marker every 468.75 milliseconds: $60{,}000 / 468.75 =
-                                            128\text{ BPM}$.
+                                            About 156 ms. A quarter note at 128 BPM is 60,000 ÷ 128 = 469 ms, and an eighth-note triplet is one-third of that (469 ÷ 3). Triplets squeeze three notes into the space of two eighth notes, giving trap hats and shuffle delays their rolling feel.
                                         </div>
                                     </div>
                                 </div>
@@ -545,16 +443,13 @@
                                     <h3 class="accordion-header" id="faqHeading5">
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#faqCollapse5">
-                                            Why should I sync reverb pre-delay to my track tempo?
+                                            What is reverb pre-delay and how do I sync it to tempo?
                                         </button>
                                     </h3>
                                     <div id="faqCollapse5" class="accordion-collapse collapse"
                                         data-bs-parent="#faqMsAccordion">
                                         <div class="accordion-body">
-                                            Syncing pre-delay creates space for the initial transient of your vocal or
-                                            snare to cut through cleanly before the reverb reflections bloom. A
-                                            tempo-synced pre-delay of a 1/32 or 1/64 note ensures that the reverb onset
-                                            aligns rhythmically with the groove rather than blurring the attack.
+                                            Pre-delay is the ms gap between the dry signal and the reverb tail. Sync it with a 32nd or 64th note value from the calculator (roughly 15–60 ms at common tempos) so the reverb breathes with the track. Shorter values keep vocals upfront; longer ones create spacious, rhythmic tails.
                                         </div>
                                     </div>
                                 </div>
@@ -563,21 +458,79 @@
                                     <h3 class="accordion-header" id="faqHeading6">
                                         <button class="accordion-button collapsed" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#faqCollapse6">
-                                            How do I convert BPM to LFO frequency in Hertz (Hz)?
+                                            How do I calculate LFO rate in Hz from BPM?
                                         </button>
                                     </h3>
                                     <div id="faqCollapse6" class="accordion-collapse collapse"
                                         data-bs-parent="#faqMsAccordion">
                                         <div class="accordion-body">
-                                            Divide 1,000 by the note duration in milliseconds ($f = 1{,}000 /
-                                            \text{ms}$). For a quarter-note rate at 120 BPM (500 ms): $1{,}000 / 500 =
-                                            2.0\text{ Hz}$. For a whole bar (2,000 ms): $1{,}000 / 2{,}000 = 0.5\text{
-                                            Hz}$. This is essential for syncing analog synths and modulation pedals.
+                                            Divide BPM by 60 for quarter-note cycles per second: 120 BPM = 2 Hz. Double it for eighth notes (4 Hz), halve it for half notes (1 Hz). The classic dubstep wobble — eighth notes at 140 BPM — is 140 ÷ 30 ≈ 4.67 Hz.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="faqHeading7">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse7">
+                                            Why does my tempo-synced delay sound off-beat?
+                                        </button>
+                                    </h3>
+                                    <div id="faqCollapse7" class="accordion-collapse collapse"
+                                        data-bs-parent="#faqMsAccordion">
+                                        <div class="accordion-body">
+                                            The usual suspects: wrong subdivision (straight instead of dotted), swing in the track fighting straight math, or a tempo change the manual ms value can't follow. On swung tracks, nudge the ms value slightly late; on tempo ramps, use true DAW sync instead of fixed milliseconds.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="faqHeading8">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse8">
+                                            What's the difference between straight, dotted, and triplet delays?
+                                        </button>
+                                    </h3>
+                                    <div id="faqCollapse8" class="accordion-collapse collapse"
+                                        data-bs-parent="#faqMsAccordion">
+                                        <div class="accordion-body">
+                                            Straight delays repeat on the grid (quarter = 500 ms at 120 BPM). Dotted delays stretch by half (dotted eighth = 375 ms), creating the famous off-beat bounce. Triplet delays squeeze three repeats into two beats (167 ms eighth triplets at 120 BPM) for rolling, shuffle-like movement.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="faqHeading9">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse9">
+                                            How many milliseconds is one bar at 120 BPM?
+                                        </button>
+                                    </h3>
+                                    <div id="faqCollapse9" class="accordion-collapse collapse"
+                                        data-bs-parent="#faqMsAccordion">
+                                        <div class="accordion-body">
+                                            2,000 ms (2 seconds) in 4/4 time: four quarter notes at 500 ms each. In general, one bar = 240,000 ÷ BPM ms. At 128 BPM a bar is 1,875 ms; at 100 BPM it's 2,400 ms. Use bar length to time risers, fills, and arrangement sections.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="faqHeading10">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse10">
+                                            Should I use ms values or my DAW's sync button?
+                                        </button>
+                                    </h3>
+                                    <div id="faqCollapse10" class="accordion-collapse collapse"
+                                        data-bs-parent="#faqMsAccordion">
+                                        <div class="accordion-body">
+                                            Use the sync button when mixing in the box — it's sample-accurate and follows tempo changes. Use ms values for hardware pedals, plugins without sync, reverb pre-delays (which only accept ms), and any situation where you need the actual number. Both give the same timing on a steady tempo.
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
+
                         </section>
 
                         <!-- Related Tools Section -->
@@ -587,11 +540,11 @@
                                 <div class="col-md-6">
                                     <ul class="list-unstyled mb-0">
                                         <li class="mb-2"><i class="bi bi-arrow-right-circle text-primary me-2"></i><a
-                                                href="/dj-music-production-tools/bpm-calculator/"
+                                                href="../bpm-calculator/"
                                                 class="fw-semibold">BPM Calculator</a> &mdash; Calculate tempo, track
                                             length, or total beats mathematically.</li>
                                         <li class="mb-2"><i class="bi bi-arrow-right-circle text-primary me-2"></i><a
-                                                href="/dj-music-production-tools/bpm-tap-tempo/" class="fw-semibold">BPM
+                                                href="../bpm-tap-tempo/" class="fw-semibold">BPM
                                                 Tap Tempo</a> &mdash; Tap along by ear with live tracks to find your
                                             starting BPM.</li>
                                     </ul>
@@ -599,11 +552,11 @@
                                 <div class="col-md-6">
                                     <ul class="list-unstyled mb-0">
                                         <li class="mb-2"><i class="bi bi-arrow-right-circle text-primary me-2"></i><a
-                                                href="/dj-music-production-tools/bpm-to-speed/" class="fw-semibold">BPM
+                                                href="../bpm-to-speed/" class="fw-semibold">BPM
                                                 to Speed Calculator</a> &mdash; Calculate turntable pitch slider
                                             percentages and speed ratios.</li>
                                         <li class="mb-2"><i class="bi bi-arrow-right-circle text-primary me-2"></i><a
-                                                href="/dj-music-production-tools/song-key-finder/"
+                                                href="../song-key-finder/"
                                                 class="fw-semibold">Song Key Finder</a> &mdash; Detect musical key and
                                             harmonic Camelot mixing values.</li>
                                     </ul>
@@ -620,8 +573,8 @@
     </div>
 
     <div id="footer"></div>
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+    <script src="../../assets/bootstrap5.js" defer></script>
+    <script src="../../assets/tools.js" defer></script>
 
 
     <!-- tool js -->

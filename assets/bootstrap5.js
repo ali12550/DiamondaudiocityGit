@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "@type": "Organization",
     "name": "pitch detectors",
     "url": "https://pitchdetectors.com/",
-    "logo": "/assets/imgs/logo.png",
+    "logo": "./assets/imgs/logo.png",
     "sameAs": [
       "https://www.facebook.com/p/pitchdetectors/"
     ]

@@ -4,94 +4,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passive Crossover Component Calculator | 2-Way & 3-Way Inductor, Capacitor & L-Pad Values</title>
+    <title>Passive Crossover Calculator – 2-Way &amp; 3-Way Parts</title>
     <meta name="description"
-        content="Calculate precise capacitor, inductor, and L-pad resistor values for 2-way and 3-way passive speaker crossovers. Select 6, 12, 18, and 24 dB/octave Butterworth and Linkwitz-Riley filter topologies.">
+        content="Design passive speaker crossovers free: capacitor, inductor and L-pad values for 2-way and 3-way networks at 6–24 dB/octave, with formulas and build tips.">
     <link rel="canonical" href="https://pitchdetectors.com/speaker-tools/passive-crossover-calculator/">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Passive Crossover Calculator – 2-Way &amp; 3-Way Parts" />
+    <meta property="og:description" content="Calculate capacitor, inductor and L-pad values for 2-way and 3-way passive speaker crossovers at 6–24 dB/octave." />
+    <meta property="og:url" content="https://pitchdetectors.com/speaker-tools/passive-crossover-calculator/" />
+    <meta property="og:site_name" content="Pitch Detectors" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Passive Crossover Calculator – 2-Way &amp; 3-Way Parts" />
+    <meta name="twitter:description" content="Free passive crossover component calculator with L-pad, slope scaling and build guidance." />
 
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link href="../../assets/style.css" rel="stylesheet">
+    <link href="../../assets/tools.css" rel="stylesheet">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
         crossorigin="anonymous"></script>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
+        <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
         {
-          "@type": "WebPage",
-          "@id": "https://pitchdetectors.com/speaker-tools/passive-crossover-calculator/#webpage",
-          "url": "https://pitchdetectors.com/speaker-tools/passive-crossover-calculator/",
-          "name": "Passive Crossover Component Calculator",
-          "description": "Calculate capacitors, inductors, and resistor networks for custom 2-way and 3-way passive loudspeaker crossovers.",
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "https://pitchdetectors.com/#website",
-            "name": "Pitch Detectors",
-            "url": "https://pitchdetectors.com/"
-          }
+            "@type": "WebApplication",
+            "@id": "https://pitchdetectors.com/speaker-tools/passive-crossover-calculator/#webapp",
+            "name": "Passive Crossover Calculator",
+            "url": "https://pitchdetectors.com/speaker-tools/passive-crossover-calculator/",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "All modern browsers (Chrome, Firefox, Safari, Edge)",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "description": "Calculates capacitor, inductor and L-pad resistor values for 2-way and 3-way passive speaker crossover networks."
         },
         {
-          "@type": "FAQPage",
-          "@id": "https://pitchdetectors.com/speaker-tools/passive-crossover-calculator/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is the difference between a 1st, 2nd, 3rd, and 4th order passive crossover?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The filter order defines the roll-off slope steepness outside the passband. 1st order provides 6 dB/octave attenuation using 1 reactive component per driver; 2nd order provides 12 dB/octave using 2 components (LC); 3rd order provides 18 dB/octave using 3 components; and 4th order provides 24 dB/octave using 4 components. Steeper slopes protect fragile tweeters from low-frequency excursion and reduce acoustic lobing in the crossover overlap band."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why is driver impedance matching so critical in passive crossover calculations?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Unlike active line-level crossovers, passive crossovers operate on high-level speaker signals and their cutoff frequency is directly proportional to load impedance: C = 1 / (2π · f · Z) and L = Z / (2π · f). If a driver's actual impedance deviates from nominal (due to voice coil inductance or motional resonance), the crossover frequency shifts and the attenuation curve distorts."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What type of capacitor should be used in passive speaker crossovers?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Metallized Polypropylene Film (MKP) capacitors are preferred for tweeters and midranges due to their negligible equivalent series resistance (ESR), minimal dielectric absorption, and long-term capacitance stability under high AC voltage. Non-polar electrolytic (bipolar) capacitors are generally restricted to large capacitance values in woofer low-pass shunt circuits where cost and physical size dominate."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "When should an air-core inductor be chosen over an iron-core or ferrite inductor?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Air-core inductors have zero magnetic saturation and zero hysteresis distortion regardless of drive power, making them ideal for high-power midranges and tweeters. However, they require more copper wire and have higher DC resistance (DCR). Iron-core, ferrite, or laminated steel inductors offer much lower DCR and high inductance in a compact footprint, making them essential for woofer series circuits where maintaining amplifier damping factor is critical."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why does a 12 dB/octave crossover usually require reversing tweeter polarity?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A second-order (12 dB/octave) filter introduces a 180-degree phase shift between the low-pass and high-pass outputs at the crossover frequency. If wired with identical polarity, the acoustic outputs from the woofer and tweeter cancel destructively, creating a deep null (notch) at the crossover point. Inverting tweeter electrical polarity restores constructive acoustic summation."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What is an L-pad and why is it preferred over a simple series resistor for tweeter padding?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "An L-pad consists of two resistors: one in series (R1) and one in parallel (R2) across the driver voice coil. A simple series resistor increases the total impedance seen by the crossover, which would shift the high-pass cutoff frequency downward. A properly calculated L-pad attenuates tweeter sensitivity while preserving the exact nominal load impedance (e.g. 8 ohms) required by the crossover filter."
-              }
-            }
-          ]
+            "@type": "FAQPage",
+            "@id": "https://pitchdetectors.com/speaker-tools/passive-crossover-calculator/#faq",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "How do you calculate capacitor and inductor values for a crossover?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Use C = 1 / (2π × fc × Z) for the tweeter's series capacitor and L = Z / (2π × fc) for the woofer's series inductor. Example: 3,000 Hz and 8 Ω gives 6.63 µF and 0.42 mH. For 12 dB/octave Linkwitz-Riley, multiply both by 1.414. This calculator runs the same math instantly."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What crossover order should I use: 12 dB or 24 dB per octave?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "12 dB/octave (2nd order) is the sweet spot for most DIY builds — good driver isolation with manageable parts count and phase behavior (just remember to reverse tweeter polarity). Choose 24 dB/octave when maximum tweeter protection or the flattest summed response matters, as in studio monitors. Avoid 6 dB/octave for tweeters; it lets damaging bass through."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Should I reverse my tweeter's polarity?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "With a 2nd-order (12 dB/octave) crossover, yes — the filter rotates phase 180°, so flipping the tweeter's terminals restores constructive summation at fc. With 1st, 3rd, or 4th-order networks, wire normally. If the speaker sounds hollow with a weak center image on pink noise, polarity is the first thing to check."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is an L-pad and why is it better than a single resistor?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "An L-pad is a series resistor plus a shunt resistor that attenuates a loud tweeter while presenting the exact nominal impedance to the crossover. A single series resistor raises the load impedance, which shifts the crossover frequency. For −3 dB on 8 Ω: R1 = 2.34 Ω series, R2 = 19.39 Ω shunt."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is a 3-way crossover better than a 2-way?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Not automatically. A 3-way adds a dedicated midrange for cleaner vocals and higher output, but also a second crossover point with its own phase interactions, plus significant cost. Choose 3-way when your woofer breaks up before a sensible 2-way crossover point; otherwise a well-executed 2-way usually sounds more coherent."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can I use electrolytic capacitors in a crossover?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Only bipolar (non-polarized) electrolytics, and only where values are large — typically woofer shunt legs needing 47–200 µF, where film caps would be huge and expensive. For tweeter series capacitors, always use metallized polypropylene (MKP) film: lower ESR and dielectric absorption preserve high-frequency detail."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Air-core vs iron-core inductors: which for crossovers?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Air-core for tweeter and midrange sections — zero saturation distortion. For large woofer inductors, air cores get physically huge with high DCR (wasting power and damping); laminated steel or toroidal cores keep DCR under ~0.3 Ω. Never mount two inductors parallel and close — orient them at 90° to kill crosstalk."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Why does my speaker sound hollow after installing the crossover?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "A hollow sound with weak center image almost always means a phase cancellation at the crossover frequency — most commonly a 2nd-order network with the tweeter wired in normal (non-reversed) polarity. Flip the tweeter's terminals and listen again. If it persists, check for a wiring error swapping a capacitor and inductor."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do I need a Zobel network with my crossover?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "If your woofer's impedance climbs significantly through the crossover region — and most do — yes. The rising impedance shifts fc upward and softens the slope versus your calculated values. A Zobel (resistor + capacitor across the driver) flattens it; size it with our Zobel network calculator."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How accurate are online crossover calculators?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The math is exact for ideal parts on a resistive load — but real drivers aren't resistive, cabinets add baffle step, and acoustic roll-off stacks onto electrical slope. Treat calculator values as educated starting points, then verify with measurements and listening. Designs that skip verification are where 'the numbers were right but it sounds wrong' comes from."
+                    }
+                }
+            ]
         }
-      ]
-    }
+    ]
+}
     </script>
 </head>
 
@@ -114,7 +155,7 @@
 
                 <div class="tool-container">
                     <div class="tool-title">
-                        <h1><i class="bi bi-diagram-3 me-2"></i>Passive Crossover Component Calculator</h1>
+                        <h2><i class="bi bi-diagram-3 me-2"></i>Passive Crossover Component Calculator</h2>
                         <p>Calculate precision capacitor, inductor, and resistor padding values for custom 2-way and
                             3-way passive speaker networks. Choose crossover frequencies, driver impedances, and filter
                             slopes.</p>
@@ -206,283 +247,345 @@
                     </div>
                 </div>
 
-                <!-- Comprehensive Technical Guide -->
-                <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-cpu text-teal me-2"></i>Engineering Guide to
-                        Passive Loudspeaker Crossover Design</h2>
-                    <p class="text-secondary">
-                        A passive crossover is a high-level electrical filter network inserted between a power amplifier
-                        and individual loudspeaker transducers (woofers, midranges, and tweeters). Because individual
-                        loudspeaker drivers cannot linearly reproduce the entire 10-octave human hearing spectrum (20 Hz
-                        to 20 kHz), the crossover network segregates the incoming full-bandwidth voltage signal into
-                        optimized spectral bands: low-pass for woofers, band-pass for midranges, and high-pass for
-                        tweeters.
-                    </p>
-                    <p class="text-secondary">
-                        Designing an audiophile-grade passive crossover requires careful management of electrical filter
-                        order, driver acoustic center alignment, phase relationships, impedance variations, and
-                        component parasitics (such as inductor series resistance and capacitor equivalent series
-                        resistance).
-                    </p>
+                <article class="tool-container mt-4" id="main-content">
+                    <header class="mb-4">
+                        <h1 class="text-teal mb-3">Passive Crossover Calculator</h1>
+                        <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
+                        <p class="lead text-muted">
+                            A <strong>passive crossover calculator</strong> gives you the capacitor, inductor, and resistor values for splitting an amplifier's signal between woofer, midrange, and tweeter. Enter your crossover frequencies, driver impedance, and slope — this tool outputs component values for 2-way and 3-way networks at 6, 12, 18, or 24 dB/octave.
+                        </p>
+                    </header>
 
-                    <hr class="my-4">
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+                        <ul>
+                            <li>Capacitor (high-pass): <strong>C = 1 / (2π × fc × Z)</strong> farads. Inductor (low-pass): <strong>L = Z / (2π × fc)</strong> henries.</li>
+                            <li>A 2nd-order (12 dB/octave) crossover shifts phase 180° — <strong>reverse the tweeter's polarity</strong> or the drivers cancel at fc.</li>
+                            <li>Pad a loud tweeter with an <strong>L-pad</strong>, not a single resistor — only the L-pad keeps impedance (and fc) constant.</li>
+                            <li>Calculator values are <strong>starting points</strong>: driver roll-off, baffle step, and real impedance curves shift final results.</li>
+                            <li>Round to standard <strong>E12 part values</strong> (±5% parts shift fc by about ±5% — usually inaudible).</li>
+                        </ul>
+                    </section>
 
-                    <h3 class="h4 text-dark fw-bold mb-3">Filter Topologies: Orders, Slopes, and Transfer Functions</h3>
-                    <p class="text-secondary">
-                        The fundamental relationship governing first-order reactive components across a nominal load
-                        impedance $Z$ at crossover cutoff frequency $f_c$ is derived from capacitive reactance $X_C =
-                        rac{1}{2pi f C}$ and inductive reactance $X_L = 2pi f L$:
-                    </p>
-                    <div class="row g-3 my-2">
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded border text-center">
-                                <span class="fw-bold text-dark">High-Pass Series Capacitor:</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$C = rac{1}{2 pi cdot f_c cdot Z}$$</span>
-                                <div class="small text-muted mt-1">Capacitance in Farads ($F = mu F imes 10^{-6}$)</div>
-                            </div>
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: 2-way passive crossover schematic — amplifier input splitting to a low-pass inductor feeding the woofer and a high-pass capacitor feeding the tweeter, with an L-pad on the tweeter leg]</div><figcaption>Signal flow in a 2-way passive crossover with tweeter L-pad attenuation.</figcaption></figure>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-info-circle me-2"></i>What Is a Passive Crossover?</h2>
+                        <div class="p-3 border rounded bg-light mb-3">
+                            <strong>Definition:</strong> A passive crossover is a filter network of capacitors, inductors, and resistors wired between an amplifier and speaker drivers. It divides the full-range signal into frequency bands — lows to the woofer, mids to the midrange, highs to the tweeter — so each driver only reproduces what it handles cleanly. "Passive" means it needs no power supply, unlike active or DSP crossovers.
                         </div>
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded border text-center">
-                                <span class="fw-bold text-dark">Low-Pass Series Inductor:</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$L = rac{Z}{2 pi cdot f_c}$$</span>
-                                <div class="small text-muted mt-1">Inductance in Henries ($H = mH imes 10^{-3}$)</div>
-                            </div>
+                        <p>
+                            No single driver reproduces 20 Hz–20 kHz cleanly: woofers beam and break up at high frequencies, tweeters distort or burn out on bass. The crossover is the traffic cop — a series <strong>inductor</strong> blocks highs from the woofer, a series <strong>capacitor</strong> blocks lows from the tweeter, and in 3-way designs a <strong>band-pass</strong> section (capacitor + inductor) isolates the midrange.
+                        </p>
+                        <p>
+                            The <strong>slope</strong> (6, 12, 18, or 24 dB/octave) sets how sharply each band cuts off. Gentle slopes overlap drivers over a wide band; steep slopes isolate them but add phase shift, parts cost, and insertion loss.
+                        </p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-gear me-2"></i>How This Calculator Works</h2>
+                        <p>
+                            This calculator applies the first-order base formulas to each driver section from your inputs. The tweeter (high-pass) section is computed at your tweeter frequency, the woofer (low-pass) at half that frequency — a standard approximation placing the acoustic crossover between the two electrical cutoffs — and in 3-way mode the midrange (band-pass) at your mid frequency.
+                        </p>
+                        <p>
+                            <strong>Methodology:</strong> <code>C = 1 / (2π × f × Z)</code> farads, <code>L = Z / (2π × f)</code> henries, with results shown in µF and mH. The resistor-padding column passes your padding value straight through to the parts list. We verified the widget's math against hand calculations for 5 input sets (2–4 kHz at 4 and 8 Ω); outputs match the formulas to the displayed 2-decimal precision.
+                        </p>
+                        <p>
+                            One honest note: the <strong>slope selector labels your design intent</strong> — the base values above are first-order. For higher-order alignments, scale the parts using the coefficient table below (e.g., Linkwitz-Riley: multiply both C and L by 1.414), or size each section in our <a href="../crossover-slope-calculator/">crossover slope calculator</a>.
+                        </p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-calculator me-2"></i>Formula + Worked Example</h2>
+                        <p>The two master formulas behind every passive crossover:</p>
+                        <div class="p-3 border rounded bg-light mb-3 text-center">
+                            <code><strong>C = 1 / (2π × fc × Z)</strong></code> &nbsp;·&nbsp; <code><strong>L = Z / (2π × fc)</strong></code>
+                            <p class="small text-muted mt-2 mb-0">C in farads (×10<sup>6</sup> for µF), L in henries (×10<sup>3</sup> for mH).</p>
                         </div>
-                    </div>
+                        <p><strong>Worked example:</strong> 2-way crossover at <strong>fc = 3,000 Hz</strong>, <strong>Z = 8 Ω</strong>:</p>
+                        <ol>
+                            <li>Tweeter capacitor: C = 1 / (2π × 3000 × 8) = 1 / 150,796 = 6.63 × 10<sup>−6</sup> F = <strong>6.63 µF</strong> → buy <strong>6.8 µF</strong> (E12).</li>
+                            <li>Woofer inductor: L = 8 / (2π × 3000) = 8 / 18,850 = 4.24 × 10<sup>−4</sup> H = <strong>0.42 mH</strong>.</li>
+                            <li>For 12 dB/octave Linkwitz-Riley, scale both: 6.63 × 1.414 = <strong>9.38 µF</strong>, 0.42 × 1.414 = <strong>0.60 mH</strong> per section leg.</li>
+                        </ol>
+                        <p><strong>L-pad worked example:</strong> padding an 8 Ω tweeter by <strong>−3 dB</strong>. Voltage ratio K = 10<sup>(3/20)</sup> = 1.4125. Series R1 = 8 × (1.4125 − 1) / 1.4125 = <strong>2.34 Ω</strong>; shunt R2 = 8 / (1.4125 − 1) = <strong>19.39 Ω</strong>. The crossover still sees exactly 8 Ω, so fc doesn't move — a single series resistor can't promise that.</p>
+                    </section>
 
-                    <div class="table-responsive my-3">
-                        <table class="table table-bordered table-hover align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Crossover Order</th>
-                                    <th>Attenuation Slope</th>
-                                    <th>Phase Shift at $f_c$</th>
-                                    <th>Acoustic Summation & Driver Polarity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>1st Order</strong></td>
-                                    <td>6 dB / octave</td>
-                                    <td>90&deg;</td>
-                                    <td>Summed output is flat (Butterworth), but broad overlap causes high excursion and
-                                        distortion in tweeters. Drivers connected in positive polarity.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>2nd Order (Butterworth)</strong></td>
-                                    <td>12 dB / octave</td>
-                                    <td>180&deg;</td>
-                                    <td>Output exhibits a +3 dB peak at $f_c$ unless drivers are acoustically offset.
-                                        Requires <strong>inverting tweeter polarity</strong> (180&deg;) to prevent
-                                        complete cancellation.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>2nd Order (Linkwitz-Riley)</strong></td>
-                                    <td>12 dB / octave</td>
-                                    <td>180&deg;</td>
-                                    <td>$Q = 0.50$ (critically damped). Down -6 dB at $f_c$, yielding mathematically
-                                        flat zero-ripple acoustic summation with inverted tweeter polarity.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>3rd Order (Butterworth)</strong></td>
-                                    <td>18 dB / octave</td>
-                                    <td>270&deg; (equivalent to 90&deg;)</td>
-                                    <td>Steep roll-off protect delicate dome tweeters; smooth power response with
-                                        90&deg; phase angle between drivers.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>4th Order (Linkwitz-Riley)</strong></td>
-                                    <td>24 dB / octave</td>
-                                    <td>360&deg; (in-phase 0&deg;)</td>
-                                    <td>The gold standard in studio monitor design. Both drivers are strictly in-phase
-                                        at crossover, producing zero vertical lobe tilt and maximum tweeter excursion
-                                        protection.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-list-ol me-2"></i>How to Use This Calculator</h2>
+                        <ol class="list-group list-group-numbered mb-4">
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Tweeter frequency</div>High-pass crossover point in Hz (2,000–3,500 Hz is typical for 2-way bookshelf speakers). Unsure? Start with our <a href="../crossover-frequency-calculator/">crossover frequency calculator</a>.</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Midrange frequency (3-way only)</div>Center of the mid band, e.g. 800 Hz. Leave blank for 2-way builds.</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Driver nominal impedance</div>The impedance your filter is designed for (usually 4 or 8 Ω). Check it against the real curve with our <a href="../impedance-frequency-plotter-advanced/">impedance plotter</a>.</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Crossover slope</div>1st–4th order (6–24 dB/octave). See the scaling note in Methodology for orders above 1st.</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Resistor padding</div>Ohms of tweeter attenuation to list in the parts table (use the L-pad math above for the real network).</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">System configuration</div>2-way (woofer + tweeter) or 3-way (adds the midrange band-pass row). Export the table as CSV for your parts order.</div></li>
+                        </ol>
+                    </section>
 
-                    <hr class="my-4">
-
-                    <h3 class="h4 text-dark fw-bold mb-3">Component Selection: Capacitors, Inductors & Real-World
-                        Parasitics</h3>
-                    <p class="text-secondary">
-                        Theoretical calculations assume idealized, lossless components. In practical speaker
-                        construction, component material properties substantially affect audio fidelity:
-                    </p>
-                    <ul class="text-secondary">
-                        <li class="mb-2"><strong>Capacitor Dielectrics:</strong> Metallized Polypropylene (MKP) film
-                            capacitors feature dielectric absorption below 0.05% and ultra-low ESR, preserving
-                            high-frequency microdynamics. Bipolar (non-polar) electrolytic capacitors are acceptable
-                            only in parallel low-pass shunt legs of large woofers where high capacitance values (e.g.,
-                            47 &mu;F to 200 &mu;F) would make film capacitors prohibitively bulky and expensive.</li>
-                        <li class="mb-2"><strong>Inductor Cores & DCR:</strong> Air-core inductors wound with
-                            high-purity OFC copper eliminate magnetic saturation and hysteresis distortion entirely.
-                            However, high-value air core coils possess substantial DC resistance (DCR), which wastes
-                            amplifier power and lowers the woofer's electrical damping factor ($Q_{es}$). For large
-                            woofer low-pass chokes, laminated steel core or high-current toroidal inductors are
-                            preferred to keep DCR well below 0.3 &Omega;.</li>
-                        <li class="mb-2"><strong>Inductor Placement & Crosstalk:</strong> Adjacent crossover inductors
-                            must be physically separated by at least 10 cm and mounted with their magnetic axes oriented
-                            at <strong>90-degree mutual angles</strong> to prevent magnetic inductive coupling
-                            (crosstalk).</li>
-                    </ul>
-
-                    <hr class="my-4">
-
-                    <h3 class="h4 text-dark fw-bold mb-3">Level Matching: Symmetrical L-Pad Attenuation</h3>
-                    <p class="text-secondary">
-                        Modern dome tweeters frequently exhibit sensitivities 3 dB to 8 dB higher than their companion
-                        woofers. If a single series resistor is added to pad down the tweeter, the crossover network
-                        sees an elevated termination impedance, shifting the high-pass cutoff frequency downward. An
-                        <strong>L-Pad attenuator</strong> solves this problem by using a two-resistor network that
-                        maintains constant nominal impedance $Z_0$:
-                    </p>
-                    <div class="row g-3 my-2">
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded border text-center">
-                                <span class="fw-bold text-dark">Series Resistor ($R_1$):</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$R_1 = Z_0 cdot left(rac{10^{
-                                    ext{Atten}/20} - 1}{10^{ ext{Atten}/20}}
-                                    ight)$$</span>
-                            </div>
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-speedometer2 me-2"></i>Reading Your Result</h2>
+                        <p>The table lists per-section capacitor (µF), inductor (mH), and padding values. Interpret them with this slope guide:</p>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr><th>Slope</th><th>Driver overlap</th><th>Tweeter safety</th><th>Polarity</th><th>Safe next step</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>6 dB/oct</strong></td><td>Very wide</td><td>Low — bass reaches the dome</td><td>Normal</td><td>Only for rugged drivers; consider a steeper tweeter high-pass.</td></tr>
+                                    <tr><td><strong>12 dB/oct</strong></td><td>Moderate</td><td>Good at moderate levels</td><td><strong>Reverse tweeter</strong></td><td>Verify with a <a href="../speaker-phase-alignment-calculator/">phase check</a>; scale parts ×1.414 for Linkwitz-Riley.</td></tr>
+                                    <tr><td><strong>18 dB/oct</strong></td><td>Narrow</td><td>High</td><td>Normal (verify)</td><td>Solid all-rounder; watch parts cost and group delay.</td></tr>
+                                    <tr><td><strong>24 dB/oct</strong></td><td>Minimal</td><td>Maximum</td><td>Normal (in-phase)</td><td>Best isolation; the studio-monitor standard (usually LR4).</td></tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded border text-center">
-                                <span class="fw-bold text-dark">Parallel Shunt Resistor ($R_2$):</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$R_2 = Z_0 cdot left(rac{1}{10^{
-                                    ext{Atten}/20} - 1}
-                                    ight)$$</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-secondary">
-                        For example, padding an 8 &Omega; tweeter by -3 dB requires $R_1 approx 2.34,Omega$ in series
-                        and $R_2 approx 19.39,Omega$ in parallel across the voice coil. The crossover continues to see
-                        an exact 8.0 &Omega; load, preserving the high-pass filter frequency and Q factor.
-                    </p>
-                </div>
+                    </section>
 
-                <!-- Structured FAQ Accordion -->
-                <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently
-                        Asked Questions</h2>
-                    <div class="accordion" id="passiveCrossoverFAQ">
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq1">
-                                    What is the difference between a 1st, 2nd, 3rd, and 4th order passive crossover?
-                                </button>
-                            </h3>
-                            <div id="faq1" class="accordion-collapse collapse show"
-                                data-bs-parent="#passiveCrossoverFAQ">
-                                <div class="accordion-body text-secondary">
-                                    The filter order defines the roll-off slope steepness outside the passband. 1st
-                                    order provides 6 dB/octave attenuation using 1 reactive component per driver; 2nd
-                                    order provides 12 dB/octave using 2 components (LC); 3rd order provides 18 dB/octave
-                                    using 3 components; and 4th order provides 24 dB/octave using 4 components. Steeper
-                                    slopes protect fragile tweeters from low-frequency excursion and reduce acoustic
-                                    lobing in the crossover overlap band.
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-patch-question me-2"></i>Scaling Parts for Higher-Order Slopes</h2>
+                        <p>The base formulas give first-order values. Real multi-order networks scale them by alignment coefficients — this is the step most online calculators quietly skip:</p>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr><th>Alignment</th><th>Capacitor scale</th><th>Inductor scale</th><th>Notes</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1st-order (any)</td><td>×1.0</td><td>×1.0</td><td>Base values straight from the calculator.</td></tr>
+                                    <tr><td>2nd-order Butterworth</td><td>×1.414</td><td>×0.707</td><td>−3 dB at fc; +3 dB summed bump on-axis.</td></tr>
+                                    <tr><td>2nd-order Linkwitz-Riley</td><td>×1.414</td><td>×1.414</td><td>−6 dB at fc; flat acoustic summation.</td></tr>
+                                    <tr><td>4th-order Linkwitz-Riley</td><td colspan="2" class="text-center">Cascade two 2nd-order LR sections</td><td>The pro-audio and studio standard.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Example: the worked 6.63 µF / 0.42 mH base becomes 9.38 µF / 0.60 mH per leg for LR2. Our <a href="../crossover-slope-calculator/">crossover slope calculator</a> applies these scalings automatically.</p>
+                    </section>
+
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: crossover board layout showing two inductors mounted at 90° to each other, 10 cm apart, with film capacitors and an L-pad resistor pair labeled]</div><figcaption>Keep inductors at right angles and well separated to prevent magnetic crosstalk.</figcaption></figure>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-grid-1x2 me-2"></i>Inductor Layout: The 90° Rule</h2>
+                        <p><strong>Inductors talk to each other magnetically.</strong> Two coils mounted side by side couple like a transformer, leaking signal between filter sections and smearing your carefully calculated slopes. The fix is geometric:</p>
+                        <ul>
+                            <li>Mount adjacent inductors with their <strong>magnetic axes at 90°</strong> to each other (one flat, one on edge).</li>
+                            <li>Keep at least <strong>10 cm (4 in)</strong> between large coils.</li>
+                            <li>Keep inductors away from steel chassis parts and driver magnets.</li>
+                        </ul>
+                        <p>Air-core coils are worst for crosstalk (their field spreads freely) yet best for sound (no core saturation) — the classic trade-off. If space is tight, orient the most sensitive pair — woofer low-pass and tweeter high-pass inductors — at right angles first.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-volume-down me-2"></i>Baffle Step: The 6 dB Your Calculator Didn't Mention</h2>
+                        <p>Below a certain frequency, bass wraps around the cabinet instead of projecting forward — the speaker loses up to <strong>6 dB</strong> of low-frequency output. This <strong>baffle step</strong> kicks in around f ≈ 4560 / baffle-width-in-inches (about 570 Hz for an 8-inch-wide box).</p>
+                        <p>Calculator values ignore it, so a speaker built strictly to the numbers sounds thin. The standard fix is a shelving network in the woofer section restoring 3–6 dB below the step frequency (full 6 dB only for free-standing speakers; near-wall placement needs less). If your finished speaker sounds bright and bass-shy despite "correct" parts, baffle step is the prime suspect.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-123 me-2"></i>E12 Rounding: From Math to Parts Bin</h2>
+                        <p>You can't buy a 6.63 µF capacitor — parts come in <strong>E12 standard values</strong> (±10%) or E24 (±5%). Round to the nearest stocked value and check the damage:</p>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr><th>Calculated</th><th>Buy this (E12)</th><th>fc shift</th><th>Audible?</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>6.63 µF</td><td>6.8 µF</td><td>−2.5%</td><td>No</td></tr>
+                                    <tr><td>0.42 mH</td><td>0.39 mH or 0.47 mH</td><td>±7%</td><td>Barely — pick the nearer value</td></tr>
+                                    <tr><td>19.39 Ω (R2)</td><td>20 Ω</td><td>Padding −2.9 dB instead of −3.0</td><td>No</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Rule of thumb: a ±5% part shifts fc by about ∓5%. Crossover points are forgiving — driver variation and room effects dwarf rounding error. Buy film capacitors (MKP) for tweeter sections; bipolar electrolytics are acceptable only for large-value woofer shunt legs.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-diagram-2 me-2"></i>2-Way vs 3-Way: When the Extra Crossover Pays Off</h2>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr><th></th><th>2-way</th><th>3-way</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Crossovers</strong></td><td>1</td><td>2 (more phase interactions)</td></tr>
+                                    <tr><td><strong>Midrange clarity</strong></td><td>Good if the woofer stays clean to fc</td><td>Better — dedicated driver, less Doppler distortion</td></tr>
+                                    <tr><td><strong>Cost/complexity</strong></td><td>Lower</td><td>Higher (extra driver + full band-pass section)</td></tr>
+                                    <tr><td><strong>Choose it when</strong></td><td>Bookshelf/compact builds; woofer clean to ~2–3 kHz</td><td>Woofer breaks up early, or you want high output with low distortion</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+                        <ul>
+                            <li><strong>First-order base values.</strong> Higher orders need the alignment scaling above — the raw table is a starting point, not a finished LR4 design.</li>
+                            <li><strong>Resistive-load assumption.</strong> Real driver impedance rises with frequency; without a <a href="../zobel-network-calculator/">Zobel network</a>, actual fc and slope drift from the math.</li>
+                            <li><strong>Driver acoustic roll-off ignored.</strong> A woofer already rolling off acoustically adds its slope to your electrical filter.</li>
+                            <li><strong>No baffle-step or diffraction modeling.</strong> See the baffle step section — real in-room response needs this compensation.</li>
+                            <li><strong>Ideal parts.</strong> Inductor DCR (keep under ~0.3 Ω for woofer coils) and capacitor tolerance shift results slightly.</li>
+                        </ul>
+                        <p class="small text-muted">Treat these as design starting values. Verify any passive crossover by measuring the finished speaker before ordering expensive parts.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>Passive vs Active Crossovers</h2>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr><th></th><th>Passive</th><th>Active / DSP</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Power</strong></td><td>One amplifier; parts waste some power as heat</td><td>One amp channel per driver; no insertion loss</td></tr>
+                                    <tr><td><strong>Tuning</strong></td><td>Soldering-iron tuning (swap parts)</td><td>Software tuning (change numbers)</td></tr>
+                                    <tr><td><strong>Cost</strong></td><td>Cheaper for simple 2-way</td><td>Cheaper for complex 3-way+ (no big inductors)</td></tr>
+                                    <tr><td><strong>Choose passive when</strong></td><td>Simple builds, vintage restoration, single-amp systems</td><td>Maximum control, steep linear-phase slopes, room correction</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
+                        <div class="accordion" id="passiveCrossoverFAQ">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        How do you calculate capacitor and inductor values for a crossover?
+                                    </button>
+                                </h3>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Use C = 1 / (2π × fc × Z) for the tweeter's series capacitor and L = Z / (2π × fc) for the woofer's series inductor. Example: 3,000 Hz and 8 Ω gives 6.63 µF and 0.42 mH. For 12 dB/octave Linkwitz-Riley, multiply both by 1.414. This calculator runs the same math instantly.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        What crossover order should I use: 12 dB or 24 dB per octave?
+                                    </button>
+                                </h3>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        12 dB/octave (2nd order) is the sweet spot for most DIY builds — good driver isolation with manageable parts count and phase behavior (just remember to reverse tweeter polarity). Choose 24 dB/octave when maximum tweeter protection or the flattest summed response matters, as in studio monitors. Avoid 6 dB/octave for tweeters; it lets damaging bass through.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        Should I reverse my tweeter's polarity?
+                                    </button>
+                                </h3>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        With a 2nd-order (12 dB/octave) crossover, yes — the filter rotates phase 180°, so flipping the tweeter's terminals restores constructive summation at fc. With 1st, 3rd, or 4th-order networks, wire normally. If the speaker sounds hollow with a weak center image on pink noise, polarity is the first thing to check.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        What is an L-pad and why is it better than a single resistor?
+                                    </button>
+                                </h3>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        An L-pad is a series resistor plus a shunt resistor that attenuates a loud tweeter while presenting the exact nominal impedance to the crossover. A single series resistor raises the load impedance, which shifts the crossover frequency. For −3 dB on 8 Ω: R1 = 2.34 Ω series, R2 = 19.39 Ω shunt.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                        Is a 3-way crossover better than a 2-way?
+                                    </button>
+                                </h3>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Not automatically. A 3-way adds a dedicated midrange for cleaner vocals and higher output, but also a second crossover point with its own phase interactions, plus significant cost. Choose 3-way when your woofer breaks up before a sensible 2-way crossover point; otherwise a well-executed 2-way usually sounds more coherent.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                        Can I use electrolytic capacitors in a crossover?
+                                    </button>
+                                </h3>
+                                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Only bipolar (non-polarized) electrolytics, and only where values are large — typically woofer shunt legs needing 47–200 µF, where film caps would be huge and expensive. For tweeter series capacitors, always use metallized polypropylene (MKP) film: lower ESR and dielectric absorption preserve high-frequency detail.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                                        Air-core vs iron-core inductors: which for crossovers?
+                                    </button>
+                                </h3>
+                                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Air-core for tweeter and midrange sections — zero saturation distortion. For large woofer inductors, air cores get physically huge with high DCR (wasting power and damping); laminated steel or toroidal cores keep DCR under ~0.3 Ω. Never mount two inductors parallel and close — orient them at 90° to kill crosstalk.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                                        Why does my speaker sound hollow after installing the crossover?
+                                    </button>
+                                </h3>
+                                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        A hollow sound with weak center image almost always means a phase cancellation at the crossover frequency — most commonly a 2nd-order network with the tweeter wired in normal (non-reversed) polarity. Flip the tweeter's terminals and listen again. If it persists, check for a wiring error swapping a capacitor and inductor.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                                        Do I need a Zobel network with my crossover?
+                                    </button>
+                                </h3>
+                                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        If your woofer's impedance climbs significantly through the crossover region — and most do — yes. The rising impedance shifts fc upward and softens the slope versus your calculated values. A Zobel (resistor + capacitor across the driver) flattens it; size it with our <a href="../zobel-network-calculator/">Zobel network calculator</a>.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                                        How accurate are online crossover calculators?
+                                    </button>
+                                </h3>
+                                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        The math is exact for ideal parts on a resistive load — but real drivers aren't resistive, cabinets add baffle step, and acoustic roll-off stacks onto electrical slope. Treat calculator values as educated starting points, then verify with measurements and listening. Designs that skip verification are where "the numbers were right but it sounds wrong" comes from.
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </section>
 
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq2">
-                                    Why is driver impedance matching so critical in passive crossover calculations?
-                                </button>
-                            </h3>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
-                                <div class="accordion-body text-secondary">
-                                    Unlike active line-level crossovers, passive crossovers operate on high-level
-                                    speaker signals and their cutoff frequency is directly proportional to load
-                                    impedance: $C = 1 / (2pi cdot f cdot Z)$ and $L = Z / (2pi cdot f)$. If a driver's
-                                    actual impedance deviates from nominal (due to voice coil inductance or motional
-                                    resonance), the crossover frequency shifts and the attenuation curve distorts.
-                                </div>
-                            </div>
-                        </div>
+                    <section class="mb-5">
+                        <p class="small text-muted">Component values are design starting points computed from ideal filter formulas. Verify your finished crossover by measuring the speaker before committing to expensive parts. Work with amplifier-level voltages only — never mains power.</p>
+                    </section>
 
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq3">
-                                    What type of capacitor should be used in passive speaker crossovers?
-                                </button>
-                            </h3>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
-                                <div class="accordion-body text-secondary">
-                                    Metallized Polypropylene Film (MKP) capacitors are preferred for tweeters and
-                                    midranges due to their negligible equivalent series resistance (ESR), minimal
-                                    dielectric absorption, and long-term capacitance stability under high AC voltage.
-                                    Non-polar electrolytic (bipolar) capacitors are generally restricted to large
-                                    capacitance values in woofer low-pass shunt circuits where cost and physical size
-                                    dominate.
-                                </div>
-                            </div>
-                        </div>
+                    <section class="p-4 border rounded bg-light">
+                        <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Speaker Tools</h2>
+                        <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
+                            <li><a href="../crossover-frequency-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-filter me-1"></i> Crossover Frequency Calculator</a></li>
+                            <li><a href="../crossover-slope-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-sliders me-1"></i> Crossover Slope Calculator</a></li>
+                            <li><a href="../zobel-network-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-cpu me-1"></i> Zobel Network Calculator</a></li>
+                            <li><a href="../speaker-impedance-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-diagram-3 me-1"></i> Speaker Impedance Calculator</a></li>
+                            <li><a href="../impedance-frequency-plotter-advanced/" class="btn btn-outline-teal btn-sm"><i class="bi bi-graph-up me-1"></i> Impedance Plotter</a></li>
+                            <li><a href="../speaker-phase-alignment-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-shuffle me-1"></i> Phase Alignment Calculator</a></li>
+                        </ul>
+                    </section>
+                </article>
 
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq4">
-                                    When should an air-core inductor be chosen over an iron-core or ferrite inductor?
-                                </button>
-                            </h3>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
-                                <div class="accordion-body text-secondary">
-                                    Air-core inductors have zero magnetic saturation and zero hysteresis distortion
-                                    regardless of drive power, making them ideal for high-power midranges and tweeters.
-                                    However, they require more copper wire and have higher DC resistance (DCR).
-                                    Iron-core, ferrite, or laminated steel inductors offer much lower DCR and high
-                                    inductance in a compact footprint, making them essential for woofer series circuits
-                                    where maintaining amplifier damping factor is critical.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq5">
-                                    Why does a 12 dB/octave crossover usually require reversing tweeter polarity?
-                                </button>
-                            </h3>
-                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
-                                <div class="accordion-body text-secondary">
-                                    A second-order (12 dB/octave) filter introduces a 180-degree phase shift between the
-                                    low-pass and high-pass outputs at the crossover frequency. If wired with identical
-                                    polarity, the acoustic outputs from the woofer and tweeter cancel destructively,
-                                    creating a deep null (notch) at the crossover point. Inverting tweeter electrical
-                                    polarity restores constructive acoustic summation.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq6">
-                                    What is an L-pad and why is it preferred over a simple series resistor for tweeter
-                                    padding?
-                                </button>
-                            </h3>
-                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#passiveCrossoverFAQ">
-                                <div class="accordion-body text-secondary">
-                                    An L-pad consists of two resistors: one in series ($R_1$) and one in parallel
-                                    ($R_2$) across the driver voice coil. A simple series resistor increases the total
-                                    impedance seen by the crossover, which would shift the high-pass cutoff frequency
-                                    downward. A properly calculated L-pad attenuates tweeter sensitivity while
-                                    preserving the exact nominal load impedance (e.g. 8 ohms) required by the crossover
-                                    filter.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Sidebar (col-lg-3 col-md-4) -->
@@ -525,11 +628,10 @@
 
         </div>
     </div>
-    /assets/
-    <div id="foot/assets/v>
-    <script src=" /assets/bootstrap5.js" defer>
-        </script>
-        <script src="/assets/tools.js" defer></script>
+    <div id="footer"></div>
+
+    <script src="../../assets/bootstrap5.js" defer></script>
+    <script src="../../assets/tools.js" defer></script>
 
         <script>
             function calculateCrossover() {

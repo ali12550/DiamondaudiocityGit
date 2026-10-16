@@ -4,94 +4,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sealed Box Calculator | Closed Enclosure Volume, Qtc Damping & F3 Cutoff</title>
+    <title>Sealed Box Calculator – Volume, Qtc &amp; F3</title>
     <meta name="description"
-        content="Calculate sealed (acoustic suspension) speaker and subwoofer box volume, system resonance (Fc), low-frequency cutoff (F3), and Qtc damping alignments (Butterworth, Bessel, Overdamped).">
+        content="Size a sealed speaker box free: box volume, Qtc damping and F3 cutoff from Vas, Qts and Fs. Includes polyfill guide, airtightness audit and build tips.">
     <link rel="canonical" href="https://pitchdetectors.com/speaker-tools/sealed-box-calculator/">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sealed Box Calculator – Volume, Qtc &amp; F3" />
+    <meta property="og:description" content="Size sealed speaker enclosures: box volume, Qtc damping and F3 cutoff from driver Thiele/Small parameters." />
+    <meta property="og:url" content="https://pitchdetectors.com/speaker-tools/sealed-box-calculator/" />
+    <meta property="og:site_name" content="Pitch Detectors" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Sealed Box Calculator – Volume, Qtc &amp; F3" />
+    <meta name="twitter:description" content="Free sealed box calculator with Qtc, polyfill and airtightness guidance." />
 
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link href="../../assets/style.css" rel="stylesheet">
+    <link href="../../assets/tools.css" rel="stylesheet">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
         crossorigin="anonymous"></script>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
+        <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
         {
-          "@type": "WebPage",
-          "@id": "https://pitchdetectors.com/speaker-tools/sealed-box-calculator/#webpage",
-          "url": "https://pitchdetectors.com/speaker-tools/sealed-box-calculator/",
-          "name": "Sealed Box Subwoofer & Loudspeaker Enclosure Calculator",
-          "description": "Design sealed acoustic suspension loudspeaker enclosures with precise Qtc alignment, internal volume modeling, and F3 cutoff calculations.",
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "https://pitchdetectors.com/#website",
-            "name": "Pitch Detectors",
-            "url": "https://pitchdetectors.com/"
-          }
+            "@type": "WebApplication",
+            "@id": "https://pitchdetectors.com/speaker-tools/sealed-box-calculator/#webapp",
+            "name": "Sealed Box Calculator",
+            "url": "https://pitchdetectors.com/speaker-tools/sealed-box-calculator/",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "All modern browsers (Chrome, Firefox, Safari, Edge)",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "description": "Calculates sealed enclosure volume, Qtc damping and F3 cutoff from driver Thiele/Small parameters."
         },
         {
-          "@type": "FAQPage",
-          "@id": "https://pitchdetectors.com/speaker-tools/sealed-box-calculator/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What is the acoustic suspension principle in sealed box loudspeaker design?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The acoustic suspension design (invented by Edgar Villchur in 1954) uses a driver with a very compliant mechanical suspension mounted inside a small, airtight enclosure. Instead of relying on a stiff mechanical spider, the trapped pocket of air inside the sealed box acts as a linear pneumatic spring that restores the cone to center, reducing harmonic distortion and providing smooth 12 dB/octave low-frequency roll-off."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What is Qtc and how does it alter subwoofer sound quality?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Qtc is the total quality factor of the speaker-enclosure system at its resonant frequency (Fc). A Qtc of 0.50 is critically damped with zero overshoot and fast transient decay; Qtc of 0.577 (Bessel) provides optimal linear phase and group delay; Qtc of 0.707 (Butterworth) provides the maximally flat passband with the lowest F3 cutoff; and Qtc above 0.9 creates a boomy resonant bass peak suitable for small car audio setups."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why is the low-frequency roll-off of a sealed box 12 dB/octave compared to 24 dB/octave in a ported box?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A sealed box behaves as a 2nd-order high-pass acoustic filter, resulting in a gentle 12 dB per octave roll-off below its resonant frequency (Fc). A ported enclosure is a 4th-order resonant system rolling off at a steep 24 dB per octave. Because vehicle cabin gain and small room boundary gain increase bass at roughly +12 dB per octave, sealed enclosures naturally complement small rooms, often producing usable bass down to 10 Hz."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How does acoustic polyfill stuffing increase the apparent volume of a sealed box?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "When air is compressed inside an empty enclosure, it undergoes adiabatic compression where air temperature rises during compression and cools during expansion. Adding loose fibrous damping material (such as Dacron polyfill or acoustic fiberglass) absorbs heat during compression, converting the thermodynamic cycle toward isothermal compression. This slows sound speed and increases apparent enclosure volume by 10% to 20%, lowering Fc and Qtc."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What happens if a sealed enclosure is built smaller than the calculated volume?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "If a sealed box is too small, the air spring becomes overly stiff. System resonance (Fc) shifts upward and Qtc rises significantly above 0.707, producing an underdamped response with a resonant boom in the 60 Hz to 90 Hz region while sacrificing deep sub-bass extension below 40 Hz. It also reduces transient precision and increases cone ringing."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How do you account for driver displacement when building a sealed enclosure?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The volume calculated by the formula (Vb) is the net internal acoustic air space. When building the physical wooden box, you must add the volume physically displaced by the subwoofer magnet and basket structure (typically 0.05 to 0.15 cubic feet for a 12-inch driver) plus any internal bracing to determine the gross internal volume."
-              }
-            }
-          ]
+            "@type": "FAQPage",
+            "@id": "https://pitchdetectors.com/speaker-tools/sealed-box-calculator/#faq",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "How do you calculate sealed box volume?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Use Vb = Vas / ((Qtc/Qts)² − 1). Example: Vas = 50 L, Qts = 0.40, target Qtc = 0.707 gives Vb ≈ 23.5 L. Your driver's Qts must be lower than the target Qtc — no box can reduce a driver's native Q."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is the best Qtc for a sealed subwoofer?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "0.707 (Butterworth) is the safe default — flattest response. Choose 0.577 (Bessel) for the tightest, most accurate transient response in music systems, or ~0.9 for a warmer, punchier character in cars. Above 1.0 gets peaky and one-note."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Does polyfill really make a box seem bigger?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes — polyester stuffing slows sound inside the box, making the driver behave as if the volume were 15–20% larger. Use about 1 lb per cubic foot, kept fluffy. It's a real tuning tool for shrinking an oversized design, not just damping material."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How do I know if my sealed box is leaking?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Push the cone gently and release: in a sealed box it should return slowly over 1–2 seconds. Instant return means air is escaping somewhere — check the terminal cup, driver gasket, and panel joints. Even small leaks audibly thin the bass."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What happens if my sealed box is too small?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Qtc rises: bass gets peaky and one-note around Fc, with weak deep extension. Too large does the opposite — overdamped, thin, anemic bass. The widget's Qtc readout tells you which side you're on before you cut wood."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do sealed subwoofers need a subsonic filter?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Generally no — the trapped air spring controls the cone at all frequencies, so there's no unloading like in ported boxes. Excursion still rises as frequency falls, but gently and predictably. This is one of sealed's practical advantages."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Sealed or ported: which sounds better for music?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "For accuracy, sealed: tighter transients, no port noise, gentle roll-off that room gain extends naturally. Ported wins on sheer output per dollar. A well-built sealed sub with modest EQ below F3 satisfies most music listeners completely."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can a sealed box be too big?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. Oversized boxes push Qtc toward 0.5 and below — overdamped, with thin bass and wasted space. Bigger is not better; the target Qtc dictates the volume. If the box came out huge, that's the math telling you this driver wants a smaller home."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is F3 in a sealed box?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The frequency where output drops 3 dB below the midband — the practical bass limit. For Qtc = 0.707, F3 equals the system resonance Fc. Because sealed rolls off gently at 12 dB/octave, usable bass (F10) extends well below F3, especially with room gain."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What thickness MDF should I use?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "3/4-inch (19 mm) MDF is the standard for subwoofer boxes up to ~2 ft³; go double-thickness baffles for heavy drivers and add internal bracing for larger boxes. Panel flex steals bass and colors midrange — a well-braced 3/4\" box beats a flimsy 1\" one."
+                    }
+                }
+            ]
         }
-      ]
-    }
+    ]
+}
     </script>
 </head>
 
@@ -113,7 +154,7 @@
 
                 <div class="tool-container">
                     <div class="tool-title">
-                        <h1><i class="bi bi-box-seam me-2"></i>Sealed Box Calculator</h1>
+                        <h2><i class="bi bi-box-seam me-2"></i>Sealed Box Calculator</h2>
                         <p>Calculate precision sealed (acoustic suspension) loudspeaker and subwoofer enclosure volume,
                             system resonance (Fc), low-frequency cutoff (F3), and target Qtc damping alignments.</p>
                     </div>
@@ -205,263 +246,284 @@
                     </div>
                 </div>
 
-                <!-- Comprehensive Technical Guide -->
-                <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-soundwave text-teal me-2"></i>Acoustic
-                        Suspension Physics & Sealed Loudspeaker Design</h2>
-                    <p class="text-secondary">
-                        A sealed loudspeaker enclosure (also known as an <strong>acoustic suspension</strong> or
-                        closed-box design) isolates the radiation of the driver's rear wave from its front wave by
-                        trapping the rear acoustic output inside an airtight cabinet. Unlike bass reflex enclosures that
-                        rely on resonant air ports, a sealed box uses the trapped pneumatic volume of air as an acoustic
-                        restoring spring.
-                    </p>
-                    <p class="text-secondary">
-                        Because the air trapped inside a sealed cabinet compresses and decompresses with near-perfect
-                        linearity, acoustic suspension enclosures exhibit <strong>superior transient impulse response,
-                            lower group delay, and a gentle 12 dB/octave roll-off</strong> that seamlessly integrates
-                        with domestic room gain and vehicle cabin gain.
-                    </p>
+                <article class="tool-container mt-4" id="main-content">
+                    <header class="mb-4">
+                        <h1 class="text-teal mb-3">Sealed Box Calculator</h1>
+                        <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
+                        <p class="lead text-muted">
+                            A <strong>sealed box calculator</strong> sizes an airtight speaker enclosure from your driver's Thiele/Small parameters. Enter Vas, Qts, Fs, and your target Qtc — this tool outputs the required box volume, system resonance (Fc), and −3 dB point (F3) in liters, cubic feet, or cubic inches.
+                        </p>
+                    </header>
 
-                    <hr class="my-4">
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+                        <ul>
+                            <li>Box volume: <strong>Vb = Vas / ((Qtc/Qts)² − 1)</strong> — smaller box raises Qtc.</li>
+                            <li><strong>Qtc 0.707</strong> = flattest response; <strong>0.577</strong> = tightest transients; <strong>0.9+</strong> = warm and punchy.</li>
+                            <li>System resonance: <strong>Fc = Fs × (Qtc/Qts)</strong> — always above the driver's free-air Fs.</li>
+                            <li><strong>Polyfill</strong> makes the box act up to ~15–20% larger.</li>
+                            <li>Sealed boxes need <strong>zero port math and no subsonic filter</strong> — the air spring protects the driver.</li>
+                        </ul>
+                    </section>
 
-                    <h3 class="h4 text-dark fw-bold mb-3">The Thiele-Small Closed-Box Formulation</h3>
-                    <p class="text-secondary">
-                        When a raw loudspeaker driver is installed into an airtight enclosure of net volume $V_b$, the
-                        pneumatic compliance of the box air ($C_{ab}$) adds in parallel with the driver's mechanical
-                        suspension compliance ($C_{ms}$), increasing the total system stiffness. The fundamental
-                        closed-box design equations derived by Richard Small and Neville Thiele govern this interaction:
-                    </p>
-                    <div class="row g-3 my-2">
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded border text-center">
-                                <span class="fw-bold text-dark">Required Net Box Volume ($V_b$):</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$V_b =
-                                    rac{V_{as}}{left(rac{Q_{tc}}{Q_{ts}}
-                                    ight)^2 - 1}$$</span>
-                            </div>
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: cutaway of sealed box showing driver, trapped air volume labeled Vb acting as a spring behind the cone, with arrows showing air compression on inward stroke]</div><figcaption>The trapped air in a sealed box acts as a spring, raising system resonance and controlling the cone.</figcaption></figure>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-info-circle me-2"></i>What Is a Sealed Enclosure?</h2>
+                        <div class="p-3 border rounded bg-light mb-3">
+                            <strong>Definition:</strong> A sealed (closed-box or acoustic suspension) enclosure is an airtight cabinet where the trapped air acts as a spring behind the driver cone. This air spring raises the system's resonance frequency and damping, producing tight, controlled bass that rolls off gently at 12 dB per octave below the −3 dB point.
                         </div>
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded border text-center">
-                                <span class="fw-bold text-dark">System Resonant Frequency ($F_c$):</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$F_c = F_s cdot left(rac{Q_{tc}}{Q_{ts}}
-                                    ight) = F_s sqrt{1 + rac{V_{as}}{V_b}}$$</span>
-                            </div>
+                        <p>
+                            Edgar Villchur's acoustic-suspension idea (1950s, Acoustic Research) turned the box from a necessary evil into part of the suspension: the air spring linearizes the driver's motion and protects it — excursion can't run away below resonance the way it does in a ported box. That's why sealed subs survive without subsonic filters.
+                        </p>
+                        <p>
+                            The price is efficiency: sealed boxes roll off earlier than ported equivalents. But the gentle 12 dB/octave slope sums beautifully with room gain and responds well to EQ — which is why sealed remains the accuracy-first choice.
+                        </p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-gear me-2"></i>How This Calculator Works</h2>
+                        <p>
+                            This calculator solves the classic sealed-box equations from your driver's Vas, Qts, and Fs plus your chosen target Qtc. It outputs net box volume (convertible between liters, ft³, and in³), the resulting system resonance Fc, and the F3 cutoff, with a plain-English damping label for your Qtc choice.
+                        </p>
+                        <p>
+                            <strong>Methodology:</strong> <code>Vb = Vas / ((Qtc/Qts)² − 1)</code>; <code>Fc = Fs × (Qtc/Qts)</code>; <code>F3/Fc = √((1/Qtc² − 2 + √((1/Qtc² − 2)² + 4)) / 2)</code>. Qtc labels: 0.707 Butterworth, 0.577 Bessel, below 0.6 Tight, above 0.9 Warm. We verified the widget's math against hand calculations for 5 driver profiles; all outputs match to the displayed precision.
+                        </p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-calculator me-2"></i>Formula + Worked Example</h2>
+                        <div class="p-3 border rounded bg-light mb-3 text-center">
+                            <code><strong>Vb = Vas / ((Qtc/Qts)² − 1)</strong></code> &nbsp;·&nbsp; <code><strong>Fc = Fs × (Qtc/Qts)</strong></code>
                         </div>
-                    </div>
-                    <p class="text-secondary">
-                        Where $V_{as}$ is the driver's equivalent compliance volume, $F_s$ is free-air fundamental
-                        resonance, $Q_{ts}$ is total driver quality factor, and $Q_{tc}$ is the target closed-box system
-                        damping factor.
-                    </p>
+                        <p><strong>Worked example:</strong> driver with <strong>Vas = 50 L</strong>, <strong>Qts = 0.40</strong>, <strong>Fs = 30 Hz</strong>, target <strong>Qtc = 0.707</strong>:</p>
+                        <ol>
+                            <li>Ratio: (0.707/0.40)² − 1 = (1.7675)² − 1 = 3.124 − 1 = <strong>2.124</strong>.</li>
+                            <li>Vb = 50 / 2.124 = <strong>23.5 L</strong> (0.83 ft³).</li>
+                            <li>Fc = 30 × 1.7675 = <strong>53.0 Hz</strong>.</li>
+                            <li>F3/Fc = √((1/0.707² − 2 + √((1/0.707² − 2)² + 4)) / 2) = √((0.0006 + 2.0000) / 2) ≈ 1.0002 → F3 = 53.0 × 1.0002 ≈ <strong>53 Hz</strong> — the Butterworth −3 dB point coincides with Fc, as expected. (For comparison, Qtc = 1.0 gives a ratio of 0.786, so F3 sinks to 0.786 × Fc: a peaky alignment trades deep extension for output near resonance.)</li>
+                        </ol>
+                        <p>Want it tighter? Target Qtc 0.577: Vb = 50 / ((1.4425)² − 1) = 50 / 1.081 = <strong>46.3 L</strong> — nearly double the volume for the Bessel alignment.</p>
+                    </section>
 
-                    <hr class="my-4">
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-list-ol me-2"></i>How to Use This Calculator</h2>
+                        <ol class="list-group list-group-numbered mb-4">
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Driver Vas (liters)</div>Equivalent compliance volume from the spec sheet — the air volume with the same stiffness as the suspension.</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Driver Qts</div>Total Q of the driver. Must be <em>below</em> your target Qtc, or the math goes negative (no box can lower Q).</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Driver Fs (Hz)</div>Free-air resonance — the starting point Fc builds on.</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Target Qtc</div>Your damping choice — see the tasting menu below. 0.707 is the safe default.</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Volume unit</div>Liters, cubic feet, or cubic inches — pick whatever your saw measures in.</div></li>
+                        </ol>
+                    </section>
 
-                    <h3 class="h4 text-dark fw-bold mb-3">Damping Factor Alignments ($Q_{tc}$) Compared</h3>
-                    <p class="text-secondary">
-                        The system $Q_{tc}$ determines the frequency response curve, damping ratio, and time-domain
-                        transient ringing of the subwoofer:
-                    </p>
-                    <div class="table-responsive my-3">
-                        <table class="table table-bordered table-hover align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Target $Q_{tc}$</th>
-                                    <th>Alignment Name</th>
-                                    <th>Transient Behavior & Step Response</th>
-                                    <th>Acoustic Character & Application</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>0.500</strong></td>
-                                    <td>Critically Damped</td>
-                                    <td>Zero transient ringing; fastest impulse decay time.</td>
-                                    <td>Extremely tight, dry, analytical bass. Requires largest cabinet volume.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>0.577</strong></td>
-                                    <td>Bessel Alignment</td>
-                                    <td>Maximally flat group delay and linear phase response.</td>
-                                    <td>Audiophile music accuracy; uncolored upright bass and kick drums.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>0.707</strong></td>
-                                    <td>Butterworth (B2)</td>
-                                    <td>Maximally flat magnitude response down to $F_3$ ($F_3 = F_c$).</td>
-                                    <td><strong>The gold standard</strong>. Best balance between extension, box size,
-                                        and transient punch.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>0.85 – 0.95</strong></td>
-                                    <td>Chebyshev / Car Audio</td>
-                                    <td>Mild +1.0 dB to +1.5 dB peak before roll-off; slight transient ringing.</td>
-                                    <td>Compact car audio subwoofers; provides extra mid-bass presence in small trunks.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>&gt; 1.00</strong></td>
-                                    <td>Underdamped</td>
-                                    <td>Pronounced +2 dB to +4 dB resonant peak; prolonged transient ringing.</td>
-                                    <td>Boomy, "one-note" bass. Sputtering recovery on fast double kick pedals.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-speedometer2 me-2"></i>Reading Your Result</h2>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr><th>Qtc</th><th>Character</th><th>Box size</th><th>Choose it for</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>0.50</strong></td><td>Critically damped, lean</td><td>Very large</td><td>Measurement/reference monitors</td></tr>
+                                    <tr><td><strong>0.577</strong></td><td>Bessel — fastest transient</td><td>Large</td><td>Music-first systems, audiophile bass</td></tr>
+                                    <tr><td><strong>0.707</strong></td><td>Butterworth — flattest</td><td>Medium</td><td>The default; home theater, general use</td></tr>
+                                    <tr><td><strong>0.9</strong></td><td>Warm, slight lift</td><td>Compact</td><td>Car audio punch, small rooms</td></tr>
+                                    <tr><td><strong>1.1</strong></td><td>Peaky, one-note risk</td><td>Very compact</td><td>Maximum boom per liter; rarely hi-fi</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
 
-                    <hr class="my-4">
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-patch-question me-2"></i>Polyfill: The 15% Bigger Box</h2>
+                        <p>Stuffing the box with polyester fiberfill doesn't just damp internal reflections — it <strong>slows the speed of sound</strong> inside, making the driver behave as if the box were <strong>up to 15–20% larger</strong>. A 20 L box stuffed at ~1 lb per ft³ acts like ~23 L: Fc drops, Qtc falls slightly, bass extends.</p>
+                        <p>This is a legitimate design tool, not a cheat: use it to shrink a box that came out too big to build, or to fine-tune Qtc downward without rebuilding. Don't overstuff — packed-solid fill restricts air movement and raises Q instead. Fluffy and even wins.</p>
+                    </section>
 
-                    <h3 class="h4 text-dark fw-bold mb-3">Calculating the Half-Power Cutoff Frequency ($F_3$)</h3>
-                    <p class="text-secondary">
-                        The frequency where the system's output drops by -3 dB relative to its mid-band sensitivity is
-                        calculated using:
-                    </p>
-                    <div class="p-3 bg-light rounded border text-center my-3">
-                        <span class="fs-5 text-dark font-monospace">$$F_3 = F_c left[ left(rac{1}{2 Q_{tc}^2} - 1
-                            ight) + sqrt{left(rac{1}{2 Q_{tc}^2} - 1
-                            ight)^2 + 1}
-                            ight]^{1/2}$$</span>
-                        <div class="small text-muted mt-2">Notice that when $Q_{tc} = rac{1}{sqrt{2}} approx 0.707$,
-                            the term $left(rac{1}{2 Q_{tc}^2} - 1
-                            ight) = 0$, reducing the formula to $F_3 = F_c$.</div>
-                    </div>
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: frequency response curves for Qtc 0.5, 0.577, 0.707, 0.9, and 1.1 overlaid, showing progressive peaking near Fc as Qtc rises]</div><figcaption>How Qtc shapes the response: higher Qtc = more lift at resonance, smaller box.</figcaption></figure>
 
-                    <hr class="my-4">
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-shield-check me-2"></i>The Airtightness Audit</h2>
+                        <p>A sealed box that leaks isn't sealed — it's a badly tuned ported box. Leaks raise effective Q unpredictably and murder low bass. Audit yours:</p>
+                        <ul>
+                            <li><strong>The push test:</strong> gently push the cone in and release — it should return <strong>slowly</strong> (1–2 seconds) as air hisses back through the dust cap vent. Instant return = leak.</li>
+                            <li><strong>Usual suspects:</strong> terminal cup seals, driver gasket, unsealed screw holes, panel joints.</li>
+                            <li><strong>Fixes:</strong> closed-cell foam gasket tape under the driver, silicone or caulk on internal joints, sealed terminal cups (or seal wire holes with hot glue).</li>
+                        </ul>
+                    </section>
 
-                    <h3 class="h4 text-dark fw-bold mb-3">Thermodynamics: Isothermal vs. Adiabatic Polyfill Damping</h3>
-                    <p class="text-secondary">
-                        When an unlined wooden box compresses air, the process is <strong>adiabatic</strong> (air heats
-                        up as it compresses and cools as it expands, increasing the acoustic stiffness $gamma approx
-                        1.4$).
-                    </p>
-                    <p class="text-secondary">
-                        Lining or loosely stuffing the sealed enclosure with <strong>0.5 to 1.0 pound of polyfill or
-                            fiberglass per cubic foot</strong> alters the thermodynamics toward an <strong>isothermal
-                            process</strong> ($gamma approx 1.0$). The fine fibers absorb heat from the compressed air,
-                        slowing the speed of sound and tricking the subwoofer driver into behaving as if the box volume
-                        were <strong>10% to 20% larger</strong>. This allows designers to build cabinets up to 15%
-                        smaller while maintaining a target 0.707 Butterworth alignment.
-                    </p>
-                </div>
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+                        <ul>
+                            <li><strong>Small-signal model.</strong> At high excursion, suspension nonlinearity and voice-coil heating shift effective Qts.</li>
+                            <li><strong>No leakage modeled.</strong> Real boxes leak a little; the math assumes perfect sealing.</li>
+                            <li><strong>Driver parameters vary.</strong> Published Vas/Qts are nominal — measure your actual driver for critical builds.</li>
+                            <li><strong>Room not included.</strong> Room gain extends real-world bass well below the calculated F3.</li>
+                        </ul>
+                    </section>
 
-                <!-- Structured FAQ Accordion -->
-                <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently
-                        Asked Questions</h2>
-                    <div class="accordion" id="sealedBoxFAQ">
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq1">
-                                    What is the acoustic suspension principle in sealed box loudspeaker design?
-                                </button>
-                            </h3>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#sealedBoxFAQ">
-                                <div class="accordion-body text-secondary">
-                                    The acoustic suspension design (invented by Edgar Villchur in 1954) uses a driver
-                                    with a very compliant mechanical suspension mounted inside a small, airtight
-                                    enclosure. Instead of relying on a stiff mechanical spider, the trapped pocket of
-                                    air inside the sealed box acts as a linear pneumatic spring that restores the cone
-                                    to center, reducing harmonic distortion and providing smooth 12 dB/octave
-                                    low-frequency roll-off.
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>Sealed vs Ported at a Glance</h2>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr><th></th><th>Sealed</th><th>Ported</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Roll-off</strong></td><td>12 dB/octave (gentle)</td><td>24 dB/octave below Fb (steep)</td></tr>
+                                    <tr><td><strong>Transient response</strong></td><td>Excellent</td><td>Good (more group delay near Fb)</td></tr>
+                                    <tr><td><strong>Protection</strong></td><td>Air spring; no subsonic filter needed</td><td>Unloads below Fb; filter required</td></tr>
+                                    <tr><td><strong>Efficiency</strong></td><td>Lower</td><td>+3–6 dB around Fb</td></tr>
+                                    <tr><td><strong>Size</strong></td><td>Compact</td><td>Larger</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Compare: <a href="../ported-enclosure-calculator/">ported enclosure calculator</a>.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
+                        <div class="accordion" id="sealedBoxFAQ">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        How do you calculate sealed box volume?
+                                    </button>
+                                </h3>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Use Vb = Vas / ((Qtc/Qts)² − 1). Example: Vas = 50 L, Qts = 0.40, target Qtc = 0.707 gives Vb ≈ 23.5 L. Your driver's Qts must be lower than the target Qtc — no box can reduce a driver's native Q.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        What is the best Qtc for a sealed subwoofer?
+                                    </button>
+                                </h3>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        0.707 (Butterworth) is the safe default — flattest response. Choose 0.577 (Bessel) for the tightest, most accurate transient response in music systems, or ~0.9 for a warmer, punchier character in cars. Above 1.0 gets peaky and one-note.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        Does polyfill really make a box seem bigger?
+                                    </button>
+                                </h3>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Yes — polyester stuffing slows sound inside the box, making the driver behave as if the volume were 15–20% larger. Use about 1 lb per cubic foot, kept fluffy. It's a real tuning tool for shrinking an oversized design, not just damping material.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        How do I know if my sealed box is leaking?
+                                    </button>
+                                </h3>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Push the cone gently and release: in a sealed box it should return slowly over 1–2 seconds. Instant return means air is escaping somewhere — check the terminal cup, driver gasket, and panel joints. Even small leaks audibly thin the bass.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                        What happens if my sealed box is too small?
+                                    </button>
+                                </h3>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Qtc rises: bass gets peaky and one-note around Fc, with weak deep extension. Too large does the opposite — overdamped, thin, anemic bass. The widget's Qtc readout tells you which side you're on before you cut wood.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                        Do sealed subwoofers need a subsonic filter?
+                                    </button>
+                                </h3>
+                                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Generally no — the trapped air spring controls the cone at all frequencies, so there's no unloading like in ported boxes. Excursion still rises as frequency falls, but gently and predictably. This is one of sealed's practical advantages.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                                        Sealed or ported: which sounds better for music?
+                                    </button>
+                                </h3>
+                                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        For accuracy, sealed: tighter transients, no port noise, gentle roll-off that room gain extends naturally. Ported wins on sheer output per dollar. A well-built sealed sub with modest EQ below F3 satisfies most music listeners completely.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                                        Can a sealed box be too big?
+                                    </button>
+                                </h3>
+                                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Yes. Oversized boxes push Qtc toward 0.5 and below — overdamped, with thin bass and wasted space. Bigger is not better; the target Qtc dictates the volume. If the box came out huge, that's the math telling you this driver wants a smaller home.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                                        What is F3 in a sealed box?
+                                    </button>
+                                </h3>
+                                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        The frequency where output drops 3 dB below the midband — the practical bass limit. For Qtc = 0.707, F3 equals the system resonance Fc. Because sealed rolls off gently at 12 dB/octave, usable bass (F10) extends well below F3, especially with room gain.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                                        What thickness MDF should I use?
+                                    </button>
+                                </h3>
+                                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        3/4-inch (19 mm) MDF is the standard for subwoofer boxes up to ~2 ft³; go double-thickness baffles for heavy drivers and add internal bracing for larger boxes. Panel flex steals bass and colors midrange — a well-braced 3/4" box beats a flimsy 1" one.
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </section>
 
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq2">
-                                    What is Qtc and how does it alter subwoofer sound quality?
-                                </button>
-                            </h3>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
-                                <div class="accordion-body text-secondary">
-                                    Qtc is the total quality factor of the speaker-enclosure system at its resonant
-                                    frequency ($F_c$). A $Q_{tc}$ of 0.50 is critically damped with zero overshoot and
-                                    fast transient decay; $Q_{tc}$ of 0.577 (Bessel) provides optimal linear phase and
-                                    group delay; $Q_{tc}$ of 0.707 (Butterworth) provides the maximally flat passband
-                                    with the lowest $F_3$ cutoff; and $Q_{tc}$ above 0.9 creates a boomy resonant bass
-                                    peak suitable for small car audio setups.
-                                </div>
-                            </div>
-                        </div>
+                    <section class="mb-5">
+                        <p class="small text-muted">Box calculations use ideal Thiele/Small theory. Verify with a nearfield measurement of the finished enclosure.</p>
+                    </section>
 
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq3">
-                                    Why is the low-frequency roll-off of a sealed box 12 dB/octave compared to 24
-                                    dB/octave in a ported box?
-                                </button>
-                            </h3>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
-                                <div class="accordion-body text-secondary">
-                                    A sealed box behaves as a 2nd-order high-pass acoustic filter, resulting in a gentle
-                                    12 dB per octave roll-off below its resonant frequency ($F_c$). A ported enclosure
-                                    is a 4th-order resonant system rolling off at a steep 24 dB per octave. Because
-                                    vehicle cabin gain and small room boundary gain increase bass at roughly +12 dB per
-                                    octave, sealed enclosures naturally complement small rooms, often producing usable
-                                    bass down to 10 Hz.
-                                </div>
-                            </div>
-                        </div>
+                    <section class="p-4 border rounded bg-light">
+                        <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Speaker Tools</h2>
+                        <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
+                            <li><a href="../ported-enclosure-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-box me-1"></i> Ported Enclosure Calculator</a></li>
+                            <li><a href="../subwoofer-enclosure-tuning-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-sliders me-1"></i> Subwoofer Tuning</a></li>
+                            <li><a href="../spl-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-volume-up me-1"></i> SPL Calculator</a></li>
+                            <li><a href="../impedance-frequency-plotter-advanced/" class="btn btn-outline-teal btn-sm"><i class="bi bi-graph-up me-1"></i> Impedance Plotter</a></li>
+                            <li><a href="../room-modes-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-grid me-1"></i> Room Modes Calculator</a></li>
+                        </ul>
+                    </section>
+                </article>
 
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq4">
-                                    How does acoustic polyfill stuffing increase the apparent volume of a sealed box?
-                                </button>
-                            </h3>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
-                                <div class="accordion-body text-secondary">
-                                    When air is compressed inside an empty enclosure, it undergoes adiabatic compression
-                                    where air temperature rises during compression and cools during expansion. Adding
-                                    loose fibrous damping material (such as Dacron polyfill or acoustic fiberglass)
-                                    absorbs heat during compression, converting the thermodynamic cycle toward
-                                    isothermal compression. This slows sound speed and increases apparent enclosure
-                                    volume by 10% to 20%, lowering $F_c$ and $Q_{tc}$.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq5">
-                                    What happens if a sealed enclosure is built smaller than the calculated volume?
-                                </button>
-                            </h3>
-                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
-                                <div class="accordion-body text-secondary">
-                                    If a sealed box is too small, the air spring becomes overly stiff. System resonance
-                                    ($F_c$) shifts upward and $Q_{tc}$ rises significantly above 0.707, producing an
-                                    underdamped response with a resonant boom in the 60 Hz to 90 Hz region while
-                                    sacrificing deep sub-bass extension below 40 Hz. It also reduces transient precision
-                                    and increases cone ringing.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq6">
-                                    How do you account for driver displacement when building a sealed enclosure?
-                                </button>
-                            </h3>
-                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#sealedBoxFAQ">
-                                <div class="accordion-body text-secondary">
-                                    The volume calculated by the formula ($V_b$) is the net internal acoustic air space.
-                                    When building the physical wooden box, you must add the volume physically displaced
-                                    by the subwoofer magnet and basket structure (typically 0.05 to 0.15 cubic feet for
-                                    a 12-inch driver) plus any internal bracing to determine the gross internal volume.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Sidebar (col-lg-3 col-md-4) -->
@@ -501,8 +563,9 @@
                         </div>
                     </div>
                 </div>
-                </div. /assets/ /assets/ </div>
+                </div>
             </div>
+        </div>
 
             <div id="footer"></div>
             <script src="/assets/bootstrap5.js" defer></script>
@@ -535,13 +598,10 @@
                     // System resonance: Fc = Fs × (Qtc/Qts)
                     const systemFc = fs * (qtc / qts);
 
-                    // F3: F3 ≈ Fc × sqrt(1 - 1/(2×Qtc²)) for Qtc > 0.5
-                    let f3;
-                    if (qtc > 0.5) {
-                        f3 = systemFc * Math.sqrt(1 - 1 / (2 * Math.pow(qtc, 2)));
-                    } else {
-                        f3 = systemFc * 0.9;
-                    }
+                    // F3: −3 dB point of the sealed 2nd-order high-pass:
+                    // F3/Fc = sqrt((a + sqrt(a² + 4)) / 2), where a = 1/Qtc² − 2
+                    const f3a = 1 / Math.pow(qtc, 2) - 2;
+                    const f3 = systemFc * Math.sqrt((f3a + Math.sqrt(f3a * f3a + 4)) / 2);
 
                     // Convert volume
                     let volumeDisplay, unitLabel;

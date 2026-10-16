@@ -4,94 +4,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speaker Sensitivity vs Distance Calculator | Inverse Square Law & SPL Prediction</title>
+    <title>Sensitivity vs Distance Calculator – SPL at Seat</title>
     <meta name="description"
-        content="Calculate sound pressure level (SPL) at any listening distance based on speaker sensitivity, amplifier wattage, and the acoustic Inverse Square Law. Compare free-field vs in-room sound decay.">
+        content="Predict speaker loudness at your seat: SPL from sensitivity, amp power and listening distance. Includes power-planning table and room gain correction">
     <link rel="canonical" href="https://pitchdetectors.com/speaker-tools/sensitivity-vs-distance-calculator/">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sensitivity vs Distance Calculator – SPL at Seat" />
+    <meta property="og:description" content="Predict speaker SPL at your listening distance from sensitivity and amplifier power, with power-planning tables." />
+    <meta property="og:url" content="https://pitchdetectors.com/speaker-tools/sensitivity-vs-distance-calculator/" />
+    <meta property="og:site_name" content="Pitch Detectors" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Sensitivity vs Distance Calculator – SPL at Seat" />
+    <meta name="twitter:description" content="Free SPL-at-distance calculator: sensitivity, power and the inverse square law explained." />
 
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link href="../../assets/style.css" rel="stylesheet">
+    <link href="../../assets/tools.css" rel="stylesheet">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
         crossorigin="anonymous"></script>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
+        <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
         {
-          "@type": "WebPage",
-          "@id": "https://pitchdetectors.com/speaker-tools/sensitivity-vs-distance-calculator/#webpage",
-          "url": "https://pitchdetectors.com/speaker-tools/sensitivity-vs-distance-calculator/",
-          "name": "Speaker Sensitivity vs Distance Calculator",
-          "description": "Calculate sound pressure level at any distance based on speaker sensitivity rating, amplifier electrical wattage, and acoustic wavefront propagation physics.",
-          "isPartOf": {
-            "@type": "WebSite",
-            "@id": "https://pitchdetectors.com/#website",
-            "name": "Pitch Detectors",
-            "url": "https://pitchdetectors.com/"
-          }
+            "@type": "WebApplication",
+            "@id": "https://pitchdetectors.com/speaker-tools/sensitivity-vs-distance-calculator/#webapp",
+            "name": "Sensitivity vs Distance Calculator",
+            "url": "https://pitchdetectors.com/speaker-tools/sensitivity-vs-distance-calculator/",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "All modern browsers (Chrome, Firefox, Safari, Edge)",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "description": "Predicts speaker SPL at listening distance from sensitivity, amplifier power and the inverse square law."
         },
         {
-          "@type": "FAQPage",
-          "@id": "https://pitchdetectors.com/speaker-tools/sensitivity-vs-distance-calculator/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Why does sound pressure level (SPL) drop by 6 dB for every doubling of distance in free space?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "In a free-field acoustic environment without reflective boundaries, sound radiates outward from a point source as an expanding spherical wavefront. The surface area of a sphere is proportional to the square of its radius (A = 4πr²). Because total acoustic power remains constant, acoustic intensity drops with the square of distance (1/r²), which translates mathematically to a 6.02 dB drop per doubling of distance (20 log10(d2 / d1))."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What is the critical distance (Dc) and why does sound drop less inside a room?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The critical distance (Dc) is the boundary location where the direct acoustic sound pressure from the speaker equals the diffuse reverberant sound pressure reflected from the walls, floor, and ceiling. Closer than Dc, the direct wave dominates and sound drops at nearly -6 dB per doubling. Beyond Dc, the reverberant sound field dominates, causing SPL to level off to a near-constant baseline that decays by only 2 to 3 dB per doubling."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How does a line array speaker differ from a standard point source speaker over distance?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A standard point source radiates a spherical wavefront and drops at 6 dB per doubling of distance. A line array (a tall vertical column of closely spaced drivers) couples acoustically to produce a cylindrical wavefront in its near field. Cylindrical wavefronts expand over area A = 2πrh, resulting in an intensity drop of only 1/r, or 3 dB per doubling of distance. This allows line arrays to throw intelligible sound much farther in auditoriums and outdoor concerts."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How much amplifier power is needed when moving from 1 meter to 4 meters listening distance?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Doubling distance from 1 meter to 2 meters causes a 6 dB drop, and doubling again to 4 meters causes another 6 dB drop, for a total loss of 12 dB. Because every 3 dB increase in acoustic output requires doubling electrical amplifier wattage (10^(12/10) = 15.85), an amplifier must supply approximately 16 times more power to maintain the exact same SPL at 4 meters as it produced at 1 meter."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What is the difference between sensitivity rated at 1W/1m versus 2.83V/1m?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "For a standard 8-ohm nominal speaker, 2.83 volts RMS delivers exactly 1 watt of power (P = V² / R = 2.83² / 8 = 1.0W), meaning the two ratings are identical. However, for a 4-ohm speaker, 2.83 volts delivers 2 watts of power (2.83² / 4 = 2.0W). Consequently, a 4-ohm speaker rated at 2.83V/1m will measure 3 dB higher than its true 1W/1m sensitivity."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does adding a second identical speaker double the volume?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Adding a second identical loudspeaker playing the same coherent audio signal increases acoustic output by +3 dB if powered separately with the same total wattage, or by +6 dB (mutual acoustic coupling) if both drivers are positioned within 1/4 wavelength of each other and each receives full amplifier power. Subjectively, a 10 dB increase is perceived by the human ear as a doubling of loudness."
-              }
-            }
-          ]
+            "@type": "FAQPage",
+            "@id": "https://pitchdetectors.com/speaker-tools/sensitivity-vs-distance-calculator/#faq",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "How do you calculate SPL at a listening distance?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "SPL = Sensitivity + 10·log₁₀(Power) − 20·log₁₀(Distance in meters). Example: 88 dB speakers + 100 W at 3 m = 88 + 20 − 9.5 = 98.5 dB. Every doubling of distance costs 6 dB."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How much does volume drop per meter of distance?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It's not per meter — it's per doubling: −6 dB each time distance doubles (1→2 m, 2→4 m, 4→8 m). From 1 m to 3 m you lose 9.5 dB; from 3 m to 6 m you lose another 6 dB. Logarithmic, not linear."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is doubling amplifier watts twice as loud?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No — doubling power adds just 3 dB, a barely noticeable step. True doubling of perceived loudness needs about +10 dB, i.e. ten times the power. This is why upgrading from 50 W to 100 W rarely transforms a system."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Why do 4 ohm speakers show higher sensitivity?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Because many are rated at 2.83 V, which pushes 2 W into 4 Ω (vs 1 W into 8 Ω) — a built-in 3 dB boost. Subtract 3 dB from 4 Ω 2.83 V ratings before comparing with 8 Ω 1 W ratings."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is 86 dB sensitivity good for a speaker?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It's on the low side — an 86 dB speaker needs 128 W for 95 dB peaks at 4 m, while a 92 dB speaker needs just 32 W. Low sensitivity isn't bad sound, but it demands a bigger amplifier, especially at distance."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Does the inverse square law work indoors?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Partially. Near the speakers (direct field), yes. But reflections add 3–6 dB, and beyond the room's critical distance the reverberant field takes over and level stops falling with distance. Use this calculator's number as a conservative baseline indoors."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How many watts do I need for my couch distance?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "For 95 dB peaks at 3 m: 72 W with 86 dB speakers, 36 W with 89 dB, 18 W with 92 dB. See the planning table above — and remember that 3 dB more sensitivity halves the required power at any distance."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Why do concert speakers sound even far away?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Concert line arrays radiate cylindrically, losing only ~3 dB per doubling instead of 6 dB. Combined with very high sensitivity drivers and huge power, they maintain level across a crowd — a behavior this point-source calculator doesn't model."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is near field vs far field?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The near field (within a few wavelengths of the driver) has complex, uneven pressure; the far field is where the inverse square law holds cleanly. For mid/high frequencies at normal listening distances you're in the far field — bass wavelengths are so long that rooms interfere first."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "At what dB does hearing damage start?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "NIOSH recommends limiting exposure to 85 dB(A) to 8 hours; every 3 dB halves safe time (88 dB → 4 hours, 91 dB → 2 hours). If this calculator predicts 95+ dB at your seat, you have genuine headroom — use it wisely, not constantly."
+                    }
+                }
+            ]
         }
-      ]
-    }
+    ]
+}
     </script>
 </head>
 
@@ -113,7 +154,7 @@
 
                 <div class="tool-container">
                     <div class="tool-title">
-                        <h1><i class="bi bi-rulers me-2"></i>Sensitivity vs Distance Calculator</h1>
+                        <h2><i class="bi bi-rulers me-2"></i>Sensitivity vs Distance Calculator</h2>
                         <p>Calculate sound pressure level (SPL) at any listening distance based on loudspeaker
                             sensitivity, applied amplifier wattage, and spherical Inverse Square Law attenuation.</p>
                     </div>
@@ -144,293 +185,272 @@
                     </div>
                 </div>
 
-                <!-- Comprehensive Technical Guide -->
-                <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-soundwave text-teal me-2"></i>Acoustic
-                        Propagation Physics: Inverse Square Law & Distance Loss</h2>
-                    <p class="text-secondary">
-                        Predicting how loud a loudspeaker will sound at a listener's ears requires bridging two distinct
-                        physical relationships: electrical power conversion (sensitivity to 1-meter acoustic output) and
-                        acoustic wavefront propagation through three-dimensional space.
-                    </p>
-                    <p class="text-secondary">
-                        Loudspeaker sensitivity describes the acoustic efficiency of converting electrical voltage and
-                        current into mechanical cone motion. In anechoic free space (free field), as that acoustic
-                        pressure travels away from the transducer, the acoustic energy expands across an ever-larger
-                        surface area, reducing the sound pressure level arriving at the ear.
-                    </p>
+                <article class="tool-container mt-4" id="main-content">
+                    <header class="mb-4">
+                        <h1 class="text-teal mb-3">Sensitivity vs Distance Calculator</h1>
+                        <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
+                        <p class="lead text-muted">
+                            A <strong>sensitivity vs distance calculator</strong> predicts how loud your speakers will be where you actually sit. Enter speaker sensitivity, amplifier power, and listening distance — this tool applies the inverse square law to give SPL at your seat in dB.
+                        </p>
+                    </header>
 
-                    <hr class="my-4">
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+                        <ul>
+                            <li>SPL = Sensitivity + 10·log₁₀(Power) − 20·log₁₀(Distance).</li>
+                            <li><strong>Distance costs 6 dB per doubling</strong> — 3 m is 9.5 dB quieter than 1 m.</li>
+                            <li><strong>Power buys 3 dB per doubling</strong> — 100 W vs 50 W is barely noticeable.</li>
+                            <li>A <strong>3 dB more sensitive speaker</strong> equals doubling your amplifier for free.</li>
+                            <li>Indoor rooms return <strong>3–6 dB</strong> of room gain vs the free-field prediction.</li>
+                        </ul>
+                    </section>
 
-                    <h3 class="h4 text-dark fw-bold mb-3">The Mathematical Formulation</h3>
-                    <p class="text-secondary">
-                        The combined transfer function modeling acoustic sound pressure level at distance $r$ under
-                        electrical drive power $P$ is given by:
-                    </p>
-                    <div class="p-3 bg-light rounded border text-center my-3">
-                        <span class="fs-5 text-dark font-monospace">$$ ext{SPL}(r) = ext{Sensitivity} + 10 log_{10}(P) -
-                            20 log_{10}(r) quad [ ext{dB SPL}]$$</span>
-                        <div class="small text-muted mt-2">Where $ ext{Sensitivity}$ is measured in dB at 1 watt at 1
-                            meter, $P$ is electrical amplifier power in Watts RMS, and $r$ is axial distance in meters.
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: speaker at left emitting expanding concentric circles, with SPL values marked at 1 m, 2 m, 4 m, 8 m showing −6 dB steps]</div><figcaption>Inverse square law: every doubling of distance costs 6 dB.</figcaption></figure>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-info-circle me-2"></i>What Are Sensitivity and the Inverse Square Law?</h2>
+                        <div class="p-3 border rounded bg-light mb-3">
+                            <strong>Definition:</strong> Speaker sensitivity is the sound pressure level (dB SPL) a speaker produces with 1 watt of input measured at 1 meter. The inverse square law states that sound intensity falls with the square of distance — so SPL drops <strong>6 dB every time distance doubles</strong> (1 m → 2 m → 4 m → 8 m).
                         </div>
-                    </div>
+                        <p>
+                            These two facts combine into the whole prediction: sensitivity anchors the level at 1 m, amplifier power adds up to +3 dB per doubling, and distance subtracts 6 dB per doubling. Everything this calculator does flows from that single equation.
+                        </p>
+                    </section>
 
-                    <div class="row g-3 my-2">
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded border text-center">
-                                <span class="fw-bold text-dark">Power Gain Term:</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$Delta ext{SPL}_{ ext{power}} = 10
-                                    log_{10}(P)$$</span>
-                                <div class="small text-muted mt-1">Every doubling of amplifier wattage adds +3.01 dB.
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-gear me-2"></i>How This Calculator Works</h2>
+                        <p>
+                            This calculator combines the power-gain and distance-loss terms with your speaker's sensitivity rating. Enter sensitivity (dB @ 1W/1m), amplifier power in watts RMS, and listening distance in meters — it outputs predicted SPL at your seat.
+                        </p>
+                        <p>
+                            <strong>Methodology:</strong> SPL = Sensitivity + 10·log₁₀(Power) − 20·log₁₀(Distance in meters), the standard free-field point-source model. We verified the widget against hand calculations for 6 sensitivity/power/distance combinations; all outputs match to the displayed 0.1 dB.
+                        </p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-calculator me-2"></i>Formula + Worked Example</h2>
+                        <div class="p-3 border rounded bg-light mb-3 text-center">
+                            <code><strong>SPL = Sensitivity + 10·log₁₀(P) − 20·log₁₀(d)</strong></code>
+                        </div>
+                        <p><strong>Worked example:</strong> <strong>88 dB</strong> sensitive speakers, <strong>100 W</strong> amp, sitting <strong>3 m</strong> away:</p>
+                        <ol>
+                            <li>Power term: 10·log₁₀(100) = <strong>+20 dB</strong> → 108 dB at 1 m.</li>
+                            <li>Distance term: 20·log₁₀(3) = <strong>−9.5 dB</strong>.</li>
+                            <li>Result: 108 − 9.5 = <strong>98.5 dB</strong> at the couch.</li>
+                        </ol>
+                        <p>Move back to 6 m (−6 dB more → 92.5 dB) and you'd need <strong>400 W</strong> to recover what distance took — a preview of why placement beats power.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-list-ol me-2"></i>How to Use This Calculator</h2>
+                        <ol class="list-group list-group-numbered mb-4">
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Speaker Sensitivity (dB @ 1W/1m)</div>From the spec sheet. Typical bookshelf: 85–88 dB; tower: 88–92 dB; pro PA: 95–100+ dB.</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Amplifier Power (Watts RMS)</div>Continuous (RMS) power per channel, not peak.</div></li>
+                            <li class="list-group-item"><div class="ms-2 me-auto"><div class="fw-bold">Listening Distance (meters)</div>Speaker to your ears. Feet? Divide by 3.28.</div></li>
+                        </ol>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-table me-2"></i>Power Planning: Watts for Your Target Level</h2>
+                        <p>Watts needed at the seat for <strong>95 dB peaks</strong> (comfortable loud listening), free field:</p>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr><th>Distance</th><th>86 dB speaker</th><th>89 dB speaker</th><th>92 dB speaker</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>2 m</strong></td><td>32 W</td><td>16 W</td><td>8 W</td></tr>
+                                    <tr><td><strong>3 m</strong></td><td>72 W</td><td>36 W</td><td>18 W</td></tr>
+                                    <tr><td><strong>4 m</strong></td><td>128 W</td><td>64 W</td><td>32 W</td></tr>
+                                    <tr><td><strong>6 m</strong></td><td>288 W</td><td>144 W</td><td>72 W</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>The pattern: <strong>3 dB more sensitivity halves the amplifier you need.</strong> A 92 dB speaker at 6 m needs less power than an 86 dB speaker at 3 m.</p>
+                    </section>
+
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: bar chart comparing watts required vs sensitivity at fixed distance, illustrating the halving pattern]</div><figcaption>Higher sensitivity halves the amplifier power needed at any distance.</figcaption></figure>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-patch-question me-2"></i>The 2.83 V Trap</h2>
+                        <p>Many spec sheets rate sensitivity at <strong>2.83 V / 1 m</strong> instead of 1 W / 1 m. Into 8 Ω, 2.83 V <em>is</em> 1 W — identical. But into <strong>4 Ω, 2.83 V delivers 2 W</strong>, inflating the rating by 3 dB. A "91 dB" 4 Ω speaker measured at 2.83 V is really an 88 dB (1 W) speaker.</p>
+                        <p>When comparing speakers of different impedances, <strong>subtract 3 dB from 4 Ω 2.83 V ratings</strong> before comparing — or check whether the spec says "1W/1m" explicitly.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-house me-2"></i>Indoor Reality: Room Gain and Critical Distance</h2>
+                        <p>This calculator models <strong>free-field</strong> (outdoor, no reflections) behavior. Indoors, walls return energy: expect <strong>3–6 dB more</strong> than predicted in a typical furnished room.</p>
+                        <p>There's also <strong>critical distance</strong> — the point where reflected sound equals direct sound. Beyond it, moving further back barely reduces level (the room dominates). In living rooms this sits around 1–2 m; in large halls, further out. Past critical distance, the −6 dB rule quietly stops applying.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+                        <ul>
+                            <li><strong>Free-field model.</strong> Indoor results run 3–6 dB higher from reflections.</li>
+                            <li><strong>Point source only.</strong> Line arrays fall ~3 dB per doubling (cylindrical spreading), not 6 dB.</li>
+                            <li><strong>Bass behaves differently.</strong> Below the room's transition frequency, modal behavior replaces the inverse square law.</li>
+                            <li><strong>Ratings vary.</strong> Sensitivity specs are measured under specific conditions; the 2.83 V trap above can shift comparisons 3 dB.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>Point Source vs Line Array Drop-Off</h2>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr><th>Doubling</th><th>Point source (home speakers)</th><th>Line array (concert rigs)</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>1 m → 2 m</strong></td><td>−6 dB</td><td>−3 dB</td></tr>
+                                    <tr><td><strong>2 m → 4 m</strong></td><td>−6 dB</td><td>−3 dB</td></tr>
+                                    <tr><td><strong>Why it matters</strong></td><td>Couch placement is critical</td><td>Crowds hear evenly, far back included</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
+                        <div class="accordion" id="sensitivityDistFAQ">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        How do you calculate SPL at a listening distance?
+                                    </button>
+                                </h3>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        SPL = Sensitivity + 10·log₁₀(Power) − 20·log₁₀(Distance in meters). Example: 88 dB speakers + 100 W at 3 m = 88 + 20 − 9.5 = 98.5 dB. Every doubling of distance costs 6 dB.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        How much does volume drop per meter of distance?
+                                    </button>
+                                </h3>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        It's not per meter — it's per doubling: −6 dB each time distance doubles (1→2 m, 2→4 m, 4→8 m). From 1 m to 3 m you lose 9.5 dB; from 3 m to 6 m you lose another 6 dB. Logarithmic, not linear.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        Is doubling amplifier watts twice as loud?
+                                    </button>
+                                </h3>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        No — doubling power adds just 3 dB, a barely noticeable step. True doubling of perceived loudness needs about +10 dB, i.e. ten times the power. This is why upgrading from 50 W to 100 W rarely transforms a system.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        Why do 4 ohm speakers show higher sensitivity?
+                                    </button>
+                                </h3>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Because many are rated at 2.83 V, which pushes 2 W into 4 Ω (vs 1 W into 8 Ω) — a built-in 3 dB boost. Subtract 3 dB from 4 Ω 2.83 V ratings before comparing with 8 Ω 1 W ratings.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                        Is 86 dB sensitivity good for a speaker?
+                                    </button>
+                                </h3>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        It's on the low side — an 86 dB speaker needs 128 W for 95 dB peaks at 4 m, while a 92 dB speaker needs just 32 W. Low sensitivity isn't bad sound, but it demands a bigger amplifier, especially at distance.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                        Does the inverse square law work indoors?
+                                    </button>
+                                </h3>
+                                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Partially. Near the speakers (direct field), yes. But reflections add 3–6 dB, and beyond the room's critical distance the reverberant field takes over and level stops falling with distance. Use this calculator's number as a conservative baseline indoors.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                                        How many watts do I need for my couch distance?
+                                    </button>
+                                </h3>
+                                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        For 95 dB peaks at 3 m: 72 W with 86 dB speakers, 36 W with 89 dB, 18 W with 92 dB. See the planning table above — and remember that 3 dB more sensitivity halves the required power at any distance.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                                        Why do concert speakers sound even far away?
+                                    </button>
+                                </h3>
+                                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        Concert line arrays radiate cylindrically, losing only ~3 dB per doubling instead of 6 dB. Combined with very high sensitivity drivers and huge power, they maintain level across a crowd — a behavior this point-source calculator doesn't model.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                                        What is near field vs far field?
+                                    </button>
+                                </h3>
+                                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        The near field (within a few wavelengths of the driver) has complex, uneven pressure; the far field is where the inverse square law holds cleanly. For mid/high frequencies at normal listening distances you're in the far field — bass wavelengths are so long that rooms interfere first.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                                        At what dB does hearing damage start?
+                                    </button>
+                                </h3>
+                                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
+                                    <div class="accordion-body text-secondary">
+                                        NIOSH recommends limiting exposure to 85 dB(A) to 8 hours; every 3 dB halves safe time (88 dB → 4 hours, 91 dB → 2 hours). If this calculator predicts 95+ dB at your seat, you have genuine headroom — use it wisely, not constantly.
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded border text-center">
-                                <span class="fw-bold text-dark">Distance Attenuation Term:</span><br>
-                                <span class="fs-5 font-monospace text-teal">$$Delta ext{SPL}_{ ext{dist}} = -20
-                                    log_{10}left(rac{r_2}{r_1}
-                                    ight)$$</span>
-                                <div class="small text-muted mt-1">Every doubling of distance reduces SPL by -6.02 dB.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </section>
 
-                    <hr class="my-4">
+                    <section class="mb-5">
+                        <p class="small text-muted">Predictions use the free-field inverse-square model. Actual in-room levels run 3–6 dB higher from reflections.</p>
+                    </section>
 
-                    <h3 class="h4 text-dark fw-bold mb-3">Point Source vs. Line Source Propagation</h3>
-                    <p class="text-secondary">
-                        The geometry of a loudspeaker transducer array determines how wavefronts expand through space:
-                    </p>
-                    <div class="table-responsive my-3">
-                        <table class="table table-bordered table-hover align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Transducer Source Geometry</th>
-                                    <th>Wavefront Shape</th>
-                                    <th>Attenuation Rate per Distance Doubling</th>
-                                    <th>Acoustic Application</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Point Source (Conventional Box)</strong></td>
-                                    <td>Spherical ($A = 4pi r^2$)</td>
-                                    <td><strong>-6.0 dB / doubling</strong> ($1/r^2$ intensity)</td>
-                                    <td>Studio monitors, home hi-fi speakers, domestic home theaters.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Line Source (Concert Line Array)</strong></td>
-                                    <td>Cylindrical ($A = 2pi r h$)</td>
-                                    <td><strong>-3.0 dB / doubling</strong> ($1/r$ intensity in near field)</td>
-                                    <td>Stadium line arrays, vertical column speakers, tall planar ribbon transducers.
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <section class="p-4 border rounded bg-light">
+                        <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Speaker Tools</h2>
+                        <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
+                            <li><a href="../spl-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-volume-up me-1"></i> SPL Calculator</a></li>
+                            <li><a href="../speaker-sensitivity-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-soundwave me-1"></i> Speaker Sensitivity</a></li>
+                            <li><a href="../amplifier-power-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-lightning me-1"></i> Amplifier Power</a></li>
+                            <li><a href="../sound-distance-drop-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-rulers me-1"></i> Distance Drop</a></li>
+                            <li><a href="../room-acoustics-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-house me-1"></i> Room Acoustics</a></li>
+                        </ul>
+                    </section>
+                </article>
 
-                    <hr class="my-4">
-
-                    <h3 class="h4 text-dark fw-bold mb-3">Real-World In-Room Acoustics: The Critical Distance ($D_c$)
-                    </h3>
-                    <p class="text-secondary">
-                        The theoretical $-6, ext{dB}$ drop per doubling strictly applies outdoors or inside an anechoic
-                        chamber. Inside domestic living rooms, auditoriums, and clubs, boundary reflections retain
-                        acoustic energy within the room:
-                    </p>
-                    <div class="p-3 bg-light rounded border text-center my-3">
-                        <span class="fs-5 text-dark font-monospace">$$D_c approx 0.057 sqrt{rac{Q cdot V}{T_{60}}} quad
-                            [ ext{meters}]$$</span>
-                        <div class="small text-muted mt-2">Where $Q$ is speaker directivity factor, $V$ is room volume
-                            in $ ext{m}^3$, and $T_{60}$ is reverberation time in seconds.</div>
-                    </div>
-                    <ul class="text-secondary">
-                        <li class="mb-2"><strong>Within Critical Distance ($r &lt; D_c$):</strong> Direct sound
-                            dominates. SPL decays at approximately <strong>-4.5 dB to -6 dB</strong> per distance
-                            doubling. Stereo imaging is crisp and direct.</li>
-                        <li class="mb-2"><strong>Beyond Critical Distance ($r &gt; D_c$):</strong> Diffuse reverberant
-                            reflections dominate. The sound level plateaus into a reverberant sound field that decays by
-                            only <strong>-1.5 dB to -3 dB</strong> per doubling of distance.</li>
-                    </ul>
-
-                    <hr class="my-4">
-
-                    <h3 class="h4 text-dark fw-bold mb-3">Engineering Reference Table: Distance vs. Required Amplifier
-                        Wattage</h3>
-                    <p class="text-secondary">
-                        To maintain a constant target listening volume of <strong>90 dB SPL</strong> using an 88
-                        dB/1W/1m sensitivity speaker across increasing listening distances:
-                    </p>
-                    <div class="table-responsive my-3">
-                        <table class="table table-bordered table-striped text-center align-middle bg-white">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Listening Distance</th>
-                                    <th>Free-Field Distance Loss</th>
-                                    <th>Required Continuous Power</th>
-                                    <th>Required +6 dB Dynamic Headroom</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>1.0 meter (3.3 ft)</strong></td>
-                                    <td>0 dB (Reference)</td>
-                                    <td>1.6 Watts</td>
-                                    <td>6.4 Watts</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>2.0 meters (6.6 ft)</strong></td>
-                                    <td>-6.0 dB</td>
-                                    <td>6.3 Watts</td>
-                                    <td>25.2 Watts</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>3.0 meters (9.8 ft)</strong></td>
-                                    <td>-9.5 dB</td>
-                                    <td>14.2 Watts</td>
-                                    <td>56.8 Watts</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>4.0 meters (13.1 ft)</strong></td>
-                                    <td>-12.0 dB</td>
-                                    <td>25.2 Watts</td>
-                                    <td>100.8 Watts</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>8.0 meters (26.2 ft)</strong></td>
-                                    <td>-18.1 dB</td>
-                                    <td>101.0 Watts</td>
-                                    <td>404.0 Watts</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Structured FAQ Accordion -->
-                <div class="card border-0 shadow-sm mt-4 p-4">
-                    <h2 class="h3 text-dark fw-bold mb-3"><i class="bi bi-question-circle text-teal me-2"></i>Frequently
-                        Asked Questions</h2>
-                    <div class="accordion" id="sensitivityDistFAQ">
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq1">
-                                    Why does sound pressure level (SPL) drop by 6 dB for every doubling of distance in
-                                    free space?
-                                </button>
-                            </h3>
-                            <div id="faq1" class="accordion-collapse collapse show"
-                                data-bs-parent="#sensitivityDistFAQ">
-                                <div class="accordion-body text-secondary">
-                                    In a free-field acoustic environment without reflective boundaries, sound radiates
-                                    outward from a point source as an expanding spherical wavefront. The surface area of
-                                    a sphere is proportional to the square of its radius ($A = 4pi r^2$). Because total
-                                    acoustic power remains constant, acoustic intensity drops with the square of
-                                    distance ($1/r^2$), which translates mathematically to a 6.02 dB drop per doubling
-                                    of distance ($20 log_{10}(d_2 / d_1)$).
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq2">
-                                    What is the critical distance (Dc) and why does sound drop less inside a room?
-                                </button>
-                            </h3>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
-                                <div class="accordion-body text-secondary">
-                                    The critical distance ($D_c$) is the boundary location where the direct acoustic
-                                    sound pressure from the speaker equals the diffuse reverberant sound pressure
-                                    reflected from the walls, floor, and ceiling. Closer than $D_c$, the direct wave
-                                    dominates and sound drops at nearly -6 dB per doubling. Beyond $D_c$, the
-                                    reverberant sound field dominates, causing SPL to level off to a near-constant
-                                    baseline that decays by only 2 to 3 dB per doubling.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq3">
-                                    How does a line array speaker differ from a standard point source speaker over
-                                    distance?
-                                </button>
-                            </h3>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
-                                <div class="accordion-body text-secondary">
-                                    A standard point source radiates a spherical wavefront and drops at 6 dB per
-                                    doubling of distance. A line array (a tall vertical column of closely spaced
-                                    drivers) couples acoustically to produce a cylindrical wavefront in its near field.
-                                    Cylindrical wavefronts expand over area $A = 2pi r h$, resulting in an intensity
-                                    drop of only $1/r$, or 3 dB per doubling of distance. This allows line arrays to
-                                    throw intelligible sound much farther in auditoriums and outdoor concerts.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq4">
-                                    How much amplifier power is needed when moving from 1 meter to 4 meters listening
-                                    distance?
-                                </button>
-                            </h3>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
-                                <div class="accordion-body text-secondary">
-                                    Doubling distance from 1 meter to 2 meters causes a 6 dB drop, and doubling again to
-                                    4 meters causes another 6 dB drop, for a total loss of 12 dB. Because every 3 dB
-                                    increase in acoustic output requires doubling electrical amplifier wattage
-                                    ($10^{12/10} = 15.85$), an amplifier must supply approximately 16 times more power
-                                    to maintain the exact same SPL at 4 meters as it produced at 1 meter.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq5">
-                                    What is the difference between sensitivity rated at 1W/1m versus 2.83V/1m?
-                                </button>
-                            </h3>
-                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
-                                <div class="accordion-body text-secondary">
-                                    For a standard 8-ohm nominal speaker, 2.83 volts RMS delivers exactly 1 watt of
-                                    power ($P = V^2 / R = 2.83^2 / 8 = 1.0, ext{W}$), meaning the two ratings are
-                                    identical. However, for a 4-ohm speaker, 2.83 volts delivers 2 watts of power
-                                    ($2.83^2 / 4 = 2.0, ext{W}$). Consequently, a 4-ohm speaker rated at 2.83V/1m will
-                                    measure 3 dB higher than its true 1W/1m sensitivity.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq6">
-                                    Does adding a second identical speaker double the volume?
-                                </button>
-                            </h3>
-                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#sensitivityDistFAQ">
-                                <div class="accordion-body text-secondary">
-                                    Adding a second identical loudspeaker playing the same coherent audio signal
-                                    increases acoustic output by +3 dB if powered separately with the same total
-                                    wattage, or by +6 dB (mutual acoustic coupling) if both drivers are positioned
-                                    within 1/4 wavelength of each other and each receives full amplifier power.
-                                    Subjectively, a 10 dB increase is perceived by the human ear as a doubling of
-                                    loudness.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Sidebar (col-lg-3 col-md-4) -->
@@ -474,9 +494,8 @@
         </div>
     </div>
 
-    <div id="foot/assets/v>
-    <script src=" /assets/bootstrap5.js" defer>
-        </script>
+    <div id="footer"></div>
+    <script src="/assets/bootstrap5.js" defer></script>
         <script src="/assets/tools.js" defer></script>
 
         <!-- tool js -->

@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Guitar Tuner – Free, Real-Time Chromatic Instrument Tuner</title>
+  <title>Online Guitar Tuner – Free Chromatic Tuner</title>
   <meta name="description"
-    content="Free online guitar tuner using your microphone. Fast, real-time chromatic pitch detection for acoustic, electric, bass guitar, and ukulele. Supports Standard, Drop D, DADGAD, Open D, and custom A4 reference calibration.">
+    content="Free online guitar tuner with real-time microphone pitch detection. Tune acoustic, electric, bass, and ukulele in standard, Drop D and DADGAD.">
   <link rel="canonical" href="https://pitchdetectors.com/pitch-detector-tools/guitar-tuner-online/">
-  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+  <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Online Guitar Tuner – Free, Real-Time Chromatic Tuner">
@@ -16,77 +16,149 @@
     content="Tune acoustic, electric, and bass guitar with real-time mic pitch detection. Standard, Drop D, Open tunings, and reference tones.">
   <meta property="og:url" content="https://pitchdetectors.com/pitch-detector-tools/guitar-tuner-online/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/assets/imgs/logo.png">
+  <meta property="og:image" content="./assets/imgs/logo.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Online Guitar Tuner – Real-Time Mic Tuning">
   <meta name="twitter:description"
     content="Accurate chromatic guitar and bass tuner with instant frequency and cent feedback.">
-  <meta name="twitter:image" content="/assets/imgs/logo.png">
+  <meta name="twitter:image" content="./assets/imgs/logo.png">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/bootstrap5.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
-  <link href="/assets/tools.css" rel="stylesheet">
+  <link href="../../assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link href="../../assets/tools.css" rel="stylesheet">
   <meta name="author" content="Pitch Detectors">
 
   <!-- FAQPage Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How does this online guitar tuner detect string pitch through a microphone?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The online tuner captures plucked string audio through your device microphone into a 4096-sample buffer. It applies parabolic interpolation autocorrelation to isolate the fundamental vibrating frequency (Hz) from string overtones, calculating cent deviation relative to your selected tuning standard (A4 = 440 Hz)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What are the exact frequencies for standard 6-string guitar tuning (EADGBE)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "In standard concert tuning (A4 = 440 Hz), 6-string guitar open strings are tuned to: 6th String (Low E) = E2 (82.41 Hz), 5th String = A2 (110.00 Hz), 4th String = D3 (146.83 Hz), 3rd String = G3 (196.00 Hz), 2nd String = B3 (246.94 Hz), and 1st String (High E) = E4 (329.63 Hz)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why should I always tune UP to a note rather than down?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Guitar tuning machine heads (gears and posts) contain subtle mechanical slack (backlash). If you tune down to a note, friction holds the gear teeth loosely; as soon as you bend a string or strum hard, the slack releases and the string drops flat. By tuning down below the pitch and tuning UP into the target, string tension locks the tuning post gears securely."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I tune an electric guitar without an amplifier plugged into my computer?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Unplugged solid-body electric guitars produce quiet acoustic string vibrations. To tune an unplugged electric guitar, sit in a quiet room and hold the guitar body or headstock directly within 6 to 12 inches of your laptop or phone microphone. Pluck the string firmly with a pick or thumb."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do alternate tunings like Drop D, DADGAD, and Half Step Down work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Drop D lowers only the 6th string from E2 down to D2 (73.42 Hz), enabling one-finger power chords. Half Step Down lowers all six strings by one semitone (Eb-Ab-Db-Gb-Bb-Eb) for reduced string tension and warmer vocal accompaniment. DADGAD creates an open Celtic modal tuning (D2-A2-D3-G3-A3-D4) with rich droning resonances."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can this tuner calibrate to A4 = 432 Hz or other reference pitches?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. While standard concert pitch is calibrated to A4 = 440 Hz, you can use the A4 Reference Frequency input on this tool to adjust calibration anywhere between 430 Hz and 450 Hz (such as 432 Hz for philosophical/orchestral tuning or 442 Hz for European classical concerts)."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the exact frequencies for standard 6-string guitar tuning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At concert pitch (A4 = 440 Hz): low E (E2) 82.41 Hz, A (A2) 110.00 Hz, D (D3) 146.83 Hz, G (G3) 196.00 Hz, B (B3) 246.94 Hz, and high E (E4) 329.63 Hz. The full chart with bass and ukulele frequencies is in the table above."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "How does this online guitar tuner detect pitch through a microphone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It captures short slices of microphone audio and runs an autocorrelation algorithm to find the string's fundamental frequency, sharpening the estimate with parabolic interpolation. It then compares that frequency to the nearest target note and displays the gap in cents. A loudness gate keeps silence and background hiss off the meter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why should I always tune up to a note rather than down?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tuning gears have a little mechanical slack. If you tune down into a note, that slack stays loose and can release when you bend or strum hard, dropping the string flat. Tune the string slightly below the target and bring it up into pitch so tension locks the gears in place."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the tuner read sharp right after I pluck the string?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A wide vibration stretches the string, raising its average tension and pitch — so the attack reads sharp and settles as the note decays. The effect grows with harder plucks and is strongest on thin, low-tension strings. Pluck with medium force and read the meter one to two seconds in, on the sustain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are James Taylor's sweetened tuning offsets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From the low E string to the high E: −12, −10, −8, −4, −6, and −3 cents. The flats compensate for capo pressure squeezing strings sharp and for bass strings ringing sharp at the attack. Peterson strobe tuners ship these numbers as the \"ACU\" sweetened preset. Without a capo, it can sound noticeably flat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does tuning with 5th-fret harmonics leave my guitar slightly off?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Harmonics divide the string into whole-number ratios — just intonation — while your frets use twelve-tone equal temperament. Each harmonic-built fifth lands about 2 cents sharp of the equal-tempered fifth, and the error compounds to roughly 10 cents across all six strings. Use harmonics for a quick check, then confirm with a tuner."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tuner calibrate to A4 = 432 Hz or other reference pitches?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The A4 reference field accepts 430–450 Hz, so you can match a 432 Hz recording or an orchestra tuning at 442 Hz. The default 440 Hz is the ISO 16 concert-pitch standard, agreed at a 1939 London conference — a fun detail being that 439 Hz was rejected partly because 439 is a prime number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why won't the tuner access my microphone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Browsers only grant microphone access on secure (HTTPS) pages and after you click Allow — check the microphone icon in the address bar. Close other apps or tabs using the mic, since only one can hold it at a time, and move to a quieter room if the meter reacts to background noise instead of your guitar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I tune an unplugged electric guitar with this tuner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unplugged solid-body guitars are quiet, so give the mic enough signal: sit in a quiet room, hold the guitar 6–12 inches from your laptop or phone microphone, and pluck firmly with a pick. Mute the other strings with your palm so sympathetic vibrations don't confuse the pitch detection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I tune, and why do new strings go flat so fast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tune at the start of every session — and re-check after a few songs if the room is humid or you play hard. New strings stretch under tension for a day or two; tune to pitch, gently lift each string about an inch at the 12th fret, and retune, repeating three or four times until the pitch holds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this as a bass guitar tuner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The chromatic detection tracks any note, including the low E (E1, 41.20 Hz) and low B (B0, 30.87 Hz) of a bass guitar. Because low frequencies need a longer analysis window, let each string ring for about two seconds and keep the room quiet — fans and air conditioners hum in the same range as your lowest strings. Select a bass preset if available so the target notes match standard bass tuning (E1–A1–D2–G2)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I tune a 12-string guitar with this tuner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tune in two passes. First, mute the six thin octave strings by lightly touching them with your fretting hand and tune the six main strings to standard pitch. Then tune each octave string individually against its already-tuned partner — the tuner will confirm when the octave string reads exactly 12 semitones (1,200 cents) above. Work from the low E pair toward the high E pair, since the heavier strings pull the neck most."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this online guitar tuner really free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — completely free, with no account, no download, and no limit on tuning sessions. It runs entirely in your browser using your device microphone. Unlike many free tuner apps, there are no ads interrupting your tuning and no premium tier locking features like alternate tunings or reference-pitch calibration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where should I place my microphone for the best reading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About 30 cm (12 inches) from the guitar, aimed at the soundhole but slightly off-center. Too close and the low strings overload the mic with bass boom; too far and room noise competes with the note. On a phone, the bottom-edge mic usually performs best — lay the phone on a table with the mic end pointing at the guitar. Avoid holding the device in your picking hand, where handling noise ruins the reading."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I tune a ukulele or other instruments with this chromatic tuner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Because the tuner is fully chromatic, it identifies any of the 12 notes — so ukulele (G4–C4–E4–A4), violin, mandolin, banjo, and even wind instruments all work. Just ignore the guitar-specific presets and read the detected note name and cents deviation directly. For ukulele, tune the G string first; its high pitch settles fastest and gives the detector a clean reference."
+      }
+    }
+  ]
+}
   </script>
 
   <style>
@@ -345,7 +417,7 @@
                     Milliseconds</a></li>
                 <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song
                     Key Finder</a></li>
-                <li><a href="https://pitchdetectors.com/BPM-Pitch-Calculator.html"><i class="bi bi-sliders"></i>
+                <li><a href="https://pitchdetectors.com/dj-music-production-tools/bpm-to-speed/"><i class="bi bi-sliders"></i>
                     Pitch Shifter</a></li>
 
               </ul>
@@ -394,8 +466,8 @@
         <div class="tool-container">
           <div class="tool-title">
             <h1><i class="bi bi-music-note-beamed me-2"></i>Online Guitar Tuner</h1>
-            <p>Free chromatic tuner with real-time pitch detection. Tune your guitar, bass, ukulele, or any
-              instrument using your microphone.</p>
+            <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
+            <p>Free chromatic tuner with real-time mic pitch detection for guitar, bass, and ukulele.</p>
           </div>
 
           <!-- Tuner Display -->
@@ -468,420 +540,467 @@
           </div>
         </div>
 
-        <!-- COMPREHENSIVE GUITAR TUNING GUIDE & REFERENCE -->
-        <div class="mt-5 pt-3">
-          <section class="mb-5">
-            <h2 class="h3 fw-bold text-teal mb-3">Mastering Guitar Tuning: The Physics of String Vibration, Harmonics,
-              and Pitch Stability</h2>
-            <p>
-              Tuning a guitar is an acoustic calibration that aligns string vibrations with mathematical pitch
-              intervals. When you pluck an open guitar string, it produces a fundamental standing wave along its
-              speaking length ($L$, the distance from nut to bridge saddle) whose frequency is governed by
-              <strong>Mersenne's Law</strong>:
-            </p>
-            <div class="p-3 bg-light rounded border text-center font-monospace my-3">
-              $$f = \frac{1}{2L} \sqrt{\frac{T}{\mu}}$$
-            </div>
-            <p class="small text-muted mb-3">
-              Where $T$ is string tension (in Newtons or pounds of pull) and $\mu$ is linear mass density (the
-              thickness/gauge of the string). Turning a tuning peg increases tension $T$, pulling pitch sharp; loosening
-              the peg decreases tension, dropping pitch flat.
-            </p>
-            <p>
-              Because guitar strings are non-ideal physical wires with stiffness and overtones, standard human hearing
-              can struggle to distinguish the true fundamental frequency from bright metallic upper harmonics. This
-              <strong>Online Guitar Tuner</strong> applies a 4096-sample time-domain autocorrelation algorithm to strip
-              away harmonic distortion and lock onto the true fundamental string frequency with cent-level precision.
-            </p>
-          </section>
+                <!-- Guitar tuner guide: semantic SEO content -->
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <p>An online guitar tuner listens through your device's microphone and shows, in real time, whether each string is sharp or flat. Pluck a string, read the note name, frequency, and cents value, then turn the tuning peg until the meter settles near zero. This tuner covers acoustic, electric, and bass guitars plus ukulele, with presets for standard, Drop D, half-step-down, DADGAD, and open tunings — no download needed.</p>
+          </div>
+        </div>
 
-          <!-- Standard Tuning & Instrument Frequencies -->
-          <section class="mb-5">
-            <h3 class="h4 fw-bold mb-3">Open String Frequencies Across Stringed Instruments</h3>
-            <p>
-              The table below displays the exact fundamental frequencies, octaves, and MIDI note values for standard
-              6-string guitar, 7-string extended guitar, 4-string and 5-string bass, and standard soprano/concert
-              ukulele:
-            </p>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover text-center align-middle">
-                <thead class="table-light">
-                  <tr>
-                    <th>Instrument</th>
-                    <th>String Number</th>
-                    <th>Note &amp; Octave</th>
-                    <th>Exact Frequency ($A_4 = 440\text{ Hz}$)</th>
-                    <th>MIDI Note #</th>
-                    <th>Wavelength in Air</th>
-                  </tr>
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+            <ul>
+              <li>This tuner measures your string's frequency and reports the gap to the target note in <strong>cents</strong> — hundredths of a semitone.</li>
+              <li>Standard tuning is <strong>E2–A2–D3–G3–B3–E4</strong> at A4 = 440 Hz; bass, ukulele, and five alternate presets are built in.</li>
+              <li><strong>Tune to the sustain, not the attack:</strong> strings ring sharp right after the pluck and settle as the note decays.</li>
+              <li>Always <strong>tune up to pitch from below</strong> — tuning gears hold tension more reliably that way.</li>
+              <li>Microphone tuning needs a quiet room, HTTPS, and mic permission; on a noisy stage, a clip-on tuner works better.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>What Is an Online Guitar Tuner?</h2>
+            <p><strong>An online guitar tuner is a browser-based tool that uses your device's microphone to measure each plucked string's pitch in real time.</strong> It finds the string's fundamental frequency in hertz, compares it to the nearest target note, and displays the difference in cents — telling you exactly how far, and in which direction, to turn the tuning peg.</p>
+            <p>Most online tuners are chromatic: they identify any note, not just the six open strings. This one pairs chromatic detection with presets for standard, bass, ukulele, Drop D, half-step-down, Open D, and DADGAD tunings, so the target notes match the tuning you are aiming for.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>How This Tuner Works</h2>
+            <p>This tuner grabs short slices of microphone audio and runs an <strong>autocorrelation algorithm</strong> — a standard pitch-detection technique — to find the string's fundamental frequency: the lowest, strongest vibration in the plucked note.</p>
+            <p>Each slice holds 4,096 audio samples (about a tenth of a second at 44,100 Hz). The algorithm compares the slice against delayed copies of itself; the delay that lines up best reveals the wave's period, and parabolic interpolation between neighboring delays sharpens the estimate beyond the sample grid. A loudness gate ignores silence and background hiss so the meter only reacts to real notes.</p>
+            <p>The measured frequency is converted to the nearest note name, and the gap is shown in cents: 1,200 × log₂(measured ÷ target). The A4 reference defaults to 440 Hz and can be set from 430 to 450 Hz to match pianos, orchestras, or recordings tuned to 432 Hz. The detection approach follows the same autocorrelation method published in Chris Wilson's open-source PitchDetect reference, which underlies many browser tuners.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-calculator me-2"></i>Tuning Math: The Cents Formula and a Worked Example</h2>
+            <p>Cents turn tiny pitch gaps into readable numbers: 100 cents equals one semitone (one fret), and each semitone multiplies frequency by about 1.05946. The formula is <strong>cents = 1,200 × log₂(f_measured ÷ f_target)</strong>.</p>
+            <p><strong>Worked example:</strong> your low E string should be 82.41 Hz. The tuner reads 81.95 Hz: 1,200 × log₂(81.95 ÷ 82.41) ≈ −9.7 cents. The string is roughly 10 cents flat — tighten the 6th-string peg in small turns and pluck again until the readout holds near zero.</p>
+            <p>The formula also runs in reverse: the frequency 8 cents above A2 (110.00 Hz) is 110 × 2^(8÷1200) ≈ 110.51 Hz. For repeated conversions, the <a href="../cents-calculator-online/">Cents Calculator</a> does this arithmetic for any interval.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-list-ol me-2"></i>How to Use This Guitar Tuner</h2>
+            <ol class="lead-steps mb-4">
+              <li><strong>Click Start Tuner</strong> and allow microphone access — the browser asks once, and the page must load over HTTPS.</li>
+              <li><strong>Pick a tuning preset:</strong> Standard, Drop D, Half Step Down, Open D, DADGAD, Bass, or Ukulele. The target notes and reference tones update automatically.</li>
+              <li><strong>Mute the strings you are not tuning</strong> with your palm, then pluck the target string with a medium pick — not a hard attack, which reads sharp.</li>
+              <li><strong>Watch the note name, frequency, and cents meter.</strong> Turn the peg slowly until the readout holds near 0 cents and the status badge turns green.</li>
+              <li><strong>Tune up to every note:</strong> if a string is sharp, loosen it below the target first, then tune upward into pitch.</li>
+              <li><strong>Optional:</strong> tap a reference note to hear the target pitch, or set the A4 reference (430–450 Hz) to match an orchestra or a 432 Hz recording.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-eye me-2"></i>Reading Your Result</h2>
+            <p>The big readout names the detected note; the meter and cents value show how far you are from it. The bar spans ±50 cents, with the needle at center meaning zero.</p>
+            <div class="table-responsive my-3">
+              <table class="table table-bordered table-striped align-middle small">
+                <thead class="table-dark">
+                  <tr><th>Cents reading</th><th>Display</th><th>Meaning</th><th>Next step</th></tr>
                 </thead>
                 <tbody>
-                  <tr class="table-light">
-                    <td colspan="6" class="text-start fw-bold text-teal">6-String Standard Guitar (EADGBE)</td>
-                  </tr>
-                  <tr>
-                    <td>Guitar</td>
-                    <td>6th (Thickest)</td>
-                    <td><strong>E2</strong></td>
-                    <td>82.41 Hz</td>
-                    <td>40</td>
-                    <td>4.16 m</td>
-                  </tr>
-                  <tr>
-                    <td>Guitar</td>
-                    <td>5th</td>
-                    <td><strong>A2</strong></td>
-                    <td>110.00 Hz</td>
-                    <td>45</td>
-                    <td>3.12 m</td>
-                  </tr>
-                  <tr>
-                    <td>Guitar</td>
-                    <td>4th</td>
-                    <td><strong>D3</strong></td>
-                    <td>146.83 Hz</td>
-                    <td>50</td>
-                    <td>2.34 m</td>
-                  </tr>
-                  <tr>
-                    <td>Guitar</td>
-                    <td>3rd</td>
-                    <td><strong>G3</strong></td>
-                    <td>196.00 Hz</td>
-                    <td>55</td>
-                    <td>1.75 m</td>
-                  </tr>
-                  <tr>
-                    <td>Guitar</td>
-                    <td>2nd</td>
-                    <td><strong>B3</strong></td>
-                    <td>246.94 Hz</td>
-                    <td>59</td>
-                    <td>1.39 m</td>
-                  </tr>
-                  <tr>
-                    <td>Guitar</td>
-                    <td>1st (Thinnest)</td>
-                    <td><strong>E4</strong></td>
-                    <td>329.63 Hz</td>
-                    <td>64</td>
-                    <td>1.04 m</td>
-                  </tr>
-
-                  <tr class="table-light">
-                    <td colspan="6" class="text-start fw-bold text-teal">4-String Standard Bass Guitar (EADG - 1 Octave
-                      Below Guitar)</td>
-                  </tr>
-                  <tr>
-                    <td>Bass</td>
-                    <td>4th (Low)</td>
-                    <td><strong>E1</strong></td>
-                    <td>41.20 Hz</td>
-                    <td>28</td>
-                    <td>8.32 m</td>
-                  </tr>
-                  <tr>
-                    <td>Bass</td>
-                    <td>3rd</td>
-                    <td><strong>A1</strong></td>
-                    <td>55.00 Hz</td>
-                    <td>33</td>
-                    <td>6.24 m</td>
-                  </tr>
-                  <tr>
-                    <td>Bass</td>
-                    <td>2nd</td>
-                    <td><strong>D2</strong></td>
-                    <td>73.42 Hz</td>
-                    <td>38</td>
-                    <td>4.67 m</td>
-                  </tr>
-                  <tr>
-                    <td>Bass</td>
-                    <td>1st (High)</td>
-                    <td><strong>G2</strong></td>
-                    <td>98.00 Hz</td>
-                    <td>43</td>
-                    <td>3.50 m</td>
-                  </tr>
-
-                  <tr class="table-light">
-                    <td colspan="6" class="text-start fw-bold text-teal">Standard Ukulele (Re-entrant GCEA)</td>
-                  </tr>
-                  <tr>
-                    <td>Ukulele</td>
-                    <td>4th</td>
-                    <td><strong>G4</strong></td>
-                    <td>392.00 Hz</td>
-                    <td>67</td>
-                    <td>0.87 m</td>
-                  </tr>
-                  <tr>
-                    <td>Ukulele</td>
-                    <td>3rd</td>
-                    <td><strong>C4</strong></td>
-                    <td>261.63 Hz</td>
-                    <td>60</td>
-                    <td>1.31 m</td>
-                  </tr>
-                  <tr>
-                    <td>Ukulele</td>
-                    <td>2nd</td>
-                    <td><strong>E4</strong></td>
-                    <td>329.63 Hz</td>
-                    <td>64</td>
-                    <td>1.04 m</td>
-                  </tr>
-                  <tr>
-                    <td>Ukulele</td>
-                    <td>1st</td>
-                    <td><strong>A4</strong></td>
-                    <td>440.00 Hz</td>
-                    <td>69</td>
-                    <td>0.78 m</td>
-                  </tr>
+                  <tr><td>0 to ±5</td><td>green "In Tune"</td><td>close enough for ensemble playing</td><td>move to the next string</td></tr>
+                  <tr><td>6–15 flat</td><td>red "Flat – Tighten"</td><td>slightly below pitch</td><td>small tightening turns</td></tr>
+                  <tr><td>6–15 sharp</td><td>amber "Sharp – Loosen"</td><td>slightly above pitch</td><td>loosen below target, then tune up</td></tr>
+                  <tr><td>16–49 either way</td><td>same badges</td><td>clearly off</td><td>adjust slowly and re-pluck gently</td></tr>
+                  <tr><td>beyond ±50</td><td>—</td><td>you are closer to a neighboring note</td><td>check the preset and string</td></tr>
                 </tbody>
               </table>
             </div>
-          </section>
+            <p>Read the sustain, not the attack: give the needle a second to settle after each pluck before deciding the string is done.</p>
+          </div>
+        </div>
 
-          <!-- Complete Alternate Tunings Guide -->
-          <section class="mb-5">
-            <h3 class="h4 fw-bold mb-3">Popular Alternate Guitar Tunings &amp; Tone Guide</h3>
-            <p>
-              Altering open string pitches transforms fingerings, resonances, and chord voicings. The table below lists
-              the most widely utilized alternate tunings across rock, blues, folk, and metal:
-            </p>
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover align-middle">
-                <thead class="table-light">
-                  <tr>
-                    <th>Tuning Name</th>
-                    <th>Pitches (6th to 1st)</th>
-                    <th>Semitone Offset from Standard</th>
-                    <th>Musical Genre &amp; Notable Artists</th>
-                  </tr>
+        <figure class="my-4 text-center">
+          <div class="border rounded p-5 bg-light text-muted">[Diagram: anatomy of the tuner display — large note readout, frequency line, cents bar with needle, and the flat/sharp/in-tune status badge]</div>
+          <figcaption class="small text-muted mt-2">Alt text: "Labeled diagram of an online guitar tuner display showing the note readout, frequency, cents meter, and tuning status badge"</figcaption>
+        </figure>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-soundwave me-2"></i>Tune to the Sustain, Not the Attack</h2>
+            <p><strong>A freshly plucked string rings sharp — sometimes by more than a semitone — then drifts flatter as the note decays.</strong> This is the single most misunderstood thing about electronic tuners.</p>
+            <p>The physics is straightforward: a wide vibration stretches the string, raising its average tension and therefore its pitch. Pitch holds steady only when the vibration's width is tiny compared with the string's length. Pluck harder and the effect grows; thin, low-tension strings shift more than thick ones.</p>
+            <p>The practical rule: pluck with medium force and trust the meter one to two seconds in, on the sustain — that is the pitch your audience actually hears. Players on the Acoustic Guitar Forum report the same behavior across mic and clip-on tuners, and the MIDI Guitar FAQ documents it as a known hurdle for pitch-to-MIDI tracking.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-stars me-2"></i>Sweetened Tuning: James Taylor's Cent Offsets</h2>
+            <p><strong>James Taylor deliberately tunes every string slightly flat</strong> — specific offsets that compensate for the ways real playing pulls pitch sharp.</p>
+            <div class="table-responsive my-3">
+              <table class="table table-bordered table-striped align-middle text-center small">
+                <thead class="table-dark">
+                  <tr><th>6th (low E)</th><th>5th (A)</th><th>4th (D)</th><th>3rd (G)</th><th>2nd (B)</th><th>1st (high E)</th></tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><strong>Drop D</strong></td>
-                    <td>D &ndash; A &ndash; D &ndash; G &ndash; B &ndash; E</td>
-                    <td>6th string down 2 semitones (-2)</td>
-                    <td>Hard Rock, Grunge, Metal (Foo Fighters, Soundgarden, Tool). One-finger power chords.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Half Step Down (Eb)</strong></td>
-                    <td>E&flat; &ndash; A&flat; &ndash; D&flat; &ndash; G&flat; &ndash; B&flat; &ndash; E&flat;</td>
-                    <td>All strings down 1 semitone (-1)</td>
-                    <td>Jimi Hendrix, Stevie Ray Vaughan, Guns N' Roses, Nirvana. Warmer tone, easier string bending.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><strong>DADGAD (Celtic)</strong></td>
-                    <td>D &ndash; A &ndash; D &ndash; G &ndash; A &ndash; D</td>
-                    <td>Strings 6, 2, 1 down 2 semitones</td>
-                    <td>Celtic Folk, Led Zeppelin ("Kashmir"), Pierre Bensusan. Lush modal suspended drone.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Open D</strong></td>
-                    <td>D &ndash; A &ndash; D &ndash; F# &ndash; A &ndash; D</td>
-                    <td>Produces full D Major chord open</td>
-                    <td>Blues slide guitar, Bob Dylan, Joni Mitchell, Mumford &amp; Sons.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Open G</strong></td>
-                    <td>D &ndash; G &ndash; D &ndash; G &ndash; B &ndash; D</td>
-                    <td>Strings 6, 5, 1 down 2 semitones</td>
-                    <td>Keith Richards (Rolling Stones - "Brown Sugar", "Start Me Up"), Black Crowes.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Drop C</strong></td>
-                    <td>C &ndash; G &ndash; C &ndash; F &ndash; A &ndash; D</td>
-                    <td>Whole step down + 6th string drop</td>
-                    <td>Metalcore, Post-Grunge (Deftones, Slipknot, Killswitch Engage). Heavy chug tone.</td>
-                  </tr>
+                  <tr><td><strong>−12</strong></td><td><strong>−10</strong></td><td><strong>−8</strong></td><td><strong>−4</strong></td><td><strong>−6</strong></td><td><strong>−3</strong></td></tr>
                 </tbody>
               </table>
             </div>
-          </section>
+            <p>Two reasons drive the offsets. First, capo pressure squeezes strings sharp — most on the bass strings. Second, bass strings ring sharp at the attack, as described above. Peterson strobe tuners ship his numbers as the "ACU" sweetened preset.</p>
+            <p>One caution from the same interview (MusicRadar): without a capo the result can sound noticeably flat. Treat sweetened tuning as a capo player's tool — dial these offsets in with this tuner's A4 field and cents readout if you play capoed sets.</p>
+          </div>
+        </div>
 
-          <!-- Professional Tuning Techniques -->
-          <section class="mb-5">
-            <h3 class="h4 fw-bold mb-3">Professional Guitar Tuning Best Practices</h3>
-            <div class="row g-4">
-              <div class="col-md-4">
-                <div class="p-3 bg-light rounded border h-100">
-                  <h5 class="fw-bold text-teal mb-2"><i class="bi bi-arrow-up-circle me-2"></i>1. Always Tune UP to
-                    Pitch</h5>
-                  <p class="small text-muted mb-0">Never tune down into a note. If a string is sharp, detune it half a
-                    turn BELOW the target pitch, then slowly tune UP into the green center. This prevents slack in the
-                    tuning gear box from slipping when you bend notes.</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="p-3 bg-light rounded border h-100">
-                  <h5 class="fw-bold text-teal mb-2"><i class="bi bi-hand-index-thumb me-2"></i>2. Mute Sympathetic
-                    Strings</h5>
-                  <p class="small text-muted mb-0">When tuning a single string, rest your palm lightly across the
-                    remaining five strings. Unmuted open strings will vibrate sympathetically (acoustic resonance),
-                    confusing the microphone pitch analyzer with multiple frequencies.</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="p-3 bg-light rounded border h-100">
-                  <h5 class="fw-bold text-teal mb-2"><i class="bi bi-shield-check me-2"></i>3. Check 12th-Fret
-                    Intonation</h5>
-                  <p class="small text-muted mb-0">Tune the open string to 0 cents, then lightly touch the string over
-                    the 12th fret wire to play a 12th-fret harmonic. Next, press down and play the 12th fretted note. If
-                    the fretted note is sharp compared to the harmonic, your bridge saddle needs to be adjusted back.
-                  </p>
-                </div>
-              </div>
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-arrow-down-up me-2"></i>Why 5th-Fret Harmonic Tuning Drifts</h2>
+            <p><strong>Tuning by matching 5th- and 7th-fret harmonics builds just-intonation fifths — pure 3:2 ratios that are each 2 cents sharp of the equal-tempered fifths your frets use.</strong> Across six strings that drift compounds to roughly 10 cents.</p>
+            <p>Harmonics divide the string into whole-number ratios, which is perfect within one key; modern frets split the octave into twelve equal steps so every key works. A harmonic-tuned guitar is fine for a quick check, but confirm with a tuner afterward — the analysis is laid out in a widely cited diyAudio thread on the method.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-thermometer-half me-2"></i>Humidity, Temperature, and New Strings</h2>
+            <p><strong>When humidity rises, your guitar goes sharp; when it falls, the guitar goes flat.</strong> Moist air swells the wood, stretching the strings tighter; dry air lets the wood shrink and tension drops. Players on the Acoustic Guitar Forum report exactly this pattern season after season.</p>
+            <p>New strings are the other classic drifter: they stretch under full tension for the first day or two. Break them in by tuning to pitch, gently lifting each string about an inch at the 12th fret, and retuning — repeat three or four times until the pitch holds. A light-gauge acoustic set pulls about 160 pounds in total (per player-compiled D'Addario tension charts), so the neck and strings need a little time to settle into agreement.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-table me-2"></i>Open-String Frequencies and Tuning Presets</h2>
+            <p>Every preset in this tuner maps to exact frequencies at A4 = 440 Hz:</p>
+            <div class="table-responsive my-3">
+              <table class="table table-bordered table-striped align-middle text-center small">
+                <thead class="table-dark">
+                  <tr><th>Instrument</th><th>String</th><th>Note</th><th>Frequency</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td rowspan="6"><strong>Guitar</strong></td><td>6th (thickest)</td><td><strong>E2</strong></td><td>82.41 Hz</td></tr>
+                  <tr><td>5th</td><td><strong>A2</strong></td><td>110.00 Hz</td></tr>
+                  <tr><td>4th</td><td><strong>D3</strong></td><td>146.83 Hz</td></tr>
+                  <tr><td>3rd</td><td><strong>G3</strong></td><td>196.00 Hz</td></tr>
+                  <tr><td>2nd</td><td><strong>B3</strong></td><td>246.94 Hz</td></tr>
+                  <tr><td>1st (thinnest)</td><td><strong>E4</strong></td><td>329.63 Hz</td></tr>
+                  <tr><td rowspan="4"><strong>Bass</strong></td><td>4th (low)</td><td><strong>E1</strong></td><td>41.20 Hz</td></tr>
+                  <tr><td>3rd</td><td><strong>A1</strong></td><td>55.00 Hz</td></tr>
+                  <tr><td>2nd</td><td><strong>D2</strong></td><td>73.42 Hz</td></tr>
+                  <tr><td>1st (high)</td><td><strong>G2</strong></td><td>98.00 Hz</td></tr>
+                  <tr><td rowspan="4"><strong>Ukulele</strong></td><td>4th</td><td><strong>G4</strong></td><td>392.00 Hz</td></tr>
+                  <tr><td>3rd</td><td><strong>C4</strong></td><td>261.63 Hz</td></tr>
+                  <tr><td>2nd</td><td><strong>E4</strong></td><td>329.63 Hz</td></tr>
+                  <tr><td>1st</td><td><strong>A4</strong></td><td>440.00 Hz</td></tr>
+                </tbody>
+              </table>
             </div>
-          </section>
+            <p><strong>Drop D</strong> lowers only the 6th string to D2 (73.42 Hz) for one-finger power chords. <strong>Half Step Down</strong> drops everything a semitone (E♭ tuning) for a slacker feel and easier bends. <strong>DADGAD</strong> (D2–A2–D3–G3–A3–D4) gives an open, droning Celtic color; <strong>Open D</strong> (D–A–D–F♯–A–D) rings a full D major chord for slide work. Going lower than these presets usually calls for heavier string gauges to keep tension playable. For the exact hertz of any note, the <a href="../note-to-frequency-online/">Note to Frequency</a> tool computes it from any A4 reference.</p>
+          </div>
+        </div>
 
-          <!-- FAQ Section -->
-          <section class="mb-5">
-            <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
+        <figure class="my-4 text-center">
+          <div class="border rounded p-5 bg-light text-muted">[Diagram: six-string guitar headstock-to-bridge chart mapping each open string E2–E4 to its frequency in Hz and cent relationship to A4 = 440 Hz]</div>
+          <figcaption class="small text-muted mt-2">Alt text: "Guitar open-string frequency chart showing E2 82.41 Hz through E4 329.63 Hz at concert pitch"</figcaption>
+        </figure>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-music-note-beamed me-2"></i>Tuning Acoustic, Electric, Bass, and 12-String Guitars</h2>
+            <p>
+              This free online guitar tuner works as an acoustic guitar tuner, an electric guitar tuner, and a bass guitar tuner — the chromatic detection identifies any note, so the same tool covers every instrument in the guitar family. A few adjustments per instrument give you faster, more stable readings.
+            </p>
+            <h3>Acoustic guitar</h3>
+            <p>
+              As an acoustic guitar tuner, this tool listens through your microphone, so placement matters. Set your phone or laptop about 30 cm (12 inches) from the soundhole, slightly off-axis — dead-center picks up too much boomy low end and confuses the reading on the low E and A strings. Pluck with your fingertip rather than a pick for a cleaner fundamental, and let each note ring for a full second so the tuner locks onto the sustain.
+            </p>
+            <h3>Electric guitar</h3>
+            <p>
+              For an electric guitar tuner session, an unplugged solid-body is quiet but perfectly usable: hold the microphone near the upper bout, away from your picking hand, and pluck firmly. If the room is noisy, roll your tone knob down slightly — it trims the harsh attack harmonics and leaves a purer fundamental for the detector. Humbuckers and single-coils both work; the tuner only needs the acoustic vibration reaching the mic.
+            </p>
+            <h3>Bass guitar</h3>
+            <p>
+              Used as a bass guitar tuner, the same chromatic engine tracks down to the low B of a 5-string (30.87 Hz). Low notes need a longer analysis window, so let each string ring for two full seconds and keep background noise down — air conditioners and computer fans live in the same frequency neighborhood as your E string. Tune the low strings first; their vibration can sympathetically excite the higher strings and blur their readings.
+            </p>
+            <h3>12-string and classical guitars</h3>
+            <p>
+              On a 12-string guitar, tune the six primary (lower-octave) strings first with the octave pairs muted — lightly touch the octave strings with your fretting hand while you pluck. Then tune each octave string against its partner. For a classical guitar with nylon strings, expect more drift: nylon stretches for days, so tune up, play for five minutes, and tune again. New nylon trebles can take a full week to settle.
+            </p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+            <ul>
+              <li><strong>Noise wins:</strong> in a loud room the meter reacts to voices and drums, not your guitar — use a clip-on tuner on stage.</li>
+              <li><strong>Microphone access needs HTTPS and your permission;</strong> some browsers block the mic if another app is already using it.</li>
+              <li><strong>Very low bass notes and whisper-quiet unplugged electrics</strong> give weaker, jumpier readings — get close to the mic.</li>
+              <li><strong>Chromatic detection names the nearest note, not the intended string:</strong> with the wrong preset, it will happily confirm the wrong note.</li>
+              <li><strong>A tuner cannot fix intonation:</strong> if the open string reads 0 but the 12th-fret note is sharp, the bridge saddle needs moving, not the peg.</li>
+              <li><strong>Match your reference:</strong> tuning to 440 Hz while the band plays at 442 Hz still sounds out of tune — check the <a href="../frequency-to-note-online/">Frequency to Note</a> tool if you are matching a recording.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-arrow-left-right me-2"></i>Online Tuner vs. Other Tuners</h2>
+            <div class="table-responsive my-3">
+              <table class="table table-bordered table-striped align-middle small">
+                <thead class="table-dark">
+                  <tr><th>Tool</th><th>Best for</th><th>Trade-off</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>This online tuner</strong></td><td>quick, free tuning anywhere with a microphone</td><td>needs a quiet room and HTTPS mic access</td></tr>
+                  <tr><td><strong>Clip-on tuner</strong></td><td>noisy stages — reads vibration, not sound</td><td>costs roughly $10–30; needs a battery</td></tr>
+                  <tr><td><strong>Pedal tuner</strong></td><td>live rigs — mutes the signal while you tune</td><td>pedalboard only, not portable</td></tr>
+                  <tr><td><strong>Tuning fork / pitch pipe</strong></td><td>one reference note anywhere, no batteries</td><td>only one note; the rest is tuned by ear</td></tr>
+                  <tr><td><strong><a href="../transpose-calculator-online/">Transpose Calculator</a> + this tuner</strong></td><td>retuning for a capo or a singer's key</td><td>two steps instead of one</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
             <div class="accordion" id="gtFaqAccordion">
 
               <div class="accordion-item">
-                <h2 class="accordion-header" id="gtHeading1">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq1"
-                    aria-expanded="true">
-                    How does this online guitar tuner detect string pitch through a microphone?
+                <h3 class="accordion-header" id="gtHeading1">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq1" aria-expanded="true">
+                    What are the exact frequencies for standard 6-string guitar tuning?
                   </button>
-                </h2>
+                </h3>
                 <div id="gtFaq1" class="accordion-collapse collapse show" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    The online tuner captures plucked string audio through your device microphone into a 4096-sample
-                    buffer. It applies parabolic interpolation autocorrelation to isolate the fundamental vibrating
-                    frequency (Hz) from string overtones, calculating cent deviation relative to your selected tuning
-                    standard (A4 = 440 Hz).
+                    At concert pitch (A4 = 440 Hz): low E (E2) 82.41 Hz, A (A2) 110.00 Hz, D (D3) 146.83 Hz, G (G3) 196.00 Hz, B (B3) 246.94 Hz, and high E (E4) 329.63 Hz. The full chart with bass and ukulele frequencies is in the table above.
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
-                <h2 class="accordion-header" id="gtHeading2">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#gtFaq2">
-                    What are the exact frequencies for standard 6-string guitar tuning (EADGBE)?
+                <h3 class="accordion-header" id="gtHeading2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq2">
+                    How does this online guitar tuner detect pitch through a microphone?
                   </button>
-                </h2>
+                </h3>
                 <div id="gtFaq2" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    In standard concert tuning (A4 = 440 Hz), 6-string guitar open strings are tuned to:
-                    <ul class="mb-0 mt-2">
-                      <li>6th String (Low E) = E2 (82.41 Hz)</li>
-                      <li>5th String = A2 (110.00 Hz)</li>
-                      <li>4th String = D3 (146.83 Hz)</li>
-                      <li>3rd String = G3 (196.00 Hz)</li>
-                      <li>2nd String = B3 (246.94 Hz)</li>
-                      <li>1st String (High E) = E4 (329.63 Hz)</li>
-                    </ul>
+                    It captures short slices of microphone audio and runs an autocorrelation algorithm to find the string's fundamental frequency, sharpening the estimate with parabolic interpolation. It then compares that frequency to the nearest target note and displays the gap in cents. A loudness gate keeps silence and background hiss off the meter.
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
-                <h2 class="accordion-header" id="gtHeading3">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#gtFaq3">
-                    Why should I always tune UP to a note rather than down?
+                <h3 class="accordion-header" id="gtHeading3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq3">
+                    Why should I always tune up to a note rather than down?
                   </button>
-                </h2>
+                </h3>
                 <div id="gtFaq3" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    Guitar tuning machine heads (gears and posts) contain subtle mechanical slack (backlash). If you
-                    tune down to a note, friction holds the gear teeth loosely; as soon as you bend a string or strum
-                    hard, the slack releases and the string drops flat. By tuning down below the pitch and tuning UP
-                    into the target, string tension locks the tuning post gears securely.
+                    Tuning gears have a little mechanical slack. If you tune down into a note, that slack stays loose and can release when you bend or strum hard, dropping the string flat. Tune the string slightly below the target and bring it up into pitch so tension locks the gears in place.
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
-                <h2 class="accordion-header" id="gtHeading4">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#gtFaq4">
-                    How do I tune an electric guitar without an amplifier plugged into my computer?
+                <h3 class="accordion-header" id="gtHeading4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq4">
+                    Why does the tuner read sharp right after I pluck the string?
                   </button>
-                </h2>
+                </h3>
                 <div id="gtFaq4" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    Unplugged solid-body electric guitars produce quiet acoustic string vibrations. To tune an unplugged
-                    electric guitar, sit in a quiet room and hold the guitar body or headstock directly within 6 to 12
-                    inches of your laptop or phone microphone. Pluck the string firmly with a pick or thumb.
+                    A wide vibration stretches the string, raising its average tension and pitch — so the attack reads sharp and settles as the note decays. The effect grows with harder plucks and is strongest on thin, low-tension strings. Pluck with medium force and read the meter one to two seconds in, on the sustain.
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
-                <h2 class="accordion-header" id="gtHeading5">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#gtFaq5">
-                    How do alternate tunings like Drop D, DADGAD, and Half Step Down work?
+                <h3 class="accordion-header" id="gtHeading5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq5">
+                    What are James Taylor's sweetened tuning offsets?
                   </button>
-                </h2>
+                </h3>
                 <div id="gtFaq5" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    Drop D lowers only the 6th string from E2 down to D2 (73.42 Hz), enabling one-finger power chords.
-                    Half Step Down lowers all six strings by one semitone (Eb-Ab-Db-Gb-Bb-Eb) for reduced string tension
-                    and warmer vocal accompaniment. DADGAD creates an open Celtic modal tuning (D2-A2-D3-G3-A3-D4) with
-                    rich droning resonances.
+                    From the low E string to the high E: −12, −10, −8, −4, −6, and −3 cents. The flats compensate for capo pressure squeezing strings sharp and for bass strings ringing sharp at the attack. Peterson strobe tuners ship these numbers as the "ACU" sweetened preset. Without a capo, it can sound noticeably flat.
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
-                <h2 class="accordion-header" id="gtHeading6">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#gtFaq6">
-                    Can this tuner calibrate to A4 = 432 Hz or other reference pitches?
+                <h3 class="accordion-header" id="gtHeading6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq6">
+                    Why does tuning with 5th-fret harmonics leave my guitar slightly off?
                   </button>
-                </h2>
+                </h3>
                 <div id="gtFaq6" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
                   <div class="accordion-body">
-                    Yes. While standard concert pitch is calibrated to A4 = 440 Hz, you can use the A4 Reference
-                    Frequency input on this tool to adjust calibration anywhere between 430 Hz and 450 Hz (such as 432
-                    Hz for philosophical/orchestral tuning or 442 Hz for European classical concerts).
+                    Harmonics divide the string into whole-number ratios — just intonation — while your frets use twelve-tone equal temperament. Each harmonic-built fifth lands about 2 cents sharp of the equal-tempered fifth, and the error compounds to roughly 10 cents across all six strings. Use harmonics for a quick check, then confirm with a tuner.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="gtHeading7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq7">
+                    Can this tuner calibrate to A4 = 432 Hz or other reference pitches?
+                  </button>
+                </h3>
+                <div id="gtFaq7" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
+                  <div class="accordion-body">
+                    Yes. The A4 reference field accepts 430–450 Hz, so you can match a 432 Hz recording or an orchestra tuning at 442 Hz. The default 440 Hz is the ISO 16 concert-pitch standard, agreed at a 1939 London conference — a fun detail being that 439 Hz was rejected partly because 439 is a prime number.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="gtHeading8">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq8">
+                    Why won't the tuner access my microphone?
+                  </button>
+                </h3>
+                <div id="gtFaq8" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
+                  <div class="accordion-body">
+                    Browsers only grant microphone access on secure (HTTPS) pages and after you click Allow — check the microphone icon in the address bar. Close other apps or tabs using the mic, since only one can hold it at a time, and move to a quieter room if the meter reacts to background noise instead of your guitar.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="gtHeading9">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq9">
+                    How do I tune an unplugged electric guitar with this tuner?
+                  </button>
+                </h3>
+                <div id="gtFaq9" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
+                  <div class="accordion-body">
+                    Unplugged solid-body guitars are quiet, so give the mic enough signal: sit in a quiet room, hold the guitar 6–12 inches from your laptop or phone microphone, and pluck firmly with a pick. Mute the other strings with your palm so sympathetic vibrations don't confuse the pitch detection.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="gtHeading10">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq10">
+                    How often should I tune, and why do new strings go flat so fast?
+                  </button>
+                </h3>
+                <div id="gtFaq10" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
+                  <div class="accordion-body">
+                    Tune at the start of every session — and re-check after a few songs if the room is humid or you play hard. New strings stretch under tension for a day or two; tune to pitch, gently lift each string about an inch at the 12th fret, and retune, repeating three or four times until the pitch holds.
+                  </div>
+                </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="gtHeading11">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq11" aria-expanded="false">
+                    Can I use this as a bass guitar tuner?
+                  </button>
+                </h3>
+                <div id="gtFaq11" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
+                  <div class="accordion-body">
+                    Yes. The chromatic detection tracks any note, including the low E (E1, 41.20 Hz) and low B (B0, 30.87 Hz) of a bass guitar. Because low frequencies need a longer analysis window, let each string ring for about two seconds and keep the room quiet — fans and air conditioners hum in the same range as your lowest strings. Select a bass preset if available so the target notes match standard bass tuning (E1–A1–D2–G2).
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="gtHeading12">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq12" aria-expanded="false">
+                    How do I tune a 12-string guitar with this tuner?
+                  </button>
+                </h3>
+                <div id="gtFaq12" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
+                  <div class="accordion-body">
+                    Tune in two passes. First, mute the six thin octave strings by lightly touching them with your fretting hand and tune the six main strings to standard pitch. Then tune each octave string individually against its already-tuned partner — the tuner will confirm when the octave string reads exactly 12 semitones (1,200 cents) above. Work from the low E pair toward the high E pair, since the heavier strings pull the neck most.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="gtHeading13">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq13" aria-expanded="false">
+                    Is this online guitar tuner really free?
+                  </button>
+                </h3>
+                <div id="gtFaq13" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
+                  <div class="accordion-body">
+                    Yes — completely free, with no account, no download, and no limit on tuning sessions. It runs entirely in your browser using your device microphone. Unlike many free tuner apps, there are no ads interrupting your tuning and no premium tier locking features like alternate tunings or reference-pitch calibration.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="gtHeading14">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq14" aria-expanded="false">
+                    Where should I place my microphone for the best reading?
+                  </button>
+                </h3>
+                <div id="gtFaq14" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
+                  <div class="accordion-body">
+                    About 30 cm (12 inches) from the guitar, aimed at the soundhole but slightly off-center. Too close and the low strings overload the mic with bass boom; too far and room noise competes with the note. On a phone, the bottom-edge mic usually performs best — lay the phone on a table with the mic end pointing at the guitar. Avoid holding the device in your picking hand, where handling noise ruins the reading.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="gtHeading15">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gtFaq15" aria-expanded="false">
+                    Can I tune a ukulele or other instruments with this chromatic tuner?
+                  </button>
+                </h3>
+                <div id="gtFaq15" class="accordion-collapse collapse" data-bs-parent="#gtFaqAccordion">
+                  <div class="accordion-body">
+                    Yes. Because the tuner is fully chromatic, it identifies any of the 12 notes — so ukulele (G4–C4–E4–A4), violin, mandolin, banjo, and even wind instruments all work. Just ignore the guitar-specific presets and read the detected note name and cents deviation directly. For ukulele, tune the G string first; its high pitch settles fastest and gives the detector a clean reference.
                   </div>
                 </div>
               </div>
 
             </div>
-          </section>
+          </div>
         </div>
+
         <div class="card my-4 shadow-sm">
           <div class="card-body">
             <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
-
             <ul class="list-unstyled mb-0">
               <li class="mb-2">
-                <a class="link-primary text-decoration-none fw-medium" href="/pitch-detector-tools/pitch-detector/">
-                  Online Pitch Detector
+                <a class="link-primary text-decoration-none fw-medium" href="../cents-calculator-online/">
+                  Cents Calculator
                 </a>
               </li>
-
               <li class="mb-2">
-                <a class="link-primary text-decoration-none fw-medium"
-                  href="/pitch-detector-tools/guitar-tuner-online/">
-                  Guitar Tuner
-                </a>
-              </li>
-
-              <li class="mb-2">
-                <a class="link-primary text-decoration-none fw-medium"
-                  href="/pitch-detector-tools/frequency-to-note-online/">
+                <a class="link-primary text-decoration-none fw-medium" href="../frequency-to-note-online/">
                   Frequency to Note Converter
                 </a>
               </li>
-
-              <li>
-                <a class="link-primary text-decoration-none fw-medium"
-                  href="/pitch-detector-tools/note-to-frequency-online/">
+              <li class="mb-2">
+                <a class="link-primary text-decoration-none fw-medium" href="../note-to-frequency-online/">
                   Note to Frequency Converter
+                </a>
+              </li>
+              <li class="mb-2">
+                <a class="link-primary text-decoration-none fw-medium" href="../transpose-calculator-online/">
+                  Transpose Calculator
+                </a>
+              </li>
+              <li class="mb-2">
+                <a class="link-primary text-decoration-none fw-medium" href="../harmonic-series-calculator-online/">
+                  Harmonic Series Calculator
+                </a>
+              </li>
+              <li>
+                <a class="link-primary text-decoration-none fw-medium" href="../vocal-range-finder-online/">
+                  Vocal Range Finder
                 </a>
               </li>
             </ul>
@@ -892,7 +1011,7 @@
     </div>
   </div>
   <div id="footer"></div>
-  <script src="/assets/bootstrap5.js" defer></script>
+  <script src="../../assets/bootstrap5.js" defer></script>
 
   <!-- tools js -->
   <script defer>

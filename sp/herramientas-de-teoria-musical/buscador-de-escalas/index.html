@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de escalas: notas, intervalos y modos</title>
+    <meta name="description"
+        content="Buscador de escalas gratis: explora cualquier escala en cualquier tonalidad con notas, intervalos y audio. Modos y tonalidades relativas explicados.">
+    <meta name="keywords"
+        content="buscador de escalas, explorador de escalas musicales, escala mayor, menor natural, modos eclesiásticos, escala pentatónica, escala de blues, notas e intervalos de escalas">
+
+    <link rel="canonical" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/buscador-de-escalas/">
+    <link rel="alternate" hreflang="es" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/buscador-de-escalas/">
+    <link rel="alternate" hreflang="en" href="https://pitchdetectors.com/music-theory-tools/scale-finder/">
+    <link rel="alternate" hreflang="x-default" href="https://pitchdetectors.com/music-theory-tools/scale-finder/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Buscador de escalas: notas, intervalos y modos">
+    <meta property="og:description" content="Buscador de escalas gratis: explora cualquier escala en cualquier tonalidad con notas, intervalos y audio. Modos y tonalidades relativas explicados.">
+    <meta property="og:url" content="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/buscador-de-escalas/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Buscador de escalas: notas, intervalos y modos">
+    <meta name="twitter:description" content="Buscador de escalas gratis: explora cualquier escala en cualquier tonalidad con notas, intervalos y audio. Modos y tonalidades relativas explicados.">>
+
+    <link rel="icon" href="../../../assets/imgs/logo.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../../assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <link href="../../../assets/tools.css" rel="stylesheet">
+
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre una escala mayor y una escala menor natural?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La escala mayor sigue W-W-H-W-W-W-H (1-2-3-4-5-6-7), lo que le da un sonido brillante y resuelto. La escala menor natural baja la 3.ª, la 6.ª y la 7.ª un semitono —W-H-W-W-H-W-W (1-2-♭3-4-5-♭6-♭7)—, lo que crea su carácter más oscuro e introspectivo. En ambas existen las mismas doce notas; la receta de intervalos decide el ambiente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo encuentro la relativa menor de una tonalidad mayor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Baja 3 semitonos (una tercera menor) desde la tónica mayor. La relativa menor de C mayor es A menor; la de G mayor es E menor. Ambas tonalidades comparten las mismas notas: solo cambia el centro tonal. Subir 3 semitonos desde cualquier tónica menor encuentra su relativa mayor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué son los modos en teoría musical?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los modos son las siete rotaciones de la escala mayor, cada una empezando en un grado distinto: jónica, dórica, frigia, lidia, mixolidia, eólica, locria. Como cada rotación coloca los semitonos en lugares distintos, cada modo tiene su propio color —la dórica suena menor pero esperanzada, la lidia suena onírica— usando las mismas notas madre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué la escala menor armónica suena exótica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La menor armónica eleva el 7.º grado de la menor natural para crear una sensible, lo que abre un hueco de 3 semitonos (una segunda aumentada) entre el ♭6 y el 7 natural. Ese salto amplio es la firma de la escala —dramática y con aire de Oriente Medio— y por eso domina tanto los solos de metal como las cadencias clásicas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es la nota blue en la escala de blues?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La nota blue es el ♭5 (quinta disminuida) añadido a la pentatónica menor, formando la escala de blues de seis notas: 1-♭3-4-♭5-5-♭7. Es un cromatismo de paso que crea una tensión deliciosa, que se resuelve subiendo a la quinta o bajando a la cuarta. Tócala con bend lento y entenderás un siglo de guitarra blues en una sola nota."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo debo escribir C♯ en lugar de D♭?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usa sostenidos en tonalidades con sostenidos y bemoles en tonalidades con bemoles, y dale a cada escala un nombre de letra distinto: D mayor es D-E-F♯-G-A-B-C♯, nunca D-E-G♭. Ajusta los sonidos del acorde a su función: la tercera de un acorde A7 es C♯ incluso en una tonalidad con bemoles. Estas convenciones mantienen la notación legible para otros músicos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué escala debo usar para un solo de guitarra?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Empieza con la pentatónica menor de la tonalidad de la canción: es casi imposible tocar una nota equivocada con ella. Añade la nota blue (♭5) para un sonido blues-rock con garra, cambia a dórica para un aire más jazzístico o prueba la menor armónica sobre el acorde V para dramatismo. Ajusta la escala a los acordes de fondo, no solo a la tonalidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas notas tiene una escala pentatónica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cinco: «penta» significa cinco. La pentatónica mayor (1-2-3-5-6) elimina los grados 4.º y 7.º de la escala mayor, quitando los semitonos que causan fricción armónica. Por eso las pentatónicas suenan seguras y abiertas: sin sensibles que tiren hacia ningún lado, casi cada nota funciona sobre el acorde de tónica."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre la menor armónica y la menor melódica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ambas elevan el 7.º grado de la menor natural para lograr una sensible más fuerte. La menor armónica mantiene el ♭6, creando el exótico hueco de segunda aumentada (W-H-W-W-H-3H-H). La menor melódica también eleva el 6.º (W-H-W-W-W-W-H), suavizando el hueco en una línea sofisticada y jazzística que encanta a los improvisadores."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito memorizar las doce tonalidades para cada escala?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No: memoriza las recetas de intervalos, no las listas de notas. Si sabes que la mayor es W-W-H-W-W-W-H, puedes construir E♭ mayor o F♯ mayor al momento caminando el patrón desde la tónica. Esta herramienta existe precisamente para que compruebes tu trabajo mientras las recetas se vuelven algo natural."
+      }
+    }
+  ]
+}</script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .scale-notes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 24px 0;
+        }
+
+        .scale-note {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .scale-note.root {
+            background: var(--teal);
+            color: #fff;
+            border: 3px solid var(--accent);
+            transform: scale(1.05);
+        }
+
+        .scale-note.note {
+            background: var(--dark-blue);
+            color: #fff;
+        }
+
+        .scale-note:hover {
+            transform: scale(1.15);
+            background: var(--accent);
+            color: var(--dark-blue);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .scale-note.playing {
+            animation: pulse 0.35s ease;
+            background: #fff !important;
+            color: var(--teal) !important;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+                box-shadow: 0 0 25px rgba(253, 235, 158, 0.9);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Buscar herramientas..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Herramientas de teoría musical</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sp/herramientas-de-teoria-musical/buscador-de-escalas/" class="active"><i
+                                            class="bi bi-grid-3x3"></i> Buscador de escalas</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/identificador-de-acordes/"><i class="bi bi-vinyl"></i> Identificador de acordes</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/generador-de-progresiones-de-acordes/"><i
+                                            class="bi bi-diagram-3"></i>
+                                        Progresión de acordes</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/metronomo-online/"><i class="bi bi-stopwatch"></i>
+                                        Metrónomo online</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-soundwave me-2"></i>Herramientas de detección de tono</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/pitch-detector-tools/note-to-frequency-online/"><i
+                                            class="bi bi-calculator"></i>
+                                        Nota a frecuencia</a></li>
+                                <li><a href="/pitch-detector-tools/frequency-to-note-online/"><i
+                                            class="bi bi-arrow-left-right"></i>
+                                        Frecuencia a nota</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-9">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="/sp/herramientas-de-teoria-musical/">Herramientas de teoría musical</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Buscador de escalas</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-grid-3x3 me-2"></i>Buscador de escalas</h1>
+                        <p class="text-muted small">Última actualización: 12 de octubre de 2026 · Por Pitch Detectors Editorial Team</p>
+                        <p>Explora las escalas musicales en cualquier tonalidad: mira sus notas e intervalos y escucha cómo suena cada una.
+                        </p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Root Note:</label>
+                            <select class="form-select form-select-lg" id="rootNote" onchange="updateScale()">
+                                <option value="C">C</option>
+                                <option value="C#">C# / Db</option>
+                                <option value="D">D</option>
+                                <option value="D#">D# / Eb</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                                <option value="F#">F# / Gb</option>
+                                <option value="G">G</option>
+                                <option value="G#">G# / Ab</option>
+                                <option value="A" selected>A</option>
+                                <option value="A#">A# / Bb</option>
+                                <option value="B">B</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Scale Type:</label>
+                            <select class="form-select form-select-lg" id="scaleType" onchange="updateScale()">
+                                <optgroup label="Common Scales">
+                                    <option value="major" selected>Major (Ionian)</option>
+                                    <option value="natural_minor">Natural Minor (Aeolian)</option>
+                                    <option value="harmonic_minor">Harmonic Minor</option>
+                                    <option value="melodic_minor">Melodic Minor</option>
+                                </optgroup>
+                                <optgroup label="Pentatonic & Blues">
+                                    <option value="major_pentatonic">Major Pentatonic</option>
+                                    <option value="minor_pentatonic">Minor Pentatonic</option>
+                                    <option value="blues">Blues Scale</option>
+                                </optgroup>
+                                <optgroup label="Modes">
+                                    <option value="dorian">Dorian</option>
+                                    <option value="phrygian">Phrygian</option>
+                                    <option value="lydian">Lydian</option>
+                                    <option value="mixolydian">Mixolydian</option>
+                                    <option value="locrian">Locrian</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Octave:</label>
+                            <select class="form-select form-select-lg" id="octave" onchange="updateScale()">
+                                <option value="3">3 (Low)</option>
+                                <option value="4" selected>4 (Middle)</option>
+                                <option value="5">5 (High)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="result-box">
+                        <h3 id="scaleName">A Major Scale</h3>
+                        <div class="scale-notes" id="scaleNotes"></div>
+                        <button class="btn btn-primary btn-lg mt-3" onclick="playScale()">
+                            <i class="bi bi-play-fill me-2"></i>Play Scale
+                        </button>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3">Scale Information</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Intervals:</strong>
+                                <p id="scaleIntervals" class="mb-2">W - W - H - W - W - W - H</p>
+                                <strong>Formula:</strong>
+                                <p id="scaleFormula" class="mb-0">1 - 2 - 3 - 4 - 5 - 6 - 7</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Mood/Character:</strong>
+                                <p id="scaleMood" class="mb-2">Bright, happy, uplifting</p>
+                                <strong>Common Uses:</strong>
+                                <p id="scaleUses" class="mb-0">Pop, rock, classical, country</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How to Use -->
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>¿Qué es un buscador de escalas?</h2>
+                        <p><strong>Un buscador de escalas es una herramienta interactiva que construye cualquier escala musical desde cualquier nota tónica y te muestra sus notas, intervalos y fórmula.</strong> Elige una tónica (como D), un tipo de escala (como dórico) y la herramienta deletrea cada nota, el patrón de tonos y semitonos detrás de ella, y la reproduce para que puedas oír el resultado.</p>
+                        <p>Una escala musical es un conjunto ordenado de sonidos construido a partir de una receta fija de intervalos. En lugar de memorizar escalas de un libro, esta herramienta construye cada una en vivo a partir de su fórmula de intervalos, así ves el patrón <em>y</em> las notas juntos.</p>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-check2-square me-2"></i>Puntos clave</h2>
+                        <ul>
+                            <li>Cada escala es una <strong>tónica + una receta de intervalos</strong>: aprende la receta y podrás construir cualquier escala en cualquier tonalidad.</li>
+                            <li>La receta de la <strong>escala mayor</strong> es W-W-H-W-W-W-H; la menor natural es W-H-W-W-H-W-W (W = tono, H = semitono).</li>
+                            <li>Los <strong>modos</strong> son las mismas siete notas empezando en grados distintos: el dórico empieza en el 2.º, el mixolidio en el 5.º.</li>
+                            <li>La <strong>relativa menor</strong> de cualquier tonalidad mayor está 3 semitonos por debajo de su tónica (C mayor → A menor).</li>
+                            <li>La <strong>escala de blues</strong> es la pentatónica menor más una «nota blue» (♭5): seis notas en total.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>Cómo funciona este buscador de escalas</h2>
+                        <p>Esta herramienta guarda cada escala como un arreglo de <strong>desplazamientos de semitonos desde la tónica</strong>: los mismos datos de intervalos que usa el software profesional de teoría. La escala mayor es <code>[0, 2, 4, 5, 7, 9, 11]</code>: empieza en la tónica (0), sube 2 semitonos (un tono), 4, 5, 7, 9, 11. Suma cada desplazamiento a la posición de la tónica en la escala cromática y obtienes las notas de la escala, escritas correctamente.</p>
+                        <p>Metodología: los 12 sonidos cromáticos se indexan del 0 al 11 (C=0 hasta B=11). Al elegir una tónica y un tipo de escala, se busca el arreglo de desplazamientos de esa escala y cada nota se calcula como <code>(índice de la tónica + desplazamiento) mod 12</code>. La lectura de <strong>Intervals</strong> traduce los desplazamientos al conocido patrón de tonos y semitonos (W/H), y <strong>Formula</strong> muestra los grados de la escala (1-2-♭3-4-5-♭6-♭7 para la menor natural, por ejemplo). El botón Play reproduce las notas con la Web Audio API a afinación de concierto (A4 = 440 Hz). <em>Última revisión: octubre de 2026.</em></p>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-calculator me-2"></i>Fórmulas de escalas y ejemplo resuelto</h2>
+                        <p>Los doce tipos de escalas de esta herramienta se reducen a recetas de tonos (W = 2 semitonos) y semitonos (H = 1 semitono):</p>
+                        <div class="table-responsive my-3">
+                            <table class="table table-bordered table-striped align-middle text-center small">
+                                <thead class="table-dark">
+                                    <tr><th>Escala</th><th>Patrón de pasos</th><th>Fórmula</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Mayor (jónica)</td><td>W-W-H-W-W-W-H</td><td>1-2-3-4-5-6-7</td></tr>
+                                    <tr><td>Menor natural (eólica)</td><td>W-H-W-W-H-W-W</td><td>1-2-♭3-4-5-♭6-♭7</td></tr>
+                                    <tr><td>Menor armónica</td><td>W-H-W-W-H-3H-H</td><td>1-2-♭3-4-5-♭6-7</td></tr>
+                                    <tr><td>Menor melódica</td><td>W-H-W-W-W-W-H</td><td>1-2-♭3-4-5-6-7</td></tr>
+                                    <tr><td>Pentatónica mayor</td><td>W-W-3H-W-3H</td><td>1-2-3-5-6</td></tr>
+                                    <tr><td>Pentatónica menor</td><td>3H-W-W-3H-W</td><td>1-♭3-4-5-♭7</td></tr>
+                                    <tr><td>Blues</td><td>3H-W-H-H-3H-W</td><td>1-♭3-4-♭5-5-♭7</td></tr>
+                                    <tr><td>Dórica</td><td>W-H-W-W-W-H-W</td><td>1-2-♭3-4-5-6-♭7</td></tr>
+                                    <tr><td>Frigia</td><td>H-W-W-W-H-W-W</td><td>1-♭2-♭3-4-5-♭6-♭7</td></tr>
+                                    <tr><td>Lidia</td><td>W-W-W-H-W-W-H</td><td>1-2-3-♯4-5-6-7</td></tr>
+                                    <tr><td>Mixolidia</td><td>W-W-H-W-W-H-W</td><td>1-2-3-4-5-6-♭7</td></tr>
+                                    <tr><td>Locria</td><td>H-W-W-H-W-W-W</td><td>1-♭2-♭3-4-♭5-♭6-♭7</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><strong>Ejemplo resuelto: construyendo Re menor armónica nota por nota:</strong> la receta es W-H-W-W-H-3H-H (3H = tres semitonos). Empieza en <strong>D</strong>: +W → <strong>E</strong>; +H → <strong>F</strong>; +W → <strong>G</strong>; +W → <strong>A</strong>; +H → <strong>B♭</strong>; +3H → <strong>C♯</strong> (fíjate en el amplio salto de segunda aumentada de B♭ a C♯: el sonido exótico característico de la escala); +H → <strong>D</strong>. Resultado: D-E-F-G-A-B♭-C♯-D.</p>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-list-ol me-2"></i>Cómo usar este buscador de escalas</h2>
+                        <ol class="lead-steps mb-4">
+                            <li><strong>Elige una tónica:</strong> cualquiera de los 12 sonidos cromáticos (C a B, incluidos sostenidos y bemoles). La tónica es la base de la escala: su centro tonal.</li>
+                            <li><strong>Selecciona un tipo de escala:</strong> explora Common Scales, Pentatonic &amp; Blues o Modes. Si eres nuevo, empieza con Major o Natural Minor.</li>
+                            <li><strong>Ajusta la octava:</strong> 3 para grave, 4 (central) para estándar, 5 para agudo. Esto solo cambia la altura de reproducción, no las notas.</li>
+                            <li><strong>Lee los resultados:</strong> las insignias de notas muestran cada sonido de la escala; Intervals muestra la receta W/H; Formula muestra los grados de la escala.</li>
+                            <li><strong>Pulsa Play Scale:</strong> escucha la escala ascendente para que el patrón de intervalos llegue a tus oídos, no solo a tus ojos.</li>
+                            <li><strong>Aplícalo:</strong> usa las notas para melodías y construye acordes sobre cada grado: el <a href="../identificador-de-acordes/">Identificador de acordes</a> te muestra cómo se llaman esos acordes.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-eye me-2"></i>Cómo leer tu resultado</h2>
+                        <p>Cada resultado tiene tres capas. Las <strong>Notes</strong> son el resultado práctico: los sonidos que debes tocar. <strong>Intervals</strong> (W-W-H-…) es la receta reutilizable: memorízala una vez y podrás construir la escala desde cualquier tónica sin la herramienta. <strong>Formula</strong> (1-2-♭3-…) muestra los grados de la escala, el lenguaje que usan los músicos para hablar de función: el ♭3 explica por qué lo menor suena menor, el ♯4 explica por qué la lidia flota.</p>
+                        <p>La etiqueta de <strong>mood</strong> (p. ej., «Bluesy, raw, powerful») es un punto de partida, no una regla: el contexto decide cómo se siente una escala. Una pentatónica menor sobre una balada lenta suena doliente; las mismas notas sobre un shuffle suenan desafiantes. Confía en tu oído más que en la etiqueta, y consulta el <a href="../generador-de-progresiones-de-acordes/">Generador de progresiones de acordes</a> para oír cada escala contra una armonía real.</p>
+                    </div>
+                </div>
+
+                <figure class="my-4 text-center">
+                    <div class="border rounded p-5 bg-light text-muted">[Diagrama: teclado de piano que resalta el patrón W-W-H-W-W-W-H de la escala mayor desde C, con marcas de tono y semitono]</div>
+                    <figcaption class="small text-muted mt-2">Texto alternativo: «escala de C mayor en las teclas del piano con el patrón de tonos y semitonos»</figcaption>
+                </figure>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-stars me-2"></i>Los 7 modos comparados: carácter, género y un ejemplo famoso</h2>
+                        <p>Los modos son las siete rotaciones de la escala mayor: las mismas notas, distinto punto de partida, carácter completamente distinto. La única nota alterada respecto a la mayor es lo que da a cada modo su sabor:</p>
+                        <div class="table-responsive my-3">
+                            <table class="table table-bordered table-striped align-middle small">
+                                <thead class="table-dark">
+                                    <tr><th>Modo</th><th>Empieza en el grado</th><th>Nota característica</th><th>Carácter y géneros</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Jónica</strong> (mayor)</td><td>1.º</td><td>— (la referencia)</td><td>Brillante, resuelta: pop, clásica, country</td></tr>
+                                    <tr><td><strong>Dórica</strong></td><td>2.º</td><td>Sexta natural en tonalidad menor</td><td>Menor pero esperanzada: jazz, funk («So What», Miles Davis)</td></tr>
+                                    <tr><td><strong>Frigia</strong></td><td>3.º</td><td>♭2</td><td>Oscura, con aire español: flamenco, metal</td></tr>
+                                    <tr><td><strong>Lidia</strong></td><td>4.º</td><td>♯4</td><td>Onírica, flotante: bandas sonoras, rock progresivo</td></tr>
+                                    <tr><td><strong>Mixolidia</strong></td><td>5.º</td><td>♭7 en tonalidad mayor</td><td>Mayor con blues: rock, funk («Sweet Home Alabama»)</td></tr>
+                                    <tr><td><strong>Eólica</strong> (menor natural)</td><td>6.º</td><td>♭6, ♭7</td><td>Triste, introspectiva: baladas rock, metal</td></tr>
+                                    <tr><td><strong>Locria</strong></td><td>7.º</td><td>♭5</td><td>Inestable, tensa: rara vez centro tonal; color para jazz y metal</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Ejercicio de oído: selecciona D como tónica y toca dórica, frigia y luego lidia seguidas: la misma nota inicial, tres mundos emocionales.</p>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-arrow-down-up me-2"></i>Cómo encontrar la relativa mayor o menor en segundos</h2>
+                        <p>Cada escala mayor comparte sus notas exactas con una <strong>relativa menor</strong> que empieza 3 semitonos (una tercera menor) por debajo de su tónica. C mayor (C-D-E-F-G-A-B) y A menor (A-B-C-D-E-F-G) son los mismos siete sonidos con distinto centro tonal.</p>
+                        <p>Úsalo de dos formas: <strong>(1)</strong> para tomar prestada emoción: una canción en C mayor puede usar licks de pentatónica de A menor sin cambiar de tonalidad; <strong>(2)</strong> para simplificar: si una partitura dice F♯ menor y prefieres pensar en mayor, sube 3 semitonos hasta A mayor y usa las formas familiares de la escala mayor. Al revés también funciona: desde cualquier tónica menor, subir 3 semitonos encuentra su relativa mayor. Los guitarristas usan esto constantemente para reciclar una misma caja pentatónica en dos tonalidades.</p>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-type me-2"></i>Grafía enarmónica: cuándo escribir C♯ y cuándo D♭</h2>
+                        <p>C♯ y D♭ suenan idénticos en un piano: son <strong>equivalentes enarmónicos</strong>. La grafía que elijas indica la <em>función</em> de la nota, y escribirla correctamente es lo que distingue una teoría convincente de la confusión:</p>
+                        <ul>
+                            <li><strong>Usa sostenidos en tonalidades con sostenidos y bemoles en tonalidades con bemoles.</strong> A mayor tiene F♯, C♯, G♯, nunca G♭. F mayor tiene B♭, nunca A♯.</li>
+                            <li><strong>Una letra por escala.</strong> D mayor es D-E-F♯-G-A-B-C♯, no D-E-G♭-G…: cada escala usa cada nombre de letra exactamente una vez.</li>
+                            <li><strong>Respeta el acorde.</strong> En un acorde A7 (A-C♯-E-G), la tercera es C♯ aunque la armadura sugiera bemoles: los sonidos del acorde conservan su grafía funcional.</li>
+                            <li><strong>En caso de duda para principiantes:</strong> nombres con sostenido al ascender, con bemol al descender: una convención práctica, no una ley.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-disc me-2"></i>Qué escala encaja con cada género</h2>
+                        <p>Las convenciones de género son tendencias, no reglas, pero empezar donde vive el género ahorra horas:</p>
+                        <div class="table-responsive my-3">
+                            <table class="table table-bordered table-striped align-middle small">
+                                <thead class="table-dark">
+                                    <tr><th>Género</th><th>Elige</th><th>Por qué funciona</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Solos de blues/rock</td><td>Pentatónica menor, blues</td><td>Cinco notas seguras más la tensión de la nota blue; difícil tocar una nota «equivocada»</td></tr>
+                                    <tr><td>Country/folk</td><td>Pentatónica mayor</td><td>Intervalos abiertos, con twang; sin roces de semitono</td></tr>
+                                    <tr><td>Improvisación de jazz</td><td>Dórica, mixolidia, menor melódica</td><td>Los colores (sexta natural, ♭7) delinean acordes extendidos</td></tr>
+                                    <tr><td>Metal/neoclásico</td><td>Menor armónica, frigia</td><td>La segunda aumentada y el ♭2 aportan drama instantáneo</td></tr>
+                                    <tr><td>Composición pop</td><td>Mayor, menor natural</td><td>Arcos emocionales familiares que el público decodifica al instante</td></tr>
+                                    <tr><td>Funk</td><td>Dórica, mixolidia</td><td>Groove menor con impulso mayor; compatible con séptimas dominantes</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <figure class="my-4 text-center">
+                    <div class="border rounded p-5 bg-light text-muted">[Infografía: círculo de quintas con pares de tonalidades relativas mayor/menor etiquetados, p. ej. C–Am, G–Em]</div>
+                    <figcaption class="small text-muted mt-2">Texto alternativo: «círculo de quintas mostrando los pares de tonalidades relativas mayor y menor»</figcaption>
+                </figure>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitaciones</h2>
+                        <ul>
+                            <li><strong>La menor melódica es solo ascendente.</strong> La teoría tradicional desciende la menor melódica como menor natural; esta herramienta (como la mayoría de las referencias orientadas al jazz) usa la forma ascendente en ambas direcciones.</li>
+                            <li><strong>Sin escalas personalizadas ni exóticas.</strong> La menor húngara, la doble armónica, la de tonos enteros y otras escalas simétricas no están incluidas: los doce tipos integrados cubren el núcleo de la práctica común.</li>
+                            <li><strong>Reproducción en temperamento igual.</strong> El audio usa temperamento igual de 12 tonos (A4 = 440 Hz); las afinaciones históricas y los sistemas microtonales quedan fuera de su alcance.</li>
+                            <li><strong>Enarmonía simplificada.</strong> Los nombres de las notas siguen la grafía más común para cada tónica; las tonalidades funcionalmente delicadas pueden requerir reescritura manual (ver las reglas anteriores).</li>
+                            <li><strong>Las escalas no escriben canciones.</strong> La herramienta te muestra la materia prima: el ritmo, el fraseo y el contexto armónico deciden si se convierte en música. Combínala con el <a href="../generador-de-ritmos/">Generador de ritmos</a> para poner las escalas en movimiento.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-3"><i class="bi bi-arrow-left-right me-2"></i>Buscador de escalas frente a las alternativas</h2>
+                        <div class="table-responsive my-3">
+                            <table class="table table-bordered table-striped align-middle small">
+                                <thead class="table-dark">
+                                    <tr><th>Enfoque</th><th>Ideal para</th><th>Compromiso</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Este buscador de escalas</strong></td><td>Notas, intervalos y audio al instante en cualquier tonalidad</td><td>12 tipos integrados; sin diagramas de diapasón</td></tr>
+                                    <tr><td><strong>Apps de escalas para guitarra</strong></td><td>Digitaciones y posiciones en el diapasón</td><td>Específicas de un instrumento; flojas en teoría</td></tr>
+                                    <tr><td><strong>Gráficos de piano/teclado</strong></td><td>Patrones visuales de teclas</td><td>Imágenes estáticas; sin reproducción ni transposición</td></tr>
+                                    <tr><td><strong>Libros de teoría</strong></td><td>Comprensión profunda</td><td>Búsqueda lenta; sin sonido</td></tr>
+                                    <tr><td><strong><a href="../calculadora-de-intervalos/">Calculadora de intervalos</a></strong></td><td>Medir distancias entre dos notas</td><td>Intervalos sueltos, no escalas completas</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="tool-container mt-4">
+                    <div class="tool-section">
+                        <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Preguntas frecuentes
+                        </h2>
+
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq1">
+                                        ¿Cuál es la diferencia entre una escala mayor y una escala menor natural?
+                                    </button>
+                                </h3>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        La escala mayor sigue W-W-H-W-W-W-H (1-2-3-4-5-6-7), lo que le da un sonido brillante y resuelto. La escala menor natural baja la 3.ª, la 6.ª y la 7.ª un semitono —W-H-W-W-H-W-W (1-2-♭3-4-5-♭6-♭7)—, lo que crea su carácter más oscuro e introspectivo. En ambas existen las mismas doce notas; la receta de intervalos decide el ambiente.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq2">
+                                        ¿Cómo encuentro la relativa menor de una tonalidad mayor?
+                                    </button>
+                                </h3>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Baja 3 semitonos (una tercera menor) desde la tónica mayor. La relativa menor de C mayor es A menor; la de G mayor es E menor. Ambas tonalidades comparten las mismas notas: solo cambia el centro tonal. Subir 3 semitonos desde cualquier tónica menor encuentra su relativa mayor.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq3">
+                                        ¿Qué son los modos en teoría musical?
+                                    </button>
+                                </h3>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Los modos son las siete rotaciones de la escala mayor, cada una empezando en un grado distinto: jónica, dórica, frigia, lidia, mixolidia, eólica, locria. Como cada rotación coloca los semitonos en lugares distintos, cada modo tiene su propio color —la dórica suena menor pero esperanzada, la lidia suena onírica— usando las mismas notas madre.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq4">
+                                        ¿Por qué la escala menor armónica suena exótica?
+                                    </button>
+                                </h3>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        La menor armónica eleva el 7.º grado de la menor natural para crear una sensible, lo que abre un hueco de 3 semitonos (una segunda aumentada) entre el ♭6 y el 7 natural. Ese salto amplio es la firma de la escala —dramática y con aire de Oriente Medio— y por eso domina tanto los solos de metal como las cadencias clásicas.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq5">
+                                        ¿Qué es la nota blue en la escala de blues?
+                                    </button>
+                                </h3>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        La nota blue es el ♭5 (quinta disminuida) añadido a la pentatónica menor, formando la escala de blues de seis notas: 1-♭3-4-♭5-5-♭7. Es un cromatismo de paso que crea una tensión deliciosa, que se resuelve subiendo a la quinta o bajando a la cuarta. Tócala con bend lento y entenderás un siglo de guitarra blues en una sola nota.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq6">
+                                        ¿Cuándo debo escribir C♯ en lugar de D♭?
+                                    </button>
+                                </h3>
+                                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Usa sostenidos en tonalidades con sostenidos y bemoles en tonalidades con bemoles, y dale a cada escala un nombre de letra distinto: D mayor es D-E-F♯-G-A-B-C♯, nunca D-E-G♭. Ajusta los sonidos del acorde a su función: la tercera de un acorde A7 es C♯ incluso en una tonalidad con bemoles. Estas convenciones mantienen la notación legible para otros músicos.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq7">
+                                        ¿Qué escala debo usar para un solo de guitarra?
+                                    </button>
+                                </h3>
+                                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Empieza con la pentatónica menor de la tonalidad de la canción: es casi imposible tocar una nota equivocada con ella. Añade la nota blue (♭5) para un sonido blues-rock con garra, cambia a dórica para un aire más jazzístico o prueba la menor armónica sobre el acorde V para dramatismo. Ajusta la escala a los acordes de fondo, no solo a la tonalidad.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq8">
+                                        ¿Cuántas notas tiene una escala pentatónica?
+                                    </button>
+                                </h3>
+                                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Cinco: «penta» significa cinco. La pentatónica mayor (1-2-3-5-6) elimina los grados 4.º y 7.º de la escala mayor, quitando los semitonos que causan fricción armónica. Por eso las pentatónicas suenan seguras y abiertas: sin sensibles que tiren hacia ningún lado, casi cada nota funciona sobre el acorde de tónica.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq9">
+                                        ¿Cuál es la diferencia entre la menor armónica y la menor melódica?
+                                    </button>
+                                </h3>
+                                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Ambas elevan el 7.º grado de la menor natural para lograr una sensible más fuerte. La menor armónica mantiene el ♭6, creando el exótico hueco de segunda aumentada (W-H-W-W-H-3H-H). La menor melódica también eleva el 6.º (W-H-W-W-W-W-H), suavizando el hueco en una línea sofisticada y jazzística que encanta a los improvisadores.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq10">
+                                        ¿Necesito memorizar las doce tonalidades para cada escala?
+                                    </button>
+                                </h3>
+                                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        No: memoriza las recetas de intervalos, no las listas de notas. Si sabes que la mayor es W-W-H-W-W-W-H, puedes construir E♭ mayor o F♯ mayor al momento caminando el patrón desde la tónica. Esta herramienta existe precisamente para que compruebes tu trabajo mientras las recetas se vuelven algo natural.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Related Tools Cards -->
+                        <div class="card my-4 shadow-sm border-0">
+                            <div class="card-body p-4 bg-light rounded">
+                                <h5 class="card-title fw-bold mb-3"><i
+                                        class="bi bi-grid-fill me-2 text-teal"></i>Herramientas de teoría musical relacionadas</h5>
+                                <div class="row g-2">
+                                    <div class="col-md-4">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/sp/herramientas-de-teoria-musical/identificador-de-acordes/">
+                                            <i class="bi bi-vinyl me-1 text-teal"></i> Identificador de acordes
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/sp/herramientas-de-teoria-musical/generador-de-progresiones-de-acordes/">
+                                            <i class="bi bi-diagram-3 me-1 text-teal"></i> Generador de progresiones de acordes
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/sp/herramientas-de-teoria-musical/calculadora-de-intervalos/">
+                                            <i class="bi bi-arrows-expand me-1 text-teal"></i> Calculadora de intervalos
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/sp/herramientas-de-teoria-musical/generador-de-melodias/">
+                                            <i class="bi bi-bezier2 me-1 text-teal"></i> Generador de melodías
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/sp/herramientas-de-teoria-musical/metronomo-online/">
+                                            <i class="bi bi-stopwatch me-1 text-teal"></i> Metrónomo online
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
+                                            href="/sp/herramientas-de-teoria-musical/generador-de-ritmos/">
+                                            <i class="bi bi-soundwave me-1 text-teal"></i> Generador de ritmos
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="../../../assets/bootstrap5.js" defer></script>
+    <script src="../../../assets/tools.js" defer></script>
+    <!-- tool js -->
+    <script defer>
+        const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
+        const scales = {
+            major: { intervals: [0, 2, 4, 5, 7, 9, 11], pattern: 'W-W-H-W-W-W-H', formula: '1-2-3-4-5-6-7', mood: 'Bright, happy, uplifting', uses: 'Pop, rock, classical, country' },
+            natural_minor: { intervals: [0, 2, 3, 5, 7, 8, 10], pattern: 'W-H-W-W-H-W-W', formula: '1-2-♭3-4-5-♭6-♭7', mood: 'Dark, sad, emotional', uses: 'Rock, metal, classical, pop ballads' },
+            harmonic_minor: { intervals: [0, 2, 3, 5, 7, 8, 11], pattern: 'W-H-W-W-H-3H-H', formula: '1-2-♭3-4-5-♭6-7', mood: 'Exotic, dramatic, tense', uses: 'Classical, metal, Middle Eastern' },
+            melodic_minor: { intervals: [0, 2, 3, 5, 7, 9, 11], pattern: 'W-H-W-W-W-W-H', formula: '1-2-♭3-4-5-6-7', mood: 'Jazzy, sophisticated', uses: 'Jazz, fusion, classical' },
+            major_pentatonic: { intervals: [0, 2, 4, 7, 9], pattern: 'W-W-3H-W-3H', formula: '1-2-3-5-6', mood: 'Bright, open, versatile', uses: 'Country, rock, pop, folk' },
+            minor_pentatonic: { intervals: [0, 3, 5, 7, 10], pattern: '3H-W-W-3H-W', formula: '1-♭3-4-5-♭7', mood: 'Bluesy, raw, powerful', uses: 'Blues, rock, metal solos' },
+            blues: { intervals: [0, 3, 5, 6, 7, 10], pattern: '3H-W-H-H-3H-W', formula: '1-♭3-4-♭5-5-♭7', mood: 'Soulful, expressive', uses: 'Blues, rock, jazz' },
+            dorian: { intervals: [0, 2, 3, 5, 7, 9, 10], pattern: 'W-H-W-W-W-H-W', formula: '1-2-♭3-4-5-6-♭7', mood: 'Minor but brighter', uses: 'Jazz, funk, rock' },
+            phrygian: { intervals: [0, 1, 3, 5, 7, 8, 10], pattern: 'H-W-W-W-H-W-W', formula: '1-♭2-♭3-4-5-♭6-♭7', mood: 'Spanish, exotic, dark', uses: 'Flamenco, metal, Middle Eastern' },
+            lydian: { intervals: [0, 2, 4, 6, 7, 9, 11], pattern: 'W-W-W-H-W-W-H', formula: '1-2-3-#4-5-6-7', mood: 'Dreamy, floating, bright', uses: 'Film scores, jazz, progressive' },
+            mixolydian: { intervals: [0, 2, 4, 5, 7, 9, 10], pattern: 'W-W-H-W-W-H-W', formula: '1-2-3-4-5-6-♭7', mood: 'Bluesy major, groovy', uses: 'Rock, blues, funk, country' },
+            locrian: { intervals: [0, 1, 3, 5, 6, 8, 10], pattern: 'H-W-W-H-W-W-W', formula: '1-♭2-♭3-4-♭5-♭6-♭7', mood: 'Unstable, dissonant', uses: 'Metal, jazz, experimental' }
+        };
+
+        let audioContext = null;
+
+        function getScaleNotes(root, scaleType) {
+            const rootIndex = notes.indexOf(root);
+            const scale = scales[scaleType];
+            return scale.intervals.map(interval => notes[(rootIndex + interval) % 12]);
+        }
+
+        function updateScale() {
+            const root = document.getElementById('rootNote').value;
+            const scaleType = document.getElementById('scaleType').value;
+            const scale = scales[scaleType];
+            const scaleNotes = getScaleNotes(root, scaleType);
+
+            const scaleName = scaleType.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            document.getElementById('scaleName').textContent = `${root} ${scaleName}`;
+
+            let html = '';
+            scaleNotes.forEach((note, i) => {
+                const isRoot = i === 0;
+                html += `<div class="scale-note ${isRoot ? 'root' : 'note'}" onclick="playNote('${note}', ${document.getElementById('octave').value})">${note}</div>`;
+            });
+            document.getElementById('scaleNotes').innerHTML = html;
+
+            document.getElementById('scaleIntervals').textContent = scale.pattern;
+            document.getElementById('scaleFormula').textContent = scale.formula;
+            document.getElementById('scaleMood').textContent = scale.mood;
+            document.getElementById('scaleUses').textContent = scale.uses;
+        }
+
+        function getFrequency(note, octave) {
+            const noteIndex = notes.indexOf(note);
+            const a4 = 440;
+            const semitones = (octave - 4) * 12 + (noteIndex - 9);
+            return a4 * Math.pow(2, semitones / 12);
+        }
+
+        function playNote(note, octave) {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            const freq = getFrequency(note, octave);
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+
+            osc.frequency.value = freq;
+            osc.type = 'sine';
+
+            gain.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+            osc.start();
+            osc.stop(audioContext.currentTime + 0.5);
+        }
+
+        function playScale() {
+            const root = document.getElementById('rootNote').value;
+            const scaleType = document.getElementById('scaleType').value;
+            const octave = parseInt(document.getElementById('octave').value);
+            const scaleNotes = getScaleNotes(root, scaleType);
+
+            const noteElements = document.querySelectorAll('.scale-note');
+
+            scaleNotes.forEach((note, i) => {
+                setTimeout(() => {
+                    playNote(note, i === scaleNotes.length - 1 ? octave + 1 : octave);
+                    noteElements[i].classList.add('playing');
+                    setTimeout(() => noteElements[i].classList.remove('playing'), 300);
+                }, i * 400);
+            });
+        }
+
+        updateScale();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../../sp/header.html").then(res => res.text()),
+                fetch("../../../sp/footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

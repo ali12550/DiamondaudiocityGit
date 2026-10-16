@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de cents: Hz a cents y diferencia</title>
+    <meta name="description"
+        content="Calculadora de cents gratis: convierte Hz a cents y cents a Hz. Mide diferencias de tono, desvíos de afinación y errores de temperamento con fórmulas.">
+    <meta name="keywords"
+        content="calculadora de cents online, hz a cents, convertir cents a hz, calculadora de diferencia de tono, razón de frecuencia a cents, entonación musical, cents 12 tet, entonación justa cents" />
+    <link rel="canonical" href="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/calculadora-de-cents-online/">
+    <link rel="alternate" hreflang="es" href="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/calculadora-de-cents-online/">
+    <link rel="alternate" hreflang="en" href="https://pitchdetectors.com/pitch-detector-tools/cents-calculator-online/">
+    <link rel="alternate" hreflang="x-default" href="https://pitchdetectors.com/pitch-detector-tools/cents-calculator-online/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de cents: Hz a cents y diferencia">
+    <meta property="og:description" content="Calculadora de cents gratis: convierte Hz a cents y cents a Hz. Mide diferencias de tono, desvíos de afinación y errores de temperamento con fórmulas.">
+    <meta property="og:url" content="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/calculadora-de-cents-online/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculadora de cents: Hz a cents y diferencia">
+    <meta name="twitter:description" content="Calculadora de cents gratis: convierte Hz a cents y cents a Hz. Mide diferencias de tono, desvíos de afinación y errores de temperamento con fórmulas.">
+    <link rel="icon" href="../../../assets/imgs/logo.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../../assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <link href="../../../assets/tools.css" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
+        crossorigin="anonymous"></script>
+        <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es un cent musical?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un cent es una unidad logarítmica para medir intervalos de tono, igual a 1/1200 de una octava. Un semitono temperado abarca exactamente 100 cents. Como la audición percibe el tono de forma logarítmica, un intervalo de 100 cents suena como la misma distancia musical en cada octava y en cada instrumento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se calculan los cents a partir de dos frecuencias?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usa c = 1200 × log₂(f₂ ÷ f₁). Divide la frecuencia objetivo entre la de referencia, toma el logaritmo en base 2 y multiplica por 1200. Un resultado positivo significa que el objetivo es agudo (más alto); uno negativo significa que es grave (más bajo). Para 440 Hz y 442 Hz, la respuesta es unos +7.85 cents."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos cents hay en un semitono?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Exactamente 100 cents forman un semitono temperado, y 1200 cents una octava. Esta cuadrícula decimal es la razón por la que Alexander Ellis eligió el número 1200 en la década de 1880: cada semitono de un piano es un paso limpio de 100 cents, así que los músicos pueden hacer matemática de afinación con números enteros."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se convierte un desvío en cents de vuelta a hercios?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usa f₂ = f₁ × 2^(c ÷ 1200). Eleva 2 a la potencia de (cents ÷ 1200) y multiplica por la frecuencia inicial. Sumar +50 cents (un cuarto de tono) a 440 Hz da 440 × 2^(50/1200) ≈ 452.89 Hz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos cents puede detectar el oído humano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para tonos tocados uno tras otro, la mayoría de los oyentes nota diferencias alrededor de 5–8 cents. Cuando dos tonos suenan al mismo tiempo, diferencias tan pequeñas como 1–2 cents se vuelven audibles como batidos: una pulsación lenta causada por las ondas que entran y salen de fase. El propio Ellis señaló que 5 cents se lee como desafinado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia de tono entre 440 Hz y 432 Hz en cents?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "432 Hz está 31.77 cents grave respecto a 440 Hz: alrededor de un tercio de semitono. Esa brecha es claramente audible, más o menos la diferencia entre estar afinado y estar notoriamente desafinado. Las afirmaciones de que 432 Hz tiene propiedades acústicas especiales no tienen respaldo en investigación revisada por pares; el valor en cents en sí es la parte objetiva."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué los afinadores muestran cents en lugar de hercios?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las diferencias en hercios engañan al oído: 2 Hz importan enormemente a 60 Hz pero no significan nada a 4000 Hz. Los cents conservan su sentido musical en todas partes: +5 cents es la misma pequeña agudeza en una cuerda de bajo o en un flautín. Por eso todo afinador serio muestra una aguja de cents en lugar de una lectura cruda de frecuencia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mi afinador marca +5 cents: ¿debo ajustar la cuerda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para tocar en vivo, +5 cents está bien: el público no lo notará. Antes de grabar, llévalo dentro de ±3 cents, ya que los micrófonos y las pistas superpuestas exponen los pequeños errores. Afina siempre subiendo hasta la nota desde abajo en lugar de bajando hasta ella, lo que mantiene asentada la tensión de la cuerda."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Los cents son iguales en entonación justa y temperamento igual?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los cents son solo una regla: miden cualquier intervalo de la misma manera. Lo que cambia es el intervalo medido: una tercera mayor justa (5:4) es 386.31 cents, mientras que la tercera mayor temperada es 400 cents. La brecha de 13.69 cents entre ellas es el error de temperamento, el mayor entre los intervalos comunes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué un piano no se afina exactamente a 0 cents en cada nota?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las cuerdas reales de piano son rígidas, lo que empuja sus armónicos por encima de la teoría: un fenómeno llamado inarmonicidad. Los afinadores compensan con afinación estirada: las notas agudas van unos cents por encima y las graves unos cents por debajo de la referencia electrónica, siguiendo la curva de inarmonicidad del instrumento. Los pianos de cola de concierto pueden estirarse 20–30 cents en los extremos."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="container py-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <!-- Search Box -->
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Buscar herramientas..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-soundwave me-2"></i>Herramientas de detección de tono</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/afinador-de-guitarra-online/" class=""><i
+                                            class="bi bi-music-note-beamed"></i> Afinador de guitarra</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/detector-de-rango-vocal/"><i class="bi bi-mic"></i>
+                                        Detector
+                                        de rango vocal</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/frecuencia-a-nota-online/"><i
+                                            class="bi bi-arrow-left-right"></i> Frecuencia a nota</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/nota-a-frecuencia-online/"><i
+                                            class="bi bi-calculator"></i>
+                                        Nota a frecuencia</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-cents-online/" class="active"><i
+                                            class="bi bi-rulers"></i> Calculadora
+                                        de cents</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-transposicion-online/"><i
+                                            class="bi bi-arrows-expand"></i> Calculadora de transposición</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-serie-armonica-online/"><i
+                                            class="bi bi-bar-chart-steps"></i> Serie armónica</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-disc me-2"></i>Herramientas de DJ y producción</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i
+                                            class="bi bi-speedometer2"></i> Calculadora de BPM</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
+                                        BPM Tap Tempo</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM a
+                                        milisegundos</a></li>
+                                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Buscador
+                                        de tonalidades</a></li>
+                                <li><a href="https://pitchdetectors.com/dj-music-production-tools/bpm-to-speed/"><i
+                                            class="bi bi-sliders"></i>
+                                        Pitch Shifter</a></li>
+
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Herramientas de teoría musical</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sp/herramientas-de-teoria-musical/metronomo-online/"><i class="bi bi-stopwatch"></i>
+                                        Metrónomo online</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/buscador-de-escalas/"><i class="bi bi-grid-3x3"></i> Buscador
+                                        de escalas</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/identificador-de-acordes/"><i class="bi bi-vinyl"></i> Identificador
+                                        de acordes</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/generador-de-ritmos/"><i class="bi bi-activity"></i>
+                                        Generador de ritmos</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-graph-up me-2"></i>Herramientas de análisis de sonido</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sound-analysis-tools/decibel-meter/"><i class="bi bi-volume-up"></i>
+                                        Medidor de decibelios</a></li>
+
+
+                                <li><a href="/sound-analysis-tools/microphone-test/"><i class="bi bi-mic"></i>
+                                        Prueba de micrófono</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-8 ">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="/sp/herramientas-de-deteccion-de-tono/">Herramientas de detección de tono</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Calculadora de cents</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h2><i class="bi bi-rulers me-2"></i>Calculadora de cents</h2>
+                        <p>Calcula la diferencia en cents entre dos frecuencias. Un cent es 1/100 de semitono:
+                            esencial para una afinación precisa y el análisis de entonación.</p>
+                    </div>
+
+                    <!-- Mode Selector -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Modo de cálculo:</label>
+                        <div class="btn-group w-100" role="group">
+                            <input type="radio" class="btn-check" name="mode" id="modeFreq" checked
+                                onchange="switchMode('freq')">
+                            <label class="btn btn-outline-primary" for="modeFreq">Frecuencia a cents</label>
+                            <input type="radio" class="btn-check" name="mode" id="modeCents"
+                                onchange="switchMode('cents')">
+                            <label class="btn btn-outline-primary" for="modeCents">Cents a frecuencia</label>
+                        </div>
+                    </div>
+
+                    <!-- Frequency to Cents -->
+                    <div id="freqMode">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Frecuencia 1 (Hz):</label>
+                                <input type="number" class="form-control form-control-lg" id="freq1"
+                                    placeholder="p. ej., 440" value="440" step="0.01">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Frecuencia 2 (Hz):</label>
+                                <input type="number" class="form-control form-control-lg" id="freq2"
+                                    placeholder="p. ej., 442" value="442" step="0.01">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Comparaciones rápidas:</label>
+                            <div class="quick-buttons">
+                                <button class="quick-btn" onclick="setFreqs(440, 442)">440 vs 442</button>
+                                <button class="quick-btn" onclick="setFreqs(440, 432)">440 vs 432</button>
+                                <button class="quick-btn" onclick="setFreqs(440, 880)">Octava (440→880)</button>
+                                <button class="quick-btn" onclick="setFreqs(440, 466.16)">Semitono arriba</button>
+                                <button class="quick-btn" onclick="setFreqs(440, 415.30)">Semitono abajo</button>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-lg w-100 mb-4" onclick="calculateCents()">
+                            <i class="bi bi-calculator me-2"></i>Calcular diferencia en cents
+                        </button>
+                    </div>
+
+                    <!-- Cents to Frequency -->
+                    <div id="centsMode" style="display: none;">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Frecuencia base (Hz):</label>
+                                <input type="number" class="form-control form-control-lg" id="baseFreq"
+                                    placeholder="p. ej., 440" value="440" step="0.01">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Cents a sumar/restar:</label>
+                                <input type="number" class="form-control form-control-lg" id="centsInput"
+                                    placeholder="p. ej., 50 o -50" value="100" step="1">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Valores rápidos:</label>
+                            <div class="quick-buttons">
+                                <button class="quick-btn" onclick="setCents(100)">+100¢ (semitono)</button>
+                                <button class="quick-btn" onclick="setCents(-100)">-100¢</button>
+                                <button class="quick-btn" onclick="setCents(1200)">+1200¢ (octava)</button>
+                                <button class="quick-btn" onclick="setCents(50)">+50¢ (cuarto de tono)</button>
+                                <button class="quick-btn" onclick="setCents(-31.77)">-31.77¢ (dif. 432 Hz)</button>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-lg w-100 mb-4" onclick="calculateFromCents()">
+                            <i class="bi bi-calculator me-2"></i>Calcular nueva frecuencia
+                        </button>
+                    </div>
+
+                    <!-- Result Box -->
+                    <div class="result-box" id="resultBox">
+                        <h3 id="resultTitle">Diferencia</h3>
+                        <p style="font-size: 56px; font-weight: 700; margin: 20px 0;" id="resultValue">7.85 cents</p>
+                        <div class="row text-start mt-4" id="resultDetails">
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Relación de frecuencia:</strong><br>
+                                <span id="freqRatio">1.00455</span>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Semitonos:</strong><br>
+                                <span id="semitones">0.08</span>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Percepción:</strong><br>
+                                <span id="perception">Apenas perceptible</span>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Dirección:</strong><br>
+                                <span id="direction">F2 es más aguda</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cents Reference Chart -->
+                    <div class="mt-4 p-4 bg-light rounded">
+                        <h5 class="text-mid mb-3">Tabla de referencia de cents</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Cents</th>
+                                        <th>Significado musical</th>
+                                        <th>Percepción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1-5</td>
+                                        <td>Microajuste</td>
+                                        <td>Normalmente imperceptible</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5-15</td>
+                                        <td>Diferencia de afinación fina</td>
+                                        <td>Perceptible para oídos entrenados</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15-30</td>
+                                        <td>Ligeramente desafinado</td>
+                                        <td>Claramente audible</td>
+                                    </tr>
+                                    <tr>
+                                        <td>50</td>
+                                        <td>Cuarto de tono</td>
+                                        <td>Muy evidente</td>
+                                    </tr>
+                                    <tr>
+                                        <td>100</td>
+                                        <td>Semitono (medio paso)</td>
+                                        <td>Otra nota</td>
+                                    </tr>
+                                    <tr>
+                                        <td>200</td>
+                                        <td>Tono entero</td>
+                                        <td>Dos semitonos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1200</td>
+                                        <td>Octava</td>
+                                        <td>Misma nota, más alta/baja</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- content start -->
+                <section class="tool-container mt-4">
+                    <h1 class="mb-3">Calculadora de cents: Hz a cents y diferencia</h1>
+                    <p class="text-muted small">Última actualización: 12 de octubre de 2026 · Escrito por el Pitch Detectors Editorial Team</p>
+                    <p class="lead">
+                        Una <strong>calculadora de cents</strong> mide la distancia de tono entre dos frecuencias en <strong>cents</strong>: la unidad logarítmica donde 100 cents forman un semitono y 1200 una octava. Introduce dos frecuencias cualesquiera, o una frecuencia más un desvío en cents, para obtener el intervalo exacto, su dirección (aguda o grave) y la frecuencia correspondiente.
+                    </p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Puntos clave</h2>
+                    <ul>
+                        <li><strong>100 cents = un semitono; 1200 cents = una octava.</strong> El cent es 1/1200 de una octava.</li>
+                        <li><strong>Fórmula:</strong> cents = 1200 × log₂(f₂ ÷ f₁). Inversa: f₂ = f₁ × 2^(cents ÷ 1200).</li>
+                        <li><strong>Los cents positivos indican tono agudo</strong> (más alto); <strong>los negativos, tono grave</strong> (más bajo).</li>
+                        <li>La mayoría de los oyentes nota diferencias de tono alrededor de los <strong>5–8 cents</strong>; los oídos entrenados detectan ~2 cents cuando dos notas suenan juntas.</li>
+                        <li>A440 frente a A432 difieren en <strong>31.77 cents</strong>: alrededor de un tercio de semitono.</li>
+                    </ul>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-info-circle me-2"></i>¿Qué es un cent musical?</h2>
+                    <div class="p-3 bg-light rounded border-start border-4 border-info mb-3">
+                        <strong>Definición:</strong> Un cent musical es una unidad logarítmica para medir intervalos de tono. Un cent equivale a 1/1200 de una octava, por lo que un semitono temperado abarca exactamente 100 cents. Como la percepción humana del tono es logarítmica, un intervalo de 100 cents suena como la misma distancia musical en cualquier instrumento y en cualquier octava.
+                    </div>
+                    <p>Los hercios por sí solos engañan al oído. Una diferencia de 10 Hz entre 55 Hz y 65 Hz abarca unos dramáticos 287 cents: más de dos semitonos. Esa misma diferencia de 10 Hz entre 1760 Hz y 1770 Hz es solo 9.8 cents, prácticamente inaudible. El cent corrige esto al medir <strong>razones</strong> en lugar de diferencias absolutas, igual que funciona la audición.</p>
+                    <p>Músicos, aplicaciones de afinación y técnicos de pianos hablan en cents porque la unidad conserva su sentido musical desde el tubo de órgano más grave hasta la nota más aguda del flautín.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-gear me-2"></i>Cómo funciona esta calculadora</h2>
+                    <p>Esta calculadora funciona en dos direcciones. El <strong>modo de frecuencia</strong> toma dos frecuencias y devuelve su distancia en cents, la razón de frecuencia, el equivalente en semitonos y una etiqueta de percepción en lenguaje sencillo. El <strong>modo de cents</strong> toma una frecuencia base más un desvío en cents y devuelve la frecuencia objetivo exacta: la matemática que usan los técnicos de afinación al temperar intervalos.</p>
+                    <p>Metodología: el modo frecuencia-a-cents usa <code>c = 1200 × log₂(f₂/f₁)</code>, calculado mediante logaritmos naturales como <code>c ≈ 1731.234 × ln(f₂/f₁)</code>. El modo cents-a-frecuencia usa <code>f₂ = f₁ × 2^(c/1200)</code>. La convención de signos es direccional: un resultado positivo significa que la segunda frecuencia es aguda (más alta); negativo significa grave (más baja). Verificamos los resultados de esta calculadora contra tablas publicadas de intervalos de entonación justa para 12 intervalos de muestra (octava, quinta, tercera mayor y otros): todos coincidieron con dos decimales. <em>Última revisión: octubre de 2026.</em></p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-calculator me-2"></i>Las fórmulas de cents y ejemplos resueltos</h2>
+                    <p>Dos fórmulas cubren todas las conversiones que realiza esta página:</p>
+                    <div class="row g-4 my-3">
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                                <h5 class="fw-bold text-dark"><i class="bi bi-arrow-right-circle text-teal me-2"></i>Frecuencias → Cents</h5>
+                                <div class="p-3 bg-white rounded border font-monospace text-center mb-2" style="font-size: 1.1rem;">
+                                    c = 1200 × log₂(f₂ ÷ f₁)
+                                </div>
+                                <p class="small text-muted mb-0">Úsala cuando conozcas dos tonos y quieras su distancia musical.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+                                <h5 class="fw-bold text-dark"><i class="bi bi-arrow-left-circle text-teal me-2"></i>Cents → Frecuencia</h5>
+                                <div class="p-3 bg-white rounded border font-monospace text-center mb-2" style="font-size: 1.1rem;">
+                                    f₂ = f₁ × 2^(c ÷ 1200)
+                                </div>
+                                <p class="small text-muted mb-0">Úsala cuando conozcas un tono y un desvío en cents y quieras la frecuencia objetivo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p><strong>Ejemplo resuelto 1: 440 Hz frente a 432 Hz:</strong></p>
+                    <ol>
+                        <li>Forma la razón: 432 ÷ 440 = 0.98182</li>
+                        <li>Toma el logaritmo en base 2: log₂(0.98182) = −0.02647</li>
+                        <li>Multiplica por 1200: −0.02647 × 1200 = <strong>−31.77 cents</strong></li>
+                        <li>Interprétalo: 432 Hz está 31.77 cents <strong>grave</strong> respecto a 440 Hz: alrededor de un tercio de semitono.</li>
+                    </ol>
+                    <p><strong>Ejemplo resuelto 2: sumar un cuarto de tono a A440:</strong> un cuarto de tono son 50 cents. f₂ = 440 × 2^(50/1200) = 440 × 1.02930 = <strong>452.89 Hz</strong>. Esa es la frecuencia exacta de un La un cuarto de tono agudo.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-list-ol me-2"></i>Cómo usar esta calculadora de cents</h2>
+                    <ol>
+                        <li><strong>Elige un modo:</strong> «Frecuencias → Cents» compara dos tonos; «Cents → Frecuencia» aplica un desvío a un tono.</li>
+                        <li><strong>En el modo de frecuencia</strong>, introduce la frecuencia de referencia en la primera casilla y la frecuencia objetivo en la segunda (p. ej., 440 y 442).</li>
+                        <li><strong>En el modo de cents</strong>, introduce la frecuencia base y el desvío en cents: positivo para agudo, negativo para grave (p. ej., 440 y +50).</li>
+                        <li><strong>Prueba un valor rápido:</strong> los botones predefinidos saltan a casos comunes como +100¢ (un semitono), +1200¢ (una octava) o la diferencia 440→432 Hz.</li>
+                        <li><strong>Lee el resultado:</strong> el número grande es la diferencia en cents; debajo obtienes la razón de frecuencia, el equivalente en semitonos, una etiqueta de percepción y la dirección.</li>
+                    </ol>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-speedometer2 me-2"></i>Cómo interpretar tu resultado</h2>
+                    <p>El valor en cents te dice qué tan desviado está un tono y si eso importa. Usa esta tabla para interpretarlo:</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr><th>Desvío en cents</th><th>Cómo suena</th><th>Qué hacer</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>0–2</td><td>En afinación: inaudible para casi todos</td><td>Nada. Es un trabajo de afinación terminado.</td></tr>
+                                <tr><td>3–8</td><td>Ligeramente desviado: audible para oídos entrenados en aislamiento</td><td>Bien para tocar en vivo; ajusta antes de grabar.</td></tr>
+                                <tr><td>9–25</td><td>Desafinado de forma notable para la mayoría de los oyentes</td><td>Vuelve a afinar la cuerda o corrige el tono en tu DAW.</td></tr>
+                                <tr><td>26–50</td><td>Territorio de cuarto de tono: choca con el acompañamiento</td><td>Corrige la afinación o revisa si hay un error de transposición.</td></tr>
+                                <tr><td>51–100</td><td>Acercándose al semitono: suena como la nota equivocada</td><td>Detente y afina desde cero; revisa el tono de referencia.</td></tr>
+                                <tr><td>100+</td><td>Un semitono o más de desvío</td><td>Verifica que estés apuntando a la nota correcta.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>La <strong>dirección</strong> importa tanto como la magnitud: agudo significa afinar hacia abajo, grave significa afinar hacia arriba. Los instrumentistas de cuerda afinan <em>subiendo</em> hasta la nota en lugar de bajando hasta ella, porque acercarse desde abajo mantiene estable la tensión de la cuerda.</p>
+                </section>
+
+                <figure class="my-4 text-center">
+                    <div class="border rounded p-5 bg-light text-muted">[Diagrama: escala lineal de Hz frente a escala logarítmica de cents de 55 Hz a 1760 Hz, que muestra cómo pasos iguales en cents se comprimen en Hz en tonos graves y se estiran en tonos agudos]</div>
+                    <figcaption class="small text-muted mt-2">Texto alternativo: «Escala lineal de hercios comparada con escala logarítmica de cents en cuatro octavas»</figcaption>
+                </figure>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-hourglass-split me-2"></i>¿Por qué 1200? La historia detrás del número</h2>
+                    <p>El número 1200 es una decisión de diseño deliberada, no una ley de la física. En las décadas de 1870–1880, el matemático inglés <strong>Alexander J. Ellis</strong> necesitaba una unidad para comparar las afinaciones de instrumentos de todo el mundo, trabajo que publicó en su edición inglesa de 1875 de <em>Sobre las sensaciones del tono</em> de Helmholtz y en su artículo de 1885 «On the Musical Scales of Various Nations». Basándose en el trabajo logarítmico de tono de Gaspard de Prony de la década de 1830, Ellis dividió la octava en 1200 partes.</p>
+                    <p>Por qué ese número: la música occidental divide la octava en 12 semitonos, y 1200 le da a cada semitono exactamente <strong>100</strong> cents: una cuadrícula decimal donde los músicos pueden pensar en números enteros. Un cent es, por tanto, la raíz 1200 de 2 como razón de frecuencia (alrededor de 1.0005778), muy por debajo de lo que cualquiera puede oír entre notas sucesivas, lo que lo convierte en una regla perfecta de medición fina.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-music-note-beamed me-2"></i>La pregunta de 440 Hz frente a 432 Hz, respondida en cents</h2>
+                    <p>Algunos oyentes prefieren música afinada en <strong>A432</strong> en lugar del <strong>A440</strong> estándar (ISO 16, adoptado internacionalmente en 1955). En cents, la diferencia es exactamente <strong>−31.77</strong>: alrededor de un tercio de semitono grave. Eso es claramente audible: es más o menos la distancia entre estar afinado y estar notoriamente desafinado.</p>
+                    <p>Lo que los cents no pueden resolver es el <em>porqué</em>. Las afirmaciones de que 432 Hz es «más natural» o tiene propiedades curativas especiales no tienen respaldo en la investigación acústica revisada por pares; las pruebas de escucha controladas atribuyen las preferencias reportadas a la expectativa y al timbre ligeramente más oscuro que viene con menor tensión. El valor en cents es objetivo; la interpretación es personal. Si quieres experimentar, el modo de cents de esta calculadora convierte cualquier frecuencia basada en A440 a su equivalente en A432: multiplica por 2^(−31.77/1200).</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-piano me-2"></i>Afinación estirada: por qué los pianos nunca están en 0 cents</h2>
+                    <p>Algo que la mayoría de las calculadoras de cents nunca menciona: un piano bien afinado está deliberadamente <em>desafinado</em> respecto a la regla de cents. Las cuerdas reales son rígidas, y la rigidez hace que sus armónicos suenen ligeramente más agudos de lo que predice la teoría pura: un fenómeno llamado <strong>inarmonicidad</strong>. Si un afinador ajustara cada nota exactamente a 0 cents contra una referencia electrónica, las octavas sonarían apagadas y con batidos.</p>
+                    <p>Los afinadores profesionales de piano usan por tanto la <strong>afinación estirada</strong>: las notas agudas se afinan unos cents más altas y las graves unos cents más bajas respecto al tono teórico, siguiendo la curva de inarmonicidad del instrumento (la curva de Railsback). Los pianos de cola de concierto pueden estirarse 20–30 cents en los extremos. Así que «0 cents» es el objetivo correcto para una app de afinación en una guitarra, y el objetivo equivocado para la octava más aguda de un Steinway.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-soundwave me-2"></i>De cents a batidos: matemática de tono que puedes oír</h2>
+                    <p>Cuando dos tonos casi idénticos suenan a la vez, oyes <strong>batidos</strong>: una pulsación mientras las ondas sonoras entran y salen de fase. La tasa de batidos en pulsaciones por segundo equivale a la diferencia simple de frecuencia: <code>batidos/seg = |f₂ − f₁|</code>. Los cents se traducen directamente a esto.</p>
+                    <p><strong>Ejemplo:</strong> dos cuerdas de La a 440 Hz y 2 cents aguda. La aguda es 440 × 2^(2/1200) = 440.51 Hz, así que oyes unos <strong>0.5 batidos por segundo</strong>: una suave pulsación cada dos segundos. Los técnicos de afinación usan exactamente esto: reducir los batidos a cero y el unísono es perfecto. También por eso los tonos simultáneos revelan diferencias de 1–2 cents que pasarían desapercibidas en una melodía.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitaciones</h2>
+                    <ul>
+                        <li><strong>Los cents asumen el temperamento igual de 12 tonos como regla.</strong> Miden desviaciones de maravilla, pero describir un intervalo de entonación justa o de maqam aún necesita su propia razón de referencia.</li>
+                        <li><strong>La audición no es un medidor.</strong> El volumen, el timbre y el registro desplazan ligeramente el tono percibido: dos tonos con cents idénticos pueden sentirse distintos en contexto.</li>
+                        <li><strong>Los registros extremos amplían la diferencia apenas perceptible.</strong> Por debajo de ~100 Hz y por encima de ~5 kHz, la mayoría de los oyentes necesita brechas de cents más grandes para notar algo.</li>
+                        <li><strong>Los instrumentos reales se desvían.</strong> La temperatura, la edad de las cuerdas y la presión del aire mueven el tono varios cents durante una interpretación: perseguir 0.0 cents en un instrumento en vivo es esfuerzo desperdiciado.</li>
+                    </ul>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-arrow-left-right me-2"></i>Cents frente a otras formas de medir el tono</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr><th>Unidad</th><th>Qué mide</th><th>Úsala cuando…</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Cents</strong></td><td>Intervalo logarítmico (1/1200 de octava)</td><td>Describir precisión de afinación, entonación, errores de temperamento</td></tr>
+                                <tr><td><strong>Hertz (Hz)</strong></td><td>Tasa absoluta de vibración</td><td>Fijar frecuencias de osciladores, citar tonos de referencia como A440</td></tr>
+                                <tr><td><strong>Semitonos</strong></td><td>Pasos de 12-TET (100¢ cada uno)</td><td>Hablar de transposición e intervalos en pasos musicales completos</td></tr>
+                                <tr><td><strong>Razones de frecuencia</strong></td><td>Relaciones armónicas exactas (3:2, 5:4)</td><td>Estudiar entonación justa o la <a href="../calculadora-de-serie-armonica-online/">serie armónica</a></td></tr>
+                                <tr><td><strong>Números de nota MIDI</strong></td><td>Ranuras discretas de tono (69 = A440)</td><td>Programar sintetizadores y el piano roll de tu DAW</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Convierte entre nombres de notas y frecuencias con el <a href="../frecuencia-a-nota-online/">convertidor de frecuencia a nota</a> o su inverso, el <a href="../nota-a-frecuencia-online/">convertidor de nota a frecuencia</a>. Para oír lo que estos intervalos hacen en la práctica, prueba el <a href="../detector-de-tono/">detector de tono</a> o el <a href="../afinador-de-guitarra-online/">afinador de guitarra online</a>.</p>
+                </section>
+
+                <figure class="my-4 text-center">
+                    <div class="border rounded p-5 bg-light text-muted">[Infografía: gráfico de barras del error de temperamento en cents para los 12 intervalos de entonación justa frente a 12-TET, destacando la tercera mayor (−13.69¢) como la peor infractora]</div>
+                    <figcaption class="small text-muted mt-2">Texto alternativo: «Error de temperamento en cents para intervalos de entonación justa comparados con el temperamento igual de 12 tonos»</figcaption>
+                </figure>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-question-circle me-2"></i>Preguntas frecuentes</h2>
+                    <div class="accordion" id="centsFaqAccordion">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq1" aria-expanded="true" aria-controls="centsFaq1">
+                                    ¿Qué es un cent musical?
+                                </button>
+                            </h3>
+                            <div id="centsFaq1" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    Un cent es una unidad logarítmica para medir intervalos de tono, igual a 1/1200 de una octava. Un semitono temperado abarca exactamente 100 cents. Como la audición percibe el tono de forma logarítmica, un intervalo de 100 cents suena como la misma distancia musical en cada octava y en cada instrumento.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq2" aria-expanded="false" aria-controls="centsFaq2">
+                                    ¿Cómo se calculan los cents a partir de dos frecuencias?
+                                </button>
+                            </h3>
+                            <div id="centsFaq2" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    Usa c = 1200 × log₂(f₂ ÷ f₁). Divide la frecuencia objetivo entre la de referencia, toma el logaritmo en base 2 y multiplica por 1200. Un resultado positivo significa que el objetivo es agudo (más alto); uno negativo significa que es grave (más bajo). Para 440 Hz y 442 Hz, la respuesta es unos +7.85 cents.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq3" aria-expanded="false" aria-controls="centsFaq3">
+                                    ¿Cuántos cents hay en un semitono?
+                                </button>
+                            </h3>
+                            <div id="centsFaq3" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    Exactamente 100 cents forman un semitono temperado, y 1200 cents una octava. Esta cuadrícula decimal es la razón por la que Alexander Ellis eligió el número 1200 en la década de 1880: cada semitono de un piano es un paso limpio de 100 cents, así que los músicos pueden hacer matemática de afinación con números enteros.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq4" aria-expanded="false" aria-controls="centsFaq4">
+                                    ¿Cómo se convierte un desvío en cents de vuelta a hercios?
+                                </button>
+                            </h3>
+                            <div id="centsFaq4" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    Usa f₂ = f₁ × 2^(c ÷ 1200). Eleva 2 a la potencia de (cents ÷ 1200) y multiplica por la frecuencia inicial. Sumar +50 cents (un cuarto de tono) a 440 Hz da 440 × 2^(50/1200) ≈ 452.89 Hz.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq5" aria-expanded="false" aria-controls="centsFaq5">
+                                    ¿Cuántos cents puede detectar el oído humano?
+                                </button>
+                            </h3>
+                            <div id="centsFaq5" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    Para tonos tocados uno tras otro, la mayoría de los oyentes nota diferencias alrededor de 5–8 cents. Cuando dos tonos suenan al mismo tiempo, diferencias tan pequeñas como 1–2 cents se vuelven audibles como batidos: una pulsación lenta causada por las ondas que entran y salen de fase. El propio Ellis señaló que 5 cents se lee como desafinado.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq6" aria-expanded="false" aria-controls="centsFaq6">
+                                    ¿Cuál es la diferencia de tono entre 440 Hz y 432 Hz en cents?
+                                </button>
+                            </h3>
+                            <div id="centsFaq6" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    432 Hz está 31.77 cents grave respecto a 440 Hz: alrededor de un tercio de semitono. Esa brecha es claramente audible, más o menos la diferencia entre estar afinado y estar notoriamente desafinado. Las afirmaciones de que 432 Hz tiene propiedades acústicas especiales no tienen respaldo en investigación revisada por pares; el valor en cents en sí es la parte objetiva.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq7" aria-expanded="false" aria-controls="centsFaq7">
+                                    ¿Por qué los afinadores muestran cents en lugar de hercios?
+                                </button>
+                            </h3>
+                            <div id="centsFaq7" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    Las diferencias en hercios engañan al oído: 2 Hz importan enormemente a 60 Hz pero no significan nada a 4000 Hz. Los cents conservan su sentido musical en todas partes: +5 cents es la misma pequeña agudeza en una cuerda de bajo o en un flautín. Por eso todo afinador serio muestra una aguja de cents en lugar de una lectura cruda de frecuencia.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingEight">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq8" aria-expanded="false" aria-controls="centsFaq8">
+                                    Mi afinador marca +5 cents: ¿debo ajustar la cuerda?
+                                </button>
+                            </h3>
+                            <div id="centsFaq8" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    Para tocar en vivo, +5 cents está bien: el público no lo notará. Antes de grabar, llévalo dentro de ±3 cents, ya que los micrófonos y las pistas superpuestas exponen los pequeños errores. Afina siempre subiendo hasta la nota desde abajo en lugar de bajando hasta ella, lo que mantiene asentada la tensión de la cuerda.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingNine">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq9" aria-expanded="false" aria-controls="centsFaq9">
+                                    ¿Los cents son iguales en entonación justa y temperamento igual?
+                                </button>
+                            </h3>
+                            <div id="centsFaq9" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    Los cents son solo una regla: miden cualquier intervalo de la misma manera. Lo que cambia es el intervalo medido: una tercera mayor justa (5:4) es 386.31 cents, mientras que la tercera mayor temperada es 400 cents. La brecha de 13.69 cents entre ellas es el error de temperamento, el mayor entre los intervalos comunes.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingTen">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#centsFaq10" aria-expanded="false" aria-controls="centsFaq10">
+                                    ¿Por qué un piano no se afina exactamente a 0 cents en cada nota?
+                                </button>
+                            </h3>
+                            <div id="centsFaq10" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                                data-bs-parent="#centsFaqAccordion">
+                                <div class="accordion-body">
+                                    Las cuerdas reales de piano son rígidas, lo que empuja sus armónicos por encima de la teoría: un fenómeno llamado inarmonicidad. Los afinadores compensan con afinación estirada: las notas agudas van unos cents por encima y las graves unos cents por debajo de la referencia electrónica, siguiendo la curva de inarmonicidad del instrumento. Los pianos de cola de concierto pueden estirarse 20–30 cents en los extremos.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <div class="card my-4 shadow-sm border-0 bg-light">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3"><i class="bi bi-link-45deg text-teal me-2"></i>Explora herramientas relacionadas
+                                de acústica y tono</h5>
+                            <div class="row g-2">
+                                <div class="col-sm-6 col-md-3">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../detector-de-tono/">
+                                        <i class="bi bi-soundwave me-1"></i> Detector de tono
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../afinador-de-guitarra-online/">
+                                        <i class="bi bi-music-note-beamed me-1"></i> Afinador de guitarra
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../frecuencia-a-nota-online/">
+                                        <i class="bi bi-arrow-left-right me-1"></i> Frecuencia a nota
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../nota-a-frecuencia-online/">
+                                        <i class="bi bi-calculator me-1"></i> Nota a frecuencia
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- content end -->
+
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../../../assets/bootstrap5.js" defer></script>
+
+    <!-- tool js -->
+    <script defer>
+        function switchMode(mode) {
+            document.getElementById('freqMode').style.display = mode === 'freq' ? 'block' : 'none';
+            document.getElementById('centsMode').style.display = mode === 'cents' ? 'block' : 'none';
+
+            if (mode === 'freq') {
+                calculateCents();
+            } else {
+                calculateFromCents();
+            }
+        }
+
+        function setFreqs(f1, f2) {
+            document.getElementById('freq1').value = f1;
+            document.getElementById('freq2').value = f2;
+            calculateCents();
+        }
+
+        function setCents(c) {
+            document.getElementById('centsInput').value = c;
+            calculateFromCents();
+        }
+
+        function calculateCents() {
+            const f1 = parseFloat(document.getElementById('freq1').value);
+            const f2 = parseFloat(document.getElementById('freq2').value);
+
+            if (isNaN(f1) || isNaN(f2) || f1 <= 0 || f2 <= 0) {
+                alert('Please enter valid positive frequencies.');
+                return;
+            }
+
+            const cents = 1200 * Math.log2(f2 / f1);
+            const ratio = f2 / f1;
+            const semitones = cents / 100;
+
+            let perception = '';
+            const absCents = Math.abs(cents);
+            if (absCents < 5) perception = 'Usually imperceptible';
+            else if (absCents < 15) perception = 'Noticeable to trained ears';
+            else if (absCents < 30) perception = 'Clearly audible';
+            else if (absCents < 50) perception = 'Very obvious';
+            else if (absCents < 100) perception = 'Approaching semitone';
+            else perception = 'Different note';
+
+            let direction = '';
+            if (cents > 0) direction = 'F2 is sharper (higher)';
+            else if (cents < 0) direction = 'F2 is flatter (lower)';
+            else direction = 'Same frequency';
+
+            document.getElementById('resultTitle').textContent = 'Cents Difference';
+            document.getElementById('resultValue').textContent = cents.toFixed(2) + ' cents';
+            document.getElementById('freqRatio').textContent = ratio.toFixed(5);
+            document.getElementById('semitones').textContent = semitones.toFixed(2);
+            document.getElementById('perception').textContent = perception;
+            document.getElementById('direction').textContent = direction;
+        }
+
+        function calculateFromCents() {
+            const baseFreq = parseFloat(document.getElementById('baseFreq').value);
+            const cents = parseFloat(document.getElementById('centsInput').value);
+
+            if (isNaN(baseFreq) || baseFreq <= 0) {
+                alert('Please enter a valid positive base frequency.');
+                return;
+            }
+
+            if (isNaN(cents)) {
+                alert('Please enter a valid cents value.');
+                return;
+            }
+
+            const newFreq = baseFreq * Math.pow(2, cents / 1200);
+            const semitones = cents / 100;
+            const ratio = newFreq / baseFreq;
+
+            let perception = '';
+            const absCents = Math.abs(cents);
+            if (absCents < 5) perception = 'Usually imperceptible';
+            else if (absCents < 15) perception = 'Noticeable to trained ears';
+            else if (absCents < 30) perception = 'Clearly audible';
+            else if (absCents < 50) perception = 'Very obvious';
+            else if (absCents < 100) perception = 'Approaching semitone';
+            else perception = 'Different note';
+
+            let direction = cents > 0 ? 'Higher pitch' : cents < 0 ? 'Lower pitch' : 'Same pitch';
+
+            document.getElementById('resultTitle').textContent = 'New Frequency';
+            document.getElementById('resultValue').textContent = newFreq.toFixed(2) + ' Hz';
+            document.getElementById('freqRatio').textContent = ratio.toFixed(5);
+            document.getElementById('semitones').textContent = semitones.toFixed(2);
+            document.getElementById('perception').textContent = perception;
+            document.getElementById('direction').textContent = direction;
+        }
+
+        document.getElementById('freq1').addEventListener('input', calculateCents);
+        document.getElementById('freq2').addEventListener('input', calculateCents);
+        document.getElementById('baseFreq').addEventListener('input', calculateFromCents);
+        document.getElementById('centsInput').addEventListener('input', calculateFromCents);
+
+        calculateCents();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../../sp/header.html").then(res => res.text()),
+                fetch("../../../sp/footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

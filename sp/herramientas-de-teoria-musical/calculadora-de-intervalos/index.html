@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculadora de intervalos: semitonos entre dos notas</title>
+  <meta name="description"
+  content="Calcula el intervalo entre dos notas: nombra cada intervalo y su distancia en semitonos, con tablas de calidades e intervalos compuestos.">
+  <meta name="keywords"
+    content="interval calculator, musical intervals, semitone calculator, note distance, major minor perfect intervals, tritone calculator, ear training intervals" />
+  <link rel="canonical" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/calculadora-de-intervalos/">
+  <link rel="alternate" hreflang="es" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/calculadora-de-intervalos/">
+  <link rel="alternate" hreflang="en" href="https://pitchdetectors.com/music-theory-tools/interval-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://pitchdetectors.com/music-theory-tools/interval-calculator/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="Calculadora de intervalos: semitonos entre dos notas">
+    <meta property="og:description" content="Calcula el intervalo entre dos notas: nombra cada intervalo y su distancia en semitonos, con tablas de calidades e intervalos compuestos.">
+    <meta property="og:url" content="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/calculadora-de-intervalos/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculadora de intervalos: semitonos entre dos notas">
+    <meta name="twitter:description" content="Calcula el intervalo entre dos notas: nombra cada intervalo y su distancia en semitonos, con tablas de calidades e intervalos compuestos.">
+  <link rel="icon" href="../../../assets/imgs/logo.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../../assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/style.css">
+  <link href="../../../assets/tools.css" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
+    crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo se calcula el intervalo entre dos notas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Numera la escala cromática de C = 0 a B = 11, resta el número de la nota más grave al de la más aguda y ajusta con módulo 12. Luego busca el conteo de semitonos: 7 es una quinta justa, 4 una tercera mayor, 3 una tercera menor. La calculadora de arriba lo hace al instante."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre intervalos mayores y menores?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un semitono. Un intervalo mayor es la versión más amplia: la tercera mayor son 4 semitonos, la tercera menor son 3. Baja cualquier intervalo mayor medio paso y se vuelve menor; sube un intervalo menor y se vuelve mayor. Solo las segundas, terceras, sextas y séptimas tienen formas mayor y menor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué son los intervalos justos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unísonos, cuartas, quintas y octavas: los intervalos que suenan excepcionalmente estables y \"huecos\" por sus simples proporciones de frecuencia (la quinta justa es 3:2). No tienen versión mayor ni menor; ampliar uno lo vuelve aumentado y estrecharlo lo vuelve disminuido."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos semitonos hay en una quinta justa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Siete. Es el número más útil de la teoría musical para memorizar: 7 semitonos hacia arriba es una quinta, 7 hacia abajo (o 5 hacia arriba) es una cuarta. El círculo de quintas es literalmente el número 7 aplicado repetidamente módulo 12."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es un tritono y por qué suena disonante?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El tritono abarca 6 semitonos, exactamente media octava, y la divide en dos mitades iguales e inestables. Su proporción de frecuencia (√2:1) es la más compleja de la escala cromática, y nuestros oídos la perciben como una tensión que exige resolución. Es el motor dentro de cada acorde de séptima dominante."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre una tercera menor y una segunda aumentada?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sonido: nada; ambos son 3 semitonos. Escritura: todo. De C a E♭ abarca tres nombres de nota (una tercera); de C a D♯ abarca dos (una segunda). Usa el nombre de tercera menor en tonalidades menores y el de segunda aumentada en contextos de menor armónica donde la escritura D♯ es la correcta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué son los intervalos compuestos como las novenas y las trecenas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Intervalos simples más una octava: una novena es una segunda una octava arriba (14 semitonos), una oncena es una cuarta (17), una trecena es una sexta (21). Resta 7 al número compuesto para obtener el intervalo simple que informa esta calculadora. La armonía del jazz los nombra en compuesto para mostrar la altura del voicing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se relacionan los intervalos con los acordes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los acordes son pilas de intervalos medidos desde la fundamental: una tríada mayor es una tercera mayor (4 semitonos) más una tercera menor (3 semitonos) = quinta justa en total. Aprende la tabla de intervalos y las fórmulas de acordes se vuelven aritmética en lugar de memorización."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es el intervalo más pequeño de la música occidental?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El semitono (medio paso): p. ej., de E a F o de C a C♯. Es el paso más pequeño en un piano y la unidad que cuenta esta calculadora. Algunas tradiciones usan divisiones microtonales más pequeñas, pero el temperamento igual de 12 tonos construye todo a partir de semitonos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo invierto un intervalo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dale la vuelta: la inversión de un intervalo siempre suma 9 (2.ª ↔ 7.ª, 3.ª ↔ 6.ª, 4.ª ↔ 5.ª), y la cualidad también se invierte: mayor se vuelve menor, aumentado se vuelve disminuido, justo se mantiene justo. Así, una sexta mayor se invierte en una tercera menor."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 col-md-4">
+        <div class="tools-sidebar">
+          <div class="sidebar-search mb-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="toolSearch" placeholder="Buscar herramientas..."
+                onkeyup="searchTools()">
+            </div>
+          </div>
+
+          <div class="sidebar-categories">
+            <div class="sidebar-category active">
+              <h5><i class="bi bi-music-note-list me-2"></i>Herramientas de teoría musical</h5>
+              <ul class="sidebar-links">
+                <li><a href="/sp/herramientas-de-teoria-musical/buscador-de-escalas/"><i class="bi bi-keyboard"></i> Buscador de escalas</a></li>
+                <li><a href="/sp/herramientas-de-teoria-musical/generador-de-progresiones-de-acordes/"><i class="bi bi-journal-music"></i> Progresión de acordes</a></li>
+                <li><a href="/sp/herramientas-de-teoria-musical/calculadora-de-intervalos/" class="active"><i class="bi bi-circle-half"></i>
+                    Calculadora de intervalos</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="col-lg-9 col-md-8">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/sp/herramientas-de-teoria-musical/">Herramientas de teoría musical</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Calculadora de intervalos</li>
+          </ol>
+        </nav>
+
+        <div class="tool-container">
+          <div class="tool-title">
+            <h1><i class="bi bi-circle-half me-2"></i>Calculadora de intervalos</h1>
+            <p class="text-muted small">Última actualización: 12 de octubre de 2026 · Written by the Pitch Detectors Editorial Team</p>
+            <p>Calcula el intervalo entre dos notas. Admite todos los intervalos mayores, menores, justos, aumentados y disminuidos.</p>
+          </div>
+
+          <!-- Input -->
+          <div class="row mb-4">
+            <div class="col-md-6 mx-auto">
+              <label class="form-label fw-bold">Selecciona la primera nota</label>
+              <select id="note1Select" class="form-control form-control-lg text-center" onchange="calculateInterval()">
+                <option>C</option>
+                <option>C#</option>
+                <option>D</option>
+                <option>D#</option>
+                <option>E</option>
+                <option>F</option>
+                <option>F#</option>
+                <option>G</option>
+                <option>G#</option>
+                <option>A</option>
+                <option>A#</option>
+                <option>B</option>
+              </select>
+            </div>
+            <div class="col-md-6 mx-auto mt-3 mt-md-0 text-center">
+              <label class="form-label fw-bold">Selecciona la segunda nota</label>
+              <select id="note2Select" class="form-control form-control-lg text-center" onchange="calculateInterval()">
+                <option>C</option>
+                <option>C#</option>
+                <option>D</option>
+                <option>D#</option>
+                <option>E</option>
+                <option>F</option>
+                <option>F#</option>
+                <option>G</option>
+                <option>G#</option>
+                <option>A</option>
+                <option>A#</option>
+                <option>B</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="result-box text-center">
+            <h3>Intervalo calculado</h3>
+            <p id="intervalDisplay" class="fs-4 fw-bold mt-2">Tercera mayor (4 semitonos)</p>
+          </div>
+
+          <!-- Interval table -->
+          <div class="mt-4 p-3 bg-light rounded">
+            <h5 class="text-mid mb-3">Intervalos comunes</h5>
+            <div class="table-responsive">
+              <table class="table table-sm table-bordered text-center">
+                <thead class="table-light">
+                  <tr>
+                    <th>Intervalo</th>
+                    <th>Semitonos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Segunda menor</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>Segunda mayor</td>
+                    <td>2</td>
+                  </tr>
+                  <tr>
+                    <td>Tercera menor</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>Tercera mayor</td>
+                    <td>4</td>
+                  </tr>
+                  <tr>
+                    <td>Cuarta justa</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <td>Quinta justa</td>
+                    <td>7</td>
+                  </tr>
+                  <tr>
+                    <td>Sexta menor</td>
+                    <td>8</td>
+                  </tr>
+                  <tr>
+                    <td>Sexta mayor</td>
+                    <td>9</td>
+                  </tr>
+                  <tr>
+                    <td>Séptima menor</td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <td>Séptima mayor</td>
+                    <td>11</td>
+                  </tr>
+                  <tr>
+                    <td>Octava</td>
+                    <td>12</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Educational & Technical Content -->
+                          <article class="tool-container mt-4">
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Puntos clave</h2>
+                        <ul>
+                            <li><strong>Un intervalo es la distancia entre dos notas</strong>, nombrado por su tamaño (2.ª, 3.ª, 5.ª…) y su cualidad (mayor, menor, justo, aumentado, disminuido).</li>
+                            <li><strong>Cuenta semitonos primero, nombra después:</strong> 7 semitonos siempre es una quinta justa: el método de identificación más rápido y fiable.</li>
+                            <li>Los <strong>intervalos justos</strong> (unísono, 4.ª, 5.ª, octava) no pueden ser mayores ni menores, solo aumentados o disminuidos.</li>
+                            <li>El <strong>tritono</strong> (6 semitonos) divide la octava exactamente por la mitad: el intervalo más inestable de la música tonal.</li>
+                            <li>Los intervalos son los átomos de la armonía: apílalos para construir acordes (<a href="../identificador-de-acordes/">identificador de acordes</a>) y escalas (<a href="../buscador-de-escalas/">buscador de escalas</a>).</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-info-circle me-2"></i>¿Qué es una calculadora de intervalos?</h2>
+                        <p><strong>Una calculadora de intervalos mide la distancia musical entre dos notas y la nombra.</strong> Selecciona dos notas cualesquiera, por ejemplo C y G, e informa el intervalo: una quinta justa de 7 semitonos. El nombre indica tanto el tamaño (quinta = cinco nombres de nota de distancia) como la cualidad (justa = la versión estable y "pura").</p>
+                        <p>Los intervalos son la base sobre la que se construye todo lo demás: los acordes son pilas de intervalos, las escalas son secuencias de ellos y las melodías son intervalos en movimiento. Si los nombres de los acordes te confunden, los intervalos son la capa más simple que hay debajo: apréndelos y los acordes empezarán a tener sentido.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-gear me-2"></i>Cómo funciona esta calculadora</h2>
+                        <p>La herramienta nombra los intervalos mediante <strong>conteo de semitonos con ajuste circular</strong>: el mismo método que usan los teóricos, sin el matiz de la escritura. El procedimiento exacto:</p>
+                        <ol>
+                            <li><strong>Elige dos notas:</strong> cada nota se asigna a su posición en la escala cromática (C = 0, C♯ = 1, D = 2 … B = 11).</li>
+                            <li><strong>Resta y ajusta:</strong> semitonos = (segunda − primera + 12) mod 12, de modo que al bajar también se obtiene una distancia ascendente positiva.</li>
+                            <li><strong>Busca el nombre:</strong> el conteo de semitonos se asigna a una tabla fija: 4 → tercera mayor, 7 → quinta justa, 12 → octava.</li>
+                            <li><strong>Muestra:</strong> el nombre del intervalo más su conteo de semitonos, p. ej., "Minor 3rd (3 semitones)".</li>
+                        </ol>
+                        <p>Una simplificación que debes conocer: la herramienta nombra solo por conteo de semitonos, así que de C a D♯ se lee como "minor 3rd" (3 semitonos) aunque la escritura técnicamente lo convierte en una segunda aumentada; consulta la sección de enarmonía más abajo.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-calculator me-2"></i>Fórmula de intervalos y ejemplo resuelto</h2>
+                        <p>El cálculo central, con las posiciones de las notas numeradas de C = 0 a B = 11:</p>
+                        <p><code><strong>semitonos = (nota₂ − nota₁ + 12) mod 12</strong></code></p>
+                        <p><strong>Ejemplo resuelto: de C a A (ascendente):</strong></p>
+                        <ol>
+                            <li>Posiciones: C = 0, A = 9.</li>
+                            <li>Semitonos: (9 − 0 + 12) mod 12 = <strong>9</strong>.</li>
+                            <li>Búsqueda en la tabla: 9 semitonos = <strong>sexta mayor</strong>.</li>
+                            <li>Verificación: C–D–E–F–G–A abarca seis nombres de nota, y la escala mayor de C contiene A natural: sexta mayor confirmada.</li>
+                        </ol>
+                        <p><strong>Ejemplo descendente: de G a E:</strong> la herramienta mide la distancia ascendente, así que de G (7) a E (4) se obtiene (4 − 7 + 12) mod 12 = 9 semitonos = sexta mayor ascendente; equivalentemente, de E a G es la tercera menor que escuchas al bajar.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-list-ol me-2"></i>Cómo usar esta calculadora</h2>
+                        <ol>
+                            <li><strong>Selecciona la primera nota:</strong> la nota más grave (o inicial) del par.</li>
+                            <li><strong>Selecciona la segunda nota:</strong> la nota más aguda (o de destino).</li>
+                            <li><strong>Lee el resultado:</strong> el nombre del intervalo y el conteo de semitonos aparecen al instante (p. ej., "Perfect 5th (7 semitones)").</li>
+                            <li><strong>Experimenta:</strong> cambia una nota a la vez para sentir cómo cada semitono altera la cualidad: la menor está un paso por debajo de la mayor.</li>
+                        </ol>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-table me-2"></i>Cómo leer tu resultado: la tabla completa de intervalos</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>Semitonos</th><th>Nombre del intervalo</th><th>Abreviatura</th><th>Carácter</th></tr></thead>
+                                <tbody>
+                                    <tr><td>0 / 12</td><td>Unísono justo / Octava</td><td>P1 / P8</td><td>Estabilidad total</td></tr>
+                                    <tr><td>1</td><td>Segunda menor</td><td>m2</td><td>Tenso, disonante</td></tr>
+                                    <tr><td>2</td><td>Segunda mayor</td><td>M2</td><td>Abierto, neutro</td></tr>
+                                    <tr><td>3</td><td>Tercera menor</td><td>m3</td><td>Oscuro, triste</td></tr>
+                                    <tr><td>4</td><td>Tercera mayor</td><td>M3</td><td>Brillante, alegre</td></tr>
+                                    <tr><td>5</td><td>Cuarta justa</td><td>P4</td><td>Estable, hueco</td></tr>
+                                    <tr><td>6</td><td>Tritono (4.ª aum.)</td><td>A4 / d5</td><td>Tensión máxima</td></tr>
+                                    <tr><td>7</td><td>Quinta justa</td><td>P5</td><td>Fuerte, estable</td></tr>
+                                    <tr><td>8</td><td>Sexta menor</td><td>m6</td><td>Melancólico</td></tr>
+                                    <tr><td>9</td><td>Sexta mayor</td><td>M6</td><td>Cálido, dulce</td></tr>
+                                    <tr><td>10</td><td>Séptima menor</td><td>m7</td><td>Bluesero, sin resolver</td></tr>
+                                    <tr><td>11</td><td>Séptima mayor</td><td>M7</td><td>Soñador, anhelante</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-patch-question me-2"></i>Intervalos compuestos: novenas, oncenas y trecenas</h2>
+                        <p><strong>Un intervalo compuesto es un intervalo simple más una octava: una novena es una segunda una octava arriba, una oncena una cuarta, una trecena una sexta.</strong> La herramienta muestra la forma simple (dentro de una octava), así que resta 7 a cualquier número compuesto para saber qué mostrará: una novena (14 semitonos) se lee como una segunda mayor (2 semitonos).</p>
+                        <p>Los cifrados de jazz usan nombres compuestos a propósito: C13 le dice al intérprete que la trecena está <em>por encima</em> de la séptima en el voicing, información que la simple "sexta" perdería. Para nombrar, piensa en compuesto; para medir, el intervalo simple de la calculadora es todo lo que necesitas.</p>
+                    </section>
+
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagrama: una octava de piano con C–G resaltado como quinta justa (7 semitonos), y C–G una octava más arriba etiquetado como "duodécima justa = quinta compuesta"]</div><figcaption class="small text-muted mt-2">Texto alternativo: diagrama de piano que muestra una quinta justa dentro de una octava y su forma compuesta, la duodécima justa, una octava más arriba.</figcaption></figure>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-arrow-left-right me-2"></i>Intervalos enarmónicos: mismo sonido, distinto nombre</h2>
+                        <p><strong>Los intervalos enarmónicos suenan igual pero se escriben, y se nombran, de forma distinta.</strong> De C a D♯ y de C a E♭ hay 3 semitonos en ambos casos, pero el primero es técnicamente una segunda aumentada y el segundo una tercera menor. La herramienta informa "minor 3rd" para ambos, porque cuenta semitonos en lugar de leer la escritura.</p>
+                        <p>¿Importa? Para el <strong>sonido</strong>, no: 3 semitonos son 3 semitonos. Para la <strong>teoría y la notación</strong>, sí: el nombre correcto sigue la distancia entre letras (de C a D es una segunda de algún tipo; de C a E es una tercera). Usa la calculadora para el sonido y aplica la regla del conteo de letras cuando la escritura importe.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-lightbulb me-2"></i>El patrón de cualidades: mayor, menor y justo en 30 segundos</h2>
+                        <p><strong>La cualidad de los intervalos sigue un solo patrón.</strong> Las segundas, terceras, sextas y séptimas vienen en pares <strong>mayor/menor</strong>: la versión mayor es un semitono más amplia. Los unísonos, cuartas, quintas y octavas son <strong>justos</strong>: no tienen forma mayor ni menor, solo aumentada (más amplia) o disminuida (más estrecha).</p>
+                        <p>Truco de memoria: los intervalos "justos" son los que suenan huecos y estables (P4, P5, P8): los pilares de la escala. Todo lo demás lleva el color mayor o menor. Amplía cualquier intervalo justo o mayor un semitono y se vuelve <strong>aumentado</strong>; estrecha cualquier intervalo justo o menor y se vuelve <strong>disminuido</strong>.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-diagram-3 me-2"></i>De los intervalos a los acordes y las escalas</h2>
+                        <p><strong>Cada acorde es una pila de intervalos y cada escala es una secuencia de ellos.</strong> Una tríada mayor es una tercera mayor más una tercera menor (4 + 3 semitonos); una escala mayor es el patrón de intervalos tono–tono–semitono–tono–tono–tono–semitono. Una vez que puedes nombrar intervalos al instante, las fórmulas de acordes dejan de ser memorización y se vuelven aritmética.</p>
+                        <p>Flujo de trabajo: mide aquí los intervalos de un acorde desconocido y luego introduce el conjunto completo de notas en el <a href="../identificador-de-acordes/">identificador de acordes</a> para obtener el nombre completo, o compara las notas de una melodía con escalas candidatas en el <a href="../buscador-de-escalas/">buscador de escalas</a>.</p>
+                    </section>
+
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Infografía: construcción de una tríada de C major como intervalos apilados: C→E (tercera mayor, 4 semitonos) y luego E→G (tercera menor, 3 semitonos)]</div><figcaption class="small text-muted mt-2">Texto alternativo: infografía que muestra una tríada de C major construida apilando una tercera mayor y una tercera menor.</figcaption></figure>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitaciones</h2>
+                        <ul>
+                            <li><strong>Ciega a la escritura:</strong> la herramienta nombra por conteo de semitonos, así que los intervalos enarmónicos (segunda aumentada frente a tercera menor) reciben un solo nombre compartido.</li>
+                            <li><strong>Rango de una octava:</strong> los intervalos compuestos (novenas en adelante) se informan en su forma simple; resta 7 tú mismo para obtener el nombre compuesto.</li>
+                            <li><strong>Medición ascendente:</strong> las distancias se miden hacia arriba con ajuste circular; los intervalos melódicos descendentes requieren invertirlos mentalmente.</li>
+                            <li><strong>Temperamento igual de 12 tonos:</strong> los intervalos de entonación justa y microtonales se redondean al semitono más cercano.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>Calculadora de intervalos frente a alternativas</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>Método</th><th>Cómo funciona</th><th>Ideal para</th><th>Ten en cuenta</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Esta calculadora</td><td>Par de notas → conteo de semitonos → nombre</td><td>Nomenclatura instantánea, entrenamiento auditivo</td><td>Ciega a la escritura; una octava</td></tr>
+                                    <tr><td>Piano/teclado</td><td>Cuenta las teclas visualmente</td><td>Desarrollar intuición física</td><td>Lento; fácil equivocarse al contar</td></tr>
+                                    <tr><td>Entrenador auditivo de intervalos</td><td>Prueba por sonido</td><td>Audición interna y reconocimiento</td><td>No enseña las matemáticas</td></tr>
+                                    <tr><td>Matemáticas de proporciones de frecuencia</td><td>Calcula proporciones en Hz (p. ej., 3:2)</td><td>Acústica y teoría de la afinación</td><td>Excesivo para nombrar</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-4">
+                        <p class="small text-muted"><em>Los nombres de los intervalos siguen la convención del temperamento igual de 12 tonos. Los equivalentes enarmónicos (p. ej., segunda aumentada frente a tercera menor) comparten el conteo de semitonos y se informan con su nombre más común.</em></p>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="mb-4">
+                        <h3 class="h4 fw-bold mb-4">Preguntas frecuentes</h3>
+                        <div class="accordion" id="intervalFaqAccordion">
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol1"
+                                        aria-expanded="true">
+                                        ¿Cómo se calcula el intervalo entre dos notas?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol1" class="accordion-collapse collapse show" aria-labelledby="iFaqHead1"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        Numera la escala cromática de C = 0 a B = 11, resta el número de la nota más grave al de la más aguda y ajusta con módulo 12. Luego busca el conteo de semitonos: 7 es una quinta justa, 4 una tercera mayor, 3 una tercera menor. La calculadora de arriba lo hace al instante.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol2">
+                                        ¿Cuál es la diferencia entre intervalos mayores y menores?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol2" class="accordion-collapse collapse" aria-labelledby="iFaqHead2"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        Un semitono. Un intervalo mayor es la versión más amplia: la tercera mayor son 4 semitonos, la tercera menor son 3. Baja cualquier intervalo mayor medio paso y se vuelve menor; sube un intervalo menor y se vuelve mayor. Solo las segundas, terceras, sextas y séptimas tienen formas mayor y menor.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol3">
+                                        ¿Qué son los intervalos justos?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol3" class="accordion-collapse collapse" aria-labelledby="iFaqHead3"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        Unísonos, cuartas, quintas y octavas: los intervalos que suenan excepcionalmente estables y "huecos" por sus simples proporciones de frecuencia (la quinta justa es 3:2). No tienen versión mayor ni menor; ampliar uno lo vuelve aumentado y estrecharlo lo vuelve disminuido.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol4">
+                                        ¿Cuántos semitonos hay en una quinta justa?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol4" class="accordion-collapse collapse" aria-labelledby="iFaqHead4"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        Siete. Es el número más útil de la teoría musical para memorizar: 7 semitonos hacia arriba es una quinta, 7 hacia abajo (o 5 hacia arriba) es una cuarta. El círculo de quintas es literalmente el número 7 aplicado repetidamente módulo 12.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol5">
+                                        ¿Qué es un tritono y por qué suena disonante?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol5" class="accordion-collapse collapse" aria-labelledby="iFaqHead5"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        El tritono abarca 6 semitonos, exactamente media octava, y la divide en dos mitades iguales e inestables. Su proporción de frecuencia (√2:1) es la más compleja de la escala cromática, y nuestros oídos la perciben como una tensión que exige resolución. Es el motor dentro de cada acorde de séptima dominante.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol6">
+                                        ¿Cuál es la diferencia entre una tercera menor y una segunda aumentada?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol6" class="accordion-collapse collapse" aria-labelledby="iFaqHead6"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        Sonido: nada; ambos son 3 semitonos. Escritura: todo. De C a E♭ abarca tres nombres de nota (una tercera); de C a D♯ abarca dos (una segunda). Usa el nombre de tercera menor en tonalidades menores y el de segunda aumentada en contextos de menor armónica donde la escritura D♯ es la correcta.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead7">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol7">
+                                        ¿Qué son los intervalos compuestos como las novenas y las trecenas?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol7" class="accordion-collapse collapse" aria-labelledby="iFaqHead7"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        Intervalos simples más una octava: una novena es una segunda una octava arriba (14 semitonos), una oncena es una cuarta (17), una trecena es una sexta (21). Resta 7 al número compuesto para obtener el intervalo simple que informa esta calculadora. La armonía del jazz los nombra en compuesto para mostrar la altura del voicing.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead8">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol8">
+                                        ¿Cómo se relacionan los intervalos con los acordes?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol8" class="accordion-collapse collapse" aria-labelledby="iFaqHead8"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        Los acordes son pilas de intervalos medidos desde la fundamental: una tríada mayor es una tercera mayor (4 semitonos) más una tercera menor (3 semitonos) = quinta justa en total. Aprende la tabla de intervalos y las fórmulas de acordes se vuelven aritmética en lugar de memorización.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead9">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol9">
+                                        ¿Cuál es el intervalo más pequeño de la música occidental?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol9" class="accordion-collapse collapse" aria-labelledby="iFaqHead9"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        El semitono (medio paso): p. ej., de E a F o de C a C♯. Es el paso más pequeño en un piano y la unidad que cuenta esta calculadora. Algunas tradiciones usan divisiones microtonales más pequeñas, pero el temperamento igual de 12 tonos construye todo a partir de semitonos.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="iFaqHead10">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#iFaqCol10">
+                                        ¿Cómo invierto un intervalo?
+                                    </button>
+                                </h3>
+                                <div id="iFaqCol10" class="accordion-collapse collapse" aria-labelledby="iFaqHead10"
+                                    data-bs-parent="#intervalFaqAccordion">
+                                    <div class="accordion-body">
+                                        Dale la vuelta: la inversión de un intervalo siempre suma 9 (2.ª ↔ 7.ª, 3.ª ↔ 6.ª, 4.ª ↔ 5.ª), y la cualidad también se invierte: mayor se vuelve menor, aumentado se vuelve disminuido, justo se mantiene justo. Así, una sexta mayor se invierte en una tercera menor.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </article>
+
+        </div>
+      </div> <!-- /main col -->
+    </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="../../../assets/bootstrap5.js" defer></script>
+  <script src="../../../assets/tools.js" defer></script>
+
+  <!-- Tool JS: interval calculation -->
+  <script>
+    const noteOrder = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
+    function calculateInterval() {
+      const note1 = document.getElementById('note1Select').value;
+      const note2 = document.getElementById('note2Select').value;
+      const idx1 = noteOrder.indexOf(note1);
+      const idx2 = noteOrder.indexOf(note2);
+      let semitones = (idx2 - idx1 + 12) % 12;
+      if (semitones === 0) semitones = 12;
+
+      const intervals = {
+        1: 'Minor 2nd',
+        2: 'Major 2nd',
+        3: 'Minor 3rd',
+        4: 'Major 3rd',
+        5: 'Perfect 4th',
+        6: 'Tritone / Augmented 4th',
+        7: 'Perfect 5th',
+        8: 'Minor 6th',
+        9: 'Major 6th',
+        10: 'Minor 7th',
+        11: 'Major 7th',
+        12: 'Octave'
+      };
+
+      document.getElementById('intervalDisplay').textContent = intervals[semitones] + ' (' + semitones + ' semitones)';
+    }
+
+    // init
+    calculateInterval();
+
+    // include header/footer
+    window.addEventListener("load", () => {
+      Promise.all([
+        fetch("../../../sp/header.html").then(res => res.text()),
+        fetch("../../../sp/footer.html").then(res => res.text())
+      ]).then(([header, footer]) => {
+        document.getElementById("header").innerHTML = header;
+        document.getElementById("footer").innerHTML = footer;
+      }).catch(err => console.error("Include load failed:", err));
+    });
+  </script>
+
+  <!-- JSON-LD: WebPage -->
+  <script defer type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "headline":"Calculadora de intervalos — Herramienta de teoría musical",
+    "description":"Calcula al instante los intervalos musicales entre dos notas. Ideal para teoría musical, composición y songwriting.",
+    "url":"https://pitchdetectors.com/sp/herramientas-de-teoria-musical/calculadora-de-intervalos/",
+    "publisher":{
+      "@type":"Organization",
+      "name":"pitch detectors",
+      "logo":{"@type":"ImageObject","url":"./assets/imgs/logo.png"}
+    },
+    "author":{"@type":"Person","name":"pitch detectors"}
+  }
+  </script>
+
+</body>
+
+</html>

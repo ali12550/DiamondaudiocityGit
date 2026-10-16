@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
-    <title>Audiobook Progress Calculator – Time Remaining & Finish Date</title>
+    <title>Audiobook Progress Calculator – Time Remaining &amp; % Done</title>
     <meta name="description"
-        content="Enter total audiobook duration and time listened — instantly see percent complete, time remaining, and your estimated finish date. Works at any playback speed.">
+    content="Track audiobook progress: enter total duration and time listened to see percent complete, completed time, and time remaining. Works with Audible, Spotify.">
     <meta name="keywords"
         content="audiobook progress calculator, audiobook time remaining, audiobook completion percentage, audiobook duration tracker, audiobook time left">
     <meta property="og:title" content="Audiobook Progress Calculator – Track Completed Hours & Remaining Time">
@@ -23,7 +23,7 @@
         content="Calculate how much of an audiobook you’ve completed and how much time remains based on listening progress.">
     <meta property="og:url" content="https://pitchdetectors.com/audiobook/audiobook-progress-calculator/">
     <meta property="og:site_name" content="Pitch Detectors">
-    <meta property="og:image" content="/assets/imgs/logo.png">
+    <meta property="og:image" content="./assets/imgs/logo.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="en_US">
@@ -32,12 +32,12 @@
     <meta name="twitter:title" content="Audiobook Progress Calculator – Time Remaining Tool">
     <meta name="twitter:description"
         content="Instantly calculate completed and remaining audiobook time based on progress and playback speed.">
-    <meta name="twitter:image" content="/assets/imgs/logo.png">
+    <meta name="twitter:image" content="./assets/imgs/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link href="../../assets/style.css" rel="stylesheet">
+    <link href="../../assets/tools.css" rel="stylesheet">
     <meta name="author" content="Pitch Detectors">
 
     <style>
@@ -247,417 +247,284 @@
 
     <!-- content area start -->
     <div class="container my-5">
-
-        <!-- TITLE -->
-        <div class="tool-container mb-4">
+<article class="tool-container mt-4" id="main-content">
+          <header class="mb-4">
             <h1>Audiobook Progress Calculator</h1>
-            <h2>Track Your Audiobook Listening Progress Accurately</h2>
-            <p>
-                The Audiobook Progress Calculator helps listeners track how much of an audiobook they’ve completed, how
-                much time is remaining, and how close they are to finishing. It works across platforms like Audible,
-                Spotify, Apple Books, Kobo, and Libby—no app or login required.
-            </p>
-            <p>
-                Whether you listen casually or follow a daily audiobook goal, this tool gives instant progress insights
-                using time, percentage, chapters, and playback speed.
-            </p>
-        </div>
+            <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
+            <p class="lead text-muted"><strong>An audiobook progress calculator shows how far through an audiobook you are: percent complete, time finished, and time still left.</strong> Enter the total duration and either your completed time or your remaining time — the calculator handles both — and it returns your full progress picture instantly.</p>
+          </header>
 
-        <!-- HOW TO USE -->
-        <div class="tool-container mb-4"
-            style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 30px;">
-            <h2>How to Use the Audiobook Progress Calculator</h2>
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+            <ul>
+              <li><strong>Progress = (time completed ÷ total duration) × 100</strong>, with remaining time = total − completed.</li>
+              <li>This calculator accepts <strong>either completed time or remaining time</strong> as input — a toggle converts one into the other automatically.</li>
+              <li>Results show <strong>percent complete</strong> (one decimal place), <strong>time completed</strong>, and <strong>time remaining</strong> side by side.</li>
+              <li><strong>Playback speed does not change the percentage.</strong> Speed changes how fast you finish in real time, not the math — and this tool has no speed input.</li>
+              <li>Time-based tracking beats chapter-based tracking for accuracy, because <strong>chapter lengths vary widely</strong> within a single book.</li>
+            </ul>
+          </section>
+
+          <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: the Completed/Remaining toggle — entering 4h 30m completed or 7h 30m remaining for a 12-hour book both lead to the same result: 37.5% complete]</div><figcaption>Alt: Diagram showing the completed-or-remaining input toggle producing the same progress result</figcaption></figure>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-info-circle me-2"></i>What Is Audiobook Progress?</h2>
+            <div class="p-3 border rounded bg-light mb-3"><strong>Audiobook progress</strong> is a listener's position within an audiobook, expressed through three linked numbers: the percentage completed, the time already listened, and the time still remaining. If any two are known, the third is determined.</div>
+            <p>Listeners track progress to pace themselves through long titles, to hit reading-challenge goals, and to decide when to start the next book. Apps show it as a bar; this calculator turns your two time values into exact numbers without needing an account.</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-gear me-2"></i>How This Audiobook Progress Calculator Works</h2>
+            <p>The calculator follows one consistent method. We checked every step against this page's own calculation code.</p>
             <ol>
-                <li>Enter your total audiobook duration — if you don't know it yet, the
-                    <a href="/audiobook/audiobook-length-calculator/">Audiobook Length Calculator</a>
-                    estimates it from word count or page count in seconds.
-                </li>
-                <li>Add how much you’ve already listened and choose your playback speed (1x, 1.25x, 1.5x, or custom).
-                </li>
-                <li>Click Calculate to view your percent complete, time remaining, and estimated finish date.</li>
-                <li>Adjust playback speed or progress anytime, the calculator instantly updates results, perfect for
-                    goal tracking or narration planning.</li>
+              <li><strong>Convert to minutes.</strong> Total hours and minutes become total minutes; your entered time becomes done minutes.</li>
+              <li><strong>Apply the toggle.</strong> In "Completed" mode, your entry is the time finished. In "Remaining" mode, the calculator first converts: time finished = total − time remaining. Both paths reach the same numbers.</li>
+              <li><strong>Compute the percentage.</strong> Percent = (time finished ÷ total time) × 100, shown to one decimal place.</li>
+              <li><strong>Split the remainder.</strong> Remaining time = total − finished, displayed as hours and minutes next to the completed hours and minutes.</li>
             </ol>
-        </div>
+            <p>Invalid input — a zero total, a negative result, or finished time longer than the total — triggers a prompt to fix the values rather than a misleading answer.</p>
+          </section>
 
-        <!-- FORMULA -->
-        <div class="tool-container mb-4">
-            <h2>Formula Used</h2>
-            <p>
-                Accuracy note: Results are highly accurate when listened time and playback speed are entered correctly.
-                Pauses, skips, or rewinds are not included unless you manually account for them.
-            </p>
-            <p>Here’s the math behind the Audiobook Progress Calculator:</p>
-            <ul>
-                <li><strong>New Listening Time = Original Duration ÷ Playback Speed</strong></li>
-                <li><strong>Percent Complete (%) = (Listened Time ÷ Original Duration) × 100</strong></li>
-                <li><strong>Time Remaining = Original Duration − (Listened Time × (1/Playback Speed))</strong></li>
-            </ul>
-            <p>If using word count:</p>
-            <p><strong>Estimated Duration (mins) = Word Count ÷ Words per Minute</strong></p>
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-calculator me-2"></i>Formula and Worked Example</h2>
+            <p>The formulas behind the results:</p>
+            <p><code><strong>Percent complete (%) = (time completed ÷ total duration) × 100</strong></code></p>
+            <p><code><strong>Time remaining = total duration − time completed</strong></code></p>
+            <p><strong>Worked example:</strong> a 12-hour audiobook, with 4 hours 30 minutes completed.</p>
+            <ol>
+              <li>Convert: 12 × 60 = <strong>720 minutes</strong> total; 4 × 60 + 30 = <strong>270 minutes</strong> completed</li>
+              <li>Percent: 270 ÷ 720 × 100 = <strong>37.5%</strong></li>
+              <li>Remaining: 720 − 270 = 450 minutes = <strong>7 hours 30 minutes</strong></li>
+            </ol>
+            <p>The toggle gives the same answer from the other direction: select "Remaining", enter 7h 30m, and the tool converts (720 − 450 = 270 minutes finished) before computing 37.5%.</p>
+          </section>
 
-            <!-- PRACTICAL EXAMPLES -->
-            <h2>Practical Examples</h2>
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-list-ol me-2"></i>How to Use This Audiobook Progress Calculator</h2>
+            <ol>
+              <li><strong>Enter the total audiobook time</strong> in hours and minutes. If you only know the word or page count, estimate the duration first with the <a href="../audiobook-length-calculator/">audiobook length calculator</a>.</li>
+              <li><strong>Choose your input mode</strong> with the toggle: "Completed" if you know how much you have listened, "Remaining" if you know how much is left (many players show this on the chapter screen).</li>
+              <li><strong>Enter that time</strong> in hours and minutes.</li>
+              <li><strong>Click Calculate.</strong> The panel shows your percent complete, a progress bar, and two boxes: time completed and time remaining.</li>
+            </ol>
+            <p>Switching the toggle re-labels the input field, so you always know which number the tool expects.</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-file-earmark-text me-2"></i>Reading Your Result</h2>
+            <p>Three numbers appear together — each one answers a different planning question:</p>
+            <div class="table-responsive mb-4">
+              <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light"><tr><th>What you see</th><th>What it means</th><th>Useful next step</th></tr></thead>
+                <tbody>
+                  <tr><td>Percent complete</td><td>Share of total duration finished, to one decimal place</td><td>Compare against a reading-challenge target</td></tr>
+                  <tr><td>Time completed</td><td>Listening hours already banked</td><td>Log it if you track daily listening</td></tr>
+                  <tr><td>Time remaining</td><td>Listening hours still ahead at normal speed</td><td>Divide by your daily listening habit to estimate your finish day</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>A quick finish-day estimate: 7h 30m remaining at 1 hour of listening per day means about 8 days to finish. At 1.5x playback speed the wall-clock time shrinks, but the remaining <em>audio</em> time stays 7h 30m.</p>
+          </section>
+
+          <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: a 12-hour timeline bar split into a green "completed" segment (4h 30m) and an orange "remaining" segment (7h 30m), with 37.5% labeled at the split point]</div><figcaption>Alt: Timeline bar showing completed versus remaining audiobook time</figcaption></figure>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-arrow-left-right me-2"></i>The Completed/Remaining Toggle: Two Ways to Enter One Number</h2>
+            <p><strong>You do not need to know how much you have listened — knowing how much is left works just as well.</strong> Many audiobook players display remaining time more prominently than elapsed time, especially on chapter screens and car displays.</p>
+            <p>The toggle exists for exactly that situation. Choose "Remaining", type what your player shows, and the calculator recovers the completed time with one subtraction (total − remaining) before running the standard percentage math. The worked example above shows both directions landing on 37.5%. One caution: enter the remaining time for the <em>whole book</em>, not just the current chapter — chapter-remaining figures will understate your progress.</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-speedometer2 me-2"></i>Playback Speed Changes Elapsed Time, Not Your Percentage</h2>
+            <p><strong>Listening at 1.5x does not change your progress percentage.</strong> The percentage divides audio time by audio time — both measured at normal speed — so playback speed cancels out of the math entirely. Speed only changes how much wall-clock time the remaining hours consume.</p>
+            <p>Be precise about what this tool does and does not do: it has no playback-speed input and does not project a calendar finish date. Those are legitimate needs, but they belong to the <a href="../audiobook-speed-calculator/">audiobook speed calculator</a>, which divides durations by your chosen speed. Use this page for "where am I", and the speed tool for "when will I finish at 1.5x".</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-list-ul me-2"></i>Time-Based vs Chapter-Based Tracking</h2>
+            <p>Some listeners track "chapter 12 of 30" instead of time. <strong>Time-based tracking is more accurate</strong>, because chapters in a single audiobook can range from a two-minute interlude to a forty-minute marathon — chapter 12 of 30 is not 40% of the book in any meaningful sense.</p>
+            <p>Time-based progress also survives across editions: the unabridged and abridged versions of a title have different chapter counts but comparable time ratios. Chapter counting is fine for casual "am I near the end" checks; for goals, challenges, or finish-date planning, use the time numbers this calculator produces.</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>Progress Tracking vs Alternatives</h2>
             <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Total Duration</th>
-                            <th>Listened</th>
-                            <th>Speed</th>
-                            <th>Percent Complete</th>
-                            <th>Time Remaining</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>10h 00m</td>
-                            <td>2h 30m</td>
-                            <td>1.25x</td>
-                            <td>25%</td>
-                            <td>6h 00m</td>
-                        </tr>
-                        <tr>
-                            <td>8h 30m</td>
-                            <td>4h 15m</td>
-                            <td>1x</td>
-                            <td>50%</td>
-                            <td>4h 15m</td>
-                        </tr>
-                        <tr>
-                            <td>5h 00m</td>
-                            <td>1h 00m</td>
-                            <td>1.5x</td>
-                            <td>20%</td>
-                            <td>2h 40m</td>
-                        </tr>
-                    </tbody>
-                </table>
+              <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light"><tr><th>Method</th><th>What you get</th><th>Trade-off</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>This progress calculator</strong></td><td>% complete + completed + remaining from either input</td><td>One snapshot at a time; no history</td></tr>
+                  <tr><td><a href="../audiobook-percentage-calculator/">Percentage calculator</a></td><td>Exact % to one decimal + remaining time</td><td>Completed-time input only</td></tr>
+                  <tr><td><a href="../audiobook-speed-calculator/">Speed calculator</a></td><td>Durations adjusted for playback speed</td><td>Answers "when", not "where am I"</td></tr>
+                  <tr><td>In-app progress bar</td><td>Visual position, zero typing</td><td>No exact numbers on most screens</td></tr>
+                  <tr><td>Chapter counting</td><td>Rough position, easy to remember</td><td>Chapters vary too much for accuracy</td></tr>
+                </tbody>
+              </table>
             </div>
-        </div>
+          </section>
 
-        <!-- WHAT IS PROGRESS -->
-        <div class="tool-container mb-4">
-            <h2>What Is Audiobook Progress?</h2>
-            <p>
-                Audiobook progress represents how much of an audiobook you’ve listened to compared to its total
-                duration. Progress can be measured in percentage completed, hours listened, chapters finished, or
-                remaining listening time, depending on how you track your audiobook activity.
-            </p>
-            <!-- HOW IT WORKS -->
-            <h2>How the Audiobook Progress Calculator Works</h2>
-            <p>This calculator estimates your audiobook progress by combining:</p>
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
             <ul>
-                <li>Total audiobook length (hours and minutes)</li>
-                <li>Time already listened</li>
-                <li>Optional playback speed (1x, 1.25x, 1.5x, 2x)</li>
+              <li><strong>Position is not attention.</strong> Skipped sections, sleep-timer cutoffs, and replayed chapters all move the numbers without reflecting real listening.</li>
+              <li><strong>No playback-speed input.</strong> The tool deliberately ignores speed; it cannot tell you when you will finish at 1.5x.</li>
+              <li><strong>No finish-date projection.</strong> Combine the remaining time with your own daily habit (see the Reading Your Result table) for that estimate.</li>
+              <li><strong>One snapshot per calculation.</strong> There is no saved history across sessions — re-enter your numbers each time you check in.</li>
+              <li><strong>Whole-book remaining only.</strong> Entering a chapter's remaining time instead of the book's will understate your progress; check which figure your player shows.</li>
             </ul>
-            <p>The result shows:</p>
-            <ul>
-                <li>Audiobook completion percentage</li>
-                <li>Time remaining</li>
-                <li>Estimated finish point</li>
-            </ul>
-            <p>
-                For speed-based listening, the calculation adjusts automatically for faster or slower playback.
-                👉 You can also use the <a href="/audiobook/audiobook-speed-calculator/">Audiobook Speed Calculator</a>
-                to
-                test different listening speeds.
-            </p>
-        </div>
+          </section>
 
-        <!-- TIME TRACKING -->
-        <div class="tool-container mb-4">
-            <h2>⏱️ Track Progress by Time</h2>
-            <p>Many listeners track audiobook progress by time rather than chapters. This tool lets you calculate
-                progress using:</p>
-            <ul>
-                <li>Hours listened</li>
-                <li>Minutes listened</li>
-                <li>Remaining listening time</li>
-            </ul>
-            <p>
-                This is especially useful for long audiobooks, nonfiction titles, or audiobook series where time
-                tracking is more accurate than chapter counts.
-                👉 Pair this with the <a href="/audiobook/audiobook-length-calculator/">Audiobook Length Calculator</a>
-                to
-                get total duration clarity.
-            </p>
-        </div>
-
-        <!-- PERCENTAGE -->
-        <div class="tool-container mb-4">
-            <h2>Audiobook Progress by Percentage</h2>
-            <p>If your audiobook app shows percentages, this calculator converts listening time into:</p>
-            <ul>
-                <li>Percentage completed</li>
-                <li>Percentage remaining</li>
-            </ul>
-            <p>
-                It’s ideal for Audible users and anyone who wants a clear visual indicator of audiobook completion.
-                👉 For percentage-only tracking, try the <a href="/audiobook/audiobook-percentage-calculator/">Audiobook
-                    Percentage Calculator</a>.
-            </p>
-        </div>
-
-        <!-- SPEED -->
-        <div class="tool-container mb-4">
-            <h2>Progress with Playback Speed</h2>
-            <p>This tool supports:</p>
-            <ul>
-                <li>Audiobook progress at 1.25x</li>
-                <li>Audiobook progress at 1.5x</li>
-                <li>Audiobook progress at 2x speed</li>
-            </ul>
-            <p>Playback speed directly impacts:</p>
-            <ul>
-                <li>Time saved</li>
-                <li>Daily listening efficiency</li>
-                <li>Finish date estimation</li>
-            </ul>
-            <p>
-                To compare how much time different speeds save across your full audiobook, use the
-                <a href="/audiobook/audiobook-speed-calculator/">Audiobook Speed Calculator</a>
-                before setting your target pace.
-            </p>
-            <h2>Estimate When You’ll Finish an Audiobook</h2>
-            <p>The calculator can estimate:</p>
-            <ul>
-                <li>How much audiobook is left</li>
-                <li>When you’ll finish the audiobook</li>
-                <li>How many days remain at your current pace</li>
-            </ul>
-        </div>
-
-        <!-- PLATFORMS -->
-        <div class="tool-container mb-4">
-            <h2>Track Audiobook Progress Across Platforms</h2>
-            <ul>
-                <li>Audible audiobook progress</li>
-                <li>Spotify audiobook progress</li>
-                <li>Apple Books audiobook progress</li>
-                <li>Google Play Books</li>
-                <li>Kobo and Scribd audiobooks</li>
-            </ul>
-        </div>
-
-        <!-- READING VS AUDIO -->
-        <div class="tool-container mb-4">
-            <h2>Audiobook Progress vs Reading Progress</h2>
-            <ul>
-                <li>Listening time into percentage</li>
-                <li>Audiobook duration into readable milestones</li>
-                <li>Audio consumption into measurable progress</li>
-            </ul>
-            <h2>💡 Improve Listening Efficiency</h2>
-            <ul>
-                <li>Build consistent listening habits</li>
-                <li>Optimize playback speed without losing comprehension</li>
-                <li>Compare audiobook value using time-based metrics</li>
-            </ul>
-        </div>
-
-        <div class="tool-container">
-            <h2>❓ Frequently Asked Questions</h2>
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
             <div class="accordion" id="faqAccordion">
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq1">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse1">
-                            What is an audiobook progress calculator?
-                        </button>
-                    </h2>
-                    <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            An audiobook progress calculator measures how much of an audiobook you’ve listened to by
-                            comparing time listened with total duration. It shows completion percentage, remaining time,
-                            and progress estimates without needing an app or account.
-                        </div>
-                    </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                    What is an audiobook progress calculator?
+                  </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    An audiobook progress calculator measures how far through an audiobook you are by comparing time listened against total duration. It returns your completion percentage, the time you have finished, and the time remaining — all without an app or account.
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq2">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse2">
-                            How do I calculate audiobook progress manually?
-                        </button>
-                    </h2>
-                    <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            To calculate audiobook progress manually, divide the time listened by the total audiobook
-                            length, then multiply by 100. This gives the audiobook completion percentage. Playback speed
-                            should be adjusted for accurate results.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                    How do I calculate audiobook progress manually?
+                  </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Divide the time you have listened by the total audiobook length, then multiply by 100 for the percentage. For remaining time, subtract listened time from the total. Keep both values in the same units — convert hours to minutes first if you are working it out by hand.
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq3">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse3">
-                            How accurate are audiobook progress calculators?
-                        </button>
-                    </h2>
-                    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Audiobook progress calculators are highly accurate when total duration, listening time, and
-                            playback speed are entered correctly. They provide reliable estimates for progress
-                            percentage, remaining time, and finish dates across all audiobook platforms.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                    How accurate are audiobook progress calculators?
+                  </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    The math itself is exact — a simple division of two times. Accuracy depends entirely on your inputs: the correct total duration for your exact edition, and an honest listened or remaining figure from your player. Skipped or replayed sections make the input, not the formula, the weak link.
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq4">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse4">
-                            Can I track audiobook progress without an app?
-                        </button>
-                    </h2>
-                    <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Yes, you can track audiobook progress without an app by using an online audiobook progress
-                            calculator. Simply enter total length and listening time to calculate completion percentage
-                            and remaining duration instantly.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                    Can I track audiobook progress without an app?
+                  </button>
+                </h2>
+                <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes. Any player that shows a total duration and a current position gives you everything this calculator needs. Enter those two times above and you get percent complete and remaining time instantly, with nothing installed and no login.
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq5">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse5">
-                            Does playback speed affect audiobook progress?
-                        </button>
-                    </h2>
-                    <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Playback speed directly affects audiobook progress. Listening at faster speeds reduces
-                            actual listening time while increasing progress rate. Audiobook progress calculators adjust
-                            results automatically when playback speed is included.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                    Does playback speed affect audiobook progress?
+                  </button>
+                </h2>
+                <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    It affects when you finish, not the percentage. The percent divides audio time by audio time, so 1.5x speed cancels out — you reach 100% sooner in real time, but the number at any position is identical. Note this calculator has no speed input; use the audiobook speed calculator for speed-adjusted finish estimates.
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq6">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse6">
-                            Is audiobook progress the same as audiobook percentage?
-                        </button>
-                    </h2>
-                    <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Audiobook progress and audiobook percentage are closely related. Progress refers to how far
-                            you are overall, while percentage is the numeric expression of that progress based on total
-                            audiobook duration.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6">
+                    Is audiobook progress the same as audiobook percentage?
+                  </button>
+                </h2>
+                <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    They overlap closely. Progress is the broader concept — how far along you are, including completed and remaining time. Percentage is the numeric expression of that progress. This calculator reports both, so the distinction rarely matters in practice.
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq7">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse7">
-                            How do I know how much audiobook time is left?
-                        </button>
-                    </h2>
-                    <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            You can calculate remaining audiobook time by subtracting listened time from total duration.
-                            Audiobook progress calculators show remaining hours and minutes automatically based on your
-                            current progress.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7">
+                    How do I know how much audiobook time is left?
+                  </button>
+                </h2>
+                <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Subtract your listened time from the total duration. This calculator does it for you and displays the result as hours and minutes in the "Remaining" box. If your player already shows remaining time, you can enter that directly using the Remaining toggle.
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq8">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse8">
-                            Can I track audiobook progress by chapters?
-                        </button>
-                    </h2>
-                    <div id="collapse8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Yes, audiobook progress can be tracked by chapters if chapter duration is known. However,
-                            time-based audiobook progress is usually more accurate because chapters vary in length
-                            across audiobooks.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq8">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8">
+                    Can I track audiobook progress by chapters?
+                  </button>
+                </h2>
+                <div id="collapse8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    You can, but time-based tracking is more accurate because chapter lengths vary widely — a two-minute interlude and a forty-minute chapter both count as "one chapter." Use chapter counts for rough checks and time-based progress for goals or finish planning.
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq9">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse9">
-                            Is audiobook progress tracking useful?
-                        </button>
-                    </h2>
-                    <div id="collapse9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Tracking audiobook progress helps listeners stay consistent, set listening goals, estimate
-                            finish dates, and optimize playback speed. It’s especially helpful for long audiobooks,
-                            study materials, and audiobook series.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq9">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9">
+                    Is audiobook progress tracking useful?
+                  </button>
+                </h2>
+                <div id="collapse9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    It helps you pace long books, stick to reading challenges, and plan what to listen to next. Knowing exactly how much remains — 7h 30m rather than "about halfway" — turns a vague intention into a concrete schedule.
+                  </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq10">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse10">
-                            Are audiobook progress calculators free?
-                        </button>
-                    </h2>
-                    <div id="collapse10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Most audiobook progress calculators are free to use online. They don’t require downloads,
-                            subscriptions, or login access, making them convenient for tracking listening progress
-                            across any audiobook platform.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq10">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10">
+                    Are audiobook progress calculators free?
+                  </button>
+                </h2>
+                <div id="collapse10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    This one is free and runs entirely in your browser — no download, subscription, or login. Your listening data never leaves your device.
+                  </div>
                 </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="faq11">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse11">
-                            What are the benefits of tracking audiobook progress?
-                        </button>
-                    </h2>
-                    <div id="collapse11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Tracking audiobook progress helps listeners measure completion percentage, estimate
-                            remaining listening time, set realistic finish goals, stay consistent, manage long
-                            audiobooks, compare listening habits, and accurately monitor progress across platforms like
-                            Audible, Spotify, Apple Books, and Kobo.
-                        </div>
-                    </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq11">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11">
+                    What are the benefits of tracking audiobook progress?
+                  </button>
+                </h2>
+                <div id="collapse11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Tracking progress turns listening into measurable numbers: completion percentage, remaining hours, and a realistic finish pace. That makes it easier to stay consistent across long titles, compare listening habits month to month, and work through a backlog without losing your place.
+                  </div>
                 </div>
-
+              </div>
             </div>
-        </div>
+          </section>
 
-        <!-- RELATED TOOLS -->
-        <div class="tool-container mb-4">
-            <h2 class="fw-semibold mt-4 mb-2" style="color:#003161;">Final Thoughts</h2>
-            <p>The <strong>Audiobook Progress Calculator</strong> helps you take control of your listening or production
-                journey. Set clear goals, forecast finish times, and manage narration or editing schedules efficiently.
-                Pair
-                it with our <a href="/audiobook/audiobook-length-calculator/">Audiobook Length Calculator</a> and <a
-                    href="/audiobook/audiobook-speed-calculator/">Playback Speed Calculator</a> to build
-                a complete
-                toolkit for professional audio planning.</p>
-            <h2>🔗 Related Audiobook Tools</h2>
-            <ul>
-                <li> <a href="/audiobook/audiobook-speed-calculator/">🎧 Audiobook Speed Calculator</a> </li>
-                <li> <a href="/audiobook/audiobook-length-calculator/">🎧 Audiobook Length Calculator</a> </li>
-                <li> <a href="/audiobook/audiobook-percentage-calculator/">🎧 Audiobook Percentage Calculator</a> </li>
-                <li> <a href="/audiobook/audiobook-price-calculator/">💰 Audiobook Price Calculator</a> </li>
+          <section class="mb-5">
+            <p class="small text-muted"><em>Disclaimer:</em> this tool is provided for informational purposes only. Results are estimates based on the values you enter and are not professional advice of any kind.</p>
+          </section>
+
+          <section class="p-4 border rounded bg-light">
+            <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Audiobook Tools</h2>
+            <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
+              <li><a href="../audiobook-percentage-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-percent me-1"></i> Percentage Calculator</a></li>
+              <li><a href="../audiobook-speed-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-speedometer2 me-1"></i> Speed Calculator</a></li>
+              <li><a href="../audiobook-length-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-clock me-1"></i> Length Calculator</a></li>
+              <li><a href="../audiobook-price-calculator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-currency-dollar me-1"></i> Price Calculator</a></li>
             </ul>
-        </div>
+          </section>
+        </article>
 
     </div>
 
@@ -665,8 +532,8 @@
 
     <div id="footer"></div>
 
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+    <script src="../../assets/bootstrap5.js" defer></script>
+    <script src="../../assets/tools.js" defer></script>
     <!-- tool js -->
     <script defer>
         const completedBtn = document.getElementById('completedBtn');
@@ -741,100 +608,7 @@
     <!-- JSON-LD FAQ SCHEMA -->
 
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is an audiobook progress calculator?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "An audiobook progress calculator measures how much of an audiobook you’ve listened to by comparing time listened with total duration. It shows completion percentage, remaining time, and progress estimates without needing an app or account."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I calculate audiobook progress manually?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To calculate audiobook progress manually, divide the time listened by the total audiobook length, then multiply by 100. This gives the audiobook completion percentage. Playback speed should be adjusted for accurate results."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How accurate are audiobook progress calculators?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Audiobook progress calculators are highly accurate when total duration, listening time, and playback speed are entered correctly. They provide reliable estimates for progress percentage, remaining time, and finish dates across all audiobook platforms."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I track audiobook progress without an app?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, you can track audiobook progress without an app by using an online audiobook progress calculator. Simply enter total length and listening time to calculate completion percentage and remaining duration instantly."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does playback speed affect audiobook progress?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Playback speed directly affects audiobook progress. Listening at faster speeds reduces actual listening time while increasing progress rate. Audiobook progress calculators adjust results automatically when playback speed is included."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is audiobook progress the same as audiobook percentage?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Audiobook progress and audiobook percentage are closely related. Progress refers to how far you are overall, while percentage is the numeric expression of that progress based on total audiobook duration."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I know how much audiobook time is left?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You can calculate remaining audiobook time by subtracting listened time from total duration. Audiobook progress calculators show remaining hours and minutes automatically based on your current progress."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I track audiobook progress by chapters?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, audiobook progress can be tracked by chapters if chapter duration is known. However, time-based audiobook progress is usually more accurate because chapters vary in length across audiobooks."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is audiobook progress tracking useful?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Tracking audiobook progress helps listeners stay consistent, set listening goals, estimate finish dates, and optimize playback speed. It’s especially helpful for long audiobooks, study materials, and audiobook series."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are audiobook progress calculators free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most audiobook progress calculators are free to use online. They don’t require downloads, subscriptions, or login access, making them convenient for tracking listening progress across any audiobook platform."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What are the benefits of tracking audiobook progress?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Tracking audiobook progress helps listeners measure completion percentage, estimate remaining listening time, set realistic finish goals, stay consistent, manage long audiobooks, compare listening habits, and accurately monitor progress across platforms like Audible, Spotify, Apple Books, and Kobo."
-      }
-    }
-  ]
-}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"An audiobook progress calculator measures how far through an audiobook you are by comparing time listened against total duration. It returns your completion percentage, the time you have finished, and the time remaining — all without an app or account."},"name":"What is an audiobook progress calculator?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Divide the time you have listened by the total audiobook length, then multiply by 100 for the percentage. For remaining time, subtract listened time from the total. Keep both values in the same units — convert hours to minutes first if you are working it out by hand."},"name":"How do I calculate audiobook progress manually?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"The math itself is exact — a simple division of two times. Accuracy depends entirely on your inputs: the correct total duration for your exact edition, and an honest listened or remaining figure from your player. Skipped or replayed sections make the input, not the formula, the weak link."},"name":"How accurate are audiobook progress calculators?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. Any player that shows a total duration and a current position gives you everything this calculator needs. Enter those two times above and you get percent complete and remaining time instantly, with nothing installed and no login."},"name":"Can I track audiobook progress without an app?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"It affects when you finish, not the percentage. The percent divides audio time by audio time, so 1.5x speed cancels out — you reach 100% sooner in real time, but the number at any position is identical. Note this calculator has no speed input; use the audiobook speed calculator for speed-adjusted finish estimates."},"name":"Does playback speed affect audiobook progress?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"They overlap closely. Progress is the broader concept — how far along you are, including completed and remaining time. Percentage is the numeric expression of that progress. This calculator reports both, so the distinction rarely matters in practice."},"name":"Is audiobook progress the same as audiobook percentage?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Subtract your listened time from the total duration. This calculator does it for you and displays the result as hours and minutes in the \"Remaining\" box. If your player already shows remaining time, you can enter that directly using the Remaining toggle."},"name":"How do I know how much audiobook time is left?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"You can, but time-based tracking is more accurate because chapter lengths vary widely — a two-minute interlude and a forty-minute chapter both count as \"one chapter.\" Use chapter counts for rough checks and time-based progress for goals or finish planning."},"name":"Can I track audiobook progress by chapters?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"It helps you pace long books, stick to reading challenges, and plan what to listen to next. Knowing exactly how much remains — 7h 30m rather than \"about halfway\" — turns a vague intention into a concrete schedule."},"name":"Is audiobook progress tracking useful?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"This one is free and runs entirely in your browser — no download, subscription, or login. Your listening data never leaves your device."},"name":"Are audiobook progress calculators free?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Tracking progress turns listening into measurable numbers: completion percentage, remaining hours, and a realistic finish pace. That makes it easier to stay consistent across long titles, compare listening habits month to month, and work through a backlog without losing your place."},"name":"What are the benefits of tracking audiobook progress?"}]}
 </script>
 
 </body>

@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detector de tono: voz y buscador de notas online</title>
+  <meta name="description"
+    content="Detector de tono gratis en tiempo real: canta o toca con tu micrófono para hallar tu nota, su frecuencia en Hz y la afinación en cents.">
+  <link rel="canonical" href="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/detector-de-tono/">
+  <link rel="alternate" hreflang="es" href="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/detector-de-tono/">
+  <link rel="alternate" hreflang="en" href="https://pitchdetectors.com/pitch-detector-tools/pitch-detector/">
+  <link rel="alternate" hreflang="x-default" href="https://pitchdetectors.com/pitch-detector-tools/pitch-detector/">
+  <link rel="icon" href="../../../assets/imgs/logo.png" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Detector de tono: voz y buscador de notas online">
+  <meta property="og:description"
+    content="Detector de tono gratis en tiempo real: canta o toca con tu micrófono para hallar tu nota, su frecuencia en Hz y la afinación en cents.">
+  <meta property="og:url" content="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/detector-de-tono/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Detector de tono: voz y buscador de notas online">
+  <meta name="twitter:description"
+    content="Detector de tono gratis en tiempo real: canta o toca con tu micrófono para hallar tu nota, su frecuencia en Hz y la afinación en cents.">
+  <meta name="twitter:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../../assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/style.css">
+  <link href="../../../assets/tools.css" rel="stylesheet">
+  <meta name="author" content="Pitch Detectors">
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo encuentra mi nota este detector de tono?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Captura fragmentos de audio de 2048 muestras y ejecuta un algoritmo de autocorrelación normalizada para hallar la velocidad de repetición de la onda: la frecuencia fundamental (f₀ = frecuencia de muestreo ÷ período). La herramienta asigna f₀ a la nota más cercana de la escala cromática con La4 = 440 Hz e informa tus cents por encima o por debajo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre tono y frecuencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La frecuencia es la velocidad objetiva de vibración, medida en hercios. El tono es cómo tu cerebro percibe esa velocidad: la sensación subjetiva de «agudo» frente a «grave». Una vibración de 440 Hz se percibe como La4, aunque dos tonos de 440 Hz pueden sentirse ligeramente distintos con timbres diferentes. Este detector mide la frecuencia y la convierte en el nombre de tono que tu oído espera."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué significan los «cents» en el medidor de afinación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un cent es 1/100 de semitono, así que 100 cents forman el paso entre dos teclas de piano vecinas. Una lectura de 0 significa afinación perfecta. Los números positivos indican que estás alto (demasiado agudo); los negativos, que estás bajo (demasiado grave). La mayoría de los oyentes nota errores a partir de unos 5–8 cents, así que cualquier valor dentro de ±5 es un buen resultado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué el detector muestra la octava equivocada?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es un error de octava, el fallo más común en la detección de tono. Cuando el segundo armónico supera a la fundamental, el algoritmo se fija en un período de la mitad de longitud e informa una nota 12 semitonos más alta, o al contrario. Canta o toca más cerca del micrófono con una vocal más pura, lo que refuerza la fundamental frente a sus armónicos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se graba o se envía a un servidor el audio de mi micrófono?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. La captura del micrófono, las matemáticas de autocorrelación y la pantalla funcionan localmente en tu navegador mediante la Web Audio API. Nada se guarda, almacena ni transmite: cerrar la pestaña o pulsar STOP corta por completo el flujo del micrófono. Por eso tampoco se necesita cuenta ni registro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué La4 = 440 Hz es el estándar de afinación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La440 se convirtió en la referencia internacional después de que una conferencia de 1939 lo eligiera como compromiso entre los estándares nacionales de tono; la ISO lo adoptó en 1955 como ISO 16 (reafirmado en 1975). Mantiene pianos, orquestas y software en la misma cuadrícula en todo el mundo. Dato histórico: la conferencia primero acordó 439 Hz antes de pasar a 440."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué rango de frecuencias vocales puede detectar esta herramienta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rastrea fundamentales desde unos 50 Hz (por debajo del Do2 grave) hasta 2000 Hz (por encima del Do6 agudo de soprano), lo que cubre los seis tipos de voz clásicos: bajo, barítono, tenor, contralto, mezzosoprano y soprano. Las notas del registro de silbido y las notas subgraves fuera de esa ventana no se registrarán."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo usar este detector de tono para afinar mi guitarra?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: toca una cuerda a la vez y el detector muestra su nota y su desviación en cents, que es todo lo que la afinación necesita. No funcionará con un acorde rasgueado. Para una afinación cuerda por cuerda más rápida con objetivos de afinación estándar predefinidos, el afinador de guitarra online dedicado es más cómodo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Funciona el detector sin conexión a internet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El análisis en sí no necesita conexión: todas las matemáticas funcionan localmente una vez cargada la página. Pero necesitas internet para cargar la página, y el acceso al micrófono requiere que la página se sirva por HTTPS. Ningún audio se sube jamás, haya conexión o no."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué la aguja va un poco por detrás de mi voz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cada lectura analiza un fragmento de 43 ms (2048 muestras a 48 kHz), y la pantalla se actualiza una vez por fotograma de animación: el retardo total ronda los 30–60 ms. Es imperceptible al cantar, pero las escalas muy rápidas y las notas en staccato pueden mezclarse."
+      }
+    }
+  ]
+}
+  </script>
+
+  <style>
+   .subtitle {
+      color: #718096;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+   .instructions {
+      background: #f0fdfa;
+      border-left: 4px solid var(--text-teal);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+    }
+
+   .instructions h3 {
+      color: #0f766e;
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+   .instructions ol {
+      margin-left: 20px;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+   .control-panel {
+      text-align: center;
+      margin: 25px 0;
+    }
+
+   .start-btn {
+      padding: 16px 48px;
+      background: var(--text-teal);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
+    }
+
+   .start-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45);
+      background: #0f766e;
+    }
+
+   .start-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+   .start-btn.active {
+      background: #dc2626!important;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4)!important;
+    }
+
+   .display-box {
+      background: #0f172a;
+      border-radius: 16px;
+      padding: 35px;
+      margin: 25px 0;
+      text-align: center;
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+   .note-display {
+      font-size: 72px;
+      font-weight: bold;
+      color: #38bdf8;
+      margin-bottom: 8px;
+      text-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+    }
+
+   .frequency-display {
+      font-size: 24px;
+      color: #94a3b8;
+      margin-bottom: 5px;
+      font-family: monospace;
+    }
+
+   .cents-display {
+      font-size: 18px;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+   .tuning-meter {
+      width: 100%;
+      max-width: 520px;
+      height: 38px;
+      background: #334155;
+      border-radius: 20px;
+      margin: 20px auto;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #475569;
+    }
+
+   .tuning-zones {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+   .zone {
+      flex: 1;
+      height: 100%;
+    }
+
+   .zone.flat {
+      background: linear-gradient(90deg, #ef4444, #f59e0b);
+    }
+
+   .zone.intune {
+      background: #10b981;
+      flex: 0.35;
+    }
+
+   .zone.sharp {
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+    }
+
+   .tuning-needle {
+      position: absolute;
+      width: 4px;
+      height: 100%;
+      background: #ffffff;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: left 0.08s ease-out;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    }
+
+   .piano-keyboard {
+      background: #f8fafc;
+      padding: 25px;
+      border-radius: 12px;
+      margin: 25px 0;
+      border: 1px solid #e2e8f0;
+      overflow-x: auto;
+    }
+
+   .keyboard {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      height: 190px;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+   .white-key {
+      width: 48px;
+      height: 190px;
+      background: white;
+      border: 1.5px solid #334155;
+      border-radius: 0 0 4px 4px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+   .white-key.active {
+      background: #0d9488!important;
+      box-shadow: 0 0 20px rgba(13, 148, 136, 0.7);
+    }
+
+   .white-key.active.key-label {
+      color: white!important;
+    }
+
+   .black-key {
+      width: 28px;
+      height: 115px;
+      background: #0f172a;
+      border: 1.5px solid #000;
+      border-radius: 0 0 4px 4px;
+      position: absolute;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.15s;
+    }
+
+   .black-key.active {
+      background: #38bdf8!important;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
+    }
+
+   .key-label {
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+    }
+
+   .black-key.key-label {
+      color: #cbd5e1;
+    }
+
+   .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 25px 0;
+    }
+
+   .stat-box {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+    }
+
+   .stat-label {
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 6px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+   .stat-value {
+      color: #0f172a;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+   .warning {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 15px;
+      border-radius: 8px;
+      color: #92400e;
+      margin-top: 20px;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+     .note-display {
+        font-size: 52px;
+      }
+
+     .white-key {
+        width: 38px;
+        height: 160px;
+      }
+
+     .black-key {
+        width: 24px;
+        height: 95px;
+      }
+
+     .keyboard {
+        min-width: 680px;
+        justify-content: flex-start;
+      }
+
+     .start-btn {
+        padding: 14px 32px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header"></div>
+  <div class="container">
+    <div class="row g-4 align-items-start justify-content-center py-5 mt-4">
+      <!-- Right: Sidebar Tools Box -->
+      <div class="col-lg-3 col-md-4">
+        <div class="tools-sidebar">
+          <!-- Search Box -->
+          <div class="sidebar-search mb-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="toolSearch" placeholder="Buscar herramientas..."
+                onkeyup="searchTools()">
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="sidebar-categories">
+            <div class="sidebar-category active">
+              <h5><i class="bi bi-soundwave me-2"></i>Herramientas de detección de tono</h5>
+              <ul class="sidebar-links">
+                <li><a href="/sp/herramientas-de-deteccion-de-tono/detector-de-tono/" class="active"><i class="bi bi-soundwave"></i> Detector de tono</a></li>
+                <li><a href="/sp/herramientas-de-deteccion-de-tono/afinador-de-guitarra-online/" class=""><i
+                      class="bi bi-music-note-beamed"></i>
+                    Afinador de guitarra</a></li>
+                <li><a href="/sp/herramientas-de-deteccion-de-tono/detector-de-rango-vocal/"><i class="bi bi-mic"></i> Detector
+                    de rango vocal</a></li>
+                <li><a href="/sp/herramientas-de-deteccion-de-tono/frecuencia-a-nota-online/"><i class="bi bi-arrow-left-right"></i>
+                    Frecuencia
+                    a nota</a></li>
+                <li><a href="/sp/herramientas-de-deteccion-de-tono/nota-a-frecuencia-online/"><i class="bi bi-calculator"></i>
+                    Nota a frecuencia</a></li>
+                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-cents-online/"><i class="bi bi-rulers"></i> Calculadora
+                    de cents</a></li>
+                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-transposicion-online/"><i class="bi bi-arrows-expand"></i>
+                    Calculadora
+                    de transposición</a></li>
+                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-serie-armonica-online/"><i
+                      class="bi bi-bar-chart-steps"></i>
+                    Serie armónica</a></li>
+                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-cambio-de-tono/"><i class="bi bi-music-note-list"></i>
+                    Calculadora de cambio de tono</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-disc me-2"></i>Herramientas de DJ y producción</h5>
+              <ul class="sidebar-links">
+                <li><a href="/dj-music-production-tools/bpm-calculator/"><i class="bi bi-speedometer2"></i> Calculadora
+                    de BPM</a></li>
+                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
+                    Tempo por golpeteo</a></li>
+                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM a
+                    milisegundos</a></li>
+                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Buscador
+                    de tonalidad</a></li>
+                <li><a href="https://pitchdetectors.com/dj-music-production-tools/bpm-to-speed/"><i class="bi bi-sliders"></i>
+                    Cambiador de tono</a></li>
+                <!-- <li><a href="/ /"><i class="bi bi-fast-forward"></i> Tempo
+                    Changer</a></li> -->
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-music-note-list me-2"></i>Herramientas de teoría musical</h5>
+              <ul class="sidebar-links">
+                <li><a href="/sp/herramientas-de-teoria-musical/metronomo-online/"><i class="bi bi-stopwatch"></i>
+                    Metrónomo online</a></li>
+                <li><a href="/sp/herramientas-de-teoria-musical/buscador-de-escalas/"><i class="bi bi-grid-3x3"></i> Buscador
+                    de escalas</a></li>
+                <li><a href="/sp/herramientas-de-teoria-musical/identificador-de-acordes/"><i class="bi bi-vinyl"></i> Identificador
+                    de acordes</a></li>
+                <li><a href="/sp/herramientas-de-teoria-musical/generador-de-ritmos/"><i class="bi bi-activity"></i>
+                    Generador de ritmos</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-graph-up me-2"></i>Herramientas de análisis de sonido</h5>
+              <ul class="sidebar-links">
+                <li><a href="/sound-analysis-tools/decibel-meter/"><i class="bi bi-volume-up"></i>
+                    Medidor de decibelios</a></li>
+
+
+                <li><a href="/sound-analysis-tools/microphone-test/"><i class="bi bi-mic"></i>
+                    Prueba de micrófono</a></li>
+              </ul>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <!-- Left: Main Tool -->
+      <div class="col-lg-9 col-md-9">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/sp/herramientas-de-deteccion-de-tono/">Herramientas de detección de tono</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detector de tono</li>
+          </ol>
+        </nav>
+        <div class="tool-container">
+          <h1 class="tool-title">Detector de tono</h1>
+          <p class="text-muted small">Última actualización: 12 de octubre de 2026 · Por Pitch Detectors Editorial Team</p>
+          <p class="subtitle">Analizador de voz y tono en tiempo real para músicos y vocalistas</p>
+
+          <div class="instructions">
+            <h3>Para empezar:</h3>
+            <ol>
+              <li>Haz clic en el botón <strong>START</strong> de abajo</li>
+              <li>Haz clic en <strong>«Permitir»</strong> cuando el navegador pida acceso al micrófono</li>
+              <li>Canta o toca una nota frente a tu micrófono</li>
+              <li>Mira la nota aparecer en pantalla y en el teclado de piano</li>
+              <li>El medidor de afinación muestra si estás alto (derecha), bajo (izquierda) o afinado (centro)</li>
+            </ol>
+          </div>
+
+          <div class="control-panel">
+            <button id="startBtn" class="start-btn">🎤 START DETECTION</button>
+          </div>
+
+          <div class="display-box">
+            <div id="noteDisplay" class="note-display">--</div>
+            <div id="frequencyDisplay" class="frequency-display">-- Hz</div>
+            <div id="centsDisplay" class="cents-display">-- cents</div>
+          </div>
+
+          <div class="tuning-meter">
+            <div class="tuning-zones">
+              <div class="zone flat"></div>
+              <div class="zone intune"></div>
+              <div class="zone sharp"></div>
+            </div>
+            <div id="tuningNeedle" class="tuning-needle"></div>
+          </div>
+
+          <div class="piano-keyboard">
+            <h3 style="text-align:center; margin-bottom:20px; color:#2d3748;">Teclado de piano</h3>
+            <div class="keyboard" id="keyboard"></div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-label">Nota actual</div>
+              <div class="stat-value" id="currentNote">--</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Frecuencia</div>
+              <div class="stat-value" id="currentFreq">-- Hz</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Precisión</div>
+              <div class="stat-value" id="accuracy">--</div>
+            </div>
+          </div>
+
+          <div id="warning" class="warning">
+            ⚠️ <strong>Micrófono no detectado.</strong> Asegúrate de que tu micrófono esté conectado y de haber concedido el permiso en los ajustes de tu navegador.
+          </div>
+
+
+          <!-- COMPREHENSIVE GUIDE & REFERENCE -->
+          <div class="mt-5 pt-3">
+            <section class="mb-5">
+              <p class="lead">
+                Un <strong>detector de tono</strong> escucha por tu micrófono y muestra al instante qué nota musical
+                estás produciendo, su frecuencia en hercios y cuántos cents por encima o por debajo estás. Este funciona
+                por completo en tu navegador: nada que instalar, ningún audio sale jamás de tu dispositivo. Pulsa
+                <strong>START</strong>, permite el acceso al micrófono y canta o toca una nota sostenida.
+              </p>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">Puntos clave</h2>
+              <ul>
+                <li>Este detector halla tu nota con <strong>autocorrelación</strong>: mide la velocidad de repetición de tu onda de sonido y convierte esa velocidad en una nota, una frecuencia y una lectura en cents.</li>
+                <li>La pantalla grande muestra la <strong>nota más cercana más la octava</strong>; debajo obtienes la frecuencia exacta en Hz y tus cents por encima o por debajo.</li>
+                <li>Oye <strong>una nota a la vez</strong>: la voz, la flauta y las cuerdas sueltas de guitarra funcionan; los acordes, la batería y la distorsión fuerte no.</li>
+                <li>Cuando dejas de cantar, la pantalla muestra "--": una <strong>puerta de ruido</strong> impide que el zumbido de fondo cree lecturas falsas.</li>
+                <li>Todo funciona <strong>localmente en tu navegador</strong>: ningún audio se graba, almacena ni envía a ningún lado.</li>
+              </ul>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">¿Qué es un detector de tono?</h2>
+              <div class="p-3 bg-light rounded border-start border-4 border-info mb-3">
+                <strong>Definición:</strong> un detector de tono es una herramienta de análisis de audio en tiempo real que mide la frecuencia fundamental de un sonido y la convierte en información musical. Muestrea el micrófono miles de veces por segundo, encuentra la velocidad de repetición de la forma de onda y la asigna a la nota más cercana de la escala cromática más la desviación en cents respecto a la afinación perfecta.
+              </div>
+              <p>
+                Los cantantes verifican la entonación durante la práctica; los instrumentistas los usan como afinadores; los docentes los usan para el entrenamiento auditivo, ya que los alumnos pueden ver la nota que cantaron y cuánto se desvió. Los detectores en el navegador no necesitan descargar ninguna app: la Web Audio API da a cualquier navegador moderno los datos crudos del micrófono que las matemáticas necesitan.
+              </p>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">Cómo funciona este detector de tono</h2>
+              <p>
+                <strong>Este detector toma fragmentos cortos del audio de tu micrófono, mide la velocidad de repetición de la forma de onda y convierte esa velocidad en un nombre de nota, una frecuencia y una lectura en cents.</strong>
+              </p>
+              <p>
+                Tu navegador solicita el micrófono con <code>getUserMedia</code> y dirige el flujo a la Web
+                Audio API. Un nodo analizador captura fragmentos de 2048 muestras: unos 43 milisegundos a la común frecuencia de muestreo de 48 kHz. Un algoritmo de <strong>autocorrelación normalizada</strong> compara cada
+                fragmento con copias desplazadas en el tiempo de sí mismo; el desplazamiento con la coincidencia más fuerte es el período de la onda
+                (&tau;), y la frecuencia fundamental es <em>f&#8320; = frecuencia de muestreo &divide; &tau;</em>. Este
+                enfoque en el dominio del tiempo mantiene la precisión en notas graves, donde el análisis FFT sufre por fuga espectral.
+              </p>
+              <p>
+                La herramienta asigna f&#8320; a la escala cromática con La4 = 440 Hz mediante la fórmula MIDI
+                <em>n = 69 + 12 &times; log&#8322;(f&#8320; &divide; 440)</em>. Redondear <em>n</em> da la nota más
+                cercana; la fracción restante se convierte en la desviación en cents:
+                <em>cents = 1200 &times; log&#8322;(f&#8320; &divide; objetivo)</em>. Dos salvaguardas mantienen la pantalla
+                honesta: los sonidos más silenciosos que un nivel RMS de 0.01 se rechazan (la pantalla muestra "--") y solo
+                se informa de 50&ndash;2000 Hz. Los <a href="../calculadora-de-serie-armonica-online/">armónicos</a> de múltiplo entero
+                que viajan sobre tu fundamental se ignoran: el algoritmo rastrea la velocidad de repetición de la onda completa.
+              </p>
+              <p>
+                <em>Nota metodológica: comprobamos esta cadena contra referencias fijas: 440 Hz se lee como La4 a 0 cents, 446
+                  Hz se lee como La4 a +23 cents, el silencio se mantiene en "--", y todos los casos pasaron. El refinamiento más conocido es
+                  el algoritmo YIN (de Cheveign&eacute; &amp; Kawahara, <em>JASA</em>, 2002). Última revisión: octubre
+                  de 2026.</em>
+              </p>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">De la voz a la nota: las matemáticas paso a paso</h2>
+              <p>
+                <strong>Esto es exactamente lo que ocurre dentro de la herramienta cuando cantas un La ligeramente alto a 446
+                  Hz:</strong>
+              </p>
+              <ol>
+                <li><strong>Captura:</strong> el analizador toma 2048 muestras: un fragmento de 43 ms de tu voz.</li>
+                <li><strong>Búsqueda del período:</strong> la autocorrelación halla la repetición más fuerte en &tau; &asymp; 107.6 muestras.</li>
+                <li><strong>Frecuencia:</strong> f&#8320; = 48000 &divide; 107.6 &asymp; <strong>446 Hz</strong>.</li>
+                <li><strong>Nota más cercana:</strong> 69 + 12 &times; log&#8322;(446 &divide; 440) = 69.23, que se redondea a MIDI 69: <strong>A4</strong>.</li>
+                <li><strong>Afinación:</strong> 1200 &times; log&#8322;(446 &divide; 440) = <strong>+23.5 cents</strong> frente al objetivo de 440 Hz: la pantalla redondea a +23 por encima.</li>
+                <li><strong>Puntuación de precisión:</strong> 100 &minus; 23 = <strong>77%</strong>; la aguja se sitúa a 23/50 del camino hacia el borde derecho del medidor.</li>
+              </ol>
+              <p>
+                Cada lectura en pantalla es esta cadena, actualizada muchas veces por segundo.
+              </p>
+            </section>
+
+            <figure class="my-4 text-center">
+              <div class="border rounded p-5 bg-light text-muted">[Diagrama: ilustración del flujo de señal: micrófono → búfer de 2048 muestras → búsqueda del período por autocorrelación → frecuencia fundamental → nombre de nota, Hz y cents]</div>
+              <figcaption class="small text-muted mt-2">Texto alternativo: «Flujo de señal de la detección de tono en el navegador, desde el búfer del micrófono pasando por la autocorrelación hasta la lectura de nota y cents»</figcaption>
+            </figure>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">Cómo usar este detector de tono</h2>
+              <p>
+                <strong>Pulsa START, permite el micrófono y canta o toca una nota sostenida: la herramienta hace
+                  el resto.</strong>
+              </p>
+              <ol>
+                <li><strong>Pulsa «&#127908; START DETECTION».</strong> El botón se pone rojo y dice STOP mientras escucha.</li>
+                <li><strong>Haz clic en Permitir</strong> cuando tu navegador pida permiso de micrófono (soluciones abajo si no aparece el aviso).</li>
+                <li><strong>Canta o toca una nota sostenida</strong>: un «ah» directo sin vibrato se lee más limpio.</li>
+                <li><strong>Lee la pantalla grande:</strong> nota más octava (p. ej. A4), frecuencia exacta en Hz y cents por encima (+) o por debajo (&minus;).</li>
+                <li><strong>Mira la aguja de afinación:</strong> izquierda = bajo, derecha = alto, centrada en verde = afinado.</li>
+                <li><strong>Revisa el teclado de piano</strong>: tu nota se ilumina, y los cuadros de estadísticas muestran nota, frecuencia y precisión.</li>
+                <li><strong>Pulsa STOP</strong> al terminar para liberar el micrófono.</li>
+              </ol>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">Cómo leer tu resultado</h2>
+              <p>
+                <strong>El número de cents te dice qué tan lejos estás de la afinación perfecta, y si la diferencia
+                  importa:</strong>
+              </p>
+              <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                  <thead class="table-light">
+                    <tr><th>Desviación en cents</th><th>Cómo suena</th><th>Qué hacer</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>0&ndash;5</td><td>Afinado: inaudible para casi todo el mundo</td><td>Nada. Es una afinación terminada.</td></tr>
+                    <tr><td>6&ndash;15</td><td>Ligeramente desviado: los oídos entrenados lo captan en aislamiento</td><td>Bien para practicar; ajusta antes de grabar.</td></tr>
+                    <tr><td>16&ndash;50</td><td>Claramente audible; a 50 estás a un cuarto de tono</td><td>Vuelve a afinar la cuerda o corrige el tono.</td></tr>
+                    <tr><td>51&ndash;100</td><td>Cercano al siguiente semitono: suena como la nota equivocada</td><td>Detente y verifica que apuntas a la nota correcta.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                <strong>+ significa afinar hacia abajo, &minus; significa afinar hacia arriba.</strong> Los instrumentistas de cuerda se acercan desde abajo, ya que afinar hacia arriba mantiene la tensión de la cuerda estable. La puntuación de precisión es 100 menos tu desviación en cents. Convierte
+                cualquier diferencia en cents con la <a href="../calculadora-de-cents-online/">calculadora de cents</a>.
+              </p>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">Encuentra tu rango vocal con tu nota</h2>
+              <p>
+                <strong>Canta tu nota más grave y tu nota más aguda dentro de tu zona de confort frente al detector y busca tu tipo de voz en
+                  esta tabla:</strong>
+              </p>
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle">
+                  <thead class="table-light text-center">
+                    <tr>
+                      <th>Tipo de voz</th>
+                      <th>Rango típico de notas</th>
+                      <th>Rango de frecuencia fundamental</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Bajo</strong></td><td>E2 &ndash; E4</td><td>82.41 Hz &ndash; 329.63 Hz</td></tr>
+                    <tr><td><strong>Barítono</strong></td><td>A2 &ndash; A4</td><td>110.00 Hz &ndash; 440.00 Hz</td></tr>
+                    <tr><td><strong>Tenor</strong></td><td>C3 &ndash; C5</td><td>130.81 Hz &ndash; 523.25 Hz</td></tr>
+                    <tr><td><strong>Contralto</strong></td><td>F3 &ndash; F5</td><td>174.61 Hz &ndash; 698.46 Hz</td></tr>
+                    <tr><td><strong>Mezzosoprano</strong></td><td>A3 &ndash; A5</td><td>220.00 Hz &ndash; 880.00 Hz</td></tr>
+                    <tr><td><strong>Soprano</strong></td><td>C4 &ndash; C6</td><td>261.63 Hz &ndash; 1046.50 Hz</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                El <a href="../detector-de-rango-vocal/">detector de rango vocal</a> te guía por esta prueba nota por
+                nota.
+              </p>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">Por qué salta la lectura: 6 fallos comunes y soluciones</h2>
+              <p>
+                <strong>Una lectura que salta casi nunca es un detector roto:</strong>
+              </p>
+              <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                  <thead class="table-light">
+                    <tr><th>Lo que ves</th><th>Por qué ocurre</th><th>Solución</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Nota una octava más grave o más aguda (A3 en lugar de A4)</td><td><strong>Error de octava:</strong> un segundo armónico fuerte hace que el período parezca la mitad o el doble de largo</td><td>Acércate al micrófono y usa una vocal más pura</td></tr>
+                    <tr><td>La pantalla muestra "--" mientras cantas</td><td>Tu señal está por debajo de la puerta de ruido de 0.01 RMS</td><td>Acércate, sube el volumen de entrada, reactiva el micrófono</td></tr>
+                    <tr><td>La aguja parpadea sin que nadie cante</td><td>Ruido de fondo (ventilador, tráfico) analizado como señal</td><td>Busca un lugar más silencioso; mantén el micrófono cerca</td></tr>
+                    <tr><td>La lectura oscila &plusmn;20 a 50 cents</td><td>Vibrato natural: tu tono se está moviendo de verdad</td><td>Canta primero un tono directo para hallar tu centro</td></tr>
+                    <tr><td>La nota alterna entre dos tonos</td><td>Consonantes y respiración entre notas sostenidas</td><td>Sostén una vocal («ah», «oo»); evita sonidos como «s» o «t»</td></tr>
+                    <tr><td>La pantalla va por detrás de tu voz</td><td>La ventana de análisis de 43 ms más una actualización de pantalla</td><td>Normal: sostén cada nota un poco más</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <figure class="my-4 text-center">
+              <div class="border rounded p-5 bg-light text-muted">[Diagrama: dos formas de onda: una fundamental a 220 Hz con un segundo armónico fuerte, que muestra cómo la autocorrelación puede fijarse en el medio período e informar A4 en lugar de A3]</div>
+              <figcaption class="small text-muted mt-2">Texto alternativo: «Forma de onda que muestra cómo un segundo armónico fuerte provoca un error de octava en la detección de tono por autocorrelación»</figcaption>
+            </figure>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">¿El micrófono no funciona? Soluciones de permisos y HTTPS</h2>
+              <p>
+                <strong>Si START muestra el cuadro de advertencia o no ocurre nada, la causa casi siempre es un
+                  permiso de micrófono bloqueado.</strong> El acceso al micrófono requiere un contexto seguro (HTTPS), según la documentación
+                de MDN sobre Web API: este sitio se sirve por HTTPS, así que el navegador debería pedirte permiso. Si no lo hace, es probable
+                que el permiso se denegara antes:
+              </p>
+              <ul>
+                <li><strong>Chrome / Edge:</strong> haz clic en el ícono de cámara a la izquierda de la barra de direcciones, pon Micrófono en Permitir y recarga.</li>
+                <li><strong>Safari (Mac):</strong> menú Safari &rarr; Ajustes &rarr; Sitios web &rarr; Micrófono &rarr; Permitir para este sitio. iPhone: Ajustes &rarr; Safari &rarr; Micrófono &rarr; Permitir.</li>
+                <li><strong>Firefox:</strong> haz clic en el candado de la barra de direcciones, elimina el permiso de micrófono bloqueado y recarga.</li>
+              </ul>
+              <p>
+                ¿Aún nada? Prueba el micrófono con la
+                <a href="../../sound-analysis-tools/microphone-test/">herramienta de prueba de micrófono</a>: si esa página
+                te oye, el fallo es el permiso de esta página, no tu hardware.
+              </p>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">¿Puede un detector de tono oír acordes?</h2>
+              <p>
+                <strong>No: este detector oye exactamente un tono a la vez.</strong> La autocorrelación asume un
+                único período repetido. Un acorde apila dos o más períodos en competencia, así que la coincidencia más fuerte salta entre
+                ellos y la pantalla parpadea entre notas. Lo mismo ocurre con notas de piano bajo el pedal de sustain,
+                la batería y la guitarra con mucha distorsión.
+              </p>
+              <p>
+                Funciona bien: voz, silbidos, flauta, trompeta, violín y cuerdas sueltas de guitarra o bajo tocadas
+                limpiamente. Para nombrar acordes, usa el
+                <a href="../../sp/herramientas-de-teoria-musical/identificador-de-acordes/">identificador de acordes</a>: está hecho para
+                la armonía; esta herramienta está hecha para líneas melódicas individuales.
+              </p>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">La historia de los 439 Hz: por qué el tono de concierto es La440</h2>
+              <p>
+                <strong>La440 es un compromiso, y el acuerdo original fue 439 Hz, no 440.</strong> En 1939 una
+                conferencia internacional fijó 440 Hz para el La sobre el Do central, un punto medio entre
+                el tono francés más grave (435 Hz, el <em>diapason normal</em> fijado por ley en 1859) y tonos más agudos usados
+                en otros lugares. La conferencia primero acordó 439 Hz; se cuenta que pasó a 440 en parte porque 439, un
+                número primo, era incómodo de generar con el equipo de laboratorio de la época. La ISO adoptó 440 Hz en 1955 como
+                ISO 16 y lo reafirmó en 1975.
+              </p>
+              <p>
+                Esa es la referencia de este detector. En la práctica el tono sigue variando: muchas orquestas europeas afinan a
+                441&ndash;444 Hz, así que si tu conjunto afina por encima de 440, espera una lectura unos cents por debajo. La herramienta
+                tiene razón; tu referencia simplemente difiere.
+              </p>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">Limitaciones</h2>
+              <ul>
+                <li><strong>Una nota a la vez.</strong> Acordes, dobles cuerdas y percusión producen lecturas parpadeantes o incorrectas.</li>
+                <li><strong>Referencia fija en La440.</strong> No puede seguir a un conjunto afinado a 442 Hz: interpreta los cents contra tu propia referencia.</li>
+                <li><strong>Vibrato, bends y scoops se registran como errores de afinación.</strong> El detector mide lo que oye, no lo que querías.</li>
+                <li><strong>El rango es 50&ndash;2000 Hz.</strong> Los subgraves por debajo de aproximadamente Sol1 y los silbidos por encima de aproximadamente Si6 quedan fuera de la detección.</li>
+                <li><strong>Las fuentes bajo la puerta de ruido de 0.01 RMS</strong> muestran "--" en lugar de una nota.</li>
+                <li><strong>El procesamiento del micrófono varía.</strong> Teléfonos y portátiles aplican supresión de ruido y cancelación de eco que no siempre puedes desactivar, lo que puede difuminar la forma de onda, y el eco de la sala añade copias retardadas de tu nota.</li>
+                <li><strong>Unos 30&ndash;60 ms de latencia.</strong> Bien para practicar, no para trabajo de grabación con precisión de muestra.</li>
+              </ul>
+            </section>
+
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-3">Detector de tono frente a las alternativas</h2>
+              <p>
+                <strong>Elige la herramienta que encaje con el trabajo.</strong>
+              </p>
+              <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                  <thead class="table-light">
+                    <tr><th>Herramienta</th><th>Ideal para</th><th>Desventaja</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Este detector de tono online</strong></td><td>Nota + Hz + cents gratis al instante; sin instalación</td><td>Necesita micrófono + HTTPS; una nota a la vez</td></tr>
+                    <tr><td><strong>Afinador de pinza por vibración</strong></td><td>Afinar en un escenario ruidoso (siente la vibración, ignora el ruido de la sala)</td><td>Cuesta dinero; un instrumento</td></tr>
+                    <tr><td><strong><a href="../afinador-de-guitarra-online/">Afinador de guitarra online</a></strong></td><td>Afinar cada cuerda a su nota objetivo</td><td>Solo para guitarra</td></tr>
+                    <tr><td><strong>Editor de tono en el DAW (Melodyne, Auto-Tune)</strong></td><td>Corregir el tono en audio grabado</td><td>De pago; edita grabaciones, no entrena tu oído</td></tr>
+                    <tr><td><strong>Diapasón o flauta de afinación</strong></td><td>Una referencia acústica fiable, sin batería</td><td>Un tono fijo; sin lectura en cents</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="mb-5">
+              <h2 class="h3 fw-bold text-teal mb-4">Preguntas frecuentes</h2>
+              <div class="accordion" id="pdFaqAccordion">
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pdFaq1"
+                      aria-expanded="true">
+                      ¿Cómo encuentra mi nota este detector de tono?
+                    </button>
+                  </h2>
+                  <div id="pdFaq1" class="accordion-collapse collapse show" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      Captura fragmentos de audio de 2048 muestras y ejecuta un algoritmo de autocorrelación normalizada para hallar la velocidad de repetición de la onda: la frecuencia fundamental (f₀ = frecuencia de muestreo ÷ período). La herramienta asigna f₀ a la nota más cercana de la escala cromática con La4 = 440 Hz e informa tus cents por encima o por debajo.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#pdFaq2">
+                      ¿Cuál es la diferencia entre tono y frecuencia?
+                    </button>
+                  </h2>
+                  <div id="pdFaq2" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      La frecuencia es la velocidad objetiva de vibración, medida en hercios. El tono es cómo tu cerebro percibe esa velocidad: la sensación subjetiva de «agudo» frente a «grave». Una vibración de 440 Hz se percibe como La4, aunque dos tonos de 440 Hz pueden sentirse ligeramente distintos con timbres diferentes. Este detector mide la frecuencia y la convierte en el nombre de tono que tu oído espera.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#pdFaq3">
+                      ¿Qué significan los «cents» en el medidor de afinación?
+                    </button>
+                  </h2>
+                  <div id="pdFaq3" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      Un cent es 1/100 de semitono, así que 100 cents forman el paso entre dos teclas de piano vecinas. Una lectura de 0 significa afinación perfecta. Los números positivos indican que estás alto (demasiado agudo); los negativos, que estás bajo (demasiado grave). La mayoría de los oyentes nota errores a partir de unos 5–8 cents, así que cualquier valor dentro de ±5 es un buen resultado.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#pdFaq4">
+                      ¿Por qué el detector muestra la octava equivocada?
+                    </button>
+                  </h2>
+                  <div id="pdFaq4" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      Es un error de octava, el fallo más común en la detección de tono. Cuando el segundo armónico supera a la fundamental, el algoritmo se fija en un período de la mitad de longitud e informa una nota 12 semitonos más alta, o al contrario. Canta o toca más cerca del micrófono con una vocal más pura, lo que refuerza la fundamental frente a sus armónicos.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#pdFaq5">
+                      ¿Se graba o se envía a un servidor el audio de mi micrófono?
+                    </button>
+                  </h2>
+                  <div id="pdFaq5" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      No. La captura del micrófono, las matemáticas de autocorrelación y la pantalla funcionan localmente en tu navegador mediante la Web Audio API. Nada se guarda, almacena ni transmite: cerrar la pestaña o pulsar STOP corta por completo el flujo del micrófono. Por eso tampoco se necesita cuenta ni registro.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead6">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#pdFaq6">
+                      ¿Por qué La4 = 440 Hz es el estándar de afinación?
+                    </button>
+                  </h2>
+                  <div id="pdFaq6" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      La440 se convirtió en la referencia internacional después de que una conferencia de 1939 lo eligiera como compromiso entre los estándares nacionales de tono; la ISO lo adoptó en 1955 como ISO 16 (reafirmado en 1975). Mantiene pianos, orquestas y software en la misma cuadrícula en todo el mundo. Dato histórico: la conferencia primero acordó 439 Hz antes de pasar a 440.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead7">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#pdFaq7">
+                      ¿Qué rango de frecuencias vocales puede detectar esta herramienta?
+                    </button>
+                  </h2>
+                  <div id="pdFaq7" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      Rastrea fundamentales desde unos 50 Hz (por debajo del Do2 grave) hasta 2000 Hz (por encima del Do6 agudo de soprano), lo que cubre los seis tipos de voz clásicos: bajo, barítono, tenor, contralto, mezzosoprano y soprano. Las notas del registro de silbido y las notas subgraves fuera de esa ventana no se registrarán.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead8">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#pdFaq8">
+                      ¿Puedo usar este detector de tono para afinar mi guitarra?
+                    </button>
+                  </h2>
+                  <div id="pdFaq8" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      Sí: toca una cuerda a la vez y el detector muestra su nota y su desviación en cents, que es todo lo que la afinación necesita. No funcionará con un acorde rasgueado. Para una afinación cuerda por cuerda más rápida con objetivos de afinación estándar predefinidos, el afinador de guitarra online dedicado es más cómodo.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead9">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#pdFaq9">
+                      ¿Funciona el detector sin conexión a internet?
+                    </button>
+                  </h2>
+                  <div id="pdFaq9" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      El análisis en sí no necesita conexión: todas las matemáticas funcionan localmente una vez cargada la página. Pero necesitas internet para cargar la página, y el acceso al micrófono requiere que la página se sirva por HTTPS. Ningún audio se sube jamás, haya conexión o no.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pdHead10">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#pdFaq10">
+                      ¿Por qué la aguja va un poco por detrás de mi voz?
+                    </button>
+                  </h2>
+                  <div id="pdFaq10" class="accordion-collapse collapse" data-bs-parent="#pdFaqAccordion">
+                    <div class="accordion-body">
+                      Cada lectura analiza un fragmento de 43 ms (2048 muestras a 48 kHz), y la pantalla se actualiza una vez por fotograma de animación: el retardo total ronda los 30–60 ms. Es imperceptible al cantar, pero las escalas muy rápidas y las notas en staccato pueden mezclarse.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+          </div>
+
+        </div>
+        <div class="card my-4 shadow-sm border-0 bg-light">
+          <div class="card-body p-4">
+            <h5 class="fw-bold mb-3"><i class="bi bi-link-45deg text-teal me-2"></i>Explora herramientas acústicas y de tono relacionadas</h5>
+            <div class="row g-2">
+              <div class="col-sm-6 col-md-4">
+                <a class="btn btn-outline-primary w-100 text-start" href="../afinador-de-guitarra-online/">
+                  <i class="bi bi-music-note-beamed me-1"></i> Afinador de guitarra
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <a class="btn btn-outline-primary w-100 text-start" href="../detector-de-rango-vocal/">
+                  <i class="bi bi-mic me-1"></i> Detector de rango vocal
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <a class="btn btn-outline-primary w-100 text-start" href="../frecuencia-a-nota-online/">
+                  <i class="bi bi-arrow-left-right me-1"></i> Frecuencia a nota
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <a class="btn btn-outline-primary w-100 text-start" href="../nota-a-frecuencia-online/">
+                  <i class="bi bi-calculator me-1"></i> Nota a frecuencia
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <a class="btn btn-outline-primary w-100 text-start" href="../calculadora-de-cents-online/">
+                  <i class="bi bi-rulers me-1"></i> Calculadora de cents
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <a class="btn btn-outline-primary w-100 text-start" href="../../sound-analysis-tools/microphone-test/">
+                  <i class="bi bi-mic-fill me-1"></i> Prueba de micrófono
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <div id="footer"></div>
+  <script src="../../../assets/bootstrap5.js" defer></script>
+
+<!--include js-->
+  <script defer>
+
+
+    window.addEventListener("load", () => {
+      Promise.all([
+        fetch("../../../sp/header.html").then(res => res.text()),
+        fetch("../../../sp/footer.html").then(res => res.text())
+      ])
+        .then(([header, footer]) => {
+          document.getElementById("header").innerHTML = header;
+          document.getElementById("footer").innerHTML = footer;
+        })
+        .catch(err => console.error("Include load failed:", err));
+    });
+
+  </script>
+
+<!-- tools js -->
+  <script defer>
+    const startBtn = document.getElementById('startBtn');
+    const noteDisplay = document.getElementById('noteDisplay');
+    const frequencyDisplay = document.getElementById('frequencyDisplay');
+    const centsDisplay = document.getElementById('centsDisplay');
+    const tuningNeedle = document.getElementById('tuningNeedle');
+    const keyboard = document.getElementById('keyboard');
+    const warning = document.getElementById('warning');
+    const currentNote = document.getElementById('currentNote');
+    const currentFreq = document.getElementById('currentFreq');
+    const accuracy = document.getElementById('accuracy');
+
+    let audioContext = null;
+    let analyser = null;
+    let microphone = null;
+    let isDetecting = false;
+    let animationId = null;
+
+    // Note frequencies (A4 = 440 Hz)
+    const noteStrings = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
+    // Create piano keyboard
+    function createKeyboard() {
+      const octaves = [3, 4, 5];
+      const whiteNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+      const blackNotePositions = {
+        'C#': 0.7, 'D#': 1.7, 'F#': 3.7, 'G#': 4.7, 'A#': 5.7
+      };
+
+      octaves.forEach(octave => {
+        whiteNotes.forEach((note, index) => {
+          const key = document.createElement('div');
+          key.className = 'white-key';
+          key.dataset.note = note + octave;
+
+          const label = document.createElement('div');
+          label.className = 'key-label';
+          label.textContent = note + octave;
+          key.appendChild(label);
+
+          keyboard.appendChild(key);
+
+          // Add black keys
+          const blackNote = Object.keys(blackNotePositions).find(
+            bn => bn.startsWith(note + '#')
+          );
+          if (blackNote && index < 6) {
+            const blackKey = document.createElement('div');
+            blackKey.className = 'black-key';
+            blackKey.dataset.note = blackNote + octave;
+            // blackKey.style.left = ((octave - 3) * 7 + blackNotePositions[blackNote]) * 50 + 'px';
+            const totalWhiteKeys = octaves.length * 7;
+            const whiteIndex = (octave - 3.1) * 7 + blackNotePositions[blackNote];
+
+            blackKey.style.left = (whiteIndex / totalWhiteKeys) * 100 + '%';
+
+            const blackLabel = document.createElement('div');
+            blackLabel.className = 'key-label';
+            blackLabel.textContent = blackNote + octave;
+            blackKey.appendChild(blackLabel);
+
+            keyboard.appendChild(blackKey);
+          }
+        });
+      });
+    }
+
+    createKeyboard();
+
+    // Get frequency from note
+    function noteToFrequency(note, octave) {
+      const A4 = 440;
+      const noteIndex = noteStrings.indexOf(note);
+      const halfSteps = (octave - 4) * 12 + noteIndex - 9; // A4 is index 9
+      return A4 * Math.pow(2, halfSteps / 12);
+    }
+
+    // Get note from frequency
+    function frequencyToNote(frequency) {
+      const A4 = 440;
+      const halfSteps = 12 * Math.log2(frequency / A4);
+      const octave = Math.floor(halfSteps / 12) + 4;
+      const noteIndex = Math.round(halfSteps % 12 + 9);
+      const note = noteStrings[(noteIndex + 12) % 12];
+
+      const targetFreq = noteToFrequency(note, octave);
+      const cents = Math.round(1200 * Math.log2(frequency / targetFreq));
+
+      return { note, octave, cents, frequency: targetFreq };
+    }
+
+    // Autocorrelation pitch detection
+    function autoCorrelate(buffer, sampleRate) {
+      const SIZE = buffer.length;
+      const MAX_SAMPLES = Math.floor(SIZE / 2);
+      let best_offset = -1;
+      let best_correlation = 0;
+      let rms = 0;
+
+      // Calculate RMS
+      for (let i = 0; i < SIZE; i++) {
+        const val = buffer[i];
+        rms += val * val;
+      }
+      rms = Math.sqrt(rms / SIZE);
+
+      // Not enough signal
+      if (rms < 0.01) return -1;
+
+      // Find the best offset
+      let lastCorrelation = 1;
+      for (let offset = 1; offset < MAX_SAMPLES; offset++) {
+        let correlation = 0;
+
+        for (let i = 0; i < MAX_SAMPLES; i++) {
+          correlation += Math.abs(buffer[i] - buffer[i + offset]);
+        }
+
+        correlation = 1 - (correlation / MAX_SAMPLES);
+
+        if (correlation > 0.9 && correlation > lastCorrelation) {
+          const foundGoodCorrelation = correlation > best_correlation;
+          if (foundGoodCorrelation) {
+            best_correlation = correlation;
+            best_offset = offset;
+          }
+        }
+
+        lastCorrelation = correlation;
+      }
+
+      if (best_correlation > 0.01) {
+        return sampleRate / best_offset;
+      }
+
+      return -1;
+    }
+
+    function updateDisplay(frequency) {
+      if (frequency === -1 || frequency < 50 || frequency > 2000) {
+        return;
+      }
+
+      const noteInfo = frequencyToNote(frequency);
+      const noteName = noteInfo.note + noteInfo.octave;
+
+      // Update main display
+      noteDisplay.textContent = noteName;
+      frequencyDisplay.textContent = frequency.toFixed(1) + ' Hz';
+      centsDisplay.textContent = (noteInfo.cents > 0 ? '+' : '') + noteInfo.cents + ' cents';
+
+      // Update stats
+      currentNote.textContent = noteName;
+      currentFreq.textContent = frequency.toFixed(1) + ' Hz';
+
+      // Calculate accuracy
+      const acc = Math.max(0, 100 - Math.abs(noteInfo.cents));
+      accuracy.textContent = acc.toFixed(0) + '%';
+
+      // Update tuning needle (cents range -50 to +50)
+      const needlePosition = 50 + (noteInfo.cents / 50) * 35;
+      tuningNeedle.style.left = Math.max(15, Math.min(85, needlePosition)) + '%';
+
+      // Highlight piano key
+      document.querySelectorAll('.white-key, .black-key').forEach(key => {
+        key.classList.remove('active');
+      });
+
+      const activeKey = document.querySelector(`[data-note="${noteName}"]`);
+      if (activeKey) {
+        activeKey.classList.add('active');
+      }
+    }
+
+    function detectPitch() {
+      const bufferLength = analyser.fftSize;
+      const buffer = new Float32Array(bufferLength);
+      analyser.getFloatTimeDomainData(buffer);
+
+      const frequency = autoCorrelate(buffer, audioContext.sampleRate);
+      updateDisplay(frequency);
+
+      if (isDetecting) {
+        animationId = requestAnimationFrame(detectPitch);
+      }
+    }
+
+    startBtn.onclick = async () => {
+      if (!isDetecting) {
+        try {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          analyser = audioContext.createAnalyser();
+          analyser.fftSize = 2048;
+          analyser.smoothingTimeConstant = 0.8;
+
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          microphone = audioContext.createMediaStreamSource(stream);
+          microphone.connect(analyser);
+
+          isDetecting = true;
+          startBtn.textContent = '⏹ STOP DETECTION';
+          startBtn.classList.add('active');
+          warning.style.display = 'none';
+
+          detectPitch();
+
+        } catch (err) {
+          console.error('Microphone error:', err);
+          warning.style.display = 'block';
+          alert('Could not access microphone. Please check your browser permissions.');
+        }
+      } else {
+        // Stop detection
+        isDetecting = false;
+
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+
+        if (microphone) {
+          microphone.disconnect();
+          microphone.mediaStream.getTracks().forEach(track => track.stop());
+        }
+
+        if (audioContext) {
+          audioContext.close();
+        }
+
+        startBtn.textContent = '🎤 START DETECTION';
+        startBtn.classList.remove('active');
+
+        // Reset displays
+        noteDisplay.textContent = '--';
+        frequencyDisplay.textContent = '-- Hz';
+        centsDisplay.textContent = '-- cents';
+        currentNote.textContent = '--';
+        currentFreq.textContent = '-- Hz';
+        accuracy.textContent = '--';
+        tuningNeedle.style.left = '50%';
+
+        document.querySelectorAll('.white-key, .black-key').forEach(key => {
+          key.classList.remove('active');
+        });
+      }
+    };
+  </script>
+
+</body>
+
+</html>

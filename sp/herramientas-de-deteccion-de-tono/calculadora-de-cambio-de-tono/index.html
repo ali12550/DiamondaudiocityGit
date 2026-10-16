@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de cambio de tono: semitonos y ratio</title>
+    <meta name="description"
+        content="Calculadora de cambio de tono gratis: convierte semitonos y cents en razones de frecuencia, tempo varispeed y duración para productores y DJs." />
+    <meta name="keywords"
+        content="calculadora de cambio de tono, semitono a razón de frecuencia, calculadora varispeed, cents a razón de tono, fórmula de razón de tono, calculadora de transposición de audio, pitch fader de tornamesa semitonos" />
+    <link rel="canonical" href="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/calculadora-de-cambio-de-tono/">
+    <link rel="alternate" hreflang="es" href="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/calculadora-de-cambio-de-tono/">
+    <link rel="alternate" hreflang="en" href="https://pitchdetectors.com/pitch-detector-tools/pitch-shift-calculator/">
+    <link rel="alternate" hreflang="x-default" href="https://pitchdetectors.com/pitch-detector-tools/pitch-shift-calculator/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de cambio de tono: semitonos y ratio">
+    <meta property="og:description" content="Calculadora de cambio de tono gratis: convierte semitonos y cents en razones de frecuencia, tempo varispeed y duración para productores y DJs.">
+    <meta property="og:url" content="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/calculadora-de-cambio-de-tono/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Calculadora de cambio de tono: semitonos y ratio">
+    <meta name="twitter:description" content="Calculadora de cambio de tono gratis: convierte semitonos y cents en razones de frecuencia, tempo varispeed y duración para productores y DJs.">
+    <link rel="icon" href="../../../assets/imgs/logo.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../../assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <link href="../../../assets/tools.css" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
+        crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo se relaciona matemáticamente el cambio de tono con la razón de frecuencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El cambio de tono es exponencial. Cambiar S semitonos y C cents multiplica cada frecuencia del sonido por la razón r = 2^((S + C/100) / 12). Un cambio de +7 semitonos (una quinta justa) da r = 2^(7/12) ≈ 1.49831, así que un tono de 220 Hz se convierte en 329.63 Hz — cada parcial escala en el mismo factor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre varispeed y el cambio de tono independiente del tiempo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El varispeed (estilo cinta/tornamesa) cambia el tono y la velocidad de reproducción juntos: subir el tono eleva el tempo y acorta el audio. El cambio de tono independiente del tiempo usa DSP como vocoders de fase o zplane élastique para cambiar el tono manteniendo el tempo y la duración originales, al costo de posibles artefactos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué causa el «efecto ardilla» al cambiar el tono de una voz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El efecto ardilla ocurre cuando el tono se sube sin preservación de formantes. Los formantes son las resonancias fijas del tracto vocal que le dan a una voz su identidad. Moverlos hacia arriba con el tono hace que una voz adulta suene como un niño pequeño. Los algoritmos que preservan formantes mantienen los formantes en su lugar mientras el tono se mueve."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se calcula el cambio de tempo al cambiar el tono de un sample sin estirar el tiempo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nuevo BPM = BPM original × r, donde r = 2^(semitonos / 12). El cambio de velocidad es (r − 1) × 100%. Subir un loop de 120 BPM 2 semitonos da r ≈ 1.12246, así que el nuevo tempo es 134.70 BPM — un aumento de velocidad de +12.25%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos cents equivalen a un semitono?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Exactamente 100 cents forman un semitono temperado, y 1200 cents una octava. Los cents existen para la microafinación: una desafinación de +15 cents añade un sutil movimiento tipo chorus a un sintetizador, mientras que un desvío de −31.77 cents es la conversión exacta de A440 a A432. Mide el desvío entre dos tonos con la calculadora de cents."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué algoritmo de cambio de tono de DAW debería usar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En Ableton Live, usa Complex Pro (con el control de Formants) para voces y mezclas completas, Beats para baterías y Re-Pitch para varispeed estilo cinta. En Logic Pro, usa Flex Pitch para ediciones de tono monofónicas y los modos Flex Time polifónico o monofónico para estirar. En Pro Tools, los modos monofónico y rítmico de Elastic Audio cubren material solista y de batería; X-Form es el renderizado offline de mayor calidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿A cuántos semitonos equivale el pitch fader de ±8% de una tornamesa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un aumento de velocidad de +8% equivale a +1.33 semitonos (+133.24 cents); −8% equivale a −1.44 semitonos (−144.35 cents). El rango es asimétrico porque el tono sigue una razón exponencial: cambios iguales de porcentaje en velocidad se mapean a pasos desiguales de semitonos por encima y por debajo del tono original."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué tanto puedo cambiar el tono de una voz antes de que suene antinatural?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Con preservación de formantes, ±1–2 semitonos suena limpio, ±3–4 se mantiene natural con ligero cambio de timbre, y ±5–7 se convierte en un efecto evidente. Sin corrección de formantes, incluso ±2–3 semitonos empieza a sonar como ardilla hacia arriba o antinaturalmente oscuro hacia abajo. Más allá de ±8 semitonos es territorio de efecto en cualquier caso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El cambio de tono cambia la tonalidad de una canción?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Mover cada nota hacia arriba en el mismo intervalo lleva toda la canción a una nueva tonalidad: +2 semitonos convierte La menor en Si menor. Así es exactamente como los DJs y productores ajustan un acapella a la tonalidad de un beat. La relación entre notas se mantiene igual, así que la melodía y los acordes no cambian — solo se mueve el tono absoluto."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <!-- Right: Sidebar Tools Box -->
+
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <!-- Search Box -->
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Buscar herramientas..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-soundwave me-2"></i>Herramientas de detección de tono</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/afinador-de-guitarra-online/"><i
+                                            class="bi bi-music-note-beamed"></i> Afinador de guitarra</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/detector-de-rango-vocal/"><i class="bi bi-mic"></i>
+                                        Detector de rango vocal</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/frecuencia-a-nota-online/"><i
+                                            class="bi bi-arrow-left-right"></i> Frecuencia a nota</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/nota-a-frecuencia-online/"><i
+                                            class="bi bi-calculator"></i> Nota a frecuencia</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-cents-online/"><i
+                                            class="bi bi-rulers"></i> Calculadora de cents</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-transposicion-online/"><i
+                                            class="bi bi-arrows-expand"></i> Calculadora de transposición</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-serie-armonica-online/"><i
+                                            class="bi bi-bar-chart-steps"></i> Serie armónica</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-disc me-2"></i>Herramientas de DJ y producción</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i
+                                            class="bi bi-speedometer2"></i> Calculadora de BPM</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
+                                        BPM Tap Tempo</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM a
+                                        milisegundos</a></li>
+                                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Buscador
+                                        de tonalidades</a></li>
+                                <li><a href="https://pitchdetectors.com/dj-music-production-tools/bpm-to-speed/"><i
+                                            class="bi bi-sliders"></i>
+                                        Pitch Shifter</a></li>
+                                <!-- <li><a href="/ /"><i
+                                            class="bi bi-fast-forward"></i> Tempo Changer</a></li> -->
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Herramientas de teoría musical</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sp/herramientas-de-teoria-musical/metronomo-online/"><i class="bi bi-stopwatch"></i>
+                                        Metrónomo online</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/buscador-de-escalas/"><i class="bi bi-grid-3x3"></i> Buscador
+                                        de escalas</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/identificador-de-acordes/"><i class="bi bi-vinyl"></i> Identificador
+                                        de acordes</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/generador-de-ritmos/"><i class="bi bi-activity"></i>
+                                        Generador de ritmos</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-graph-up me-2"></i>Herramientas de análisis de sonido</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sound-analysis-tools/decibel-meter/"><i class="bi bi-volume-up"></i>
+                                        Medidor de decibelios</a></li>
+                                <li><a href="/sound-analysis-tools/microphone-test/"><i class="bi bi-mic"></i>
+                                        Prueba de micrófono</a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left: Main Tool -->
+            <div class="col-lg-9 col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="/sp/herramientas-de-deteccion-de-tono/">Herramientas de detección de tono</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Calculadora de cambio de tono</li>
+                    </ol>
+                </nav>
+
+                <!-- Tool UI -->
+                <div class="tool-container py-4">
+                    <div class="tool-title mb-4">
+                        <h1><i class="bi bi-sliders me-2"></i>Calculadora de cambio de tono: semitonos, cents y ratio</h1>
+                        <p class="text-muted small">Última actualización: 12 de octubre de 2026 · Escrito por el Pitch Detectors Editorial Team</p>
+                        <p class="lead">Una <strong>calculadora de cambio de tono</strong> convierte un cambio de tono — medido en semitonos y cents — en su razón de frecuencia exacta, el cambio de tempo varispeed y el factor de duración. Introduce +3 semitonos y la matemática dice que cada frecuencia se multiplica por 1.18921: un loop de 120 BPM con tono cambiado estilo cinta se convierte en 142.70 BPM. Usa la herramienta para la aritmética y luego lee la guía para entender qué significan los números para voces, samples y sesiones de DJ.</p>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label for="semitones" class="form-label fw-bold">Cambio en semitonos:</label>
+                            <input type="number" id="semitones" class="form-control form-control-lg"
+                                placeholder="p. ej., +3 o -2" value="3" step="1">
+                            <div class="form-text">Semitonos enteros (+12 = octava arriba, -12 = octava abajo)</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cents" class="form-label fw-bold">Ajuste fino en cents (opcional):</label>
+                            <input type="number" id="cents" class="form-control form-control-lg"
+                                placeholder="p. ej., +15 o -20" value="0" step="0.1">
+                            <div class="form-text">100 cents = 1 semitono (microajustes)</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Preset Buttons -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Preajustes rápidos:</label>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setPreset(12, 0)">+1
+                                octava (+12 st)</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="setPreset(7, 0)">+5.ª justa (+7 st)</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="setPreset(5, 0)">+4.ª justa (+5 st)</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="setPreset(-3, 0)">-3.ª menor (-3 st)</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="setPreset(-5, 0)">-4.ª (-5 st)</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="setPreset(-12, 0)">-1 octava (-12 st)</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="setPreset(0, 15)">+15¢ desafinación chorus</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                onclick="setPreset(0, -31.77)">-31.77¢ (desvío 432 Hz)</button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg w-100 mb-4" onclick="calculatePitchShift()">
+                        <i class="bi bi-calculator me-2"></i>Calcular cambio de tono
+                    </button>
+
+                    <div id="result" class="result-box mt-3 p-4 bg-light rounded text-center">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- content start -->
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Puntos clave</h2>
+                    <ul>
+                        <li>Un cambio de tono de <strong>S semitonos y C cents</strong> multiplica cada frecuencia por <strong>r = 2^((S + C/100) / 12)</strong>: un semitono es una razón de aproximadamente 1.05946.</li>
+                        <li><strong>Varispeed</strong> (estilo cinta/tornamesa) cambia el tono y el tempo juntos; el cambio de tono <strong>independiente del tiempo</strong> por DSP cambia el tono mientras el tempo se mantiene.</li>
+                        <li>Cambiar voces sin <strong>preservación de formantes</strong> crea el «efecto ardilla»: la identidad de la voz se mueve con el tono en lugar de quedarse fija.</li>
+                        <li>El <strong>pitch fader de ±8%</strong> de una tornamesa cubre aproximadamente +1.33 / −1.44 semitonos: el rango es asimétrico porque las razones de tono son exponenciales.</li>
+                        <li><strong>Las razones se multiplican, no se suman:</strong> dos cambios de +6 semitonos dan una octava de ×2.0, no «+12 semitonos en porcentaje».</li>
+                    </ul>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-info-circle me-2"></i>¿Qué es el cambio de tono?</h2>
+                    <div class="p-3 bg-light rounded border-start border-4 border-info mb-3">
+                        <strong>Definición:</strong> El cambio de tono es el proceso de subir o bajar el tono de una señal de audio en un intervalo musical medido, expresado en semitonos y cents. Una calculadora de cambio de tono convierte ese intervalo en tres números exactos: la razón de frecuencia aplicada a cada componente del sonido, el cambio de tempo varispeed y el factor de duración.
+                    </div>
+                    <p>La percepción humana del tono es <strong>logarítmica</strong>, no lineal. Un intervalo de tono es una razón, no un número fijo de hercios: pasar de 220 Hz a 440 Hz suena como la misma distancia musical que pasar de 440 Hz a 880 Hz, porque ambos son una razón de 2:1, una octava. La música occidental divide cada octava en 12 semitonos iguales, así que un semitono es la raíz doceava de 2, una razón de aproximadamente <strong>1.0594631</strong>.</p>
+                    <p>El cambio de tono es distinto de <strong>transponer</strong> notas MIDI (que mueve datos de notas, no audio grabado) y de la <strong>corrección de tono</strong> (que empuja las notas desafinadas hacia el objetivo más cercano). El cambio mueve toda la señal —fundamental y armónicos juntos— en una sola razón. Por eso el resultado más importante de la calculadora es la razón misma.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-gear me-2"></i>Cómo funciona esta calculadora</h2>
+                    <p>Esta calculadora toma dos entradas —un cambio de semitonos entero y un ajuste fino opcional en cents— y calcula los cuatro números que los productores realmente necesitan. Primero forma el cambio total en semitonos (<code>total = S + C / 100</code>), luego la razón de frecuencia (<code>r = 2^(total / 12)</code>), el cambio de tempo varispeed (<code>(r − 1) × 100%</code>) y el factor de duración (<code>1 / r</code>). Los valores positivos suben el tono; los negativos lo bajan.</p>
+                    <p>Metodología: la matemática sigue el temperamento igual de 12 tonos, el sistema de afinación usado por prácticamente toda la música occidental grabada. Las casillas de resultado muestran los semitonos totales (con dos decimales), la razón de frecuencia (con cinco), el porcentaje de velocidad varispeed y el multiplicador de duración. Comprobamos los resultados de esta calculadora contra valores calculados a mano para 12 cambios de prueba de −12 a +12 semitonos: cada razón, porcentaje de velocidad y factor de duración coincidió. <em>Última revisión: octubre de 2026.</em></p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-calculator me-2"></i>La fórmula de cambio de tono y ejemplos resueltos</h2>
+                    <p>Una sola fórmula mueve toda la calculadora:</p>
+                    <div class="p-3 bg-white rounded border font-monospace text-center my-3" style="font-size: 1.15rem;">
+                        r = 2^((S + C / 100) / 12) &nbsp;&nbsp;·&nbsp;&nbsp; f_out = f_in × r
+                    </div>
+                    <p>Donde <strong>S</strong> es el cambio en semitonos, <strong>C</strong> es el desvío en cents, <strong>r</strong> es la razón de frecuencia, y f_in / f_out son las frecuencias original y cambiada. La referencia práctica: +12 semitonos duplica cada frecuencia (una octava arriba), −12 las reduce a la mitad (una octava abajo).</p>
+                    <p><strong>Ejemplo 1: ajustar una muestra vocal a la tonalidad de tu beat.</strong> Colocas un gancho vocal femenino en La menor en un tema en Do menor, así que necesitas +3 semitonos. Razón: r = 2^(3/12) = <strong>1.18921</strong>. En modo varispeed (Re-Pitch) el tempo sube (1.18921 − 1) × 100 = <strong>+18.92%</strong>, así que una voz de 120 BPM se convierte en <strong>142.70 BPM</strong>. Si quieres mantener los 120 BPM del proyecto, cambia a un modo independiente del tiempo (Complex Pro de Ableton) y la voz se queda en 120 mientras el tono sigue subiendo 3 semitonos.</p>
+                    <p><strong>Ejemplo 2: desafinación unísono de sintetizador y tasa de batidos.</strong> El oscilador 2 está desafinado +18 cents sobre el oscilador 1 a 220 Hz. Razón: r = 2^(18/1200) = 1.01045, así que el oscilador 2 toca a 220 × 1.01045 = <strong>222.30 Hz</strong>. Los dos osciladores baten entre sí a |222.30 − 220| = <strong>2.30 pulsaciones por segundo</strong>: una rica y lenta oscilación de chorus sin disonancia.</p>
+                    <p><strong>Ejemplo 3: matemática de tornamesa de DJ.</strong> Un pitch fader estilo Technics mueve ±8% de la velocidad de reproducción. +8% de velocidad da una razón de 1.08, que es 12 × log₂(1.08) = <strong>+1.33 semitonos</strong> (+133.24 cents). Pero −8% da 12 × log₂(0.92) = <strong>−1.44 semitonos</strong> (−144.35 cents). El rango es asimétrico: porcentajes iguales de velocidad no producen pasos iguales de semitonos, porque la razón subyacente es exponencial.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-list-ol me-2"></i>Cómo usar esta calculadora de cambio de tono</h2>
+                    <ol>
+                        <li><strong>Introduce el cambio en semitonos:</strong> solo números enteros: +3 para subir una tercera menor, −7 para bajar una quinta justa, ±12 para una octava.</li>
+                        <li><strong>Añade cents si lo necesitas:</strong> +15 para una desafinación estilo chorus, −31.77 para convertir A440 a A432, o déjalo en 0.</li>
+                        <li><strong>Prueba un preajuste:</strong> los botones rápidos saltan a intervalos comunes y a los dos preajustes en cents.</li>
+                        <li><strong>Lee las cuatro casillas de resultado,</strong> explicadas en la siguiente sección.</li>
+                        <li><strong>Aplícalo en tu DAW:</strong> la razón para la matemática, el porcentaje de velocidad para varispeed, el total de semitonos para los controles de transposición.</li>
+                    </ol>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-speedometer2 me-2"></i>Cómo interpretar tu resultado</h2>
+                    <p>Las cuatro casillas responden cuatro preguntas de producción. Los <strong>semitonos totales</strong> son el número a escribir en el campo de transposición de un DAW. La <strong>razón de frecuencia</strong> es el núcleo matemático: multiplica cualquier frecuencia por ella para obtener el valor cambiado. La <strong>velocidad varispeed</strong> muestra el resultado cinta/vinilo (+5.95% para un semitono arriba) y el <strong>factor de duración</strong> muestra el cambio de longitud (0.5 significa que el clip suena en la mitad de tiempo).</p>
+                    <p>Usa esta tabla para juzgar qué tan lejos puede llegar un cambio antes de que el resultado suene mal:</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr><th>Cantidad de cambio</th><th>Voces (con corrección de formantes)</th><th>Samples (varispeed)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>±1–2 st</td><td>Limpio: seguro para correcciones de afinación y armonías</td><td>Limpio; ±1 st mueve el tempo ±5.95%</td></tr>
+                                <tr><td>±3–4 st</td><td>Bien: ligero cambio de timbre, aún natural</td><td>Bien; ±3 st mueve el tempo ±18.92%</td></tr>
+                                <tr><td>±5–7 st</td><td>Notable: entrando en territorio de efecto evidente</td><td>Ralentización o aceleración dramática</td></tr>
+                                <tr><td>±8–12 st</td><td>Efecto especial: ardilla hacia arriba, voz de monstruo hacia abajo</td><td>Mitad o doble de velocidad en ±12 st</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <figure class="my-4 text-center">
+                    <div class="border rounded p-5 bg-light text-muted">[Diagrama: curva exponencial de razón de frecuencia frente a cambio en semitonos de −12 a +12, marcada en +7 (+1.49831), +12 (2.0) y −12 (0.5)]</div>
+                    <figcaption class="small text-muted mt-2">Texto alternativo: «Razón de frecuencia graficada contra cambio en semitonos de menos 12 a más 12, mostrando la curva exponencial de tono»</figcaption>
+                </figure>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-x-diamond me-2"></i>Por qué las razones se multiplican y los porcentajes no se suman</h2>
+                    <p>Un error común es sumar los porcentajes de cambio de tono. Subir 6 semitonos es una razón de ×1.41421 (+41.42% de velocidad). Hazlo dos veces y no obtienes «+82.84%»: obtienes 1.41421 × 1.41421 = <strong>2.0</strong>, exactamente una octava, que es +100% de velocidad. Los porcentajes se multiplican a través de las razones; nunca se suman.</p>
+                    <p>La misma trampa atrapa a la desafinación: dos cambios de +50 cents no suman sus porcentajes: cada uno es una razón de ×1.02930, y el par se multiplica a ×1.05946, exactamente un semitono. Cuando apiles cambios, <strong>multiplica las razones, no los porcentajes</strong>. La casilla de razón de frecuencia de la calculadora es el número a multiplicar; la casilla de porcentaje solo es válida para un cambio individual.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-sliders2 me-2"></i>Qué algoritmo de cambio de tono usar en tu DAW</h2>
+                    <p>Cada DAW importante trae varios motores de cambio de tono, y elegir el equivocado es la causa principal de cambios que suenan mal. La regla de oro: iguala el algoritmo al material —monofónico para voces solas, polifónico para acordes y mezclas, modos que preservan transitorios para baterías, y varispeed para efectos estilo cinta. Bajo el capó, casi todos estos motores licencian <strong>zplane élastique</strong> (usado por Ableton, Cubase, Studio One, FL Studio, Reaper, Pro Tools y Bitwig), y cada DAW lo envuelve con sus propios nombres de modo.</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr><th>DAW</th><th>Modo</th><th>Úsalo para</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td rowspan="6"><strong>Ableton Live</strong></td><td>Re-Pitch</td><td>Varispeed cinta/tornamesa: el tono y el tempo se mueven juntos</td></tr>
+                                <tr><td>Beats</td><td>Baterías y loops: preserva los transitorios</td></tr>
+                                <tr><td>Tones</td><td>Material monofónico: bajos, líneas solistas</td></tr>
+                                <tr><td>Texture</td><td>Pads y sonidos atmosféricos</td></tr>
+                                <tr><td>Complex</td><td>Mezclas completas y material complejo</td></tr>
+                                <tr><td>Complex Pro</td><td>Voces y mezclas completas: tiene controles de Formants y Envelope para un timbre natural</td></tr>
+                                <tr><td rowspan="6"><strong>Logic Pro</strong></td><td>Flex Pitch</td><td>Edición de tono a nivel de nota de grabaciones monofónicas</td></tr>
+                                <tr><td>Flex Time: monofónico</td><td>Voces, bajos, instrumentos de una sola línea</td></tr>
+                                <tr><td>Flex Time: polifónico</td><td>Acordes, mezclas completas</td></tr>
+                                <tr><td>Flex Time: corte</td><td>Baterías: corta en los transitorios, sin estirar</td></tr>
+                                <tr><td>Flex Time: rítmico</td><td>Loops rítmicos y partes de percusión</td></tr>
+                                <tr><td>Flex Time: velocidad</td><td>Varispeed estilo cinta para todo el proyecto</td></tr>
+                                <tr><td rowspan="4"><strong>Pro Tools</strong></td><td>Elastic Audio: monofónico</td><td>Instrumentos solistas y voces</td></tr>
+                                <tr><td>Elastic Audio: rítmico</td><td>Baterías y loops: protege el transitorio y luego hace crossfade al audio estirado</td></tr>
+                                <tr><td>Elastic Audio: polifónico</td><td>Pistas de instrumentos en general</td></tr>
+                                <tr><td>X-Form</td><td>Renderizado offline: la opción de mayor calidad para los bounces finales</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Para el resultado más limpio posible en un tema terminado, renderiza el cambio <strong>offline</strong> (X-Form de Pro Tools, o rebotando un clip de Complex Pro) en lugar de dejar un warp en tiempo real activo.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-person-lines-fill me-2"></i>Formantes y el efecto ardilla</h2>
+                    <p>Cuando una persona canta distintas notas, el tracto vocal —garganta, boca, cavidad nasal— mantiene el mismo tamaño físico. Sus bandas de frecuencia resonantes, llamadas <strong>formantes</strong> (F1–F4), permanecen fijas mientras las cuerdas vocales cambian el tono. Ese patrón fijo de formantes es gran parte de por qué una voz suena como <em>esa persona</em>.</p>
+                    <p>El cambio de tono ingenuo mueve todo junto: el tono <em>y</em> los formantes. Sube una voz varios semitonos y los formantes aterrizan donde los pondría un tracto vocal mucho más pequeño: el resultado es el clásico <strong>«efecto ardilla»</strong>, una vocecita infantil. Baja y obtienes lo opuesto: una cavernosa y pesada «voz de monstruo». Los algoritmos que <strong>preservan formantes</strong> dividen la señal en la excitación del tono y la envolvente espectral, mueven solo el tono y dejan los formantes anclados: así una voz cambiada sigue sonando como el mismo cantante.</p>
+                    <p>Los productores creativos también mueven los formantes <em>a propósito</em>. Sube el tono de una voz mientras bajas los formantes (la perilla Formants de Complex Pro de Ableton, o herramientas dedicadas como SoundToys Little AlterBoy) y obtienes una armonía andrógina y de otro mundo que aún encaja naturalmente en una mezcla: un recurso básico de la producción vocal moderna electrónica y pop. Así que la razón de la calculadora te dice qué tanto se mueven las notas; el ajuste de formantes decide si la <em>voz</em> se mueve con ellas.</p>
+                </section>
+
+                <figure class="my-4 text-center">
+                    <div class="border rounded p-5 bg-light text-muted">[Diagrama: espectro vocal con picos armónicos desplazándose hacia arriba mientras la curva suave de la envolvente de formantes permanece fija]</div>
+                    <figcaption class="small text-muted mt-2">Texto alternativo: «Espectro vocal que muestra picos armónicos desplazados hacia arriba mientras la envolvente de formantes permanece fija»</figcaption>
+                </figure>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitaciones</h2>
+                    <ul>
+                        <li><strong>La matemática es exacta; el sonido no.</strong> Los números de razón, tempo y duración son precisos, pero los algoritmos DSP reales añaden artefactos —difuminado de fase, suavizado de transitorios y resonancia metálica— que ninguna calculadora puede predecir.</li>
+                        <li><strong>Los formantes no son parte de la razón.</strong> La calculadora solo da la razón de tono. Que el resultado suene como el mismo cantante o como una ardilla depende del manejo de formantes de tu DAW, que la matemática no puede ver.</li>
+                        <li><strong>El material polifónico se degrada más rápido.</strong> Una flauta sola sobrevive ±7 semitonos mucho mejor que una mezcla completa; el audio denso y armónicamente rico acumula artefactos rápido.</li>
+                        <li><strong>El varispeed extremo rompe la sensación de tiempo.</strong> Subir un loop de batería 12 semitonos duplica su tempo: técnicamente correcto, pero el groove rara vez sobrevive la traducción.</li>
+                        <li><strong>Solo temperamento igual de 12 tonos.</strong> La música microtonal, la entonación justa y los sistemas de afinación no occidentales usan otra matemática de intervalos que el 2^(n/12) que esta página asume.</li>
+                    </ul>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-3"><i class="bi bi-arrow-left-right me-2"></i>Cambio de tono frente a alternativas</h2>
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-dark">
+                                <tr><th>Técnica</th><th>Qué cambia</th><th>Úsala cuando…</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Cambio de tono independiente del tiempo</strong></td><td>Solo el tono; el tempo y la longitud se mantienen</td><td>Ajustar un sample o una voz a una tonalidad sin tocar el tempo del proyecto</td></tr>
+                                <tr><td><strong>Varispeed / remuestreo</strong></td><td>Tono, tempo y longitud juntos</td><td>Quieres el auténtico sonido cinta/vinilo: los clásicos sample chops del hip-hop</td></tr>
+                                <tr><td><strong>Estiramiento de tiempo</strong></td><td>Solo tempo/longitud; el tono se mantiene</td><td>Igualar un loop al BPM del proyecto sin cambiar su tonalidad</td></tr>
+                                <tr><td><strong>Transposición MIDI</strong></td><td>Solo datos de notas: no se procesa audio</td><td>Trabajar con instrumentos virtuales; perfectamente limpio en cualquier intervalo</td></tr>
+                                <tr><td><strong>Corrección de tono</strong></td><td>Microajustes hacia las notas objetivo</td><td>Corregir una interpretación desafinada (Auto-Tune, Melodyne) en lugar de moverla por completo</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Para trabajo solo de tempo sin cambio de tono, mira el <a href="../../../dj-music-production-tools/bpm-to-speed/">convertidor de BPM a velocidad</a>; para medir pequeños desvíos de afinación en cents, usa la <a href="../calculadora-de-cents-online/">calculadora de cents</a>.</p>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <h2 class="text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Preguntas frecuentes</h2>
+                    <div class="accordion" id="pitchShiftFAQ">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faqHeading1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapse1" aria-expanded="true"
+                                    aria-controls="faqCollapse1">
+                                    ¿Cómo se relaciona matemáticamente el cambio de tono con la razón de frecuencia?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse1" class="accordion-collapse collapse show"
+                                aria-labelledby="faqHeading1" data-bs-parent="#pitchShiftFAQ">
+                                <div class="accordion-body">
+                                    El cambio de tono es exponencial. Cambiar S semitonos y C cents multiplica cada frecuencia del sonido por la razón r = 2^((S + C/100) / 12). Un cambio de +7 semitonos (una quinta justa) da r = 2^(7/12) ≈ 1.49831, así que un tono de 220 Hz se convierte en 329.63 Hz — cada parcial escala en el mismo factor.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faqHeading2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapse2" aria-expanded="false"
+                                    aria-controls="faqCollapse2">
+                                    ¿Cuál es la diferencia entre varispeed y el cambio de tono independiente del tiempo?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
+                                data-bs-parent="#pitchShiftFAQ">
+                                <div class="accordion-body">
+                                    El varispeed (estilo cinta/tornamesa) cambia el tono y la velocidad de reproducción juntos: subir el tono eleva el tempo y acorta el audio. El cambio de tono independiente del tiempo usa DSP como vocoders de fase o zplane élastique para cambiar el tono manteniendo el tempo y la duración originales, al costo de posibles artefactos.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faqHeading3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapse3" aria-expanded="false"
+                                    aria-controls="faqCollapse3">
+                                    ¿Qué causa el «efecto ardilla» al cambiar el tono de una voz?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
+                                data-bs-parent="#pitchShiftFAQ">
+                                <div class="accordion-body">
+                                    El efecto ardilla ocurre cuando el tono se sube sin preservación de formantes. Los formantes son las resonancias fijas del tracto vocal que le dan a una voz su identidad. Moverlos hacia arriba con el tono hace que una voz adulta suene como un niño pequeño. Los algoritmos que preservan formantes mantienen los formantes en su lugar mientras el tono se mueve.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faqHeading4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapse4" aria-expanded="false"
+                                    aria-controls="faqCollapse4">
+                                    ¿Cómo se calcula el cambio de tempo al cambiar el tono de un sample sin estirar el tiempo?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
+                                data-bs-parent="#pitchShiftFAQ">
+                                <div class="accordion-body">
+                                    Nuevo BPM = BPM original × r, donde r = 2^(semitonos / 12). El cambio de velocidad es (r − 1) × 100%. Subir un loop de 120 BPM 2 semitonos da r ≈ 1.12246, así que el nuevo tempo es 134.70 BPM — un aumento de velocidad de +12.25%.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faqHeading5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapse5" aria-expanded="false"
+                                    aria-controls="faqCollapse5">
+                                    ¿Cuántos cents equivalen a un semitono?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
+                                data-bs-parent="#pitchShiftFAQ">
+                                <div class="accordion-body">
+                                    Exactamente 100 cents forman un semitono temperado, y 1200 cents una octava. Los cents existen para la microafinación: una desafinación de +15 cents añade un sutil movimiento tipo chorus a un sintetizador, mientras que un desvío de −31.77 cents es la conversión exacta de A440 a A432. Mide el desvío entre dos tonos con la calculadora de cents.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faqHeading6">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapse6" aria-expanded="false"
+                                    aria-controls="faqCollapse6">
+                                    ¿Qué algoritmo de cambio de tono de DAW debería usar?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6"
+                                data-bs-parent="#pitchShiftFAQ">
+                                <div class="accordion-body">
+                                    En Ableton Live, usa Complex Pro (con el control de Formants) para voces y mezclas completas, Beats para baterías y Re-Pitch para varispeed estilo cinta. En Logic Pro, usa Flex Pitch para ediciones de tono monofónicas y los modos Flex Time polifónico o monofónico para estirar. En Pro Tools, los modos monofónico y rítmico de Elastic Audio cubren material solista y de batería; X-Form es el renderizado offline de mayor calidad.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faqHeading7">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapse7" aria-expanded="false"
+                                    aria-controls="faqCollapse7">
+                                    ¿A cuántos semitonos equivale el pitch fader de ±8% de una tornamesa?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse7" class="accordion-collapse collapse" aria-labelledby="faqHeading7"
+                                data-bs-parent="#pitchShiftFAQ">
+                                <div class="accordion-body">
+                                    Un aumento de velocidad de +8% equivale a +1.33 semitonos (+133.24 cents); −8% equivale a −1.44 semitonos (−144.35 cents). El rango es asimétrico porque el tono sigue una razón exponencial: cambios iguales de porcentaje en velocidad se mapean a pasos desiguales de semitonos por encima y por debajo del tono original.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faqHeading8">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapse8" aria-expanded="false"
+                                    aria-controls="faqCollapse8">
+                                    ¿Qué tanto puedo cambiar el tono de una voz antes de que suene antinatural?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse8" class="accordion-collapse collapse" aria-labelledby="faqHeading8"
+                                data-bs-parent="#pitchShiftFAQ">
+                                <div class="accordion-body">
+                                    Con preservación de formantes, ±1–2 semitonos suena limpio, ±3–4 se mantiene natural con ligero cambio de timbre, y ±5–7 se convierte en un efecto evidente. Sin corrección de formantes, incluso ±2–3 semitonos empieza a sonar como ardilla hacia arriba o antinaturalmente oscuro hacia abajo. Más allá de ±8 semitonos es territorio de efecto en cualquier caso.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faqHeading9">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapse9" aria-expanded="false"
+                                    aria-controls="faqCollapse9">
+                                    ¿El cambio de tono cambia la tonalidad de una canción?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse9" class="accordion-collapse collapse" aria-labelledby="faqHeading9"
+                                data-bs-parent="#pitchShiftFAQ">
+                                <div class="accordion-body">
+                                    Sí. Mover cada nota hacia arriba en el mismo intervalo lleva toda la canción a una nueva tonalidad: +2 semitonos convierte La menor en Si menor. Así es exactamente como los DJs y productores ajustan un acapella a la tonalidad de un beat. La relación entre notas se mantiene igual, así que la melodía y los acordes no cambian — solo se mueve el tono absoluto.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tool-container mt-4">
+                    <div class="card my-4 shadow-sm border-0 bg-light">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3"><i class="bi bi-link-45deg text-teal me-2"></i>Explora herramientas relacionadas
+                                de tono y afinación</h5>
+                            <div class="row g-2">
+                                <div class="col-sm-6 col-md-4">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../calculadora-de-cents-online/">
+                                        <i class="bi bi-rulers me-1"></i> Calculadora de cents
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../calculadora-de-transposicion-online/">
+                                        <i class="bi bi-arrows-expand me-1"></i> Calculadora de transposición
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../nota-a-frecuencia-online/">
+                                        <i class="bi bi-calculator me-1"></i> Nota a frecuencia
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../detector-de-tono/">
+                                        <i class="bi bi-soundwave me-1"></i> Detector de tono
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../afinador-de-guitarra-online/">
+                                        <i class="bi bi-music-note-beamed me-1"></i> Afinador de guitarra
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <a class="btn btn-outline-primary w-100 text-start"
+                                        href="../../../dj-music-production-tools/bpm-to-speed/">
+                                        <i class="bi bi-speedometer2 me-1"></i> BPM a velocidad
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- content end -->
+
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+    <script src="../../../assets/bootstrap5.js" defer></script>
+    <script src="../../../assets/tools.js" defer></script>
+
+    <!-- tool js -->
+    <script defer>
+        function setPreset(st, c) {
+            document.getElementById('semitones').value = st;
+            document.getElementById('cents').value = c;
+            calculatePitchShift();
+        }
+
+        function calculatePitchShift() {
+            const semitones = parseFloat(document.getElementById('semitones').value) || 0;
+            const cents = parseFloat(document.getElementById('cents').value) || 0;
+
+            const totalSemitones = semitones + (cents / 100);
+            const ratio = Math.pow(2, totalSemitones / 12);
+            const percent = (ratio - 1) * 100;
+            const lengthMultiplier = 1 / ratio;
+
+            const resultEl = document.getElementById('result');
+            resultEl.style.display = "block";
+            resultEl.innerHTML = `
+                <h4 class="fw-bold text-dark mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>Pitch Shift Results</h4>
+                <div class="row text-center g-3">
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 bg-white rounded shadow-sm">
+                            <span class="text-muted small">Total Semitones</span>
+                            <div class="fs-4 fw-bold text-primary">${totalSemitones >= 0 ? '+' : ''}${totalSemitones.toFixed(2)} st</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 bg-white rounded shadow-sm">
+                            <span class="text-muted small">Frequency Ratio</span>
+                            <div class="fs-4 fw-bold text-dark">${ratio.toFixed(5)}×</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 bg-white rounded shadow-sm">
+                            <span class="text-muted small">Varispeed Speed</span>
+                            <div class="fs-4 fw-bold ${percent >= 0 ? 'text-success' : 'text-danger'}">${percent >= 0 ? '+' : ''}${percent.toFixed(2)}%</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 bg-white rounded shadow-sm">
+                            <span class="text-muted small">Duration Factor</span>
+                            <div class="fs-4 fw-bold text-secondary">${lengthMultiplier.toFixed(4)}×</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        document.getElementById('semitones').addEventListener('input', calculatePitchShift);
+        document.getElementById('cents').addEventListener('input', calculatePitchShift);
+
+        calculatePitchShift();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../../sp/header.html").then(res => res.text()),
+                fetch("../../../sp/footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

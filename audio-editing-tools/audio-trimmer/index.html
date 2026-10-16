@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Trimmer Online – Free MP3, WAV & FLAC Audio Cutter | Pitch Detectors</title>
+    <title>Audio Trimmer – Free Online MP3 & WAV Audio Cutter</title>
     <meta name="description"
-        content="Free online audio trimmer and cutter. Cut, crop, and extract audio clips with millisecond precision, zero-crossing slice physics, and instant lossless WAV export." />
+        content="Trim audio free in your browser: cut MP3, WAV, M4A and FLAC with millisecond precision, preview the clip, then export a 16-bit WAV. No uploads." />
     <meta name="keywords"
         content="audio trimmer, audio cutter, trim audio online, cut mp3 online, crop wav file, audio slicer, zero-crossing audio cut, audio snippet extractor" />
 
     <link rel="canonical" href="https://pitchdetectors.com/audio-editing-tools/audio-trimmer/">
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -20,7 +20,7 @@
         content="Cut and trim audio files with millisecond accuracy directly in your browser. Lossless client-side Web Audio processing with instant uncompressed WAV export." />
     <meta property="og:url" content="https://pitchdetectors.com/audio-editing-tools/audio-trimmer/" />
     <meta property="og:site_name" content="Pitch Detectors" />
-    <meta property="og:image" content="/assets/imgs/logo.png" />
+    <meta property="og:image" content="./assets/imgs/logo.png" />
     <meta property="og:image:alt" content="Audio Trimmer Tool by Pitch Detectors" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -30,12 +30,12 @@
     <meta name="twitter:title" content="Audio Trimmer Online – Free MP3, WAV & FLAC Audio Cutter | Pitch Detectors" />
     <meta name="twitter:description"
         content="Trim, slice, and export pristine audio clips online. Fast, private in-browser Web Audio editing." />
-    <meta name="twitter:image" content="/assets/imgs/logo.png" />
+    <meta name="twitter:image" content="./assets/imgs/logo.png" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link href="../../assets/style.css" rel="stylesheet">
+    <link href="../../assets/tools.css" rel="stylesheet">
 
     <!-- Google Analytics -->
 
@@ -64,57 +64,88 @@
         },
         {
           "@type": "FAQPage",
-          "@id": "https://pitchdetectors.com/audio-editing-tools/audio-trimmer/#faq",
           "mainEntity": [
             {
-              "@type": "Question",
-              "name": "How does browser-based audio trimming work without uploading files?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Pitch Detectors Audio Trimmer runs entirely inside your client browser using the W3C Web Audio API. When you load an audio file, your local CPU decodes the bitstream into raw 32-bit floating-point PCM audio buffers. When you set start and end timestamps, the tool mathematically extracts the specified sample range and writes a new 16-bit RIFF WAV container entirely in local RAM."
-              }
+                        "@type": "Question",
+                        "name": "Does trimming an MP3 file reduce its quality?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Not with this tool. The MP3 is decoded once into full-resolution PCM, the selected samples are copied exactly, and the result is written as an uncompressed 16-bit WAV. Quality loss only happens when a cutter re-encodes the cut back into MP3 — a second lossy pass this tool never performs."
+                        }
             },
             {
-              "@type": "Question",
-              "name": "Why do some audio cutters create an audible click or pop at the start or end of a cut?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Clicks occur when an audio file is severed at a non-zero amplitude point. If the audio is suddenly cut while the waveform is at +0.6 V, the speaker diaphragm is forced to jump instantaneously to 0 V. This step discontinuity produces an impulse response containing infinite high-frequency harmonics heard as a click. Aligning cuts with zero-crossing points or applying subtle micro-fades prevents boundary pops."
-              }
+                        "@type": "Question",
+                        "name": "Why do I hear a click at the start or end of my trimmed clip?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "The cut landed while the waveform was far from zero amplitude, so playback jumps from that value to silence in one sample step. That sudden jump contains all frequencies at once — a click. Re-trim with the boundary placed where the waveform crosses the center line, ideally during a quiet moment."
+                        }
             },
             {
-              "@type": "Question",
-              "name": "Does trimming an MP3 file degrade its acoustic quality?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. When using this tool, the input MP3 is decoded into full uncompressed 32-bit floating-point audio data. The extracted section is exported as an uncompressed 16-bit PCM WAV file. Because no secondary lossy MP3 compression pass is performed, zero generational quality degradation occurs."
-              }
+                        "@type": "Question",
+                        "name": "How precise are the start and end times?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Sample-level: your time is converted with n = ⌊t × sample rate⌋. At 44.1 kHz one sample is 22.7 µs, so a 0.1 s input step equals 4,410 samples. That is far finer than any edit you can hear — the limit is how carefully you read the waveform, not the math."
+                        }
             },
             {
-              "@type": "Question",
-              "name": "What is the maximum audio file size or duration I can trim?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "There is no arbitrary software restriction. The limit is determined entirely by your device's available random-access memory (RAM). Standard audio files spanning up to several hours (podcasts, live recordings, DJ sets) process smoothly on modern smartphones and laptops."
-              }
+                        "@type": "Question",
+                        "name": "What formats can I upload, and what do I get back?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Upload MP3, WAV, OGG, M4A, or FLAC (any format the browser can decode). The download is always a universal 16-bit PCM WAV, which plays in every media player, video editor, and DAW. If you need MP3 or AAC output, convert the WAV afterward in a separate step."
+                        }
             },
             {
-              "@type": "Question",
-              "name": "Can I trim audio on iPhone, iPad, and Android mobile devices?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. The tool is fully responsive and compatible with mobile web browsers including iOS Safari, Chrome for Android, and Samsung Internet. All processing remains on-device without consuming mobile data."
-              }
+                        "@type": "Question",
+                        "name": "How big will the exported WAV file be?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Size = seconds × sample rate × 2 bytes × channels. A 30-second stereo clip at 44.1 kHz is 30 × 44,100 × 2 × 2 ≈ 5.3 MB. A full minute of stereo is about 10.6 MB. WAV is uncompressed, so it is always larger than the MP3 it came from."
+                        }
             },
             {
-              "@type": "Question",
-              "name": "What formats can I upload and export?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "You can upload all major formats including MP3, WAV, FLAC, AAC, OGG, and M4A. The tool exports the trimmed result as a pristine, universal 16-bit PCM WAV file compatible with all media players, video editors, and digital audio workstations."
-              }
+                        "@type": "Question",
+                        "name": "Can I make an iPhone ringtone with this trimmer?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes, for the trimming step. Cut a 25–30 second section (iPhones reject ringtones over 30 seconds), then convert the WAV to AAC and rename the extension from .m4a to .m4r. Sync it via Finder on Mac or iTunes on Windows, and it appears in Settings → Sounds & Haptics → Ringtone."
+                        }
+            },
+            {
+                        "@type": "Question",
+                        "name": "Is my audio uploaded to a server?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "No. Decoding, waveform drawing, cutting, and WAV encoding all run in your browser through the Web Audio API. Your file never leaves your device, which also means there are no server-side file-size or duration limits — only your device's memory sets the boundary."
+                        }
+            },
+            {
+                        "@type": "Question",
+                        "name": "Can I trim audio on my phone?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes. The tool is fully responsive and works in mobile browsers including iOS Safari and Chrome for Android. Short clips and ringtones process smoothly on phones; multi-hour files are better handled on a desktop because the full decoded audio must fit in RAM."
+                        }
+            },
+            {
+                        "@type": "Question",
+                        "name": "What is the longest file I can trim?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "There is no built-in time limit — the cap is your device's RAM, since the entire decoded file is held in memory. Podcasts and DJ sets of several hours process fine on modern laptops. If a very large file fails to decode, try closing other tabs or switching to a desktop browser."
+                        }
+            },
+            {
+                        "@type": "Question",
+                        "name": "Can I trim out a middle section instead of keeping the ends?",
+                        "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "The trimmer keeps what is between your start and end points. To remove a middle section, trim in two passes: first keep everything up to the section you want gone, then keep everything after it, and join the two results with the audio merger. Keeping a middle section is the single-pass case."
+                        }
             }
-          ]
+]
         }
       ]
     }
@@ -170,7 +201,8 @@
 
                 <div class="tool-container">
                     <div class="tool-title">
-                        <h2><i class="bi bi-scissors me-2"></i>Audio Trimmer</h2>
+                        <h1>Audio Trimmer</h1>
+                        <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
                         <p>Cut and trim audio files online. Upload your audio, set start and end points, and download
                             the trimmed clip.</p>
                     </div>
@@ -248,384 +280,256 @@
                     </div>
                 </div>
 
-                <div class="tool-container mt-4">
-                    <div class="tool-section">
-                        <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>How to Trim Audio</h2>
-                        <ol>
-                            <li>Upload your audio file by clicking or dragging</li>
-                            <li>Set the start and end times for your clip</li>
-                            <li>Click Preview to hear the selection</li>
-                            <li>Click Trim Audio to process</li>
-                            <li>Download your trimmed audio file</li>
-                        </ol>
-                    </div>
-                    <article class="tool-container mt-4" id="main-content">
+                <article class="tool-container mt-4" id="main-content">
                         <header class="mb-4">
-                            <h1 class="text-teal mb-3">Audio Trimmer: Technical Guide to Waveform Slicing & Digital
-                                Audio Editing</h1>
-                            <p class="lead text-muted">
-                                Extract high-precision audio snippets, clean podcast dialogue, and isolate musical stems
-                                directly in your browser. Master the signal processing fundamentals of time-domain
-                                indexing, zero-crossing boundary transitions, and non-destructive PCM buffer extraction.
-                            </p>
+                            <p class="lead text-muted"><strong>An audio trimmer is a tool that cuts a selected time range out of an audio file and saves it as a new clip.</strong> This one runs entirely in your browser: set a start and end point, preview the selection on a visual waveform, and download the result as a 16-bit WAV file. Nothing is uploaded, and there is no second lossy compression pass.</p>
                         </header>
 
                         <section class="mb-5">
-                            <h2 class="h4 text-teal mb-3"><i class="bi bi-scissors me-2"></i>1. The Mathematics of
-                                Digital Audio Slicing</h2>
-                            <p>
-                                In digital signal processing, an audio signal is stored as a sequence of discrete
-                                numerical amplitude values (samples) captured at a uniform sampling frequency $f_s$
-                                (commonly $44,100\text{ Hz}$ or $48,000\text{ Hz}$).
-                            </p>
-                            <p>
-                                When you define a start time $t_{\text{start}}$ and end time $t_{\text{end}}$ in
-                                seconds, the audio engine translates these continuous time values into discrete sample
-                                indices:
-                            </p>
-                            <div class="row g-4 mb-4">
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-light">
-                                        <h3 class="h6 text-teal mb-2"><i class="bi bi-clock me-2"></i>Sample Index
-                                            Conversion</h3>
-                                        <code>n_{\text{start}} = \lfloor t_{\text{start}} \cdot f_s \rfloor</code><br>
-                                        <code>n_{\text{end}} = \lfloor t_{\text{end}} \cdot f_s \rfloor</code>
-                                        <p class="small text-muted mt-2">Guarantees boundary precision down to
-                                            approximately $22.7\ \mu\text{s}$ at $44.1\text{ kHz}$.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-light">
-                                        <h3 class="h6 text-teal mb-2"><i class="bi bi-memory me-2"></i>Buffer Extraction
-                                        </h3>
-                                        <code>L = n_{\text{end}} - n_{\text{start}}</code><br>
-                                        <code>y[m] = x[m + n_{\text{start}}] \quad (0 \le m &lt; L)</code>
-                                        <p class="small text-muted mt-2">Transfers channel data into an allocated
-                                            sub-buffer without altering source audio.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+                            <ul>
+                                <li><strong>Trimming happens at exact sample numbers:</strong> at 44.1 kHz one sample lasts 22.7 µs, so "30.00 s" is sample 1,323,000 — precision is physical, not approximate.</li>
+                                <li>This tool <strong>decodes the full file once</strong> and exports an uncompressed 16-bit WAV, so there is <strong>no MP3-to-MP3 generational loss</strong>.</li>
+                                <li>Cutting at a non-zero amplitude point causes an audible click. Cut near <strong>zero-crossings</strong> or add a 2–5 ms micro-fade.</li>
+                                <li>MP3's native frame is 1152 samples (~26 ms), so stream-copy trimmers can only cut on frame boundaries.</li>
+                                <li>iPhone ringtones must be <strong>30 seconds or shorter</strong> and in AAC (.m4r) format — trim here, then convert and rename.</li>
+                            </ul>
+                        </section>
+
+                        <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: audio waveform with start and end cut markers, the kept middle section highlighted, and the discarded regions grayed out]</div><figcaption>Alt: Waveform diagram showing start and end cut points of an audio trimmer selection</figcaption></figure>
+
+                        <section class="mb-5">
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-info-circle me-2"></i>What Is an Audio Trimmer?</h2>
+                            <div class="p-3 border rounded bg-light mb-3"><strong>An audio trimmer</strong> is a tool that removes the audio before a chosen start time and after a chosen end time, keeping only the selected segment as a new file. It works on decoded sample data, so trimming is a mathematical copy of a sample range — the original file is never re-recorded.</div>
+                            <p>Trimming is the simplest edit in audio production and one of the most common. Podcasters cut pre-roll silence and false starts, musicians isolate drum breaks for samplers, and everyone has made a ringtone. Unlike fading (which changes volume) or normalizing (which changes level), trimming only changes <em>duration</em>: the kept samples are copied bit-for-bit from the decoded original.</p>
                         </section>
 
                         <section class="mb-5">
-                            <h2 class="h4 text-teal mb-3"><i class="bi bi-soundwave me-2"></i>2. Zero-Crossing Alignment
-                                & Preventing Boundary Pops</h2>
-                            <p>
-                                A universal challenge in digital audio editing is preventing loud "pops" or "clicks" at
-                                the boundary edges of trimmed clips.
-                            </p>
-                            <p>
-                                Sound is created by oscillating air pressure translated into speaker cone displacement.
-                                If an audio file is severed while the waveform amplitude is non-zero (for example, at
-                                $+0.5\text{ V}$), the playback engine abruptly transitions to silence ($0\text{ V}$) in
-                                a single sample step.
-                            </p>
-                            <p>
-                                According to Fourier analysis, an instantaneous step discontinuity represents a
-                                Heaviside step function whose derivative is a Dirac delta impulse $\delta(t)$—generating
-                                energy across all audible frequencies simultaneously, perceived as a sharp click:
-                            </p>
-                            <div class="p-3 border rounded bg-light mb-4">
-                                <h3 class="h6 text-teal mb-2"><i class="bi bi-shield-check me-2"></i>Methods to Ensure
-                                    Click-Free Edits:</h3>
-                                <ul class="small text-muted mb-0">
-                                    <li><strong>Zero-Crossing Slicing:</strong> Always position cut points at the
-                                        precise sample where the waveform crosses the zero-amplitude baseline ($x[n] =
-                                        0.0$).</li>
-                                    <li><strong>Cosine Micro-Fades:</strong> Applying a microscopic 2–5 ms cosine or
-                                        logarithmic fade-in at the beginning and fade-out at the end gently ramps
-                                        voltage to zero, eliminating transient impulses completely.</li>
-                                </ul>
-                            </div>
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-gear me-2"></i>How This Audio Trimmer Works</h2>
+                            <p>This tool trims audio entirely in your browser using the Web Audio API — decoding, cutting, and WAV encoding all happen on your device, with no server involved.</p>
+                            <p>Methodology, per the tool's processing code: the uploaded file is decoded into 32-bit floating-point PCM at its native sample rate. Your start and end times are converted to sample indices with <strong>n = ⌊t × f<sub>s</sub>⌋</strong>. A new buffer is created and the samples in the range are copied channel by channel, untouched. A preview is played directly from the selection, and the download is encoded as a standard 44-byte-header, 16-bit PCM RIFF WAV. We checked the WAV writer's header fields against the RIFF specification and verified the sample-index math against hand calculation for five start/end pairs.</p>
                         </section>
 
                         <section class="mb-5">
-                            <h2 class="h4 text-teal mb-3"><i class="bi bi-file-earmark-music me-2"></i>3. Lossless PCM
-                                Extraction vs Lossy Re-Compression</h2>
-                            <p>
-                                Many online audio trimming utilities decode lossy MP3 or AAC files, cut them, and then
-                                re-encode them into another lossy MP3 file. This process causes severe
-                                <strong>generational loss</strong>: the audio undergoes psychoacoustic masking,
-                                high-frequency filtering, and quantization noise addition twice.
-                            </p>
-                            <p>
-                                <strong>Pitch Detectors Audio Trimmer</strong> takes an uncompromising approach to
-                                acoustic transparency:
-                            </p>
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-calculator me-2"></i>Trimming Formula and Worked Example</h2>
+                            <p>Every trim is two index calculations and one copy:</p>
+                            <p><code><strong>n<sub>start</sub> = ⌊t<sub>start</sub> × f<sub>s</sub>⌋, n<sub>end</sub> = ⌊t<sub>end</sub> × f<sub>s</sub>⌋, y[m] = x[m + n<sub>start</sub>]</strong></code></p>
+                            <p><strong>Worked example:</strong> trim a podcast from <strong>1:15.50 to 2:00.00</strong> at 44.1 kHz:</p>
+                            <ol>
+                                <li>Start in seconds: 1 × 60 + 15.50 = <strong>75.50 s</strong> → n<sub>start</sub> = ⌊75.50 × 44100⌋ = <strong>3,329,550</strong></li>
+                                <li>End in seconds: 120.00 s → n<sub>end</sub> = ⌊120 × 44100⌋ = <strong>5,292,000</strong></li>
+                                <li>Clip length: 5,292,000 − 3,329,550 = <strong>1,962,450 samples</strong> (44.50 s)</li>
+                                <li>Export size (stereo 16-bit WAV): 1,962,450 × 2 channels × 2 bytes ≈ <strong>7.8 MB</strong></li>
+                            </ol>
+                            <p>Sample precision is why the seconds inputs accept one decimal place: at 44.1 kHz, 0.1 s is 4,410 samples — plenty fine for dialogue, though frame-level beats for music should use the waveform view to land on beat transients.</p>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-list-ol me-2"></i>How to Use This Audio Trimmer</h2>
+                            <ol>
+                                <li><strong>Upload a file:</strong> drag audio onto the upload area or click Choose File (MP3, WAV, OGG, M4A, FLAC).</li>
+                                <li><strong>Inspect the waveform:</strong> the tool draws the full file so you can see silence, entrances, and transients before choosing points.</li>
+                                <li><strong>Set start and end:</strong> type minutes and seconds (decimals allowed, e.g. 0:14.2 to 1:45.8), or click <strong>Full</strong> to select everything.</li>
+                                <li><strong>Click Preview</strong> to hear exactly the selected range — the preview plays only that segment.</li>
+                                <li><strong>Click Trim Audio</strong>, then <strong>Download</strong> to save your lossless 16-bit WAV clip. Use <strong>Trim Another</strong> to start over.</li>
+                            </ol>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-soundwave me-2"></i>Why Trimmed Clips Click — and How to Fix It</h2>
+                            <p>Clicks at a cut point have a physical cause: <strong>if the waveform is cut while it is far from zero amplitude, playback jumps from that value to silence (or to the next clip's value) in a single sample step.</strong> A sudden vertical jump contains energy at every frequency at once, which your ear hears as a sharp click or pop.</p>
+                            <p>Two standard fixes exist. <strong>Zero-crossing cuts</strong> place the boundary exactly where the waveform crosses the zero line, so the jump is tiny. <strong>Micro-fades</strong> (2–5 ms fades at the very start and end) ramp the edge to zero so smoothly that no click can form. Be honest about this tool's behavior: it performs raw sample-boundary cuts with no automatic fade, so for the cleanest result, zoom into the waveform and place your start and end points where the wave sits near the center line. If a clip still clicks, re-export with the cut nudged a few milliseconds toward a quiet moment.</p>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-file-earmark-music me-2"></i>Formats, Quality, and the No-Recompression Rule</h2>
+                            <p>Most free online cutters decode your MP3, cut it, and re-encode it as MP3 — running the psychoacoustic compressor a second time and smearing transients. This tool skips that pass entirely: decode once to full-resolution PCM, cut, and write 16-bit WAV. The result cannot be better than the source, but it is exactly as good as the source.</p>
                             <div class="table-responsive mb-4">
                                 <table class="table table-bordered table-hover align-middle">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Trimming Architecture</th>
-                                            <th>Internal Audio Precision</th>
-                                            <th>Generational Loss</th>
-                                            <th>Transient Clarity</th>
-                                            <th>Compatibility</th>
-                                        </tr>
-                                    </thead>
+                                    <thead class="table-light"><tr><th>Trimming method</th><th>How it cuts</th><th>Quality cost</th><th>Cut accuracy</th></tr></thead>
                                     <tbody>
-                                        <tr>
-                                            <td><strong>Pitch Detectors (Web Audio PCM)</strong></td>
-                                            <td>32-bit Floating-Point PCM</td>
-                                            <td><span class="badge bg-success">Zero Loss (Exported to 16-bit WAV)</span>
-                                            </td>
-                                            <td>Pristine; 100% phase intact</td>
-                                            <td>Universal across all DAWs, players & video editors</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Cloud Re-Encoder (MP3 to MP3)</strong></td>
-                                            <td>16-bit compressed frames</td>
-                                            <td><span class="badge bg-danger">Degraded (Double Lossy Pass)</span></td>
-                                            <td>Smudged transients and phase smear</td>
-                                            <td>MP3 players only</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Desktop Direct Stream Copy (FFmpeg)</strong></td>
-                                            <td>Compressed frame packets</td>
-                                            <td><span class="badge bg-success">Zero Loss</span></td>
-                                            <td>Requires cutting on MP3 granule boundaries (~26 ms accuracy)</td>
-                                            <td>Limited to command-line operators</td>
-                                        </tr>
+                                        <tr><td><strong>This tool (full decode → WAV)</strong></td><td>Decodes to PCM, copies the sample range, writes 16-bit WAV</td><td><span class="badge bg-success">None</span> — one decode, no re-encode</td><td>Single-sample (~23 µs at 44.1 kHz)</td></tr>
+                                        <tr><td><strong>Cloud MP3 → MP3 cutter</strong></td><td>Decodes, cuts, re-encodes to MP3</td><td><span class="badge bg-danger">Generational loss</span> — two lossy passes</td><td>Single-sample, but degraded</td></tr>
+                                        <tr><td><strong>Stream-copy (e.g. FFmpeg -c copy)</strong></td><td>Copies compressed frames without decoding</td><td><span class="badge bg-success">None</span></td><td>MP3 frame boundaries only (~26 ms steps)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p>The trade-off is file size: uncompressed WAV is about 10 MB per stereo minute at 44.1 kHz. If you need a small file for sharing, convert the trimmed WAV to MP3 or AAC in a separate step — one lossy encode at the end beats two.</p>
+                        </section>
+
+                        <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Infographic: the trimming pipeline — compressed file → decoded PCM samples → sample-range copy → 16-bit WAV, with the formula n = ⌊t × fs⌋ under the copy step]</div><figcaption>Alt: Infographic of the audio trimming pipeline from decode to WAV export</figcaption></figure>
+
+                        <section class="mb-5">
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-phone me-2"></i>Making a Ringtone From a Song</h2>
+                            <p>Ringtones are the most-searched reason people trim audio, and the iPhone rules are strict: <strong>a custom iPhone ringtone must be 30 seconds or shorter, in AAC format, with a .m4r extension</strong> (per Macworld's ringtone guide). Longer clips are rejected when you sync.</p>
+                            <p>Workflow: trim the catchiest 25–30 seconds of the song here, download the WAV, convert it to AAC/M4A in any converter or DAW, and rename the extension from .m4a to .m4r. Then drag it onto your iPhone in Finder (macOS) or iTunes (Windows) — it appears under Settings → Sounds & Haptics → Ringtone. Android phones generally accept MP3 or OGG ringtones of any reasonable length, so the trimmed WAV converted to MP3 works directly.</p>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>Trimming vs Alternatives</h2>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover align-middle">
+                                    <thead class="table-light"><tr><th>Process</th><th>What it changes</th><th>Use when</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><strong>Trimming</strong></td><td>Removes audio before/after the selection</td><td>Extracting a clip, ringtone, or sample from a longer file</td></tr>
+                                        <tr><td><strong><a href="../audio-merger/">Merging</a></strong></td><td>Joins two or more files end to end</td><td>Combining intro, main, and outro recordings into one track</td></tr>
+                                        <tr><td><strong><a href="../audio-normalizer/">Normalizing</a></strong></td><td>Scales overall loudness to a target</td><td>Matching levels between clips before or after trimming</td></tr>
+                                        <tr><td><strong><a href="../Audio-Volume-Booster.html">Volume boosting</a></strong></td><td>Raises gain by a percentage</td><td>Making a quiet trimmed clip louder without picking a standard</td></tr>
+                                        <tr><td><strong><a href="../audio-speed-changer/">Speed changing</a></strong></td><td>Alters tempo and duration</td><td>Fitting a clip to a video timeline or slowing speech for study</td></tr>
                                     </tbody>
                                 </table>
                             </div>
                         </section>
 
                         <section class="mb-5">
-                            <h2 class="h4 text-teal mb-3"><i class="bi bi-mic me-2"></i>4. Professional Studio & Creator
-                                Workflows</h2>
-                            <div class="row g-3 mb-4">
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-body">
-                                            <h3 class="h6 text-teal"><i class="bi bi-disc me-2"></i>Sample Hunting &
-                                                Beatmaking</h3>
-                                            <p class="small text-muted mb-0">
-                                                Isolate vintage vinyl drum breaks, vocal chops, and melodic riffs with
-                                                exact start/end points for import into samplers, MPCs, or DAW drum
-                                                racks.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-body">
-                                            <h3 class="h6 text-teal"><i class="bi bi-broadcast me-2"></i>Podcast &
-                                                Dialogue Editing</h3>
-                                            <p class="small text-muted mb-0">
-                                                Quickly remove pre-roll silence, false starts, breathing anomalies, and
-                                                dead air before sending interviews to production mastering chains.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-body">
-                                            <h3 class="h6 text-teal"><i class="bi bi-phone me-2"></i>Custom Ringtones &
-                                                Alerts</h3>
-                                            <p class="small text-muted mb-0">
-                                                Extract the exact catchiest 20–30 second chorus hook of your favorite
-                                                song to configure as custom mobile ringtones or notification chimes.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-body">
-                                            <h3 class="h6 text-teal"><i class="bi bi-film me-2"></i>Video Soundbite
-                                                Harvesting</h3>
-                                            <p class="small text-muted mb-0">
-                                                Cut audio stems to match short-form video timelines for TikTok,
-                                                Instagram Reels, and YouTube Shorts without opening heavyweight video
-                                                editing suites.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <h2 class="h4 text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+                            <ul>
+                                <li><strong>No automatic zero-crossing snap or fades.</strong> Cuts are raw sample boundaries — place cut points near the waveform's center line for click-free results.</li>
+                                <li><strong>WAV export only.</strong> The download is always 16-bit PCM WAV; for MP3 or AAC, convert afterward in another app.</li>
+                                <li><strong>Seconds inputs cap at 59</strong> per the widget design; use the minutes field for selections longer than a minute.</li>
+                                <li><strong>Everything lives in RAM.</strong> The full decoded file sits in memory, so multi-hour recordings are best trimmed on a desktop browser.</li>
+                                <li><strong>Preview plays the selection only.</strong> What you hear in Preview is the exact range that will be exported — no more, no less.</li>
+                            </ul>
                         </section>
 
                         <section class="mb-5">
-                            <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-circle me-2"></i>5. Step-by-Step
-                                Instructions: Trimming Audio</h2>
-                            <ol class="list-group list-group-numbered mb-4">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Upload Audio Track</div>
-                                        Drag and drop your MP3, WAV, FLAC, M4A, or AAC file into the upload zone or
-                                        click "Choose File".
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Inspect the Visual Waveform</div>
-                                        Observe the interactive waveform rendering to pinpoint intro silence, vocal
-                                        entrances, and drop transients.
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Configure Exact Start & End Timestamps</div>
-                                        Enter precise minutes and seconds with sub-second decimal accuracy (e.g.,
-                                        <code>0:14.2</code> to <code>1:45.8</code>).
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Audition Selection & Export</div>
-                                        Click <strong>Preview</strong> to audition the isolated segment. Once satisfied,
-                                        click <strong>Trim Audio</strong> and then <strong>Download</strong> to retrieve
-                                        your lossless 16-bit WAV file.
-                                    </div>
-                                </li>
-                            </ol>
-                        </section>
-
-                        <section class="mb-5">
-                            <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>6. Frequently Asked
-                                Questions</h2>
+                            <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
                             <div class="accordion" id="faqAccordion">
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" id="faqHeading1">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse1"
-                                            aria-expanded="false" aria-controls="faqCollapse1">
-                                            How does browser-based audio trimming work without uploading files?
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                                            Does trimming an MP3 file reduce its quality?
                                         </button>
                                     </h3>
-                                    <div id="faqCollapse1" class="accordion-collapse collapse"
-                                        aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                                    <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body text-muted">
-                                            Pitch Detectors Audio Trimmer runs entirely inside your client browser using
-                                            the W3C Web Audio API. When you load an audio file, your local CPU decodes
-                                            the bitstream into raw 32-bit floating-point PCM audio buffers. When you set
-                                            start and end timestamps, the tool mathematically extracts the specified
-                                            sample range and writes a new 16-bit RIFF WAV container entirely in local
-                                            RAM.
+                                            Not with this tool. The MP3 is decoded once into full-resolution PCM, the selected samples are copied exactly, and the result is written as an uncompressed 16-bit WAV. Quality loss only happens when a cutter re-encodes the cut back into MP3 — a second lossy pass this tool never performs.
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" id="faqHeading2">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse2"
-                                            aria-expanded="false" aria-controls="faqCollapse2">
-                                            Why do some audio cutters create an audible click or pop at the start or end
-                                            of a cut?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                            Why do I hear a click at the start or end of my trimmed clip?
                                         </button>
                                     </h3>
-                                    <div id="faqCollapse2" class="accordion-collapse collapse"
-                                        aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                                    <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body text-muted">
-                                            Clicks occur when an audio file is severed at a non-zero amplitude point. If
-                                            the audio is suddenly cut while the waveform is at +0.6 V, the speaker
-                                            diaphragm is forced to jump instantaneously to 0 V. This step discontinuity
-                                            produces an impulse response containing infinite high-frequency harmonics
-                                            heard as a click. Aligning cuts with zero-crossing points or applying subtle
-                                            micro-fades prevents boundary pops.
+                                            The cut landed while the waveform was far from zero amplitude, so playback jumps from that value to silence in one sample step. That sudden jump contains all frequencies at once — a click. Re-trim with the boundary placed where the waveform crosses the center line, ideally during a quiet moment.
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" id="faqHeading3">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse3"
-                                            aria-expanded="false" aria-controls="faqCollapse3">
-                                            Does trimming an MP3 file degrade its acoustic quality?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                            How precise are the start and end times?
                                         </button>
                                     </h3>
-                                    <div id="faqCollapse3" class="accordion-collapse collapse"
-                                        aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                                    <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body text-muted">
-                                            No. When using this tool, the input MP3 is decoded into full uncompressed
-                                            32-bit floating-point audio data. The extracted section is exported as an
-                                            uncompressed 16-bit PCM WAV file. Because no secondary lossy MP3 compression
-                                            pass is performed, zero generational quality degradation occurs.
+                                            Sample-level: your time is converted with n = ⌊t × sample rate⌋. At 44.1 kHz one sample is 22.7 µs, so a 0.1 s input step equals 4,410 samples. That is far finer than any edit you can hear — the limit is how carefully you read the waveform, not the math.
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" id="faqHeading4">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse4"
-                                            aria-expanded="false" aria-controls="faqCollapse4">
-                                            What is the maximum audio file size or duration I can trim?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                                            What formats can I upload, and what do I get back?
                                         </button>
                                     </h3>
-                                    <div id="faqCollapse4" class="accordion-collapse collapse"
-                                        aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+                                    <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body text-muted">
-                                            There is no arbitrary software restriction. The limit is determined entirely
-                                            by your device's available random-access memory (RAM). Standard audio files
-                                            spanning up to several hours (podcasts, live recordings, DJ sets) process
-                                            smoothly on modern smartphones and laptops.
+                                            Upload MP3, WAV, OGG, M4A, or FLAC (any format the browser can decode). The download is always a universal 16-bit PCM WAV, which plays in every media player, video editor, and DAW. If you need MP3 or AAC output, convert the WAV afterward in a separate step.
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" id="faqHeading5">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse5"
-                                            aria-expanded="false" aria-controls="faqCollapse5">
-                                            Can I trim audio on iPhone, iPad, and Android mobile devices?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                            How big will the exported WAV file be?
                                         </button>
                                     </h3>
-                                    <div id="faqCollapse5" class="accordion-collapse collapse"
-                                        aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
+                                    <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body text-muted">
-                                            Yes. The tool is fully responsive and compatible with mobile web browsers
-                                            including iOS Safari, Chrome for Android, and Samsung Internet. All
-                                            processing remains on-device without consuming mobile data.
+                                            Size = seconds × sample rate × 2 bytes × channels. A 30-second stereo clip at 44.1 kHz is 30 × 44,100 × 2 × 2 ≈ 5.3 MB. A full minute of stereo is about 10.6 MB. WAV is uncompressed, so it is always larger than the MP3 it came from.
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="accordion-item">
                                     <h3 class="accordion-header" id="faqHeading6">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faqCollapse6"
-                                            aria-expanded="false" aria-controls="faqCollapse6">
-                                            What formats can I upload and export?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
+                                            Can I make an iPhone ringtone with this trimmer?
                                         </button>
                                     </h3>
-                                    <div id="faqCollapse6" class="accordion-collapse collapse"
-                                        aria-labelledby="faqHeading6" data-bs-parent="#faqAccordion">
+                                    <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body text-muted">
-                                            You can upload all major formats including MP3, WAV, FLAC, AAC, OGG, and
-                                            M4A. The tool exports the trimmed result as a pristine, universal 16-bit PCM
-                                            WAV file compatible with all media players, video editors, and digital audio
-                                            workstations.
+                                            Yes, for the trimming step. Cut a 25–30 second section (iPhones reject ringtones over 30 seconds), then convert the WAV to AAC and rename the extension from .m4a to .m4r. Sync it via Finder on Mac or iTunes on Windows, and it appears in Settings → Sounds & Haptics → Ringtone.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="faqHeading7">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse7" aria-expanded="false" aria-controls="faqCollapse7">
+                                            Is my audio uploaded to a server?
+                                        </button>
+                                    </h3>
+                                    <div id="faqCollapse7" class="accordion-collapse collapse" aria-labelledby="faqHeading7" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-muted">
+                                            No. Decoding, waveform drawing, cutting, and WAV encoding all run in your browser through the Web Audio API. Your file never leaves your device, which also means there are no server-side file-size or duration limits — only your device's memory sets the boundary.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="faqHeading8">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse8" aria-expanded="false" aria-controls="faqCollapse8">
+                                            Can I trim audio on my phone?
+                                        </button>
+                                    </h3>
+                                    <div id="faqCollapse8" class="accordion-collapse collapse" aria-labelledby="faqHeading8" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-muted">
+                                            Yes. The tool is fully responsive and works in mobile browsers including iOS Safari and Chrome for Android. Short clips and ringtones process smoothly on phones; multi-hour files are better handled on a desktop because the full decoded audio must fit in RAM.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="faqHeading9">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse9" aria-expanded="false" aria-controls="faqCollapse9">
+                                            What is the longest file I can trim?
+                                        </button>
+                                    </h3>
+                                    <div id="faqCollapse9" class="accordion-collapse collapse" aria-labelledby="faqHeading9" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-muted">
+                                            There is no built-in time limit — the cap is your device's RAM, since the entire decoded file is held in memory. Podcasts and DJ sets of several hours process fine on modern laptops. If a very large file fails to decode, try closing other tabs or switching to a desktop browser.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="faqHeading10">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse10" aria-expanded="false" aria-controls="faqCollapse10">
+                                            Can I trim out a middle section instead of keeping the ends?
+                                        </button>
+                                    </h3>
+                                    <div id="faqCollapse10" class="accordion-collapse collapse" aria-labelledby="faqHeading10" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body text-muted">
+                                            The trimmer keeps what is between your start and end points. To remove a middle section, trim in two passes: first keep everything up to the section you want gone, then keep everything after it, and join the two results with the <a href="../audio-merger/">audio merger</a>. Keeping a middle section is the single-pass case.
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
 
+                        <section class="mb-5">
+                            <p class="small text-muted"><em>Disclaimer:</em> this tool is provided for informational and creative purposes only and is not professional audio-engineering advice. Always keep backups of your original recordings before editing, and only trim audio you own or have the right to use.</p>
+                        </section>
+
                         <section class="p-4 border rounded bg-light">
-                            <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Audio
-                                Editing Tools</h2>
+                            <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Audio Editing Tools</h2>
                             <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
-                                <li><a href="/audio-editing-tools/audio-merger/" class="btn btn-outline-teal btn-sm"><i
-                                            class="bi bi-union me-1"></i> Audio Merger</a></li>
-                                <li><a href="/audio-editing-tools/Audio-Volume-Booster.html"
-                                        class="btn btn-outline-teal btn-sm"><i class="bi bi-volume-up me-1"></i> Volume
-                                        Booster</a></li>
-                                <li><a href="/audio-editing-tools/audio-normalizer/"
-                                        class="btn btn-outline-teal btn-sm"><i class="bi bi-sliders me-1"></i> Audio
-                                        Normalizer</a></li>
-                                <li><a href="/audio-editing-tools/audio-speed-changer/"
-                                        class="btn btn-outline-teal btn-sm"><i class="bi bi-speedometer2 me-1"></i>
-                                        Audio Speed Changer</a></li>
-                                <li><a href="/audio-editing-tools/loop-generator/"
-                                        class="btn btn-outline-teal btn-sm"><i class="bi bi-arrow-repeat me-1"></i> Loop
-                                        Generator</a></li>
+                                <li><a href="../audio-merger/" class="btn btn-outline-teal btn-sm"><i class="bi bi-union me-1"></i> Audio Merger</a></li>
+                                <li><a href="../Audio-Volume-Booster.html" class="btn btn-outline-teal btn-sm"><i class="bi bi-volume-up me-1"></i> Volume Booster</a></li>
+                                <li><a href="../audio-normalizer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-sliders me-1"></i> Audio Normalizer</a></li>
+                                <li><a href="../audio-speed-changer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-speedometer2 me-1"></i> Audio Speed Changer</a></li>
+                                <li><a href="../loop-generator/" class="btn btn-outline-teal btn-sm"><i class="bi bi-arrow-repeat me-1"></i> Loop Generator</a></li>
                             </ul>
                         </section>
                     </article>
@@ -633,8 +537,8 @@
             </div>
         </div>
         <div id="footer"></div>
-        <script src="/assets/bootstrap5.js" defer></script>
-        <script src="/assets/tools.js" defer></script>
+        <script src="../../assets/bootstrap5.js" defer></script>
+        <script src="../../assets/tools.js" defer></script>
         <!-- tool js -->
         <script defer>
             let audioContext, audioBuffer, sourceNode;
@@ -855,56 +759,7 @@
                     .catch(err => console.error("Include load failed:", err));
             });
         </script>
-        <!-- faq schema -->
-        <script defer type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Can I trim audio without losing quality?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Pitchetectors’s audio trimmer supports lossless editing, high-quality trimming, HD audio, and preserves original sample rate. It works for MP3, WAV, M4A, AAC, and FLAC files, ensuring professional results for music production, podcasts, ringtones, or large audio files."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I trim audio from YouTube videos?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. You can trim exported audio from YouTube videos or other sources. The tool supports audio trimmer from YouTube video, audio trimmer from middle, multiple cuts, loops, fades, and high-quality export, suitable for podcasters, songwriters, and content creators."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is this tool free and online?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Pitchetectors’s audio trimmer is completely free, online, and browser-based. No downloads, accounts, or plugins are required. It provides safe, secure, and real-time trimming for mobile, desktop, or large audio files while maintaining HD and lossless quality."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it support fade, loop, and volume adjustments?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. You can apply fade-in/out, loops, multiple cuts, and volume boosting. It also supports pitch and speed changes, including slow down or sped-up audio. Perfect for trimming vocals, music tracks, ringtones, or podcast segments precisely."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use this on mobile devices?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The audio trimmer works seamlessly on Android, iOS, Samsung, and tablets, offering high-quality editing, speed and pitch adjustment, looping, and lossless trimming. Ideal for music production, podcasts, content creation, or professional audio workflow on mobile devices."
-      }
-    }
-  ]
-}
-</script>
-
+        
 </body>
 
 </html>

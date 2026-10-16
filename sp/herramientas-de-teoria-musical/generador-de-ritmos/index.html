@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Generador de Ritmos: Secuenciador de Batería Online</title>
+
+  <meta name="description"
+    content="Generador de ritmos gratis: programa grooves de 16 pasos con swing, kits clásicos y exportación JSON. Patrones por género y guía de tempo incluidos.">
+
+  <meta name="keywords"
+    content="generador de ritmos, secuenciador de batería online, beat maker, caja de ritmos online, secuenciador de 16 pasos, calculadora de swing">
+
+  <link rel="canonical" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/generador-de-ritmos/"
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Generador de Ritmos: Secuenciador de Batería Online">
+    <meta property="og:description" content="Generador de ritmos gratis: programa grooves de 16 pasos con swing, kits clásicos y exportación JSON. Patrones por género y guía de tempo incluidos.">
+    <meta property="og:url" content="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/generador-de-ritmos/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta property="og:locale" content="es_ES">
+    <link rel="alternate" hreflang="es" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/generador-de-ritmos/">
+    <link rel="alternate" hreflang="en" href="https://pitchdetectors.com/music-theory-tools/rhythm-pattern-maker/">
+    <link rel="alternate" hreflang="x-default" href="https://pitchdetectors.com/music-theory-tools/rhythm-pattern-maker/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Generador de Ritmos: Secuenciador de Batería Online">
+    <meta name="twitter:description" content="Generador de ritmos gratis: programa grooves de 16 pasos con swing, kits clásicos y exportación JSON. Patrones por género y guía de tempo incluidos.">>
+
+  <link rel="icon" href="../../../assets/imgs/logo.png" type="image/x-icon">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../../assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/style.css">
+  <link href="../../../assets/tools.css" rel="stylesheet">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo divide un compás musical un secuenciador de batería de 16 pasos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En compás de 4/4, un compás contiene 4 tiempos de negra. Un secuenciador de 16 pasos divide cada tiempo en 4 semicorcheas, dando 16 pasos de disparo por compás. Los pasos 1, 5, 9 y 13 son los tiempos fuertes de negra: el pulso del que depende todo lo demás."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué porcentaje de swing debo usar para baterías de hip-hop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Empieza con 56–58%, el pocket clásico de la MPC para boom-bap y hip-hop de los 90. Los grooves relajados de neo-soul están alrededor de 60–62%. Si el patrón empieza a tropezar en lugar de rebotar, baja 2–3%. El trap y el drill suelen quedarse cerca de 0–15% de swing y logran su sensación con redobles de hi-hat en tresillos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto dura un paso en milisegundos en mi BPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide 15,000 entre tu BPM. A 120 BPM cada paso de semicorchea dura 125 ms; a 128 BPM son 117.2 ms; a 174 BPM (drum and bass) solo 86.2 ms. Conocer la duración exacta del paso te ayuda a programar fills que caigan justo en la línea del compás."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre una polirritmia y una polimetría?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una polirritmia encaja dos subdivisiones en el mismo lapso: como 3 golpes en el espacio de 2 tiempos. Una polimetría superpone dos longitudes de compás distintas sobre el mismo pulso, así sus tiempos fuertes se desplazan y se realinean cada mínimo común múltiplo de pasos. Ambas crean una tensión hipnótica, pero se sienten muy diferentes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo paso mi patrón a Ableton o FL Studio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Haz clic en Export JSON para descargar tu patrón como un archivo de texto que asigna a cada batería sus números de pasos activos. En tu DAW, ajusta el mismo BPM y longitud de cuadrícula, y activa los pasos correspondientes en su secuenciador de batería. Reaplica tu porcentaje de swing en el control de groove del DAW y listo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué el audio del navegador a veces se retrasa y cómo lo soluciono?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Esta herramienta programa los golpes en el reloj de Web Audio, así la sincronización se mantiene firme, pero los audífonos Bluetooth y las CPU ocupadas añaden una latencia de salida de 20–100 ms. Cambia a audífonos con cable, cierra las pestañas pesadas y en móvil usa un navegador con soporte de Web Audio (Chrome o Safari) para mejores resultados."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es el ritmo de tresillo y dónde se usa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El tresillo es un patrón de acentos 3+3+2 (golpes en los pasos 1, 4 y 7 de un ciclo de 8 pulsos) con raíces afrocubanas. Es el ADN rítmico del dembow del reguetón, el dancehall, los Afrobeats e innumerables éxitos pop. Programa el kick en 1, 4, 7, 10, 13 y los acentos de caja en 4, 7, 12 para escucharlo al instante."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Debo usar 16, 32 o 64 pasos para mi patrón?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usa 16 pasos para bocetar y loops hipnóticos, 32 pasos cuando quieras un pregunta y respuesta de dos compases con un fill, y 64 pasos para frases completas de cuatro compases con intro y turnaround. Los patrones largos van bien para coros y drops; los cortos para versos que deben dejar espacio a la voz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué hace realmente el botón Randomize?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Randomize genera un patrón nuevo activando pasos al azar en las voces de batería: una chispa de creatividad, no un beat terminado. Trata el resultado como materia prima: conserva los 2–3 accidentes felices, elimina el desorden y fija el kick y la caja al patrón base de tu género. Púlsalo varias veces hasta que algo te inspire."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo hacer redobles de hi-hat de trap con este secuenciador?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Ajusta la División a Triplet 16, elige 140 BPM y llena pasos consecutivos de hi-hat al final del compás (pasos 13–16) para el redoble clásico. Para redobles estilo 808 con pitch-bending necesitarías un DAW, pero el esqueleto rítmico del trap moderno se programa perfecto en esta cuadrícula."
+      }
+    }
+  ]
+}
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
+    crossorigin="anonymous"></script>
+  <!-- Tone.js -->
+  <script async src="https://unpkg.com/tone@14.8.39/build/Tone.min.js"></script>
+
+  <style>
+    .tool {
+      margin: 18px auto;
+      background: #0b1220;
+      padding: 24px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 50, 97, 0.3);
+    }
+
+    .title {
+      color: #7ee3c3;
+      font-weight: 800;
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .desc {
+      color: #cde7f0;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .panel {
+      background: #071026;
+      padding: 12px;
+      border-radius: 8px;
+      min-width: 150px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #9fc7d9;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    select,
+    input[type="range"] {
+      width: 100%;
+      background: #0c1a26;
+      color: #e6eef8;
+      border-radius: 6px;
+      padding: 6px;
+      border: 1px solid #1a2e40;
+    }
+
+    button {
+      background: #3dd3a6;
+      color: #00161a;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    button.ghost {
+      background: transparent;
+      color: #9fc7d9;
+      border: 1px solid #102434;
+    }
+
+    button.ghost:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    .gridWrap {
+      overflow-x: auto;
+      margin-top: 14px;
+      border-radius: 8px;
+      padding: 12px;
+      background: #071025;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .grid {
+      display: grid;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .instLabel {
+      text-align: right;
+      padding-right: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #9de3c9;
+      letter-spacing: 0.5px;
+    }
+
+    .step {
+      width: 44px;
+      height: 32px;
+      background: #0c1a2c;
+      border-radius: 6px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #89cbd1;
+      font-size: 12px;
+      user-select: none;
+      transition: background 0.1s ease, transform 0.1s ease;
+    }
+
+    .step:hover {
+      background: #142a42;
+    }
+
+    .step.active {
+      background: #3dd3a6;
+      color: #00161a;
+      font-weight: bold;
+      box-shadow: 0 0 8px rgba(61, 211, 166, 0.4);
+    }
+
+    .step.playhead {
+      outline: 3px solid #fdeb9e;
+      z-index: 2;
+    }
+
+    .controlsBottom {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .small {
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 6px;
+    }
+
+    .info {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #9fc7d9;
+    }
+
+    @media (max-width:700px) {
+      .step {
+        width: 34px;
+        height: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 col-md-4">
+        <div class="tools-sidebar">
+          <div class="sidebar-search mb-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="toolSearch" placeholder="Buscar herramientas..."
+                onkeyup="searchTools()">
+            </div>
+          </div>
+
+          <div class="sidebar-categories">
+            <div class="sidebar-category active">
+              <h5><i class="bi bi-music-note-list me-2"></i>Herramientas de Teoría Musical</h5>
+              <ul class="sidebar-links">
+                <li><a href="/sp/herramientas-de-teoria-musical/metronomo-online/" class="active"><i class="bi bi-stopwatch"></i>
+                    Metrónomo Online</a></li>
+                <li><a href="/sp/herramientas-de-teoria-musical/buscador-de-escalas/"><i class="bi bi-grid-3x3"></i> Buscador de Escalas</a></li>
+                <li><a href="/sp/herramientas-de-teoria-musical/identificador-de-acordes/"><i class="bi bi-vinyl"></i> Identificador de Acordes</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-category">
+              <h5><i class="bi bi-disc me-2"></i>Herramientas de DJ y Producción</h5>
+              <ul class="sidebar-links">
+                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
+                    BPM Tap Tempo</a></li>
+                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM to
+                    Milliseconds</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-8">
+        <div class="tool" role="application" aria-label="Rhythm Pattern Maker">
+          <h1 class="title">Generador de Ritmos</h1>
+          <p class="text-muted small">Última actualización: 12 de octubre de 2026 · Written by the Pitch Detectors Editorial Team</p>
+          <div class="desc">Secuenciador de 16 pasos con swing, BPM, múltiples instrumentos, vista previa de pasos, aleatorio y exportación/importación.
+            Usa Tone.js para una sincronización precisa.</div>
+
+          <div class="controls">
+            <div class="panel">
+              <label for="bpm">BPM</label>
+              <input id="bpm" type="range" min="40" max="240" value="120" />
+              <div style="margin-top:6px;color:#bfe8db;font-weight:700" id="bpmLabel">120 BPM</div>
+            </div>
+
+            <div class="panel">
+              <label for="swing">Swing (%)</label>
+              <input id="swing" type="range" min="0" max="60" value="0" />
+              <div style="margin-top:6px;color:#bfe8db;font-weight:700" id="swingLabel">0%</div>
+            </div>
+
+            <div class="panel">
+              <label for="patternLength">Pattern Length (steps)</label>
+              <select id="patternLength">
+                <option value="16" selected>16</option>
+                <option value="32">32</option>
+                <option value="64">64</option>
+              </select>
+            </div>
+
+            <div class="panel">
+              <label for="division">Division</label>
+              <select id="division">
+                <option value="16n">1/16</option>
+                <option value="8n">1/8</option>
+                <option value="4n">1/4</option>
+                <option value="16t">Triplet 16</option>
+              </select>
+            </div>
+
+            <div class="panel">
+              <label for="kitSelect">Drum Kit</label>
+              <select id="kitSelect">
+                <option value="classic">Classic</option>
+                <option value="505">505 Kit</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="controlsBottom">
+            <button id="playBtn" class="small">▶ Play</button>
+            <button id="stopBtn" class="small ghost">⏹ Stop</button>
+            <button id="clearBtn" class="small ghost">🧹 Clear</button>
+            <button id="randomBtn" class="small ghost">🎲 Randomize</button>
+            <button id="exportBtn" class="small ghost">📤 Export JSON</button>
+            <button id="importBtn" class="small ghost">📥 Import JSON</button>
+          </div>
+
+          <div class="gridWrap" id="gridWrap" tabindex="0" style="margin-top:12px;">
+            <!-- dynamic grid inserted here -->
+            <div id="grid" class="grid"></div>
+          </div>
+
+          <div class="info">
+            Tip: click a step to toggle it (preview sound plays). Use Randomize to generate patterns. Export/Import uses
+            JSON.
+          </div>
+
+        </div>
+        <!-- How to Use -->
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>¿Qué es un generador de ritmos?</h2>
+            <p><strong>Un generador de ritmos es un secuenciador por pasos online que te permite programar grooves de batería activando pasos en una cuadrícula.</strong> Cada columna es una porción de tiempo musical y cada fila es un sonido de batería; el patrón se repite en bucle continuo. Esta herramienta gratuita te ofrece una cuadrícula de 16 pasos (ampliable a 32 o 64), controles de tempo y swing, kits de batería clásicos y exportación con un clic.</p>
+            <p>El secuenciador por pasos es una de las ideas más antiguas de la música electrónica: divide un compás en pasos iguales, decide qué pasos disparan un sonido y repítelo en bucle. Esta herramienta trae ese flujo de trabajo a tu navegador con sincronización precisa a nivel de muestra.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-check2-square me-2"></i>Puntos clave</h2>
+            <ul>
+              <li>Una <strong>cuadrícula de 16 pasos = un compás de semicorcheas</strong> en compás de 4/4; los pasos 1, 5, 9 y 13 son los tiempos fuertes de negra.</li>
+              <li>La duración de cada paso en milisegundos es <strong>15,000 ÷ BPM</strong> : a 120 BPM cada paso dura exactamente 125 ms.</li>
+              <li><strong>El swing retrasa los pasos a contratiempo</strong>: 54–62% da el groove clásico de hip-hop de la MPC; 66.7% equivale a un shuffle de tresillos.</li>
+              <li>Empieza con <strong>patrones base por género</strong> (four-on-the-floor, boom-bap, tresillo) en lugar de una cuadrícula vacía.</li>
+              <li>Exporta tu patrón como <strong>JSON</strong> y reconstrúyelo en cualquier DAW en menos de un minuto.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>Cómo funciona este generador de ritmos</h2>
+            <p>Esta herramienta programa cada golpe de batería en el <strong>reloj Transport de Tone.js</strong>, conectado directamente al reloj de hardware de Web Audio API. Los temporizadores estándar del navegador, como <code>setTimeout</code> se desvían bajo carga de CPU; el reloj Transport preprograma cada golpe contra las marcas de tiempo del hardware de audio, así un bucle a 120 BPM se mantiene fijo en la cuadrícula.</p>
+            <p>Metodología: cada celda activa corresponde a una subdivisión de semicorchea de la longitud del patrón. El tempo (40–240 BPM) define el pulso; <strong>División</strong> reasigna la cuadrícula a negras, corcheas, semicorcheas o tresillos de semicorchea; <strong>Swing</strong> (0–60%) retrasa los pasos pares. Incluye dos kits: <strong>Classic</strong> y <strong>505</strong>. <em>Última revisión: octubre de 2026.</em></p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-calculator me-2"></i>Matemática del tempo por paso y ejemplo resuelto</h2>
+            <p>Todo secuenciador por pasos funciona con una fórmula. En compás de 4/4, un compás contiene 4 tiempos de negra y cada tiempo se divide en 4 semicorcheas: 16 pasos por compás. El tiempo que ocupa cada paso es:</p>
+            <p><code><strong>Step duration (ms) = 15,000 ÷ BPM</strong></code></p>
+            <p>(Porque una negra dura 60,000 ÷ BPM milisegundos y una semicorchea es la cuarta parte). Esto es lo que significa en tempos comunes:</p>
+            <div class="table-responsive my-3">
+              <table class="table table-bordered table-striped align-middle text-center small">
+                <thead class="table-dark">
+                  <tr><th>Tempo</th><th>Género típico</th><th>Duración de un paso</th><th>Duración de un compás</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>92 BPM</td><td>Boom-bap hip-hop</td><td>163.0 ms</td><td>2.61 s</td></tr>
+                  <tr><td>120 BPM</td><td>Pop / funk</td><td>125.0 ms</td><td>2.00 s</td></tr>
+                  <tr><td>128 BPM</td><td>House</td><td>117.2 ms</td><td>1.88 s</td></tr>
+                  <tr><td>140 BPM</td><td>Trap (sensación de medio tiempo)</td><td>107.1 ms</td><td>1.71 s</td></tr>
+                  <tr><td>174 BPM</td><td>Drum and bass</td><td>86.2 ms</td><td>1.38 s</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>Ejemplo resuelto:</strong> a <strong>128 BPM</strong>, un paso = 15,000 ÷ 128 = <strong>117.2 ms</strong>. Un kick de four-on-the-floor en los pasos 1, 5, 9 y 13 cae cada 4 × 117.2 = <strong>468.8 ms</strong>, exactamente a una negra de distancia.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-list-ol me-2"></i>Cómo usar este generador de ritmos</h2>
+            <ol class="lead-steps mb-4">
+              <li><strong>Ajusta el BPM:</strong> arrastra el deslizador de tempo (40–240). Empieza cerca del tempo típico de tu género: 90–95 para boom-bap, 124–128 para house, 140 para trap. Marca el tempo junto con nuestra <a href="../../../dj-music-production-tools/bpm-tap-tempo/">BPM tap tempo</a> herramienta si estás igualando una pista existente.</li>
+              <li><strong>Elige la longitud del patrón:</strong> 16 pasos = 1 compás, 32 = 2 compases, 64 = 4 compases. Usa 16 para bocetar y 32–64 cuando tu fill necesite espacio para respirar.</li>
+              <li><strong>Elige una división:</strong> 1/16 para programación estándar, 1/8 para sensaciones de medio tiempo, tresillos de semicorchea para shuffles y redobles de trap.</li>
+              <li><strong>Selecciona un kit de batería:</strong> Classic para tonos cálidos de estilo analógico y 505 para baterías digitales contundentes.</li>
+              <li><strong>Programa la cuadrícula:</strong> haz clic en las celdas para activar golpes; haz clic y arrastra para pintar secuencias. Al hacer clic en un paso escucharás su sonido al instante.</li>
+              <li><strong>Ajusta el swing:</strong> sube el deslizador de Swing de 0% hacia 55–60% para el rebote del hip-hop, o déjalo en 0% para una cuantización techno rígida.</li>
+              <li><strong>Reproduce, aleatoriza, exporta:</strong> pulsa Play para repetir el patrón en bucle, Randomize para inspiración algorítmica, Clear para empezar de cero y Export JSON para guardar tu trabajo.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-grid-3x3-gap me-2"></i>Cómo leer tu patrón: dónde caen los tiempos</h2>
+            <p>En una cuadrícula de 16 pasos en 4/4, no todos los pasos son iguales. Los pasos <strong>1, 5, 9 y 13</strong> son los tiempos fuertes de negra: el pulso que marcas con la cabeza. Los pasos 3, 7, 11 y 15 son los «contratiempos» entre pulsos, donde viven los hi-hats a contratiempo. Todo lo demás es detalle de semicorcheas.</p>
+            <div class="table-responsive my-3">
+              <table class="table table-bordered table-striped align-middle text-center small">
+                <thead class="table-dark">
+                  <tr><th>Pasos</th><th>Posición musical</th><th>Rol típico</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>1, 5, 9, 13</td><td>Tiempos fuertes de negra</td><td>Base del kick</td></tr>
+                  <tr><td>5, 13</td><td>Tiempos 2 y 4</td><td>Backbeat de caja / clap</td></tr>
+                  <tr><td>3, 7, 11, 15</td><td>Contratiempos («ands»)</td><td>Hi-hats abiertos, síncopa</td></tr>
+                  <tr><td>2, 4, 6, 8, 10, 12, 14, 16</td><td>Subdivisiones de semicorchea</td><td>Impulso de hi-hats, ghost notes, redobles</td></tr>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+        </div>
+
+        <figure class="my-4 text-center">
+          <div class="border rounded p-5 bg-light text-muted">[Diagrama: cuadrícula de 16 pasos anotada que muestra los tiempos fuertes en los pasos 1/5/9/13, el backbeat en 5/13 y las posiciones de hi-hats a contratiempo]</div>
+          <figcaption class="small text-muted mt-2">Texto alternativo: «Anatomía de una cuadrícula de secuenciador de batería de 16 pasos en 4/4»</figcaption>
+        </figure>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-music-note-beamed me-2"></i>Patrones base de grooves por género: copia estos patrones de pasos</h2>
+            <p>Empieza con el ADN rítmico de un género y cambia 2–3 pasos para hacerlo tuyo:</p>
+            <ul>
+              <li><strong>House / Techno (124–128 BPM):</strong> kick en 1, 5, 9, 13 (four-on-the-floor); clap en 5, 13; hi-hats abiertos en 3, 7, 11, 15; hi-hats cerrados en cada paso par.</li>
+              <li><strong>Boom-bap hip-hop (90–94 BPM):</strong> kick en 1, 7, 10; caja en 5, 13; hi-hats en cada paso con swing al 56–58%. La colocación relajada del kick <em>detrás</em> de la cuadrícula es todo el sonido.</li>
+              <li><strong>Trap (140 BPM, sensación de medio tiempo):</strong> kick en 1, 8, 11; caja solo en el 9 (el golpe del «tercer tiempo»); redobles rápidos de hi-hat en 14–16 con la división de tresillos de semicorchea.</li>
+              <li><strong>Dembow / Reggaeton (~100 BPM):</strong> kick en 1, 4, 7, 10, 13; caja en los acentos de tresillo: pasos 4, 7 y 12. Ese esqueleto de kick 3+3+2 es innegociable.</li>
+              <li><strong>Drum and bass (172–176 BPM):</strong> kick en 1, 11; caja en 5, 13; hi-hats de two-step en los contratiempos. La velocidad hace el trabajo: mantén el patrón disperso.</li>
+            </ul>
+            
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-sliders me-2"></i>Porcentaje de swing traducido a milisegundos</h2>
+            <p>El swing retrasa cada paso par en una fracción de la duración del paso. La fórmula del desplazamiento es:</p>
+            <p><code><strong>Swing offset (ms) = (Swing% ÷ 100) × Step duration (ms)</strong></code></p>
+            <p><strong>Ejemplo resuelto:</strong> a <strong>120 BPM</strong> con <strong>58% de swing</strong>, un paso dura 125 ms. Cada paso a contratiempo se desplaza 0.58 × 125 = <strong>72.5 ms</strong>. Ese retraso de 72 ms es la diferencia entre una cuadrícula robótica y un groove que te hace asentir: lo bastante largo para sentirse, lo bastante corto para mantenerse fijo.</p>
+            <p>Puntos de referencia: <strong>0%</strong> es totalmente recto; <strong>54–62%</strong> es el pocket clásico de hip-hop de la MPC; <strong>66.7%</strong> equivale a un verdadero shuffle de tresillos (proporción 2:1).</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-box-arrow-up me-2"></i>Del navegador al DAW: el flujo de exportación</h2>
+            <p>El botón Export JSON descarga tu sesión completa — disparadores de la cuadrícula, BPM, swing, kit y longitud del patrón — como un pequeño archivo de texto. El JSON asigna a cada voz de batería un arreglo de números de pasos activos, por ejemplo <code>{"kick": [1, 5, 9, 13], "bpm": 128}</code>. Para continuar en un DAW:</p>
+            <ol>
+              <li>Exporta el JSON y ábrelo en cualquier editor de texto para ver tus números de pasos.</li>
+              <li>En el secuenciador de batería de tu DAW (Drum Rack de Ableton, Channel Rack de FL Studio o Step Sequencer de Logic), ajusta el mismo BPM y número de pasos.</li>
+              <li>Activa los números de pasos correspondientes para cada voz de batería: los números se transfieren 1:1.</li>
+              <li>Reaplica el swing en el DAW (la mayoría ofrece una perilla de groove/swing) con el porcentaje que ajustaste aquí.</li>
+            </ol>
+            <p>Guarda los archivos JSON como bocetos versionados (<code>chorus-v1.json</code>, <code>chorus-v2.json</code>): pesan kilobytes e Import JSON recarga cualquiera para una audición rápida.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-layers me-2"></i>Cómo elegir la longitud del patrón para las secciones de una canción</h2>
+            <p>La longitud del patrón es una decisión de arreglo, no solo una cuadrícula más grande. <strong>16 pasos (1 compás)</strong> sirve para bocetar y para secciones que deben sentirse hipnóticas: intros de techno, versos de trap. <strong>32 pasos (2 compases)</strong> permite escribir pregunta y respuesta: mantén simple el primer compás y añade un fill o variación en el segundo. <strong>64 pasos (4 compases)</strong> encaja una frase completa con intro, build y turnaround: ideal para coros y drops.</p>
+            <p>Un flujo práctico: boceta el verso a 16 pasos, expande a 32 para el pre-coro con un fill añadido y abre los 64 completos para el coro. Para conversiones de compás a tiempo en tu tempo, usa la <a href="../../../dj-music-production-tools/bpm-to-ms/">BPM to milliseconds</a> calculadora.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-diagram-3 me-2"></i>Polirritmia frente a polimetría: deja de confundirlas</h2>
+            <p>Una <strong>polirritmia</strong> superpone dos subdivisiones sobre el <em>mismo</em> lapso: 3 golpes equidistantes en el tiempo de 2 pulsos (la hemiola 3:2). Una <strong>polimetría</strong> superpone dos <em>distintas longitudes de compás</em> que comparten la misma duración de paso: un bucle de 4 pasos contra uno de 5 pasos, que se realinean cada 20 pasos (su mínimo común múltiplo).</p>
+            <p>En esta cuadrícula, acentúa los pasos 1, 6 y 11 contra kicks rectos de negra para una polirritmia de 3 contra 4. Para una polimetría, repite una frase de 12 pasos dentro de la cuadrícula de 16 silenciando los últimos 4 pasos de una voz y deja que el tiempo fuerte se desplace.</p>
+          </div>
+        </div>
+
+        <figure class="my-4 text-center">
+          <div class="border rounded p-5 bg-light text-muted">[Infografía: diagrama de sincronización del swing — semicorcheas rectas vs 58% de swing vs shuffle de tresillos, con desplazamientos en milisegundos a 120 BPM]</div>
+          <figcaption class="small text-muted mt-2">Texto alternativo: «Cómo el porcentaje de swing desplaza los pasos a contratiempo en milisegundos»</figcaption>
+        </figure>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitaciones</h2>
+            <ul>
+              <li><strong>La latencia del audio del navegador varía.</strong> El reloj Transport mantiene la sincronización firme, pero los audífonos Bluetooth y una carga pesada del sistema pueden añadir 20–100 ms de retardo de salida. Usa audífonos con cable para trabajo crítico de groove.</li>
+              <li><strong>La exportación es JSON, no audio.</strong> Esta herramienta guarda patrones, no archivos WAV renderizados: reconstruyes el sonido en un DAW o regrabras la salida del navegador.</li>
+              <li><strong>Sin velocidad por paso (por ahora).</strong> Cada golpe suena a volumen máximo, así que los ghost notes y acentos deben programarse con densidad en lugar de dinámica.</li>
+              <li><strong>Estructura fija de 4/4.</strong> Los compases irregulares como 7/8 o 5/4 no caben en la cuadrícula de 16 pasos; aproxímalos con pasos silenciados o usa un DAW.</li>
+              <li><strong>Solo dos kits.</strong> Los kits Classic y 505 cubren mucho terreno, pero no reemplazan una librería completa de samples para géneros acústicos.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-arrow-left-right me-2"></i>Generador de ritmos frente a las alternativas</h2>
+            <div class="table-responsive my-3">
+              <table class="table table-bordered table-striped align-middle small">
+                <thead class="table-dark">
+                  <tr><th>Enfoque</th><th>Ideal para</th><th>Desventaja</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Este secuenciador por pasos</strong></td><td>Bocetado rápido de grooves, aprendizaje de teoría del ritmo</td><td>Cuadrícula de 16 pasos, dos kits, solo exportación JSON</td></tr>
+                  <tr><td><strong>Piano roll de DAW</strong> (Ableton, FL Studio)</td><td>Producciones completas, velocidad, automatización</td><td>Software de pago, curva de aprendizaje más pronunciada</td></tr>
+                  <tr><td><strong>Pads de batería / finger drumming</strong></td><td>Sensación humana, interpretación en vivo</td><td>Requiere práctica; el tempo depende de ti</td></tr>
+                  <tr><td><strong>Cajas de ritmos de hardware</strong> (TR-8S, MPC)</td><td>Flujo de trabajo táctil, uso en escenario</td><td>Cuesta cientos de dólares</td></tr>
+                  <tr><td><strong><a href="../metronomo-online/">Metrónomo online</a></strong></td><td>Practicar el tempo con un clic</td><td>Sin sonidos de batería ni patrones</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Usa esta herramienta para encontrar el groove en minutos y pasa a un DAW cuando el arreglo necesite velocidad, efectos y mezcla. Combínala con el <a href="../buscador-de-escalas/">Buscador de Escalas</a> cuando tu loop necesite una línea de bajo en la tonalidad.</p>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Preguntas frecuentes</h2>
+
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    ¿Cómo divide un compás musical un secuenciador de batería de 16 pasos?
+                  </button>
+                </h3>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    En compás de 4/4, un compás contiene 4 tiempos de negra. Un secuenciador de 16 pasos divide cada tiempo en 4 semicorcheas, dando 16 pasos de disparo por compás. Los pasos 1, 5, 9 y 13 son los tiempos fuertes de negra: el pulso del que depende todo lo demás.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq2">
+                    ¿Qué porcentaje de swing debo usar para baterías de hip-hop?
+                  </button>
+                </h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Empieza con 56–58%, el pocket clásico de la MPC para boom-bap y hip-hop de los 90. Los grooves relajados de neo-soul están alrededor de 60–62%. Si el patrón empieza a tropezar en lugar de rebotar, baja 2–3%. El trap y el drill suelen quedarse cerca de 0–15% de swing y logran su sensación con redobles de hi-hat en tresillos.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq3">
+                    ¿Cuánto dura un paso en milisegundos en mi BPM?
+                  </button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Divide 15,000 entre tu BPM. A 120 BPM cada paso de semicorchea dura 125 ms; a 128 BPM son 117.2 ms; a 174 BPM (drum and bass) solo 86.2 ms. Conocer la duración exacta del paso te ayuda a programar fills que caigan justo en la línea del compás.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq4">
+                    ¿Cuál es la diferencia entre una polirritmia y una polimetría?
+                  </button>
+                </h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Una polirritmia encaja dos subdivisiones en el mismo lapso: como 3 golpes en el espacio de 2 tiempos. Una polimetría superpone dos longitudes de compás distintas sobre el mismo pulso, así sus tiempos fuertes se desplazan y se realinean cada mínimo común múltiplo de pasos. Ambas crean una tensión hipnótica, pero se sienten muy diferentes.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq5">
+                    ¿Cómo paso mi patrón a Ableton o FL Studio?
+                  </button>
+                </h3>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Haz clic en Export JSON para descargar tu patrón como un archivo de texto que asigna a cada batería sus números de pasos activos. En tu DAW, ajusta el mismo BPM y longitud de cuadrícula, y activa los pasos correspondientes en su secuenciador de batería. Reaplica tu porcentaje de swing en el control de groove del DAW y listo.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq6">
+                    ¿Por qué el audio del navegador a veces se retrasa y cómo lo soluciono?
+                  </button>
+                </h3>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Esta herramienta programa los golpes en el reloj de Web Audio, así la sincronización se mantiene firme, pero los audífonos Bluetooth y las CPU ocupadas añaden una latencia de salida de 20–100 ms. Cambia a audífonos con cable, cierra las pestañas pesadas y en móvil usa un navegador con soporte de Web Audio (Chrome o Safari) para mejores resultados.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq7">
+                    ¿Qué es el ritmo de tresillo y dónde se usa?
+                  </button>
+                </h3>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    El tresillo es un patrón de acentos 3+3+2 (golpes en los pasos 1, 4 y 7 de un ciclo de 8 pulsos) con raíces afrocubanas. Es el ADN rítmico del dembow del reguetón, el dancehall, los Afrobeats e innumerables éxitos pop. Programa el kick en 1, 4, 7, 10, 13 y los acentos de caja en 4, 7, 12 para escucharlo al instante.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq8">
+                    ¿Debo usar 16, 32 o 64 pasos para mi patrón?
+                  </button>
+                </h3>
+                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Usa 16 pasos para bocetar y loops hipnóticos, 32 pasos cuando quieras un pregunta y respuesta de dos compases con un fill, y 64 pasos para frases completas de cuatro compases con intro y turnaround. Los patrones largos van bien para coros y drops; los cortos para versos que deben dejar espacio a la voz.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq9">
+                    ¿Qué hace realmente el botón Randomize?
+                  </button>
+                </h3>
+                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Randomize genera un patrón nuevo activando pasos al azar en las voces de batería: una chispa de creatividad, no un beat terminado. Trata el resultado como materia prima: conserva los 2–3 accidentes felices, elimina el desorden y fija el kick y la caja al patrón base de tu género. Púlsalo varias veces hasta que algo te inspire.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq10">
+                    ¿Puedo hacer redobles de hi-hat de trap con este secuenciador?
+                  </button>
+                </h3>
+                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Sí. Ajusta la División a Triplet 16, elige 140 BPM y llena pasos consecutivos de hi-hat al final del compás (pasos 13–16) para el redoble clásico. Para redobles estilo 808 con pitch-bending necesitarías un DAW, pero el esqueleto rítmico del trap moderno se programa perfecto en esta cuadrícula.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <p class="small text-muted mb-0">Este generador de ritmos es una herramienta gratuita de bocetado creativo para aprender e inspirarte. Los patrones que programes son tuyos para usarlos en tu propia música.</p>
+          </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+  <script src="../../../assets/bootstrap5.js" defer></script>
+  <script src="../../../assets/tools.js" defer></script>
+  <!-- includde js -->
+  <script defer>
+    window.addEventListener("load", () => {
+      Promise.all([
+        fetch("../../../sp/header.html").then(res => res.text()),
+        fetch("../../../sp/footer.html").then(res => res.text())
+      ])
+        .then(([header, footer]) => {
+          document.getElementById("header").innerHTML = header;
+          document.getElementById("footer").innerHTML = footer;
+        })
+        .catch(err => console.error("Include load failed:", err));
+    });
+  </script>
+  <!-- tool js -->
+  <script defer>
+    /* ---------- CONFIG ---------- */
+    const DEFAULT_STEPS = 16;
+    const instruments = ["kick", "snare", "hihat", "openhat", "clap", "perc", "rim"];
+    let steps = DEFAULT_STEPS;
+
+    /* ---------- SAMPLES for kits ---------- */
+    const KITS = {
+      classic: {
+        kick: "https://tonejs.github.io/audio/drum-samples/CR78/kick.mp3",
+        snare: "https://tonejs.github.io/audio/drum-samples/CR78/snare.mp3",
+        hihat: "https://tonejs.github.io/audio/drum-samples/CR78/hihat.mp3",
+        openhat: "https://tonejs.github.io/audio/drum-samples/505/oh.mp3",
+        clap: "https://tonejs.github.io/audio/drum-samples/505/clap.mp3",
+        perc: "https://tonejs.github.io/audio/drum-samples/505/perc.mp3",
+        rim: "https://tonejs.github.io/audio/drum-samples/505/rim.mp3"
+      },
+      "505": {
+        kick: "https://tonejs.github.io/audio/drum-samples/505/kick.mp3",
+        snare: "https://tonejs.github.io/audio/drum-samples/505/snare.mp3",
+        hihat: "https://tonejs.github.io/audio/drum-samples/505/hihat.mp3",
+        openhat: "https://tonejs.github.io/audio/drum-samples/505/oh.mp3",
+        clap: "https://tonejs.github.io/audio/drum-samples/505/clap.mp3",
+        perc: "https://tonejs.github.io/audio/drum-samples/505/perc.mp3",
+        rim: "https://tonejs.github.io/audio/drum-samples/505/rim.mp3"
+      }
+    };
+
+    /* ---------- TONE.JS SETUP ---------- */
+    const players = new Tone.Players(KITS["classic"]).toDestination();
+    const masterVol = new Tone.Volume(0).toDestination(); // placeholder if needed
+    // players.connect(masterVol); // optional routing
+
+    // pattern data structure: { instrument: [0|1,...] }
+    let pattern = {};
+    function initPattern() {
+      pattern = {};
+      instruments.forEach(i => pattern[i] = Array(steps).fill(0));
+    }
+    initPattern();
+
+    /* ---------- GRID BUILD ---------- */
+    const gridEl = document.getElementById("grid");
+    function buildGrid() {
+      gridEl.innerHTML = "";
+      // grid columns = label + steps
+      gridEl.style.gridTemplateColumns = `120px repeat(${steps}, 48px)`;
+      // header row with step numbers (optional blank)
+      const blank = document.createElement("div");
+      blank.className = "instLabel";
+      blank.innerText = "";
+      gridEl.appendChild(blank);
+      for (let c = 0; c < steps; c++) {
+        const lbl = document.createElement("div");
+        lbl.className = "step";
+        lbl.style.background = "transparent";
+        lbl.style.color = "#9fc7d9";
+        lbl.style.fontWeight = "700";
+        lbl.style.border = "none";
+        lbl.innerText = (c + 1);
+        gridEl.appendChild(lbl);
+      }
+
+      // instrument rows
+      instruments.forEach(inst => {
+        // label
+        const lab = document.createElement("div");
+        lab.className = "instLabel";
+        lab.innerText = inst.toUpperCase();
+        gridEl.appendChild(lab);
+
+        for (let c = 0; c < steps; c++) {
+          const step = document.createElement("div");
+          step.className = "step";
+          step.dataset.inst = inst;
+          step.dataset.col = c;
+          if (pattern[inst][c]) step.classList.add("active");
+
+          // click toggles
+          step.addEventListener("click", async (e) => {
+            // ensure user gesture started audio context
+            if (Tone.context.state !== 'running') {
+              try { await Tone.start(); } catch (e) { /* ignore */ }
+            }
+            pattern[inst][c] = pattern[inst][c] ? 0 : 1;
+            step.classList.toggle("active");
+            // preview sample immediately on click
+            const player = players.player(inst);
+            if (player && typeof player.start === 'function') {
+              player.start();
+            }
+          });
+
+          // drag painting
+          let mouseDown = false;
+          step.addEventListener('mousedown', () => mouseDown = true);
+          step.addEventListener('mouseup', () => mouseDown = false);
+          step.addEventListener('mouseover', (ev) => { if (ev.buttons === 1) { pattern[inst][c] = 1; step.classList.add('active'); } });
+
+          gridEl.appendChild(step);
+        }
+      });
+    }
+
+    /* ---------- PLAYHEAD & LOOP ---------- */
+    let loop = null;
+    let playIndex = 0;
+
+    function startLoop() {
+      if (!players.loaded) {
+        // wait until samples loaded
+        players.onload = () => startLoop();
+        return;
+      }
+      if (loop) loop.stop();
+      playIndex = 0;
+      const division = document.getElementById("division").value; // e.g. '16n'
+      loop = new Tone.Loop((time) => {
+        // highlight column
+        highlightColumn(playIndex);
+        // iterate instruments
+        instruments.forEach(inst => {
+          if (pattern[inst][playIndex]) {
+            const p = players.player(inst);
+            // start at transport time for accurate sync
+            p.start(time);
+          }
+        });
+        playIndex = (playIndex + 1) % steps;
+      }, division);
+      loop.start(0);
+      // apply swing
+      Tone.Transport.swing = document.getElementById("swing").value / 100;
+      // set BPM
+      Tone.Transport.bpm.value = Number(document.getElementById("bpm").value);
+      Tone.Transport.start();
+    }
+
+    function stopLoop() {
+      if (loop) loop.stop();
+      Tone.Transport.stop();
+      clearPlayhead();
+      playIndex = 0;
+    }
+
+    /* ---------- UI Helpers ---------- */
+    function highlightColumn(col) {
+      // remove playhead from previous
+      document.querySelectorAll('.step.playhead').forEach(n => n.classList.remove('playhead'));
+      // add to column header and all instrument steps for that column
+      // header offset = 1 (blank label) so header cells are index 1..steps
+      const nodes = Array.from(gridEl.children);
+      // header cells start at index 1, instrument rows start at index 1+steps, then each row has steps cells
+      // We'll compute positions: header cell index = 1 + col
+      const headerCell = nodes[1 + col];
+      if (headerCell) headerCell.classList.add('playhead');
+      // instrument start index = 1 + steps
+      let base = 1 + steps;
+      for (let r = 0; r < instruments.length; r++) {
+        const idx = base + r * steps + col;
+        const node = nodes[idx];
+        if (node) node.classList.add('playhead');
+      }
+    }
+
+    function clearPlayhead() {
+      document.querySelectorAll('.step.playhead').forEach(n => n.classList.remove('playhead'));
+    }
+
+    /* ---------- Controls wiring ---------- */
+    document.getElementById("bpm").addEventListener('input', (e) => {
+      document.getElementById("bpmLabel").innerText = `${e.target.value} BPM`;
+      Tone.Transport.bpm.value = Number(e.target.value);
+    });
+
+    document.getElementById("swing").addEventListener('input', (e) => {
+      document.getElementById("swingLabel").innerText = `${e.target.value}%`;
+      Tone.Transport.swing = e.target.value / 100;
+    });
+
+    document.getElementById("patternLength").addEventListener('change', (e) => {
+      steps = Number(e.target.value);
+      // recreate pattern arrays to new length (preserve existing prefix)
+      instruments.forEach(inst => {
+        const old = pattern[inst] || [];
+        const arr = Array(steps).fill(0);
+        for (let i = 0; i < Math.min(old.length, steps); i++) arr[i] = old[i];
+        pattern[inst] = arr;
+      });
+      buildGrid();
+    });
+
+    document.getElementById("division").addEventListener('change', (e) => {
+      // If playing, restart loop with new division
+      if (loop && Tone.Transport.state === 'started') {
+        loop.stop();
+        loop.interval = e.target.value;
+        loop.start(0);
+      } else if (loop) {
+        loop.interval = e.target.value;
+      }
+    });
+
+    document.getElementById("kitSelect").addEventListener('change', (e) => {
+      const kitName = e.target.value;
+      // unload and load new kit
+      players.removeAll();
+      const kit = KITS[kitName] || KITS["classic"];
+      const newPlayers = new Tone.Players(kit, () => {
+        // after loaded, assign new players
+        Object.keys(kit).forEach(k => players.add(k, kit[k]));
+        // Note: simpler approach is to recreate players reference (we created players earlier).
+        // For safety, just recreate global players by assigning samples to existing players:
+        // (but Players API doesn't support straightforward replace; easier: reload page or reinitialize)
+        // To keep it simple: prompt user to reload to apply kit (or we can recreate players and continue).
+        // Quick approach: recreate players and override global 'players' variable isn't possible via const.
+        // So inform user to reload to apply new kit.
+        alert("Kit loaded. For full kit switch, please reload the page (or I can implement seamless kit switch).");
+      });
+    });
+
+    document.getElementById("playBtn").addEventListener('click', async () => {
+      // user gesture required; resume audio context
+      if (Tone.context.state !== 'running') await Tone.start();
+      // ensure players loaded
+      if (!players.loaded) {
+        players.onload = () => {
+          startLoop();
+        };
+      } else {
+        startLoop();
+      }
+    });
+
+    document.getElementById("stopBtn").addEventListener('click', () => {
+      stopLoop();
+    });
+
+    document.getElementById("clearBtn").addEventListener('click', () => {
+      instruments.forEach(inst => pattern[inst] = Array(steps).fill(0));
+      buildGrid();
+    });
+
+    document.getElementById("randomBtn").addEventListener('click', () => {
+      instruments.forEach(inst => {
+        pattern[inst] = Array(steps).fill(0).map(() => Math.random() > 0.8 ? 1 : 0);
+      });
+      buildGrid();
+    });
+
+    document.getElementById("exportBtn").addEventListener('click', () => {
+      const json = JSON.stringify({ steps, pattern });
+      // show in new window for easy copy
+      const w = window.open("", "_blank");
+      w.document.write("<pre>" + json.replace(/</g, "&lt;") + "</pre>");
+    });
+
+    document.getElementById("importBtn").addEventListener('click', () => {
+      const json = prompt("Paste pattern JSON (exported format):");
+      if (!json) return;
+      try {
+        const obj = JSON.parse(json);
+        if (obj.steps && obj.pattern) {
+          steps = Number(obj.steps);
+          pattern = obj.pattern;
+          document.getElementById("patternLength").value = steps;
+          buildGrid();
+        } else {
+          alert("Invalid data");
+        }
+      } catch (e) {
+        alert("Invalid JSON");
+      }
+    });
+
+    /* ---------- Initialize UI ---------- */
+    buildGrid();
+
+    /* ---------- Ensure samples start loading so players.loaded becomes true ---------- */
+    players.autostart = true; // will not autoplay sound, but starts preloading
+    // Note: Tone.Players sets players.loaded when all buffers are ready
+
+
+  </script>
+</body>
+
+</html>

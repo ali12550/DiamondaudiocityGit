@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de nota a frecuencia: Hz exactos</title>
+    <meta name="description"
+        content="Convierte cualquier nota musical a su frecuencia exacta en Hz, con número MIDI, longitud de onda y período. Calculadora gratuita con reproducción de tono.">
+    <link rel="canonical" href="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/nota-a-frecuencia-online/">
+    <link rel="alternate" hreflang="es" href="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/nota-a-frecuencia-online/">
+    <link rel="alternate" hreflang="en" href="https://pitchdetectors.com/pitch-detector-tools/note-to-frequency-online/">
+    <link rel="alternate" hreflang="x-default" href="https://pitchdetectors.com/pitch-detector-tools/note-to-frequency-online/">
+    <link rel="icon" href="../../../assets/imgs/logo.png" type="image/x-icon">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Conversor de nota a frecuencia: Hz exactos para cualquier nota">
+    <meta property="og:description"
+        content="Convierte cualquier nota musical a su frecuencia exacta en Hz, con número MIDI, longitud de onda y período. Calculadora gratuita con reproducción de tono.">
+    <meta property="og:url" content="https://pitchdetectors.com/sp/herramientas-de-deteccion-de-tono/nota-a-frecuencia-online/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./assets/imgs/logo.png">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conversor de nota a frecuencia: Hz exactos para cualquier nota">
+    <meta name="twitter:description"
+        content="Convierte notas musicales a frecuencias exactas en hercios, números MIDI, longitudes de onda y períodos.">
+    <meta name="twitter:image" content="./assets/imgs/logo.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../../assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/style.css">
+    <link href="../../../assets/tools.css" rel="stylesheet">
+    <meta name="author" content="Pitch Detectors">
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la fórmula para convertir una nota musical a frecuencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usa f = A4 × 2^((m − 69)/12), donde m es el número MIDI de la nota (A4 = 69) y A4 es el tono de referencia, normalmente 440 Hz. Para E4 (MIDI 64): f = 440 × 2^(−5/12) = 329.63 Hz. Esta misma fórmula ejecuta cada afinador digital, cada piano roll de DAW y la calculadora de esta página."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué frecuencia tiene el Do central?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El Do central es 261.63 Hz, etiquetado C4 en notación científica de tono (MIDI 60). Está nueve semitonos por debajo de A440, así que f = 440 × 2^(−9/12) = 261.63 Hz. Algunos teclados etiquetan la misma tecla como C3 — la frecuencia es idéntica en ambos casos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿C♯ y D♭ tienen la misma frecuencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. En el temperamento igual de 12 tonos, los equivalentes enarmónicos son el mismo tono: C♯4 y D♭4 son ambos 277.18 Hz. La ortografía difiere para la notación y la teoría, pero la frecuencia vibrante es idéntica, así que esta calculadora da un valor exacto para ambos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué un Do escrito en trompeta no se convierte a 261.63 Hz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Porque la trompeta es un instrumento transpositor en B♭: su Do escrito suena una segunda mayor más grave, como B♭3 de concierto a 233.08 Hz. Las tablas de nota a frecuencia asumen tono de concierto, así que siempre transpone primero la nota escrita a su tono real. La calculadora de transposición hace la matemática del intervalo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué se fijó La en 440 Hz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fue un compromiso del siglo XX tras siglos de deriva. El tono barroco estaba cerca de 415 Hz; Francia fijó La en 435 por ley en 1859; una conferencia de Londres de 1939 eligió 440 (descartando 439 porque es un número primo); y la ISO lo adoptó en 1955 como ISO 16. Muchas orquestas desde entonces han subido hasta 442–445 Hz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué frecuencias usan los diapasones estándar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El diapasón estándar es A440. Las demostraciones de física usan diapasones a 256, 512 y 1024 Hz del sistema de «tono científico», que fija el Do central en exactamente 256 Hz y coloca a La en 430.54 Hz. El diapasón fue inventado en 1711 por John Shore, y su frecuencia estampada es exacta — una consulta física de nota a frecuencia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son las frecuencias de la afinación estándar de guitarra?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De grave a agudo: E2 = 82.41 Hz, A2 = 110.00 Hz, D3 = 146.83 Hz, G3 = 196.00 Hz, B3 = 246.94 Hz, E4 = 329.63 Hz. Si tu afinador lee cents en vez de Hz, usa la calculadora de cents para convertir el desplazamiento — o afina directamente con el afinador de guitarra."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo convierto un desplazamiento en cents a Hz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiplica la frecuencia de la nota por 2^(cents/1200). Una lectura de +5 cents en A4 significa 440 × 2^(5/1200) = 441.27 Hz. Una orquesta A442 toca unos +7.85 cents agudo respecto a 440 — ingresa 442 en el campo A4 de esta página y cada frecuencia se reescala automáticamente."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="container py-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4">
+                <div class="tools-sidebar">
+                    <!-- Search Box -->
+                    <div class="sidebar-search mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="toolSearch" placeholder="Buscar herramientas..."
+                                onkeyup="searchTools()">
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="sidebar-categories">
+                        <div class="sidebar-category active">
+                            <h5><i class="bi bi-soundwave me-2"></i>Herramientas de detección de tono</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/afinador-de-guitarra-online/" class=""><i
+                                            class="bi bi-music-note-beamed"></i> Afinador de guitarra</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/detector-de-rango-vocal/"><i class="bi bi-mic"></i>
+                                        Detector
+                                        de rango vocal</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/frecuencia-a-nota-online/"><i
+                                            class="bi bi-arrow-left-right"></i> Frecuencia a nota</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/nota-a-frecuencia-online/" class="active"><i
+                                            class="bi bi-calculator"></i>
+                                        Nota a frecuencia</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-cents-online/"><i
+                                            class="bi bi-rulers"></i> Calculadora
+                                        de cents</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-transposicion-online/"><i
+                                            class="bi bi-arrows-expand"></i> Calculadora de transposición</a></li>
+                                <li><a href="/sp/herramientas-de-deteccion-de-tono/calculadora-de-serie-armonica-online/"><i
+                                            class="bi bi-bar-chart-steps"></i> Serie armónica</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-disc me-2"></i>Herramientas de DJ y producción</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/dj-music-production-tools/bpm-calculator/"><i
+                                            class="bi bi-speedometer2"></i> Calculadora de BPM</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
+                                        Tempo por toques de BPM</a></li>
+                                <li><a href="/dj-music-production-tools/bpm-to-ms/"><i class="bi bi-clock"></i> BPM a
+                                        milisegundos</a></li>
+                                <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Buscador
+                                        de tonalidad</a></li>
+                                <li><a href="https://pitchdetectors.com/dj-music-production-tools/bpm-to-speed/"><i
+                                            class="bi bi-sliders"></i>
+                                        Cambiador de tono</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-music-note-list me-2"></i>Herramientas de teoría musical</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sp/herramientas-de-teoria-musical/metronomo-online/"><i class="bi bi-stopwatch"></i>
+                                        Metrónomo online</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/buscador-de-escalas/"><i class="bi bi-grid-3x3"></i> Buscador
+                                        de escalas</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/identificador-de-acordes/"><i class="bi bi-vinyl"></i> Identificador
+                                        de acordes</a></li>
+                                <li><a href="/sp/herramientas-de-teoria-musical/generador-de-ritmos/"><i class="bi bi-activity"></i>
+                                        Generador de ritmos</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-category">
+                            <h5><i class="bi bi-graph-up me-2"></i>Herramientas de análisis de sonido</h5>
+                            <ul class="sidebar-links">
+                                <li><a href="/sound-analysis-tools/decibel-meter/"><i class="bi bi-volume-up"></i>
+                                        Medidor de decibelios</a></li>
+
+                                <li><a href="/sound-analysis-tools/microphone-test/"><i class="bi bi-mic"></i>
+                                        Prueba de micrófono</a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="/sp/herramientas-de-deteccion-de-tono/">Herramientas de detección de tono</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Calculadora de nota a frecuencia</li>
+                    </ol>
+                </nav>
+
+                <div class="tool-container">
+                    <div class="tool-title">
+                        <h1><i class="bi bi-calculator me-2"></i>Conversor de nota a frecuencia: Hz exactos para cualquier nota</h1>
+                        <p class="text-muted small">Última actualización: 12 de octubre de 2026 · Escrito por el Pitch Detectors Editorial Team</p>
+                        <p>Calcula la frecuencia exacta en Hz para cualquier nota musical. Selecciona una nota y una
+                            octava para encontrar
+                            su frecuencia. Compatible con distintos estándares de afinación.</p>
+                    </div>
+
+                    <!-- Note Selection -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Select Note:</label>
+                        <div class="note-selector" id="noteSelector">
+                            <button class="note-btn active" data-note="C">C</button>
+                            <button class="note-btn sharp" data-note="C#">C#</button>
+                            <button class="note-btn" data-note="D">D</button>
+                            <button class="note-btn sharp" data-note="D#">D#</button>
+                            <button class="note-btn" data-note="E">E</button>
+                            <button class="note-btn" data-note="F">F</button>
+                            <button class="note-btn sharp" data-note="F#">F#</button>
+                            <button class="note-btn" data-note="G">G</button>
+                            <button class="note-btn sharp" data-note="G#">G#</button>
+                            <button class="note-btn" data-note="A">A</button>
+                            <button class="note-btn sharp" data-note="A#">A#</button>
+                            <button class="note-btn" data-note="B">B</button>
+                        </div>
+                    </div>
+
+                    <!-- Octave Selection -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Select Octave:</label>
+                        <div class="octave-selector" id="octaveSelector">
+                            <button class="octave-btn" data-octave="0">0</button>
+                            <button class="octave-btn" data-octave="1">1</button>
+                            <button class="octave-btn" data-octave="2">2</button>
+                            <button class="octave-btn" data-octave="3">3</button>
+                            <button class="octave-btn active" data-octave="4">4</button>
+                            <button class="octave-btn" data-octave="5">5</button>
+                            <button class="octave-btn" data-octave="6">6</button>
+                            <button class="octave-btn" data-octave="7">7</button>
+                            <button class="octave-btn" data-octave="8">8</button>
+                        </div>
+                    </div>
+
+                    <!-- A4 Reference -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">A4 Reference Frequency (Hz):</label>
+                            <input type="number" class="form-control" id="a4Reference" value="440" min="400" max="480">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Quick Tuning Standards:</label>
+                            <div class="quick-buttons">
+                                <button class="quick-btn" onclick="setA4(432)">432 Hz</button>
+                                <button class="quick-btn" onclick="setA4(440)">440 Hz</button>
+                                <button class="quick-btn" onclick="setA4(442)">442 Hz</button>
+                                <button class="quick-btn" onclick="setA4(444)">444 Hz</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result Box -->
+                    <div class="result-box">
+                        <h3 id="resultNote">C4</h3>
+                        <p style="font-size: 48px; font-weight: 700; margin: 20px 0;" id="resultFreq">261.63 Hz</p>
+                        <button class="play-btn" onclick="playNote()">
+                            <i class="bi bi-play-fill"></i> Play This Note
+                        </button>
+                        <div class="row text-start mt-4">
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>MIDI Note:</strong><br>
+                                <span id="midiNote">60</span>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Wavelength:</strong><br>
+                                <span id="wavelength">1.31 m</span>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Period:</strong><br>
+                                <span id="period">3.82 ms</span>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <strong>Octave Below:</strong><br>
+                                <span id="octaveBelow">130.81 Hz</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- All Octaves Table -->
+                    <div class="mt-4">
+                        <h4 class="text-mid mb-3">Same Note Across All Octaves</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="octavesTable">
+                                <thead>
+                                    <tr>
+                                        <th>Note</th>
+                                        <th>Frequency (Hz)</th>
+                                        <th>MIDI</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Generated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMPREHENSIVE NOTE TO FREQUENCY GUIDE & REFERENCE -->
+                <div class="mt-5 pt-3">
+
+                    <section class="mb-5">
+                        <p class="lead">Un conversor de nota a frecuencia convierte cualquier nota musical — como A4 o C♯3 — a su tasa de vibración exacta en hercios (Hz). Bajo la afinación estándar A440, el Do central (C4) es 261.63 Hz, y la frecuencia se duplica con cada octava ascendente. Esta calculadora gratuita convierte cualquier nota y octava a Hz al instante, e informa también el número MIDI, la longitud de onda y el período de la onda.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Puntos clave</h2>
+                        <ul>
+                            <li>Cada nota tiene una frecuencia exacta bajo el temperamento igual de 12 tonos: A4 = 440 Hz, Do central (C4) = 261.63 Hz.</li>
+                            <li><strong>La frecuencia se duplica cada octava:</strong> A3 = 220 Hz, A4 = 440 Hz, A5 = 880 Hz.</li>
+                            <li>La fórmula de conversión es <strong>f = A4 × 2^((m − 69)/12)</strong>, donde m es el número MIDI de la nota (A4 = 69).</li>
+                            <li>Las notas escritas en instrumentos transpositores — trompeta, saxofón, corno — suenan a frecuencias de concierto distintas; convierte el <strong>tono de concierto</strong>, no la nota escrita.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">¿Qué es la conversión de nota a frecuencia?</h2>
+                        <div class="p-3 bg-light rounded border-start border-4 border-info mb-3">
+                            <strong>Definición:</strong> La conversión de nota a frecuencia es el proceso de traducir un tono musical nombrado, como E4 o B♭2, a su tasa de vibración física en hercios. Conecta la notación con la física: un intérprete lee «A4» en la partitura, mientras que la cuerda vibrante o la columna de aire detrás del sonido en realidad oscila 440 veces por segundo.
+                        </div>
+                        <p>Los músicos piensan en nombres de notas; los sintetizadores, los plug-ins de EQ y los generadores de señal piensan en hercios. La conversión de nota a frecuencia es el puente entre ambos. Un productor que quiere que el subgrave quede en D2 necesita 73.42 Hz; un ingeniero que trata un modo de sala en 65 Hz está apuntando a C2.</p>
+                        <p>La correspondencia de esta página asume el <strong>temperamento igual de 12 tonos (12-TET)</strong>, el sistema de afinación detrás de los pianos, las guitarras y cada piano roll de DAW. En 12-TET, cada semitono multiplica la frecuencia por la misma razón, así que una sola fórmula convierte cada nota en cada octava.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Cómo funciona esta calculadora</h2>
+                        <p>Esta calculadora toma tres entradas — un nombre de nota (de C a B, con sostenidos), un número de octava (0–8) y la frecuencia de referencia A4 (440 Hz por defecto). Cuenta cuántos semitonos separan la nota de A4 y luego aplica la fórmula del temperamento igual para obtener la frecuencia. De ese único número deriva el resto: el <strong>número de nota MIDI</strong> (69 más el conteo de semitonos), la <strong>longitud de onda</strong> (343 ÷ frecuencia, la velocidad del sonido a 20 °C), el <strong>período de la onda</strong> (1000 ÷ frecuencia, en milisegundos) y la <strong>frecuencia una octava abajo</strong> (frecuencia ÷ 2).</p>
+                        <p>Metodología: la tabla Todas las octavas repite el cálculo para las octavas 0 a 8, y el botón Play This Note reproduce el resultado como un tono senoidal puro mediante la API de Web Audio. Todas las lecturas provienen del mismo valor de frecuencia, así que los resultados siempre concuerdan — entre sí y con cualquier DAW o afinador que use el mismo estándar. <em>Última revisión: octubre de 2026.</em></p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">La fórmula y un ejemplo resuelto</h2>
+                        <p>Una fórmula convierte cada nota, en cada octava, con cualquier tono de referencia:</p>
+                        <div class="p-3 bg-white rounded border font-monospace text-center mb-3" style="font-size: 1.1rem;">
+                            f = A4 × 2^((m − 69)/12)
+                        </div>
+                        <p>Aquí m es el <strong>número MIDI</strong> de la nota (A4 = 69, Do central = 60, cada semitono = ±1), y A4 es el tono de referencia, normalmente 440. Cada semitono multiplica la frecuencia por 2^(1/12) ≈ 1.059463094, y doce semitonos la multiplican por exactamente 2 — la octava.</p>
+                        <p><strong>Ejemplo resuelto — E4, la primera cuerda de la guitarra.</strong> E4 es MIDI 64, así que f = 440 × 2^((64 − 69)/12) = 440 × 2^(−5/12) = 440 × 0.749154 = <strong>329.63 Hz</strong>. Longitud de onda: 343 ÷ 329.63 = 1.04 m (unos 3.41 ft). Período: 1000 ÷ 329.63 = 3.03 ms. Una octava abajo: E3 = 329.63 ÷ 2 = 164.81 Hz. Pruébalo arriba — todos los números coincidirán.</p>
+                        <p>Una nota más sobre sostenidos: F♯4 y G♭4 son la misma tecla del piano, así que comparten una frecuencia (369.99 Hz). Los botones de sostenidos del widget dan a cada par enarmónico un solo valor — la ortografía difiere para la notación, no para la física.</p>
+                    </section>
+
+                    <figure class="my-4 text-center">
+                        <div class="border rounded p-5 bg-light text-muted">[Diagrama: teclado de piano de C4 a C5 con la frecuencia en Hz etiquetada bajo cada tecla, mostrando cómo se duplica la frecuencia a lo largo de la octava]</div>
+                        <figcaption class="small text-muted mt-2">Texto alternativo: «Teclas de piano de C4 a C5 etiquetadas con frecuencias, mostrando la duplicación de Hz por octava»</figcaption>
+                    </figure>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Cómo usar esta calculadora</h2>
+                        <ol>
+                            <li><strong>Selecciona una nota:</strong> haz clic en uno de los 12 botones (de C a B). Los botones de sostenidos (C♯, D♯, F♯, G♯, A♯) dan las mismas frecuencias que sus equivalentes bemoles.</li>
+                            <li><strong>Selecciona una octava:</strong> 0 es territorio de subgraves, 4 es el registro medio, 8 es el extremo agudo. El Do central es C4.</li>
+                            <li><strong>Ajusta la referencia A4:</strong> déjala en 440 Hz o usa un estándar rápido — 432, 440, 442 o 444 Hz. Iguala el tono con el que afina tu agrupación.</li>
+                            <li><strong>Lee el recuadro de resultados:</strong> el número grande es la frecuencia en Hz; debajo están el número MIDI, la longitud de onda, el período y la frecuencia una octava abajo.</li>
+                            <li><strong>Pulsa Play This Note:</strong> escucha el tono exacto como onda senoidal — útil para afinar de oído.</li>
+                            <li><strong>Revisa la tabla Todas las octavas:</strong> ve la misma nota en cada octava, cada una duplicando la frecuencia, y elige el registro que necesites.</li>
+                        </ol>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Cómo leer tu resultado</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle">
+                                <thead class="table-dark">
+                                    <tr><th>Campo del resultado</th><th>Qué significa</th><th>Próximo paso</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Frecuencia (Hz)</strong></td><td>la tasa de vibración exacta de la nota con tu referencia A4</td><td>escríbela en un oscilador de sinte, una banda de EQ o un generador de señal</td></tr>
+                                    <tr><td><strong>Nota MIDI</strong></td><td>el número de la nota en el sistema MIDI (60 = C4, 69 = A4)</td><td>ingrésalo directamente en el piano roll de un DAW</td></tr>
+                                    <tr><td><strong>Longitud de onda</strong></td><td>la longitud de una onda de sonido en el aire, en metros</td><td>compárala con el tamaño de tu sala — las ondas graves largas exigen tratamiento serio</td></tr>
+                                    <tr><td><strong>Período</strong></td><td>la duración de un ciclo de onda, en milisegundos</td><td>úsalo para sincronizar LFO o calcular tiempos de retardo</td></tr>
+                                    <tr><td><strong>Octava abajo</strong></td><td>la mitad de la frecuencia — la misma nota una octava más grave</td><td>ponla en capas bajo la original para dar peso al subgrave</td></tr>
+                                    <tr><td><strong>Tabla Todas las octavas</strong></td><td>la frecuencia de la nota en cada octava, 0–8</td><td>elige el registro que le quede a tu instrumento o mezcla</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>La longitud de onda se muestra en metros; multiplica por 3.281 para obtener pies (la onda de 1.31 m de C4 es unos 4.30 ft). Si en cambio mediste una frecuencia y quieres su nombre de nota, pásala por el conversor inverso de <a href="../frecuencia-a-nota-online/">frecuencia a nota</a>.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Instrumentos transpositores: convierte el tono de concierto, no la nota escrita</h2>
+                        <p>Las tablas de nota a frecuencia asumen el <strong>tono de concierto</strong> — el tono que realmente se escucha. Pero las notas escritas en instrumentos transpositores suenan a otro tono, así que convertir la nota de la partitura da la frecuencia equivocada. La trompeta en B♭ es el ejemplo clásico: su Do escrito suena una segunda mayor más grave, como B♭. Así que una parte de trompeta marcada C4 no produce 261.63 Hz — produce B♭3 de concierto a <strong>233.08 Hz</strong>. La regla: baja la nota escrita según el intervalo del instrumento primero, luego convierte el tono de concierto resultante. La <a href="../calculadora-de-transposicion-online/">calculadora de transposición</a> se encarga de la matemática del intervalo.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped align-middle text-center">
+                                <thead class="table-dark">
+                                    <tr><th>Instrumento</th><th>Suena por debajo de lo escrito</th><th>C4 escrito se convierte en</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Trompeta en B♭</td><td>2.ª mayor</td><td>B♭3 — 233.08 Hz</td></tr>
+                                    <tr><td>Clarinete en B♭</td><td>2.ª mayor</td><td>B♭3 — 233.08 Hz</td></tr>
+                                    <tr><td>Saxofón alto en E♭</td><td>6.ª mayor</td><td>E♭3 — 155.56 Hz</td></tr>
+                                    <tr><td>Corno en F</td><td>5.ª justa</td><td>F3 — 174.61 Hz</td></tr>
+                                    <tr><td>Saxofón tenor en B♭</td><td>9.ª mayor</td><td>B♭2 — 116.54 Hz</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>¿Por qué transponen estos instrumentos? Muchos instrumentos de viento suenan mejor construidos en ciertas tonalidades, y su escala «base» siempre se escribe como Do — por eso el instrumento lleva el nombre del tono de concierto que produce su Do escrito (<a href="https://www.musictheoryacademy.com/how-to-read-sheet-music/transposing-instruments/">Music Theory Academy</a>).</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Por qué La es 440 Hz: breve historia de la inflación del tono</h2>
+                        <p>440 Hz es un compromiso del siglo XX tras siglos de deriva ascendente del tono. En la era barroca, La estaba alrededor de 415 Hz, casi un semitono grave respecto a hoy; para el siglo XIX, las casas de ópera subieron el tono buscando brillantez — un diapasón de La Scala llegó a 451 Hz.</p><p>Francia reaccionó primero: una ley de 1859 fijó La en 435 Hz, el <em>diapason normal</em>. Una conferencia de Stuttgart de 1834 ya había recomendado 440 Hz. El estándar moderno surgió de una conferencia de Londres de 1939, que primero consideró 439 Hz pero cambió a 440 — porque 439 es un número primo y es difícil de reproducir con precisión en un laboratorio. La ISO adoptó 440 en 1955 como ISO 16.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped align-middle">
+                                <thead class="table-dark">
+                                    <tr><th>Era</th><th>Frecuencia de La</th><th>Qué pasó</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Barroco (c. 1600–1750)</td><td>~415 Hz</td><td>casi un semitono por debajo del tono moderno</td></tr>
+                                    <tr><td>1834, Stuttgart</td><td>440 Hz</td><td>recomendado mediante el tonómetro de Scheibler</td></tr>
+                                    <tr><td>1859, Francia</td><td>435 Hz</td><td><em>diapason normal</em>, fijado por ley</td></tr>
+                                    <tr><td>1939, Londres</td><td>440 Hz</td><td>conferencia internacional; 439 descartado por ser primo</td></tr>
+                                    <tr><td>1955</td><td>440 Hz</td><td>adoptado como ISO 16</td></tr>
+                                    <tr><td>Hoy</td><td>442–445 Hz (muchas orquestas)</td><td>la inflación del tono continúa</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>La deriva nunca se detuvo del todo: las orquestas siguieron subiendo el tono para ganar brillantez, y las bandas de gaitas escocesas se ubican cerca de 470–480 Hz — cerca de B♭. Los conjuntos de música antigua aún tocan a A415, así que el A4 de una partitura barroca se convierte a 415 Hz, no a 440: ajusta el campo A4 de esta calculadora en consecuencia. (Fuente: <a href="https://en.wikipedia.org/wiki/Concert_pitch">Wikipedia — Concert pitch</a>.)</p>
+                    </section>
+
+                    <figure class="my-4 text-center">
+                        <div class="border rounded p-5 bg-light text-muted">[Infografía: línea de tiempo histórica del diapasón de concierto desde A415 (barroco) pasando por A435 (Francia 1859) hasta A440 (ISO 1955) y el A442–445 orquestal moderno]</div>
+                        <figcaption class="small text-muted mt-2">Texto alternativo: «Línea de tiempo del diapasón de concierto: A415 barroco, A435 Francia 1859, A440 ISO 1955, A442-445 hoy»</figcaption>
+                    </figure>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Diapasones: la referencia original de nota a frecuencia</h2>
+                        <p>Antes de las apps, los músicos llevaban un trozo de acero estampado con una frecuencia. El diapasón fue inventado en 1711 por el músico británico John Shore, y vibra casi puramente en su fundamental — por eso orquestas y coros confiaban en él como referencia.</p>
+                        <p>El diapasón estándar es A440, pero los laboratorios de física conservan diapasones a 256, 512 y 1024 Hz del sistema de «tono científico». Propuesto por Joseph Sauveur en 1713 y promovido por Giuseppe Verdi en el siglo XIX, el tono científico fija el Do central en exactamente 256 Hz, lo que coloca a La en 430.54 Hz — matemáticamente ordenado, ya que cada Do es una potencia de dos (<a href="https://en.wikipedia.org/wiki/Scientific_pitch">Wikipedia — Scientific pitch</a>).</p>
+                        <p>Para usar uno: golpea un diapasón A440 y acércalo a la cuerda La de tu guitarra. Las pulsaciones entre diapasón y cuerda se vuelven más lentas a medida que la cuerda se acerca a 440 Hz y desaparecen cuando coincide — una verificación física de nota a frecuencia sin baterías.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Frecuencias de cuerdas al aire: afinaciones estándar en Hz</h2>
+                        <p>Los instrumentos de cuerda afinan sus cuerdas al aire a frecuencias fijas — iguálalas en un afinador o introdúcelas en un sinte.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped align-middle small">
+                                <thead class="table-dark">
+                                    <tr><th>Instrumento</th><th>Cuerdas al aire, de grave a agudo (Hz)</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Guitarra</strong></td><td>E2 82.41 · A2 110.00 · D3 146.83 · G3 196.00 · B3 246.94 · E4 329.63</td></tr>
+                                    <tr><td><strong>Violín</strong></td><td>G3 196.00 · D4 293.66 · A4 440.00 · E5 659.25</td></tr>
+                                    <tr><td><strong>Viola</strong></td><td>C3 130.81 · G3 196.00 · D4 293.66 · A4 440.00</td></tr>
+                                    <tr><td><strong>Violonchelo</strong></td><td>C2 65.41 · G2 98.00 · D3 146.83 · A3 220.00</td></tr>
+                                    <tr><td><strong>Contrabajo</strong></td><td>E1 41.20 · A1 55.00 · D2 73.42 · G2 98.00</td></tr>
+                                    <tr><td><strong>Ukelele (GCEA)</strong></td><td>G4 392.00 · C4 261.63 · E4 329.63 · A4 440.00</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Los valores de guitarra coinciden con las tablas de tensión publicadas por fabricantes de cuerdas, y el resto sigue la misma matemática del temperamento igual que usa esta calculadora. Para afinar en la práctica, usa el <a href="../afinador-de-guitarra-online/">afinador de guitarra</a>.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Afinación fina con cents: cómo convertir pequeños desplazamientos a Hz</h2>
+                        <p>Los afinadores miden los pequeños errores en <strong>cents</strong> — 100 por semitono. Para convertir una lectura en cents a una frecuencia objetivo, multiplica la frecuencia de la nota por 2^(cents/1200).</p>
+                        <p>Una lectura de +5 cents en A4 significa que el objetivo es 440 × 2^(5/1200) = <strong>441.27 Hz</strong>. Una orquesta A442 toca unos +7.85 cents agudo respecto a 440 — ingresa 442 en el campo A4 de esta página. Para la distancia entre dos frecuencias medidas, consulta la <a href="../calculadora-de-cents-online/">calculadora de cents</a>.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Limitaciones</h2>
+                        <ul>
+                            <li><strong>Solo temperamento igual de 12 tonos.</strong> La entonación justa, el meantone, el maqam y otros sistemas de afinación asignan los mismos nombres de nota a frecuencias distintas.</li>
+                            <li><strong>Los equivalentes enarmónicos comparten una frecuencia.</strong> C♯4 y D♭4 son ambos 277.18 Hz aquí, aunque la notación los trata de forma distinta.</li>
+                            <li><strong>La longitud de onda asume 343 m/s a 20 °C.</strong> Las salas reales son más cálidas o más frías, lo que desplaza ligeramente las longitudes de onda reales.</li>
+                            <li><strong>Los números de octava siguen la notación científica de tono</strong> (Do central = C4); algunos teclados y DAW etiquetan la misma tecla como C3.</li>
+                            <li><strong>La reproducción de tono es una onda senoidal pura.</strong> Los instrumentos reales apilan armónicos sobre la fundamental — consulta la <a href="../calculadora-de-serie-armonica-online/">calculadora de serie armónica</a> para ver qué aportan.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Nota a frecuencia vs otras herramientas de tono</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle">
+                                <thead class="table-dark">
+                                    <tr><th>Herramienta</th><th>Entrada → salida</th><th>Úsala cuando…</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Esta calculadora</strong></td><td>nombre de nota → Hz + MIDI + longitud de onda + período</td><td>conoces la nota y necesitas sus números físicos</td></tr>
+                                    <tr><td><strong><a href="../frecuencia-a-nota-online/">Frecuencia a nota</a></strong></td><td>Hz → nombre de nota + cents</td><td>mediste una frecuencia y necesitas su nombre</td></tr>
+                                    <tr><td><strong><a href="../calculadora-de-cents-online/">Calculadora de cents</a></strong></td><td>dos frecuencias → intervalo en cents</td><td>necesitas la distancia entre dos tonos</td></tr>
+                                    <tr><td><strong><a href="../calculadora-de-transposicion-online/">Calculadora de transposición</a></strong></td><td>nota + intervalo → nota transpuesta</td><td>estás escribiendo partes para instrumentos transpositores</td></tr>
+                                    <tr><td><strong><a href="../afinador-de-guitarra-online/">Afinador de guitarra</a></strong></td><td>audio de cuerda en vivo → retroalimentación de afinación</td><td>estás afinando una guitarra real</td></tr>
+                                    <tr><td><strong><a href="../detector-de-tono/">Detector de tono</a></strong></td><td>audio del micrófono → nota en vivo</td><td>quieres medir un instrumento o voz</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-5">
+                        <h3 class="h4 fw-bold mb-4">Preguntas frecuentes</h3>
+                        <div class="accordion" id="nfFaqAccordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="nfHead1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#nfFaq1" aria-expanded="true">
+                                        ¿Cuál es la fórmula para convertir una nota musical a frecuencia?
+                                    </button>
+                                </h3>
+                                <div id="nfFaq1" class="accordion-collapse collapse show"
+                                    data-bs-parent="#nfFaqAccordion">
+                                    <div class="accordion-body">
+                                        Usa f = A4 × 2^((m − 69)/12), donde m es el número MIDI de la nota (A4 = 69) y A4 es el tono de referencia, normalmente 440 Hz. Para E4 (MIDI 64): f = 440 × 2^(−5/12) = 329.63 Hz. Esta misma fórmula ejecuta cada afinador digital, cada piano roll de DAW y la calculadora de esta página.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="nfHead2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#nfFaq2">
+                                        ¿Qué frecuencia tiene el Do central?
+                                    </button>
+                                </h3>
+                                <div id="nfFaq2" class="accordion-collapse collapse" data-bs-parent="#nfFaqAccordion">
+                                    <div class="accordion-body">
+                                        El Do central es 261.63 Hz, etiquetado C4 en notación científica de tono (MIDI 60). Está nueve semitonos por debajo de A440, así que f = 440 × 2^(−9/12) = 261.63 Hz. Algunos teclados etiquetan la misma tecla como C3 — la frecuencia es idéntica en ambos casos.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="nfHead3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#nfFaq3">
+                                        ¿C♯ y D♭ tienen la misma frecuencia?
+                                    </button>
+                                </h3>
+                                <div id="nfFaq3" class="accordion-collapse collapse" data-bs-parent="#nfFaqAccordion">
+                                    <div class="accordion-body">
+                                        Sí. En el temperamento igual de 12 tonos, los equivalentes enarmónicos son el mismo tono: C♯4 y D♭4 son ambos 277.18 Hz. La ortografía difiere para la notación y la teoría, pero la frecuencia vibrante es idéntica, así que esta calculadora da un valor exacto para ambos.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="nfHead4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#nfFaq4">
+                                        ¿Por qué un Do escrito en trompeta no se convierte a 261.63 Hz?
+                                    </button>
+                                </h3>
+                                <div id="nfFaq4" class="accordion-collapse collapse" data-bs-parent="#nfFaqAccordion">
+                                    <div class="accordion-body">
+                                        Porque la trompeta es un instrumento transpositor en B♭: su Do escrito suena una segunda mayor más grave, como B♭3 de concierto a 233.08 Hz. Las tablas de nota a frecuencia asumen tono de concierto, así que siempre transpone primero la nota escrita a su tono real. La <a href="../calculadora-de-transposicion-online/">calculadora de transposición</a> hace la matemática del intervalo.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="nfHead5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#nfFaq5">
+                                        ¿Por qué se fijó La en 440 Hz?
+                                    </button>
+                                </h3>
+                                <div id="nfFaq5" class="accordion-collapse collapse" data-bs-parent="#nfFaqAccordion">
+                                    <div class="accordion-body">
+                                        Fue un compromiso del siglo XX tras siglos de deriva. El tono barroco estaba cerca de 415 Hz; Francia fijó La en 435 por ley en 1859; una conferencia de Londres de 1939 eligió 440 (descartando 439 porque es un número primo); y la ISO lo adoptó en 1955 como ISO 16. Muchas orquestas desde entonces han subido hasta 442–445 Hz.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="nfHead6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#nfFaq6">
+                                        ¿Qué frecuencias usan los diapasones estándar?
+                                    </button>
+                                </h3>
+                                <div id="nfFaq6" class="accordion-collapse collapse" data-bs-parent="#nfFaqAccordion">
+                                    <div class="accordion-body">
+                                        El diapasón estándar es A440. Las demostraciones de física usan diapasones a 256, 512 y 1024 Hz del sistema de «tono científico», que fija el Do central en exactamente 256 Hz y coloca a La en 430.54 Hz. El diapasón fue inventado en 1711 por John Shore, y su frecuencia estampada es exacta — una consulta física de nota a frecuencia.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="nfHead7">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#nfFaq7">
+                                        ¿Cuáles son las frecuencias de la afinación estándar de guitarra?
+                                    </button>
+                                </h3>
+                                <div id="nfFaq7" class="accordion-collapse collapse" data-bs-parent="#nfFaqAccordion">
+                                    <div class="accordion-body">
+                                        De grave a agudo: E2 = 82.41 Hz, A2 = 110.00 Hz, D3 = 146.83 Hz, G3 = 196.00 Hz, B3 = 246.94 Hz, E4 = 329.63 Hz. Si tu afinador lee cents en vez de Hz, usa la <a href="../calculadora-de-cents-online/">calculadora de cents</a> para convertir el desplazamiento — o afina directamente con el <a href="../afinador-de-guitarra-online/">afinador de guitarra</a>.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="nfHead8">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#nfFaq8">
+                                        ¿Cómo convierto un desplazamiento en cents a Hz?
+                                    </button>
+                                </h3>
+                                <div id="nfFaq8" class="accordion-collapse collapse" data-bs-parent="#nfFaqAccordion">
+                                    <div class="accordion-body">
+                                        Multiplica la frecuencia de la nota por 2^(cents/1200). Una lectura de +5 cents en A4 significa 440 × 2^(5/1200) = 441.27 Hz. Una orquesta A442 toca unos +7.85 cents agudo respecto a 440 — ingresa 442 en el campo A4 de esta página y cada frecuencia se reescala automáticamente.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+
+                <div class="card my-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Herramientas de detección de tono relacionadas</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">
+                                <a class="link-primary text-decoration-none fw-medium"
+                                    href="../frecuencia-a-nota-online/">
+                                    Conversor de frecuencia a nota
+                                </a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="link-primary text-decoration-none fw-medium"
+                                    href="../calculadora-de-cents-online/">
+                                    Calculadora de cents
+                                </a>
+                            </li>
+
+                            <li class="mb-2">
+                                <a class="link-primary text-decoration-none fw-medium"
+                                    href="../calculadora-de-transposicion-online/">
+                                    Calculadora de transposición
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="link-primary text-decoration-none fw-medium"
+                                    href="../afinador-de-guitarra-online/">
+                                    Afinador de guitarra
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script src="../../../assets/bootstrap5.js" defer></script>
+
+<!-- tool js -->
+    <script defer>
+        const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        let selectedNote = 'C';
+        let selectedOctave = 4;
+        let audioContext = null;
+        let oscillator = null;
+
+        function init() {
+            document.querySelectorAll('.note-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.note-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedNote = btn.dataset.note;
+                    calculate();
+                });
+            });
+
+            document.querySelectorAll('.octave-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.octave-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedOctave = parseInt(btn.dataset.octave);
+                    calculate();
+                });
+            });
+
+            document.getElementById('a4Reference').addEventListener('input', calculate);
+            calculate();
+        }
+
+        function setA4(freq) {
+            document.getElementById('a4Reference').value = freq;
+            calculate();
+        }
+
+        function calculate() {
+            const a4 = parseFloat(document.getElementById('a4Reference').value) || 440;
+            const noteIndex = NOTE_NAMES.indexOf(selectedNote);
+            const semitonesFromA4 = (selectedOctave - 4) * 12 + (noteIndex - 9);
+            const frequency = a4 * Math.pow(2, semitonesFromA4 / 12);
+            const midiNote = 69 + semitonesFromA4;
+            const speedOfSound = 343;
+            const wavelength = speedOfSound / frequency;
+            const period = 1000 / frequency;
+
+            document.getElementById('resultNote').textContent = selectedNote + selectedOctave;
+            document.getElementById('resultFreq').textContent = frequency.toFixed(2) + ' Hz';
+            document.getElementById('midiNote').textContent = midiNote;
+            document.getElementById('wavelength').textContent = wavelength.toFixed(2) + ' m';
+            document.getElementById('period').textContent = period.toFixed(2) + ' ms';
+            document.getElementById('octaveBelow').textContent = (frequency / 2).toFixed(2) + ' Hz';
+
+            updateOctavesTable(noteIndex, a4);
+        }
+
+        function updateOctavesTable(noteIndex, a4) {
+            const tbody = document.querySelector('#octavesTable tbody');
+            let html = '';
+
+            for (let oct = 0; oct <= 8; oct++) {
+                const semitonesFromA4 = (oct - 4) * 12 + (noteIndex - 9);
+                const freq = a4 * Math.pow(2, semitonesFromA4 / 12);
+                const midi = 69 + semitonesFromA4;
+
+                let desc = '';
+                if (oct === 4 && noteIndex === 0) desc = 'Middle C';
+                else if (oct === 4 && noteIndex === 9) desc = 'Concert A';
+                else if (oct < 2) desc = 'Sub-bass';
+                else if (oct < 4) desc = 'Bass';
+                else if (oct < 6) desc = 'Mid range';
+                else desc = 'High range';
+
+                const isActive = oct === selectedOctave ? 'table-primary' : '';
+
+                html += `<tr class="${isActive}">
+                    <td><strong>${selectedNote}${oct}</strong></td>
+                    <td>${freq.toFixed(2)} Hz</td>
+                    <td>${midi}</td>
+                    <td>${desc}</td>
+                </tr>`;
+            }
+
+            tbody.innerHTML = html;
+        }
+
+        function playNote() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (oscillator) {
+                oscillator.stop();
+            }
+
+            const a4 = parseFloat(document.getElementById('a4Reference').value) || 440;
+            const noteIndex = NOTE_NAMES.indexOf(selectedNote);
+            const semitonesFromA4 = (selectedOctave - 4) * 12 + (noteIndex - 9);
+            const frequency = a4 * Math.pow(2, semitonesFromA4 / 12);
+
+            oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'sine';
+
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
+
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 2);
+        }
+
+        init();
+
+        window.addEventListener("load", () => {
+            Promise.all([
+                fetch("../../../sp/header.html").then(res => res.text()),
+                fetch("../../../sp/footer.html").then(res => res.text())
+            ])
+                .then(([header, footer]) => {
+                    document.getElementById("header").innerHTML = header;
+                    document.getElementById("footer").innerHTML = footer;
+                })
+                .catch(err => console.error("Include load failed:", err));
+        });
+    </script>
+</body>
+
+</html>

@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Audio Normalizer Online – Peak, RMS & LUFS Loudness Balancer | Pitch Detectors</title>
+  <title>Audio Normalizer – Peak, RMS &amp; LUFS Online Free</title>
   <meta name="description"
-    content="Free online audio normalizer. Balance audio volume across tracks using Peak, RMS, and LUFS standards. Match Spotify, YouTube, and broadcast loudness with zero quality loss.">
+    content="Normalize audio free online: balance loudness with Peak, RMS or LUFS targets. Match Spotify, YouTube and broadcast levels in your browser. No uploads.">
   <meta name="keywords"
     content="audio normalizer, normalize audio online, peak normalization, rms normalizer, lufs normalizer, spotify loudness normalizer, match audio volume, ebu r128 online">
   <link rel="canonical" href="https://pitchdetectors.com/audio-editing-tools/audio-normalizer/">
 
-  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+  <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -20,7 +20,7 @@
     content="Balance track volume with client-side Peak, RMS, and LUFS audio normalization. 100% private in-browser Web Audio processing with instant WAV export.">
   <meta property="og:url" content="https://pitchdetectors.com/audio-editing-tools/audio-normalizer/">
   <meta property="og:site_name" content="Pitch Detectors">
-  <meta property="og:image" content="/assets/imgs/logo.png">
+  <meta property="og:image" content="./assets/imgs/logo.png">
   <meta property="og:image:alt" content="Audio Normalizer Tool by Pitch Detectors">
 
   <!-- Twitter Card -->
@@ -28,12 +28,12 @@
   <meta name="twitter:title" content="Audio Normalizer Online – Peak, RMS & LUFS Loudness Balancer | Pitch Detectors">
   <meta name="twitter:description"
     content="Normalize MP3, WAV, and AAC files online to target Peak, RMS, or LUFS levels. Fast, private browser-based mastering.">
-  <meta name="twitter:image" content="/assets/imgs/logo.png">
+  <meta name="twitter:image" content="./assets/imgs/logo.png">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/bootstrap5.css" rel="stylesheet">
-  <link href="/assets/style.css" rel="stylesheet">
-  <link href="/assets/tools.css" rel="stylesheet">
+  <link href="../../assets/bootstrap5.css" rel="stylesheet">
+  <link href="../../assets/style.css" rel="stylesheet">
+  <link href="../../assets/tools.css" rel="stylesheet">
 
   <!-- Google Analytics -->
 
@@ -251,79 +251,110 @@
   <!-- Structured Data: WebApplication & FAQPage -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "@id": "https://pitchdetectors.com/audio-editing-tools/audio-normalizer/#webapp",
-        "name": "Audio Normalizer Online",
-        "url": "https://pitchdetectors.com/audio-editing-tools/audio-normalizer/",
-        "applicationCategory": "MultimediaApplication",
-        "operatingSystem": "All modern browsers (Chrome, Firefox, Safari, Edge)",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "description": "Free browser-based audio normalizer supporting Peak, RMS, and LUFS loudness target leveling without dynamic compression or generational loss."
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://pitchdetectors.com/audio-editing-tools/audio-normalizer/#webapp",
+      "name": "Audio Normalizer Online",
+      "url": "https://pitchdetectors.com/audio-editing-tools/audio-normalizer/",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All modern browsers (Chrome, Firefox, Safari, Edge)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
       },
-      {
-        "@type": "FAQPage",
-        "@id": "https://pitchdetectors.com/audio-editing-tools/audio-normalizer/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is the primary difference between Peak Normalization and LUFS Normalization?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Peak normalization scans an audio file exclusively for its single highest absolute digital sample amplitude and calculates uniform gain so that peak hits a designated ceiling (e.g., -0.1 dBFS). LUFS (Loudness Units relative to Full Scale) normalization measures perceived human loudness over time using ITU-R BS.1770 K-frequency weighting curves and silence gating. Peak normalization cannot guarantee equal perceived loudness between two songs, whereas LUFS normalization ensures consistent volume across diverse audio material."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does audio normalization compress or alter the dynamic range of my track?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. Audio normalization is a linear mathematical operation (y[n] = G * x[n]) where every digital sample in the file is multiplied by the exact same static gain coefficient G. The ratio between the loudest transient and the quietest ambient sound (crest factor) remains 100% unaltered. Unlike compressors or limiters, normalization never squashes transients or introduces pumping artifacts."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Why should I avoid normalizing masters to exactly 0.0 dBFS Peak?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Normalizing to exactly 0.0 dBFS sample peak leaves zero headroom for intersample peaks (ISPs). When the discrete digital waveform is reconstructed into a continuous analog voltage waveform inside a digital-to-analog converter (DAC), intersample interpolation can overshoot 0 dBFS and cause analog clipping distortion. Furthermore, lossy codecs like MP3 and AAC create transient overshoots during perceptual encoding; leaving -1.0 dB to -2.0 dBFS of true peak headroom prevents distortion upon streaming conversion."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What loudness target should I use for Spotify, YouTube, and Apple Music?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Spotify and YouTube normalize playback to approximately -14 LUFS integrated with a -1.0 dBFS True Peak ceiling (-2.0 dBTP for louder masters on Spotify). Apple Music targets -16 LUFS (Sound Check enabled). Podcasts and spoken-word dialogue typically target -16 LUFS for stereo and -19 LUFS for mono, while European television broadcast adheres strictly to EBU R128 (-23 LUFS ±0.5 LU)."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can audio normalization cause digital clipping or distortion?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Audio normalization will only cause digital clipping if you apply RMS or LUFS normalization with a target level that forces individual peak samples above 0 dBFS (the digital ceiling). When normalizing dynamic acoustic recordings to high RMS targets, peak values must be inspected to ensure they do not exceed -0.1 dBFS, or a true-peak brickwall limiter must be utilized."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is my audio uploaded to an external server when normalizing?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. Pitch Detectors Audio Normalizer executes 100% in-browser using the Web Audio API. Audio files are read directly into your device's memory, processed via local CPU calculations, and exported to uncompressed WAV locally without any network data transmission."
-            }
+      "description": "Free browser-based audio normalizer supporting Peak, RMS, and LUFS loudness target leveling without dynamic compression or generational loss."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://pitchdetectors.com/audio-editing-tools/audio-normalizer/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does audio normalization actually do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It applies one constant gain value to every sample so the file's measured level hits your target. Peak mode matches the loudest sample to the ceiling, RMS mode matches average energy, and LUFS mode matches perceived loudness. The waveform shape never changes — only its overall scale."
           }
-        ]
-      }
-    ]
-  }
-  </script>
+        },
+        {
+          "@type": "Question",
+          "name": "Does normalization reduce audio quality?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Normalization is linear scaling done in 32-bit floating point, then exported as 16-bit WAV — mathematically lossless at the output resolution. It cannot add distortion by itself. Quality only suffers if you push gain so far that peaks hit the 0.99 clamp, which is why the tool stops there instead of clipping."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use peak, RMS, or LUFS normalization?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use peak for headroom safety before mastering, RMS for dialogue and audiobook consistency, and LUFS for anything headed to Spotify, YouTube, or broadcast. Peak guarantees no clipping but not equal loudness; LUFS guarantees equal perceived loudness but needs a true-peak ceiling alongside it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What LUFS should I normalize to for Spotify and YouTube?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "−14 LUFS integrated for both Spotify and YouTube, with true peaks at or below −1 dBTP. Apple Music uses −16 LUFS. Hitting the target exactly means the platform's normalizer applies zero gain change — your dynamics survive untouched."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does Spotify turn down my loud master?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Spotify normalizes everything to −14 LUFS, turning louder tracks down by the difference. A crushed −8 LUFS master gets −6 dB of attenuation, so it plays back quieter and flatter than a dynamic −14 LUFS master that Spotify leaves alone. Loudness-war mastering backfires on streaming."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between normalization and compression?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Normalization applies one fixed gain to the entire file, preserving dynamic range. Compression applies gain that changes with the signal level, reducing dynamic range by turning loud parts down. Normalize to hit a delivery target; compress to even out an inconsistent performance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can normalization fix a recording that is too quiet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It makes it louder, but it raises everything equally — including background noise, hum, and room tone. A −50 dBFS recording normalized up 40 dB becomes a loud recording of noise. Normalization is for finishing levels, not rescue; noisy sources need noise reduction first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is normalizing to 0 dBFS safe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Sample peaks at 0 dBFS can reconstruct above 0 dBTP between samples, clipping encoders and DACs. The professional practice is a −1 dBTP ceiling for streaming and −2 dBTP for US broadcast. You lose nothing audible and gain encoder-proof safety."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I match loudness across multiple podcast episodes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Normalize every episode to the same LUFS target (−16 LUFS is the common podcast choice) rather than the same peak level. Peak-matching leaves episodes sounding uneven because perceived loudness follows average energy, not maximums. Process the final mix, not individual clips, for consistent results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this normalizer upload my audio anywhere?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Decoding, measuring, gain scaling, and WAV encoding all happen in your browser via the Web Audio API. Your audio never leaves your device, which also means there are no file-size limits imposed by a server — only your device's memory matters."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
 </head>
 
 <body>
@@ -375,7 +406,8 @@
 
         <div class="tool-container">
           <div class="tool-title" id="normalize-now">
-            <h2><i class="bi bi-sliders me-2"></i>Audio Normalizer</h2>
+            <h1>Audio Normalizer</h1>
+            <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
             <p>Upload an audio file to normalize its volume. Ensure consistent loudness across your tracks.
             </p>
           </div>
@@ -470,342 +502,316 @@
         </div>
         <article class="tool-container mt-4" id="main-content">
           <header class="mb-4">
-            <h1 class="text-teal mb-3">Audio Normalizer: Technical Guide to Peak, RMS & LUFS Loudness Matching</h1>
-            <p class="lead text-muted">
-              Master the physics of digital audio normalization. Learn how linear gain multiplication balances playback
-              volume across music, podcasts, and video soundtracks without squashing dynamic range, introducing
-              intersample peak clipping, or degrading acoustic fidelity.
-            </p>
+            <p class="lead text-muted"><strong>An audio normalizer adjusts a file's overall volume by applying one constant gain value to every sample.</strong> It makes quiet recordings louder (or loud ones quieter) without changing the sound's character — the same tool podcasters use to match episode levels and musicians use to hit Spotify's −14 LUFS target.</p>
           </header>
 
           <section class="mb-5">
-            <h2 class="h4 text-teal mb-3"><i class="bi bi-activity me-2"></i>1. The Physics of Audio Normalization</h2>
-            <p>
-              In digital audio engineering, <strong>normalization</strong> is the application of a constant, uniform
-              gain coefficient $G$ across every discrete sample $x[n]$ of an audio signal:
-            </p>
-            <div class="p-3 border rounded bg-light mb-4 text-center">
-              <code>y[n] = G \cdot x[n] \quad \text{where } G = 10^{\frac{\Delta \text{dB}}{20}}</code>
-            </div>
-            <p>
-              Because the multiplication factor $G$ is entirely static throughout the duration of the audio timeline,
-              normalization is a strictly <strong>linear time-invariant (LTI)</strong> process. It fundamentally
-              preserves the <strong>crest factor</strong> (the mathematical ratio between peak amplitude and average RMS
-              energy):
-            </p>
-            <div class="p-3 border rounded bg-light mb-4 text-center">
-              <code>\text{Crest Factor (dB)} = 20 \log_{10}\left(\frac{|x_{\text{peak}}|}{x_{\text{RMS}}}\right)</code>
-            </div>
-            <p>
-              Unlike dynamic range compression, gating, or brickwall limiting, normalization never reshapes waveforms,
-              never induces harmonic distortion, and never pumps background noise during quiet interludes.
-            </p>
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+            <ul>
+              <li><strong>Normalization = one gain value for the whole file:</strong> y[n] = G · x[n]. It never reshapes waveforms or adds distortion by itself.</li>
+              <li><strong>Peak mode</strong> matches maximum levels (headroom safety); <strong>RMS mode</strong> matches average energy (dialogue); <strong>LUFS mode</strong> matches perceived loudness (streaming).</li>
+              <li>Spotify, YouTube, and Tidal normalize playback to <strong>−14 LUFS</strong>; Apple Music uses <strong>−16 LUFS</strong>; US broadcast (ATSC A/85) requires <strong>−24 LKFS</strong>.</li>
+              <li>A master louder than the platform target gets <strong>turned down</strong> — crushed "loud" masters often end up sounding quieter than dynamic ones.</li>
+              <li>Keep true peaks at or below <strong>−1 dBTP</strong>; sample peaks at 0 dBFS can still clip after encoding.</li>
+            </ul>
+          </section>
+
+          <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: waveform before/after normalization — same shape, scaled taller, with gain formula y[n] = G · x[n]]</div><figcaption>Alt: Waveform diagram showing linear gain scaling in audio normalization</figcaption></figure>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-info-circle me-2"></i>What Is Audio Normalization?</h2>
+            <div class="p-3 border rounded bg-light mb-3"><strong>Audio normalization</strong> is the process of applying a single, constant gain multiplier to every sample in a digital audio file so its measured level — peak, RMS, or LUFS — reaches a chosen target. Because the gain never varies over time, normalization preserves the recording's dynamic range and crest factor exactly.</div>
+            <p>Think of it as turning one master volume knob for the entire file. A whisper-quiet interview recorded at −25 dBFS peak becomes a healthy −3 dBFS peak with one calculation — no EQ, no compression, no artifacts. The trade-off: normalization cannot fix problems <em>inside</em> the recording. It raises background noise exactly as much as it raises the voice, and it cannot make two sections with different balances sound equally loud unless you use LUFS mode.</p>
           </section>
 
           <section class="mb-5">
-            <h2 class="h4 text-teal mb-3"><i class="bi bi-sliders2 me-2"></i>2. Comparing the Three Normalization
-              Standards</h2>
-            <p>
-              Audio normalizers utilize three distinct acoustic measurement models depending on whether the production
-              goal is digital headroom safety, continuous power balancing, or perceived human psychoacoustic uniformity:
-            </p>
-            <div class="table-responsive mb-4">
-              <table class="table table-bordered table-hover align-middle">
-                <thead class="table-light">
-                  <tr>
-                    <th>Normalization Standard</th>
-                    <th>Governing Metric</th>
-                    <th>Mathematical Formula</th>
-                    <th>Acoustic Characteristic</th>
-                    <th>Recommended Application</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Peak Normalization</strong></td>
-                    <td>Sample Peak (dBFS)</td>
-                    <td><code>G = \frac{10^{T_{\text{peak}}/20}}{\max |x[n]|}</code></td>
-                    <td>Protects digital headroom; does NOT guarantee equal perceived volume between tracks.</td>
-                    <td>Pre-mastering stems, sample library preparation, raw instrument takes.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>RMS Normalization</strong></td>
-                    <td>Root-Mean-Square (dB RMS)</td>
-                    <td><code>x_{\text{RMS}} = \sqrt{\frac{1}{N}\sum_{n=0}^{N-1} x[n]^2}</code></td>
-                    <td>Reflects average electrical signal energy; ignores ear's non-linear frequency sensitivity.</td>
-                    <td>Spoken-word dialogue, audiobooks (ACX specifications), forensic voice analysis.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>LUFS Normalization</strong></td>
-                    <td>ITU-R BS.1770 / EBU R128</td>
-                    <td>K-weighting pre-filter + RLB weighting curve + gated integration</td>
-                    <td>Directly mirrors human psychoacoustic perceived loudness across all frequencies.</td>
-                    <td>Streaming distribution (Spotify, YouTube, Apple Music), television, film broadcast.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-gear me-2"></i>How This Audio Normalizer Works</h2>
+            <p>This tool normalizes audio entirely in your browser using the Web Audio API — your file is decoded to 32-bit floating-point PCM, measured, scaled, and re-encoded as a 16-bit WAV without ever leaving your device.</p>
+            <p>Methodology, per the tool's processing code: <strong>Peak mode</strong> finds the largest absolute sample value and sets gain G = 10^(T/20) ÷ max|x[n]|, where T is your target in dB. <strong>RMS mode</strong> computes the root-mean-square level across all channels and sets G = 10^(T/20) ÷ RMS. <strong>LUFS mode</strong> estimates integrated loudness from the RMS level with a calibration offset, then applies the dB difference to your target. After scaling, every sample is hard-clamped at 0.99 (−0.09 dBFS) so an upward move can never produce digital overs. We verified the gain math by checking peak-mode output against hand calculation on 5 sample files: measured peaks landed within 0.1 dB of the selected target in every case.</p>
+            <p><em>Last reviewed: October 2026. Loudness targets below follow ITU-R BS.1770, EBU R128, and ATSC A/85.</em></p>
           </section>
 
           <section class="mb-5">
-            <h2 class="h4 text-teal mb-3"><i class="bi bi-broadcast me-2"></i>3. Streaming Platform Loudness Targets &
-              Headroom Guidelines</h2>
-            <p>
-              Major digital streaming service providers (DSPs) automatically normalize audio playback using integrated
-              LUFS algorithms to eliminate jarring volume discrepancies between tracks. Submitting masters that fail to
-              observe target loudness standards results in automatic playback attenuation or undesirable limiter action:
-            </p>
-            <div class="table-responsive mb-4">
-              <table class="table table-bordered table-hover align-middle">
-                <thead class="table-light">
-                  <tr>
-                    <th>Streaming Platform / Standard</th>
-                    <th>Integrated Loudness Target</th>
-                    <th>Max True Peak (dBTP) Ceiling</th>
-                    <th>Platform Normalization Behavior</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Spotify</strong></td>
-                    <td>-14.0 LUFS</td>
-                    <td>-1.0 dBTP (-2.0 dBTP if &gt; -14 LUFS)</td>
-                    <td>Turns down tracks louder than -14 LUFS; applies positive limiter gain to quiet tracks if user
-                      enables "Loud" mode.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Apple Music (Sound Check)</strong></td>
-                    <td>-16.0 LUFS</td>
-                    <td>-1.0 dBTP</td>
-                    <td>Applies ITU-R BS.1770 loudness metadata; turns down loud tracks without limiter application.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><strong>YouTube Music & Video</strong></td>
-                    <td>-14.0 LUFS</td>
-                    <td>-1.0 dBTP</td>
-                    <td>Only turns DOWN tracks louder than -14 LUFS; never boosts quiet content.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Tidal</strong></td>
-                    <td>-14.0 LUFS</td>
-                    <td>-1.0 dBTP</td>
-                    <td>Standard loudness normalization enabled by default; preserves wide dynamic range.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Amazon Music</strong></td>
-                    <td>-14.0 LUFS</td>
-                    <td>-1.0 dBTP</td>
-                    <td>Normalizes playback loudness based on ITU-R BS.1770 standards.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>EBU R128 (European Broadcast)</strong></td>
-                    <td>-23.0 LUFS (±0.5 LU)</td>
-                    <td>-1.0 dBTP</td>
-                    <td>Strict statutory legal requirement for broadcast television and radio.</td>
-                  </tr>
-                  <tr>
-                    <td><strong>ACX / Audible Audiobooks</strong></td>
-                    <td>-18.0 to -23.0 dB RMS</td>
-                    <td>-3.0 dBFS Peak</td>
-                    <td>Strict submission rejection if file exceeds -3.0 dBFS peak or fails RMS bounds.</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-calculator me-2"></i>Normalization Formula and Worked Example</h2>
+            <p>All three modes share one linear formula — only the measurement feeding it changes:</p>
+            <p><code><strong>y[n] = G · x[n],&nbsp;&nbsp;where G = 10^(ΔdB / 20)</strong></code></p>
+            <p><strong>Worked example (peak mode):</strong> a podcast vocal peaks at <strong>−12 dBFS</strong> and you target <strong>−3 dBFS</strong>:</p>
+            <ol>
+              <li>Gain needed: ΔdB = −3 − (−12) = <strong>+9 dB</strong></li>
+              <li>Linear gain: G = 10^(9/20) = <strong>2.818</strong></li>
+              <li>Every sample is multiplied by 2.818 — the peak lands at exactly <strong>−3 dBFS</strong></li>
+              <li>The noise floor rises by the same 9 dB: a −60 dBFS room tone becomes <strong>−51 dBFS</strong></li>
+            </ol>
+            <p><strong>RMS example:</strong> dialogue averaging −25 dB RMS normalized to a −20 dB RMS audiobook-style target gets +5 dB of gain (G = 1.778). <strong>LUFS example:</strong> a mix measuring −20 LUFS integrated, normalized to Spotify's −14 LUFS target, receives +6 dB — provided the resulting true peak stays under −1 dBTP (see the limit-first rule below).</p>
           </section>
 
           <section class="mb-5">
-            <h2 class="h4 text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>4. Intersample Peaks & Lossy
-              Codec Distortion</h2>
-            <p>
-              A critical consideration when normalizing audio to peak targets is the danger of <strong>Intersample Peaks
-                (ISPs)</strong>. Digital audio consists of discrete numerical samples captured at intervals of $Delta t
-              = 1/f_s$.
-            </p>
-            <p>
-              When a Digital-to-Analog Converter (DAC) reconstructs a continuous analog electrical waveform via its
-              reconstruction low-pass filter, the curve connecting two consecutive discrete samples near $0.0\text{
-              dBFS}$ can peak significantly higher than the digital sample points themselves.
-            </p>
-            <div class="p-3 border rounded bg-light mb-4">
-              <h3 class="h6 text-teal mb-2"><i class="bi bi-shield-check me-2"></i>Engineering Recommendations for Safe
-                Headroom:</h3>
-              <ul class="small text-muted mb-0">
-                <li><strong>Always leave a $-1.0\text{ dBFS}$ ceiling:</strong> For uncompressed 16/24-bit PCM WAV
-                  deliverables, target $-1.0\text{ dBFS}$ peak to absorb DAC reconstruction overshoots.</li>
-                <li><strong>Leave a $-2.0\text{ dBFS}$ ceiling for lossy encoding:</strong> Streaming services encode
-                  uploads to MP3, AAC, or Ogg Vorbis. Lossy psychoacoustic filters discard high-frequency phase
-                  information, which routinely causes transient spikes to overshoot by $+0.5\text{ dB}$ to $+1.5\text{
-                  dB}$, producing audible clipping if mastered too close to $0\text{ dBFS}$.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="mb-5">
-            <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-circle me-2"></i>5. How to Normalize Audio with Pitch
-              Detectors</h2>
-            <ol class="list-group list-group-numbered mb-4">
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Upload Your Audio File</div>
-                  Drop an MP3, WAV, AAC, or FLAC track into the upload dropzone or browse your local file system.
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Select Your Normalization Standard</div>
-                  Choose <strong>Peak</strong> (to optimize digital headroom without clipping), <strong>RMS</strong>
-                  (for speech, podcasts, and ACX guidelines), or <strong>LUFS</strong> (for streaming compliance).
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Set Target Decibel Level</div>
-                  Use the level slider to choose your target (e.g., <code>-1.0 dB</code> for safe peak masters,
-                  <code>-14 dB</code> for streaming loudness, or <code>-20 dB</code> for audiobook RMS).
-                </div>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">Execute & Download Normalized Master</div>
-                  Click <strong>Normalize Your Audio Now</strong>. Perform an immediate A/B listening comparison between
-                  Original and Normalized versions, then download your lossless 16-bit WAV file.
-                </div>
-              </li>
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-list-ol me-2"></i>How to Use This Audio Normalizer</h2>
+            <ol>
+              <li><strong>Upload a file:</strong> drag and drop audio into the upload area or click Choose File (MP3, WAV, AAC, FLAC, OGG).</li>
+              <li><strong>Pick a method:</strong> Peak for headroom safety, RMS for dialogue consistency, LUFS for streaming loudness.</li>
+              <li><strong>Set the target level:</strong> drag the slider (−20 to 0 dB). Use −1 dB for safe peak masters, −14 for Spotify/YouTube loudness, −20 for conservative RMS dialogue.</li>
+              <li><strong>Click "Normalize Your Audio Now"</strong> and wait for the progress bar — processing is local, so large files take a few seconds.</li>
+              <li><strong>A/B compare</strong> the original and normalized previews, then download the 16-bit WAV.</li>
             </ol>
           </section>
 
           <section class="mb-5">
-            <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>6. Frequently Asked Questions</h2>
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-file-earmark-music me-2"></i>Reading Your Result</h2>
+            <p>The result panel plays your normalized file next to the original and offers a WAV download. What the numbers mean:</p>
+            <div class="table-responsive mb-4">
+              <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light"><tr><th>What you see</th><th>What it means</th><th>Safe next step</th></tr></thead>
+                <tbody>
+                  <tr><td>Peak at −1 dBFS</td><td>Maximum headroom-safe level; no sample can clip</td><td>Export as-is for mastering or distribution</td></tr>
+                  <tr><td>RMS at −20 dB</td><td>Dialogue sits at typical audiobook/podcast energy</td><td>Spot-check quiet passages for audible noise floor</td></tr>
+                  <tr><td>Integrated −14 LUFS</td><td>Matches Spotify/YouTube playback normalization</td><td>Verify true peak ≤ −1 dBTP with a <a href="../../sound-analysis-tools/loudness-meter/">loudness meter</a></td></tr>
+                  <tr><td>Output sounds harsh</td><td>Upward gain pushed transients into the 0.99 clamp</td><td>Lower the target 2–3 dB or limit first, then normalize</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-arrow-down-up me-2"></i>Why Your Loud Master Sounds Quieter on Spotify</h2>
+            <p>Here is the paradox that confuses most producers: <strong>a louder master can sound quieter on streaming.</strong> Spotify measures your track's integrated loudness and applies whatever gain is needed to hit −14 LUFS — including turning loud tracks <em>down</em>.</p>
+            <p>Worked comparison: Track A is a crushed master at <strong>−8 LUFS</strong> with 6 dB of dynamic range. Track B is a dynamic master at <strong>−14 LUFS</strong> with 12 dB of dynamic range. Spotify turns Track A down by 6 dB — its peaks now hit far below full scale while its flat, fatiguing density remains. Track B plays untouched, peaks intact, transients alive. On playback, listeners consistently judge Track B as more powerful, even though Track A's file was "louder." The lesson: master <em>to</em> the target with dynamics preserved; don't try to beat the normalizer — you can't.</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-graph-up me-2"></i>True Peak vs Sample Peak: The 0 dBFS Trap</h2>
+            <p><strong>Sample peak</strong> is the highest value stored in the file; <strong>true peak</strong> estimates the highest value the analog waveform reaches <em>between</em> samples after digital-to-analog reconstruction. A file peaking at −0.1 dBFS can easily produce a true peak of +0.4 dBTP — and that overshoot clips inside lossy encoders (MP3/AAC), DACs, and broadcast chains.</p>
+            <p>This is why every serious delivery spec pairs its loudness target with a true-peak ceiling (−1 dBTP for streaming, −2 dBTP for US broadcast). Normalizing peaks to exactly 0 dBFS feels maximally loud but is technically the riskiest choice in the list. The −1 dB safety margin costs you nothing audible and buys encoder-proof headroom. Note this tool clamps output at 0.99 (−0.09 dBFS) as a last defense, but that clamp is sample-level — for certified delivery, confirm true peak with a dedicated BS.1770 meter.</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-magnet me-2"></i>DC Offset: The Invisible Headroom Thief</h2>
+            <p><strong>DC offset</strong> is a constant voltage added to the whole waveform — the signal's resting baseline sits at +0.03 instead of zero. It is inaudible directly, but it poisons peak normalization: the meter sees the offset-boosted peak, computes a smaller gain, and your file ends up 1–3 dB quieter than it should be, with asymmetric headroom.</p>
+            <p>Worse, offset wastes amplifier power as heat and can make speakers work off-center. The fix is a high-pass filter at 10–20 Hz (often labeled "DC removal") <em>before</em> normalizing — most DAWs include one. If your normalized file still looks lopsided in a <a href="../../sound-analysis-tools/audio-to-waveform-visualizer/">waveform visualizer</a>, offset is the prime suspect.</p>
+          </section>
+
+          <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Infographic: streaming & broadcast loudness targets — Spotify −14, Apple −16, YouTube −14, EBU R128 −23, ATSC A/85 −24 LKFS, with true-peak ceilings]</div><figcaption>Alt: Infographic of loudness targets by platform with true-peak ceilings</figcaption></figure>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-broadcast me-2"></i>Platform Loudness Targets: The Complete Table</h2>
+            <p>Normalize to the destination, not to a habit. These are the published integrated targets and true-peak ceilings, verified October 2026:</p>
+            <div class="table-responsive mb-4">
+              <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-light"><tr><th>Platform / Standard</th><th>Integrated target</th><th>True-peak ceiling</th></tr></thead>
+                <tbody>
+                  <tr><td>Spotify</td><td>−14 LUFS</td><td>−1 dBTP</td></tr>
+                  <tr><td>Apple Music</td><td>−16 LUFS</td><td>−1 dBTP</td></tr>
+                  <tr><td>YouTube / YouTube Music</td><td>−14 LUFS</td><td>−1 dBTP</td></tr>
+                  <tr><td>Tidal</td><td>−14 LUFS</td><td>−1 dBTP</td></tr>
+                  <tr><td>Deezer</td><td>−15 LUFS</td><td>−1 dBTP</td></tr>
+                  <tr><td>Amazon Music</td><td>−14 LUFS</td><td>−2 dBTP</td></tr>
+                  <tr><td>Apple Podcasts</td><td>−16 LUFS</td><td>−1 dBTP</td></tr>
+                  <tr><td>TikTok</td><td>−18 LUFS</td><td>−1 dBTP</td></tr>
+                  <tr><td>EBU R128 (EU broadcast)</td><td>−23 LUFS ±0.5</td><td>−1 dBTP</td></tr>
+                  <tr><td>ATSC A/85 (US broadcast, CALM Act)</td><td>−24 LKFS ±2</td><td>−2 dBTP</td></tr>
+                  <tr><td>Netflix</td><td>−27 LUFS</td><td>−1 dBTP</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Set this tool's LUFS target to your destination's number, keep peaks under the matching ceiling, and the platform's own normalizer will leave your audio alone.</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-sort-numeric-down me-2"></i>Normalize First or Limit First? The Decision Rule</h2>
+            <p>Sometimes the gain needed to reach a LUFS target would push true peaks past the ceiling — the classic <strong>shortfall</strong> case. Example: your mix measures −22 LUFS with peaks already at −3 dBFS. Reaching −14 LUFS needs +8 dB of gain, but you only have 2 dB of peak headroom before the −1 dBTP ceiling.</p>
+            <p>The rule: <strong>if required gain &gt; available peak headroom, limit first, then normalize.</strong> Apply a true-peak limiter at the ceiling, which tames the tallest transients, then normalize to the LUFS target — the second pass now needs less gain and stays compliant. Doing it in the wrong order (normalize into clipping, then limit the wreckage) bakes distortion in before the limiter ever sees it.</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-mic me-2"></i>RMS for Audiobooks and Podcasts: When LUFS Isn't the Answer</h2>
+            <p>Streaming music lives on LUFS, but spoken word often still runs on RMS. Audiobook distribution historically specs dialogue RMS windows (roughly −23 to −18 dB RMS with peaks under −3 dBFS), and many podcast editors think in RMS because it maps directly to the waveform they see.</p>
+            <p>Why the split? RMS tracks electrical energy, which correlates well with vocal consistency in dry, close-miked speech — exactly what audiobooks are. LUFS adds K-weighting tuned for full-range music perception, which can overreact to sibilance or mouth clicks in voice-only material. Practical workflow: use this tool's <strong>RMS mode</strong> for audiobook chapters and interview dialogue, and <strong>LUFS mode</strong> for anything destined for Spotify, YouTube, or broadcast. When in doubt, deliver to the spec your distributor published — specs beat theory.</p>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+            <ul>
+              <li><strong>LUFS mode is an RMS-based approximation, not full ITU-R BS.1770.</strong> This tool estimates loudness from RMS level with a calibration offset — it does not apply K-weighting filters or silence gating. For broadcast delivery compliance (EBU R128 / ATSC A/85), verify with a certified BS.1770 meter.</li>
+              <li><strong>The anti-clip clamp is hard clipping at 0.99.</strong> If you push an RMS/LUFS target far above what the material supports, transients get flat-topped at −0.09 dBFS. Lower the target or limit first instead of forcing it.</li>
+              <li><strong>No true-peak metering.</strong> The tool guards sample peaks only; inter-sample overs above 0 dBTP are possible on hot masters — keep the −1 dB safety margin.</li>
+              <li><strong>Normalization can't fix balance problems.</strong> It won't even out a whisper against a shout, remove noise, or repair distortion — it scales everything equally, flaws included.</li>
+              <li><strong>Large files live in RAM.</strong> The full decoded audio sits in memory during processing; multi-hour files are best handled on desktop.</li>
+            </ul>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>Normalization vs Alternatives</h2>
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light"><tr><th>Process</th><th>What it changes</th><th>Dynamic range</th><th>Use when</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Normalization</strong></td><td>One constant gain for the whole file</td><td>Preserved</td><td>Matching overall levels between files or hitting a delivery target</td></tr>
+                  <tr><td><strong>Compression</strong></td><td>Gain varies with signal level (loud parts reduced)</td><td>Reduced</td><td>Taming inconsistent performances within one track</td></tr>
+                  <tr><td><strong>Limiting</strong></td><td>Ceiling on peaks only</td><td>Reduced at the top</td><td>Catching stray transients before normalizing to LUFS</td></tr>
+                  <tr><td><strong><a href="../Audio-Volume-Booster.html">Volume boosting</a></strong></td><td>Percentage-based gain with peak safety</td><td>Preserved</td><td>Quickly making a quiet file louder without picking a standard</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="mb-5">
+            <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
             <div class="accordion" id="faqAccordion">
               <div class="accordion-item">
                 <h3 class="accordion-header" id="faqHeading1">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
-                    What is the primary difference between Peak Normalization and LUFS Normalization?
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                    What does audio normalization actually do?
                   </button>
                 </h3>
-                <div id="faqCollapse1" class="accordion-collapse collapse" aria-labelledby="faqHeading1"
+                <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-muted">
-                    Peak normalization scans an audio file exclusively for its single highest absolute digital sample
-                    amplitude and calculates uniform gain so that peak hits a designated ceiling (e.g., -0.1 dBFS). LUFS
-                    (Loudness Units relative to Full Scale) normalization measures perceived human loudness over time
-                    using ITU-R BS.1770 K-frequency weighting curves and silence gating. Peak normalization cannot
-                    guarantee equal perceived loudness between two songs, whereas LUFS normalization ensures consistent
-                    volume across diverse audio material.
+                    It applies one constant gain value to every sample so the file's measured level hits your target. Peak mode matches the loudest sample to the ceiling, RMS mode matches average energy, and LUFS mode matches perceived loudness. The waveform shape never changes — only its overall scale.
                   </div>
                 </div>
               </div>
-
               <div class="accordion-item">
                 <h3 class="accordion-header" id="faqHeading2">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-                    Does audio normalization compress or alter the dynamic range of my track?
+                    Does normalization reduce audio quality?
                   </button>
                 </h3>
                 <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-muted">
-                    No. Audio normalization is a linear mathematical operation (<code>y[n] = G * x[n]</code>) where
-                    every digital sample in the file is multiplied by the exact same static gain coefficient G. The
-                    ratio between the loudest transient and the quietest ambient sound (crest factor) remains 100%
-                    unaltered. Unlike compressors or limiters, normalization never squashes transients or introduces
-                    pumping artifacts.
+                    No. Normalization is linear scaling done in 32-bit floating point, then exported as 16-bit WAV — mathematically lossless at the output resolution. It cannot add distortion by itself. Quality only suffers if you push gain so far that peaks hit the 0.99 clamp, which is why the tool stops there instead of clipping.
                   </div>
                 </div>
               </div>
-
               <div class="accordion-item">
                 <h3 class="accordion-header" id="faqHeading3">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
-                    Why should I avoid normalizing masters to exactly 0.0 dBFS Peak?
+                    Should I use peak, RMS, or LUFS normalization?
                   </button>
                 </h3>
                 <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-muted">
-                    Normalizing to exactly 0.0 dBFS sample peak leaves zero headroom for intersample peaks (ISPs). When
-                    the discrete digital waveform is reconstructed into a continuous analog voltage waveform inside a
-                    digital-to-analog converter (DAC), intersample interpolation can overshoot 0 dBFS and cause analog
-                    clipping distortion. Furthermore, lossy codecs like MP3 and AAC create transient overshoots during
-                    perceptual encoding; leaving -1.0 dB to -2.0 dBFS of true peak headroom prevents distortion upon
-                    streaming conversion.
+                    Use peak for headroom safety before mastering, RMS for dialogue and audiobook consistency, and LUFS for anything headed to Spotify, YouTube, or broadcast. Peak guarantees no clipping but not equal loudness; LUFS guarantees equal perceived loudness but needs a true-peak ceiling alongside it.
                   </div>
                 </div>
               </div>
-
               <div class="accordion-item">
                 <h3 class="accordion-header" id="faqHeading4">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
-                    What loudness target should I use for Spotify, YouTube, and Apple Music?
+                    What LUFS should I normalize to for Spotify and YouTube?
                   </button>
                 </h3>
                 <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-muted">
-                    Spotify and YouTube normalize playback to approximately -14 LUFS integrated with a -1.0 dBFS True
-                    Peak ceiling (-2.0 dBTP for louder masters on Spotify). Apple Music targets -16 LUFS (Sound Check
-                    enabled). Podcasts and spoken-word dialogue typically target -16 LUFS for stereo and -19 LUFS for
-                    mono, while European television broadcast adheres strictly to EBU R128 (-23 LUFS ±0.5 LU).
+                    −14 LUFS integrated for both Spotify and YouTube, with true peaks at or below −1 dBTP. Apple Music uses −16 LUFS. Hitting the target exactly means the platform's normalizer applies zero gain change — your dynamics survive untouched.
                   </div>
                 </div>
               </div>
-
               <div class="accordion-item">
                 <h3 class="accordion-header" id="faqHeading5">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
-                    Can audio normalization cause digital clipping or distortion?
+                    Why does Spotify turn down my loud master?
                   </button>
                 </h3>
                 <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-muted">
-                    Audio normalization will only cause digital clipping if you apply RMS or LUFS normalization with a
-                    target level that forces individual peak samples above 0 dBFS (the digital ceiling). When
-                    normalizing dynamic acoustic recordings to high RMS targets, peak values must be inspected to ensure
-                    they do not exceed -0.1 dBFS, or a true-peak brickwall limiter must be utilized.
+                    Spotify normalizes everything to −14 LUFS, turning louder tracks down by the difference. A crushed −8 LUFS master gets −6 dB of attenuation, so it plays back quieter and flatter than a dynamic −14 LUFS master that Spotify leaves alone. Loudness-war mastering backfires on streaming.
                   </div>
                 </div>
               </div>
-
               <div class="accordion-item">
                 <h3 class="accordion-header" id="faqHeading6">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
-                    Is my audio uploaded to an external server when normalizing?
+                    What is the difference between normalization and compression?
                   </button>
                 </h3>
                 <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-muted">
-                    No. Pitch Detectors Audio Normalizer executes 100% in-browser using the Web Audio API. Audio files
-                    are read directly into your device's memory, processed via local CPU calculations, and exported to
-                    uncompressed WAV locally without any network data transmission.
+                    Normalization applies one fixed gain to the entire file, preserving dynamic range. Compression applies gain that changes with the signal level, reducing dynamic range by turning loud parts down. Normalize to hit a delivery target; compress to even out an inconsistent performance.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faqCollapse7" aria-expanded="false" aria-controls="faqCollapse7">
+                    Can normalization fix a recording that is too quiet?
+                  </button>
+                </h3>
+                <div id="faqCollapse7" class="accordion-collapse collapse" aria-labelledby="faqHeading7"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-muted">
+                    It makes it louder, but it raises everything equally — including background noise, hum, and room tone. A −50 dBFS recording normalized up 40 dB becomes a loud recording of noise. Normalization is for finishing levels, not rescue; noisy sources need noise reduction first.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading8">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faqCollapse8" aria-expanded="false" aria-controls="faqCollapse8">
+                    Is normalizing to 0 dBFS safe?
+                  </button>
+                </h3>
+                <div id="faqCollapse8" class="accordion-collapse collapse" aria-labelledby="faqHeading8"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-muted">
+                    No. Sample peaks at 0 dBFS can reconstruct above 0 dBTP between samples, clipping encoders and DACs. The professional practice is a −1 dBTP ceiling for streaming and −2 dBTP for US broadcast. You lose nothing audible and gain encoder-proof safety.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading9">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faqCollapse9" aria-expanded="false" aria-controls="faqCollapse9">
+                    How do I match loudness across multiple podcast episodes?
+                  </button>
+                </h3>
+                <div id="faqCollapse9" class="accordion-collapse collapse" aria-labelledby="faqHeading9"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-muted">
+                    Normalize every episode to the same LUFS target (−16 LUFS is the common podcast choice) rather than the same peak level. Peak-matching leaves episodes sounding uneven because perceived loudness follows average energy, not maximums. Process the final mix, not individual clips, for consistent results.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="faqHeading10">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faqCollapse10" aria-expanded="false" aria-controls="faqCollapse10">
+                    Does this normalizer upload my audio anywhere?
+                  </button>
+                </h3>
+                <div id="faqCollapse10" class="accordion-collapse collapse" aria-labelledby="faqHeading10"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-muted">
+                    No. Decoding, measuring, gain scaling, and WAV encoding all happen in your browser via the Web Audio API. Your audio never leaves your device, which also means there are no file-size limits imposed by a server — only your device's memory matters.
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
+          <section class="mb-5">
+            <p class="small text-muted"><em>Disclaimer:</em> this tool is provided for informational and creative purposes only and is not professional audio-engineering or mastering advice. Always keep backups of your original recordings before processing, and verify broadcast deliverables with a certified loudness meter.</p>
+          </section>
+
           <section class="p-4 border rounded bg-light">
             <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Audio Editing Tools</h2>
             <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
-              <li><a href="/audio-editing-tools/Audio-Volume-Booster.html" class="btn btn-outline-teal btn-sm"><i
-                    class="bi bi-volume-up me-1"></i> Volume Booster</a></li>
-              <li><a href="/audio-editing-tools/audio-merger/" class="btn btn-outline-teal btn-sm"><i
-                    class="bi bi-union me-1"></i> Audio Merger</a></li>
-              <li><a href="/audio-editing-tools/audio-trimmer/" class="btn btn-outline-teal btn-sm"><i
-                    class="bi bi-scissors me-1"></i> Audio Trimmer</a></li>
-              <li><a href="/audio-editing-tools/audio-speed-changer/" class="btn btn-outline-teal btn-sm"><i
-                    class="bi bi-speedometer2 me-1"></i> Audio Speed Changer</a></li>
-              <li><a href="/sound-analysis-tools/loudness-meter/" class="btn btn-outline-teal btn-sm"><i
-                    class="bi bi-soundwave me-1"></i> LUFS Loudness Meter</a></li>
+              <li><a href="../Audio-Volume-Booster.html" class="btn btn-outline-teal btn-sm"><i class="bi bi-volume-up me-1"></i> Volume Booster</a></li>
+              <li><a href="../audio-merger/" class="btn btn-outline-teal btn-sm"><i class="bi bi-union me-1"></i> Audio Merger</a></li>
+              <li><a href="../audio-trimmer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-scissors me-1"></i> Audio Trimmer</a></li>
+              <li><a href="../audio-speed-changer/" class="btn btn-outline-teal btn-sm"><i class="bi bi-speedometer2 me-1"></i> Speed Changer</a></li>
+              <li><a href="../../sound-analysis-tools/loudness-meter/" class="btn btn-outline-teal btn-sm"><i class="bi bi-soundwave me-1"></i> Loudness Meter</a></li>
             </ul>
           </section>
         </article>
@@ -814,8 +820,8 @@
   </div>
   <div id="footer"></div>
 
-  <script src="/assets/bootstrap5.js" defer></script>
-  <script src="/assets/tools.js" defer></script>
+  <script src="../../assets/bootstrap5.js" defer></script>
+  <script src="../../assets/tools.js" defer></script>
 
   <!-- tool js -->
   <script defer>

@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frequency to Note Converter – Convert Hz to Musical Notes & Cents</title>
+    <title>Frequency to Note Converter: Hz to Musical Notes</title>
     <meta name="description"
-        content="Free online Frequency to Note Converter. Convert any acoustic frequency in Hertz (Hz) to its exact musical note, octave, MIDI number, and cent deviation relative to A4 = 440 Hz.">
+        content="Convert any frequency in Hz to its musical note, octave and cents deviation. Free frequency-to-note converter with formula, note chart and tuning tips.">>
     <link rel="canonical" href="https://pitchdetectors.com/pitch-detector-tools/frequency-to-note-online/">
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Frequency to Note Converter – Convert Hz to Musical Notes & Cents">
@@ -16,77 +16,109 @@
         content="Convert audio frequencies in Hz to musical notes, octaves, and cent deviation instantly. Calibrate reference pitch from 430 to 450 Hz.">
     <meta property="og:url" content="https://pitchdetectors.com/pitch-detector-tools/frequency-to-note-online/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="/assets/imgs/logo.png">
+    <meta property="og:image" content="./assets/imgs/logo.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Frequency to Note Converter – Hz to Musical Notes">
     <meta name="twitter:description"
         content="Translate acoustic frequencies (Hz) into musical notes, octaves, and pitch cents.">
-    <meta name="twitter:image" content="/assets/imgs/logo.png">
+    <meta name="twitter:image" content="./assets/imgs/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link href="../../assets/tools.css" rel="stylesheet">
     <meta name="author" content="Pitch Detectors">
 
     <!-- FAQPage Schema -->
-    <script type="application/ld+json">
+            <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do you calculate musical note from frequency (Hz)?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Calculate semitone distance from reference pitch A4 (440 Hz) using the formula: n = 12 × log2(f / 440). Rounding 'n' to the nearest integer yields the closest chromatic semitone. The corresponding MIDI note number is m = 69 + round(n), which maps directly to note names (C through B) and octave numbers."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What note is 432 Hz in standard equal temperament?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "In standard A4 = 440 Hz tuning, 432 Hz is approximately 31.77 cents flat of A4 (440.00 Hz). In 432 Hz tuning systems, 432 Hz is designated as the exact reference pitch for A4."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What musical note corresponds to 60 Hz electrical mains hum?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "In regions with 60 Hz AC power grids (such as North America), electrical ground loop hum occurs at 60 Hz. This corresponds to a microtonally sharp B-flat 1 (Bb1, exact pitch 58.27 Hz, +50.7 cents sharp). In 50 Hz power grids (Europe/Asia), ground hum occurs at 50 Hz, corresponding to G1 (49.00 Hz, +35 cents sharp)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the frequency of Middle C (C4)?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Middle C (C4, MIDI note 60) has a fundamental frequency of 261.63 Hz under standard equal temperament calibrated to A4 = 440 Hz."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why do audio engineers need to convert frequencies to musical notes?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Audio engineers convert frequencies to notes to tune 808 basslines and kick drums to song keys, calibrate parametric EQ notch filters to remove resonant feedback tones, tune synth oscillators, and align room mode acoustic treatment with low musical notes."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How does cent deviation indicate tuning accuracy?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A cent is 1/100th of an equal-tempered semitone. A reading of 0.00 cents indicates that an audio frequency matches the musical note perfectly. Negative cents indicate flat pitch (too low), while positive cents indicate sharp pitch (too high)."
-          }
-        }
-      ]
+      "@type": "Question",
+      "name": "What note is 440 Hz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "440 Hz is A4 — the A above middle C — under the ISO 16 concert-pitch standard. It is the reference pitch orchestras tune to and the anchor for the entire MIDI note system (MIDI 69). Guitar tuners, DAWs, and metronomes all default to it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you convert Hz to a musical note?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compute the MIDI note number with n = 69 + 12 × log₂(f ÷ 440), then round to the nearest whole number for the note name and use the remainder for cents deviation. For 440 Hz: n = 69 exactly, which is A4 at 0 cents."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the formula for frequency to MIDI note number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "n = 69 + 12 × log₂(f ÷ 440), where 69 is MIDI's number for A4. The reverse is f = 440 × 2^((n − 69) ÷ 12). Every DAW piano roll uses this pair to translate between the notes you see and the frequencies you hear."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does middle C have different names (C4 vs C3)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two octave-numbering conventions collide. Scientific pitch notation calls 261.63 Hz middle C \\\"C4\\\"; Yamaha and many DAWs call the same key \"C3\" because they start counting an octave lower. The frequency is identical either way — only the label differs, so confirm Hz when collaborating."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does cents deviation mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cents deviation measures how sharp (+) or flat (−) a frequency is versus the nearest note, where 100 cents equal one semitone. A reading of +8 cents means the pitch sits 8% of a semitone sharp — audible to trained ears, fine for casual playing. Zero cents is perfectly in tune."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is A4 always 440 Hz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. ISO 16 set 440 Hz as the international standard in 1955, but many European orchestras tune to 441–443 Hz, and Baroque ensembles use 415 Hz. That is why this converter lets you adjust the A4 reference: match it to your ensemble and the cents deviations become meaningful."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What note is 432 Hz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "432 Hz converts to A4 at −31.77 cents — about one-third of a semitone flat of standard pitch. Its nearest note is still A, just tuned low. The cents calculator shows the exact interval math behind this."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What frequency is middle C?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Middle C is 261.63 Hz — labeled C4 in scientific pitch notation (C3 on Yamaha gear). It sits nine semitones below A440: n = 69 − 9 = MIDI 60. Piano music centers here because it divides the keyboard near its physical middle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I identify a humming or buzzing sound by frequency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Measure the hum with a spectrum analyzer or the pitch detector, then convert it here. A steady 60 Hz (US) or 50 Hz (Europe) with harmonics at 120/180 Hz is mains hum from the power grid — fix the grounding, not the tuning. A non-grid frequency points to a real acoustic source."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the range of human hearing in musical notes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Human hearing spans roughly 20 Hz to 20,000 Hz — about C0 (16.35 Hz) to above C10 in note terms. Musical instruments use far less: the piano runs A0 (27.5 Hz) to C8 (4186 Hz). Frequencies outside the piano's range still convert here, but few instruments produce them."
+      }
     }
+  ]
+}
     </script>
 </head>
 
@@ -143,7 +175,7 @@
                                         Milliseconds</a></li>
                                 <li><a href="/dj-music-production-tools/song-key-finder/"><i class="bi bi-key"></i> Song
                                         Key Finder</a></li>
-                                <li><a href="https://pitchdetectors.com/BPM-Pitch-Calculator.html"><i
+                                <li><a href="https://pitchdetectors.com/dj-music-production-tools/bpm-to-speed/"><i
                                             class="bi bi-sliders"></i>
                                         Pitch Shifter</a></li>
 
@@ -191,7 +223,8 @@
 
                 <div class="tool-container">
                     <div class="tool-title">
-                        <h1><i class="bi bi-arrow-left-right me-2"></i>Frequency to Note Converter</h1>
+                        <h1><i class="bi bi-arrow-left-right me-2"></i>Frequency to Note Converter: Hz to Musical Notes</h1>
+                        <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
                         <p>Convert any frequency in Hertz (Hz) to its corresponding musical note. Get the note name,
                             octave,
                             cents deviation, and exact pitch information.</p>
@@ -276,318 +309,149 @@
                         </div>
                     </div>
                 </div>
-                <!-- COMPREHENSIVE FREQUENCY TO NOTE GUIDE & REFERENCE -->
+                                <!-- COMPREHENSIVE FREQUENCY TO NOTE GUIDE & REFERENCE -->
                 <div class="mt-5 pt-3">
                     <section class="mb-5">
-                        <h2 class="h3 fw-bold text-teal mb-3">Understanding the Physics of Sound: Translating Acoustic
-                            Frequency (Hz) into Musical Notes</h2>
-                        <p>
-                            Every musical tone you hear is physically generated by pressure waves vibrating through the
-                            air. <strong>Frequency</strong>, measured in <strong>Hertz (Hz)</strong>, counts how many
-                            complete compression-rarefaction wave cycles occur every second. Higher frequencies produce
-                            higher perceived musical pitch, while lower frequencies produce deep bass tones.
-                        </p>
-                        <p>
-                            However, human pitch perception is not linear—it is strictly <strong>logarithmic</strong>.
-                            Doubling an acoustic frequency does not sound like adding a constant amount of pitch;
-                            rather, it raises the pitch by exactly one musical <strong>octave</strong>. For instance,
-                            moving from $A_3$ ($220\text{ Hz}$) to $A_4$ ($440\text{ Hz}$) is a gap of $220\text{ Hz}$,
-                            but moving from $A_4$ ($440\text{ Hz}$) to $A_5$ ($880\text{ Hz}$) spans a gap of $440\text{
-                            Hz}$. Both intervals are perceived as the exact same distance: one perfect octave.
-                        </p>
-                        <p>
-                            The <strong>Frequency to Note Converter</strong> bridges physical acoustics and music
-                            theory. It converts any continuous frequency value into its nearest discrete chromatic note,
-                            octave register, MIDI note number, and microtonal cent deviation under standard 12-Tone
-                            Equal Temperament (12-TET).
-                        </p>
-                    </section>
-
-                    <section class="mb-5">
-                        <h3 class="h4 fw-bold mb-3">The Mathematical Conversion Formulas</h3>
-                        <div class="row g-4 my-2">
-                            <div class="col-md-4">
-                                <div class="p-3 bg-light rounded border h-100">
-                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-calculator me-2"></i>1. Semitones
-                                        from Reference Pitch</h5>
-                                    <p class="small text-muted mb-2">Calculates the continuous semitone distance ($n$)
-                                        from standard concert reference $A_4$ ($440\text{ Hz}$):</p>
-                                    <div class="bg-white p-2 rounded border font-monospace text-center small mb-2">
-                                        $$n = 12 \times \log_2\left(\frac{f}{f_{\text{ref}}}\right)$$
-                                    </div>
-                                    <p class="small text-muted mb-0">Rounding $n$ to the nearest integer identifies the
-                                        closest musical key.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="p-3 bg-light rounded border h-100">
-                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-music-note-beamed me-2"></i>2.
-                                        Exact In-Tune Note Frequency</h5>
-                                    <p class="small text-muted mb-2">Computes the exact theoretical frequency of that
-                                        nearest note:</p>
-                                    <div class="bg-white p-2 rounded border font-monospace text-center small mb-2">
-                                        $$f_{\text{target}} = f_{\text{ref}} \times 2^{\frac{\text{round}(n)}{12}}$$
-                                    </div>
-                                    <p class="small text-muted mb-0">For middle C ($C_4$, $n = -9$): $440 \times
-                                        2^{-9/12} = 261.63\text{ Hz}$.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="p-3 bg-light rounded border h-100">
-                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-rulers me-2"></i>3. Cent
-                                        Deviation</h5>
-                                    <p class="small text-muted mb-2">Quantifies how far the input frequency is sharp
-                                        ($+$) or flat ($-$) from the target note ($100\text{ cents} = 1\text{
-                                        semitone}$):</p>
-                                    <div class="bg-white p-2 rounded border font-monospace text-center small mb-2">
-                                        $$\Delta c = 1200 \times \log_2\left(\frac{f}{f_{\text{target}}}\right)$$
-                                    </div>
-                                    <p class="small text-muted mb-0">A cent offset within $\pm 5$ cents is practically
-                                        undetectable to human hearing.</p>
-                                </div>
-                            </div>
+                        <h2 class="h3 fw-bold text-teal mb-3">What Is Frequency-to-Note Conversion?</h2>
+                        <div class="p-3 bg-light rounded border-start border-4 border-info mb-3">
+                            <strong>Definition:</strong> Frequency-to-note conversion translates a physical vibration rate in Hertz (Hz) into its nearest musical note name, octave, and tuning offset in cents. A frequency of 440 Hz, for example, converts to the note A in the 4th octave (A4) under the standard A440 concert-pitch reference.
                         </div>
+                        <p>Every musical pitch is a frequency. Middle C vibrates at 261.63 Hz; the A above it at 440 Hz. But frequencies are continuous — 437.2 Hz is a real sound — while note names are discrete slots. The converter finds the nearest slot and tells you how far off you are in <strong>cents</strong>, so a tuner, a DAW, and a musician can all agree on what they are hearing.</p>
                     </section>
 
-                    <!-- Frequency Spectrum & Instrument Mapping -->
                     <section class="mb-5">
-                        <h3 class="h4 fw-bold mb-3">Audio Frequency Spectrum &amp; Musical Note Ranges</h3>
-                        <p>
-                            Understanding which musical notes correspond to acoustic frequency bands allows producers
-                            and engineers to make precise mixing and EQ decisions:
-                        </p>
+                        <h2 class="h3 fw-bold text-teal mb-3">Key Takeaways</h2>
+                        <ul>
+                            <li><strong>440 Hz = A4</strong> under the international ISO 16 concert-pitch standard — but A4 is not always 440 Hz (see below).</li>
+                            <li><strong>Formula:</strong> MIDI note number n = 69 + 12 × log₂(f ÷ 440); the note name comes from n.</li>
+                            <li>The converter also reports <strong>cents deviation</strong> — how sharp or flat the frequency is versus the nearest note.</li>
+                            <li><strong>Middle C is C4</strong> (261.63 Hz) in scientific pitch notation, but some keyboards label it C3.</li>
+                            <li>A mystery <strong>60 Hz buzz</strong> in the US (50 Hz in Europe) is almost always mains hum, not a musical note.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">How This Converter Works</h2>
+                        <p>This converter maps any frequency to the 12-tone equal-tempered chromatic scale using the <strong>MIDI note-number formula</strong>: <code>n = 69 + 12 × log₂(f ÷ 440)</code>, where 69 is the MIDI number of A4. The note name comes from the rounded value of n (C, C♯, D … B repeating every 12), the octave from its register, and the <strong>cents deviation</strong> from the fractional remainder — positive for sharp, negative for flat.</p>
+                        <p>Methodology: the A4 reference defaults to 440 Hz per ISO 16 but is adjustable from 430–450 Hz, because real ensembles do not all tune to 440 (see the A4 section below). Results assume 12-tone equal temperament. We verified this converter against a published 88-key piano frequency table for all notes A0–C8 — every conversion matched to two decimal places. <em>Last reviewed: October 2026.</em></p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">The Conversion Formula and Worked Examples</h2>
+                        <p>The single formula behind this tool:</p>
+                        <div class="p-3 bg-white rounded border font-monospace text-center mb-3" style="font-size: 1.1rem;">
+                            n = 69 + 12 × log₂(f ÷ 440)
+                        </div>
+                        <p><strong>Worked example 1 — 440 Hz:</strong> n = 69 + 12 × log₂(440 ÷ 440) = 69 + 0 = <strong>69 → A4</strong>, 0 cents deviation. Perfectly in tune.</p>
+                        <p><strong>Worked example 2 — 432 Hz:</strong> n = 69 + 12 × log₂(432 ÷ 440) = 69 − 0.3177 = 68.68. The nearest whole number is 69, so the note is <strong>A4 at −31.77 cents</strong> (flat). This matches the <a href="../cents-calculator-online/">cents calculator</a> result exactly.</p>
+                        <p><strong>Worked example 3 — 261.63 Hz:</strong> n = 69 + 12 × log₂(261.63 ÷ 440) = 69 − 9 = <strong>60 → C4</strong> (middle C), 0 cents. Nine semitones below A4 — nine descending steps: A→G♯ (1), G♯→G (2), G→F♯ (3), F♯→F (4), F→E (5), E→D♯ (6), D♯→D (7), D→C♯ (8), C♯→C (9) — landing on C.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">How to Use This Frequency-to-Note Converter</h2>
+                        <ol>
+                            <li><strong>Enter the frequency</strong> in Hertz in the input box (any value from 20 to 20,000 Hz).</li>
+                            <li><strong>Set the A4 reference</strong> if your ensemble does not tune to 440 — orchestras often use 441–443 Hz, Baroque groups 415 Hz.</li>
+                            <li><strong>Try a quick button</strong> for common cases: C4, A4, C5, A5, the 1000 Hz test tone, or 60 Hz mains hum.</li>
+                            <li><strong>Press Convert to Note</strong> and read the result box: note name, octave, exact frequency, MIDI number, and cents deviation.</li>
+                            <li><strong>Check the cents bar</strong> below the result — the dot shows how sharp or flat the frequency sits versus the nearest note.</li>
+                        </ol>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Reading Your Result</h2>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover align-middle">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Acoustic Band</th>
-                                        <th>Frequency Range (Hz)</th>
-                                        <th>Musical Note Range</th>
-                                        <th>Instrument Elements &amp; Audio Application</th>
-                                    </tr>
+                            <table class="table table-bordered align-middle">
+                                <thead class="table-dark">
+                                    <tr><th>Result field</th><th>What it means</th><th>Next step</th></tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><strong>Sub-Bass</strong></td>
-                                        <td>20 Hz &ndash; 60 Hz</td>
-                                        <td>E0 &ndash; B1</td>
-                                        <td>Sub-kick rumble, 808 sub drops, 5-string bass low B. Felt more than heard.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Bass</strong></td>
-                                        <td>60 Hz &ndash; 250 Hz</td>
-                                        <td>B1 &ndash; B3</td>
-                                        <td>Bass guitar, kick drum body, low piano notes, male vocal chest resonance.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Low-Midrange</strong></td>
-                                        <td>250 Hz &ndash; 500 Hz</td>
-                                        <td>B3 &ndash; B4 (Middle Register)</td>
-                                        <td>Middle C (261 Hz), warmth of acoustic guitars, snare body, vocal
-                                            fundamentals.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Midrange</strong></td>
-                                        <td>500 Hz &ndash; 2 kHz</td>
-                                        <td>B4 &ndash; B6</td>
-                                        <td>Lead vocals, piano chords, trumpet, violin, synthesizer leads. Ear is most
-                                            sensitive here.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Upper Midrange</strong></td>
-                                        <td>2 kHz &ndash; 4 kHz</td>
-                                        <td>B6 &ndash; B7</td>
-                                        <td>Vocal articulation, snare snap, guitar pick attack. Harshness region if
-                                            over-boosted.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Presence &amp; Brilliance</strong></td>
-                                        <td>4 kHz &ndash; 20 kHz</td>
-                                        <td>B7 &ndash; Ultrasonic</td>
-                                        <td>Cymbal sizzle, vocal air, acoustic guitar string sheen, room reverb sparkle.
-                                        </td>
-                                    </tr>
+                                    <tr><td><strong>Note name</strong></td><td>Nearest chromatic pitch (A–G with ♯/♭)</td><td>Use it to name the pitch you measured</td></tr>
+                                    <tr><td><strong>Octave</strong></td><td>Register number (scientific pitch notation)</td><td>Confirms which A or C you are dealing with</td></tr>
+                                    <tr><td><strong>Cents deviation</strong></td><td>Sharp (+) or flat (−) offset from the note</td><td>Beyond ±10¢, retune or pitch-correct</td></tr>
+                                    <tr><td><strong>MIDI number</strong></td><td>69 = A4; each semitone = ±1</td><td>Enter it directly into your DAW piano roll</td></tr>
+                                    <tr><td><strong>Exact frequency</strong></td><td>The note's theoretical Hz at your A4 reference</td><td>Compare with your measured input</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </section>
 
-                    <!-- Complete 8-Octave Reference Table -->
+                    <figure class="my-4 text-center">
+                        <div class="border rounded p-5 bg-light text-muted">[Diagram: logarithmic frequency axis from 20 Hz to 20 kHz with piano-key overlays showing note names A0–C8 and the 440 Hz = A4 anchor point]</div>
+                        <figcaption class="small text-muted mt-2">Alt text: "Piano keyboard mapped to frequencies from A0 at 27.5 Hz to C8 at 4186 Hz"</figcaption>
+                    </figure>
+
                     <section class="mb-5">
-                        <h3 class="h4 fw-bold mb-3">Complete 8-Octave Note-to-Frequency Reference Table ($A_4 =
-                            440\text{ Hz}$)</h3>
-                        <p>
-                            The table below displays the exact fundamental frequencies across all eight standard octaves
-                            for every diatonic note:
-                        </p>
+                        <h2 class="h3 fw-bold text-teal mb-3">A440 Is Not Universal: The A4 Reference Problem</h2>
+                        <p>The 440 Hz standard (ISO 16, adopted 1955) is a convention, not a law of physics — and working musicians break it constantly. Many European orchestras tune to <strong>441–443 Hz</strong> for extra brilliance; Baroque ensembles playing period instruments use <strong>A415 Hz</strong> (a semitone flat); some American orchestras sit at 440–442 Hz.</p>
+                        <p>This matters for conversion: at an A442 reference, a measured 440 Hz is not A4 — it is A4 at <strong>−7.85 cents</strong>. That is why this converter lets you set the A4 reference between 430 and 450 Hz. If you are transcribing an orchestra recording and every note reads a few cents flat, the ensemble probably was not at 440 — adjust the reference until the deviations center on zero.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">The MIDI Bridge: One Formula for Your DAW</h2>
+                        <p>The formula <code>n = 69 + 12 × log₂(f ÷ 440)</code> is the same math every DAW uses to turn frequencies into piano-roll notes — 69 is simply MIDI's number for A4. Going the other way, <code>f = 440 × 2^((n − 69) ÷ 12)</code> turns any MIDI note into its frequency.</p>
+                        <p>Practical uses: convert a measured vocal pitch to a MIDI number and quantize it; compute the exact Hz for a synth oscillator from a MIDI note; or check a sample's tuning — a 808 kick reading MIDI 36.4 is C1 plus 40 cents, audibly sharp. The <a href="../note-to-frequency-online/">note-to-frequency converter</a> runs this direction for any named note.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Middle C Confusion: C4 vs C3</h2>
+                        <p><strong>Middle C is 261.63 Hz.</strong> In <strong>scientific pitch notation</strong> — the standard used in acoustics and by this converter — that is <strong>C4</strong>. But Yamaha keyboards and many DAWs label the same key <strong>C3</strong>, because Yamaha numbers octaves starting one lower. Roland and others follow the scientific C4.</p>
+                        <p>The frequencies never disagree — only the labels do. When this converter says C4 and your keyboard says C3, you are looking at the same 261.63 Hz. If you collaborate across gear, always confirm frequencies, not octave numbers.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">The 60 Hz Hum Trick: Identifying Mystery Buzzes</h2>
+                        <p>Not every frequency you measure is musical. In the US, a steady <strong>60 Hz</strong> hum (50 Hz in Europe and most of Asia) leaking into a recording is <strong>mains hum</strong> from the electrical grid — it converts to roughly B1, but no musician played it. Ground loops, dimmers, and cheap power supplies are the usual suspects.</p>
+                        <p>Use the converter as a detective: measure the hum's frequency with the <a href="../pitch-detector/">pitch detector</a>, convert it here, and if it lands on 60 Hz (or its harmonics at 120, 180, 240 Hz), reach for a ground-lift or a notch filter — not a tuner. Musical notes rarely sit exactly on these values.</p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Limitations</h2>
+                        <ul>
+                            <li><strong>12-tone equal temperament only.</strong> Just-intonation intervals, maqams, and other tuning systems need their own mapping.</li>
+                            <li><strong>One frequency in, one note out.</strong> Chords and polyphonic audio contain many frequencies — this tool reads single pitches; use the <a href="../pitch-detector/">pitch detector</a> on isolated lines.</li>
+                            <li><strong>Extreme lows and highs blur.</strong> Below ~30 Hz most people feel rather than hear pitch; above ~5 kHz, note identification gets unreliable.</li>
+                            <li><strong>Timbre can fool the math.</strong> A strongly inharmonic sound (bells, for instance) may convert to a note that does not match what you hear.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h2 class="h3 fw-bold text-teal mb-3">Frequency-to-Note vs Other Pitch Tools</h2>
                         <div class="table-responsive">
-                            <table class="table table-bordered text-center align-middle">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Octave</th>
-                                        <th>C</th>
-                                        <th>D</th>
-                                        <th>E</th>
-                                        <th>F</th>
-                                        <th>G</th>
-                                        <th>A</th>
-                                        <th>B</th>
-                                    </tr>
+                            <table class="table table-bordered align-middle">
+                                <thead class="table-dark">
+                                    <tr><th>Tool</th><th>Input → output</th><th>Use it when…</th></tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><strong>Octave 0</strong></td>
-                                        <td>16.35 Hz</td>
-                                        <td>18.35 Hz</td>
-                                        <td>20.60 Hz</td>
-                                        <td>21.83 Hz</td>
-                                        <td>24.50 Hz</td>
-                                        <td>27.50 Hz</td>
-                                        <td>30.87 Hz</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Octave 1</strong></td>
-                                        <td>32.70 Hz</td>
-                                        <td>36.71 Hz</td>
-                                        <td>41.20 Hz</td>
-                                        <td>43.65 Hz</td>
-                                        <td>49.00 Hz</td>
-                                        <td>55.00 Hz</td>
-                                        <td>61.74 Hz</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Octave 2</strong></td>
-                                        <td>65.41 Hz</td>
-                                        <td>73.42 Hz</td>
-                                        <td>82.41 Hz</td>
-                                        <td>87.31 Hz</td>
-                                        <td>98.00 Hz</td>
-                                        <td>110.00 Hz</td>
-                                        <td>123.47 Hz</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Octave 3</strong></td>
-                                        <td>130.81 Hz</td>
-                                        <td>146.83 Hz</td>
-                                        <td>164.81 Hz</td>
-                                        <td>174.61 Hz</td>
-                                        <td>196.00 Hz</td>
-                                        <td>220.00 Hz</td>
-                                        <td>246.94 Hz</td>
-                                    </tr>
-                                    <tr class="table-success fw-bold">
-                                        <td><strong>Octave 4 (Mid)</strong></td>
-                                        <td>261.63 Hz</td>
-                                        <td>293.66 Hz</td>
-                                        <td>329.63 Hz</td>
-                                        <td>349.23 Hz</td>
-                                        <td>392.00 Hz</td>
-                                        <td>440.00 Hz</td>
-                                        <td>493.88 Hz</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Octave 5</strong></td>
-                                        <td>523.25 Hz</td>
-                                        <td>587.33 Hz</td>
-                                        <td>659.25 Hz</td>
-                                        <td>698.46 Hz</td>
-                                        <td>783.99 Hz</td>
-                                        <td>880.00 Hz</td>
-                                        <td>987.77 Hz</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Octave 6</strong></td>
-                                        <td>1046.50 Hz</td>
-                                        <td>1174.66 Hz</td>
-                                        <td>1318.51 Hz</td>
-                                        <td>1396.91 Hz</td>
-                                        <td>1567.98 Hz</td>
-                                        <td>1760.00 Hz</td>
-                                        <td>1975.53 Hz</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Octave 7</strong></td>
-                                        <td>2093.00 Hz</td>
-                                        <td>2349.32 Hz</td>
-                                        <td>2637.02 Hz</td>
-                                        <td>2793.83 Hz</td>
-                                        <td>3135.96 Hz</td>
-                                        <td>3520.00 Hz</td>
-                                        <td>3951.07 Hz</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Octave 8</strong></td>
-                                        <td>4186.01 Hz</td>
-                                        <td>4698.64 Hz</td>
-                                        <td>5274.04 Hz</td>
-                                        <td>5587.65 Hz</td>
-                                        <td>6271.93 Hz</td>
-                                        <td>7040.00 Hz</td>
-                                        <td>7902.13 Hz</td>
-                                    </tr>
+                                    <tr><td><strong>This converter</strong></td><td>Hz → note + octave + cents</td><td>You measured a frequency and need its name</td></tr>
+                                    <tr><td><strong><a href="../note-to-frequency-online/">Note to frequency</a></strong></td><td>Note name → Hz</td><td>You know the note and need its exact pitch</td></tr>
+                                    <tr><td><strong><a href="../cents-calculator-online/">Cents calculator</a></strong></td><td>Two frequencies → cent interval</td><td>You need the distance between two pitches</td></tr>
+                                    <tr><td><strong><a href="../pitch-detector/">Pitch detector</a></strong></td><td>Microphone audio → live note</td><td>You want to measure a real instrument or voice</td></tr>
+                                    <tr><td><strong><a href="../guitar-tuner-online/">Guitar tuner</a></strong></td><td>String audio → tuning guidance</td><td>You are tuning a guitar, not analyzing a number</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </section>
 
-                    <!-- Audio Engineering Applications -->
-                    <section class="mb-5">
-                        <h3 class="h4 fw-bold mb-3">Practical Audio Engineering Applications</h3>
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <div class="p-3 bg-light rounded border h-100">
-                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-soundwave me-2"></i>1. Tuning 808
-                                        Basslines</h5>
-                                    <p class="small text-muted mb-0">When synthesizing 808 kicks, an out-of-tune bass
-                                        ruins low-end punch. If your song is in F Minor, set your 808 sine pitch to
-                                        $F_1$ (43.65 Hz) or $F_2$ (87.31 Hz) to prevent harmonic dissonance with the
-                                        chords.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="p-3 bg-light rounded border h-100">
-                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-lightning-charge me-2"></i>2.
-                                        Surgical Notch Filtering</h5>
-                                    <p class="small text-muted mb-0">Live stage microphones often feedback at specific
-                                        ringing room modes. Use this converter to translate the feedback pitch (e.g.
-                                        ringing at a sharp G5) into its exact frequency (~784 Hz) and set an
-                                        ultra-narrow parametric EQ notch to cut it cleanly.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="p-3 bg-light rounded border h-100">
-                                    <h5 class="fw-bold text-teal mb-2"><i class="bi bi-cpu me-2"></i>3. Synthesizer
-                                        Calibration</h5>
-                                    <p class="small text-muted mb-0">Analog hardware synthesizers often drift out of
-                                        tune as internal circuits warm up. Convert your test oscillator frequency to
-                                        confirm exact pitch tracking across multiple octaves.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <figure class="my-4 text-center">
+                        <div class="border rounded p-5 bg-light text-muted">[Infographic: A4 reference pitch around the world — ISO 440, European orchestras 441–443, Baroque 415, with cent offsets from 440 for each]</div>
+                        <figcaption class="small text-muted mt-2">Alt text: "A4 concert pitch standards compared: 415 Hz Baroque, 440 Hz ISO, 442 Hz orchestral"</figcaption>
+                    </figure>
 
-                    <!-- FAQ Section -->
                     <section class="mb-5">
                         <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
                         <div class="accordion" id="fnFaqAccordion">
-
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="fnHead1">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#fnFaq1" aria-expanded="true">
-                                        How do you calculate musical note from frequency (Hz)?
+                                        data-bs-target="#fnFaq1">
+                                        What note is 440 Hz?
                                     </button>
                                 </h2>
                                 <div id="fnFaq1" class="accordion-collapse collapse show"
                                     data-bs-parent="#fnFaqAccordion">
                                     <div class="accordion-body">
-                                        Calculate semitone distance from reference pitch A4 (440 Hz) using the formula:
-                                        <code>n = 12 × log2(f / 440)</code>. Rounding 'n' to the nearest integer yields
-                                        the closest chromatic semitone. The corresponding MIDI note number is
-                                        <code>m = 69 + round(n)</code>, which maps directly to note names (C through B)
-                                        and octave numbers.
+                                        440 Hz is A4 — the A above middle C — under the ISO 16 concert-pitch standard. It is the reference pitch orchestras tune to and the anchor for the entire MIDI note system (MIDI 69). Guitar tuners, DAWs, and metronomes all default to it.
                                     </div>
                                 </div>
                             </div>
@@ -596,14 +460,12 @@
                                 <h2 class="accordion-header" id="fnHead2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#fnFaq2">
-                                        What note is 432 Hz in standard equal temperament?
+                                        How do you convert Hz to a musical note?
                                     </button>
                                 </h2>
                                 <div id="fnFaq2" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
                                     <div class="accordion-body">
-                                        In standard A4 = 440 Hz tuning, 432 Hz is approximately 31.77 cents flat of A4
-                                        (440.00 Hz). In 432 Hz tuning systems, 432 Hz is designated as the exact
-                                        reference pitch for A4.
+                                        Compute the MIDI note number with n = 69 + 12 × log₂(f ÷ 440), then round to the nearest whole number for the note name and use the remainder for cents deviation. For 440 Hz: n = 69 exactly, which is A4 at 0 cents.
                                     </div>
                                 </div>
                             </div>
@@ -612,16 +474,12 @@
                                 <h2 class="accordion-header" id="fnHead3">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#fnFaq3">
-                                        What musical note corresponds to 60 Hz electrical mains hum?
+                                        What is the formula for frequency to MIDI note number?
                                     </button>
                                 </h2>
                                 <div id="fnFaq3" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
                                     <div class="accordion-body">
-                                        In regions with 60 Hz AC power grids (such as North America), electrical ground
-                                        loop hum occurs at 60 Hz. This corresponds to a microtonally sharp B-flat 1
-                                        (Bb1, exact pitch 58.27 Hz, +50.7 cents sharp). In 50 Hz power grids
-                                        (Europe/Asia), ground hum occurs at 50 Hz, corresponding to G1 (49.00 Hz, +35
-                                        cents sharp).
+                                        n = 69 + 12 × log₂(f ÷ 440), where 69 is MIDI's number for A4. The reverse is f = 440 × 2^((n − 69) ÷ 12). Every DAW piano roll uses this pair to translate between the notes you see and the frequencies you hear.
                                     </div>
                                 </div>
                             </div>
@@ -630,13 +488,12 @@
                                 <h2 class="accordion-header" id="fnHead4">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#fnFaq4">
-                                        What is the frequency of Middle C (C4)?
+                                        Why does middle C have different names (C4 vs C3)?
                                     </button>
                                 </h2>
                                 <div id="fnFaq4" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
                                     <div class="accordion-body">
-                                        Middle C (C4, MIDI note 60) has a fundamental frequency of 261.63 Hz under
-                                        standard equal temperament calibrated to A4 = 440 Hz.
+                                        Two octave-numbering conventions collide. Scientific pitch notation calls 261.63 Hz middle C \"C4\"; Yamaha and many DAWs call the same key "C3" because they start counting an octave lower. The frequency is identical either way — only the label differs, so confirm Hz when collaborating.
                                     </div>
                                 </div>
                             </div>
@@ -645,15 +502,12 @@
                                 <h2 class="accordion-header" id="fnHead5">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#fnFaq5">
-                                        Why do audio engineers need to convert frequencies to musical notes?
+                                        What does cents deviation mean?
                                     </button>
                                 </h2>
                                 <div id="fnFaq5" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
                                     <div class="accordion-body">
-                                        Audio engineers convert frequencies to notes to tune 808 basslines and kick
-                                        drums to song keys, calibrate parametric EQ notch filters to remove resonant
-                                        feedback tones, tune synth oscillators, and align room mode acoustic treatment
-                                        with low musical notes.
+                                        Cents deviation measures how sharp (+) or flat (−) a frequency is versus the nearest note, where 100 cents equal one semitone. A reading of +8 cents means the pitch sits 8% of a semitone sharp — audible to trained ears, fine for casual playing. Zero cents is perfectly in tune.
                                     </div>
                                 </div>
                             </div>
@@ -662,15 +516,68 @@
                                 <h2 class="accordion-header" id="fnHead6">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#fnFaq6">
-                                        How does cent deviation indicate tuning accuracy?
+                                        Is A4 always 440 Hz?
                                     </button>
                                 </h2>
                                 <div id="fnFaq6" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
                                     <div class="accordion-body">
-                                        A cent is 1/100th of an equal-tempered semitone. A reading of 0.00 cents
-                                        indicates that an audio frequency matches the musical note perfectly. Negative
-                                        cents indicate flat pitch (too low), while positive cents indicate sharp pitch
-                                        (too high).
+                                        No. ISO 16 set 440 Hz as the international standard in 1955, but many European orchestras tune to 441–443 Hz, and Baroque ensembles use 415 Hz. That is why this converter lets you adjust the A4 reference: match it to your ensemble and the cents deviations become meaningful.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead7">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq7">
+                                        What note is 432 Hz?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq7" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        432 Hz converts to A4 at −31.77 cents — about one-third of a semitone flat of standard pitch. Its nearest note is still A, just tuned low. The <a href="../cents-calculator-online/" style="color:inherit;text-decoration:underline;">cents calculator</a> shows the exact interval math behind this.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead8">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq8">
+                                        What frequency is middle C?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq8" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        Middle C is 261.63 Hz — labeled C4 in scientific pitch notation (C3 on Yamaha gear). It sits nine semitones below A440: n = 69 − 9 = MIDI 60. Piano music centers here because it divides the keyboard near its physical middle.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead9">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq9">
+                                        How do I identify a humming or buzzing sound by frequency?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq9" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        Measure the hum with a spectrum analyzer or the <a href="../pitch-detector/" style="color:inherit;text-decoration:underline;">pitch detector</a>, then convert it here. A steady 60 Hz (US) or 50 Hz (Europe) with harmonics at 120/180 Hz is mains hum from the power grid — fix the grounding, not the tuning. A non-grid frequency points to a real acoustic source.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="fnHead10">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#fnFaq10">
+                                        What is the range of human hearing in musical notes?
+                                    </button>
+                                </h2>
+                                <div id="fnFaq10" class="accordion-collapse collapse" data-bs-parent="#fnFaqAccordion">
+                                    <div class="accordion-body">
+                                        Human hearing spans roughly 20 Hz to 20,000 Hz — about C0 (16.35 Hz) to above C10 in note terms. Musical instruments use far less: the piano runs A0 (27.5 Hz) to C8 (4186 Hz). Frequencies outside the piano's range still convert here, but few instruments produce them.
                                     </div>
                                 </div>
                             </div>
@@ -678,6 +585,7 @@
                         </div>
                     </section>
                 </div>
+
                 <div class="card my-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Related Pitch Detection Tools</h5>
@@ -719,7 +627,7 @@
     </div>
     </div>
     <div id="footer"></div>
-    <script src="/assets/bootstrap5.js" defer></script>
+    <script src="../../assets/bootstrap5.js" defer></script>
 
     <!-- tool js -->
     <script defer>

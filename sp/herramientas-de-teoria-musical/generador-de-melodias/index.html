@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de melodías: crea ganchos con secuenciador</title>
+  <meta name="description"
+  content="Crea melodías gratis: secuenciador por pasos con escala, tempo e instrumento. Compón ganchos que siempre están en la tonalidad.">
+  <meta name="keywords"
+    content="melody generator online, step sequencer web audio, melody maker, melodic hook generator, synth sequencer online, scale melody creator, songwriting tools" />
+  <link rel="canonical" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/generador-de-melodias/"
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Generador de melodías: crea ganchos con secuenciador">
+    <meta property="og:description" content="Crea melodías gratis: secuenciador por pasos con escala, tempo e instrumento. Compón ganchos que siempre están en la tonalidad.">
+    <meta property="og:url" content="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/generador-de-melodias/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Generador de melodías: crea ganchos con secuenciador">
+    <meta name="twitter:description" content="Crea melodías gratis: secuenciador por pasos con escala, tempo e instrumento. Compón ganchos que siempre están en la tonalidad."> />
+    <meta property="og:locale" content="es_ES">
+  <link rel="alternate" hreflang="es" href="https://pitchdetectors.com/sp/herramientas-de-teoria-musical/generador-de-melodias/">
+  <link rel="alternate" hreflang="en" href="https://pitchdetectors.com/music-theory-tools/melody-generator/">
+  <link rel="alternate" hreflang="x-default" href="https://pitchdetectors.com/music-theory-tools/melody-generator/">
+  <link rel="icon" href="../../../assets/imgs/logo.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../../assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/style.css">
+  <link href="../../../assets/tools.css" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
+    crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo funciona el generador de melodías?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es un secuenciador por pasos: las columnas son pasos de tiempo y las filas son tonos de la escala elegida. Haz clic en las celdas para colocar notas, ajusta el tempo y el instrumento, y pulsa reproducir: el navegador programa cada nota mediante la API Web Audio y repite el patrón en bucle. Como las filas están fijadas a la escala, cada clic permanece en la tonalidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es un secuenciador por pasos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un compositor basado en cuadrícula donde el tiempo fluye de izquierda a derecha en pasos fijos y el tono va de abajo hacia arriba. Cada celda rellena activa su nota cuando el cabezal de reproducción llega a esa columna. Los secuenciadores por pasos impulsan las cajas de ritmos clásicas y los arpegiadores de sintetizador; este está afinado para escribir melodías."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo escribo una melodía pegadiza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Empieza con el ritmo en un solo tono y luego asigna 3–4 grados de la escala a ese ritmo. Repite un motivo corto, varía su final y mantén el rango dentro de una octava. Lo pegadizo viene de la repetición más una pequeña sorpresa, no de usar muchas notas distintas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué escala debo elegir para mi melodía?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Iguala la tonalidad de tu canción: mayor para pop y dance brillantes, menor natural para temas más oscuros o emotivos, pentatónica para ganchos infalibles (cinco notas, cero decisiones incorrectas). Si tus acordes ya están escritos, usa su tonalidad: la melodía debe vivir en la misma casa armónica."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas notas debe tener un gancho?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Menos de las que crees: los ganchos más icónicos usan 3–4 tonos distintos en 4–8 golpes rítmicos. La magia es la repetición con variación: presenta un motivo, repítelo y luego cambia solo la última nota. Si tu cuadrícula usa los siete grados de la escala por igual, simplifica."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué tempo debe tener mi melodía?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El tempo de tu canción: la melodía debe encajar con la pista. Zonas comunes: 90–100 BPM para hip-hop y R&B, 120–130 para house y pop, más de 140 para electrónica enérgica. Ajusta el deslizador al tempo de tu proyecto en el DAW antes de componer para que el ritmo se traslade directamente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo usar las melodías generadas con fines comerciales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: compusiste cada nota haciendo clic en la cuadrícula, así que la melodía es tu obra original. (Esto difiere de los generadores con IA, donde la autoría puede ser confusa). Los motivos cortos y comunes no son registrables de todos modos, pero tu combinación rítmico-melódica específica es tuya."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo hago que mi melodía suene menos aleatoria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Imponte estructura: limítate a 3 filas de tonos, repite un motivo de 4 pasos dos veces con un final variado y deja al menos una cuarta parte de las celdas vacías como silencios. Lo aleatorio viene de demasiados tonos y de la falta de repetición: elimina ambos y aparece la musicalidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre una melodía y un gancho?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una melodía es la línea musical completa; un gancho es el fragmento corto y repetido diseñado para quedarse grabado, normalmente las 4–8 notas más pegadizas del estribillo. Todo gancho es una melodía, pero no toda melodía es un gancho. Compon ganchos en la cuadrícula y luego expándelos a melodías completas en tu DAW."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo exporto mi melodía a un DAW?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Recrea la cuadrícula de oído en el piano roll de tu DAW: ajusta el mismo tempo y la misma escala, y luego coloca las notas en los pasos correspondientes (16 pasos de la cuadrícula a 120 BPM = un compás de 4/4 de semicorcheas). Graba el audio del navegador como pista de referencia si tu DAW admite loopback, y úsalo como guía mientras programas el MIDI final."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    /* Melody Grid */
+    .melody-grid {
+      display: grid;
+      grid-template-columns: repeat(16, 1fr);
+      grid-auto-rows: 1fr;
+      height: 420px;
+      border: 2px solid var(--border-color, #d4e2ff);
+      border-radius: 8px;
+      background: #f8fafc;
+      overflow: hidden;
+      gap: 0;
+    }
+
+    .melody-cell {
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.12s ease;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .melody-cell:hover {
+      background: rgba(0, 106, 103, 0.1);
+    }
+
+    .melody-cell.active {
+      background: var(--teal, #006a67);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .melody-cell.playhead {
+      outline: 2px solid rgba(0, 106, 103, 0.4);
+      background: rgba(0, 106, 103, 0.18);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    #tempoValue {
+      font-weight: bold;
+      font-size: 16px;
+      margin-left: 8px;
+      color: var(--teal, #006a67);
+    }
+
+    @media (max-width: 768px) {
+      .melody-grid {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-3 col-md-4">
+        <div class="tools-sidebar">
+          <h5 class="mb-3"><i class="bi bi-music-note-beamed"></i> Herramientas musicales</h5>
+          <ul class="sidebar-links">
+            <li><a href="/dj-music-production-tools/song-key-finder/">🎼 Buscador de tonalidad</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main -->
+      <div class="col-lg-9 col-md-8">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/dj-music-production-tools/">Herramientas musicales</a></li>
+            <li class="breadcrumb-item active">Generador de melodías</li>
+          </ol>
+        </nav>
+
+        <div class="tool-container">
+          <div class="tool-title">
+            <h1><i class="bi bi-music-note-list me-2"></i>Generador de melodías</h1>
+            <p class="text-muted small">Última actualización: 12 de octubre de 2026 · Escrito por Pitch Detectors Editorial Team</p>
+            <p>Crea melodías en una cuadrícula por pasos. Haz clic en las celdas para activar notas, ajusta el tempo,
+              elige la escala y el instrumento, y luego pulsa el botón de reproducción.</p>
+          </div>
+
+          <!-- Controls row: scale, instrument, play, tempo -->
+          <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
+            <div>
+              <label class="form-label fw-bold mb-1">Scale</label>
+              <select id="scaleSelect" class="form-select">
+                <option value="chromatic">Chromatic (all semitones)</option>
+                <option value="major" selected>Major</option>
+                <option value="minor">Natural Minor</option>
+                <option value="pentatonic">Major Pentatonic</option>
+                <option value="blues">Blues Scale</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label fw-bold mb-1">Root</label>
+              <select id="rootSelect" class="form-select">
+                <option value="C" selected>C</option>
+                <option value="C#">C# / Db</option>
+                <option value="D">D</option>
+                <option value="D#">D# / Eb</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="F#">F# / Gb</option>
+                <option value="G">G</option>
+                <option value="G#">G# / Ab</option>
+                <option value="A">A</option>
+                <option value="A#">A# / Bb</option>
+                <option value="B">B</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label fw-bold mb-1">Instrument</label>
+              <select id="instrSelect" class="form-select">
+                <option value="sine">Sine (default)</option>
+                <option value="square">Square</option>
+                <option value="triangle">Triangle</option>
+                <option value="sawtooth">Sawtooth</option>
+                <option value="pluck">Pluck (ADSR)</option>
+              </select>
+            </div>
+
+            <div class="ms-auto controls">
+              <button class="btn btn-primary" id="playBtn"><i class="bi bi-play-circle"></i> Play</button>
+              <button class="btn btn-secondary" id="clearBtn"><i class="bi bi-trash"></i> Clear</button>
+
+              <label class="fw-bold ms-3 mb-0">Tempo</label>
+              <input type="range" min="60" max="200" value="120" id="tempoSlider"
+                style="vertical-align: middle;margin-left:6px;">
+              <span id="tempoValue">120 BPM</span>
+            </div>
+          </div>
+
+          <!-- Melody Grid -->
+          <div class="melody-grid" id="melodyGrid" role="grid" aria-label="Melody step grid"></div>
+
+          <!-- Educational & Technical Content -->
+                          <article class="tool-container mt-4">
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-check2-square me-2"></i>Puntos clave</h2>
+                        <ul>
+                            <li><strong>Un generador de melodías es un secuenciador por pasos limitado a una escala:</strong> haz clic en las celdas de la cuadrícula para colocar notas que siempre permanecen en la tonalidad; por diseño, las notas incorrectas son imposibles.</li>
+                            <li><strong>Para principiantes, la restricción supera a la libertad:</strong> limitarse a 7 notas de una escala produce mejores melodías que 88 teclas de piano.</li>
+                            <li>Los ganchos más pegadizos usan <strong>3–4 tonos distintos</strong>: la repetición con pequeñas variaciones es lo que hace memorables las melodías.</li>
+                            <li><strong>Compon el ritmo primero y los tonos después:</strong> marca un ritmo en una nota y luego asígnale grados de la escala.</li>
+                            <li>Exporta tu patrón de oído a tu DAW y desarróllalo con el <a href="../generador-de-progresiones-de-acordes/">generador de progresiones de acordes</a> para la armonía.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-info-circle me-2"></i>¿Qué es un generador de melodías?</h2>
+                        <p><strong>Un generador de melodías es un secuenciador por pasos interactivo que te permite componer melodías haciendo clic en las notas de una cuadrícula.</strong> Cada columna es un paso de tiempo y cada fila es un tono de la escala elegida: haz clic en las celdas para colocar notas, pulsa reproducir y escucha tu melodía en bucle al tempo que elijas con un instrumento sintetizado.</p>
+                        <p>A diferencia de las herramientas de melodías aleatorias, esta es <strong>composicional, no generativa</strong>: cada nota es tu decisión, pero la cuadrícula solo ofrece tonos de la escala, así que nada de lo que hagas clic puede chocar con tu tonalidad. Es un cuaderno de bocetos de melodías que elimina el miedo a las notas incorrectas.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-gear me-2"></i>¿Cómo funciona esta calculadora?</h2>
+                        <p>El widget de arriba es un <strong>secuenciador por pasos en el navegador</strong> que funciona con la API Web Audio. La mecánica exacta:</p>
+                        <ol>
+                            <li><strong>Elige una escala y una tónica:</strong> las filas de la cuadrícula se reasignan a los tonos de la escala seleccionada (p. ej., C mayor: C–D–E–F–G–A–B en dos octavas).</li>
+                            <li><strong>Haz clic en las celdas:</strong> cada celda rellena programa una nota en ese paso; las celdas vacías son silencios. Varias celdas rellenas en una columna suenan como un acorde.</li>
+                            <li><strong>Ajusta el tempo y el instrumento:</strong> el deslizador de tempo (60–200 BPM) define la duración de cada paso; el selector de instrumento cambia el timbre del oscilador.</li>
+                            <li><strong>Pulsa reproducir:</strong> un programador recorre las columnas de izquierda a derecha, activando osciladores de Web Audio en la frecuencia de cada paso, en bucle hasta que lo detengas.</li>
+                        </ol>
+                        <p>Como la cuadrícula solo contiene tonos de la escala, <strong>todo patrón de clics posible es diatónico</strong>: la herramienta restringe el tono para que puedas concentrarte por completo en el ritmo y el contorno.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-calculator me-2"></i>Matemáticas de la melodía y ejemplo resuelto</h2>
+                        <p>Las matemáticas del tiempo detrás de la cuadrícula son una simple división:</p>
+                        <p><code><strong>duración del paso (segundos) = 60 ÷ BPM ÷ pasos por pulso</strong></code></p>
+                        <p><strong>Ejemplo resuelto:</strong> cuadrícula de 16 pasos a 120 BPM con 4 pasos por pulso (semicorcheas).</p>
+                        <ol>
+                            <li>Un pulso: 60 ÷ 120 = <strong>0,5 segundos</strong>.</li>
+                            <li>Un paso: 0,5 ÷ 4 = <strong>0,125 segundos (125 ms)</strong>.</li>
+                            <li>Un bucle completo de 16 pasos: 16 × 0,125 = <strong>2,0 segundos = un compás de 4/4</strong>.</li>
+                            <li>Las frecuencias provienen del temperamento igual: A4 = 440 Hz; cada semitono multiplica por 2<sup>1/12</sup>.</li>
+                        </ol>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-list-ol me-2"></i>Cómo usar esta calculadora</h2>
+                        <ol>
+                            <li><strong>Elige una escala y una tónica:</strong> empieza con mayor para ganchos brillantes o menor natural para los más oscuros.</li>
+                            <li><strong>Ajusta el tempo:</strong> iguala los BPM de tu proyecto (encuéntralos con la <a href="../../../dj-music-production-tools/bpm-tap-tempo/">herramienta de tempo por pulsación</a>).</li>
+                            <li><strong>Haz clic en un ritmo:</strong> rellena primero 4–8 celdas en una fila; el ritmo antes que el tono.</li>
+                            <li><strong>Asigna los tonos:</strong> mueve algunas notas a distintas filas manteniendo el ritmo. Los movimientos pequeños (grados vecinos de la escala) suenan más naturales.</li>
+                            <li><strong>Repite y refina:</strong> pulsa reproducir, escucha en bucle y ajusta una nota a la vez hasta que se te quede en la cabeza.</li>
+                        </ol>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-table me-2"></i>Cómo leer tu resultado: qué hace que un patrón funcione</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>Característica del patrón</th><th>Qué revisar</th><th>Por qué importa</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Número de tonos</td><td>Cuántas filas distintas se usan</td><td>3–4 tonos = memorable; 7 o más = disperso</td></tr>
+                                    <tr><td>Contorno</td><td>La forma: ascendente, descendente, arco o plano</td><td>Los arcos (subir y bajar) suenan más como una canción</td></tr>
+                                    <tr><td>Densidad de silencios</td><td>Celdas vacías entre notas</td><td>Los silencios crean respiro y groove</td></tr>
+                                    <tr><td>Repetición</td><td>¿Se repite un motivo de 2–4 pasos?</td><td>La repetición es lo que hace que un gancho enganche</td></tr>
+                                    <tr><td>Rango</td><td>Fila más alta frente a la más baja</td><td>Una octava o menos se puede cantar</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-bounding-box me-2"></i>Por qué la restricción crea mejores melodías</h2>
+                        <p><strong>Los principiantes escriben mejores melodías con 7 notas permitidas que con 88.</strong> Esta es la paradoja que explota la cuadrícula: la elección ilimitada produce divagación aleatoria, mientras que una restricción de escala te obliga a hacer música con ritmo, repetición y contorno: los verdaderos ingredientes de una melodía memorable. Los improvisadores de jazz practican igual, limitándose a una escala hasta que canta.</p>
+                        <p>Haz el experimento: compone un patrón de 16 pasos usando todas las filas y luego uno usando solo 3 filas. La versión de 3 filas casi siempre sonará más como un gancho «real». La limitación es una técnica de composición, no una rueda de entrenamiento.</p>
+                    </section>
+
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagrama: dos cuadrículas de 16 pasos una junto a otra: un patrón disperso de 7 tonos etiquetado como «errante» frente a un motivo repetitivo y compacto de 3 tonos etiquetado como «gancho»]</div><figcaption class="small text-muted mt-2">Texto alternativo: comparación de dos cuadrículas de secuenciador por pasos que muestra un patrón disperso frente a un motivo de gancho repetitivo y compacto.</figcaption></figure>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-music-note-beamed me-2"></i>La regla del gancho de 3 notas</h2>
+                        <p><strong>Las melodías más memorables de la historia del pop usan sorprendentemente pocos tonos distintos.</strong> Piensa en los ganchos que puedes silbar: la mayoría vive en 3–4 grados de la escala, repetidos con variación rítmica. El cerebro se engancha a conjuntos pequeños de tonos porque puede predecirlos, y la predicción cumplida se siente como algo pegadizo.</p>
+                        <p>Método práctico: rellena tu cuadrícula usando solo la tónica, la tercera y la quinta de tu escala (el 1–3–5 del acorde de tónica). Escribe 8 pasos. Luego permítete <em>un</em> tono fuera de ese grupo como acento. Esa única nota sorpresa contra un núcleo estable de 3 notas es todo el arte de escribir ganchos en miniatura.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-bezier2 me-2"></i>Primero el ritmo, después los tonos</h2>
+                        <p><strong>Los compositores profesionales componen el ritmo antes que el tono.</strong> El groove de una melodía —dónde caen las notas respecto al pulso— determina su sensación mucho más que cuáles son las notas. Un gran ritmo en una sola nota repetida ya suena a música; grandes tonos con un ritmo muerto suenan a ejercicio.</p>
+                        <p>Flujo de trabajo en la cuadrícula: haz clic en 6–8 celdas todas en la <em>misma fila</em> hasta que el ritmo groovee en bucle. Solo entonces empieza a mover notas individuales a nuevas filas. Descubrirás que la melodía casi se escribe sola, porque la parte difícil (el ritmo) ya está resuelta.</p>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-box-arrow-up-right me-2"></i>De la cuadrícula al DAW: cómo terminar tu melodía</h2>
+                        <p><strong>La cuadrícula es un cuaderno de bocetos; tu DAW es el lienzo.</strong> Cuando un patrón suene bien en bucle, recréalo de oído en el piano roll de tu DAW (16 pasos a 120 BPM = un compás; cuéntalo), y luego desarróllalo: añade una segunda frase que responda a la primera, varía el final y armonízalo con acordes del <a href="../generador-de-progresiones-de-acordes/">generador de progresiones de acordes</a>.</p>
+                        <p>Comprueba el conjunto de notas de tu melodía con el <a href="../buscador-de-escalas/">buscador de escalas</a> si planeas cambios de tonalidad, y verifica que cualquier versión cantada quede en un rango cómodo con el <a href="../../../pitch-detector-tools/vocal-range-finder-online/">buscador de rango vocal</a>.</p>
+                    </section>
+
+                    <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Infografía: el flujo de trabajo de 5 pasos: escala → ritmo → tonos → bucle/refinar → DAW, con iconos]</div><figcaption class="small text-muted mt-2">Texto alternativo: infografía del flujo de trabajo de melodía en cinco pasos, desde la selección de la escala hasta la producción en el DAW.</figcaption></figure>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitaciones</h2>
+                        <ul>
+                            <li><strong>Solo diatónico:</strong> los tonos de paso cromáticos y las blue notes no están en la cuadrícula; añádelos en tu DAW.</li>
+                            <li><strong>Resolución de cuadrícula fija:</strong> los tresillos y los ritmos con swing no se pueden representar en una cuadrícula de pasos uniformes.</li>
+                            <li><strong>Vista previa de sintetizador, no audio de producción:</strong> los timbres de Web Audio esbozan la idea; el diseño de sonido final ocurre en tu DAW.</li>
+                            <li><strong>Sin dinámica:</strong> cada paso suena con la misma intensidad; los acentos y el fraseo dependen de ti.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-4">
+                        <h2 class="text-teal mb-3"><i class="bi bi-columns-gap me-2"></i>El generador de melodías frente a las alternativas</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead><tr><th>Método</th><th>Cómo funciona</th><th>Ideal para</th><th>Cuidado con</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Este secuenciador por pasos</td><td>Haz clic en notas en una cuadrícula fijada a la escala</td><td>Principiantes, ganchos rápidos, sin notas incorrectas</td><td>Solo diatónico; cuadrícula fija</td></tr>
+                                    <tr><td>Generadores de melodías con IA</td><td>El modelo compone por ti</td><td>Ideas instantáneas, contra el bloqueo creativo</td><td>Resultado genérico; no lo escribiste tú</td></tr>
+                                    <tr><td>Piano roll (DAW)</td><td>Composición totalmente manual</td><td>Control total, listo para producción</td><td>Página en blanco paralizante para principiantes</td></tr>
+                                    <tr><td>Tararear al micrófono</td><td>Nota de voz + transcripción</td><td>Capturar inspiración en cualquier lugar</td><td>Necesita transcripción para ser útil</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="mb-4">
+                        <p class="small text-muted"><em>Las melodías que compongas con esta herramienta son tu propia obra original. La cuadrícula restringe los tonos a la escala elegida, pero cada decisión rítmica y melódica es tuya.</em></p>
+                    </section>
+
+                    <!-- FAQ Section -->
+                    <section class="mb-4">
+                        <h3 class="h4 fw-bold mb-4">Preguntas frecuentes</h3>
+                        <div class="accordion" id="melodyFaqAccordion">
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol1"
+                                        aria-expanded="true">
+                                        ¿Cómo funciona el generador de melodías?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol1" class="accordion-collapse collapse show" aria-labelledby="mFaqHead1"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Es un secuenciador por pasos: las columnas son pasos de tiempo y las filas son tonos de la escala elegida. Haz clic en las celdas para colocar notas, ajusta el tempo y el instrumento, y pulsa reproducir: el navegador programa cada nota mediante la API Web Audio y repite el patrón en bucle. Como las filas están fijadas a la escala, cada clic permanece en la tonalidad.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol2">
+                                        ¿Qué es un secuenciador por pasos?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol2" class="accordion-collapse collapse" aria-labelledby="mFaqHead2"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Un compositor basado en cuadrícula donde el tiempo fluye de izquierda a derecha en pasos fijos y el tono va de abajo hacia arriba. Cada celda rellena activa su nota cuando el cabezal de reproducción llega a esa columna. Los secuenciadores por pasos impulsan las cajas de ritmos clásicas y los arpegiadores de sintetizador; este está afinado para escribir melodías.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol3">
+                                        ¿Cómo escribo una melodía pegadiza?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol3" class="accordion-collapse collapse" aria-labelledby="mFaqHead3"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Empieza con el ritmo en un solo tono y luego asigna 3–4 grados de la escala a ese ritmo. Repite un motivo corto, varía su final y mantén el rango dentro de una octava. Lo pegadizo viene de la repetición más una pequeña sorpresa, no de usar muchas notas distintas.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol4">
+                                        ¿Qué escala debo elegir para mi melodía?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol4" class="accordion-collapse collapse" aria-labelledby="mFaqHead4"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Iguala la tonalidad de tu canción: mayor para pop y dance brillantes, menor natural para temas más oscuros o emotivos, pentatónica para ganchos infalibles (cinco notas, cero decisiones incorrectas). Si tus acordes ya están escritos, usa su tonalidad: la melodía debe vivir en la misma casa armónica.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol5">
+                                        ¿Cuántas notas debe tener un gancho?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol5" class="accordion-collapse collapse" aria-labelledby="mFaqHead5"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Menos de las que crees: los ganchos más icónicos usan 3–4 tonos distintos en 4–8 golpes rítmicos. La magia es la repetición con variación: presenta un motivo, repítelo y luego cambia solo la última nota. Si tu cuadrícula usa los siete grados de la escala por igual, simplifica.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead6">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol6">
+                                        ¿Qué tempo debe tener mi melodía?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol6" class="accordion-collapse collapse" aria-labelledby="mFaqHead6"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        El tempo de tu canción: la melodía debe encajar con la pista. Zonas comunes: 90–100 BPM para hip-hop y R&B, 120–130 para house y pop, más de 140 para electrónica enérgica. Ajusta el deslizador al tempo de tu proyecto en el DAW antes de componer para que el ritmo se traslade directamente.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead7">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol7">
+                                        ¿Puedo usar las melodías generadas con fines comerciales?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol7" class="accordion-collapse collapse" aria-labelledby="mFaqHead7"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Sí: compusiste cada nota haciendo clic en la cuadrícula, así que la melodía es tu obra original. (Esto difiere de los generadores con IA, donde la autoría puede ser confusa). Los motivos cortos y comunes no son registrables de todos modos, pero tu combinación rítmico-melódica específica es tuya.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead8">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol8">
+                                        ¿Cómo hago que mi melodía suene menos aleatoria?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol8" class="accordion-collapse collapse" aria-labelledby="mFaqHead8"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Imponte estructura: limítate a 3 filas de tonos, repite un motivo de 4 pasos dos veces con un final variado y deja al menos una cuarta parte de las celdas vacías como silencios. Lo aleatorio viene de demasiados tonos y de la falta de repetición: elimina ambos y aparece la musicalidad.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead9">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol9">
+                                        ¿Cuál es la diferencia entre una melodía y un gancho?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol9" class="accordion-collapse collapse" aria-labelledby="mFaqHead9"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Una melodía es la línea musical completa; un gancho es el fragmento corto y repetido diseñado para quedarse grabado, normalmente las 4–8 notas más pegadizas del estribillo. Todo gancho es una melodía, pero no toda melodía es un gancho. Compon ganchos en la cuadrícula y luego expándelos a melodías completas en tu DAW.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="mFaqHead10">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mFaqCol10">
+                                        ¿Cómo exporto mi melodía a un DAW?
+                                    </button>
+                                </h3>
+                                <div id="mFaqCol10" class="accordion-collapse collapse" aria-labelledby="mFaqHead10"
+                                    data-bs-parent="#melodyFaqAccordion">
+                                    <div class="accordion-body">
+                                        Recrea la cuadrícula de oído en el piano roll de tu DAW: ajusta el mismo tempo y la misma escala, y luego coloca las notas en los pasos correspondientes (16 pasos de la cuadrícula a 120 BPM = un compás de 4/4 de semicorcheas). Graba el audio del navegador como pista de referencia si tu DAW admite loopback, y úsalo como guía mientras programas el MIDI final.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </article>
+
+        </div>
+      </div> <!-- /main col -->
+    </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="../../../assets/bootstrap5.js" defer></script>
+  <script src="../../../assets/tools.js" defer></script>
+
+  <!-- tool js -->
+  <script defer>
+    // Grid + playback parameters
+    const colsDefault = 16;
+    const rows = 12; // 12 semitones mapping (one octave)
+    const cols = colsDefault;
+    const grid = document.getElementById("melodyGrid");
+    const tempoSlider = document.getElementById("tempoSlider");
+    const tempoValue = document.getElementById("tempoValue");
+    const playBtn = document.getElementById("playBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const scaleSelect = document.getElementById("scaleSelect");
+    const rootSelect = document.getElementById("rootSelect");
+    const instrSelect = document.getElementById("instrSelect");
+
+    // Build grid cells array
+    let cells = Array.from({ length: rows }).map(() => Array.from({ length: cols }));
+    let isPlaying = false;
+    let currentCol = 0;
+    let stepInterval = null;
+
+    // Create grid DOM
+    grid.style.gridTemplateColumns = `repeat(${cols},1fr)`;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'melody-cell';
+        cell.setAttribute('role', 'gridcell');
+        cell.setAttribute('aria-label', `row ${r + 1} col ${c + 1}`);
+        cell.dataset.row = r;
+        cell.dataset.col = c;
+        cell.addEventListener('click', () => cell.classList.toggle('active'));
+        grid.appendChild(cell);
+        cells[r][c] = cell;
+      }
+    }
+
+    // Web Audio setup
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+    let masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0.7;
+    masterGain.connect(audioCtx.destination);
+
+    // ADSR pluck envelope (for 'pluck' instrument)
+    function playPluck(freq, dur = 0.28) {
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.8, now + 0.005);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start(now);
+      osc.stop(now + dur + 0.02);
+    }
+
+    // play a note with chosen instrument
+    function playNoteAtFreq(freq, duration = 0.22) {
+      const instr = instrSelect.value;
+      if (instr === 'pluck') {
+        playPluck(freq, duration);
+        return;
+      }
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = instr; // sine, square, triangle, sawtooth
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.25, now + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+      osc.connect(gain).connect(masterGain);
+      osc.start(now);
+      osc.stop(now + duration + 0.02);
+    }
+
+    // MIDI to frequency: midi 69 = A4 = 440 Hz
+    function midiToFreq(midi) {
+      return 440 * Math.pow(2, (midi - 69) / 12);
+    }
+
+    // Scale definitions (intervals from root in semitones)
+    const SCALES = {
+      chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      major: [0, 2, 4, 5, 7, 9, 11],
+      minor: [0, 2, 3, 5, 7, 8, 10],
+      pentatonic: [0, 2, 4, 7, 9],
+      blues: [0, 3, 5, 6, 7, 10]
+    };
+
+    // Root to MIDI mapping for row 0 top -> highest note
+    const ROOT_MIDI = { 'C': 60, 'C#': 61, 'D': 62, 'D#': 63, 'E': 64, 'F': 65, 'F#': 66, 'G': 67, 'G#': 68, 'A': 69, 'A#': 70, 'B': 71 };
+
+    // Make a mapping of rows -> midi notes based on selected root & scale
+    function computeRowToMidi() {
+      const scaleName = scaleSelect.value;
+      const root = rootSelect.value;
+      const scaleIntervals = SCALES[scaleName] || SCALES['chromatic'];
+      // We'll produce multiple octaves to fill rows: choose the highest octave so row 0 is the top note
+      // Start from root MIDI at octave 5 (approx); then create an array of available notes and pick last `rows` entries
+      const baseRoot = ROOT_MIDI[root] || 60;
+      // generate several octaves of scale notes around baseRoot
+      let notes = [];
+      for (let octave = -1; octave <= 3; octave++) {
+        scaleIntervals.forEach(i => {
+          notes.push(baseRoot + i + octave * 12);
+        });
+      }
+      // sort ascending, then pick highest `rows` notes
+      notes = Array.from(new Set(notes)).sort((a, b) => a - b);
+      // pick the topmost `rows` notes (highest pitches)
+      const topNotes = notes.slice(-rows);
+      return topNotes; // index 0 -> lowest of selected chunk; but we want row 0 top -> highest pitch
+    }
+
+    // Current mapping
+    let currentRowMidi = computeRowToMidi();
+
+    // Apply mapping to rows (top row -> highest note)
+    function getFreqForRow(row) {
+      // row 0 should be highest pitch in currentRowMidi
+      const midi = currentRowMidi[currentRowMidi.length - 1 - row];
+      return midiToFreq(midi);
+    }
+
+    // Update rows mapping when scale/root changes
+    function remapGridPreserve() {
+      // keep active flags, just recompute row mapping
+      currentRowMidi = computeRowToMidi();
+    }
+
+    scaleSelect.addEventListener('change', () => remapGridPreserve());
+    rootSelect.addEventListener('change', () => remapGridPreserve());
+
+    // Visual playhead highlight/unhighlight
+    function highlightColumn(col) {
+      // clear previous playhead classes
+      grid.querySelectorAll('.melody-cell.playhead').forEach(n => n.classList.remove('playhead'));
+      for (let r = 0; r < rows; r++) {
+        const cell = cells[r][col];
+        cell.classList.add('playhead');
+      }
+    }
+
+    function unhighlightAll() {
+      grid.querySelectorAll('.melody-cell.playhead').forEach(n => n.classList.remove('playhead'));
+    }
+
+    // Playback engine: step sequencer
+    function startPlayback() {
+      if (audioCtx.state === 'suspended') audioCtx.resume(); // resume on user gesture
+      const bpm = parseInt(tempoSlider.value, 10);
+      const msPerBeat = 60000 / bpm; // ms per quarter note
+      // We'll assume 16 steps = 1 bar (4/4), so step duration = msPerBeat / 4
+      const stepMs = msPerBeat / 4;
+      const stepSec = stepMs / 1000;
+      // reset currentCol if needed
+      if (currentCol >= cols) currentCol = 0;
+      highlightColumn(currentCol);
+      stepInterval = setInterval(() => {
+        // play notes in currentCol
+        for (let r = 0; r < rows; r++) {
+          if (cells[r][currentCol].classList.contains('active')) {
+            const freq = getFreqForRow(r);
+            playNoteAtFreq(freq, Math.max(0.12, stepSec * 0.9));
+          }
+        }
+        // advance
+        currentCol = (currentCol + 1) % cols;
+        highlightColumn(currentCol);
+      }, stepMs);
+    }
+
+    function stopPlayback() {
+      clearInterval(stepInterval);
+      unhighlightAll();
+    }
+
+    // Play/Stop button
+    playBtn.addEventListener('click', async function () {
+      // user gesture: ensure audio context resumed
+      if (audioCtx.state === 'suspended') await audioCtx.resume();
+
+      if (!isPlaying) {
+        isPlaying = true;
+        this.innerHTML = '<i class="bi bi-pause-circle"></i> Stop';
+        startPlayback();
+      } else {
+        isPlaying = false;
+        this.innerHTML = '<i class="bi bi-play-circle"></i> Play';
+        stopPlayback();
+      }
+    });
+
+    // Clear button
+    clearBtn.addEventListener('click', () => {
+      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) cells[r][c].classList.remove('active');
+    });
+
+    // Tempo slider
+    tempoSlider.addEventListener('input', (e) => {
+      tempoValue.textContent = `${e.target.value} BPM`;
+      if (isPlaying) {
+        // restart playback with new tempo
+        stopPlayback();
+        startPlayback();
+      }
+    });
+
+    // When instrument changes, no action needed (playNoteAtFreq uses instr value)
+
+    // Initialize mapping once
+    currentRowMidi = computeRowToMidi();
+
+    // Ensure header/footer includes load
+    window.addEventListener("load", () => {
+      fetch("../../../sp/header.html").then(res => res.text()).then(html => document.getElementById("header").innerHTML = html).catch(() => { });
+      fetch("../../../sp/footer.html").then(res => res.text()).then(html => document.getElementById("footer").innerHTML = html).catch(() => { });
+    });
+
+    // Accessibility: allow keyboard toggling of focused cell (optional)
+    grid.addEventListener('keydown', function (e) {
+      const focused = document.activeElement;
+      if (focused && focused.classList && focused.classList.contains('melody-cell')) {
+        if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); focused.classList.toggle('active'); }
+      }
+    });
+
+    // Allow click-and-drag painting
+    let isMouseDown = false;
+    grid.addEventListener('mousedown', () => isMouseDown = true);
+    window.addEventListener('mouseup', () => isMouseDown = false);
+    grid.querySelectorAll('.melody-cell').forEach(cell => {
+      cell.addEventListener('mouseover', (e) => { if (isMouseDown) e.target.classList.toggle('active'); });
+    });
+
+  </script>
+</body>
+
+</html>

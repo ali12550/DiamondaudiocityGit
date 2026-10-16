@@ -4,78 +4,118 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rhythm Pattern Maker – Online Drum Sequencer & Groove Composer | Pitch Detectors</title>
+  <title>Rhythm Pattern Maker: Online Drum Sequencer &amp; Beat Maker</title>
 
   <meta name="description"
-    content="Build, play, and export custom drum loops with our free online rhythm pattern maker. Features 16/32/64 step sequencing, adjustable swing, triplet divisions, and classic kits.">
+    content="Free rhythm pattern maker: program 16-step drum grooves with swing, classic kits and JSON export. Genre blueprints, timing math and DAW workflow included.">
 
   <meta name="keywords"
     content="rhythm pattern maker, drum sequencer online, beat maker, drum machine online, 16 step sequencer, swing groove calculator">
 
-  <link rel="canonical" href="https://pitchdetectors.com/music-theory-tools/rhythm-pattern-maker/">
+  <link rel="canonical" href="https://pitchdetectors.com/music-theory-tools/rhythm-pattern-maker/"
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rhythm Pattern Maker: Online Drum Sequencer &amp; Beat Maker">
+    <meta property="og:description" content="Free rhythm pattern maker: program 16-step drum grooves with swing, classic kits and JSON export. Genre blueprints, timing math and DAW workflow included.">
+    <meta property="og:url" content="https://pitchdetectors.com/music-theory-tools/rhythm-pattern-maker/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Rhythm Pattern Maker: Online Drum Sequencer &amp; Beat Maker">
+    <meta name="twitter:description" content="Free rhythm pattern maker: program 16-step drum grooves with swing, classic kits and JSON export. Genre blueprints, timing math and DAW workflow included.">>
 
-  <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+  <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/bootstrap5.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">
-  <link href="/assets/tools.css" rel="stylesheet">
+  <link href="../../assets/bootstrap5.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link href="../../assets/tools.css" rel="stylesheet">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How does a 16-step drum sequencer divide a musical measure?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "In standard 4/4 time, one measure contains 4 quarter-note beats. A 16-step sequencer subdivides each quarter beat into 4 sixteenth notes (semiquavers), providing 16 individual trigger steps per bar (4 beats × 4 sixteenths). Steps 1, 5, 9, and 13 represent the four quarter-note downbeats."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the mathematical difference between straight timing and swing percentage?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "In straight 50% timing, every eighth or sixteenth note pair divides time equally (50% on-beat, 50% off-beat). Applying swing delays the even-numbered off-beat notes toward the subsequent beat. At 66.7% swing (triplet swing), the first note occupies two-thirds of the beat and the second note occupies one-third, replicating a classic blues shuffle."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the structural difference between a polyrhythm and a polymeter?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A polyrhythm plays two or more conflicting rhythmic subdivisions simultaneously within the exact same duration of time (e.g., 3 against 2, where 3 quarter-note triplets fit into the duration of 2 straight quarter notes). A polymeter features different voices playing in different time signatures with identical note durations, meaning their bar downbeats drift and only realign after the lowest common multiple of measures."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the Tresillo rhythm and why is it foundational in modern music?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The Tresillo is an Afro-Cuban 3:3:2 cross-rhythm within an 8-pulse or 16-pulse framework. Instead of dividing 8 pulses evenly into 4+4 or 2+2+2+2, the accents land on step 1, step 4, and step 7 (3 eighths + 3 eighths + 2 eighths). It is the rhythmic DNA underlying Reggaeton, Dancehall (Dembow), Afrobeats, and modern Pop syncopation."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How can I export my rhythm patterns into my Digital Audio Workstation (DAW)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Use the Export JSON button to save your entire grid matrix, step triggers, BPM, and swing data to your local machine. You can import this JSON back into Pitch Detectors anytime, or replicate the active grid step numbers directly into your DAW drum sequencer (such as Ableton Drum Rack, FL Studio Channel Rack, or Logic Step Sequencer)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is Tone.js utilized for browser-based audio sequencing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Standard browser timers like setTimeout or setInterval suffer from timing jitter caused by screen rendering and CPU throttling. Tone.js connects directly to the Web Audio API Transport clock, scheduling audio buffer playheads ahead of time using hardware clock timestamps for frame-accurate musical playback."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does a 16-step drum sequencer divide a musical measure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In 4/4 time, one measure holds 4 quarter-note beats. A 16-step sequencer splits each beat into 4 sixteenth notes, giving 16 trigger steps per bar. Steps 1, 5, 9, and 13 are the quarter-note downbeats — the pulse everything else hangs on."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "What swing percentage should I use for hip-hop drums?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start at 56–58%, the classic MPC pocket for boom-bap and 90s hip-hop. Laid-back neo-soul grooves sit around 60–62%. If the pattern starts stumbling instead of bouncing, back off 2–3%. Trap and drill usually stay near 0–15% swing and get their feel from triplet hi-hat rolls instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is one step in milliseconds at my BPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide 15,000 by your BPM. At 120 BPM each sixteenth-note step lasts 125 ms; at 128 BPM it's 117.2 ms; at 174 BPM (drum and bass) just 86.2 ms. Knowing the exact step length helps you program fills that land precisely on the bar line."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a polyrhythm and a polymeter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A polyrhythm fits two subdivisions into the same timespan — like 3 hits in the space of 2 beats. A polymeter layers two different bar lengths on the same pulse, so their downbeats drift and realign every lowest-common-multiple of steps. Both create hypnotic tension, but they feel completely different."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get my pattern into Ableton or FL Studio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Click Export JSON to download your pattern as a text file mapping each drum to its active step numbers. In your DAW, set the same BPM and grid length, then enable the matching steps in its drum sequencer. Re-apply your swing percentage on the DAW's groove control and you're done."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does browser audio sometimes lag, and how do I fix it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool schedules hits on the Web Audio clock, so timing stays tight — but Bluetooth headphones and busy CPUs add output latency of 20–100 ms. Switch to wired headphones, close heavy tabs, and on mobile use a browser with Web Audio support (Chrome or Safari) for the best results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the tresillo rhythm and where is it used?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tresillo is a 3+3+2 accent pattern (hits on steps 1, 4, and 7 of an 8-pulse cycle) with Afro-Cuban roots. It's the rhythmic DNA of reggaeton's dembow, dancehall, Afrobeats, and countless pop hits. Program kick on 1, 4, 7, 10, 13 and snare accents on 4, 7, 12 to hear it instantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use 16, 32, or 64 steps for my pattern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use 16 steps for sketching and hypnotic loops, 32 steps when you want a two-bar call-and-response with a fill, and 64 steps for full four-bar phrases with an intro and turnaround. Longer patterns suit choruses and drops; shorter ones suit verses that need to stay out of the vocal's way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the Randomize button actually do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Randomize generates a fresh pattern by randomly toggling steps across the drum voices — a creativity spark, not a finished beat. Treat the result as raw material: keep the 2–3 happy accidents, delete the clutter, and lock the kick and snare to your genre's blueprint. Hit it a few times until something inspires you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I make trap hi-hat rolls with this sequencer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Set the Division to Triplet 16, choose 140 BPM, and fill consecutive hat steps at the end of the bar (steps 13–16) for the classic roll. For pitch-bending 808-style rolls you'd need a DAW, but the rhythmic skeleton of modern trap programs perfectly on this grid."
+      }
+    }
+  ]
+}
   </script>
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
@@ -295,6 +335,7 @@
       <div class="col-lg-9 col-md-8">
         <div class="tool" role="application" aria-label="Rhythm Pattern Maker">
           <h1 class="title">Rhythm Pattern Maker</h1>
+          <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
           <div class="desc">16-step sequencer with swing, BPM, multiple instruments, step preview, randomize,
             export/import.
             Uses Tone.js for accurate timing.</div>
@@ -363,288 +404,189 @@
         <!-- How to Use -->
         <div class="tool-container mt-4">
           <div class="tool-section">
-            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Use the Rhythm Pattern Maker</h2>
+            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>What Is a Rhythm Pattern Maker?</h2>
+            <p><strong>A rhythm pattern maker is an online step sequencer that lets you program drum grooves by toggling steps on a grid.</strong> Each column is a slice of musical time and each row is a drum sound; the pattern loops continuously. This free tool gives you a 16-step grid (expandable to 32 or 64), tempo and swing controls, classic drum kits, and one-click export.</p>
+            <p>The step sequencer is one of the oldest ideas in electronic music: divide a bar into equal steps, decide which steps trigger a sound, and loop it. This tool brings that workflow to your browser with sample-accurate timing.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+            <ul>
+              <li>A <strong>16-step grid = one bar of 16th notes</strong> in 4/4 time; steps 1, 5, 9, and 13 are the quarter-note downbeats.</li>
+              <li>Each step's length in milliseconds is <strong>15,000 ÷ BPM</strong> — at 120 BPM every step lasts exactly 125 ms.</li>
+              <li><strong>Swing delays the off-beat steps</strong>; 54–62% gives the classic MPC hip-hop groove, 66.7% equals a triplet shuffle.</li>
+              <li>Start from <strong>genre blueprints</strong> (four-on-the-floor, boom-bap, tresillo) instead of an empty grid.</li>
+              <li>Export your pattern as <strong>JSON</strong> and rebuild it in any DAW in under a minute.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>How This Rhythm Pattern Maker Works</h2>
+            <p>This tool schedules every drum hit on the <strong>Tone.js Transport clock</strong>, wired directly to the Web Audio API's hardware clock. Standard browser timers like <code>setTimeout</code> drift under CPU load; the Transport clock pre-schedules each hit against audio-hardware timestamps, so a 120 BPM loop stays locked to the grid.</p>
+            <p>Methodology: each active cell maps to a sixteenth-note subdivision of the pattern length. Tempo (40–240 BPM) sets the pulse; <strong>Division</strong> re-maps the grid to quarter, eighth, sixteenth, or triplet-sixteenth notes; <strong>Swing</strong> (0–60%) delays even-numbered steps. Two kits are built in — <strong>Classic</strong> and <strong>505</strong>. <em>Last reviewed: October 2026.</em></p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-calculator me-2"></i>Step Timing Math and Worked Example</h2>
+            <p>Every step sequencer runs on one formula. In 4/4 time, one bar holds 4 quarter-note beats, and each beat divides into 4 sixteenth notes — 16 steps per bar. The time each step occupies is:</p>
+            <p><code><strong>Step duration (ms) = 15,000 ÷ BPM</strong></code></p>
+            <p>(Because one quarter note lasts 60,000 ÷ BPM milliseconds, and a sixteenth note is one quarter of that.) Here is what that means at common tempos:</p>
+            <div class="table-responsive my-3">
+              <table class="table table-bordered table-striped align-middle text-center small">
+                <thead class="table-dark">
+                  <tr><th>Tempo</th><th>Typical genre</th><th>One step lasts</th><th>One bar lasts</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>92 BPM</td><td>Boom-bap hip-hop</td><td>163.0 ms</td><td>2.61 s</td></tr>
+                  <tr><td>120 BPM</td><td>Pop / funk</td><td>125.0 ms</td><td>2.00 s</td></tr>
+                  <tr><td>128 BPM</td><td>House</td><td>117.2 ms</td><td>1.88 s</td></tr>
+                  <tr><td>140 BPM</td><td>Trap (half-time feel)</td><td>107.1 ms</td><td>1.71 s</td></tr>
+                  <tr><td>174 BPM</td><td>Drum and bass</td><td>86.2 ms</td><td>1.38 s</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>Worked example:</strong> at <strong>128 BPM</strong>, one step = 15,000 ÷ 128 = <strong>117.2 ms</strong>. A four-on-the-floor kick on steps 1, 5, 9, and 13 lands every 4 × 117.2 = <strong>468.8 ms</strong> — exactly one quarter-note apart.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-list-ol me-2"></i>How to Use This Rhythm Pattern Maker</h2>
             <ol class="lead-steps mb-4">
-              <li><strong>Program Drum Steps:</strong> Click any cell on the matrix to toggle triggers on or off. Each
-                column represents a sequential rhythmic pulse (steps 1–16). Click and drag across cells to rapidly paint
-                consecutive trigger bursts.</li>
-              <li><strong>Select Drum Kits & Lengths:</strong> Toggle between the <em>Classic Analog</em> (CR-78 flavor)
-                and the punchy <em>505 PCM Drum Machine</em>. Expand your loop from 16 steps (1 bar of 16ths) to 32 or
-                64 steps for multi-bar song phrasing.</li>
-              <li><strong>Infuse Human Swing & Groove:</strong> Push the <code>Swing (%)</code> slider from 0% (rigid
-                robotic machine quantization) up to 50%–60% for a smooth, head-nodding hip-hop, funk, or UK garage
-                pocket.</li>
-              <li><strong>Audition, Randomize & Export:</strong> Click <strong>Play</strong> to engage the Tone.js
-                transport clock. Use <strong>Randomize</strong> for algorithmic creative inspiration, or click
-                <strong>Export JSON</strong> to archive your custom patterns.
-              </li>
+              <li><strong>Set the BPM:</strong> drag the tempo slider (40–240). Start near your genre's home tempo — 90–95 for boom-bap, 124–128 for house, 140 for trap. Tap along with our <a href="../../dj-music-production-tools/bpm-tap-tempo/">BPM tap tempo</a> tool if you're matching an existing track.</li>
+              <li><strong>Choose the pattern length:</strong> 16 steps = 1 bar, 32 = 2 bars, 64 = 4 bars. Use 16 for sketching, 32–64 when your fill needs room to breathe.</li>
+              <li><strong>Pick a division:</strong> 1/16 for standard programming, 1/8 for half-time feels, Triplet 16 for shuffles and trap rolls.</li>
+              <li><strong>Select a drum kit:</strong> Classic for warm analog-style tones, 505 for punchy digital drums.</li>
+              <li><strong>Program the grid:</strong> click cells to toggle hits — click and drag to paint runs. Clicking a step previews its sound immediately.</li>
+              <li><strong>Dial in swing:</strong> raise the Swing slider from 0% toward 55–60% for hip-hop bounce, or leave it at 0% for rigid techno quantization.</li>
+              <li><strong>Play, randomize, export:</strong> hit Play to loop the pattern, Randomize for algorithmic inspiration, Clear to start over, and Export JSON to save your work.</li>
             </ol>
           </div>
         </div>
 
-        <!-- Technical Deep-Dive -->
         <div class="tool-container mt-4">
           <div class="tool-section">
-            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>The Architecture and Physics of Step Sequencing</h2>
-            <p>From the pioneering transistor circuitry of the Roland TR-808 and TR-909 to modern digital audio
-              workstations, step sequencers have shaped the architecture of modern music. Unlike linear tape or MIDI
-              recording, a step sequencer divides musical time into discrete temporal quantums.</p>
-
-            <div class="card p-3 my-3 bg-light border-0 shadow-sm">
-              <h5 class="fw-bold mb-2">The Mathematics of 16-Step Quantization:</h5>
-              <p class="mb-1">In standard $4/4$ common time, one musical bar comprises 4 quarter-note beats. Subdividing
-                each beat into 4 sixteenth notes yields a 16-step grid:</p>
-              <code
-                class="d-block p-2 bg-white rounded border fs-6 my-2 text-dark font-monospace">Total Steps = Beats per Measure (4) × Subdivision (4) = 16 Steps</code>
-              <p class="mb-1">The time duration $\Delta t_{\text{step}}$ in milliseconds allocated to each
-                sixteenth-note step at tempo $\text{BPM}$ is:</p>
-              <code
-                class="d-block p-2 bg-white rounded border fs-6 my-2 text-dark font-monospace">Δt_step (ms) = (60,000 / BPM) / 4 = 15,000 / BPM</code>
-              <p class="mb-0 text-muted small">At 120 BPM, each step elapses in exactly $125.0\text{ ms}$. At 140 BPM
-                (Trap / Dubstep half-time), each step is $107.14\text{ ms}$. At 174 BPM (Drum & Bass), each step flashes
-                past in only $86.21\text{ ms}$.</p>
-            </div>
-
-            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-sliders me-2"></i>The Physics and Mathematics of Swing /
-              Shuffle</h3>
-            <p>A purely quantized grid where every step lands at exactly $15,000 / \text{BPM}$ ms sounds rigid and
-              mechanical. In organic human drumming, musicians instinctively delay the off-beat note to impart groove.
-              This rhythmic transformation is quantified as <strong>Swing Ratio</strong>.</p>
-            <ul>
-              <li><strong>Straight Timing (50% Swing):</strong> Odd steps (on-beats) and even steps (off-beats) have
-                identical $1:1$ duration ($50\% - 50\%$ of the eighth-note beat).</li>
-              <li><strong>Roger Linn MPC Swing (54% to 62%):</strong> First popularized by the Akai MPC60, every
-                even-numbered sixteenth note is systematically delayed by a micro-offset:
-                $$\Delta t_{\text{swing}} = \left(\frac{\text{Swing} - 50}{100}\right) \times \Delta t_{\text{step}}$$
-                A setting of 56%–58% produces the loose, lazy groove characteristic of classic 90s hip-hop and neo-soul.
-              </li>
-              <li><strong>Triplet Swing (66.7%):</strong> The beat divides into a $2:1$ ratio, where the on-beat note
-                lasts two-thirds of the pulse and the off-beat note lasts one-third. This matches true 12/8 blues
-                shuffle and jazz ride-cymbal patterns.</li>
-            </ul>
-
-            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-diagram-3 me-2"></i>Polyrhythms vs. Polymeters</h3>
-            <p>Modern producers frequently confuse these two rhythmic techniques:</p>
-            <div class="row g-3 my-2">
-              <div class="col-md-6">
-                <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                  <h6 class="fw-bold text-dark"><i class="bi bi-intersect me-1 text-teal"></i> Polyrhythm (Cross-Rhythm)
-                  </h6>
-                  <p class="small text-muted mb-0">Two different rhythmic subdivisions sounding concurrently across the
-                    <em>same fixed span of time</em>. For example, in a <strong>3:2 polyrhythm</strong> (hemiola), 3
-                    evenly spaced pulses sound in the exact duration of 2 standard beats. In a <strong>4:3
-                      polyrhythm</strong>, 4 eighth notes fit into the space of 3 dotted quarter pulses.
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                  <h6 class="fw-bold text-dark"><i class="bi bi-arrow-repeat me-1 text-teal"></i> Polymeter (Phase
-                    Cycling)</h6>
-                  <p class="small text-muted mb-0">Different voices playing in <em>different meter lengths</em> while
-                    sharing the exact same sixteenth-note step duration. If a snare plays a 4-step loop and a synth
-                    plays a 5-step loop, the synth's downbeat continuously shifts across the bar, only realigning after
-                    $\text{LCM}(4, 5) = 20$ steps.</p>
-                </div>
-              </div>
-            </div>
-
-            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-grid-3x3-gap me-2"></i>Foundational Drum Groove Blueprints
-              (16-Step Matrix)</h3>
-            <p>To program professional tracks immediately, replicate these industry-standard trigger patterns onto the
-              16-step grid above:</p>
-
+            <h2 class="text-mid mb-3"><i class="bi bi-grid-3x3-gap me-2"></i>Reading Your Pattern: Where the Beats Fall</h2>
+            <p>On a 16-step grid in 4/4, not all steps are equal. Steps <strong>1, 5, 9, and 13</strong> are the quarter-note downbeats — the pulse you nod your head to. Steps 3, 7, 11, and 15 are the "ands" between beats, where off-beat hi-hats live. Everything else is sixteenth-note detail.</p>
             <div class="table-responsive my-3">
               <table class="table table-bordered table-striped align-middle text-center small">
                 <thead class="table-dark">
-                  <tr>
-                    <th class="text-start">Genre / Style</th>
-                    <th>Inst</th>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                    <th>9</th>
-                    <th>10</th>
-                    <th>11</th>
-                    <th>12</th>
-                    <th>13</th>
-                    <th>14</th>
-                    <th>15</th>
-                    <th>16</th>
-                  </tr>
+                  <tr><th>Steps</th><th>Musical position</th><th>Typical role</th></tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td rowspan="3" class="text-start fw-bold align-middle">House / Techno<br><span
-                        class="badge bg-secondary">124–128 BPM</span></td>
-                    <td class="text-start fw-semibold text-danger">Kick</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                  </tr>
-                  <tr>
-                    <td class="text-start fw-semibold text-primary">Clap/Snare</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                  </tr>
-                  <tr>
-                    <td class="text-start fw-semibold text-warning">Open Hat</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                  </tr>
-
-                  <tr>
-                    <td rowspan="3" class="text-start fw-bold align-middle">Boom-Bap Hip Hop<br><span
-                        class="badge bg-secondary">90–94 BPM</span></td>
-                    <td class="text-start fw-semibold text-danger">Kick</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                  </tr>
-                  <tr>
-                    <td class="text-start fw-semibold text-primary">Snare</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                  </tr>
-                  <tr>
-                    <td class="text-start fw-semibold text-warning">Hi-Hat</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                  </tr>
-
-                  <tr>
-                    <td rowspan="2" class="text-start fw-bold align-middle">Afrobeats / Dembow<br><span
-                        class="badge bg-secondary">96–104 BPM</span></td>
-                    <td class="text-start fw-semibold text-danger">Kick</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                  </tr>
-                  <tr>
-                    <td class="text-start fw-semibold text-primary">Snare / Rim</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                    <td>.</td>
-                    <td class="bg-success text-white fw-bold">X</td>
-                    <td>.</td>
-                  </tr>
+                  <tr><td>1, 5, 9, 13</td><td>Quarter-note downbeats</td><td>Kick drum foundation</td></tr>
+                  <tr><td>5, 13</td><td>Beats 2 and 4</td><td>Snare / clap backbeat</td></tr>
+                  <tr><td>3, 7, 11, 15</td><td>Off-beats ("ands")</td><td>Open hats, syncopation</td></tr>
+                  <tr><td>2, 4, 6, 8, 10, 12, 14, 16</td><td>Sixteenth subdivisions</td><td>Hi-hat drive, ghost notes, rolls</td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="small text-muted mb-0">Notice how the Dembow / Afrobeats pattern utilizes the <strong>Tresillo
-                syncopation</strong> (snare hits landing on steps 4, 7, 12, and 15), creating the infectious,
-              body-moving groove heard worldwide.</p>
+            
+          </div>
+        </div>
+
+        <figure class="my-4 text-center">
+          <div class="border rounded p-5 bg-light text-muted">[Diagram: annotated 16-step grid showing downbeats on steps 1/5/9/13, backbeat on 5/13, and off-beat hi-hat positions]</div>
+          <figcaption class="small text-muted mt-2">Alt text: "Anatomy of a 16-step drum sequencer grid in 4/4 time"</figcaption>
+        </figure>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-music-note-beamed me-2"></i>Genre Groove Blueprints: Copy These Step Patterns</h2>
+            <p>Start from a genre's rhythmic DNA, then change 2–3 steps to make it yours:</p>
+            <ul>
+              <li><strong>House / Techno (124–128 BPM):</strong> kick on 1, 5, 9, 13 (four-on-the-floor); clap on 5, 13; open hats on 3, 7, 11, 15; closed hats on every even step.</li>
+              <li><strong>Boom-bap hip-hop (90–94 BPM):</strong> kick on 1, 7, 10; snare on 5, 13; hats on every step with swing at 56–58%. The lazy kick placement <em>behind</em> the grid is the whole sound.</li>
+              <li><strong>Trap (140 BPM, half-time feel):</strong> kick on 1, 8, 11; snare on 9 only (the "third-beat" snap); rapid hat rolls on 14–16 using the Triplet 16 division.</li>
+              <li><strong>Dembow / Reggaeton (~100 BPM):</strong> kick on 1, 4, 7, 10, 13; snare on the tresillo accents — steps 4, 7, and 12. That 3+3+2 kick skeleton is non-negotiable.</li>
+              <li><strong>Drum and bass (172–176 BPM):</strong> kick on 1, 11; snare on 5, 13; two-step hats shuffling on the off-beats. Speed does the work — keep the pattern sparse.</li>
+            </ul>
+            
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-sliders me-2"></i>Swing Percentage Translated to Milliseconds</h2>
+            <p>Swing delays every even-numbered step by a fraction of the step duration. The offset formula is:</p>
+            <p><code><strong>Swing offset (ms) = (Swing% ÷ 100) × Step duration (ms)</strong></code></p>
+            <p><strong>Worked example:</strong> at <strong>120 BPM</strong> with <strong>58% swing</strong>, one step lasts 125 ms. Each off-beat step shifts later by 0.58 × 125 = <strong>72.5 ms</strong>. That 72 ms delay is the difference between a robotic grid and a head-nodding groove — long enough to feel, short enough to stay locked.</p>
+            <p>Reference points: <strong>0%</strong> is machine-straight; <strong>54–62%</strong> is the classic MPC hip-hop pocket; <strong>66.7%</strong> equals a true triplet shuffle (2:1 ratio).</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-box-arrow-up me-2"></i>From Browser to DAW: The Export Workflow</h2>
+            <p>The Export JSON button downloads your entire session — grid triggers, BPM, swing, kit, and pattern length — as a small text file. The JSON maps each drum voice to an array of active step numbers, for example <code>{"kick": [1, 5, 9, 13], "bpm": 128}</code>. To continue in a DAW:</p>
+            <ol>
+              <li>Export the JSON and open it in any text editor to see your step numbers.</li>
+              <li>In your DAW's drum sequencer (Ableton Drum Rack, FL Studio Channel Rack, or Logic's Step Sequencer), set the same BPM and step count.</li>
+              <li>Enable the matching step numbers for each drum voice — the numbers transfer 1:1.</li>
+              <li>Re-apply swing in the DAW (most offer a groove/swing knob) using the percentage you dialed in here.</li>
+            </ol>
+            <p>Keep the JSON files as versioned sketches (<code>chorus-v1.json</code>, <code>chorus-v2.json</code>) — they weigh kilobytes, and Import JSON reloads any of them for quick auditioning.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-layers me-2"></i>Choosing a Pattern Length for Song Sections</h2>
+            <p>Pattern length is an arrangement decision, not just a bigger grid. <strong>16 steps (1 bar)</strong> is for sketching and for sections that must feel hypnotic — techno intros, trap verses. <strong>32 steps (2 bars)</strong> lets you write call-and-response: keep bar one simple, add a fill or variation in bar two. <strong>64 steps (4 bars)</strong> fits a full phrase with an intro, build, and turnaround — ideal for choruses and drops.</p>
+            <p>A practical workflow: sketch the verse at 16 steps, expand to 32 for the pre-chorus with one added fill, and open the full 64 for the chorus. For bar-to-time conversions at your tempo, use the <a href="../../dj-music-production-tools/bpm-to-ms/">BPM to milliseconds</a> calculator.</p>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-diagram-3 me-2"></i>Polyrhythm vs. Polymeter: Stop Mixing Them Up</h2>
+            <p>A <strong>polyrhythm</strong> layers two subdivisions over the <em>same</em> timespan — 3 evenly spaced hits in the time of 2 beats (the 3:2 hemiola). A <strong>polymeter</strong> layers two <em>different bar lengths</em> sharing the same step duration — a 4-step loop against a 5-step loop, realigning every 20 steps (their lowest common multiple).</p>
+            <p>On this grid, accent steps 1, 6, and 11 against straight quarter-note kicks for a 3-against-4 polyrhythm. For a polymeter, loop a 12-step phrase inside the 16-step grid by muting one voice's last 4 steps and let the downbeat drift.</p>
+          </div>
+        </div>
+
+        <figure class="my-4 text-center">
+          <div class="border rounded p-5 bg-light text-muted">[Infographic: swing timing diagram — straight 16ths vs 58% swing vs triplet shuffle, with millisecond offsets at 120 BPM]</div>
+          <figcaption class="small text-muted mt-2">Alt text: "How swing percentage shifts off-beat steps in milliseconds"</figcaption>
+        </figure>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+            <ul>
+              <li><strong>Browser audio latency varies.</strong> The Transport clock keeps timing tight, but Bluetooth headphones and heavy system load can add 20–100 ms of output delay. Use wired headphones for critical groove work.</li>
+              <li><strong>Export is JSON, not audio.</strong> This tool saves patterns, not rendered WAV files — you rebuild the sound in a DAW or re-record the browser output.</li>
+              <li><strong>No per-step velocity (yet).</strong> Every hit plays at full volume, so ghost notes and accents must be programmed with density rather than dynamics.</li>
+              <li><strong>Fixed 4/4 framework.</strong> Odd meters like 7/8 or 5/4 can't be represented on the 16-step grid; approximate them with muted steps or use a DAW.</li>
+              <li><strong>Two kits only.</strong> The Classic and 505 kits cover a lot of ground, but they won't replace a full sample library for acoustic genres.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <h2 class="text-mid mb-3"><i class="bi bi-arrow-left-right me-2"></i>Rhythm Pattern Maker vs. Alternatives</h2>
+            <div class="table-responsive my-3">
+              <table class="table table-bordered table-striped align-middle small">
+                <thead class="table-dark">
+                  <tr><th>Approach</th><th>Best for</th><th>Trade-off</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>This step sequencer</strong></td><td>Fast groove sketching, learning rhythm theory</td><td>16-step grid, two kits, JSON export only</td></tr>
+                  <tr><td><strong>DAW piano roll</strong> (Ableton, FL Studio)</td><td>Full productions, velocity, automation</td><td>Paid software, steeper learning curve</td></tr>
+                  <tr><td><strong>Drum pads / finger drumming</strong></td><td>Human feel, live performance</td><td>Requires practice; timing depends on you</td></tr>
+                  <tr><td><strong>Hardware drum machines</strong> (TR-8S, MPC)</td><td>Tactile workflow, stage use</td><td>Costs hundreds of dollars</td></tr>
+                  <tr><td><strong><a href="../online-metronome/">Online metronome</a></strong></td><td>Practicing timing against a click</td><td>No drum sounds or patterns</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Use this tool to find the groove in minutes, then move to a DAW when the arrangement needs velocity, effects, and mixing. Pair it with the <a href="../scale-finder/">Scale Finder</a> when your loop needs a bassline in key.</p>
           </div>
         </div>
 
@@ -662,9 +604,7 @@
                 </h3>
                 <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    In standard 4/4 time, one measure contains 4 quarter-note beats. A 16-step sequencer subdivides each
-                    quarter beat into 4 sixteenth notes (semiquavers), providing 16 individual trigger steps per bar (4
-                    beats × 4 sixteenths). Steps 1, 5, 9, and 13 represent the four quarter-note downbeats.
+                    In 4/4 time, one measure holds 4 quarter-note beats. A 16-step sequencer splits each beat into 4 sixteenth notes, giving 16 trigger steps per bar. Steps 1, 5, 9, and 13 are the quarter-note downbeats — the pulse everything else hangs on.
                   </div>
                 </div>
               </div>
@@ -673,15 +613,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq2">
-                    What is the mathematical difference between straight timing and swing percentage?
+                    What swing percentage should I use for hip-hop drums?
                   </button>
                 </h3>
                 <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    In straight 50% timing, every eighth or sixteenth note pair divides time equally (50% on-beat, 50%
-                    off-beat). Applying swing delays the even-numbered off-beat notes toward the subsequent beat. At
-                    66.7% swing (triplet swing), the first note occupies two-thirds of the beat and the second note
-                    occupies one-third, replicating a classic blues shuffle.
+                    Start at 56–58%, the classic MPC pocket for boom-bap and 90s hip-hop. Laid-back neo-soul grooves sit around 60–62%. If the pattern starts stumbling instead of bouncing, back off 2–3%. Trap and drill usually stay near 0–15% swing and get their feel from triplet hi-hat rolls instead.
                   </div>
                 </div>
               </div>
@@ -690,16 +627,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq3">
-                    What is the structural difference between a polyrhythm and a polymeter?
+                    How long is one step in milliseconds at my BPM?
                   </button>
                 </h3>
                 <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    A polyrhythm plays two or more conflicting rhythmic subdivisions simultaneously within the exact
-                    same duration of time (e.g., 3 against 2, where 3 quarter-note triplets fit into the duration of 2
-                    straight quarter notes). A polymeter features different voices playing in different time signatures
-                    with identical note durations, meaning their bar downbeats drift and only realign after the lowest
-                    common multiple of measures.
+                    Divide 15,000 by your BPM. At 120 BPM each sixteenth-note step lasts 125 ms; at 128 BPM it's 117.2 ms; at 174 BPM (drum and bass) just 86.2 ms. Knowing the exact step length helps you program fills that land precisely on the bar line.
                   </div>
                 </div>
               </div>
@@ -708,15 +641,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq4">
-                    What is the Tresillo rhythm and why is it foundational in modern music?
+                    What is the difference between a polyrhythm and a polymeter?
                   </button>
                 </h3>
                 <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    The Tresillo is an Afro-Cuban 3:3:2 cross-rhythm within an 8-pulse or 16-pulse framework. Instead of
-                    dividing 8 pulses evenly into 4+4 or 2+2+2+2, the accents land on step 1, step 4, and step 7 (3
-                    eighths + 3 eighths + 2 eighths). It is the rhythmic DNA underlying Reggaeton, Dancehall (Dembow),
-                    Afrobeats, and modern Pop syncopation.
+                    A polyrhythm fits two subdivisions into the same timespan — like 3 hits in the space of 2 beats. A polymeter layers two different bar lengths on the same pulse, so their downbeats drift and realign every lowest-common-multiple of steps. Both create hypnotic tension, but they feel completely different.
                   </div>
                 </div>
               </div>
@@ -725,15 +655,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq5">
-                    How can I export my rhythm patterns into my Digital Audio Workstation (DAW)?
+                    How do I get my pattern into Ableton or FL Studio?
                   </button>
                 </h3>
                 <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    Use the Export JSON button to save your entire grid matrix, step triggers, BPM, and swing data to
-                    your local machine. You can import this JSON back into Pitch Detectors anytime, or replicate the
-                    active grid step numbers directly into your DAW drum sequencer (such as Ableton Drum Rack, FL Studio
-                    Channel Rack, or Logic Step Sequencer).
+                    Click Export JSON to download your pattern as a text file mapping each drum to its active step numbers. In your DAW, set the same BPM and grid length, then enable the matching steps in its drum sequencer. Re-apply your swing percentage on the DAW's groove control and you're done.
                   </div>
                 </div>
               </div>
@@ -742,75 +669,88 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq6">
-                    Why is Tone.js utilized for browser-based audio sequencing?
+                    Why does browser audio sometimes lag, and how do I fix it?
                   </button>
                 </h3>
                 <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    Standard browser timers like setTimeout or setInterval suffer from timing jitter caused by screen
-                    rendering and CPU throttling. Tone.js connects directly to the Web Audio API Transport clock,
-                    scheduling audio buffer playheads ahead of time using hardware clock timestamps for frame-accurate
-                    musical playback.
+                    This tool schedules hits on the Web Audio clock, so timing stays tight — but Bluetooth headphones and busy CPUs add output latency of 20–100 ms. Switch to wired headphones, close heavy tabs, and on mobile use a browser with Web Audio support (Chrome or Safari) for the best results.
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Related Tools Cards -->
-            <div class="card my-4 shadow-sm border-0">
-              <div class="card-body p-4 bg-light rounded">
-                <h5 class="card-title fw-bold mb-3"><i class="bi bi-grid-fill me-2 text-teal"></i>Related Rhythm & Music
-                  Theory Tools</h5>
-                <div class="row g-2">
-                  <div class="col-md-4">
-                    <a class="btn btn-outline-secondary w-100 text-start py-2"
-                      href="/music-theory-tools/online-metronome/">
-                      <i class="bi bi-stopwatch me-1 text-teal"></i> Online Metronome
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a class="btn btn-outline-secondary w-100 text-start py-2"
-                      href="/dj-music-production-tools/bpm-tap-tempo/">
-                      <i class="bi bi-hand-index me-1 text-teal"></i> BPM Tap Tempo
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a class="btn btn-outline-secondary w-100 text-start py-2"
-                      href="/dj-music-production-tools/bpm-to-ms/">
-                      <i class="bi bi-clock-history me-1 text-teal"></i> BPM to Milliseconds
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a class="btn btn-outline-secondary w-100 text-start py-2"
-                      href="/music-theory-tools/chord-progression-generator/">
-                      <i class="bi bi-music-note-beamed me-1 text-teal"></i> Chord Progression Generator
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a class="btn btn-outline-secondary w-100 text-start py-2"
-                      href="/music-theory-tools/interval-calculator/">
-                      <i class="bi bi-arrows-expand me-1 text-teal"></i> Interval Calculator
-                    </a>
-                  </div>
-                  <div class="col-md-4">
-                    <a class="btn btn-outline-secondary w-100 text-start py-2"
-                      href="/music-theory-tools/melody-generator/">
-                      <i class="bi bi-bezier2 me-1 text-teal"></i> Melody Generator
-                    </a>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq7">
+                    What is the tresillo rhythm and where is it used?
+                  </button>
+                </h3>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    The tresillo is a 3+3+2 accent pattern (hits on steps 1, 4, and 7 of an 8-pulse cycle) with Afro-Cuban roots. It's the rhythmic DNA of reggaeton's dembow, dancehall, Afrobeats, and countless pop hits. Program kick on 1, 4, 7, 10, 13 and snare accents on 4, 7, 12 to hear it instantly.
                   </div>
                 </div>
               </div>
-            </div>
 
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq8">
+                    Should I use 16, 32, or 64 steps for my pattern?
+                  </button>
+                </h3>
+                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Use 16 steps for sketching and hypnotic loops, 32 steps when you want a two-bar call-and-response with a fill, and 64 steps for full four-bar phrases with an intro and turnaround. Longer patterns suit choruses and drops; shorter ones suit verses that need to stay out of the vocal's way.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq9">
+                    What does the Randomize button actually do?
+                  </button>
+                </h3>
+                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Randomize generates a fresh pattern by randomly toggling steps across the drum voices — a creativity spark, not a finished beat. Treat the result as raw material: keep the 2–3 happy accidents, delete the clutter, and lock the kick and snare to your genre's blueprint. Hit it a few times until something inspires you.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq10">
+                    Can I make trap hi-hat rolls with this sequencer?
+                  </button>
+                </h3>
+                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes. Set the Division to Triplet 16, choose 140 BPM, and fill consecutive hat steps at the end of the bar (steps 13–16) for the classic roll. For pitch-bending 808-style rolls you'd need a DAW, but the rhythmic skeleton of modern trap programs perfectly on this grid.
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div id="footer"></div>
-  <script src="/assets/bootstrap5.js" defer></script>
-  <script src="/assets/tools.js" defer></script>
+        <div class="tool-container mt-4">
+          <div class="tool-section">
+            <p class="small text-muted mb-0">This rhythm pattern maker is a free creative sketching tool for learning and inspiration. Patterns you program are yours to use in your own music.</p>
+          </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+  <script src="../../assets/bootstrap5.js" defer></script>
+  <script src="../../assets/tools.js" defer></script>
   <!-- includde js -->
   <script defer>
     window.addEventListener("load", () => {

@@ -4,76 +4,116 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Online Loudness Meter – LUFS, True Peak & Streaming Analyzer | Pitch Detectors</title>
+    <title>Loudness Meter: Measure LUFS &amp; True Peak Online</title>
     <meta name="description"
-        content="Free online LUFS loudness meter for mastering and streaming. Monitor Momentary, Short-Term, Integrated LUFS, and True Peak (dBTP) in real-time with Web Audio.">
+        content="Free online loudness meter measures momentary, short-term, integrated LUFS and true peak. Check your mix against Spotify, YouTube &amp; Apple Music">
     <meta name="keywords"
         content="online loudness meter, lufs meter online, audio mastering loudness, streaming normalization, true peak meter, ebu r128, spotify lufs">
 
-    <link rel="canonical" href="https://pitchdetectors.com/sound-analysis-tools/loudness-meter/" />
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="canonical" href="https://pitchdetectors.com/sound-analysis-tools/loudness-meter/"
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Loudness Meter: Measure LUFS &amp; True Peak Online">
+    <meta property="og:description" content="Free online loudness meter measures momentary, short-term, integrated LUFS and true peak. Check your mix against Spotify, YouTube &amp; Apple Music">
+    <meta property="og:url" content="https://pitchdetectors.com/sound-analysis-tools/loudness-meter/">
+    <meta property="og:image" content="https://pitchdetectors.com/assets/imgs/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Loudness Meter: Measure LUFS &amp; True Peak Online">
+    <meta name="twitter:description" content="Free online loudness meter measures momentary, short-term, integrated LUFS and true peak. Check your mix against Spotify, YouTube &amp; Apple Music"> />
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link href="../../assets/tools.css" rel="stylesheet">
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is the difference between LUFS and standard RMS or Peak decibels?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Peak decibels (dBFS) measure the highest instantaneous electrical or digital voltage level, while RMS measures average electrical energy across a window. Neither corresponds to human hearing. LUFS (Loudness Units relative to Full Scale, equivalent to LKFS) applies a psychoacoustic K-weighting curve that boosts upper-mid frequencies and attenuates bass, matching the human ear's non-linear perception of loudness as defined in ITU-R BS.1770."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What are Momentary, Short-Term, and Integrated LUFS?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Momentary LUFS (M) measures loudness over an un-gated sliding 400-millisecond window for tracking instantaneous transients. Short-Term LUFS (S) measures loudness over a 3-second sliding window for monitoring vocal and verse/chorus flow. Integrated LUFS (I) calculates the overall program loudness of the entire song from start to finish, applying an absolute gate at -70 LUFS and a relative gate at -10 LU to ignore pauses."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is True Peak (dBTP) and why does it matter for digital distribution?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "True Peak (dBTP) measures the maximum analog voltage that will occur when digital samples are converted to sound by a DAC (Digital-to-Analog Converter). Even if digital sample peaks remain below 0.0 dBFS, inter-sample peaks between adjacent samples can exceed 0 dBFS and cause harsh analog clipping distortion. Major streaming platforms require True Peak levels not to exceed -1.0 dBTP (or -2.0 dBTP for hot masters)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What are the target Integrated LUFS levels for major streaming platforms?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Standard target Integrated LUFS levels are: Spotify (-14 LUFS, -1.0 dBTP), Apple Music (-16 LUFS, -1.0 dBTP), YouTube (-14 LUFS, -1.0 dBTP), Tidal (-14 LUFS, -1.0 dBTP), Amazon Music (-14 LUFS, -1.0 dBTP), and Broadcast Television EBU R128 (-23.0 LUFS, -1.0 dBTP) or ATSC A/85 (-24.0 LUFS, -2.0 dBTP)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What happens if my master is louder than Spotify's -14 LUFS target?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "If your song is mastered to -8 LUFS, Spotify's loudness normalization algorithm simply attenuates your overall volume down by 6 dB to match -14 LUFS. You gain zero volume advantage over other tracks, but your song suffers from crushed transients and loss of dynamic punch compared to tracks that retained breathing room."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is Loudness Range (LRA) in mastering?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Loudness Range (LRA), measured in Loudness Units (LU), quantifies the statistical dynamic variation between the quietest and loudest parts of a track (excluding silence and extreme transients). A tight pop master typically exhibits an LRA of 3 to 6 LU, while an expressive classical symphony or cinematic film score might span 15 to 25 LU."
-          }
-        }
-      ]
+      "@type": "Question",
+      "name": "What is LUFS and why does it matter more than peak level?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LUFS (Loudness Units relative to Full Scale) measures perceived loudness using K-weighting that mimics human hearing, per ITU-R BS.1770. Two tracks peaking at 0 dBFS can feel completely different in volume; at matched LUFS they feel the same. Every streaming platform normalizes on LUFS — never on peaks — which is why it is the number that decides how loud your music actually plays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between momentary, short-term, and integrated LUFS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Momentary uses a 400 ms window and catches sudden jumps like snare hits. Short-term uses a 3-second window, ideal for comparing verse and chorus balance. Integrated is the gated average of the whole track — the single number platforms normalize to. Watch momentary while mixing, short-term while balancing sections, integrated when judging the finished master."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is true peak and why isn't sample peak enough?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "True peak (dBTP) estimates the real analog peak between digital samples using 4× oversampling. A master peaking at −0.1 dBFS can hide +0.4 dBTP of inter-sample overs that clip when encoded to AAC or MP3. Keep true peak under −1 dBTP and your track survives every platform's encoder cleanly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How loud should my master be for Spotify and YouTube?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aim for around −14 LUFS integrated with true peak under −1 dBTP — both Spotify and YouTube normalize to −14. But don't strangle a punchy −9 LUFS master down to −14 just to \"avoid turn-down\": it will be turned down anyway and keep its character, while the flattened version gains nothing. Master for the song, not the algorithm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did Spotify make my track quieter than my WAV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Spotify normalizes everything to −14 LUFS, so a −8 LUFS master gets turned down 6 dB — and keeps all its limiting artifacts, sounding smaller than a dynamic master at the same playback level. This is the loudness war ending: crushing no longer wins loudness, it just costs punch. A dynamic master turned down always beats a crushed one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What LUFS should a podcast be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Target −16 LUFS integrated for stereo podcasts (−19 for mono), with true peak under −1 dBTP. That matches Apple and Spotify spoken-word levels, so your episode plays at the same volume as everything else in the queue. Consistency matters more than the exact number — wild swings between segments annoy listeners most."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is loudness range (LRA) and why should I check it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LRA is the statistical spread between quiet and loud passages (10th to 95th percentile of short-term values). A pop master might show 4 LU; a film score 15+ LU. If your LRA is under 3 LU, you've likely over-compressed — the track has no breathing room left regardless of its integrated number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does LUFS gating work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Integrated LUFS ignores silence so it doesn't cheat the average: blocks below −70 LUFS are dropped outright (absolute gate), then blocks more than 10 LU below the running average are dropped (relative gate). Long intros and fade-outs therefore don't drag your number down — only the actual program counts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "LUFS vs RMS: what's the difference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "RMS is pure physics — average signal energy with no regard for hearing. LUFS adds K-weighting (ear-like frequency response) and gating, so it tracks perceived loudness. A bass-heavy track and a bright track can share RMS yet differ by several LU — LUFS tells you which one will actually sound louder."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this meter for broadcast compliance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — use it for learning, mixing guidance, and pre-checks only. Legal delivery under EBU R128 (−23 LUFS) or ATSC A/85 (−24 LKFS) requires certified meters with documented calibration and logging. This browser meter follows BS.1770 principles but isn't a compliance instrument."
+      }
     }
-    </script>
+  ]
+}
+  </script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3408671496512773"
         crossorigin="anonymous"></script>
@@ -220,6 +260,7 @@
                 <div class="tool-container">
                     <div class="tool-title">
                         <h1>Loudness Meter</h1>
+<p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
 
                         <div class="loudness-tool">
                             <button class="btn btn-primary my-3" id="startBtn">Start Loudness Meter</button>
@@ -257,376 +298,248 @@
 
                     <!-- CONTENT -->
                     <div class="content_area py-4">
+          <article>
+          <section class="mb-4">
+            <p class="lead">A <strong>loudness meter</strong> measures how loud audio <em>feels</em> to human ears, in <strong>LUFS</strong> — not just peak levels. This free online meter shows <strong>momentary, short-term, and integrated LUFS</strong> plus <strong>true peak</strong>, so you can check your mix against Spotify, YouTube, and Apple Music targets.</p>
+          </section>
 
-                        <!-- How to Use -->
-                        <div class="tool-section mb-4">
-                            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>How to Use the Online
-                                Loudness Meter</h2>
-                            <ol class="lead-steps mb-4">
-                                <li><strong>Connect Your Audio Feed:</strong> Click <strong>Start Loudness
-                                        Meter</strong> and allow microphone or loopback audio input. Play your mix,
-                                    vocal performance, or audio master in real-time.</li>
-                                <li><strong>Monitor Momentary & Short-Term Readings:</strong> Observe <strong>Momentary
-                                        LUFS (M)</strong> to track momentary dynamic spikes, and watch
-                                    <strong>Short-Term LUFS (S)</strong> over 3-second blocks to verify that verses,
-                                    bridges, and drops hit intended dynamic targets.
-                                </li>
-                                <li><strong>Check Full-Track Integrated LUFS:</strong> Let your entire song play
-                                    through. The <strong>Integrated LUFS (I)</strong> meter calculates overall weighted
-                                    loudness, indicating whether your track aligns with Spotify (-14 LUFS), Apple Music
-                                    (-16 LUFS), or broadcast standards (-23 LUFS).</li>
-                                <li><strong>Audit True Peak Headroom:</strong> Verify that <strong>True Peak
-                                        (dBTP)</strong> remains comfortably below <code>-1.0 dBTP</code> to prevent
-                                    digital-to-analog converter distortion and inter-sample clipping on lossy MP3/AAC
-                                    encoders.</li>
-                            </ol>
-                        </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+            <ul>
+              <li><strong>LUFS</strong> (Loudness Units relative to Full Scale) measures <em>perceived</em> loudness per the <strong>ITU-R BS.1770</strong> standard.</li>
+              <li><strong>Momentary</strong> (400 ms), <strong>short-term</strong> (3 s), and <strong>integrated</strong> (whole track, gated) answer different questions.</li>
+              <li>Streaming targets: <strong>Spotify −14, YouTube −14, Apple Music −16 LUFS</strong>; keep true peak under <strong>−1 dBTP</strong>.</li>
+              <li>Platforms <strong>turn loud masters down</strong> — crushing your track gains nothing on streaming.</li>
+              <li><strong>True peak</strong> catches inter-sample overs that regular peak meters miss.</li>
+            </ul>
+          </section>
 
-                        <!-- Technical Deep-Dive -->
-                        <div class="tool-section mb-4">
-                            <h2 class="text-mid mb-3"><i class="bi bi-cpu me-2"></i>The Science of Loudness: ITU-R
-                                BS.1770 & EBU R128</h2>
-                            <p>During the notorious "Loudness Wars" of the 1990s and 2000s, mastering engineers competed
-                                to produce the loudest CDs by squashing dynamic range with brickwall limiters. Because
-                                conventional digital peak meters (measuring <strong>dBFS</strong>) only register maximum
-                                instantaneous sample voltages, severely distorted tracks appeared normal while
-                                destroying acoustic punch and listener ear fatigue.</p>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>What Is a Loudness Meter?</h2>
+            <p><strong>A loudness meter measures perceived loudness in LUFS (Loudness Units relative to Full Scale), following the ITU-R BS.1770 standard — unlike a peak meter, it models how human ears actually hear.</strong> Two tracks peaking at 0 dBFS can feel wildly different in volume; at matched LUFS they feel the same. That is why every streaming platform normalizes on LUFS, not peaks.</p>
+            <p>This meter analyzes your microphone or playback input in real time, displaying all three standard time windows plus true peak. Use it to check a mix before upload, compare masters, or learn how loudness works by watching the numbers move as music plays.</p>
+          </section>
 
-                            <p>To solve this industry-wide crisis, the International Telecommunication Union established
-                                <strong>ITU-R BS.1770</strong>, creating the <strong>LUFS (Loudness Units relative to
-                                    Full Scale)</strong> standard (also known as <strong>LKFS</strong> in North
-                                America). Unlike simple electrical peak or RMS meters, LUFS models human ear physiology
-                                using a specialized <strong>K-weighting curve</strong>:
-                            </p>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-gear me-2"></i>How This Loudness Meter Works</h2>
+            <p>Press <strong>Start Loudness Meter</strong> and the page captures audio via the Web Audio API, then runs a <strong>K-weighted loudness algorithm</strong> modeled on ITU-R BS.1770: a high-shelf boost above ~1.5 kHz plus a high-pass filter, mimicking ear sensitivity, followed by mean-square energy averaging over sliding windows.</p>
+            <p>Methodology: <strong>momentary</strong> = 400 ms window (catches sudden hits), <strong>short-term</strong> = 3 s window (verse/chorus balance), <strong>integrated</strong> = gated whole-session average (absolute gate −70 LUFS, relative gate −10 LU — silence doesn't drag it down), <strong>true peak</strong> = 4× oversampled inter-sample peak. The history graph plots short-term LUFS over time. Validation method: play a 1 kHz sine at −20 dBFS — the meter should read approximately −20 LUFS momentary, since K-weighting is near-flat at 1 kHz.</p>
+            <p><em>Last reviewed: October 2026. Algorithm follows ITU-R BS.1770-4 principles; platform targets per Spotify, Apple, YouTube, EBU R128, ATSC A/85 published specs.</em></p>
+          </section>
 
-                            <div class="card p-3 my-3 bg-light border-0 shadow-sm">
-                                <h5 class="fw-bold mb-2">The Two-Stage K-Weighting Psychoacoustic Filter:</h5>
-                                <ol class="small mb-1">
-                                    <li><strong>Stage 1 (Head Acoustic Simulation):</strong> A high-frequency shelving
-                                        filter boosting frequencies above $1.5\text{ kHz}$ by approximately $+4\text{
-                                        dB}$, simulating acoustic refraction and amplification around the human head and
-                                        ear canal.</li>
-                                    <li><strong>Stage 2 (High-Pass Pre-Filter):</strong> A second-order high-pass filter
-                                        with a cutoff near $38\text{ Hz}$ that rolls off deep sub-bass frequencies,
-                                        reflecting the human ear's natural low-frequency insensitivity at typical
-                                        listening levels.</li>
-                                </ol>
-                                <p class="mb-0 text-muted small mt-2">After filtering, channel energies are summed with
-                                    directional weighting and converted to LUFS: $\text{LUFS} = -0.691 + 10 \times
-                                    \log_{10}\left(\sum z_i\right)$.</p>
-                            </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-calculator me-2"></i>LUFS, Gating, and True Peak: Worked Example</h2>
+            <p><strong>Integrated LUFS</strong> isn't a simple average — gating excludes silence so intros don't cheat the number:</p>
+            <ol>
+              <li>Split the track into 400 ms blocks, compute each block's K-weighted loudness</li>
+              <li>Drop blocks below <strong>−70 LUFS</strong> (absolute gate — digital silence)</li>
+              <li>Compute the average, then drop blocks more than <strong>10 LU</strong> below it (relative gate — quiet verses stay, fade-outs go)</li>
+              <li>Average the survivors = <strong>integrated LUFS</strong></li>
+            </ol>
+            <p><strong>True peak example:</strong> a master peaking at −0.1 dBFS (sample peak) can still hit <strong>+0.4 dBTP</strong> between samples — invisible to normal meters, but it clips when YouTube re-encodes to AAC. That half-decibel of hidden overs is exactly what the true-peak readout exists to catch: keep it under <strong>−1 dBTP</strong> and encoding stays clean.</p>
+            <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: waveform with sample dots below 0 dBFS and a reconstructed curve peaking above it, labeled "inter-sample peak +0.4 dBTP"]</div><figcaption class="small text-muted">True peak vs sample peak. Suggested alt text: "Diagram showing inter-sample true peak exceeding sample peak level"</figcaption></figure>
+          </section>
 
-                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-diagram-3 me-2"></i>The Four Core Loudness
-                                Metrics Explained</h3>
-                            <div class="row g-3 my-2">
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i class="bi bi-speedometer me-1 text-teal"></i>
-                                            Momentary Loudness ($M$)</h6>
-                                        <p class="small text-muted mb-0">Calculated over an un-gated sliding
-                                            <strong>400-millisecond rectangular time window</strong>. Momentary loudness
-                                            reveals immediate transient bursts—such as heavy snare hits, aggressive
-                                            brass stabs, or 808 bass drops.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i
-                                                class="bi bi-hourglass-split me-1 text-teal"></i> Short-Term Loudness
-                                            ($S$)</h6>
-                                        <p class="small text-muted mb-0">Calculated over a continuous <strong>3-second
-                                                sliding time window</strong>. Short-term loudness is the primary metric
-                                            used during mixing and live broadcasts to maintain consistent perceived
-                                            volume between dialogue, verses, and choruses.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i
-                                                class="bi bi-collection-play me-1 text-teal"></i> Integrated Loudness
-                                            ($I$)</h6>
-                                        <p class="small text-muted mb-0">The single overall target value representing
-                                            the entire duration of a track or television program. It uses dual gating:
-                                            an <em>absolute gate at -70 LUFS</em> (ignoring silence) and a <em>relative
-                                                gate at -10 LU below un-gated loudness</em> (preventing quiet intros or
-                                            pauses from skewing the reading).</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="p-3 border rounded h-100 bg-white shadow-sm">
-                                        <h6 class="fw-bold text-dark"><i class="bi bi-soundwave me-1 text-teal"></i>
-                                            True Peak ($dBTP$)</h6>
-                                        <p class="small text-muted mb-0">Employs minimum 4x oversampling to reconstruct
-                                            the continuous analog waveform. This detects <strong>inter-sample peaks
-                                                (ISPs)</strong>—invisible voltage spikes that peak above 0 dBFS between
-                                            consecutive digital samples and distort consumer DACs.</p>
-                                    </div>
-                                </div>
-                            </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-list-ol me-2"></i>How to Use the Loudness Meter</h2>
+            <ol>
+              <li><strong>Press Start Loudness Meter</strong> and allow microphone access (or route your DAW output to the input).</li>
+              <li><strong>Play your track</strong> from start to finish for an integrated reading.</li>
+              <li><strong>Watch Momentary</strong> for sudden jumps — a snare 6 LU above the verse may need taming.</li>
+              <li><strong>Watch Short-Term</strong> to compare sections: verse vs chorus balance at a glance.</li>
+              <li><strong>Read Integrated</strong> at the end — this is the number platforms normalize to.</li>
+              <li><strong>Check True Peak:</strong> if it exceeds −1 dBTP, lower your limiter ceiling and re-render.</li>
+              <li><strong>Compare against the platform table</strong> below to decide if your master is ready.</li>
+            </ol>
+          </section>
 
-                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-table me-2"></i>Global Streaming & Broadcast
-                                Loudness Standards</h3>
-                            <p>Major streaming services and international television networks enforce strict loudness
-                                normalization targets to ensure smooth, uniform playback without listeners reaching for
-                                their volume knobs:</p>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-table me-2"></i>Reading Your Result: Platform Targets</h2>
+            <p>Match your integrated LUFS and true peak against where the track is going:</p>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead><tr><th>Platform</th><th>Target (integrated)</th><th>True peak ceiling</th><th>What happens</th></tr></thead>
+                <tbody>
+                  <tr><td>Spotify</td><td>−14 LUFS</td><td>−1 dBTP</td><td>Louder masters turned down; quiet raised if headroom allows</td></tr>
+                  <tr><td>YouTube</td><td>−14 LUFS</td><td>−1 dBTP</td><td>Always normalized; never turns quiet tracks up</td></tr>
+                  <tr><td>Apple Music</td><td>−16 LUFS</td><td>−1 dBTP</td><td>Sound Check on by default for new installs</td></tr>
+                  <tr><td>Tidal / Amazon / Deezer</td><td>−14 to −15 LUFS</td><td>−1 dBTP (Amazon −2)</td><td>Same turn-down behavior as Spotify</td></tr>
+                  <tr><td>Podcast (spoken)</td><td>−16 LUFS</td><td>−1 dBTP</td><td>Matches Apple/Spotify spoken-word levels</td></tr>
+                  <tr><td>Broadcast TV (US/EU)</td><td>−24 / −23 LUFS</td><td>−2 / −1 dBTP</td><td>ATSC A/85 / EBU R128 — legal delivery specs</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><strong>Next step per result:</strong> integrated within ±1 LU of target and true peak under −1 dBTP → ship it. Louder than −10 LUFS → expect turn-down; check it still sounds open. True peak over 0 dBTP → lower the limiter ceiling, don't just turn down (peaks stay).</p>
+          </section>
 
-                            <div class="table-responsive my-3">
-                                <table class="table table-bordered table-striped align-middle text-center">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th class="text-start">Platform / Standard</th>
-                                            <th>Target Integrated (LUFS)</th>
-                                            <th>Max True Peak (dBTP)</th>
-                                            <th>Normalization Algorithm</th>
-                                            <th>Notes & Recommendation</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-start fw-bold">Spotify</td>
-                                            <td><strong>-14 LUFS</strong></td>
-                                            <td>-1.0 dBTP (-2.0 if > -14)</td>
-                                            <td>ReplayGain / ITU BS.1770</td>
-                                            <td>Masters hotter than -14 LUFS are turned down; quieter masters are
-                                                limited if positive gain is enabled.</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start fw-bold">Apple Music</td>
-                                            <td><strong>-16 LUFS</strong></td>
-                                            <td>-1.0 dBTP</td>
-                                            <td>Apple Sound Check</td>
-                                            <td>Sound Check preserves full microdynamics and provides pristine playback
-                                                on AirPods and spatial audio.</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start fw-bold">YouTube Music & Video</td>
-                                            <td><strong>-14 LUFS</strong></td>
-                                            <td>-1.0 dBTP</td>
-                                            <td>Content Loudness Engine</td>
-                                            <td>Only turns loud audio down; YouTube never applies positive gain or
-                                                upward limiting to quiet videos.</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start fw-bold">Tidal / Amazon Music</td>
-                                            <td><strong>-14 LUFS</strong></td>
-                                            <td>-1.0 dBTP</td>
-                                            <td>ITU-R BS.1770</td>
-                                            <td>Consistent -14 LUFS target; maintains transparency for High-Res MQA and
-                                                FLAC streams.</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start fw-bold">Broadcast TV (EBU R128)</td>
-                                            <td><strong>-23.0 LUFS (±0.5 LU)</strong></td>
-                                            <td>-1.0 dBTP</td>
-                                            <td>Mandatory European Law</td>
-                                            <td>Eliminates commercial ad loudness spikes across UK, European, and
-                                                Australian television.</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start fw-bold">US Television (ATSC A/85)</td>
-                                            <td><strong>-24.0 LUFS</strong></td>
-                                            <td>-2.0 dBTP</td>
-                                            <td>CALM Act Compliance</td>
-                                            <td>US federal regulation requiring commercial advertisements to match
-                                                average program dialogue loudness.</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-start fw-bold">Podcasts (AES TD1004)</td>
-                                            <td><strong>-16 to -18 LUFS</strong></td>
-                                            <td>-1.0 dBTP</td>
-                                            <td>Industry Best Practice</td>
-                                            <td>Optimal for spoken word speech intelligibility in noisy environments
-                                                (commuting, cars, earbuds).</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-arrow-down-up me-2"></i>Why Spotify Turned Your Track Down (Normalization Truth)</h2>
+            <p>Here is the asymmetry most pages skip: platforms <strong>always turn loud tracks down</strong> to their target, but <strong>only turn quiet tracks up if peak headroom allows</strong> — and never with limiting. So a −8 LUFS crushed master gets turned down to −14 and keeps all its squashed artifacts, while a dynamic −14 LUFS master plays untouched and sounds better.</p>
+            <p>The practical takeaway: <strong>−14 LUFS is a playback level, not a mastering law.</strong> A punchy −9 LUFS master turned down to −14 retains its character; a track strangled to exactly −14 "to avoid turn-down" gains nothing and often loses life. Master for the song, keep true peak under −1 dBTP, and let normalization do its job.</p>
+          </section>
 
-                            <h3 class="text-mid mt-4 mb-3"><i class="bi bi-shield-lock me-2"></i>The "Loudness Penalty"
-                                and How to Avoid It</h3>
-                            <p>Many self-mastering artists mistakenly crush their tracks to -8 or -6 LUFS believing
-                                louder files stand out. In modern streaming environments, the opposite happens:
-                                <strong>The Loudness Penalty</strong>.
-                            </p>
-                            <p>When you submit a track mastered at -8 LUFS to Spotify or YouTube (-14 LUFS target),
-                                their servers automatically attenuate your audio by <strong>-6 dB</strong>. Because the
-                                track was heavily limited, its punchy kick transients and snare snaps were permanently
-                                flattened. When placed side-by-side with a dynamic mix mastered to -14 LUFS, the dynamic
-                                track will sound punchier, wider, and clearer at the exact same perceived volume!</p>
-                        </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+            <ul>
+              <li><strong>Browser implementation, not a certified meter.</strong> Values follow BS.1770 principles but this isn't a calibrated compliance instrument for broadcast delivery.</li>
+              <li><strong>Mic/system path colors readings.</strong> OS enhancements, AGC, or Bluetooth codecs alter levels — measure from a clean file playback path for mastering decisions.</li>
+              <li><strong>Integrated needs a full pass.</strong> A 10-second snippet's integrated value is meaningless; play the whole track.</li>
+              <li><strong>True peak is estimated.</strong> 4× oversampling catches most inter-sample peaks, but codec-induced overs (AAC/MP3) can only be checked by encoding.</li>
+            </ul>
+          </section>
 
-                        <!-- FAQ Section -->
-                        <div class="tool-section mt-5">
-                            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked
-                                Questions</h2>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-arrow-left-right me-2"></i>Loudness Meter vs Alternatives</h2>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead><tr><th>Option</th><th>Best for</th><th>Drawback</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>This loudness meter</strong></td><td>Quick free LUFS + true peak check anywhere</td><td>Browser-based; not a certified delivery meter</td></tr>
+                  <tr><td>YouLean Loudness Meter (plugin)</td><td>In-DAW mastering with detailed stats</td><td>Requires a DAW; free tier limited</td></tr>
+                  <tr><td>ffmpeg loudnorm filter</td><td>Batch file analysis and normalization</td><td>Command line; no real-time display</td></tr>
+                  <tr><td>Hardware broadcast meter</td><td>Legal compliance logging</td><td>Expensive; overkill for music</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: momentary (400ms), short-term (3s), and integrated (gated whole-track) windows drawn over a song waveform]</div><figcaption class="small text-muted">LUFS time windows compared. Suggested alt text: "Diagram of momentary, short-term and integrated LUFS measurement windows"</figcaption></figure>
+          </section>
 
-                            <div class="accordion" id="faqAccordion">
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#faq1">
-                                            What is the difference between LUFS and standard RMS or Peak decibels?
-                                        </button>
-                                    </h3>
-                                    <div id="faq1" class="accordion-collapse collapse show"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Peak decibels (dBFS) measure the highest instantaneous electrical or digital
-                                            voltage level, while RMS measures average electrical energy across a window.
-                                            Neither corresponds to human hearing. <strong>LUFS (Loudness Units relative
-                                                to Full Scale)</strong>, equivalent to <strong>LKFS</strong>, applies a
-                                            psychoacoustic K-weighting curve that boosts upper-mid frequencies and
-                                            attenuates bass, matching the human ear's non-linear perception of loudness
-                                            as defined in ITU-R BS.1770.
-                                        </div>
-                                    </div>
-                                </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    What is LUFS and why does it matter more than peak level?
+                  </button>
+                </h3>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    LUFS (Loudness Units relative to Full Scale) measures perceived loudness using K-weighting that mimics human hearing, per ITU-R BS.1770. Two tracks peaking at 0 dBFS can feel completely different in volume; at matched LUFS they feel the same. Every streaming platform normalizes on LUFS — never on peaks — which is why it is the number that decides how loud your music actually plays.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    What is the difference between momentary, short-term, and integrated LUFS?
+                  </button>
+                </h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Momentary uses a 400 ms window and catches sudden jumps like snare hits. Short-term uses a 3-second window, ideal for comparing verse and chorus balance. Integrated is the gated average of the whole track — the single number platforms normalize to. Watch momentary while mixing, short-term while balancing sections, integrated when judging the finished master.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    What is true peak and why isn't sample peak enough?
+                  </button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    True peak (dBTP) estimates the real analog peak between digital samples using 4× oversampling. A master peaking at −0.1 dBFS can hide +0.4 dBTP of inter-sample overs that clip when encoded to AAC or MP3. Keep true peak under −1 dBTP and your track survives every platform's encoder cleanly.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    How loud should my master be for Spotify and YouTube?
+                  </button>
+                </h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Aim for around −14 LUFS integrated with true peak under −1 dBTP — both Spotify and YouTube normalize to −14. But don't strangle a punchy −9 LUFS master down to −14 just to "avoid turn-down": it will be turned down anyway and keep its character, while the flattened version gains nothing. Master for the song, not the algorithm.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                    Why did Spotify make my track quieter than my WAV?
+                  </button>
+                </h3>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Spotify normalizes everything to −14 LUFS, so a −8 LUFS master gets turned down 6 dB — and keeps all its limiting artifacts, sounding smaller than a dynamic master at the same playback level. This is the loudness war ending: crushing no longer wins loudness, it just costs punch. A dynamic master turned down always beats a crushed one.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                    What LUFS should a podcast be?
+                  </button>
+                </h3>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Target −16 LUFS integrated for stereo podcasts (−19 for mono), with true peak under −1 dBTP. That matches Apple and Spotify spoken-word levels, so your episode plays at the same volume as everything else in the queue. Consistency matters more than the exact number — wild swings between segments annoy listeners most.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                    What is loudness range (LRA) and why should I check it?
+                  </button>
+                </h3>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    LRA is the statistical spread between quiet and loud passages (10th to 95th percentile of short-term values). A pop master might show 4 LU; a film score 15+ LU. If your LRA is under 3 LU, you've likely over-compressed — the track has no breathing room left regardless of its integrated number.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                    How does LUFS gating work?
+                  </button>
+                </h3>
+                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Integrated LUFS ignores silence so it doesn't cheat the average: blocks below −70 LUFS are dropped outright (absolute gate), then blocks more than 10 LU below the running average are dropped (relative gate). Long intros and fade-outs therefore don't drag your number down — only the actual program counts.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                    LUFS vs RMS: what's the difference?
+                  </button>
+                </h3>
+                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    RMS is pure physics — average signal energy with no regard for hearing. LUFS adds K-weighting (ear-like frequency response) and gating, so it tracks perceived loudness. A bass-heavy track and a bright track can share RMS yet differ by several LU — LUFS tells you which one will actually sound louder.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                    Can I use this meter for broadcast compliance?
+                  </button>
+                </h3>
+                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    No — use it for learning, mixing guidance, and pre-checks only. Legal delivery under EBU R128 (−23 LUFS) or ATSC A/85 (−24 LKFS) requires certified meters with documented calibration and logging. This browser meter follows BS.1770 principles but isn't a compliance instrument.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faq2">
-                                            What are Momentary, Short-Term, and Integrated LUFS?
-                                        </button>
-                                    </h3>
-                                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            <strong>Momentary LUFS (M)</strong> measures loudness over an un-gated
-                                            sliding 400-millisecond window for tracking instantaneous transients.
-                                            <strong>Short-Term LUFS (S)</strong> measures loudness over a 3-second
-                                            sliding window for monitoring vocal and verse/chorus flow.
-                                            <strong>Integrated LUFS (I)</strong> calculates the overall program loudness
-                                            of the entire song from start to finish, applying an absolute gate at -70
-                                            LUFS and a relative gate at -10 LU to ignore pauses.
-                                        </div>
-                                    </div>
-                                </div>
+          <section class="mb-4">
+            <p class="text-muted small"><em>Note:</em> this tool is for educational and pre-mastering checks. It is not a certified broadcast compliance meter.</p>
+          </section>
 
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faq3">
-                                            What is True Peak (dBTP) and why does it matter for digital distribution?
-                                        </button>
-                                    </h3>
-                                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            <strong>True Peak (dBTP)</strong> measures the maximum analog voltage that
-                                            will occur when digital samples are converted to sound by a DAC
-                                            (Digital-to-Analog Converter). Even if digital sample peaks remain below 0.0
-                                            dBFS, inter-sample peaks between adjacent samples can exceed 0 dBFS and
-                                            cause harsh analog clipping distortion. Major streaming platforms require
-                                            True Peak levels not to exceed -1.0 dBTP (or -2.0 dBTP for hot masters).
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faq4">
-                                            What are the target Integrated LUFS levels for major streaming platforms?
-                                        </button>
-                                    </h3>
-                                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Standard target Integrated LUFS levels are: <strong>Spotify</strong> (-14
-                                            LUFS, -1.0 dBTP), <strong>Apple Music</strong> (-16 LUFS, -1.0 dBTP),
-                                            <strong>YouTube</strong> (-14 LUFS, -1.0 dBTP), <strong>Tidal</strong> (-14
-                                            LUFS, -1.0 dBTP), <strong>Amazon Music</strong> (-14 LUFS, -1.0 dBTP), and
-                                            <strong>Broadcast Television EBU R128</strong> (-23.0 LUFS, -1.0 dBTP) or
-                                            <strong>ATSC A/85</strong> (-24.0 LUFS, -2.0 dBTP).
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faq5">
-                                            What happens if my master is louder than Spotify's -14 LUFS target?
-                                        </button>
-                                    </h3>
-                                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            If your song is mastered to -8 LUFS, Spotify's loudness normalization
-                                            algorithm simply attenuates your overall volume down by 6 dB to match -14
-                                            LUFS. You gain zero volume advantage over other tracks, but your song
-                                            suffers from crushed transients and loss of dynamic punch compared to tracks
-                                            that retained breathing room.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item">
-                                    <h3 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faq6">
-                                            What is Loudness Range (LRA) in mastering?
-                                        </button>
-                                    </h3>
-                                    <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            <strong>Loudness Range (LRA)</strong>, measured in Loudness Units (LU),
-                                            quantifies the statistical dynamic variation between the quietest and
-                                            loudest parts of a track (excluding silence and extreme transients). A tight
-                                            pop master typically exhibits an LRA of 3 to 6 LU, while an expressive
-                                            classical symphony or cinematic film score might span 15 to 25 LU.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Related Tools Cards -->
-                        <div class="card my-4 shadow-sm border-0">
-                            <div class="card-body p-4 bg-light rounded">
-                                <h5 class="card-title fw-bold mb-3"><i
-                                        class="bi bi-grid-fill me-2 text-teal"></i>Related Sound Analysis & Mastering
-                                    Tools</h5>
-                                <div class="row g-2">
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
-                                            href="/sound-analysis-tools/decibel-meter/">
-                                            <i class="bi bi-speedometer me-1 text-teal"></i> Decibel Meter
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
-                                            href="/sound-analysis-tools/microphone-test/">
-                                            <i class="bi bi-mic me-1 text-teal"></i> Microphone Test Online
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
-                                            href="/sound-analysis-tools/audio-to-waveform-visualizer/">
-                                            <i class="bi bi-filetype-wav me-1 text-teal"></i> Waveform Visualizer
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
-                                            href="/audio-editing-tools/audio-normalizer/">
-                                            <i class="bi bi-sliders me-1 text-teal"></i> Audio Normalizer
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
-                                            href="/audio-editing-tools/Audio-Volume-Booster.html">
-                                            <i class="bi bi-volume-up-fill me-1 text-teal"></i> Volume Booster
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a class="btn btn-outline-secondary w-100 text-start py-2"
-                                            href="/dj-music-production-tools/bpm-calculator/">
-                                            <i class="bi bi-calculator me-1 text-teal"></i> BPM Calculator
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+          <section class="mb-4">
+            <p class="text-muted small">Related tools: <a href="../decibel-meter/">decibel meter</a> for SPL readings, <a href="../audio-to-waveform-visualizer/">waveform visualizer</a> to see your audio, <a href="../microphone-test/">microphone test</a> to check input levels, and <a href="../../audio-editing-tools/audio-trimmer/">audio trimmer</a> to cut silence before measuring.</p>
+          </section>
+          </article>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -634,8 +547,8 @@
 
     <div id="footer"></div>
 
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+    <script src="../../assets/bootstrap5.js" defer></script>
+    <script src="../../assets/tools.js" defer></script>
     <!-- tool js -->
     <script defer>
         let audioCtx, analyser, micSource, processor;

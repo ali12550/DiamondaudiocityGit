@@ -4,14 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bass Reflex Port Length Calculator – Vented Subwoofer Tuning | Pitch Detectors</title>
+    <title>Bass Reflex Port Length Calculator for Subwoofers</title>
     <meta name="description"
-        content="Calculate precision bass reflex port length using enclosure volume, tuning frequency (Fb), port diameter, and end correction. Prevent port chuffing and turbulence." />
-    <meta name="keywords"
-        content="bass reflex port length calculator, ported box calculator, subwoofer port length, helmholtz resonator calculator, speaker port tuning, port chuffing, vented enclosure design" />
-
-    <link rel="canonical" href="https://pitchdetectors.com/speaker-tools/bass-reflex-port-length-calculator/">
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+        content="Calculate vented box port length from box volume, tuning frequency and port diameter. Helmholtz formula with end correction, worked examples included.">
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -21,7 +17,7 @@
         content="Calculate physical vent length for ported subwoofer boxes with Helmholtz resonance formulas, aerodynamic end corrections, and port velocity guidelines." />
     <meta property="og:url" content="https://pitchdetectors.com/speaker-tools/bass-reflex-port-length-calculator/" />
     <meta property="og:site_name" content="Pitch Detectors" />
-    <meta property="og:image" content="/assets/imgs/logo.png" />
+    <meta property="og:image" content="./assets/imgs/logo.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Bass Reflex Port Length Calculator by Pitch Detectors" />
@@ -32,12 +28,12 @@
         content="Bass Reflex Port Length Calculator – Vented Subwoofer Tuning | Pitch Detectors" />
     <meta name="twitter:description"
         content="Calculate exact port lengths for bass reflex speaker enclosures. Prevent port turbulence and optimize low-frequency extension." />
-    <meta name="twitter:image" content="/assets/imgs/logo.png" />
+    <meta name="twitter:image" content="./assets/imgs/logo.png" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link href="/assets/style.css" rel="stylesheet">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link href="../../assets/style.css" rel="stylesheet">
+    <link href="../../assets/tools.css" rel="stylesheet">
 
     <!-- Google Analytics -->
 
@@ -47,80 +43,93 @@
 
     <!-- Structured Data: WebApplication & FAQPage -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebApplication",
-          "@id": "https://pitchdetectors.com/speaker-tools/bass-reflex-port-length-calculator/#webapp",
-          "name": "Bass Reflex Port Length Calculator",
-          "url": "https://pitchdetectors.com/speaker-tools/bass-reflex-port-length-calculator/",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "All modern browsers (Chrome, Firefox, Safari, Edge)",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "description": "Calculates physical bass reflex port tube lengths for vented loudspeaker enclosures using Helmholtz acoustic resonance and aerodynamic boundary end corrections."
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://pitchdetectors.com/speaker-tools/bass-reflex-port-length-calculator/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "How does a bass reflex port function acoustically in a subwoofer box?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A bass reflex port functions as a classic Helmholtz acoustic resonator. The air mass trapped inside the port tube oscillates back and forth against the acoustic spring compliance of the air volume inside the box. At the enclosure tuning frequency (Fb), the port resonates in-phase with the forward cone radiation, dramatically reducing speaker cone excursion while boosting low-frequency sound pressure level (SPL) by 3 dB to 6 dB."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why is end correction necessary when calculating physical port length?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Sound waves oscillating inside a tube do not terminate abruptly at the physical lip of the vent; an acoustic mass of vibrating air clings just beyond both openings. End correction accounts for this acoustic boundary layer by subtracting an offset (typically 0.732 times the port diameter for one flanged and one free end) from the theoretical acoustic length to calculate the exact physical cutting length of the tube."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What causes port chuffing and how do I prevent it?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Port chuffing is audible wind turbulence and vortex shedding caused by excessive air velocity exiting the vent at high sound pressure levels. To eliminate chuffing, design the port with a sufficiently large cross-sectional area so peak air velocity remains below 17 meters per second (approx. 5% the speed of sound). Utilizing flared aerofoil port lips also smooths turbulence and reduces chuffing noise."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What happens if a subwoofer port is built too long or too short?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A port that is too short tunes the enclosure to an excessively high frequency (Fb), producing an unnatural boomy mid-bass peak while cutting off sub-bass response and risking driver bottoming out. A port that is too long tunes the box too low, resulting in a weak, rolled-off bass shelf and occupying excessive internal enclosure volume."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I use a rectangular slot port instead of a round tube?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. Rectangular slot ports are widely used in custom wood enclosures. To use this calculator for a slot port, convert the slot's cross-sectional area (Width * Height) into an equivalent circular diameter using the hydraulic formula: D_equiv = 2 * sqrt(Area / pi). Slot ports sharing enclosure walls also experience increased boundary end correction, typically requiring a 10% to 15% length reduction."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does the volume occupied by the port reduce the internal box volume (Vb)?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. The physical volume occupied by the port walls and the air inside the tube must be subtracted from the gross internal box volume. Vb in the calculator must always represent the net internal air volume remaining after deducting driver displacement, bracing, and the port assembly itself."
-              }
-            }
-          ]
-        }
-      ]
+      "@type": "Question",
+      "name": "How do I calculate port length for a subwoofer box?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use L = (23562.5 × D² × N) ÷ (Fb² × Vb) − 0.732 × D, with Vb in liters, Fb in Hz, D in cm, N ports — or just enter the four numbers above. Example: 50 L box tuned to 35 Hz with one 7 cm port needs about 13.7 cm of tube."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a longer port mean lower or higher tuning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lower. A longer port means a heavier air slug, which oscillates more slowly — exactly like a longer pendulum swings slower. To drop tuning from 35 Hz to 28 Hz in the same box, expect roughly double the port length."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 0.732 × D end correction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Air just outside both port ends vibrates along with the slug inside, making the port behave ~0.366 × D longer per end — 0.732 × D total. The calculator subtracts it, so the physical tube you cut produces the intended acoustic length. Skip it and your box tunes sharp."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my port make a whistling or huffing noise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That's chuffing — turbulent airflow from a too-small port at high volume. Fix it with more port area (larger diameter or a second port), then recalculate length since area changes tuning. Flared port ends also smooth airflow and buy you a few dB of headroom before noise starts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What tuning frequency should I choose for a subwoofer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "30–35 Hz suits most music (rap, EDM, rock); 28 Hz and below digs deeper for home theater rumble but needs a longer port and more box. Match tuning to your content: daily music around 32–35 Hz, SPL competition often higher (40–50 Hz) for peak output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Round port vs slot port — which is better?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Acoustically they're equivalent at the same area and length. Round PVC/aeroports are easier to buy and flare; slot ports use the box walls, brace the enclosure, and fit long lengths via bends. Choose by build convenience — then calculate with the matching geometry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I measure my box's actual tuning frequency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Play slow sine sweeps around your target while watching the cone: at Fb, excursion visibly minimizes because the port takes over. Alternatively, an impedance sweep shows a characteristic double hump with a dip at Fb. Trim or extend the port a centimeter at a time to dial it in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use two ports instead of one big port?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — select 2 in the calculator. Two identical ports need roughly twice the length of one for the same tuning (total area doubled). Often one larger port is simpler to fit, but dual ports can look better and distribute airflow. Never mix different diameters in one box."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if my port is too short?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The box tunes higher than intended: bass gets peaky and thin below the peak, and the driver unloads (moves excessively) at frequencies it was supposed to be protected from. If your build tunes sharp, extend the port — or add an elbow to fit more length inside."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a subsonic filter with a ported box?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strongly recommended. Below Fb a ported box provides almost no air-spring control, so the driver can over-excurse on deep bass. A subsonic (infrasonic) high-pass filter set just below Fb protects the driver with no audible cost."
+      }
     }
-    </script>
+  ]
+}
+  </script>
 </head>
 
 <body>
@@ -230,476 +239,255 @@
 
                 </div>
                 <article class="tool-container mt-4" id="main-content">
-                    <header class="mb-4">
-                        <h1 class="text-teal mb-3">Bass Reflex Port Length Calculator: Technical Guide to Helmholtz
-                            Enclosure Tuning</h1>
-                        <p class="lead text-muted">
-                            Master the acoustic physics of vented loudspeaker design. Explore how air compliance,
-                            acoustic mass, and Helmholtz resonance combine to extend low-frequency cutoff, minimize
-                            driver excursion, and optimize transient fidelity without wind turbulence or port chuffing.
-                        </p>
-                    </header>
+          <section class="mb-4">
+            <h1 class="text-teal mb-3">Bass Reflex Port Length Calculator</h1>
+            <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
+            <p class="lead">A <strong>bass reflex port length calculator</strong> tells you how long to cut your vent tube for a target tuning frequency. Enter <strong>box volume, tuning frequency, port diameter, and port count</strong> — the tool applies the Helmholtz formula with end correction and returns the exact length in centimeters.</p>
+          </section>
 
-                    <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-box-seam me-2"></i>1. The Acoustic Mechanics of
-                            Bass Reflex Enclosures</h2>
-                        <p>
-                            A <strong>bass reflex</strong> (ported or vented) loudspeaker enclosure is an
-                            electroacoustic system that utilizes the sound radiation from the rear of the speaker
-                            diaphragm to reinforce its forward low-frequency output.
-                        </p>
-                        <p>
-                            In an unvented acoustic suspension (sealed) box, the rear sound wave is completely absorbed.
-                            In a bass reflex system, the enclosure and port operate together as an acoustic
-                            <strong>Helmholtz resonator</strong>:
-                        </p>
-                        <div class="row g-4 mb-4">
-                            <div class="col-md-6">
-                                <div class="p-3 border rounded h-100 bg-light">
-                                    <h3 class="h6 text-teal mb-2"><i class="bi bi-spring me-2"></i>Acoustic Compliance
-                                        ($C_A$)</h3>
-                                    <p class="small text-muted mb-2">The enclosed volume of air $V_b$ acts as an elastic
-                                        gas spring:</p>
-                                    <code>C_A = \frac{V_b}{\rho_0 \cdot c^2}</code>
-                                    <p class="small text-muted mt-2">Where $\rho_0 = 1.204\text{ kg/m}^3$ is air density
-                                        and $c = 343\text{ m/s}$ is the speed of sound at $20^\circ\text{C}$.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="p-3 border rounded h-100 bg-light">
-                                    <h3 class="h6 text-teal mb-2"><i class="bi bi-box me-2"></i>Acoustic Mass ($M_A$)
-                                    </h3>
-                                    <p class="small text-muted mb-2">The plug of air contained inside the port tube acts
-                                        as a moving mass:</p>
-                                    <code>M_A = \frac{\rho_0 \cdot L_{\text{eff}}}{A_{\text{port}}}</code>
-                                    <p class="small text-muted mt-2">Where $A_{\text{port}} = \frac{\pi D^2}{4}$ is
-                                        cross-sectional area and $L_{\text{eff}}$ is the effective acoustic tube length.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <p>
-                            At the box resonance frequency $F_b$, the air mass in the port oscillates in-phase with the
-                            cone. This acoustic loading exerts high pressure on the rear of the cone, <strong>reducing
-                                cone excursion to an absolute minimum</strong> while the port itself radiates virtually
-                            100% of the acoustic energy.
-                        </p>
-                    </section>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-check2-square me-2"></i>Key Takeaways</h2>
+            <ul>
+              <li>Port length sets the box's <strong>Helmholtz tuning frequency (Fb)</strong> — the bass boost point.</li>
+              <li><strong>Longer port = lower tuning;</strong> wider port or bigger box = shorter port for the same tuning.</li>
+              <li>Formula: <strong>L = (23562.5 × D² × N) ÷ (Fb² × Vb) − 0.732 × D</strong> (cm).</li>
+              <li>The <strong>−0.732 × D</strong> term is end correction — air just outside the port counts too.</li>
+              <li>Too-small ports <strong>chuff</strong> (whistle); keep air velocity modest or add port area and recalculate.</li>
+            </ul>
+          </section>
 
-                    <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-calculator me-2"></i>2. The Port Length
-                            Mathematical Formula & End Correction</h2>
-                        <p>
-                            The resonant frequency $F_b$ of an acoustic Helmholtz resonator is defined by:
-                        </p>
-                        <div class="p-3 border rounded bg-light mb-4 text-center">
-                            <code>F_b = \frac{c}{2\pi} \sqrt{\frac{A_{\text{port}}}{V_b \cdot L_{\text{eff}}}}</code>
-                        </div>
-                        <p>
-                            Solving this equation for the effective acoustic length $L_{\text{eff}}$, and converting
-                            into standard metric engineering units ($V_b$ in Liters, $D$ in cm, $F_b$ in Hz), yields:
-                        </p>
-                        <div class="p-3 border rounded bg-light mb-4 text-center">
-                            <code>L_{\text{eff}} = \frac{23562.5 \cdot D^2 \cdot N}{F_b^2 \cdot V_b} \quad (\text{cm})</code>
-                        </div>
-                        <p>
-                            However, the air mass oscillating inside a tube does not end sharply at the physical pipe
-                            boundary; an external volume of vibrating air adheres to both openings. To obtain the true
-                            <strong>physical cutting length</strong> $L_{\text{phys}}$, an aerodynamic <strong>end
-                                correction factor</strong> $k \cdot D$ is subtracted:
-                        </p>
-                        <div class="p-3 border rounded bg-light mb-4 text-center">
-                            <code>L_{\text{phys}} = L_{\text{eff}} - (k_{\text{inner}} + k_{\text{outer}}) \cdot D = \left( \frac{23562.5 \cdot D^2 \cdot N}{F_b^2 \cdot V_b} \right) - 0.732 \cdot D</code>
-                        </div>
-                        <div class="table-responsive mb-4">
-                            <table class="table table-bordered table-hover align-middle">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Port Boundary Condition</th>
-                                        <th>End Correction Factor ($k$)</th>
-                                        <th>Physical Acoustic Reality</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Both Ends Free (Unflanged pipe)</strong></td>
-                                        <td>$0.614 \cdot D$</td>
-                                        <td>Tube suspended freely inside enclosure and projecting outside cabinet.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>One Flanged End, One Free End (Standard)</strong></td>
-                                        <td>$0.732 \cdot D$</td>
-                                        <td>Outer port flush-mounted into cabinet baffle, inner end free in box air.
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Both Ends Flanged (Dual Bellmouth)</strong></td>
-                                        <td>$0.850 \cdot D$</td>
-                                        <td>Flush front baffle mounting with aerofoil flared horn on inner exit.</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Slot Port (3 Shared Cabinet Walls)</strong></td>
-                                        <td>$1.000\text{ to } 1.200 \cdot D$</td>
-                                        <td>Boundary layer drag along floor and side walls extends virtual acoustic
-                                            length.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-info-circle me-2"></i>What Is a Bass Reflex Port?</h2>
+            <p><strong>A bass reflex port is a tuned vent in a speaker enclosure that turns the box into a Helmholtz resonator, reinforcing bass output around the tuning frequency (Fb).</strong> The air slug in the port bounces on the "spring" of air inside the box — at Fb, the port radiates strongly, extending bass response well below what the sealed box alone could produce.</p>
+            <p>Get the length wrong and the tuning shifts: too short tunes too high (thin bass, port noise), too long tunes too low (sloppy, inefficient). This calculator nails the length from your box volume and target tuning.</p>
+          </section>
 
-                    <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-wind me-2"></i>3. Airflow Velocity & Preventing
-                            Port Chuffing</h2>
-                        <p>
-                            The primary pitfall in vented subwoofer design is selecting a port diameter that is too
-                            narrow. When high-excursion subwoofers push large volumes of air ($Delta V = S_d cdot X_{
-                            ext{max}}$) through a narrow tube, the air velocity increases dramatically.
-                        </p>
-                        <p>
-                            According to fluid mechanics, when the <strong>Reynolds number</strong> exceeds the laminar
-                            flow threshold, boundary vortices detach from the port lips, creating audible turbulence
-                            known as <strong>port chuffing</strong> (a loud puffing, whistling, or rattling noise that
-                            masks clean bass notes).
-                        </p>
-                        <div class="p-3 border rounded bg-light mb-4">
-                            <h3 class="h6 text-teal mb-2"><i class="bi bi-shield-check me-2"></i>Richard Small's Port
-                                Velocity Criteria:</h3>
-                            <ul class="small text-muted mb-0">
-                                <li><strong>Straight Tube Limit:</strong> Peak vent air velocity $v_{ ext{port}} <
-                                        17\text{ m/s}$ (approximately $5\%$ of the speed of sound).</li>
-                                <li><strong>Flared Aerofoil Limit:</strong> Smooth radiused bellmouth flares increase
-                                    allowable vent speed to $25–30\text{ m/s}$ before turbulent vortex detachment
-                                    occurs.</li>
-                                <li><strong>Minimum Vent Diameter Rule:</strong> $D_{\text{min}} \ge \sqrt{F_b \cdot S_d
-                                    \cdot X_{\text{max}}} \cdot 0.08$ (where $S_d$ is cone area in $\text{cm}^2$ and
-                                    $X_{\text{max}}$ is linear excursion in $\text{mm}$).</li>
-                            </ul>
-                        </div>
-                    </section>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-gear me-2"></i>How This Calculator Works</h2>
+            <p>The tool solves the classic vented-box equation for length, given your box volume (Vb, liters), desired tuning (Fb, Hz), port diameter (D, cm), and number of identical ports (N). Multiple ports behave as one larger port, so the formula scales with N.</p>
+            <p>Methodology: <code><strong>L = (23562.5 × D² × N) ÷ (Fb² × Vb) − 0.732 × D</strong></code>, result in centimeters. The constant 23562.5 folds in the speed of sound and unit conversions; the trailing <strong>0.732 × D</strong> is the end correction (see below). Validation method: enter Vb=50, Fb=35, D=7, N=1 → L ≈ 13.7 cm; raising N to 2 substantially increases L for the same tuning.</p>
+            <p><em>Last reviewed: October 2026. Formula is the standard cylindrical-vent equation used in loudspeaker design references.</em></p>
+          </section>
 
-                    <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-table me-2"></i>4. Bass Reflex Tuning Matrix:
-                            Enclosure Volume vs. Port Dimensions</h2>
-                        <p>
-                            The following reference chart illustrates calculated physical port lengths
-                            ($L_{\text{phys}}$ in cm) for single circular vents across common enclosure volumes and
-                            target tuning frequencies:
-                        </p>
-                        <div class="table-responsive mb-4">
-                            <table class="table table-bordered table-hover align-middle">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Box Volume ($V_b$)</th>
-                                        <th>Tuning Target ($F_b$)</th>
-                                        <th>Port Diameter ($D$)</th>
-                                        <th>Physical Length ($L_{\text{phys}}$)</th>
-                                        <th>Recommended Application</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>25 Liters</strong></td>
-                                        <td>42 Hz</td>
-                                        <td>6.0 cm</td>
-                                        <td>14.6 cm</td>
-                                        <td>Compact 8" studio monitor / Bookshelf speaker</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>35 Liters</strong></td>
-                                        <td>35 Hz</td>
-                                        <td>7.0 cm</td>
-                                        <td>21.8 cm</td>
-                                        <td>Standard 10" sealed-to-ported home Hi-Fi driver</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>50 Liters</strong></td>
-                                        <td>32 Hz</td>
-                                        <td>8.0 cm</td>
-                                        <td>24.3 cm</td>
-                                        <td>High-output 10" / 12" home theater subwoofer</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>70 Liters</strong></td>
-                                        <td>28 Hz</td>
-                                        <td>10.0 cm</td>
-                                        <td>35.5 cm</td>
-                                        <td>Deep low-frequency 12" audiophile subwoofer</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>100 Liters</strong></td>
-                                        <td>25 Hz</td>
-                                        <td>10.0 cm</td>
-                                        <td>30.4 cm</td>
-                                        <td>Reference 15" sub-bass home theater installation</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>150 Liters</strong></td>
-                                        <td>38 Hz</td>
-                                        <td>12.0 cm</td>
-                                        <td>10.9 cm</td>
-                                        <td>High-SPL 18" Live Sound / Concert PA enclosure</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-calculator me-2"></i>Worked Example: 12" Sub, 50 L Tuned to 35 Hz</h2>
+            <p>A common car-audio build: <strong>Vb = 50 L, Fb = 35 Hz</strong>, one <strong>7 cm</strong> diameter port:</p>
+            <ol>
+              <li>D² × N = 49 × 1 = <strong>49</strong>; Fb² × Vb = 1225 × 50 = <strong>61,250</strong></li>
+              <li>(23562.5 × 49) ÷ 61,250 = 1,154,562.5 ÷ 61,250 ≈ <strong>18.85 cm</strong></li>
+              <li>End correction: 0.732 × 7 = <strong>5.12 cm</strong></li>
+              <li>L = 18.85 − 5.12 ≈ <strong>13.7 cm</strong></li>
+            </ol>
+            <p>Want deeper tuning at <strong>28 Hz</strong> instead? Fb² drops to 784, so L ≈ (23562.5 × 49 ÷ 39,200) − 5.12 ≈ <strong>24.3 cm</strong> — nearly double the length for 7 Hz lower tuning. That steep sensitivity is why precise measurement matters.</p>
+            <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: cutaway of a vented box showing Vb, port diameter D, physical length L, and the end-correction air mass bulging past both port ends]</div><figcaption class="small text-muted">Port dimensions and end correction. Suggested alt text: "Cutaway diagram of a bass reflex port showing length and end correction"</figcaption></figure>
+          </section>
 
-                    <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-tools me-2"></i>5. Practical Enclosure Build &
-                            Installation Guidelines</h2>
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-6">
-                                <div class="card h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-arrows-expand me-2"></i>Internal
-                                            Clearance Clearance</h3>
-                                        <p class="small text-muted mb-0">
-                                            Always maintain a distance of at least <strong>one full port
-                                                diameter</strong> ($1 \times D$) between the inner port opening and the
-                                            rear cabinet wall to prevent airflow choking and unwanted shifts in tuning
-                                            frequency.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-subtract me-2"></i>Displacement
-                                            Deduction</h3>
-                                        <p class="small text-muted mb-0">
-                                            The physical volume occupied by the PVC or MDF port structure and internal
-                                            air must be added to your total gross box volume. If your target $V_b =
-                                            50\text{ L}$ and the port occupies $3.5\text{ L}$, build the gross cabinet
-                                            to $53.5\text{ L}$ (plus driver displacement).
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-layers me-2"></i>Damping Material
-                                            Placement</h3>
-                                        <p class="small text-muted mb-0">
-                                            Keep acoustic polyfill or fiberglass batting away from the inner port
-                                            opening. Ingesting loose fibers into the port causes turbulence and air
-                                            restriction. Line the cabinet walls, leaving a clear airway between driver
-                                            and port.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 border-0 shadow-sm">
-                                    <div class="card-body">
-                                        <h3 class="h6 text-teal"><i class="bi bi-soundwave me-2"></i>Organ Pipe
-                                            Resonance</h3>
-                                        <p class="small text-muted mb-0">
-                                            Extremely long ports can resonate like organ pipes ($f_{\text{pipe}} = c /
-                                            2L$). If this resonance falls in the subwoofer's passband ($80–200\text{
-                                            Hz}$), use an active steep crossover slope ($24\text{ dB/octave}$) to
-                                            suppress pipe resonances.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-list-ol me-2"></i>How to Use the Port Length Calculator</h2>
+            <ol>
+              <li><strong>Box volume (Vb):</strong> enter net internal volume in liters (subtract driver, port, and bracing displacement).</li>
+              <li><strong>Tuning frequency (Fb):</strong> enter your target in Hz — 30–35 Hz is typical for music subs.</li>
+              <li><strong>Port diameter:</strong> enter the inside diameter in cm of the tube you'll actually buy.</li>
+              <li><strong>Number of ports:</strong> select 1, 2, or 3 identical ports.</li>
+              <li><strong>Cut to the result:</strong> the physical tube length in cm — measure twice, cut once.</li>
+            </ol>
+          </section>
 
-                    <section class="mb-5">
-                        <h2 class="h4 text-teal mb-3"><i class="bi bi-check2-circle me-2"></i>6. Step-by-Step Port
-                            Calculation Workflow</h2>
-                        <ol class="list-group list-group-numbered mb-4">
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Input Net Box Volume ($V_b$)</div>
-                                    Enter the internal volume of your enclosure in liters after subtracting driver and
-                                    brace displacements.
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Define Target Tuning Frequency ($F_b$)</div>
-                                    Input the desired tuning frequency in Hertz (typically derived from Thiele-Small
-                                    simulations or driver $F_s$).
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Choose Port Tube Diameter ($D$)</div>
-                                    Select a diameter adequate to keep air velocity below $17\text{ m/s}$ (e.g.,
-                                    $7–8\text{ cm}$ for 10" drivers, $10–12\text{ cm}$ for 12"/15" drivers).
-                                </div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Review Physical Cutting Length</div>
-                                    The calculator computes the exact physical length in centimeters, automatically
-                                    incorporating aerodynamic end corrections.
-                                </div>
-                            </li>
-                        </ol>
-                    </section>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-table me-2"></i>Reading Your Result: Tuning Cheat Sheet</h2>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead><tr><th>Your result vs expectation</th><th>What it means</th><th>Next step</th></tr></thead>
+                <tbody>
+                  <tr><td>Length fits easily in the box</td><td>Healthy design</td><td>Build it; verify tuning after (see below)</td></tr>
+                  <tr><td>Length longer than the box is deep</td><td>Low tuning + small box</td><td>Use an L-shaped port, slot port, or raise Fb slightly</td></tr>
+                  <tr><td>Length under ~5 cm</td><td>Very high tuning or huge box</td><td>Double-check Fb and Vb inputs — likely a typo</td></tr>
+                  <tr><td>Huge jump when adding a port</td><td>Normal — N ports need N× the total area's length</td><td>Consider one bigger port instead of two small</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-                    <section class="mb-5">
-                        <h2 class="h4 text-teal mb-4"><i class="bi bi-question-circle me-2"></i>7. Frequently Asked
-                            Questions</h2>
-                        <div class="accordion" id="faqAccordion">
-                            <div class="accordion-item">
-                                <h3 class="accordion-header" id="faqHeading1">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse1" aria-expanded="false"
-                                        aria-controls="faqCollapse1">
-                                        How does a bass reflex port function acoustically in a subwoofer box?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse1" class="accordion-collapse collapse" aria-labelledby="faqHeading1"
-                                    data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body text-muted">
-                                        A bass reflex port functions as a classic Helmholtz acoustic resonator. The air
-                                        mass trapped inside the port tube oscillates back and forth against the acoustic
-                                        spring compliance of the air volume inside the box. At the enclosure tuning
-                                        frequency (Fb), the port resonates in-phase with the forward cone radiation,
-                                        dramatically reducing speaker cone excursion while boosting low-frequency sound
-                                        pressure level (SPL) by 3 dB to 6 dB.
-                                    </div>
-                                </div>
-                            </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-rulers me-2"></i>End Correction: Why the Port Is "Longer" Than It Looks</h2>
+            <p>The <strong>−0.732 × D</strong> term corrects for a subtle physics fact: the air <em>just outside</em> each port end vibrates with the slug inside, so the port behaves acoustically longer than its physical tube. Each end adds roughly 0.366 × D of "virtual" length (×2 ends = 0.732 × D).</p>
+            <p>Skip the correction and your box tunes <strong>higher than intended</strong> — a 7 cm port built 5 cm too long in acoustic terms can shift Fb by several Hz. Flared port ends (aeroports) increase the effective correction slightly, which is part of why they also reduce chuffing: smoother airflow at the mouths.</p>
+          </section>
 
-                            <div class="accordion-item">
-                                <h3 class="accordion-header" id="faqHeading2">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse2" aria-expanded="false"
-                                        aria-controls="faqCollapse2">
-                                        Why is end correction necessary when calculating physical port length?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
-                                    data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body text-muted">
-                                        Sound waves oscillating inside a tube do not terminate abruptly at the physical
-                                        lip of the vent; an acoustic mass of vibrating air clings just beyond both
-                                        openings. End correction accounts for this acoustic boundary layer by
-                                        subtracting an offset (typically 0.732 times the port diameter for one flanged
-                                        and one free end) from the theoretical acoustic length to calculate the exact
-                                        physical cutting length of the tube.
-                                    </div>
-                                </div>
-                            </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-wind me-2"></i>Port Chuffing: When Air Velocity Ruins Bass</h2>
+            <p><strong>Chuffing</strong> is the whistling/huffing noise a too-small port makes when air velocity gets turbulent — typically above ~17 m/s peak. It masquerades as distortion and ruins otherwise good bass. The fix is <strong>more port area</strong> (bigger diameter or more ports), which drops velocity — but changing area shifts tuning, so <strong>recalculate length</strong> afterward.</p>
+            <p>Rule of thumb: a single 7–10 cm port suits most 10–12" subs at moderate power; high-excursion monsters or 15"+ drivers want 2 ports or a large slot. If you hear huffing on loud bass notes, the port — not the driver — is the culprit.</p>
+            <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: smooth laminar airflow through a flared port vs turbulent chuffing in a narrow straight port]</div><figcaption class="small text-muted">Laminar vs turbulent port airflow. Suggested alt text: "Diagram comparing smooth and turbulent airflow in speaker ports"</figcaption></figure>
+          </section>
 
-                            <div class="accordion-item">
-                                <h3 class="accordion-header" id="faqHeading3">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse3" aria-expanded="false"
-                                        aria-controls="faqCollapse3">
-                                        What causes port chuffing and how do I prevent it?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
-                                    data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body text-muted">
-                                        Port chuffing is audible wind turbulence and vortex shedding caused by excessive
-                                        air velocity exiting the vent at high sound pressure levels. To eliminate
-                                        chuffing, design the port with a sufficiently large cross-sectional area so peak
-                                        air velocity remains below 17 meters per second (approx. 5% the speed of sound).
-                                        Utilizing flared aerofoil port lips also smooths turbulence and reduces chuffing
-                                        noise.
-                                    </div>
-                                </div>
-                            </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-hammer me-2"></i>Build and Verify: Measure Your Actual Tuning</h2>
+            <p>Don't trust the math blindly — <strong>measure Fb after building</strong>. The simple method: play sine sweeps near your target tuning while watching the driver cone; at Fb, cone excursion hits a <strong>visible minimum</strong> (the port does the work). Mark the frequency where movement is smallest — that's your true tuning.</p>
+            <p>If measured Fb is high, lengthen the port; if low, shorten it. A few cm of adjustment dials in the last few Hz. Also confirm the port has <strong>clearance</strong> — keep at least one port diameter of free space behind the inner end, or the nearby wall detunes it.</p>
+          </section>
 
-                            <div class="accordion-item">
-                                <h3 class="accordion-header" id="faqHeading4">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse4" aria-expanded="false"
-                                        aria-controls="faqCollapse4">
-                                        What happens if a subwoofer port is built too long or too short?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
-                                    data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body text-muted">
-                                        A port that is too short tunes the enclosure to an excessively high frequency
-                                        (Fb), producing an unnatural boomy mid-bass peak while cutting off sub-bass
-                                        response and risking driver bottoming out. A port that is too long tunes the box
-                                        too low, resulting in a weak, rolled-off bass shelf and occupying excessive
-                                        internal enclosure volume.
-                                    </div>
-                                </div>
-                            </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-exclamation-triangle me-2"></i>Limitations</h2>
+            <ul>
+              <li><strong>Cylindrical ports assumed.</strong> Slot ports need an equivalent diameter conversion; heavily flared aeros tune slightly lower than calculated.</li>
+              <li><strong>Net volume must be honest.</strong> Forgetting to subtract driver/port/bracing displacement is the #1 cause of mistuned boxes.</li>
+              <li><strong>No air-velocity check.</strong> The tool gives length, not chuffing risk — size port area sensibly (see above).</li>
+              <li><strong>Driver parameters ignored.</strong> True box design starts from Thiele/Small parameters; this tool sizes the vent once you've chosen Vb and Fb.</li>
+            </ul>
+          </section>
 
-                            <div class="accordion-item">
-                                <h3 class="accordion-header" id="faqHeading5">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse5" aria-expanded="false"
-                                        aria-controls="faqCollapse5">
-                                        Can I use a rectangular slot port instead of a round tube?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
-                                    data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body text-muted">
-                                        Yes. Rectangular slot ports are widely used in custom wood enclosures. To use
-                                        this calculator for a slot port, convert the slot's cross-sectional area (Width
-                                        * Height) into an equivalent circular diameter using the hydraulic formula:
-                                        <code>D_equiv = 2 * sqrt(Area / pi)</code>. Slot ports sharing enclosure walls
-                                        also experience increased boundary end correction, typically requiring a 10% to
-                                        15% length reduction.
-                                    </div>
-                                </div>
-                            </div>
+          <section class="mb-4">
+            <h2 class="text-mid mb-3"><i class="bi bi-arrow-left-right me-2"></i>Ported vs Sealed vs Bandpass</h2>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead><tr><th>Design</th><th>Bass character</th><th>Trade-off</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Ported (this tool)</strong></td><td>+3–6 dB more output around Fb</td><td>Bigger box; below Fb the driver unloads — use a subsonic filter</td></tr>
+                  <tr><td>Sealed</td><td>Tight, accurate transient response</td><td>Needs more power for the same low bass</td></tr>
+                  <tr><td>Bandpass</td><td>Maximum boom in a narrow band</td><td>One-note sound; hardest to design well</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-                            <div class="accordion-item">
-                                <h3 class="accordion-header" id="faqHeading6">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapse6" aria-expanded="false"
-                                        aria-controls="faqCollapse6">
-                                        Does the volume occupied by the port reduce the internal box volume (Vb)?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6"
-                                    data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body text-muted">
-                                        Yes. The physical volume occupied by the port walls and the air inside the tube
-                                        must be subtracted from the gross internal box volume. Vb in the calculator must
-                                        always represent the net internal air volume remaining after deducting driver
-                                        displacement, bracing, and the port assembly itself.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+          <section class="mb-4">
+            <h2 class="text-mid mb-4"><i class="bi bi-question-circle me-2"></i>Frequently Asked Questions</h2>
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    How do I calculate port length for a subwoofer box?
+                  </button>
+                </h3>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Use L = (23562.5 × D² × N) ÷ (Fb² × Vb) − 0.732 × D, with Vb in liters, Fb in Hz, D in cm, N ports — or just enter the four numbers above. Example: 50 L box tuned to 35 Hz with one 7 cm port needs about 13.7 cm of tube.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    Does a longer port mean lower or higher tuning?
+                  </button>
+                </h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Lower. A longer port means a heavier air slug, which oscillates more slowly — exactly like a longer pendulum swings slower. To drop tuning from 35 Hz to 28 Hz in the same box, expect roughly double the port length.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    What is the 0.732 × D end correction?
+                  </button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Air just outside both port ends vibrates along with the slug inside, making the port behave ~0.366 × D longer per end — 0.732 × D total. The calculator subtracts it, so the physical tube you cut produces the intended acoustic length. Skip it and your box tunes sharp.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    Why does my port make a whistling or huffing noise?
+                  </button>
+                </h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    That's chuffing — turbulent airflow from a too-small port at high volume. Fix it with more port area (larger diameter or a second port), then recalculate length since area changes tuning. Flared port ends also smooth airflow and buy you a few dB of headroom before noise starts.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                    What tuning frequency should I choose for a subwoofer?
+                  </button>
+                </h3>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    30–35 Hz suits most music (rap, EDM, rock); 28 Hz and below digs deeper for home theater rumble but needs a longer port and more box. Match tuning to your content: daily music around 32–35 Hz, SPL competition often higher (40–50 Hz) for peak output.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                    Round port vs slot port — which is better?
+                  </button>
+                </h3>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Acoustically they're equivalent at the same area and length. Round PVC/aeroports are easier to buy and flare; slot ports use the box walls, brace the enclosure, and fit long lengths via bends. Choose by build convenience — then calculate with the matching geometry.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                    How do I measure my box's actual tuning frequency?
+                  </button>
+                </h3>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Play slow sine sweeps around your target while watching the cone: at Fb, excursion visibly minimizes because the port takes over. Alternatively, an impedance sweep shows a characteristic double hump with a dip at Fb. Trim or extend the port a centimeter at a time to dial it in.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                    Can I use two ports instead of one big port?
+                  </button>
+                </h3>
+                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes — select 2 in the calculator. Two identical ports need roughly twice the length of one for the same tuning (total area doubled). Often one larger port is simpler to fit, but dual ports can look better and distribute airflow. Never mix different diameters in one box.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                    What happens if my port is too short?
+                  </button>
+                </h3>
+                <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    The box tunes higher than intended: bass gets peaky and thin below the peak, and the driver unloads (moves excessively) at frequencies it was supposed to be protected from. If your build tunes sharp, extend the port — or add an elbow to fit more length inside.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+                    Do I need a subsonic filter with a ported box?
+                  </button>
+                </h3>
+                <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Strongly recommended. Below Fb a ported box provides almost no air-spring control, so the driver can over-excurse on deep bass. A subsonic (infrasonic) high-pass filter set just below Fb protects the driver with no audible cost.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                    <section class="p-4 border rounded bg-light">
-                        <h2 class="h5 text-teal mb-3"><i class="bi bi-link-45deg me-2"></i>Explore Related Speaker Tools
-                        </h2>
-                        <ul class="list-unstyled mb-0 d-flex flex-wrap gap-3">
-                            <li><a href="/speaker-tools/ported-enclosure-calculator/"
-                                    class="btn btn-outline-teal btn-sm"><i class="bi bi-box me-1"></i> Ported Enclosure
-                                    Calculator</a></li>
-                            <li><a href="/speaker-tools/sealed-box-calculator/" class="btn btn-outline-teal btn-sm"><i
-                                        class="bi bi-box-seam me-1"></i> Sealed Box Calculator</a></li>
-                            <li><a href="/speaker-tools/subwoofer-enclosure-tuning-calculator/"
-                                    class="btn btn-outline-teal btn-sm"><i class="bi bi-soundwave me-1"></i> Subwoofer
-                                    Tuning Calculator</a></li>
-                            <li><a href="/speaker-tools/amplifier-power-calculator/"
-                                    class="btn btn-outline-teal btn-sm"><i class="bi bi-plug me-1"></i> Amplifier Power
-                                    Calculator</a></li>
-                            <li><a href="/speaker-tools/speaker-impedance-calculator/"
-                                    class="btn btn-outline-teal btn-sm"><i class="bi bi-diagram-3 me-1"></i> Speaker
-                                    Impedance Calculator</a></li>
-                        </ul>
-                    </section>
+          <section class="mb-4">
+            <p class="text-muted small">Related tools: <a href="../sealed-box-calculator/">sealed box calculator</a> for closed designs, <a href="../ported-enclosure-calculator/">ported enclosure calculator</a> for full box specs, <a href="../subwoofer-enclosure-tuning-calculator/">subwoofer enclosure tuning</a>, <a href="../speaker-wattage-calculator/">speaker wattage calculator</a>, and <a href="../spl-calculator/">SPL calculator</a> to predict output.</p>
+          </section>
                 </article>
             </div>
         </div>
     </div>
     <div id="footer"></div>
 
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+    <script src="../../assets/bootstrap5.js" defer></script>
+    <script src="../../assets/tools.js" defer></script>
     <!-- tool js -->
     <script defer>
         function calculatePort() {

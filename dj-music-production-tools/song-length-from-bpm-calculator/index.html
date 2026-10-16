@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Song Length from BPM Calculator – Calculate Song Duration from Bars & Tempo</title>
+    <title>Song Length Calculator: Bars & BPM to Minutes</title>
     <meta name="description"
-        content="Free Song Length from BPM Calculator. Compute exact song duration in minutes, seconds, and milliseconds using tempo (BPM), time signature, and total measure count.">
+    content="Calculate exact song duration from BPM, time signature and bar count. Free song tool for DJs, producers and film scorers — minutes, seconds, milliseconds.">
     <link rel="canonical" href="https://pitchdetectors.com/dj-music-production-tools/song-length-from-bpm-calculator/">
 
-    <link rel="icon" href="/assets/imgs/logo.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/imgs/logo.png" type="image/x-icon">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Song Length from BPM Calculator – Calculate Duration from Bars & Tempo">
@@ -18,76 +18,108 @@
     <meta property="og:url"
         content="https://pitchdetectors.com/dj-music-production-tools/song-length-from-bpm-calculator/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="/assets/imgs/logo.png">
+    <meta property="og:image" content="./assets/imgs/logo.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Song Length from BPM Calculator">
     <meta name="twitter:description" content="Calculate song duration from BPM, bars, and time signature.">
-    <meta name="twitter:image" content="/assets/imgs/logo.png">
+    <meta name="twitter:image" content="./assets/imgs/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/bootstrap5.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/style.css">
-    <link href="/assets/tools.css" rel="stylesheet">
+    <link href="../../assets/bootstrap5.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link href="../../assets/tools.css" rel="stylesheet">
     <meta name="author" content="Pitch Detectors">
 
     <!-- FAQPage Schema -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do you calculate song length from BPM and bars?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Multiply total measures (bars) by the number of beats per measure to get total beats. Then divide total beats by the BPM and multiply by 60 to get total song length in seconds: Duration (seconds) = (Measures × Beats Per Measure × 60) / BPM."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How many bars are in an average 3-minute pop song?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "At a standard pop tempo of 120 BPM in 4/4 time, each bar lasts exactly 2 seconds. A 3-minute song (180 seconds) contains exactly 90 bars. At 128 BPM, a 3-minute song requires approximately 96 bars."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How does changing time signature affect song duration?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Time signature dictates how many beats are contained in each measure. A 4/4 measure has 4 beats, while a 3/4 waltz measure has only 3 beats. At 120 BPM, 100 measures in 4/4 time last 200 seconds (3m 20s), whereas 100 measures in 3/4 time last 150 seconds (2m 30s)—a 25% shorter duration."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why do club extended mixes have twice as many bars as radio edits?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Extended club mixes include dedicated 32-bar or 64-bar drum intro and outro mixing segments designed for DJs to beatmatch and blend without vocal collisions. Radio edits excise these functional mixing sections to deliver the vocal hooks within 2:30 to 3:15 for streaming algorithms and radio broadcast."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I calculate how many bars to write for a 30-second or 60-second commercial?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Rearrange the formula: Measures = (Target Seconds × BPM) / (Beats Per Measure × 60). For a 60-second commercial at 120 BPM in 4/4 time: (60 × 120) / (4 × 60) = 30 bars exactly."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I account for tempo changes or ritardandos mid-song?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Calculate the duration of each constant-tempo section separately using the formula, then sum the section durations. For gradual tempo transitions (accelerando or ritardando), average the starting and ending BPM across the transitional bars to estimate the elapsed time."
-          }
-        }
-      ]
+      "@type": "Question",
+      "name": "How do you calculate song length from BPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply bars by beats per bar to get total beats, divide by BPM, and multiply by 60: seconds = (bars × beats per bar ÷ BPM) × 60. For 128 bars of 4/4 at 128 BPM: (128 × 4 ÷ 128) × 60 = 240 seconds, exactly 4 minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is 128 bars at 128 BPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Exactly 4 minutes (240.0 seconds) in 4/4 time. The numbers cancel neatly: 128 × 4 = 512 beats, and 512 ÷ 128 = 4 minutes. This is why 128 bars at 128 BPM became the default club-track template."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does time signature change the song length?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — it changes the beats-per-bar multiplier. At the same tempo, 64 bars of 3/4 (192 beats) runs 25% shorter than 64 bars of 4/4 (256 beats). Always enter the time signature you are actually playing in, not just the default 4/4."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many bars are in a 3-minute song?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on tempo: bars = (180 seconds × BPM) ÷ (60 × beats per bar). At 120 BPM in 4/4, a 3-minute song has 90 bars. At 90 BPM, the same 3 minutes holds only 67.5 bars — so slower songs pack fewer bars into the same clock time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my DAW show a different length than the calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Four usual culprits: tempo automation (the DAW follows a tempo curve, the calculator assumes one BPM), pickup bars before bar 1, count-in clicks included in the export, and reverb tails ringing past the last bar. Match the calculator's assumptions — or measure the DAW's actual tempo map — and the numbers agree."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate milliseconds per bar for delay effects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Read the milliseconds readout and divide by your bar count, or compute directly: ms per bar = (60,000 ÷ BPM) × beats per bar. At 128 BPM in 4/4, one bar is 1,875 ms and a quarter-note delay is 468.75 ms. Use the dedicated BPM-to-milliseconds tool for dotted and triplet subdivisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many songs fit in a 60-minute DJ set?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide 60 by your average audible minutes per track. With 4-minute tracks and 1-minute transition overlaps, each track occupies about 3 audible minutes — roughly 20 tracks per hour. Faster mixing (2-minute blends) pushes that toward 30; long progressive blends pull it toward 15."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is 6/8 time two beats or six beats per bar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Musicians feel it as two dotted-quarter beats, but the notation contains six eighth notes — and this calculator counts six beats per bar. If your metronome clicks twice per bar at 60 BPM, enter 6 beats at 180 BPM (the eighth-note pulse) to get the correct duration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this for film scoring hit points?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — work the formula backwards. For a hit at 47.5 seconds in 100 BPM 4/4: bars = (47.5 × 100) ÷ (60 × 4) = 19.79 bars. Write 20 bars (48.0 s) and trim the tail, or adjust tempo slightly so a whole bar count lands exactly on the hit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do tempo changes break the calculation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — the formula assumes one constant BPM. A ritardando, accelerando, or DAW tempo automation makes the real duration differ. For mapped tempos, calculate each constant-tempo section separately with its own bar count and BPM, then add the sections together."
+      }
     }
+  ]
+}
     </script>
 </head>
 
@@ -115,7 +147,7 @@
                                             class="bi bi-speedometer2"></i> BPM Calculator</a></li>
                                 <li><a href="/dj-music-production-tools/bpm-to-speed/"><i
                                             class="bi bi-speedometer2"></i> BPM to Speed Converter</a></li>
-                                <li><a href="/BPM-Pitch-Calculator.html"><i class="bi bi-music-note-slider"></i> BPM
+                                <li><a href="https://pitchdetectors.com/dj-music-production-tools/bpm-to-speed/"><i class="bi bi-music-note-slider"></i> BPM
                                         &rarr; Pitch Shift</a></li>
                                 <li><a href="/dj-music-production-tools/bpm-tap-tempo/"><i class="bi bi-hand-index"></i>
                                         BPM Tap Tempo</a></li>
@@ -174,9 +206,8 @@
                     <div class="tool-title mb-4">
                         <h1 class="display-6 fw-bold text-teal"><i class="bi bi-music-note me-2"></i>Song Length from
                             BPM Calculator</h1>
-                        <p class="lead text-muted">Compute exact song duration in minutes, seconds, and milliseconds
-                            using track tempo (BPM), time signature, and total measure count. Perfect for music
-                            arrangers, DAW producers, film scorers, and DJs.</p>
+                        <p class="text-muted small">Last updated: October 12, 2026 · Written by the Pitch Detectors Editorial Team</p>
+                        <p class="lead text-muted">A <strong>song length calculator</strong> turns musical structure into clock time: enter tempo (BPM), time signature, and bar count to get exact duration in minutes, seconds, and milliseconds. Plan arrangements, DJ sets, and film cues before a single note is recorded.</p>
                     </div>
 
                     <!-- Calculator Input Form -->
@@ -265,346 +296,313 @@
                         </div>
                     </div>
 
-                    <!-- COMPREHENSIVE GUIDE & REFERENCE -->
+                                        <!-- COMPREHENSIVE GUIDE & REFERENCE — rewritten to semantic SEO standard, 2026-10-12 -->
                     <div class="mt-5">
                         <section class="mb-5">
-                            <h2 class="h3 fw-bold text-teal mb-3">The Mathematics of Song Duration: How Tempo and
-                                Measures Dictate Time</h2>
-                            <p>
-                                In musical production, time is measured along two independent axes: <strong>musical
-                                    time</strong> (beats, bars, and measures) and <strong>chronological time</strong>
-                                (minutes, seconds, and milliseconds). The bridge between these two worlds is
-                                <strong>tempo</strong>, quantified as <strong>Beats Per Minute (BPM)</strong>.
-                            </p>
-                            <p>
-                                Understanding the exact mathematical conversion between bars and running time is
-                                critical for:
-                            </p>
+                            <h2 class="h3 fw-bold text-teal mb-3">Key Takeaways</h2>
                             <ul>
-                                <li><strong>Streaming & Radio Arrangement:</strong> Tailoring tracks to modern streaming
-                                    sweet spots (between 2:30 and 3:15) without sacrificing necessary musical sections.
-                                </li>
-                                <li><strong>Film, TV & Commercial Sync Scoring:</strong> Crafting musical cues that
-                                    resolve on exact video cut frames (e.g. 15-second TV bumpers or 30-second commercial
-                                    spots).</li>
-                                <li><strong>Club DJ Mix Architectures:</strong> Structuring extended DJ intros and
-                                    outros so that tracks can be seamlessly layered across standard 32-bar and 64-bar
-                                    phrases.</li>
-                                <li><strong>Live Performance Pacing:</strong> Designing setlists to strictly obey strict
-                                    festival and concert venue curfew limits.</li>
+                                <li><strong>Song length = (bars × beats per bar ÷ BPM) × 60 seconds.</strong> Three inputs, one exact answer.</li>
+                                <li>The classic club track — <strong>128 bars at 128 BPM in 4/4 — is exactly 4:00</strong>. That is not a coincidence; it is the math behind the genre.</li>
+                                <li><strong>Time signature changes everything:</strong> 64 bars in 3/4 is 25% shorter than 64 bars in 4/4 at the same tempo.</li>
+                                <li><strong>Watch 6/8 time:</strong> conductors count it in 2 beats, but this calculator counts 6 eighth-note beats per bar — know which one you need.</li>
+                                <li>The millisecond readout is not trivia — it is how you <strong>sync delays and reverbs to tempo</strong> (<a href="../bpm-to-ms/">bpm to ms</a>).</li>
                             </ul>
                         </section>
 
                         <section class="mb-5">
-                            <h3 class="h4 fw-bold mb-3">The Mathematical Song Duration Formulas</h3>
-                            <p>
-                                The calculation begins by converting measures into total rhythmic beats, and then
-                                dividing by the rate of beats per second:
-                            </p>
-                            <div class="row g-4 my-2">
-                                <div class="col-md-6">
-                                    <div class="p-3 bg-light rounded border h-100">
-                                        <h5 class="fw-bold text-teal mb-2">1. Total Running Time in Seconds</h5>
-                                        <div class="p-2 bg-white rounded border font-monospace text-center mb-2">
-                                            $$ ext{Duration (s)} = rac{ ext{Measures} imes ext{Beats Per Measure} imes
-                                            60}{ ext{BPM}}$$
-                                        </div>
-                                        <p class="small text-muted mb-0"><strong>Example:</strong> 128 bars in 4/4 time
-                                            at 128 BPM yields $(128 imes 4 imes 60) / 128 = 240 ext{ seconds}$ (exactly
-                                            4 minutes).</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="p-3 bg-light rounded border h-100">
-                                        <h5 class="fw-bold text-teal mb-2">2. Single Bar Duration</h5>
-                                        <div class="p-2 bg-white rounded border font-monospace text-center mb-2">
-                                            $$ ext{Seconds Per Bar} = rac{ ext{Beats Per Measure} imes 60}{ ext{BPM}}$$
-                                        </div>
-                                        <p class="small text-muted mb-0"><strong>Example:</strong> At 120 BPM in 4/4
-                                            time, each bar lasts $(4 imes 60) / 120 = 2.0 ext{ seconds}$. At 150 BPM,
-                                            each bar lasts $1.6 ext{ seconds}$.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <h2 class="h3 fw-bold text-teal mb-3">What Is a Song Length Calculator?</h2>
+                            <p><strong>A song length calculator converts musical structure into clock time: given a tempo (BPM), a time signature, and a bar count, it tells you exactly how long the music lasts in minutes, seconds, and milliseconds.</strong> Producers use it to plan arrangements, DJs use it to time sets, and film composers use it to hit exact timecodes.</p>
+                            <p>Unlike a stopwatch measurement, the calculation is <strong>deterministic</strong> — the same three inputs always give the same duration, because tempo and meter define time mathematically. That makes it the planning tool you reach for <em>before</em> the music exists.</p>
                         </section>
 
                         <section class="mb-5">
-                            <h3 class="h4 fw-bold mb-3">Song Structure & Measure Allocation Matrix</h3>
-                            <p>
-                                Modern commercial tracks are constructed from modular multi-bar blocks (usually
-                                multiples of 4, 8, or 16 bars). The table below outlines how measures are typically
-                                allocated across standard arrangements:
-                            </p>
+                            <h2 class="h3 fw-bold text-teal mb-3">How This Calculator Works</h2>
+                            <p>This calculator turns your three inputs into total beats, then converts beats to seconds with one division. The exact method running in the widget above:</p>
+                            <ol>
+                                <li><strong>Total beats</strong> = measures (bars) × beats per measure from the time signature.</li>
+                                <li><strong>Seconds</strong> = (total beats ÷ BPM) × 60 — because BPM means beats per <em>minute</em>.</li>
+                                <li><strong>Milliseconds</strong> = seconds × 1,000, for sample-accurate and effect-sync work.</li>
+                                <li><strong>Seconds per bar</strong> and <strong>bars per minute</strong> are derived from the same numbers for quick reference.</li>
+                            </ol>
+                            <p>BPM here means <strong>quarter-note beats per minute</strong> — the standard metronome convention. If your DAW's tempo reads 128, enter 128.</p>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">Song Length Formula and Worked Example</h2>
+                            <p>The complete formula, with units made explicit:</p>
+                            <p><code><strong>duration (seconds) = (bars × beats per bar ÷ BPM) × 60</strong></code></p>
+                            <p><strong>Worked example — the classic club track:</strong> 128 bars, 4/4 time, 128 BPM.</p>
+                            <ol>
+                                <li>Total beats: 128 bars × 4 beats = <strong>512 beats</strong>.</li>
+                                <li>Minutes of beats: 512 ÷ 128 BPM = <strong>4.0 minutes</strong>.</li>
+                                <li>Seconds: 4.0 × 60 = <strong>240.0 seconds = 4:00 exactly</strong>.</li>
+                            </ol>
+                            <p><strong>Second example — a waltz:</strong> 64 bars, 3/4 time, 90 BPM → 64 × 3 = 192 beats → 192 ÷ 90 × 60 = <strong>128 seconds (2:08)</strong>. Same bar count as a 4/4 track, but 25% shorter — the time signature is doing real work in the formula.</p>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">How to Use This Calculator</h2>
+                            <ol>
+                                <li><strong>Tempo (BPM):</strong> enter the track's tempo in quarter-note beats per minute (tap it with our <a href="../bpm-tap-tempo/">BPM tap tempo</a> if you don't know it).</li>
+                                <li><strong>Time signature:</strong> pick the beats per measure — 4/4 for most pop and dance, 3/4 for waltzes, 6/8 for compound feels.</li>
+                                <li><strong>Total measures (bars):</strong> enter the bar count, or tap a quick preset (32, 64, 96, 128, 192 bars).</li>
+                                <li><strong>Read the dashboard:</strong> total time, exact seconds, total beats, milliseconds, seconds per bar, and bars per minute update instantly.</li>
+                            </ol>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">Reading Your Result</h2>
+                            <p>Each readout answers a different production question:</p>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Arrangement Section</th>
-                                            <th>Standard Pop / Radio Edit</th>
-                                            <th>Extended Club / DJ Mix</th>
-                                            <th>Musical Purpose</th>
-                                        </tr>
-                                    </thead>
+                                <table class="table table-bordered">
+                                    <thead><tr><th>Readout</th><th>What it means</th><th>Use it for</th></tr></thead>
                                     <tbody>
-                                        <tr>
-                                            <td><strong>DJ Intro</strong></td>
-                                            <td>0 – 4 Bars (Instant vocal hook)</td>
-                                            <td>32 – 64 Bars (Drums & percussion only)</td>
-                                            <td>Enables beatmatching and long transitions in clubs.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Verse 1</strong></td>
-                                            <td>16 Bars</td>
-                                            <td>16 – 32 Bars</td>
-                                            <td>Establishes storyline, chord progression, and groove.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Pre-Chorus / Build</strong></td>
-                                            <td>8 Bars</td>
-                                            <td>8 – 16 Bars</td>
-                                            <td>Increases tension via snare rolls, pitch risers, and filter sweeps.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Chorus / Drop 1</strong></td>
-                                            <td>16 Bars</td>
-                                            <td>32 Bars</td>
-                                            <td>Maximum sonic energy, main hook melody, and bass drop.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Verse 2 / Breakdown</strong></td>
-                                            <td>8 – 16 Bars</td>
-                                            <td>16 – 32 Bars</td>
-                                            <td>Strips back drums to let dancers breathe before rebuild.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Chorus / Drop 2</strong></td>
-                                            <td>16 Bars</td>
-                                            <td>32 Bars</td>
-                                            <td>Peak emotional and rhythmic climax of the composition.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>DJ Outro</strong></td>
-                                            <td>4 – 8 Bars (Quick fade)</td>
-                                            <td>32 – 64 Bars (Drums & percussion loop)</td>
-                                            <td>Allows the next DJ to blend the next incoming track.</td>
-                                        </tr>
-                                        <tr class="table-light fw-bold">
-                                            <td>Total Measures & Duration</td>
-                                            <td><strong>88 – 104 Bars (~2:45 to 3:15)</strong></td>
-                                            <td><strong>192 – 256 Bars (~5:00 to 6:30)</strong></td>
-                                            <td>Optimized for intended playback environment.</td>
-                                        </tr>
+                                        <tr><td>Total song length</td><td>Minutes and seconds of music.</td><td>Set planning, radio-edit targets, arrangement checks.</td></tr>
+                                        <tr><td>Total exact seconds</td><td>Duration to two decimals.</td><td>Video sync, podcast timing, cue sheets.</td></tr>
+                                        <tr><td>Total beats</td><td>Every beat in the piece.</td><td>Sanity-checking the math; loop math.</td></tr>
+                                        <tr><td>Milliseconds</td><td>Sample-accurate duration.</td><td>Tempo-synced delays, reverb pre-delay, editing.</td></tr>
+                                        <tr><td>Seconds per bar</td><td>One bar's duration.</td><td>Timing drops, fills, and transitions by ear.</td></tr>
+                                        <tr><td>Bars per minute</td><td>Arrangement density.</td><td>Estimating how fast an arrangement "moves."</td></tr>
                                     </tbody>
                                 </table>
                             </div>
                         </section>
 
                         <section class="mb-5">
-                            <h3 class="h4 fw-bold mb-3">Song Length Reference Table Across Tempos (in 4/4 Time)</h3>
-                            <p>
-                                The table below shows the exact duration (minutes and seconds) across standard measure
-                                lengths at common musical tempos:
-                            </p>
+                            <h2 class="h3 fw-bold text-teal mb-3">The 128-Bar Rule: Why Club Tracks Land on 4:00</h2>
+                            <p><strong>A 128-bar arrangement at 128 BPM in 4/4 lasts exactly 240.0 seconds — four minutes on the nose.</strong> This is why the "standard club track" converged on those numbers: the math is clean, DJs can plan sets by the minute, and radio edits (usually 96 bars ≈ 3:00 at 128 BPM) fall out of the same arithmetic.</p>
                             <div class="table-responsive">
-                                <table class="table table-bordered text-center align-middle">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Tempo (BPM)</th>
-                                            <th>Genre Context</th>
-                                            <th>64 Bars</th>
-                                            <th>96 Bars</th>
-                                            <th>128 Bars</th>
-                                            <th>160 Bars</th>
-                                            <th>192 Bars</th>
-                                        </tr>
-                                    </thead>
+                                <table class="table table-bordered">
+                                    <thead><tr><th>Genre template</th><th>Bars</th><th>BPM</th><th>Length</th></tr></thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="fw-bold">85 BPM</td>
-                                            <td class="text-start small">Hip-Hop / R&B / Trap</td>
-                                            <td>3m 00s</td>
-                                            <td>4m 31s</td>
-                                            <td>6m 01s</td>
-                                            <td>7m 31s</td>
-                                            <td>9m 02s</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">100 BPM</td>
-                                            <td class="text-start small">Moombahton / Midtempo</td>
-                                            <td>2m 33s</td>
-                                            <td>3m 50s</td>
-                                            <td>5m 07s</td>
-                                            <td>6m 24s</td>
-                                            <td>7m 40s</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">120 BPM</td>
-                                            <td class="text-start small">Standard Pop / Disco</td>
-                                            <td>2m 08s</td>
-                                            <td>3m 12s</td>
-                                            <td>4m 16s</td>
-                                            <td>5m 20s</td>
-                                            <td>6m 24s</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">124 BPM</td>
-                                            <td class="text-start small">Deep House / Melodic</td>
-                                            <td>2m 03s</td>
-                                            <td>3m 05s</td>
-                                            <td>4m 07s</td>
-                                            <td>5m 09s</td>
-                                            <td>6m 11s</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">128 BPM</td>
-                                            <td class="text-start small">Tech House / EDM Festival</td>
-                                            <td>2m 00s</td>
-                                            <td>3m 00s</td>
-                                            <td>4m 00s</td>
-                                            <td>5m 00s</td>
-                                            <td>6m 00s</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">140 BPM</td>
-                                            <td class="text-start small">Trance / Dubstep</td>
-                                            <td>1m 49s</td>
-                                            <td>2m 44s</td>
-                                            <td>3m 39s</td>
-                                            <td>4m 34s</td>
-                                            <td>5m 29s</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="fw-bold">174 BPM</td>
-                                            <td class="text-start small">Drum &amp; Bass / Jungle</td>
-                                            <td>1m 28s</td>
-                                            <td>2m 12s</td>
-                                            <td>2m 56s</td>
-                                            <td>3m 40s</td>
-                                            <td>4m 24s</td>
-                                        </tr>
+                                        <tr><td>House / techno (standard)</td><td>128</td><td>128</td><td>4:00</td></tr>
+                                        <tr><td>House / techno (extended)</td><td>192</td><td>128</td><td>6:00</td></tr>
+                                        <tr><td>Pop radio edit</td><td>96</td><td>128</td><td>3:00</td></tr>
+                                        <tr><td>Hip-hop (16-bar verses)</td><td>80</td><td>90</td><td>3:33</td></tr>
+                                        <tr><td>Drum &amp; bass</td><td>128</td><td>174</td><td>2:57</td></tr>
                                     </tbody>
                                 </table>
                             </div>
+                            <p>If your arrangement must hit a target length, work the formula backwards: bars needed = (target seconds × BPM) ÷ (60 × beats per bar).</p>
+                        </section>
+
+                        <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Diagram: the song-length formula as a pipeline — bars × beats per bar → total beats → ÷ BPM × 60 → clock time]</div><figcaption class="small text-muted mt-2">Alt text: Flow diagram showing how bars, beats per bar, and BPM combine into total song duration.</figcaption></figure>
+
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">The 6/8 Trap: Compound Meter Counts Differently</h2>
+                            <p><strong>In 6/8 time, musicians feel two beats per bar (two dotted-quarter notes), but this calculator counts six eighth-note beats per bar.</strong> Both are correct — they just slice the bar differently — and mixing them up doubles or triples your answer.</p>
+                            <p>Practical rule: if your metronome clicks <strong>twice per bar</strong> on a 6/8 groove and reads 60 BPM, the eighth-note pulse is 180 BPM. Enter <strong>6 beats per bar at 180 BPM</strong> in the calculator (not 2 beats at 60), and the duration comes out right. When in doubt, count the clicks you actually hear and match the BPM to that pulse.</p>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">Milliseconds Are a Musical Tool, Not Trivia</h2>
+                            <p><strong>Tempo-synced delay and reverb times come straight from the milliseconds-per-bar readout.</strong> A quarter-note delay at 128 BPM is 468.75 ms; a dotted-eighth is 351.56 ms. Dial those numbers into any delay plugin for echoes that sit exactly on the grid.</p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead><tr><th>Tempo</th><th>Quarter note</th><th>Dotted eighth</th><th>One bar (4/4)</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>100 BPM</td><td>600 ms</td><td>450 ms</td><td>2,400 ms</td></tr>
+                                        <tr><td>120 BPM</td><td>500 ms</td><td>375 ms</td><td>2,000 ms</td></tr>
+                                        <tr><td>128 BPM</td><td>468.75 ms</td><td>351.56 ms</td><td>1,875 ms</td></tr>
+                                        <tr><td>140 BPM</td><td>428.57 ms</td><td>321.43 ms</td><td>1,714 ms</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p>For the full subdivision chart (triplets, 16ths, dotted values), use our dedicated <a href="../bpm-to-ms/">BPM to milliseconds</a> tool.</p>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">Planning a Whole DJ Set by the Numbers</h2>
+                            <p><strong>Set arithmetic starts with average track length.</strong> A 60-minute set of 4-minute tracks needs about 15 tracks — but DJs mix out before the outro, so budget roughly 2.5–3 minutes of <em>audible</em> time per track, which means 20–24 tracks per hour for long-blend genres.</p>
+                            <p>Workflow: calculate each candidate track's length with this tool, sum them, then subtract your planned overlap (typically 32 bars ≈ 1 minute per transition at 128 BPM). For the full calculation including transitions and energy curve, use our <a href="../dj-set-length-calculator/">DJ set length calculator</a>.</p>
+                        </section>
+
+                        <figure class="my-4 text-center"><div class="border rounded p-5 bg-light text-muted">[Infographic: a 60-minute DJ set timeline showing 20 tracks with 32-bar overlaps between them]</div><figcaption class="small text-muted mt-2">Alt text: Timeline infographic of a 60-minute DJ set built from 4-minute tracks with 32-bar transition overlaps.</figcaption></figure>
+
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">For Film Scorers: Hitting the Timecode</h2>
+                            <p><strong>Film cues work backwards from a hit point.</strong> Suppose a reveal lands at 47.5 seconds and your tempo is 100 BPM in 4/4: bars needed = (47.5 × 100) ÷ (60 × 4) = 19.79 bars. Write 20 bars (48.0 s) and trim the half-second, or nudge tempo to 101 BPM for 20.0 bars.</p>
+                            <p>This bar-exact thinking is also how tempo maps are built: each cue's duration is locked before a note is written, so the downbeat of the climax lands on the cut. Practice the target tempo with our <a href="../../music-theory-tools/online-metronome/">online metronome</a> before recording.</p>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">Limitations</h2>
+                            <ul>
+                                <li><strong>Constant tempo assumed.</strong> Ritardandos, accelerandos, and tempo automation make real performances longer or shorter than the calculation — the tool models a fixed BPM.</li>
+                                <li><strong>Pickup bars (anacrusis) are not counted.</strong> A 4-beat pickup before bar 1 adds time the bar count misses; add it manually.</li>
+                                <li><strong>Swing and groove don't change the math</strong> — swung eighth notes still occupy the same total duration — but they change how the time <em>feels</em>.</li>
+                                <li><strong>Fermatas and vamps:</strong> held notes and repeated-until-cue sections have no fixed bar count; estimate them separately.</li>
+                            </ul>
+                        </section>
+
+                        <section class="mb-5">
+                            <h2 class="h3 fw-bold text-teal mb-3">Song Length Calculator vs Alternatives</h2>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead><tr><th>Method</th><th>How it works</th><th>Best for</th><th>Watch out for</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>This calculator</td><td>Exact formula from BPM, meter, bars</td><td>Planning before music exists; quick checks</td><td>Assumes constant tempo</td></tr>
+                                        <tr><td>DAW timeline</td><td>Measures the actual arrangement</td><td>Finished projects with automation</td><td>Only works after composing</td></tr>
+                                        <tr><td>Mental math</td><td>Bars ÷ bars-per-minute</td><td>On-stage estimates</td><td>Error-prone under pressure</td></tr>
+                                        <tr><td>Tap tempo + stopwatch</td><td>Measures a real performance</td><td>Live bands with tempo drift</td><td>Measures one take, not the composition</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="mb-5">
+                            <p class="small text-muted"><em>Durations are calculated from tempo, meter, and bar count assuming a constant tempo. Real performances with tempo changes, pickups, or vamps will differ — always confirm against your DAW or a stopwatch for critical timing.</em></p>
                         </section>
 
                         <!-- FAQ Section -->
                         <section class="mb-5">
                             <h3 class="h4 fw-bold mb-4">Frequently Asked Questions</h3>
                             <div class="accordion" id="slFaqAccordion">
+
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="sfHeading1">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#sf1" aria-expanded="true">
-                                            How do you calculate song length from BPM and bars?
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sf1"
+                                            aria-expanded="true">
+                                            How do you calculate song length from BPM?
                                         </button>
                                     </h2>
-                                    <div id="sf1" class="accordion-collapse collapse show"
-                                        data-bs-parent="#slFaqAccordion">
+                                    <div id="sf1" class="accordion-collapse collapse show" data-bs-parent="#slFaqAccordion">
                                         <div class="accordion-body">
-                                            Multiply total measures (bars) by the number of beats per measure to get
-                                            total beats. Then divide total beats by the BPM and multiply by 60 to get
-                                            total song length in seconds:
-                                            <code>Duration (seconds) = (Measures × Beats Per Measure × 60) / BPM</code>.
+                                            Multiply bars by beats per bar to get total beats, divide by BPM, and multiply by 60: seconds = (bars × beats per bar ÷ BPM) × 60. For 128 bars of 4/4 at 128 BPM: (128 × 4 ÷ 128) × 60 = 240 seconds, exactly 4 minutes.
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="sfHeading2">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#sf2">
-                                            How many bars are in an average 3-minute pop song?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf2">
+                                            How long is 128 bars at 128 BPM?
                                         </button>
                                     </h2>
                                     <div id="sf2" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
                                         <div class="accordion-body">
-                                            At a standard pop tempo of 120 BPM in 4/4 time, each bar lasts exactly 2
-                                            seconds. A 3-minute song (180 seconds) contains exactly 90 bars. At 128 BPM,
-                                            a 3-minute song requires approximately 96 bars.
+                                            Exactly 4 minutes (240.0 seconds) in 4/4 time. The numbers cancel neatly: 128 × 4 = 512 beats, and 512 ÷ 128 = 4 minutes. This is why 128 bars at 128 BPM became the default club-track template.
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="sfHeading3">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#sf3">
-                                            How does changing time signature affect song duration?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf3">
+                                            Does time signature change the song length?
                                         </button>
                                     </h2>
                                     <div id="sf3" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
                                         <div class="accordion-body">
-                                            Time signature dictates how many beats are contained in each measure. A 4/4
-                                            measure has 4 beats, while a 3/4 waltz measure has only 3 beats. At 120 BPM,
-                                            100 measures in 4/4 time last 200 seconds (3m 20s), whereas 100 measures in
-                                            3/4 time last 150 seconds (2m 30s)—a 25% shorter duration.
+                                            Yes — it changes the beats-per-bar multiplier. At the same tempo, 64 bars of 3/4 (192 beats) runs 25% shorter than 64 bars of 4/4 (256 beats). Always enter the time signature you are actually playing in, not just the default 4/4.
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="sfHeading4">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#sf4">
-                                            Why do club extended mixes have twice as many bars as radio edits?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf4">
+                                            How many bars are in a 3-minute song?
                                         </button>
                                     </h2>
                                     <div id="sf4" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
                                         <div class="accordion-body">
-                                            Extended club mixes include dedicated 32-bar or 64-bar drum intro and outro
-                                            mixing segments designed for DJs to beatmatch and blend without vocal
-                                            collisions. Radio edits excise these functional mixing sections to deliver
-                                            the vocal hooks within 2:30 to 3:15 for streaming algorithms and radio
-                                            broadcast.
+                                            It depends on tempo: bars = (180 seconds × BPM) ÷ (60 × beats per bar). At 120 BPM in 4/4, a 3-minute song has 90 bars. At 90 BPM, the same 3 minutes holds only 67.5 bars — so slower songs pack fewer bars into the same clock time.
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="sfHeading5">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#sf5">
-                                            How do I calculate how many bars to write for a 30-second or 60-second
-                                            commercial?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf5">
+                                            Why does my DAW show a different length than the calculator?
                                         </button>
                                     </h2>
                                     <div id="sf5" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
                                         <div class="accordion-body">
-                                            Rearrange the formula:
-                                            <code>Measures = (Target Seconds × BPM) / (Beats Per Measure × 60)</code>.
-                                            For a 60-second commercial at 120 BPM in 4/4 time:
-                                            <code>(60 × 120) / (4 × 60) = 30 bars</code> exactly.
+                                            Four usual culprits: tempo automation (the DAW follows a tempo curve, the calculator assumes one BPM), pickup bars before bar 1, count-in clicks included in the export, and reverb tails ringing past the last bar. Match the calculator's assumptions — or measure the DAW's actual tempo map — and the numbers agree.
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="sfHeading6">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#sf6">
-                                            How do I account for tempo changes or ritardandos mid-song?
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf6">
+                                            How do I calculate milliseconds per bar for delay effects?
                                         </button>
                                     </h2>
                                     <div id="sf6" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
                                         <div class="accordion-body">
-                                            Calculate the duration of each constant-tempo section separately using the
-                                            formula, then sum the section durations. For gradual tempo transitions
-                                            (accelerando or ritardando), average the starting and ending BPM across the
-                                            transitional bars to estimate the elapsed time.
+                                            Read the milliseconds readout and divide by your bar count, or compute directly: ms per bar = (60,000 ÷ BPM) × beats per bar. At 128 BPM in 4/4, one bar is 1,875 ms and a quarter-note delay is 468.75 ms. Use the dedicated BPM-to-milliseconds tool for dotted and triplet subdivisions.
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading7">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf7">
+                                            How many songs fit in a 60-minute DJ set?
+                                        </button>
+                                    </h2>
+                                    <div id="sf7" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            Divide 60 by your average audible minutes per track. With 4-minute tracks and 1-minute transition overlaps, each track occupies about 3 audible minutes — roughly 20 tracks per hour. Faster mixing (2-minute blends) pushes that toward 30; long progressive blends pull it toward 15.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading8">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf8">
+                                            Is 6/8 time two beats or six beats per bar?
+                                        </button>
+                                    </h2>
+                                    <div id="sf8" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            Musicians feel it as two dotted-quarter beats, but the notation contains six eighth notes — and this calculator counts six beats per bar. If your metronome clicks twice per bar at 60 BPM, enter 6 beats at 180 BPM (the eighth-note pulse) to get the correct duration.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading9">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf9">
+                                            Can I use this for film scoring hit points?
+                                        </button>
+                                    </h2>
+                                    <div id="sf9" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            Yes — work the formula backwards. For a hit at 47.5 seconds in 100 BPM 4/4: bars = (47.5 × 100) ÷ (60 × 4) = 19.79 bars. Write 20 bars (48.0 s) and trim the tail, or adjust tempo slightly so a whole bar count lands exactly on the hit.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="sfHeading10">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sf10">
+                                            Do tempo changes break the calculation?
+                                        </button>
+                                    </h2>
+                                    <div id="sf10" class="accordion-collapse collapse" data-bs-parent="#slFaqAccordion">
+                                        <div class="accordion-body">
+                                            Yes — the formula assumes one constant BPM. A ritardando, accelerando, or DAW tempo automation makes the real duration differ. For mapped tempos, calculate each constant-tempo section separately with its own bar count and BPM, then add the sections together.
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </section>
                     </div>
+
+
                 </div>
             </div>
         </div>
     </div>
 
     <div id="footer"></div>
-    <script src="/assets/bootstrap5.js" defer></script>
-    <script src="/assets/tools.js" defer></script>
+    <script src="../../assets/bootstrap5.js" defer></script>
+    <script src="../../assets/tools.js" defer></script>
 
     <!-- tools js -->
     <script defer>
